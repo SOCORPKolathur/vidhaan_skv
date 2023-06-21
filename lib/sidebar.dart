@@ -140,6 +140,7 @@ class ExampleSidebarX extends StatelessWidget {
         );
       },
       items: [
+
         SidebarXItem(
 
           label: 'Dashboard',
@@ -148,8 +149,14 @@ class ExampleSidebarX extends StatelessWidget {
 
         ),
         SidebarXItem(
-          icon: Icons.rectangle_outlined,
-          label: 'Student',
+
+          iconWidget: ExpansionTile(
+            title: Text("Students"),
+            children: [
+              Text("Data21"),
+              Text("Data21"),
+            ],
+          )
         ),
         const SidebarXItem(
           icon: Icons.rectangle_outlined,

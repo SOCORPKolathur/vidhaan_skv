@@ -44,7 +44,7 @@ class _admissionState extends State<admission> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 38.0, right: 30),
-                      child: Text("Admissions",
+                      child: Text("Admissions Enquiries",
                           style: GoogleFonts.poppins(
                               color: Color(0xff000000),
                               fontSize: 20,
@@ -53,16 +53,18 @@ class _admissionState extends State<admission> {
                     Container(
                       child: Center(
                           child: Text(
-                            "Add New Admission",
+                            "Waiting List",
                             style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),
                           )),
                       width: 200,
                       //color: Color(0xff00A0E3),
                       height: 40,
                       decoration: BoxDecoration(
-                          color: Color(0xff00A0E3),
+                          color: Color(0xffFFA002),
                           borderRadius: BorderRadius.circular(6)),
                     ),
+
+
                     Padding(
                       padding: const EdgeInsets.only(right: 38.0, left: 38),
                       child: Container(
@@ -80,28 +82,7 @@ class _admissionState extends State<admission> {
                             borderRadius: BorderRadius.circular(6)),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          page=4;
-                        });
-                      },
-                      child: Container(
-                        child: Center(
-                            child: Text(
-                              "Enroll Student",
-                              style:
-                              GoogleFonts.poppins(color: Color(0xffFFFFFF)),
-                            )),
-                        width: 200,
-                        //color: Color(0xff00A0E3),
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Color(0xff4C49ED),
-                            borderRadius: BorderRadius.circular(6)),
 
-                      ),
-                    ),
 
 
                   ],
@@ -313,7 +294,8 @@ class _admissionState extends State<admission> {
         return AlertDialog(
           title:  Text('Admissions Details',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),
           ),
-          content: Container(child: Row(
+          content: Container(child:
+          Row(
             children: [
               Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -391,7 +373,8 @@ class _admissionState extends State<admission> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(onTap: () {
                         Navigator.of(context).pop();
@@ -400,10 +383,19 @@ class _admissionState extends State<admission> {
                           padding: const EdgeInsets.only(top: 20,right: 20),
                           child: Container(
                             // color: Colors.yellow,
-                            width: 120,
+                            width: 220,
                             height: 30,
-                            child: Center(child: Text("Enroll Now",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
-                            decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)),
+                            child: Center(child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Send Enrollment Link",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Icon(Icons.send,color: Colors.white,),
+                                )
+                              ],
+                            )),
+                            decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(7)),
 
                           ),
                         ),
@@ -412,13 +404,13 @@ class _admissionState extends State<admission> {
                         Navigator.of(context).pop();
                       },
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.only(top: 10),
                           child: Container(
                             // color: Colors.yellow,
-                            width: 120,
+                            width: 220,
                             height: 30,
-                            child: Center(child: Text("Wait List",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
-                            decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(12)),
+                            child: Center(child: Text("Add to Waiting List",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
+                            decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(7)),
 
                           ),
                         ),
