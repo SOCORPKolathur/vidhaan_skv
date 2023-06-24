@@ -6,21 +6,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class Attendence extends StatefulWidget {
-  const Attendence({Key? key}) : super(key: key);
+class StaffAttendance extends StatefulWidget {
+  const StaffAttendance({Key? key}) : super(key: key);
 
   @override
-  State<Attendence> createState() => _AttendenceState();
+  State<StaffAttendance> createState() => _StaffAttendanceState();
 }
 
-class _AttendenceState extends State<Attendence> {
+class _StaffAttendanceState extends State<StaffAttendance> {
 
 
   String? _selectedCity;
   final TextEditingController _typeAheadControllerclass = TextEditingController();
   final TextEditingController _typeAheadControllersection = TextEditingController();
   final TextEditingController _typeAheadControllerstaffid = TextEditingController();
-   TextEditingController date = new TextEditingController();
+  TextEditingController date = new TextEditingController();
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
   static final List<String> classes = [];
   static final List<String> section = [];
@@ -55,7 +55,7 @@ class _AttendenceState extends State<Attendence> {
     super.initState();
   }
   adddropdownvalue() async {
-    var document = await  FirebaseFirestore.instance.collection("ClassMaster").orderBy("order").get();
+    var document = await  FirebaseFirestore.instance.collection("Staffs").orderBy("entryno").get();
     var document2 = await  FirebaseFirestore.instance.collection("SectionMaster").orderBy("order").get();
     var document3 = await  FirebaseFirestore.instance.collection("Staffs").orderBy("entryno").get();
     for(int i=0;i<document.docs.length;i++) {
@@ -103,7 +103,7 @@ class _AttendenceState extends State<Attendence> {
     print(staffname);
 
   }
-  String selecteddate="";
+
 
 
 
@@ -141,34 +141,17 @@ class _AttendenceState extends State<Attendence> {
 
   final DateFormat formatter = DateFormat('dd.MM.yyy');
 
-
-  int total=0;
-  int present=0;
-  int absent=0;
-
-  gettotal() async {
- var document=await  FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).get();
- var document2=await  FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).where("present",isEqualTo: true).get();
- var document3=await  FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).where("present",isEqualTo: false).get();
-setState(() {
-  total= document.docs.length;
-  present= document2.docs.length;
-  absent= document3.docs.length;
-
-});
-  }
-
   @override
   Widget build(BuildContext context) {
-    final double width=MediaQuery.of(context).size.width;
-    final double height=MediaQuery.of(context).size.height;
+    double height =MediaQuery.of(context).size.height;
+    double width =MediaQuery.of(context).size.width;
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Container(child: Padding(
             padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Students Attendance Register",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+            child: Text("Staff Attendance Register",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
             width: width/1.050,
@@ -178,8 +161,7 @@ setState(() {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20.0,top: 20),
-          child: Container(
-            width: width/1.050,
+          child: Container(width: width/1.050,
             height:height/1.263,
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
             child:  Column(
@@ -190,135 +172,7 @@ setState(() {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
 
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child:
-                            TypeAheadFormField(
-
-
-                              suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                  color: Color(0xffDDDEEE),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(5),
-                                    bottomRight: Radius.circular(5),
-                                  )
-                              ),
-
-                              textFieldConfiguration: TextFieldConfiguration(
-                                style:  GoogleFonts.poppins(
-                                    fontSize: 15
-                                ),
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                  border: InputBorder.none,
-                                ),
-                                controller: this._typeAheadControllerclass,
-                              ),
-                              suggestionsCallback: (pattern) {
-                                return getSuggestionsclass(pattern);
-                              },
-                              itemBuilder: (context, String suggestion) {
-                                return ListTile(
-                                  title: Text(suggestion),
-                                );
-                              },
-
-                              transitionBuilder: (context, suggestionsBox, controller) {
-                                return suggestionsBox;
-                              },
-                              onSuggestionSelected: (String suggestion) {
-
-                                this._typeAheadControllerclass.text = suggestion;
-
-
-                              },
-                              suggestionsBoxController: suggestionBoxController,
-                              validator: (value) =>
-                              value!.isEmpty ? 'Please select a class' : null,
-                              onSaved: (value) => this._selectedCity = value,
-                            ),
-                              width: width/6.83,
-                              height: height/16.42,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                            ),
-                          ),
-
-                        ],
-
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Section",style: GoogleFonts.poppins(fontSize: 15,)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child:
-
-                            TypeAheadFormField(
-
-                              suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                  color: Color(0xffDDDEEE),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(5),
-                                    bottomRight: Radius.circular(5),
-                                  )
-                              ),
-
-                              textFieldConfiguration: TextFieldConfiguration(
-                                style:  GoogleFonts.poppins(
-                                    fontSize: 15
-                                ),
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                  border: InputBorder.none,
-                                ),
-                                controller: this._typeAheadControllersection,
-                              ),
-                              suggestionsCallback: (pattern) {
-                                return getSuggestionssection(pattern);
-                              },
-                              itemBuilder: (context, String suggestion) {
-                                return ListTile(
-                                  title: Text(suggestion),
-                                );
-                              },
-
-                              transitionBuilder: (context, suggestionsBox, controller) {
-                                return suggestionsBox;
-                              },
-                              onSuggestionSelected: (String suggestion) {
-                                this._typeAheadControllersection.text = suggestion;
-                              },
-                              suggestionsBoxController: suggestionBoxController,
-                              validator: (value) =>
-                              value!.isEmpty ? 'Please select a section' : null,
-                              onSaved: (value) => this._selectedCity = value,
-                            ),
-                              width: width/6.83,
-                              height: height/16.42,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                            ),
-                          ),
-
-                        ],
-
-                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -344,7 +198,7 @@ setState(() {
 
                                 contentPadding: EdgeInsets.only(left: 10,top: 8),
                                 border: InputBorder.none,
-                            //editing controller of this TextField
+                                //editing controller of this TextField
                               ),
                               readOnly: true,  //set it true, so that user will not able to edit text
                               onTap: () async {
@@ -357,25 +211,20 @@ setState(() {
                                 if(pickedDate != null ){
                                   print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
                                   String formattedDate = DateFormat('dd.MM.yyyy').format(pickedDate);
-                                  String formattedDate2 = DateFormat('dd-M-yyyy').format(pickedDate);
                                   print(formattedDate); //formatted date output using intl package =>  2021-03-16
                                   //you can implement different kind of Date Format here according to your requirement
 
                                   setState(() {
                                     date.text = formattedDate;
-                                    selecteddate= formattedDate2;
                                     //set output date to TextField value.
                                   });
-                                  print(selecteddate);
-                                  gettotal();
-                                  print("${_typeAheadControllerclass.text}""${_typeAheadControllerclass.text}");
                                 }else{
                                   print("Date is not selected");
                                 }
                               },
                             ),
                               width: width/6.83,
-                              height: height/16.42,
+                              height: height/16.425,
                               //color: Color(0xffDDDEEE),
                               decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -392,7 +241,7 @@ setState(() {
                         },
                         child: Container(child: Center(child: Text("View All",style: GoogleFonts.poppins(color:Colors.white),)),
                           width: width/10.507,
-                          height: height/16.425,
+                          height:height/16.425,
                           // color:Color(0xff00A0E3),
                           decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
 
@@ -407,7 +256,7 @@ setState(() {
                           },
                           child: Container(child: Center(child: Text("Absent only",style: GoogleFonts.poppins(color:Colors.white),)),
                             width: width/10.507,
-                            height: height/16.425,
+                            height:height/16.425,
                             // color:Color(0xff00A0E3),
                             decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.circular(5)),
 
@@ -454,10 +303,10 @@ setState(() {
 
                           ),
                         ),
-                        selecteddate!=""?   Container(
+                        Container(
                           width: width/2.101,
                           child: StreamBuilder<QuerySnapshot>(
-                              stream: FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).orderBy("order").snapshots(),
+                              stream: FirebaseFirestore.instance.collection("Incharge").orderBy("orderno").snapshots(),
 
                               builder: (context,snapshot){
                                 if(!snapshot.hasData)
@@ -480,7 +329,7 @@ setState(() {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
                                           height: height/21.9,
-                                          width: width/2.101,
+                                          width:width/2.101,
 
                                           decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
 
@@ -490,23 +339,23 @@ setState(() {
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 5.0,right: 0.0),
                                                 child: Container(
-                                                    width: width/11.383,
+                                                    width: width/11.38,
 
-                                                    child: Text(value["regno"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                    child: Text("SBVD001",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 0.0,right: 0.0),
                                                 child: Container(
 
-                                                    width: width/6.2090,
-                                                    child: Text(value["stname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                    width: width/2.986,
+                                                    child: Text("Sam Jeba",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 0.0,right: 0.0),
                                                 child: Container(
 
                                                     width: width/8.035,
-                                                    child: Text(value["present"]==true?"Present": "Absent",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color:value["present"]==true? Colors.green: Colors.red),)),
+                                                    child: Text("Present",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.green),)),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 0.0,right: 0.0),
@@ -523,7 +372,7 @@ setState(() {
                                     });
 
                               }),
-                        ) : Container(),
+                        ),
                       ],
                     ),
                     Column(
@@ -553,8 +402,8 @@ setState(() {
                                     circularStrokeCap: CircularStrokeCap.round,
                                     radius: 45.0,
                                     lineWidth: 10.0,
-                                    percent: total ==0? 0.70: (present/total*100)/100,
-                                    center:  Text("${present/total*100}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                    percent: 0.70,
+                                    center:  Text("70%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                                     progressColor: Colors.green,
                                   ),
                                   Padding(
@@ -591,8 +440,8 @@ setState(() {
                                     circularStrokeCap: CircularStrokeCap.round,
                                     radius: 45.0,
                                     lineWidth: 10.0,
-                                    percent: total ==0? 0.30: (absent/total*100)/100,
-                                    center:  Text("${absent/total*100}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                    percent: 0.30,
+                                    center:  Text("30%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                                     progressColor: Colors.red,
                                   ),
                                   Padding(
@@ -622,7 +471,7 @@ setState(() {
                             ),
                           ],
                         ),
-                        SizedBox(height: height/32.85),
+                        SizedBox(height: height/32.85,),
                         Material(
                           elevation: 7,
                           borderRadius: BorderRadius.circular(12),
@@ -644,23 +493,23 @@ setState(() {
                                 ),),
                                 ChoiceChip(
 
-                                    label: Text("${total} Students",style: TextStyle(color: Colors.white),),
+                                  label: Text("25 Students",style: TextStyle(color: Colors.white),),
 
 
-                                    onSelected: (bool selected) {
+                                  onSelected: (bool selected) {
 
-                                      setState(() {
+                                    setState(() {
 
-                                      });
-                                    },
-                                    selectedColor: Color(0xff53B175),
-                                    shape: StadiumBorder(
-                                        side: BorderSide(
-                                            color: Color(0xff53B175))),
-                                    backgroundColor: Colors.white,
-                                    labelStyle: TextStyle(color: Colors.black),
+                                    });
+                                  },
+                                  selectedColor: Color(0xff53B175),
+                                  shape: StadiumBorder(
+                                      side: BorderSide(
+                                          color: Color(0xff53B175))),
+                                  backgroundColor: Colors.white,
+                                  labelStyle: TextStyle(color: Colors.black),
 
-                                    elevation: 1.5, selected: true,),
+                                  elevation: 1.5, selected: true,),
                               ],
                             ),
                           ),

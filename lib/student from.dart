@@ -5,6 +5,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:html';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:random_string/random_string.dart';
 import 'package:uuid/uuid.dart';
 
 class StudentFrom extends StatefulWidget {
@@ -118,6 +119,8 @@ class _StudentFromState extends State<StudentFrom> {
 
   @override
   Widget build(BuildContext context) {
+    double height =MediaQuery.of(context).size.height;
+    double width =MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
 
@@ -129,16 +132,16 @@ class _StudentFromState extends State<StudentFrom> {
               child: Text("Add New Students",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
             ),
               //color: Colors.white,
-              width: 1300,
-              height: 80,
+              width: width/1.050,
+              height: height/8.212,
               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
             ),
           ),
 
           Padding(
             padding: const EdgeInsets.only(left: 20.0,top: 20),
-            child: Container(width: 1300,
-              height:550,
+            child: Container(width: width/1.050,
+              height:height/1.194,
               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
                 padding: const EdgeInsets.only(top: 38.0),
                 child: Column(
@@ -166,8 +169,8 @@ class _StudentFromState extends State<StudentFrom> {
                                     border: InputBorder.none,
                                   ),
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.42,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -199,8 +202,8 @@ class _StudentFromState extends State<StudentFrom> {
                                   ),
 
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.42,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -263,8 +266,8 @@ class _StudentFromState extends State<StudentFrom> {
                                   value!.isEmpty ? 'Please select a class' : null,
                                   onSaved: (value) => this._selectedCity = value,
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.42,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -322,8 +325,8 @@ class _StudentFromState extends State<StudentFrom> {
                                   value!.isEmpty ? 'Please select a section' : null,
                                   onSaved: (value) => this._selectedCity = value,
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.42,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -382,8 +385,8 @@ class _StudentFromState extends State<StudentFrom> {
                                   value!.isEmpty ? 'Please select a academic year' : null,
                                   onSaved: (value) => this._selectedCity = value,
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.42,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -416,8 +419,8 @@ class _StudentFromState extends State<StudentFrom> {
                                     border: InputBorder.none,
                                   ),
                                 ),
-                                  width: 250,
-                                  height: 40,
+                                  width: width/5.464,
+                                  height: height/16.425,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -447,8 +450,8 @@ class _StudentFromState extends State<StudentFrom> {
 
                                   ),
                                 ),
-                                  width: 250,
-                                  height: 40,
+                                  width: width/5.464,
+                                  height: height/16.425,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -479,8 +482,8 @@ class _StudentFromState extends State<StudentFrom> {
 
                                   ),
                                 ),
-                                  width: 250,
-                                  height: 40,
+                                  width: width/5.464,
+                                  height: height/16.425,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -524,8 +527,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -549,8 +552,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -610,8 +613,8 @@ class _StudentFromState extends State<StudentFrom> {
                                         value!.isEmpty ? 'Please select a academic year' : null,
                                         onSaved: (value) => this._selectedCity = value,
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -635,8 +638,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -659,8 +662,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -691,8 +694,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -716,8 +719,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -742,8 +745,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -767,8 +770,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 400,
-                                        height: 40,
+                                        width: width/3.415,
+                                        height: height/16.425,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -800,8 +803,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -825,8 +828,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -851,8 +854,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.425,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -876,8 +879,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 200,
-                                        height: 40,
+                                        width: width/6.83,
+                                        height: height/16.42,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -907,8 +910,8 @@ class _StudentFromState extends State<StudentFrom> {
                                       child: Image.network(imgUrl,fit: BoxFit.cover,)) : Center(
                                     child: CircularProgressIndicator(),
                                   ),
-                                  width: 100,
-                                  height: 100,
+                                  width: width/13.66,
+                                  height: height/6.57,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(52)),
 
@@ -930,8 +933,8 @@ class _StudentFromState extends State<StudentFrom> {
                                           uploadToStorage();
                                         },
                                         child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: 16))),
-                                          width: 130,
-                                          height: 40,
+                                          width: width/10.507,
+                                          height: height/16.425,
                                           // color: Color(0xffDDDEEE),
                                           decoration: BoxDecoration(border: Border.all(color: Colors.black),color: Color(0xffDDDEEE)),
                                         ),
@@ -953,8 +956,8 @@ class _StudentFromState extends State<StudentFrom> {
                                     Successdialog();
                                   },
                                   child: Container(child: Center(child: Text("Save ",style: GoogleFonts.poppins(color:Colors.white),)),
-                                    width: 130,
-                                    height: 40,
+                                    width: width/10.507,
+                                    height: height/16.425,
                                     //color:Color(0xffD60A0B),
                                     decoration: BoxDecoration(color: Color(0xffD60A0B),borderRadius: BorderRadius.circular(5)),
 
@@ -962,8 +965,8 @@ class _StudentFromState extends State<StudentFrom> {
                                 ),
                               ),
                               Container(child: Center(child: Text("Reset ",style: GoogleFonts.poppins(color:Colors.white),)),
-                                width: 130,
-                                height: 40,
+                                width: width/10.507,
+                                height: height/16.425,
                                 // color:Color(0xff00A0E3),
                                 decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
@@ -1030,12 +1033,19 @@ class _StudentFromState extends State<StudentFrom> {
       },
     )..show();
   }
+
+  String studentid = "";
   uploadstudent(){
-    FirebaseFirestore.instance.collection("Students").doc().set({
+
+    setState(() {
+      studentid=randomAlphaNumeric(16);
+    });
+    FirebaseFirestore.instance.collection("Students").doc(studentid).set({
       "regno": regno.text,
+      "studentid": studentid,
       "entrydate": entrydate.text,
       "admitclass": _typeAheadControllerclass.text,
-      "section": _typeAheadControllerclass.text,
+      "section": _typeAheadControllersection.text,
       "academic": _typeAheadControlleracidemic.text,
       "stname": stname.text,
       "fathername": fathername.text,
@@ -1060,6 +1070,26 @@ class _StudentFromState extends State<StudentFrom> {
       "absentdays":0,
       "behaviour":0,
     });
+    FirebaseFirestore.instance.collection("Classstudents").doc("${_typeAheadControllerclass.text}${_typeAheadControllersection.text}").set({
+      "name":"${_typeAheadControllerclass.text}${_typeAheadControllersection.text}",
+    });
+    FirebaseFirestore.instance.collection("Classstudents").doc("${_typeAheadControllerclass.text}${_typeAheadControllersection.text}").collection("Students").doc(studentid).set({
+      "regno": regno.text,
+      "studentid": studentid,
+      "admitclass": _typeAheadControllerclass.text,
+      "section": _typeAheadControllerclass.text,
+      "stname": stname.text,
+      "absentdays":0,
+      "behaviour":0,
+    });
+
+
   }
+
+
+  }
+  uploadclassstudents(){
+
+
 
 }

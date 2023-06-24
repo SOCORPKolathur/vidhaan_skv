@@ -60,6 +60,9 @@ class _DesiginationState extends State<Desigination> {
 
   @override
   Widget build(BuildContext context) {
+
+    double height= MediaQuery.of(context).size.height;
+    double width= MediaQuery.of(context).size.width;
     return Column(
       children: [
         Padding(
@@ -69,15 +72,16 @@ class _DesiginationState extends State<Desigination> {
             child: Text("Designation Master",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
-            width: 1300,
-            height: 80,
+            width: width/1.050,
+            height: height/8.212,
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20.0,top: 20),
-          child: Container(width: 1300,
-            height:520,
+          child: Container(
+            width: width/1.050,
+            height:width/1.263,
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
             child:  Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -107,8 +111,8 @@ class _DesiginationState extends State<Desigination> {
                                 border: InputBorder.none,
                               ),
                             ),
-                              width: 350,
-                              height: 40,
+                              width: width/3.902,
+                              height: height/16.42,
                               //color: Color(0xffDDDEEE),
                               decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -137,8 +141,8 @@ class _DesiginationState extends State<Desigination> {
                                 border: InputBorder.none,
                               ),
                             ),
-                              width: 350,
-                              height: 40,
+                              width: width/3.902,
+                              height: height/16.42,
                               //color: Color(0xffDDDEEE),
                               decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -154,8 +158,8 @@ class _DesiginationState extends State<Desigination> {
                           Successdialog();
                         },
                         child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
-                          width: 130,
-                          height: 40,
+                          width: width/10.507,
+                          height: height/16.42,
                           // color:Color(0xff00A0E3),
                           decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
@@ -168,8 +172,8 @@ class _DesiginationState extends State<Desigination> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 50,
-                    width: 1100,
+                    height: height/13.14,
+                    width: width/1.241,
 
                     decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
 
@@ -211,8 +215,8 @@ class _DesiginationState extends State<Desigination> {
                             return  Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                height: 30,
-                                width: 1100,
+                                height: height/21.9,
+                                width: width/1.241,
 
                                 decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
 

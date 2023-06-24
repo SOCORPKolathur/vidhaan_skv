@@ -1,17 +1,16 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ClassMaster extends StatefulWidget {
-  const ClassMaster({Key? key}) : super(key: key);
+class FeesMaster extends StatefulWidget {
+  const FeesMaster({Key? key}) : super(key: key);
 
   @override
-  State<ClassMaster> createState() => _ClassMasterState();
+  State<FeesMaster> createState() => _FeesMasterState();
 }
 
-class _ClassMasterState extends State<ClassMaster> {
+class _FeesMasterState extends State<FeesMaster> {
 
   TextEditingController name = new TextEditingController();
   TextEditingController orderno = new TextEditingController();
@@ -20,14 +19,14 @@ class _ClassMasterState extends State<ClassMaster> {
 
 
   getorderno() async {
-    var document = await  FirebaseFirestore.instance.collection("ClassMaster").get();
+    var document = await  FirebaseFirestore.instance.collection("FeesMaster").get();
     setState(() {
       orderno.text="00${document.docs.length+1}";
     });
   }
 
   addclass(){
-    FirebaseFirestore.instance.collection("ClassMaster").doc().set({
+    FirebaseFirestore.instance.collection("FeesMaster").doc().set({
       "name": name.text,
       "order": int.parse(orderno.text),
     });
@@ -35,21 +34,21 @@ class _ClassMasterState extends State<ClassMaster> {
   Successdialog(){
     return AwesomeDialog(
       width: 450,
-        context: context,
-        dialogType: DialogType.success,
-        animType: AnimType.rightSlide,
-        title: 'Class Added Successfully',
-        desc: 'Class - ${name.text} is been added',
+      context: context,
+      dialogType: DialogType.success,
+      animType: AnimType.rightSlide,
+      title: 'Fees Added Successfully',
+      desc: 'Fees - ${name.text} is been added',
 
-        btnCancelOnPress: () {
+      btnCancelOnPress: () {
 
-        },
-    btnOkOnPress: () {
+      },
+      btnOkOnPress: () {
         name.clear();
         orderno.clear();
         getorderno();
 
-    },
+      },
     )..show();
   }
 
@@ -70,7 +69,7 @@ class _ClassMasterState extends State<ClassMaster> {
           padding: const EdgeInsets.only(left: 20.0),
           child: Container(child: Padding(
             padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Class Master",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+            child: Text("Fees Master",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
             width: width/1.050,
@@ -129,11 +128,12 @@ class _ClassMasterState extends State<ClassMaster> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                            child: Text("Fees",style: GoogleFonts.poppins(fontSize: 15,)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child: TextField(
+                            child: Container(
+                              child: TextField(
                               controller: name,
                               style: GoogleFonts.poppins(
                                   fontSize: 15
@@ -195,7 +195,7 @@ class _ClassMasterState extends State<ClassMaster> {
                   ),
                 ),
                 StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collection("ClassMaster").orderBy("order").snapshots(),
+                    stream: FirebaseFirestore.instance.collection("FeesMaster").orderBy("order").snapshots(),
 
                     builder: (context,snapshot){
                       if(!snapshot.hasData)
@@ -204,42 +204,42 @@ class _ClassMasterState extends State<ClassMaster> {
                           child:  CircularProgressIndicator(),
                         );}
                       if(snapshot.hasData==null)
-                        {
-                      return   Center(
-                        child:  CircularProgressIndicator(),
-                      );}
+                      {
+                        return   Center(
+                          child:  CircularProgressIndicator(),
+                        );}
                       return ListView.builder(
-                        shrinkWrap: true,
+                          shrinkWrap: true,
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context,index){
                             var value = snapshot.data!.docs[index];
-                        return  Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: height/ 21.9,
-                            width: width/ 1.241,
+                            return  Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: height/ 21.9,
+                                width: width/ 1.241,
 
-                            decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+                                decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
 
-                            ),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                  child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                  child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 30.0,right: 70.0),
+                                      child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                      child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
 
-                          ),
-                        );
-                      });
+                              ),
+                            );
+                          });
 
-                }),
+                    }),
 
 
               ],

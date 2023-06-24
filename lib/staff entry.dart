@@ -99,6 +99,8 @@ class _StaffEntryState extends State<StaffEntry> {
 
   @override
   Widget build(BuildContext context) {
+    double height =MediaQuery.of(context).size.height;
+    double width =MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
 
@@ -110,16 +112,17 @@ class _StaffEntryState extends State<StaffEntry> {
               child: Text("Staff Entry",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
             ),
               //color: Colors.white,
-              width: 1300,
-              height: 80,
+              width: width/1.050,
+              height: height/8.212,
               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
             ),
           ),
 
           Padding(
             padding: const EdgeInsets.only(left: 20.0,top: 20),
-            child: Container(width: 1300,
-              height:550,
+            child: Container(
+              width: width/1.050,
+              height:height/1.194,
               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
                 padding: const EdgeInsets.only(top: 38.0),
                 child: Column(
@@ -147,8 +150,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                     border: InputBorder.none,
                                   ),
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.42,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -180,8 +183,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ),
 
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.42,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -244,8 +247,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                   value!.isEmpty ? 'Please select a category' : null,
                                   onSaved: (value) => this._selectedCity = value,
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.425,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -307,8 +310,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                   value!.isEmpty ? 'Please select a Designation' : null,
                                   onSaved: (value) => this._selectedCity = value,
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.425,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -337,8 +340,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                   
                                   ),
                                 ),
-                                  width: 150,
-                                  height: 40,
+                                  width: width/9.106,
+                                  height: height/16.425,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -371,8 +374,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                     border: InputBorder.none,
                                   ),
                                 ),
-                                  width: 250,
-                                  height: 40,
+                                  width: width/5.464,
+                                  height: height/16.425,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -403,8 +406,8 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                   ),
                                 ),
-                                  width: 250,
-                                  height: 40,
+                                  width: width/5.464,
+                                  height: height/16.425,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -436,8 +439,8 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                   ),
                                 ),
-                                  width: 250,
-                                  height: 40,
+                                  width: width/5.464,
+                                  height: height/16.425,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -481,8 +484,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -506,8 +509,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -571,8 +574,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                         value!.isEmpty ? 'Please select a gender' : null,
                                         onSaved: (value) => this._selectedCity = value,
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -596,8 +599,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -620,8 +623,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -652,8 +655,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -677,8 +680,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -703,8 +706,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -728,8 +731,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 400,
-                                        height: 40,
+                                        width: width/3.415,
+                                        height: height/16.42,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -761,8 +764,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -786,8 +789,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -812,8 +815,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 150,
-                                        height: 40,
+                                        width: width/9.106,
+                                        height: height/16.42,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -837,8 +840,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           border: InputBorder.none,
                                         ),
                                       ),
-                                        width: 200,
-                                        height: 40,
+                                        width: width/6.83,
+                                        height: height/16.42,
                                         // color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -858,8 +861,8 @@ class _StaffEntryState extends State<StaffEntry> {
                               Padding(
                                 padding: const EdgeInsets.only(top:8.0,left:50,right:10),
                                 child: Container(
-                                  width: 100,
-                                  height: 100,
+                                  width: width/13.66,
+                                  height: height/6.57,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(52)),
 
@@ -878,8 +881,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                           uploadToStorage();
                                         },
                                         child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: 16))),
-                                          width: 130,
-                                          height: 40,
+                                          width: width/10.507,
+                                          height: height/16.42,
                                           // color: Color(0xffDDDEEE),
                                           decoration: BoxDecoration(border: Border.all(color: Colors.black),color: Color(0xffDDDEEE)),
                                         ),
@@ -901,8 +904,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                     Successdialog();
                                   },
                                   child: Container(child: Center(child: Text("Save ",style: GoogleFonts.poppins(color:Colors.white),)),
-                                    width: 130,
-                                    height: 40,
+                                    width: width/10.507,
+                                    height: height/16.42,
                                     //color:Color(0xffD60A0B),
                                     decoration: BoxDecoration(color: Color(0xffD60A0B),borderRadius: BorderRadius.circular(5)),
 
@@ -910,8 +913,8 @@ class _StaffEntryState extends State<StaffEntry> {
                                 ),
                               ),
                               Container(child: Center(child: Text("Reset ",style: GoogleFonts.poppins(color:Colors.white),)),
-                                width: 130,
-                                height: 40,
+                                width: width/10.507,
+                                height: height/16.42,
                                 // color:Color(0xff00A0E3),
                                 decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
@@ -996,6 +999,7 @@ class _StaffEntryState extends State<StaffEntry> {
       "religion": religion.text,
       "mobile": mobile.text,
       "email": email.text,
+      "address": address.text,
       "maritalmark": maritalmark.text,
       "family": family.text,
       "income": income.text,

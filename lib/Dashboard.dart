@@ -6,6 +6,10 @@ import 'package:vidhaan/Masters/Acdemic%20Master.dart';
 import 'package:vidhaan/attendence.dart';
 import 'package:vidhaan/classincharge.dart';
 import 'package:vidhaan/Masters/classmaster.dart';
+import 'package:vidhaan/irregularstudents.dart';
+import 'package:vidhaan/positionwisereports.dart';
+import 'package:vidhaan/staffattendance.dart';
+import 'package:vidhaan/stafflist.dart';
 import 'package:vidhaan/studentlist.dart';
 import 'package:vidhaan/studentsearch.dart';
 import 'package:vidhaan/staff%20entry.dart';
@@ -13,7 +17,9 @@ import 'package:vidhaan/student%20from.dart';
 import 'package:vidhaan/studetails.dart';
 
 import 'Accountpage.dart';
+import 'Masters/classwisefeemaster.dart';
 import 'Masters/desigination.dart';
+import 'Masters/feesmaster.dart';
 import 'Masters/section.dart';
 import 'admission.dart';
 import 'classstudentreport.dart';
@@ -45,12 +51,14 @@ class _DashboardState extends State<Dashboard> {
   }
   @override
   Widget build(BuildContext context) {
+    final double width=MediaQuery.of(context).size.width;
+    final double height=MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
       body: Row(
         children: [
           Container(
-            width: 230,
+            width: width/5.939,
             child: Column(
               children: [
                 Padding(
@@ -60,8 +68,8 @@ class _DashboardState extends State<Dashboard> {
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
 
-                      width: 273,
-                      height: 630,
+                      width: width/5.003,
+                      height: height/1.0428,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
@@ -85,8 +93,8 @@ class _DashboardState extends State<Dashboard> {
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
                               ),
-                              width: 280,
-                              height: 100,
+                              width: width/4.878,
+                              height: height/6.57,
 
                             ),
 
@@ -321,14 +329,7 @@ class _DashboardState extends State<Dashboard> {
                                               ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Gender Wise",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 2?  Colors.white : Color(0xff9197B3)),
-                                            ),
-                                          ),
+
 
                                         ],
                                       ),
@@ -446,20 +447,34 @@ class _DashboardState extends State<Dashboard> {
                                         ),
                                         expandedCrossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Position Wise",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 3?  Colors.white : Color(0xff9197B3)),
+                                          InkWell(
+                                            onTap:(){
+                                              setState((){
+                                                pages=Postionwisestaff();
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Position Wise",style: GoogleFonts.poppins(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: dawer == 3?  Colors.white : Color(0xff9197B3)),
+                                              ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Staff List",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 3?  Colors.white : Color(0xff9197B3)),
+                                          InkWell(
+                                            onTap:(){
+                                              setState((){
+                                                pages=StaffList();
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Staff List",style: GoogleFonts.poppins(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: dawer == 3?  Colors.white : Color(0xff9197B3)),
+                                              ),
                                             ),
                                           ),
 
@@ -518,13 +533,13 @@ class _DashboardState extends State<Dashboard> {
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                       )),
+
                                       ListTile(
-                                        title: Text("Absent SMS",style: GoogleFonts.poppins(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                            color: dawer == 4?  Colors.white : Color(0xff9197B3)),
-                                      )),
-                                      ListTile(
+                                        onTap: (){
+                                          setState((){
+                                            pages=StaffAttendance();
+                                          });
+                                        },
                                         title: Text("Staff Attendance",style: GoogleFonts.poppins(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -541,12 +556,19 @@ class _DashboardState extends State<Dashboard> {
                                         ),
                                         expandedCrossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Irregular Student",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 4?  Colors.white : Color(0xff9197B3)),
+                                          InkWell(
+                                            onTap:(){
+                                              setState((){
+                                                pages=IrregularStudents();
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Irregular Student",style: GoogleFonts.poppins(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: dawer == 4?  Colors.white : Color(0xff9197B3)),
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -640,17 +662,15 @@ class _DashboardState extends State<Dashboard> {
 
                                     children: [
                                       ListTile(
+                                        onTap:(){
+
+                                        },
                                         title: Text("Fee Payment Reg",style: GoogleFonts.poppins(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 5?  Colors.white : Color(0xff9197B3)),
                                       )),
-                                      ListTile(
-                                        title: Text("Fee Concession Reg",style: GoogleFonts.poppins(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                            color: dawer == 5?  Colors.white : Color(0xff9197B3)),
-                                      )),
+
 
                                       ExpansionTile(
                                         iconColor: Colors.white,
@@ -663,20 +683,34 @@ class _DashboardState extends State<Dashboard> {
                                         ),
                                         expandedCrossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Fees creation",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 5?  Colors.white : Color(0xff9197B3)),
+                                          InkWell(
+                                            onTap:(){
+                                              setState(() {
+                                                pages=FeesMaster();
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Fees creation",style: GoogleFonts.poppins(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: dawer == 5?  Colors.white : Color(0xff9197B3)),
+                                              ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Class Wise fees Master",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 5?  Colors.white : Color(0xff9197B3)),
+                                          InkWell(
+                                              onTap:(){
+                                                setState(() {
+                                                  pages=ClasswiseFees();
+                                                });
+                                              },
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Class Wise fees Master",style: GoogleFonts.poppins(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: dawer == 5?  Colors.white : Color(0xff9197B3)),
+                                              ),
                                             ),
                                           ),
 
@@ -1036,7 +1070,7 @@ class _DashboardState extends State<Dashboard> {
                                     ],
                                   )),
                             ),
-                            SizedBox(height: 20,)
+                            SizedBox(height: height/32.85,)
 
 
 
@@ -1052,8 +1086,8 @@ class _DashboardState extends State<Dashboard> {
           Padding(
             padding: const EdgeInsets.only(left: 15.0,top: 20),
             child: Container(
-              width: 1120,
-              height: 657,
+              width: width/1.219,
+              height: height/1,
 
               child: pages,
             ),
@@ -1073,8 +1107,10 @@ class Dashboard2 extends StatefulWidget {
 class _Dashboard2State extends State<Dashboard2> {
   @override
   Widget build(BuildContext context) {
+    double height =MediaQuery.of(context).size.height;
+    double width =MediaQuery.of(context).size.width;
     return Container(
-      width: 800,
+      width: width/1.707,
 
 
         child: Image.asset("assets/Group 78.png",fit: BoxFit.cover,));

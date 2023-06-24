@@ -12,13 +12,15 @@ class Accountpage extends StatefulWidget {
 class _AccountpageState extends State<Accountpage> {
   @override
   Widget build(BuildContext context) {
+    double height= MediaQuery.of(context).size.height;
+    double width= MediaQuery.of(context).size.width;
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(right: 718.0,top: 30,bottom: 10),
           child: Container(child: Text("Accounts",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
-            width: 130,
-            height: 26,
+            width: width/10.507,
+            height: height/25.269,
             color: Color(0xffF5F5F5),
 //decoration: BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.circular(12)),
           ),
@@ -33,8 +35,8 @@ class _AccountpageState extends State<Accountpage> {
                 children: [
                   Container(child:  Image.asset("assets/Group 10.png"),
                     color:  Color(0xffFFFFFF),
-                    width: 65,
-                    height: 65,
+                    width: width/21.015,
+                    height: height/10.107,
                   ),
                   Column(
                     children: [
@@ -65,8 +67,8 @@ class _AccountpageState extends State<Accountpage> {
                   ),
                   Container(child:  Image.asset("assets/Group 11.png"),
                     color:  Color(0xffFFFFFF),
-                    width: 65,
-                    height: 65,
+                    width: width/21.015,
+                    height: height/10.107,
                   ),
                   Column(
                     children: [
@@ -94,8 +96,8 @@ class _AccountpageState extends State<Accountpage> {
                   ),
                   Container(child:  Image.asset("assets/Group12.png"),
                     color:  Color(0xffFFFFFF),
-                    width: 65,
-                    height: 65,
+                    width: width/21.015,
+                    height: height/10.107,
                   ),
                   Column(
                     children: [
@@ -127,8 +129,8 @@ class _AccountpageState extends State<Accountpage> {
           ],
         ),
           color: Color(0xffFFFFFF),
-          width: 750,
-          height: 120,
+          width: width/1.821,
+          height: height/5.475,
           //decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
         ),
       ),
@@ -160,8 +162,8 @@ class _AccountpageState extends State<Accountpage> {
                           padding: const EdgeInsets.only(left: 28.0,top: 18),
                           child: Container(child: Image.asset("assets/Ellipse.png"),
                             color: Color(0xffFFFFFF),
-                            width: 40,
-                            height: 40,
+                            width: width/34.15,
+                            height: height/16.425,
 
                           ),
                         ),
@@ -207,8 +209,8 @@ class _AccountpageState extends State<Accountpage> {
                           padding: const EdgeInsets.only(left: 28.0,top: 18),
                           child: Container(child: Image.asset("assets/Ellipse 1.png"),
                             color: Color(0xffFFFFFF),
-                            width: 40,
-                            height: 40,
+                            width: width/34.15,
+                            height: height/16.425,
 
                           ),
                         ),
@@ -254,8 +256,8 @@ class _AccountpageState extends State<Accountpage> {
                           padding: const EdgeInsets.only(left: 28.0,top: 18),
                           child: Container(child: Image.asset("assets/Group 1.png"),
                             color:Color(0xffFFFFFF),
-                            width: 40,
-                            height: 40,
+                            width: width/34.15,
+                            height: height/16.425,
 
                           ),
                         ),
@@ -301,8 +303,8 @@ class _AccountpageState extends State<Accountpage> {
                           padding: const EdgeInsets.only(left: 28.0,top: 18),
                           child: Container(child: Image.asset("assets/Group 4.png"),
                             color:Color(0xffFFFFFF),
-                            width: 40,
-                            height: 40,
+                            width: width/34.15,
+                            height: height/16.425,
 
                           ),
                         ),
@@ -345,9 +347,8 @@ class _AccountpageState extends State<Accountpage> {
                           padding: const EdgeInsets.only(left: 28.0,top: 18),
                           child: Container(child: Image.asset("assets/Group 3.png"),
                             color: Color(0xffFFFFFF),
-                            width: 40,
-                            height: 40,
-
+                            width: width/34.15,
+                            height: height/16.425,
                           ),
                         ),
                         Row(
@@ -388,8 +389,8 @@ class _AccountpageState extends State<Accountpage> {
                 ),
               ],
             ),
-            width: 480,
-            height: 450,
+            width: width/2.845,
+            height: height/1.46,
             color: Color(0xffFFFFFF),
           ),
         )

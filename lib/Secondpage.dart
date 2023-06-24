@@ -12,6 +12,8 @@ class Secondpage extends StatefulWidget {
 class _SecondpageState extends State<Secondpage> {
   @override
   Widget build(BuildContext context) {
+    double height =MediaQuery.of(context).size.height;
+    double width =MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
         children: [
@@ -30,8 +32,8 @@ class _SecondpageState extends State<Secondpage> {
                   Row(
                     children: [
                       Container(child: Image.asset("assets/money.png"),
-                        width: 100,
-                        height: 100,
+                        width: width/13.66,
+                        height: height/6.57,
 decoration:BoxDecoration(gradient:LinearGradient(colors: [Color(0xffD3FFE7),Color(0xffEFFFF6)]),borderRadius: BorderRadius.circular(52)),
                       ),
                       Text("Fee Received",style: GoogleFonts.poppins(),),
@@ -40,8 +42,8 @@ decoration:BoxDecoration(gradient:LinearGradient(colors: [Color(0xffD3FFE7),Colo
                 ],
               ),
                // color: Color(0xffFFFFFF),
-                width: 900,
-                height: 150,
+                width: width/1.517,
+                height: height/4.38,
                 decoration: BoxDecoration(color: Color(0xffFFFFFF),borderRadius: BorderRadius.circular(10)),
               )
             ],

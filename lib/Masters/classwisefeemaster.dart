@@ -4,24 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ClassIncharge extends StatefulWidget {
-  const ClassIncharge({Key? key}) : super(key: key);
+class ClasswiseFees extends StatefulWidget {
+  const ClasswiseFees({Key? key}) : super(key: key);
 
   @override
-  State<ClassIncharge> createState() => _ClassInchargeState();
+  State<ClasswiseFees> createState() => _ClasswiseFeesState();
 }
 
-class _ClassInchargeState extends State<ClassIncharge> {
+class _ClasswiseFeesState extends State<ClasswiseFees> {
+  TextEditingController name = new TextEditingController();
+  TextEditingController amount = new TextEditingController();
+  TextEditingController orderno = new TextEditingController();
 
 
+  String classid="";
   String? _selectedCity;
   final TextEditingController _typeAheadControllerclass = TextEditingController();
-  final TextEditingController _typeAheadControllersection = TextEditingController();
-  final TextEditingController _typeAheadControllerstaffid = TextEditingController();
+  final TextEditingController _typeAheadControllerfees = TextEditingController();
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
   static final List<String> classes = [];
-  static final List<String> section = [];
-  static final List<String> staffid = [];
+  static final List<String> fees = [];
+
 
   static List<String> getSuggestionsclass(String query) {
     List<String> matches = <String>[];
@@ -30,31 +33,16 @@ class _ClassInchargeState extends State<ClassIncharge> {
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
   }
-  static List<String> getSuggestionssection(String query) {
+  static List<String> getSuggestionsfees(String query) {
     List<String> matches = <String>[];
-    matches.addAll(section);
+    matches.addAll(fees);
 
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
-  }
-  static List<String> getSuggestionsstaffid(String query) {
-    List<String> matches = <String>[];
-    matches.addAll(staffid);
-
-    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
-    return matches;
-  }
-  @override
-  void initState() {
-    adddropdownvalue();
-
-    // TODO: implement initState
-    super.initState();
   }
   adddropdownvalue() async {
     var document = await  FirebaseFirestore.instance.collection("ClassMaster").orderBy("order").get();
-    var document2 = await  FirebaseFirestore.instance.collection("SectionMaster").orderBy("order").get();
-    var document3 = await  FirebaseFirestore.instance.collection("Staffs").orderBy("entryno").get();
+    var document2 = await  FirebaseFirestore.instance.collection("FeesMaster").orderBy("order").get();
     for(int i=0;i<document.docs.length;i++) {
       setState(() {
         classes.add(document.docs[i]["name"]);
@@ -63,106 +51,106 @@ class _ClassInchargeState extends State<ClassIncharge> {
     }
     for(int i=0;i<document2.docs.length;i++) {
       setState(() {
-        section.add(document2.docs[i]["name"]);
+        fees.add(document2.docs[i]["name"]);
       });
 
     }
-    for(int i=0;i<document3.docs.length;i++) {
-      setState(() {
-        staffid.add(document3.docs[i]["regno"]);
-      });
 
-    }
   }
-  String staffdocid="";
-  String staffname="";
-  getstaffbyid() async {
-    print("fdgggggggggg");
-   print(_typeAheadControllerstaffid.text);
-    var document = await FirebaseFirestore.instance.collection("Staffs").get();
-    for(int i=0;i<document.docs.length;i++){
-      if(_typeAheadControllerstaffid.text==document.docs[i]["regno"]){
-        setState(() {
-          staffdocid= document.docs[i].id;
-        }
-        );
-      }
-    }
-    print("fdgggggggggg");
-    print(staffdocid);
-    var staffdocument = await FirebaseFirestore.instance.collection("Staffs").doc(staffdocid).get();
-    Map<String, dynamic>? value = staffdocument.data();
+  firsttimecall() async {
+    var document = await  FirebaseFirestore.instance.collection("ClassMaster").get();
     setState(() {
-      staffname=value!["stname"];
+      classid=document.docs[0].id;
+      _typeAheadControllerclass.text=document.docs[0]["name"];
     });
-    print("fdgggggggggg");
-    print(staffname);
-
   }
 
+  getorderno() async {
+    var document = await  FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").get();
+    setState(() {
+      orderno.text="00${document.docs.length+1}";
+    });
+  }
 
-
-
-  saveincharge() async {
-
-
-    var document = await FirebaseFirestore.instance.collection("Incharge").get();
-
-    FirebaseFirestore.instance.collection("Incharge").doc().set({
-      "class":_typeAheadControllerclass.text,
-      "section":_typeAheadControllersection.text,
-      "staffid":_typeAheadControllerstaffid.text,
-      "staffname": staffname,
-      "orderno":document.docs.length+1,
+  addclass(){
+    FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").doc().set({
+      "feesname": _typeAheadControllerfees.text,
+      "amount": int.parse(amount.text),
+      "order": int.parse(orderno.text),
     });
   }
   Successdialog(){
-    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: width/3.0355,
+      width: 450,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
-      title: 'In-charge Staff Added Successfully',
-      desc: 'For class - ${_typeAheadControllerclass.text} ${_typeAheadControllersection.text} is been added',
+      title: 'Class Fees Added Successfully',
+      desc: 'Class Fees - ${name.text} is been added',
 
       btnCancelOnPress: () {
 
       },
       btnOkOnPress: () {
-
+        name.clear();
+        amount.clear();
+        orderno.clear();
+        getorderno();
 
       },
     )..show();
   }
 
   @override
+  void initState() {
+    firsttimecall();
+    adddropdownvalue();
+    // TODO: implement initState
+    super.initState();
+  }
+  getstaffbyid() async {
+    print("fdgggggggggg");
+    print(_typeAheadControllerclass.text);
+    var document = await FirebaseFirestore.instance.collection("ClassMaster").get();
+    for(int i=0;i<document.docs.length;i++){
+      if(_typeAheadControllerclass.text==document.docs[i]["name"]){
+        setState(() {
+          classid= document.docs[i].id;
+        }
+        );
+      }
+    }
+    print("fdgggggggggg");
+
+
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final double width=MediaQuery.of(context).size.width;
-    final double height=MediaQuery.of(context).size.height;
+    double height= MediaQuery.of(context).size.height;
+    double width= MediaQuery.of(context).size.width;
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
-          child: Container(child: Padding(
-            padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Class Teacher/ Incharge",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-          ),
-            //color: Colors.white,
-            width: width/1.050,
+          child: Container(width: width/1.050,
             height: height/8.212,
-            decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
+            padding: const EdgeInsets.only(left: 38.0,top: 30),
+            child: Text("Class Wise Fees Master",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+          ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20.0,top: 20),
           child: Container(
             width: width/1.050,
-            height:  height/1.263,
+            height:height/1.263,
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
             child:  Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0,top:20),
                   child: Row(
@@ -178,11 +166,14 @@ class _ClassInchargeState extends State<ClassIncharge> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child:
+                            child: Container(width: width/6.83,
+                              height: height/16.42,
+                              //color: Color(0xffDDDEEE),
+                              decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
                             TypeAheadFormField(
 
 
-                              suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                              suggestionsBoxDecoration: const SuggestionsBoxDecoration(
                                   color: Color(0xffDDDEEE),
                                   borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(5),
@@ -194,7 +185,7 @@ class _ClassInchargeState extends State<ClassIncharge> {
                                 style:  GoogleFonts.poppins(
                                     fontSize: 15
                                 ),
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                   border: InputBorder.none,
                                 ),
@@ -213,8 +204,13 @@ class _ClassInchargeState extends State<ClassIncharge> {
                                 return suggestionsBox;
                               },
                               onSuggestionSelected: (String suggestion) {
+                                setState(() {
+                                  this._typeAheadControllerclass.text = suggestion;
+                                });
 
-                                this._typeAheadControllerclass.text = suggestion;
+                               getstaffbyid();
+                                getorderno();
+
 
 
                               },
@@ -223,10 +219,6 @@ class _ClassInchargeState extends State<ClassIncharge> {
                               value!.isEmpty ? 'Please select a class' : null,
                               onSaved: (value) => this._selectedCity = value,
                             ),
-                              width: width/6.83,
-                              height: height/16.42,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
                             ),
                           ),
@@ -240,15 +232,20 @@ class _ClassInchargeState extends State<ClassIncharge> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                            child: Text("Fees",style: GoogleFonts.poppins(fontSize: 15,)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child:
+                            child: Container(width: width/6.83,
+                              height: height/16.42,
+                              //color: Color(0xffDDDEEE),
+                              decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                              child:
 
                             TypeAheadFormField(
 
-                              suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                              suggestionsBoxDecoration: const SuggestionsBoxDecoration(
                                   color: Color(0xffDDDEEE),
                                   borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(5),
@@ -260,14 +257,14 @@ class _ClassInchargeState extends State<ClassIncharge> {
                                 style:  GoogleFonts.poppins(
                                     fontSize: 15
                                 ),
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                   border: InputBorder.none,
                                 ),
-                                controller: this._typeAheadControllersection,
+                                controller: this._typeAheadControllerfees,
                               ),
                               suggestionsCallback: (pattern) {
-                                return getSuggestionssection(pattern);
+                                return getSuggestionsfees(pattern);
                               },
                               itemBuilder: (context, String suggestion) {
                                 return ListTile(
@@ -279,17 +276,13 @@ class _ClassInchargeState extends State<ClassIncharge> {
                                 return suggestionsBox;
                               },
                               onSuggestionSelected: (String suggestion) {
-                                this._typeAheadControllersection.text = suggestion;
+                                this._typeAheadControllerfees.text = suggestion;
                               },
                               suggestionsBoxController: suggestionBoxController,
                               validator: (value) =>
-                              value!.isEmpty ? 'Please select a section' : null,
+                              value!.isEmpty ? 'Please select a fees': null,
                               onSaved: (value) => this._selectedCity = value,
                             ),
-                              width: width/6.83,
-                              height: height/16.42,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
                             ),
                           ),
@@ -303,56 +296,24 @@ class _ClassInchargeState extends State<ClassIncharge> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Staff ID",style: GoogleFonts.poppins(fontSize: 15,)),
+                            child: Text("Amount",style: GoogleFonts.poppins(fontSize: 15,)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child:
-                            TypeAheadFormField(
-
-                              suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                  color: Color(0xffDDDEEE),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(5),
-                                    bottomRight: Radius.circular(5),
-                                  )
+                            child: Container(child: TextField(
+                              controller: amount,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 15
                               ),
-
-                              textFieldConfiguration: TextFieldConfiguration(
-                                style:  GoogleFonts.poppins(
-                                    fontSize: 15
-                                ),
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                  border: InputBorder.none,
-                                ),
-                                controller: this._typeAheadControllerstaffid,
+                              decoration: const InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                border: InputBorder.none,
                               ),
-                              suggestionsCallback: (pattern) {
-                                return getSuggestionsstaffid(pattern);
-                              },
-                              itemBuilder: (context, String suggestion) {
-                                return ListTile(
-                                  title: Text(suggestion),
-                                );
-                              },
-
-                              transitionBuilder: (context, suggestionsBox, controller) {
-                                return suggestionsBox;
-                              },
-                              onSuggestionSelected: (String suggestion) {
-                                getstaffbyid();
-                                this._typeAheadControllerstaffid.text = suggestion;
-                              },
-                              suggestionsBoxController: suggestionBoxController,
-                              validator: (value) =>
-                              value!.isEmpty ? 'Please select a section' : null,
-                              onSaved: (value) => this._selectedCity = value,
                             ),
+
                               width: width/6.83,
                               height: height/16.425,
                               //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                              decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
                             ),
                           ),
@@ -362,14 +323,14 @@ class _ClassInchargeState extends State<ClassIncharge> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          saveincharge();
+                          addclass();
                           Successdialog();
                         },
                         child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
                           width: width/10.507,
                           height: height/16.425,
                           // color:Color(0xff00A0E3),
-                          decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
+                          decoration: BoxDecoration(color: const Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
                         ),
                       ),
@@ -380,47 +341,42 @@ class _ClassInchargeState extends State<ClassIncharge> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     height: height/13.14,
-                    width: width/1.241,
+                    width: width/ 1.241,
 
-                    decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
+                    decoration: BoxDecoration(color:const Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
 
                     ),
                     child: Row(
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                          child: Text("Class",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 40.0,right: 8.0),
-                          child: Text("Section",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                          padding: const EdgeInsets.only(left: 56.0,right: 8.0),
+                          child: Text("Fees",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                          child: Text("Staff ID",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                          child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                          padding: const EdgeInsets.only(left: 88.0,right: 8.0),
+                          child: Text("Amount",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
                         ),
                       ],
                     ),
 
                   ),
                 ),
-
                 StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection("Incharge").orderBy("orderno").snapshots(),
+                    stream: FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").orderBy("order").snapshots(),
 
                     builder: (context,snapshot){
                       if(!snapshot.hasData)
                       {
-                        return   Center(
+                        return   const Center(
                           child:  CircularProgressIndicator(),
                         );}
                       if(snapshot.hasData==null)
                       {
-                        return   Center(
+                        return   const Center(
                           child:  CircularProgressIndicator(),
                         );}
                       return ListView.builder(
@@ -428,11 +384,11 @@ class _ClassInchargeState extends State<ClassIncharge> {
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context,index){
                             var value = snapshot.data!.docs[index];
-                            return Padding(
+                            return  Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                height: height/21.9,
-                                width: width/1.241,
+                                height: height/ 21.9,
+                                width: width/ 1.241,
 
                                 decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
 
@@ -440,23 +396,19 @@ class _ClassInchargeState extends State<ClassIncharge> {
                                 child: Row(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 20.0,right: 0.0),
+                                      padding: const EdgeInsets.only(left: 30.0,right: 70.0),
+                                      child: Container(child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0,right: 8.0),
                                       child: Container(
-                                          width: width/13.66,
+                                          width: 170,
 
-                                          child: Text(value["class"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                          child: Text(value["feesname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 15.0,right: 8.0),
-                                      child: Text(value["section"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 100.0,right: 8.0),
-                                      child: Text(value["staffid"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 70.0,right: 8.0),
-                                      child: Text(value["staffname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                      padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                      child: Text(value["amount"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
                                     ),
                                   ],
                                 ),
@@ -467,6 +419,7 @@ class _ClassInchargeState extends State<ClassIncharge> {
 
                     }),
 
+
               ],
             ),
 
@@ -476,3 +429,4 @@ class _ClassInchargeState extends State<ClassIncharge> {
     );
   }
 }
+

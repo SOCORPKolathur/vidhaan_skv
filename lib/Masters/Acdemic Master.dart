@@ -31,8 +31,9 @@ class _AcademicMasterState extends State<AcademicMaster> {
     });
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -59,24 +60,27 @@ class _AcademicMasterState extends State<AcademicMaster> {
   }
   @override
   Widget build(BuildContext context) {
+    double height= MediaQuery.of(context).size.height;
+    double width= MediaQuery.of(context).size.width;
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Container(child: Padding(
             padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Section Master",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+            child: Text("Acdemic  Master",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
-            width: 1300,
-            height: 80,
+            width: width/1.050,
+            height: height/8.212,
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20.0,top: 20),
-          child: Container(width: 1300,
-            height:520,
+          child: Container(
+            width: width/1.050,
+            height:height/1.263,
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
             child:  Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,8 +109,8 @@ class _AcademicMasterState extends State<AcademicMaster> {
                                 border: InputBorder.none,
                               ),
                             ),
-                              width: 350,
-                              height: 40,
+                              width: width/3.902,
+                              height: height/16.425,
                               //color: Color(0xffDDDEEE),
                               decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -135,8 +139,8 @@ class _AcademicMasterState extends State<AcademicMaster> {
                                 border: InputBorder.none,
                               ),
                             ),
-                              width: 350,
-                              height: 40,
+                              width: width/3.902,
+                              height: height/16.425,
                               //color: Color(0xffDDDEEE),
                               decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
@@ -152,8 +156,8 @@ class _AcademicMasterState extends State<AcademicMaster> {
                           Successdialog();
                         },
                         child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
-                          width: 130,
-                          height: 40,
+                          width: width/10.507,
+                          height: height/16.425,
                           // color:Color(0xff00A0E3),
                           decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
@@ -165,8 +169,8 @@ class _AcademicMasterState extends State<AcademicMaster> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 50,
-                    width: 1100,
+                    height: height/13.14,
+                    width: width/1.241,
 
                     decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
 
@@ -208,8 +212,8 @@ class _AcademicMasterState extends State<AcademicMaster> {
                             return  Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                height: 30,
-                                width: 1100,
+                                height: height/21.9,
+                                width: width/1.241,
 
                                 decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
 

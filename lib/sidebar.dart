@@ -78,6 +78,8 @@ class ExampleSidebarX extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height =MediaQuery.of(context).size.height;
+    double width =MediaQuery.of(context).size.width;
     return SidebarX(
       controller: _controller,
       theme: SidebarXTheme(
@@ -111,8 +113,8 @@ class ExampleSidebarX extends StatelessWidget {
           size: 20,
         ),
       ),
-      extendedTheme: const SidebarXTheme(
-        width: 200,
+      extendedTheme:  SidebarXTheme(
+        width: width/6.83,
         decoration: BoxDecoration(
           color: Color(0xffFFFFFF),
         ),
@@ -120,7 +122,7 @@ class ExampleSidebarX extends StatelessWidget {
      // footerDivider: divider,
       headerBuilder: (context, extended) {
         return SizedBox(
-          height: 100,
+          height: height/6.57,
           child: Padding(
             padding: const EdgeInsets.only(right: 4.0),
             child: Row(
@@ -168,16 +170,16 @@ class ExampleSidebarX extends StatelessWidget {
         ),
          SidebarXItem(
            iconWidget: Container(child: Image.asset("assets/icons8.png",fit: BoxFit.cover,),
-             width: 20,
-             height: 20,
+             width: width/68.3,
+             height: height/32.85,
            ),
 
           label: 'Performance',
         ),
 SidebarXItem(
           iconWidget: Container(child: Image.asset("assets/icons.png",fit: BoxFit.cover,),
-            width: 20,
-            height: 20,
+            width: width/68.3,
+            height: height/32.85,
           ),
           label: 'Important Notices',
 
@@ -188,8 +190,8 @@ SidebarXItem(
         ),
         SidebarXItem(
           iconWidget: Container(child: Image.asset("assets/message.png",fit: BoxFit.cover,),
-            width: 20,
-            height: 20,
+            width: width/68.3,
+            height: height/32.85,
           ),
 
           label: 'Help',
@@ -201,8 +203,8 @@ SidebarXItem(
             children: [
               Container(
                 //color: Colors.yellow,
-                width: 50,
-                height: 50,
+                width: width/27.32,
+                height: height/13.14,
                 child: Image.asset("assets/Ellipse.png",fit: BoxFit.cover,),
                 decoration: BoxDecoration( color: Colors.yellow,borderRadius: BorderRadius.circular(32)),
               ),
@@ -236,6 +238,8 @@ class _ScreensExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height =MediaQuery.of(context).size.height;
+    double width =MediaQuery.of(context).size.width;
     final theme = Theme.of(context);
     return AnimatedBuilder(
       animation: controller,

@@ -27,106 +27,26 @@ class _StudentListState extends State<StudentList> {
             child: Text("Students List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
-            width: 1300,
-            height: 80,
+            width: width/1.050,
+            height: height/8.212,
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20.0,top: 20),
-          child: Container(width: 1300,
-            height:520,
+          child: Container(
+            width:  width/1.050,
+            height:height/1.263,
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
             child:  Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0,top:20),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
 
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Register Number",style: GoogleFonts.poppins(fontSize: 15,)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child: TextField(
-                              style: GoogleFonts.poppins(
-                                  fontSize: 15
-                              ),
-                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                              width: 350,
-                              height: 40,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                            ),
-                          ),
-
-                        ],
-
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 15,)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child: TextField(
-                              style: GoogleFonts.poppins(
-                                  fontSize: 15
-                              ),
-                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                              width: 350,
-                              height: 40,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                            ),
-                          ),
-
-                        ],
-
-                      ),
-                      Container(child: Center(child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(Icons.search,color: Colors.white,size: 20,),
-                          ),
-                          Text("Search",style: GoogleFonts.poppins(color:Colors.white),),
-                        ],
-                      )),
-                        width: 150,
-                        height: 40,
-                        // color:Color(0xff00A0E3),
-                        decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
-                      ),
-                    ],
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height:50,
-                    width: 1000,
+                    height:height/13.14,
+                    width: width/1.366,
                       decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
 
                       ),
@@ -210,13 +130,13 @@ class _StudentListState extends State<StudentList> {
                             return   Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                width: 1000,
+                                width: width/1.366,
                                 child: Row(
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left: 20.0, right: 0),
                                       child: Container(
-                                        width: 100,
+                                        width: width/13.66,
 
                                         alignment: Alignment.center,
                                         child: Text(
@@ -229,7 +149,7 @@ class _StudentListState extends State<StudentList> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 30.0),
                                       child: Container(
-                                        width: 140,
+                                        width: width/9.757,
 
 
                                         child: Text(
@@ -241,7 +161,7 @@ class _StudentListState extends State<StudentList> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0, right: 0),
                                       child: Container(
-                                        width: 60,
+                                        width: width/22.766,
 
                                         child: Text(
                                           value["admitclass"],
@@ -253,7 +173,7 @@ class _StudentListState extends State<StudentList> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 13.0),
                                       child: Container(
-                                        width: 60,
+                                        width:width/22.766,
 
                                         alignment: Alignment.center,
                                         child: Text(
@@ -265,7 +185,7 @@ class _StudentListState extends State<StudentList> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 50, right: 0),
                                       child: Container(
-                                        width: 130,
+                                        width: width/10.507,
 
                                         child: Text(
                                           value["fathername"],
@@ -277,7 +197,7 @@ class _StudentListState extends State<StudentList> {
                                     Padding(
                                       padding: const EdgeInsets.only(left:7.0),
                                       child: Container(
-                                        width: 140,
+                                        width: width/9.7571,
 
                                         child: Text(
                                           value["mobile"],
@@ -289,7 +209,7 @@ class _StudentListState extends State<StudentList> {
                                       padding: const EdgeInsets.only(left: 3.0, right: 0),
                                       child: Container(
                                         alignment: Alignment.center,
-                                        width: 80,
+                                        width: width/17.075,
 
                                         child: Row(
                                           children: [
@@ -326,8 +246,8 @@ class _StudentListState extends State<StudentList> {
                                                 style: GoogleFonts.poppins(
                                                     color: Colors.white),
                                               )),
-                                          width: 60,
-                                          height: 30,
+                                          width: width/22.76,
+                                          height: height/21.9,
                                           //color: Color(0xffD60A0B),
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -353,7 +273,8 @@ class _StudentListState extends State<StudentList> {
           ),
         )
       ],
-    ) :SingleChildScrollView(
+    ) :
+    SingleChildScrollView(
       child: ShowUpAnimation(
         curve: Curves.fastOutSlowIn,
         direction: Direction.horizontal,
@@ -365,14 +286,14 @@ class _StudentListState extends State<StudentList> {
             if(snapshot.hasData==null)
             {
               return Container(
-                  width: 80,
-                  height: 80,
+                  width: width/17.075,
+                  height: height/8.212,
                   child: Center(child:CircularProgressIndicator(),));
             }
             Map<String,dynamic>?value = snapshot.data!.data();
             return
               Padding(
-                padding:EdgeInsets.only(left: width/93.3,top:height/50),
+                padding:EdgeInsets.only(left: width/93.3,top:0),
                 child: Row(
                   children: [
                     Column(
@@ -434,7 +355,7 @@ class _StudentListState extends State<StudentList> {
                                     ),),
                                   ],
                                 ),
-                                SizedBox(height: 10,),
+                                SizedBox(height: height/65.7,),
                                 Row(
                                   children: [
                                     SizedBox(width:width/62.2),
@@ -443,8 +364,8 @@ class _StudentListState extends State<StudentList> {
                                         borderRadius: BorderRadius.circular(12),
                                         shadowColor:  Color(0xff53B175),
                                         child: Container(
-                                          height: 80,
-                                          width: 180,
+                                          height: height/8.212,
+                                          width: width/7.588,
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(12),
                                               border:Border.all(color: Color(0xff53B175))
@@ -455,7 +376,7 @@ class _StudentListState extends State<StudentList> {
                                               Text("Class / Section",style:GoogleFonts.montserrat(
                                                   fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/98.13
                                               ),),
-                                              SizedBox(height: 10,),
+                                              SizedBox(height: height/65.7,),
                                               ChoiceChip(
 
                                                 label: Text("    ${value["admitclass"]} / ${value["section"]}    ",style: TextStyle(color: Colors.white),),
@@ -485,7 +406,7 @@ class _StudentListState extends State<StudentList> {
                                   ],
                                 ),
                                 Divider(),
-                                SizedBox(height:height/20,),
+                                SizedBox(height:height/32.85,),
                                 Row(children: [
                                   SizedBox(width:width/62.2),
                                   Icon(Icons.email_outlined,),
@@ -674,8 +595,8 @@ class _StudentListState extends State<StudentList> {
 
                                           },
                                           child: Container(child: Center(child: Text("View Exam Reports",style: GoogleFonts.poppins(color:Colors.white),)),
-                                            width: 180,
-                                            height: 40,
+                                            width: width/7.588,
+                                            height: height/16.425,
                                             // color:Color(0xff00A0E3),
                                             decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
@@ -687,8 +608,8 @@ class _StudentListState extends State<StudentList> {
 
                                           },
                                           child: Container(child: Center(child: Text("View Attendance Reports",style: GoogleFonts.poppins(color:Colors.white),)),
-                                            width: 250,
-                                            height: 40,
+                                            width: width/5.464,
+                                            height: height/16.425,
                                             // color:Color(0xff00A0E3),
                                             decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
@@ -698,7 +619,7 @@ class _StudentListState extends State<StudentList> {
                                   ),
                                   SizedBox(height:height/26.07,),
                                   Container(
-                                    width: 600,
+                                    width: width/2.276,
                                     child: Divider(
 
                                       thickness: 2,
@@ -859,6 +780,18 @@ class _StudentListState extends State<StudentList> {
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
+                                              ),
+                                            ),
+                                            GestureDetector(
+                                              onTap: (){
+
+                                              },
+                                              child: Container(child: Center(child: Text("View Fees Reports",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
+                                                width: width/5.464,
+                                                height: height/16.425,
+                                                // color:Color(0xff00A0E3),
+                                                decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(5)),
+
                                               ),
                                             ),
 

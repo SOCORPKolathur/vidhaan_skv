@@ -9,6 +9,8 @@ class ShowDialogExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width=MediaQuery.of(context).size.width;
+    final double height=MediaQuery.of(context).size.height;
     return const MaterialApp(
       home: DialogExample(),
     );
@@ -32,6 +34,8 @@ class DialogExample extends StatelessWidget {
   }
 
   Future<void> _dialogBuilder(BuildContext context) {
+    final double width=MediaQuery.of(context).size.width;
+    final double height=MediaQuery.of(context).size.height;
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {

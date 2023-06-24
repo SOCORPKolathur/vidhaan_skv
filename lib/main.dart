@@ -26,6 +26,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width=MediaQuery.of(context).size.width;
+    final double height=MediaQuery.of(context).size.height;
     return MaterialApp(
       theme: Theme.of(context).copyWith(
         colorScheme: Theme.of(context).colorScheme.copyWith(
@@ -47,6 +49,8 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
+    final double width=MediaQuery.of(context).size.width;
+    final double height=MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
       body: Column(
@@ -68,6 +72,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    final double width=MediaQuery.of(context).size.width;
+    final double height=MediaQuery.of(context).size.height;
     return Scaffold(
       body: Column(
         children: [
@@ -82,12 +88,18 @@ class _LoginPageState extends State<LoginPage> {
                             top: 68.0, right: 50, left: 30),
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  right: 53.0, bottom: 10),
-                              child: Text("Vidhaan",
-                                  style: TextStyle(
-                                      fontSize: 35, color: Colors.white)),
+                            GestureDetector(
+                              onTap: (){
+                                print(MediaQuery.of(context).size.height);
+                                print(MediaQuery.of(context).size.width);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 53.0, bottom: 10),
+                                child: Text("Vidhaan",
+                                    style: TextStyle(
+                                        fontSize: 35, color: Colors.white)),
+                              ),
                             ),
                             Column(
                               children: [
@@ -161,15 +173,15 @@ class _LoginPageState extends State<LoginPage> {
                             fit: BoxFit.cover,
                           ),
                           color: Color(0xff00A0E3),
-                          width: 330,
-                          height: 300,
+                          width: width/4.139,
+                          height: height/2.19,
                         ),
                       )
                     ],
                   ),
                   color: Color(0xff00A0E3),
-                  width: 1500,
-                  height: 350,
+                  width: width/0.9106,
+                  height: height/1.877,
                 ),
                 
               ],
@@ -214,7 +226,7 @@ class _LoginPageState extends State<LoginPage> {
                                       fontSize: 40)),
                             ),
                             SizedBox(
-                              height: 20,
+                              height: height/32.85,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
@@ -230,8 +242,8 @@ class _LoginPageState extends State<LoginPage> {
                               padding: const EdgeInsets.only(left: 60.0),
                               child: Container(
                                 // color: Colors.grey,
-                                height: 50,
-                                width: 350,
+                                height: height/13.14,
+                                width: width/3.902,
                                 decoration: BoxDecoration(
                                     border: Border.all(color:Colors.grey,),borderRadius: BorderRadius.circular(12)
                                 ),
@@ -254,8 +266,8 @@ class _LoginPageState extends State<LoginPage> {
                               padding: const EdgeInsets.only(left: 60.0),
                               child: Container(
                                 //color: Colors.grey[50],
-                                height: 50,
-                                width: 350,
+                                height: height/13.14,
+                                width: width/3.902,
                                 decoration: BoxDecoration(
                                     border: Border.all(color:Colors.grey),borderRadius: BorderRadius.circular(12)
                                 ),
@@ -270,7 +282,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
 
                             SizedBox(
-                              height: 20,
+                              height: height/32.85,
                             ),
 
                             Padding(
@@ -280,8 +292,8 @@ class _LoginPageState extends State<LoginPage> {
                               },
                                 child: Container(child: Center(child: Text("Sign in",style: TextStyle(color: Colors.white),)),
                                   // color: Color(0xff00A0E3),
-                                  height: 50,
-                                  width: 350,
+                                  height: height/13.14,
+                                  width: width/3.902,
                                   decoration: BoxDecoration( color: Color(0xff00A0E3),
                                       borderRadius: BorderRadius.circular(12)
                                   ),
@@ -299,8 +311,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: Container(
                             child: Image.asset("assets/vidh.png"),
                             color: Colors.white,
-                            height: 150,
-                            width: 140,
+                            height: height/4.38,
+                            width: width/9.757,
                           ),
                         ),
                       ],
@@ -308,8 +320,8 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 // color: Colors.white,
-                width: 470,
-                height: 570,
+                width: width/2.906,
+                height: height/1.1526,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12)),

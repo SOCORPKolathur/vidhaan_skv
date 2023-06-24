@@ -4,14 +4,15 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class ClassStudentReport extends StatefulWidget {
-  const ClassStudentReport({Key? key}) : super(key: key);
+class Postionwisestaff extends StatefulWidget {
+  const Postionwisestaff({Key? key}) : super(key: key);
 
   @override
-  State<ClassStudentReport> createState() => _ClassStudentReportState();
+  State<Postionwisestaff> createState() => _PostionwisestaffState();
 }
 
-class _ClassStudentReportState extends State<ClassStudentReport> {
+class _PostionwisestaffState extends State<Postionwisestaff> {
+
 
   String classid="";
   String? _selectedCity;
@@ -30,7 +31,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
   String studentid= "";
   bool view=false;
   adddropdownvalue() async {
-    var document = await  FirebaseFirestore.instance.collection("ClassMaster").orderBy("order").get();
+    var document = await  FirebaseFirestore.instance.collection("DesignationMaster").orderBy("order").get();
     for(int i=0;i<document.docs.length;i++) {
       setState(() {
         classes.add(document.docs[i]["name"]);
@@ -41,7 +42,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
 
   }
   firsttimecall() async {
-    var document = await  FirebaseFirestore.instance.collection("ClassMaster").get();
+    var document = await  FirebaseFirestore.instance.collection("DesignationMaster").get();
     setState(() {
       classid=document.docs[0].id;
       _typeAheadControllerclass.text=document.docs[0]["name"];
@@ -54,18 +55,20 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
     // TODO: implement initState
     super.initState();
   }
+
+
   @override
   Widget build(BuildContext context) {
     double height =MediaQuery.of(context).size.height;
     double width =MediaQuery.of(context).size.width;
-    return  view==false? Column(
+    return view==false? Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Container(child: Padding(
             padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Class Wise Students Reports",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+            child: Text("Position Wise Staffs Reports",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
             width: width/1.050,
@@ -93,7 +96,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                            child: Text("Position",style: GoogleFonts.poppins(fontSize: 15,)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -141,7 +144,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                               },
                               suggestionsBoxController: suggestionBoxController,
                               validator: (value) =>
-                              value!.isEmpty ? 'Please select a class' : null,
+                              value!.isEmpty ? 'Please select a position' : null,
                               onSaved: (value) => this._selectedCity = value,
                             ),
                               width: width/3.902,
@@ -155,7 +158,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                         ],
 
                       ),
-                      Container(child: Center(child: Text("View Students Reports",style: GoogleFonts.poppins(color:Colors.white),)),
+                      Container(child: Center(child: Text("View Staffs Reports",style: GoogleFonts.poppins(color:Colors.white),)),
                         width: width/7.537,
                         height: height/16.425,
                         // color:Color(0xff00A0E3),
@@ -184,32 +187,35 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                           ),
                         ),
                         Text(
-                          "Student Name",
+                          "Staff Name",
                           style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 40.0, right: 40,),
                           child: Text(
-                            "Class",
+                            "In Charge",
                             style:
                             GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                           ),
                         ),
                         Text(
-                          "Section",
+                          "In Charge \n Section",
                           style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 40.0, right: 45),
+                          padding: const EdgeInsets.only(left: 80.0, right: 45),
                           child: Text(
-                            "Father name",
+                            "Email",
                             style:
                             GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                           ),
                         ),
-                        Text(
-                          "Phone Number",
-                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40.0),
+                          child: Text(
+                            "Phone Number",
+                            style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 55.0, right: 62),
@@ -231,7 +237,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                   ),
                 ),
                 StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection("Students").orderBy("stname").snapshots(),
+                    stream: FirebaseFirestore.instance.collection("Staffs").orderBy("stname").snapshots(),
 
                     builder: (context,snapshot){
                       if(!snapshot.hasData)
@@ -249,7 +255,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context,index){
                             var value = snapshot.data!.docs[index];
-                            return  _typeAheadControllerclass.text == value["admitclass"]? Padding(
+                            return  _typeAheadControllerclass.text == value["designation"]? Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
                                 width: width/1.366,
@@ -286,7 +292,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                         width: width/22.766,
 
                                         child: Text(
-                                          value["admitclass"],
+                                          value["incharge"],
                                           style:
                                           GoogleFonts.poppins(fontWeight: FontWeight.w500,),
                                         ),
@@ -299,7 +305,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
 
                                         alignment: Alignment.center,
                                         child: Text(
-                                          value["section"],
+                                          value["inchargesec"],
                                           style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
                                         ),
                                       ),
@@ -307,10 +313,9 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 50, right: 0),
                                       child: Container(
-                                        width: width/10.507,
-
+                                        width: width/7.207,
                                         child: Text(
-                                          value["fathername"],
+                                          value["email"],
                                           style:
                                           GoogleFonts.poppins(fontWeight: FontWeight.w500,),
                                         ),
@@ -396,15 +401,14 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
           ),
         ),
       ],
-    ) :
-    SingleChildScrollView(
+    ) :  SingleChildScrollView(
       child: ShowUpAnimation(
         curve: Curves.fastOutSlowIn,
         direction: Direction.horizontal,
         delayStart: Duration(milliseconds: 200),
         child:
         FutureBuilder<dynamic>(
-          future: FirebaseFirestore.instance.collection('Students').doc(studentid).get(),
+          future: FirebaseFirestore.instance.collection('Staffs').doc(studentid).get(),
           builder: (context, snapshot) {
             if(snapshot.hasData==null)
             {
@@ -441,7 +445,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                   },
                                   child: CircleAvatar(
                                     radius: width/26.6666,
-                                    backgroundImage:AssetImage("assets/profile.jpg"),
+                                    backgroundImage:AssetImage("assets/teacher.jpg"),
 
                                   ),
                                 ),
@@ -456,13 +460,31 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('Student ID :',style: GoogleFonts.montserrat(
+                                    Text('Staff ID :',style: GoogleFonts.montserrat(
                                         fontWeight:FontWeight.w500,color: Colors.black,fontSize: width/124.4
                                     ),),
                                     Text(value['regno'],style: GoogleFonts.montserrat(
                                         fontWeight:FontWeight.w500,color: Colors.black,fontSize: width/124.4
                                     ),),
                                   ],
+                                ),
+                                SizedBox(height:height/52.15,),
+                                GestureDetector(
+                                  onTap: (){
+
+                                  },
+
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffFFB946),
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    width: width/7.46,
+                                    height:height/28,
+                                    child: Center(child: Text(value["designation"],style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/103.6
+                                    ),)),
+                                  ),
                                 ),
 
 
@@ -473,7 +495,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                   children: [
                                     SizedBox(height:height/20.86),
                                     SizedBox(width:width/62.2),
-                                    Text('Current Class',style: GoogleFonts.montserrat(
+                                    Text('In Charge Class',style: GoogleFonts.montserrat(
                                         fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                     ),),
                                   ],
@@ -502,7 +524,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                             SizedBox(height: height/65.7,),
                                             ChoiceChip(
 
-                                              label: Text("    ${value["admitclass"]} / ${value["section"]}    ",style: TextStyle(color: Colors.white),),
+                                              label: Text("    ${value["incharge"]} / ${value["inchargesec"]}    ",style: TextStyle(color: Colors.white),),
 
 
                                               onSelected: (bool selected) {
@@ -623,7 +645,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('Student  Details',style: GoogleFonts.montserrat(
+                                  Text('Staff  Details',style: GoogleFonts.montserrat(
                                     fontSize:width/81.13,fontWeight: FontWeight.bold,
                                   ),),
                                   InkWell(
@@ -682,7 +704,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                               ),)),
                                             ),
                                             SizedBox(width:width/186,),
-                                            Text('Exam Status ',style: GoogleFonts.montserrat(
+                                            Text('Teaching Performance',style: GoogleFonts.montserrat(
                                                 fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                             ),),
                                           ],),
@@ -713,19 +735,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        GestureDetector(
-                                          onTap: (){
 
-                                          },
-                                          child: Container(child: Center(child: Text("View Exam Reports",style: GoogleFonts.poppins(color:Colors.white),)),
-                                            width: width/7.588,
-                                            height: height/16.425,
-                                            // color:Color(0xff00A0E3),
-                                            decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
-                                          ),
-                                        ),
-                                        SizedBox(width:width/10),
                                         GestureDetector(
                                           onTap: (){
 
@@ -830,31 +840,10 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
 
-
-
-                                            Padding(
-                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    "Parent Occupation: ",
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 13,
-                                                        fontWeight: FontWeight.bold),
-                                                  ),
-                                                  Text(
-                                                    value["occupation"],
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 12,
-                                                        fontWeight: FontWeight.w500),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
                                             Row(
                                               children: [
                                                 Text(
-                                                  "Annual Income: ",
+                                                  "Family Annual Income: ",
                                                   style: GoogleFonts.poppins(
                                                       fontSize: 12,
                                                       fontWeight: FontWeight.bold),
@@ -872,13 +861,13 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                               child: Row(
                                                 children: [
                                                   Text(
-                                                    "Identification Mark: ",
+                                                    "Marital Mark: ",
                                                     style: GoogleFonts.poppins(
                                                         fontSize: 12,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
-                                                    value["identificatiolmark"],
+                                                    value["maritalmark"],
                                                     style: GoogleFonts.poppins(
                                                         fontSize: 12,
                                                         fontWeight: FontWeight.w500),
@@ -909,7 +898,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                                               onTap: (){
 
                                               },
-                                              child: Container(child: Center(child: Text("View Fees Reports",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
+                                              child: Container(child: Center(child: Text("View Payroll Reports",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
                                                 width: width/5.464,
                                                 height: height/16.425,
                                                 // color:Color(0xff00A0E3),

@@ -32,6 +32,8 @@ class _admissionState extends State<admission> {
 
   @override
   Widget build(BuildContext context) {
+    double height= MediaQuery.of(context).size.height;
+    double width= MediaQuery.of(context).size.width;
     return Column(
       children: [
         Container(
@@ -56,9 +58,9 @@ class _admissionState extends State<admission> {
                             "Waiting List",
                             style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),
                           )),
-                      width: 200,
+                      width: width/6.83,
                       //color: Color(0xff00A0E3),
-                      height: 40,
+                      height: height/16.425,
                       decoration: BoxDecoration(
                           color: Color(0xffFFA002),
                           borderRadius: BorderRadius.circular(6)),
@@ -74,9 +76,9 @@ class _admissionState extends State<admission> {
                               style:
                               GoogleFonts.poppins(color: Color(0xffFFFFFF)),
                             )),
-                        width: 200,
+                        width: width/6.83,
                         //color: Color(0xff00A0E3),
-                        height: 40,
+                        height: height/16.425,
                         decoration: BoxDecoration(
                             color: Color(0xffD60A0B),
                             borderRadius: BorderRadius.circular(6)),
@@ -143,8 +145,8 @@ class _admissionState extends State<admission> {
                   ],
                 ),
                 //color: Colors.pink,
-                width: 1000,
-                height: 35,
+                width: width/1.366,
+                height: height/18.771,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12)),
@@ -154,15 +156,16 @@ class _admissionState extends State<admission> {
                 padding: const EdgeInsets.only(top: 8.0,),
                 child: Container(
 
-                  width: 1000,
-                  height: 50,
+                  width: width/1.366,
+                  height: height/13.14,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12)),
 
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(height: 50,
+                    child: Container(
+                      height: height/13.14,
                       child: StreamBuilder(
                         stream: FirebaseFirestore.instance
                             .collection("Admission")
@@ -240,8 +243,8 @@ class _admissionState extends State<admission> {
                                             style: GoogleFonts.poppins(
                                                 color: Colors.white),
                                           )),
-                                      width: 60,
-                                      height: 30,
+                                      width: width/22.766,
+                                      height: height/21.9,
                                       //color: Color(0xffD60A0B),
                                       decoration: BoxDecoration(
                                         borderRadius:
@@ -264,8 +267,8 @@ class _admissionState extends State<admission> {
 
             ],
           ),
-          width: 1376,
-          height: 637,
+          width: width/0.9927,
+          height: height/1.0313,
           color: Color(0xffF5F5F5),
         )
       ],
@@ -286,6 +289,8 @@ class _admissionState extends State<admission> {
         });
   }
   Future<void> _dialogBuilder(BuildContext context) {
+    double height= MediaQuery.of(context).size.height;
+    double width= MediaQuery.of(context).size.width;
     return showDialog(
 
       context: context,
@@ -383,8 +388,8 @@ class _admissionState extends State<admission> {
                           padding: const EdgeInsets.only(top: 20,right: 20),
                           child: Container(
                             // color: Colors.yellow,
-                            width: 220,
-                            height: 30,
+                            width: width/6.209,
+                            height: height/21.9,
                             child: Center(child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -407,8 +412,8 @@ class _admissionState extends State<admission> {
                           padding: const EdgeInsets.only(top: 10),
                           child: Container(
                             // color: Colors.yellow,
-                            width: 220,
-                            height: 30,
+                            width: width/6.209,
+                            height: height/21.9,
                             child: Center(child: Text("Add to Waiting List",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
                             decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(7)),
 
@@ -422,8 +427,8 @@ class _admissionState extends State<admission> {
 
             ],
           ),
-            width: 630,
-            height: 250,
+            width: width/2.1682,
+            height: height/2.628,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
 
           ),
