@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,249 +30,274 @@ class _admissionState extends State<admission> {
   TextEditingController occupation=new TextEditingController();
   TextEditingController address=new TextEditingController();
 
-
+  bool mainconcent= false;
+  final check = List<bool>.generate(1000, (int index) => false, growable: true);
   @override
   Widget build(BuildContext context) {
     double height= MediaQuery.of(context).size.height;
     double width= MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        Container(
-          child: Column(
-            children: [
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            child: Column(
+              children: [
 
-              Padding(
-                padding: const EdgeInsets.only(top: 0.0, bottom: 20),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 38.0, right: 30),
-                      child: Text("Admissions Enquiries",
-                          style: GoogleFonts.poppins(
-                              color: Color(0xff000000),
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    Container(
-                      child: Center(
-                          child: Text(
-                            "Waiting List",
-                            style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),
-                          )),
-                      width: width/6.83,
-                      //color: Color(0xff00A0E3),
-                      height: height/16.425,
-                      decoration: BoxDecoration(
-                          color: Color(0xffFFA002),
-                          borderRadius: BorderRadius.circular(6)),
-                    ),
-
-
-                    Padding(
-                      padding: const EdgeInsets.only(right: 38.0, left: 38),
-                      child: Container(
-                        child: Center(
-                            child: Text(
-                              "View Rejected Admission",
-                              style:
-                              GoogleFonts.poppins(color: Color(0xffFFFFFF)),
-                            )),
-                        width: width/6.83,
-                        //color: Color(0xff00A0E3),
-                        height: height/16.425,
-                        decoration: BoxDecoration(
-                            color: Color(0xffD60A0B),
-                            borderRadius: BorderRadius.circular(6)),
+                Padding(
+                  padding: const EdgeInsets.only(top: 0.0, bottom: 20),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 38.0, right: 30),
+                        child: Text("Admissions Enquiries",
+                            style: GoogleFonts.poppins(
+                                color: Color(0xff000000),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          child: Center(
+                              child: Text(
+                                "Approved List",
+                                style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),
+                              )),
+                          width: width/6.83,
+                          //color: Color(0xff00A0E3),
+                          height: height/16.425,
+                          decoration: BoxDecoration(
+                              color: Color(0xff53B175),
+                              borderRadius: BorderRadius.circular(6)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          child: Center(
+                              child: Text(
+                                "Waiting List",
+                                style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),
+                              )),
+                          width: width/6.83,
+                          //color: Color(0xff00A0E3),
+                          height: height/16.425,
+                          decoration: BoxDecoration(
+                              color: Color(0xffFFA002),
+                              borderRadius: BorderRadius.circular(6)),
+                        ),
+                      ),
+
+
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Container(
+                          child: Center(
+                              child: Text(
+                                "Rejected List",
+                                style:
+                                GoogleFonts.poppins(color: Color(0xffFFFFFF)),
+                              )),
+                          width: width/6.83,
+                          //color: Color(0xff00A0E3),
+                          height: height/16.425,
+                          decoration: BoxDecoration(
+                              color: Color(0xffD60A0B),
+                              borderRadius: BorderRadius.circular(6)),
+                        ),
+                      ),
 
 
 
-                  ],
+                    ],
+                  ),
                 ),
-              ),
 
-              Container(
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 50.0, right: 40),
-                      child: Text(
-                        "Date",
-                        style:
-                        GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Text(
-                      "Student Name",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0, right: 40),
-                      child: Text(
-                        "Class",
-                        style:
-                        GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Text(
-                      "Phone no",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0, right: 45),
-                      child: Text(
-                        "Parent name",
-                        style:
-                        GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Text(
-                      "Last School",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 55.0, right: 62),
-                      child: Text(
-                        "L Marks",
-                        style:
-                        GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Text(
-                      "Actions",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                //color: Colors.pink,
-                width: width/1.366,
-                height: height/18.771,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12)),
-              ),
+                Container(
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Checkbox(
+                            value: mainconcent,
+                            onChanged: (value){
+                              setState(() {
+                                mainconcent = value!;
+                                for(int i=0;i<1000;i++) {
+                                  check[i] = value!;
+                                }
 
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0,),
-                child: Container(
+                              });
 
+                        }
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, right: 60),
+                        child: Text(
+                          "Date",
+                          style:
+                          GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Text(
+                        "Student Name",
+                        style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 70.0, right: 40),
+                        child: Text(
+                          "Class",
+                          style:
+                          GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Text(
+                        "Phone no",
+                        style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 40.0, right: 45),
+                        child: Text(
+                          "Parent name",
+                          style:
+                          GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Text(
+                        "Previous School",
+                        style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 80.0),
+                        child: Text(
+                          "Actions",
+                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                  //color: Colors.pink,
                   width: width/1.366,
-                  height: height/13.14,
+                  height: height/18.771,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12)),
+                ),
 
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: height/13.14,
-                      child: StreamBuilder(
-                        stream: FirebaseFirestore.instance
-                            .collection("Admission")
-                            .snapshots(),
-                        builder: (context, snapshot) {
-                          if(snapshot.hasData==null){
-                            return Container();
-                          }
-                          if(!snapshot.hasData){
-                            return Container();
-                          }
-                          return ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) {
-                              return  Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 28.0, right: 19),
-                                    child: Text(snapshot.data!.docs[index]
-                                    ["date"],selectionColor: Color(0xff109CF1),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 36.0,left: 20),
-                                    child: Text(snapshot.data!.docs[index]
-                                    ["name"]),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 38.0),
-                                    child: Text(snapshot.data!.docs[index]
-                                    ["class"]),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 50.0, right: 30),
-                                    child: Text(snapshot.data!.docs[index]
-                                    ["phone"]),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 18.0,right: 50),
-                                    child: Text(snapshot.data!.docs[index]
-                                    ["parent"]),
-                                  ),
-                                  Text(snapshot.data!.docs[index]
-                                  ["occupationlastschool"]),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 18.0,right: 10),
-                                    child: Text(snapshot.data!.docs[index]
-                                    ["LMarks"]),
-                                  ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0,),
+                  child: Container(
 
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10.0, right: 20, top: 3),
-                                   child: ElevatedButton(
+                    width: width/1.366,
+                    height: height/13.14,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
 
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
 
-                                     onPressed: () => _dialogBuilder(context),
-                                     child:  Text('View'),
+                        child: StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection("Admission").orderBy("timestamp",descending: true)
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if(snapshot.hasData==null){
+                              return Container();
+                            }
+                            if(!snapshot.hasData){
+                              return Container();
+                            }
+                            return ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                return  Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0),
+                                      child: Checkbox(
 
-                                   ),
+                                          value: check[index],
 
+                                          onChanged: (bool? value){
+                                            print(value);
+                                            setState(() {
+                                              check[index] = value!;
+                                            });
 
-                                  ),
-                                  Padding(
-                                    padding:
-                                    const EdgeInsets.only(top: 3.0),
-                                    child: Container(
-                                      child: Center(
-                                          child: Text(
-                                            "Reject",
-                                            style: GoogleFonts.poppins(
-                                                color: Colors.white),
-                                          )),
-                                      width: width/22.766,
-                                      height: height/21.9,
-                                      //color: Color(0xffD60A0B),
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(5),
-                                        color: Color(0xffD60A0B),
+                                          }
                                       ),
                                     ),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8.0, right: 19),
+                                      child: Text(snapshot.data!.docs[index]
+                                      ["date"],selectionColor: Color(0xff109CF1),),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 36.0,left: 20),
+                                      child: Text(snapshot.data!.docs[index]
+                                      ["name"]),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 45.0),
+                                      child: Text(snapshot.data!.docs[index]
+                                      ["class"]),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 50.0, right: 30),
+                                      child: Text(snapshot.data!.docs[index]
+                                      ["phone"]),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 18.0,right: 50),
+                                      child: Text(snapshot.data!.docs[index]
+                                      ["parent"]),
+                                    ),
+                                    Text(snapshot.data!.docs[index]
+                                    ["lastschool"]),
+
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 50.0, right: 20, top: 3),
+                                     child: ElevatedButton(
+
+
+                                       onPressed: () => _dialogBuilder(context),
+                                       child:  Text('View'),
+
+                                     ),
+
+
+                                    ),
+
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
 
 
-            ],
-          ),
-          width: width/0.9927,
-          height: height/1.0313,
-          color: Color(0xffF5F5F5),
-        )
-      ],
+              ],
+            ),
+            width: width/0.9927,
+
+            color: Color(0xffF5F5F5),
+          )
+        ],
+      ),
     );
 
 
@@ -319,7 +345,7 @@ class _admissionState extends State<admission> {
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
                     child: Text("Religion:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   ),
-                  Text("Caste:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Community:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
                     child: Text("D.O.B:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
@@ -333,20 +359,21 @@ class _admissionState extends State<admission> {
               ),
               Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Previous Marks Grade:",
-                    style: GoogleFonts.poppins(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold),
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
                     child: Text(
-                      "Previous School:",
+                      "School Last studied:",
                       style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: FontWeight.bold),
                     ),
+                  ),
+                  Text(
+                    "% of Marks obtained:",
+                    style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "Name Of Board:",
@@ -372,7 +399,7 @@ class _admissionState extends State<admission> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
                     child: Text(
-                      "Home Address:",
+                      "Residential Address:",
                       style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: FontWeight.bold),
@@ -383,6 +410,7 @@ class _admissionState extends State<admission> {
                     children: [
                       GestureDetector(onTap: () {
                         Navigator.of(context).pop();
+                        Successdialog();
                       },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 20,right: 20),
@@ -405,21 +433,45 @@ class _admissionState extends State<admission> {
                           ),
                         ),
                       ),
-                      GestureDetector(onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Container(
-                            // color: Colors.yellow,
-                            width: width/6.209,
-                            height: height/21.9,
-                            child: Center(child: Text("Add to Waiting List",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
-                            decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(7)),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                              Successdialog2();
+                          },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Container(
+                                // color: Colors.yellow,
+                                width: width/12.209,
+                                height: height/21.9,
+                                child: Center(child: Text("Waiting List",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
+                                decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(7)),
 
+                              ),
+                            ),
                           ),
-                        ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                              Successdialog3();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 10,left: 20),
+                              child: Container(
+                                // color: Colors.yellow,
+                                width: width/12.209,
+                                height: height/21.9,
+                                child: Center(child: Text("Reject",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
+                                decoration: BoxDecoration(color: Color(0xffD60A0B),borderRadius: BorderRadius.circular(7)),
+
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+
                     ],
                   ),
                 ],
@@ -437,6 +489,54 @@ class _admissionState extends State<admission> {
         );
       },
     );
+  }
+  Successdialog(){
+    return AwesomeDialog(
+      width: 450,
+      context: context,
+      dialogType: DialogType.success,
+      animType: AnimType.rightSlide,
+      title: 'Enrollment Link has been Send Successfully',
+      desc: '',
+
+
+      btnOkText: "Ok",
+      btnOkOnPress: () {
+
+      },
+    )..show();
+  }
+  Successdialog2(){
+    return AwesomeDialog(
+      width: 450,
+      context: context,
+      dialogType: DialogType.warning,
+      animType: AnimType.rightSlide,
+      title: 'Admission has been assigned to waiting list ',
+      desc: '',
+
+
+      btnOkText: "Ok",
+      btnOkOnPress: () {
+
+      },
+    )..show();
+  }
+  Successdialog3(){
+    return AwesomeDialog(
+      width: 450,
+      context: context,
+      dialogType: DialogType.error,
+      animType: AnimType.rightSlide,
+      title: 'Admission has been rejected',
+      desc: '',
+
+
+      btnOkText: "Ok",
+      btnOkOnPress: () {
+
+      },
+    )..show();
   }
 
 }

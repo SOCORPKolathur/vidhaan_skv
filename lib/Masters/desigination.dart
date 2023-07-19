@@ -63,190 +63,185 @@ class _DesiginationState extends State<Desigination> {
 
     double height= MediaQuery.of(context).size.height;
     double width= MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0),
-          child: Container(child: Padding(
-            padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Designation Master",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-          ),
-            //color: Colors.white,
-            width: width/1.050,
-            height: height/8.212,
-            decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0,top: 20),
-          child: Container(
-            width: width/1.050,
-            height:width/1.263,
-            decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-            child:  Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+    return SingleChildScrollView(
+      child: Column(
+        children: [
 
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0,top:20),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+          Padding(
+            padding: const EdgeInsets.only(left: 0.0,top: 0),
+            child: Material(
+              elevation: 5,
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                width: width/1.050,
+                height:width/1.263,
+                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+                child:  Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0,top:20),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:0.0),
+                                child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                child: Container(child: TextField(
+                                  controller: orderno,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 15
+                                  ),
+                                  decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                                  width: width/3.902,
+                                  height: height/16.42,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                ),
+                              ),
+
+                            ],
+
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child: TextField(
-                              controller: orderno,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 15
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:0.0),
+                                child: Text("Designation",style: GoogleFonts.poppins(fontSize: 15,)),
                               ),
-                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                border: InputBorder.none,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                child: Container(child: TextField(
+                                  controller: name,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 15
+                                  ),
+                                  decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                                  width: width/3.902,
+                                  height: height/16.42,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                ),
                               ),
-                            ),
-                              width: width/3.902,
+
+                            ],
+
+                          ),
+                          GestureDetector(
+                            onTap: (){
+                              addclass();
+                              Successdialog();
+                            },
+                            child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
+                              width: width/10.507,
                               height: height/16.42,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                              // color:Color(0xff00A0E3),
+                              decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
                             ),
                           ),
 
                         ],
-
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Designation",style: GoogleFonts.poppins(fontSize: 15,)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child: TextField(
-                              controller: name,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 15
-                              ),
-                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                              width: width/3.902,
-                              height: height/16.42,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                            ),
-                          ),
-
-                        ],
-
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          addclass();
-                          Successdialog();
-                        },
-                        child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
-                          width: width/10.507,
-                          height: height/16.42,
-                          // color:Color(0xff00A0E3),
-                          decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
-                        ),
-                      ),
-
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: height/13.14,
-                    width: width/1.241,
-
-                    decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
                     ),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: height/13.14,
+                        width: width/1.241,
+
+                        decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
+
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                          child: Text("Designation",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                              child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                              child: Text("Designation",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                            ),
+                          ],
                         ),
-                      ],
+
+                      ),
                     ),
+                    StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance.collection("DesignationMaster").orderBy("order").snapshots(),
 
-                  ),
+                        builder: (context,snapshot){
+                          if(!snapshot.hasData)
+                          {
+                            return   Center(
+                              child:  CircularProgressIndicator(),
+                            );}
+                          if(snapshot.hasData==null)
+                          {
+                            return   Center(
+                              child:  CircularProgressIndicator(),
+                            );}
+                          return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context,index){
+                                var value = snapshot.data!.docs[index];
+                                return  Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: height/21.9,
+                                    width: width/1.241,
+
+                                    decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 30.0,right: 70.0),
+                                          child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                          child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                        ),
+                                      ],
+                                    ),
+
+                                  ),
+                                );
+                              });
+
+                        }),
+
+
+                  ],
                 ),
-                StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection("DesignationMaster").orderBy("order").snapshots(),
 
-                    builder: (context,snapshot){
-                      if(!snapshot.hasData)
-                      {
-                        return   Center(
-                          child:  CircularProgressIndicator(),
-                        );}
-                      if(snapshot.hasData==null)
-                      {
-                        return   Center(
-                          child:  CircularProgressIndicator(),
-                        );}
-                      return ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (context,index){
-                            var value = snapshot.data!.docs[index];
-                            return  Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: height/21.9,
-                                width: width/1.241,
-
-                                decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
-
-                                ),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                      child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                      child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                    ),
-                                  ],
-                                ),
-
-                              ),
-                            );
-                          });
-
-                    }),
-
-
-              ],
+              ),
             ),
-
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

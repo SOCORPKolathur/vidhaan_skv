@@ -202,7 +202,7 @@ class _ClassStudentReportState extends State<ClassStudentReport> {
                         Padding(
                           padding: const EdgeInsets.only(left: 40.0, right: 45),
                           child: Text(
-                            "Father name",
+                            "Parent name",
                             style:
                             GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                           ),

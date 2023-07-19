@@ -1,7 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:show_up_animation/show_up_animation.dart';
+import 'package:vidhaan/Masters/excelgen.dart';
+import 'package:vidhaan/studententryedit.dart';
+
 
 class StudentList extends StatefulWidget {
   const StudentList({Key? key}) : super(key: key);
@@ -12,267 +18,1340 @@ class StudentList extends StatefulWidget {
 
 class _StudentListState extends State<StudentList> {
   bool view=false;
-  String studentid="xpp6E6zMjHmlrEws7DC0";
+  int view1=0;
+  String studentid="";
   int gtcount= 36;
+  String? _selectedCity;
+  final TextEditingController _typeAheadControllerregno = TextEditingController();
+  final TextEditingController _typeAheadControllerstudent = TextEditingController();
+  final TextEditingController _typeAheadControllerclass = TextEditingController();
+  SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
+  final TextEditingController _typeAheadControllersection = TextEditingController();
+  static final List<String> regno = [];
+  static final List<String> student = [];
+  static final List<String> section = [];
+
+
+  static List<String> getSuggestionsregno(String query) {
+    List<String> matches = <String>[];
+    matches.addAll(regno);
+    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+    return matches;
+  }
+  static List<String> getSuggestionsstudent(String query) {
+    List<String> matches = <String>[];
+    matches.addAll(student);
+
+    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+    return matches;
+  }
+  static final List<String> classes = ["Select Option"];
+
+  static List<String> getSuggestionsclass(String query) {
+    List<String> matches = <String>[];
+    matches.addAll(classes);
+
+    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+    return matches;
+  }
+  static List<String> getSuggestionssection(String query) {
+    List<String> matches = <String>["Select Option"];
+    matches.addAll(section);
+
+    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+    return matches;
+  }
+  adddropdownvalue() async {
+    setState(() {
+      regno.clear();
+      student.clear();
+      classes.clear();
+      section.clear();
+    });
+    var document = await  FirebaseFirestore.instance.collection("Students").orderBy("timestamp").get();
+    var document2 = await  FirebaseFirestore.instance.collection("Students").orderBy("stname").get();
+    for(int i=0;i<document.docs.length;i++) {
+      setState(() {
+        regno.add(document.docs[i]["regno"]);
+      });
+
+    }
+    for(int i=0;i<document2.docs.length;i++) {
+      setState(() {
+        student.add(document2.docs[i]["stname"]);
+      });
+
+    }
+    setState(() {
+      classes.add("Select Option");
+      section.add("Select Option");
+    });
+    var document3 = await  FirebaseFirestore.instance.collection("ClassMaster").orderBy("order").get();
+    for(int i=0;i<document3.docs.length;i++) {
+      setState(() {
+        classes.add(document3.docs[i]["name"]);
+      });
+
+    }
+    var document4 = await  FirebaseFirestore.instance.collection("SectionMaster").orderBy("order").get();
+    for(int i=0;i<document4.docs.length;i++) {
+      setState(() {
+        section.add(document4.docs[i]["name"]);
+      });
+
+    }
+
+  }
+
+  getstaffbyid() async {
+    print("fdgggggggggg");
+    print(_typeAheadControllerregno.text);
+    var document = await FirebaseFirestore.instance.collection("Students").get();
+    for(int i=0;i<document.docs.length;i++){
+      if(_typeAheadControllerregno.text==document.docs[i]["regno"]){
+        setState(() {
+          studentid= document.docs[i].id;
+        }
+        );
+      }
+    }
+    setState(() {
+      search=true;
+      byclass=false;
+    });
+    print("fdgggggggggg");
+
+
+  }
+  getstaffbyid2() async {
+    print("fdgggggggggg");
+    print(_typeAheadControllerregno.text);
+    var document = await FirebaseFirestore.instance.collection("Students").get();
+    for(int i=0;i<document.docs.length;i++){
+      if(_typeAheadControllerstudent.text==document.docs[i]["stname"]){
+        setState(() {
+          _typeAheadControllerregno.text= document.docs[i]["regno"];
+        }
+        );
+      }
+    }
+    print("fdgggggggggg");
+
+
+  }
+  getstaffbyid2a() async {
+    print("fdgggggggggg");
+    print(_typeAheadControllerregno.text);
+    var document = await FirebaseFirestore.instance.collection("Students").get();
+    for(int i=0;i<document.docs.length;i++){
+      if(_typeAheadControllerregno.text==document.docs[i]["regno"]){
+        setState(() {
+          _typeAheadControllerstudent.text= document.docs[i]["stname"];
+        }
+        );
+      }
+    }
+    print("fdgggggggggg");
+
+
+  }
+  @override
+  void initState() {
+    adddropdownvalue();
+    setState(() {
+      _typeAheadControllerclass.text="Select Option";
+      _typeAheadControllersection.text="Select Option";
+    });
+    // TODO: implement initState
+    super.initState();
+  }
+  bool search= false;
+  bool byclass = false;
+  bool mainconcent= false;
+  final check = List<bool>.generate(1000, (int index) => false, growable: true);
+
+  Future<void> deletestudent(id) async {
+    return showDialog<void>(
+      context: context,
+
+      builder: (BuildContext context) {
+
+        double width=MediaQuery.of(context).size.width;
+        double height=MediaQuery.of(context).size.height;
+        return StatefulBuilder(
+            builder: (context,setState) {
+              return AlertDialog(
+                title:  Text('Are you Sure of Deleting Student',style: GoogleFonts.poppins(
+                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                content:  Container(
+                    width: 350,
+                    height: 250,
+
+                    child: Lottie.asset("assets/delete file.json")),
+                //child:  Lottie.asset("assets/file choosing.json")),
+                actions: <Widget>[
+                 InkWell(
+                    onTap: (){
+                      Navigator.of(context).pop();
+                    },
+                    child: Material(
+                      borderRadius: BorderRadius.circular(5),
+                      elevation: 7,
+                      child: Container(child: Center(child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(Icons.cancel,color: Colors.white,),
+                          ),
+                          Text("Cancel",style: GoogleFonts.poppins(color:Colors.white),),
+                        ],
+                      )),
+                        width: width/10.507,
+                        height: height/20.425,
+                        // color:Color(0xff00A0E3),
+                        decoration: BoxDecoration(color:  Colors.red,borderRadius: BorderRadius.circular(5)),
+
+                      ),
+                    ),
+                  ),
+                    InkWell(
+                      onTap: (){
+                        FirebaseFirestore.instance.collection("Students").doc(id).delete();
+                        Navigator.of(context).pop();
+                        setState((){
+                          view=false;
+                        });
+                      },
+
+                    child: Material(
+                      borderRadius: BorderRadius.circular(5),
+                      elevation: 7,
+                      child: Container(child: Center(child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          Text("Ok",style: GoogleFonts.poppins(color:Colors.white),),
+                        ],
+                      )),
+                        width: width/10.507,
+                        height: height/20.425,
+                        // color:Color(0xff00A0E3),
+                        decoration: BoxDecoration(color:  Colors.green,borderRadius: BorderRadius.circular(5)),
+
+                      ),
+                    ),
+                  )
+                ],
+              );
+            }
+        );
+      },
+    );
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
     final double height=MediaQuery.of(context).size.height;
-    return view== false?Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0),
-          child: Container(child: Padding(
-            padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Students List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-          ),
-            //color: Colors.white,
-            width: width/1.050,
-            height: height/8.212,
-            decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0,top: 20),
-          child: Container(
-            width:  width/1.050,
-            height:height/1.263,
-            decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-            child:  Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+    return view1==0 ?view== false?
+    Scaffold(
+      backgroundColor: Colors.transparent,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 0.0),
+              child: Container(width: width/1.050,
 
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height:height/13.14,
-                    width: width/1.366,
-                      decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
-                      ),
-                    child: Row(
+                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
+                padding: const EdgeInsets.only(left: 10.0,top: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
+                        Text("Students List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                        SizedBox(width: 400,),
                         Padding(
-                          padding: const EdgeInsets.only(left: 50.0, right: 40),
-                          child: Text(
-                            "Reg NO",
-                            style:
-                            GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                          padding: const EdgeInsets.only(right:8.0),
+                          child: Icon(Icons.filter_list_sharp),
+                        ),
+                        Text("Filters",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                        SizedBox(width: 10,),
+                        InkWell(
+                          onTap: (){
+                            setState(() {
+                              search=false;
+                              byclass=false;
+                              _typeAheadControllerstudent.clear();
+                              _typeAheadControllerregno.clear();
+                              _typeAheadControllerclass.text="Select Option";
+                              _typeAheadControllersection.text="Select Option";
+                            });
+                          },
+                          child: Material(
+                            borderRadius: BorderRadius.circular(5),
+                            elevation: 7,
+                            child: Container(child: Center(child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Icon(Icons.cancel,color: Colors.white,),
+                                ),
+                                Text("Clear Filter",style: GoogleFonts.poppins(color:Colors.white),),
+                              ],
+                            )),
+                              width: width/10.507,
+                              height: height/20.425,
+                              // color:Color(0xff00A0E3),
+                              decoration: BoxDecoration(color:  Colors.red,borderRadius: BorderRadius.circular(5)),
+
+                            ),
                           ),
                         ),
-                        Text(
-                          "Student Name",
-                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 40.0, right: 40,),
-                          child: Text(
-                            "Class",
-                            style:
-                            GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                          ),
-                        ),
-                        Text(
-                          "Section",
-                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 40.0, right: 45),
-                          child: Text(
-                            "Father name",
-                            style:
-                            GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                          ),
-                        ),
-                        Text(
-                          "Phone Number",
-                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 55.0, right: 62),
-                          child: Text(
-                            "Gender",
-                            style:
-                            GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                          ),
-                        ),
-                        Text(
-                          "Actions",
-                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                        ),
+                        SizedBox(width: 140,),
+                        Excelsheet(),
                       ],
                     ),
-                    //color: Colors.pink,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 00,top:20,bottom: 20),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:0.0),
+                                child: Text("Register Number",style: GoogleFonts.poppins(fontSize: 15,)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                child: Container(child:
+                                TypeAheadFormField(
 
 
-                  ),
-                ),
+                                  suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                                      color: Color(0xffDDDEEE),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(5),
+                                        bottomRight: Radius.circular(5),
+                                      )
+                                  ),
 
-                StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection("Students").orderBy("timestamp").snapshots(),
-
-                    builder: (context,snapshot){
-                      if(!snapshot.hasData)
-                      {
-                        return   Center(
-                          child:  CircularProgressIndicator(),
-                        );}
-                      if(snapshot.hasData==null)
-                      {
-                        return   Center(
-                          child:  CircularProgressIndicator(),
-                        );}
-                      return ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (context,index){
-                            var value = snapshot.data!.docs[index];
-                            return   Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                width: width/1.366,
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20.0, right: 0),
-                                      child: Container(
-                                        width: width/13.66,
-
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          value["regno"],
-                                          style:
-                                          GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                        ),
-                                      ),
+                                  textFieldConfiguration: TextFieldConfiguration(
+                                    style:  GoogleFonts.poppins(
+                                        fontSize: 15
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 30.0),
-                                      child: Container(
-                                        width: width/9.757,
-
-
-                                        child: Text(
-                                          value["stname"],
-                                          style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                        ),
-                                      ),
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                      border: InputBorder.none,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 0.0, right: 0),
-                                      child: Container(
-                                        width: width/22.766,
+                                    controller: this._typeAheadControllerregno,
+                                  ),
+                                  suggestionsCallback: (pattern) {
+                                    return getSuggestionsregno(pattern);
+                                  },
+                                  itemBuilder: (context, String suggestion) {
+                                    return ListTile(
+                                      title: Text(suggestion),
+                                    );
+                                  },
 
-                                        child: Text(
-                                          value["admitclass"],
-                                          style:
-                                          GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                        ),
-                                      ),
+                                  transitionBuilder: (context, suggestionsBox, controller) {
+                                    return suggestionsBox;
+                                  },
+                                  onSuggestionSelected: (String suggestion) {
+                                    setState(() {
+                                      this._typeAheadControllerregno.text = suggestion;
+                                    });
+                                    getstaffbyid2a();
+
+                                    // getstaffbyid();
+                                    // getorderno();
+
+
+
+                                  },
+                                  suggestionsBoxController: suggestionBoxController,
+                                  validator: (value) =>
+                                  value!.isEmpty ? 'Please select a regno' : null,
+                                  onSaved: (value) => this._selectedCity = value,
+                                ),
+                                  width: width/8.902,
+                                  height: height/16.425,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                ),
+                              ),
+
+                            ],
+
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:0.0),
+                                child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                child: Container(
+                                  width: width/6.902,
+                                  height: height/16.425,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                  child:
+                                  TypeAheadFormField(
+
+
+                                    suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                                        color: Color(0xffDDDEEE),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(5),
+                                          bottomRight: Radius.circular(5),
+                                        )
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 13.0),
-                                      child: Container(
-                                        width:width/22.766,
 
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          value["section"],
-                                          style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                        ),
+                                    textFieldConfiguration: TextFieldConfiguration(
+                                      style:  GoogleFonts.poppins(
+                                          fontSize: 15
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 50, right: 0),
-                                      child: Container(
-                                        width: width/10.507,
-
-                                        child: Text(
-                                          value["fathername"],
-                                          style:
-                                          GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                        ),
+                                      decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                        border: InputBorder.none,
                                       ),
+                                      controller: this._typeAheadControllerstudent,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left:7.0),
-                                      child: Container(
-                                        width: width/9.7571,
+                                    suggestionsCallback: (pattern) {
+                                      return getSuggestionsstudent(pattern);
+                                    },
+                                    itemBuilder: (context, String suggestion) {
+                                      return ListTile(
+                                        title: Text(suggestion),
+                                      );
+                                    },
 
-                                        child: Text(
-                                          value["mobile"],
-                                          style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),
+                                    transitionBuilder: (context, suggestionsBox, controller) {
+                                      return suggestionsBox;
+                                    },
+                                    onSuggestionSelected: (String suggestion) {
+                                      setState(() {
+                                        this._typeAheadControllerstudent.text = suggestion;
+                                      });
+
+                                      getstaffbyid2();
+
+
+
+
+                                    },
+                                    suggestionsBoxController: suggestionBoxController,
+                                    validator: (value) =>
+                                    value!.isEmpty ? 'Please select a option' : null,
+                                    onSaved: (value) => this._selectedCity = value,
+                                  ),
+
+                                ),
+                              ),
+
+                            ],
+
+                          ),
+                          InkWell(
+                            onTap: (){
+                              if(_typeAheadControllerstudent.text==""||_typeAheadControllerregno.text==""){
+
+                              }
+                              else {
+                                getstaffbyid();
+                              }
+                            },
+                            child: Container(child: Center(child: Text("Search",style: GoogleFonts.poppins(color:Colors.white),)),
+                              width: width/10.507,
+                              height: height/16.425,
+                              // color:Color(0xff00A0E3),
+                              decoration: BoxDecoration(color: const Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
+
+                            ),
+                          ),
+                          SizedBox(width: 15,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:0.0),
+                                child: Text("By Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                child: Container(child:
+
+                                DropdownButtonHideUnderline(
+                                  child: DropdownButton2<String>(
+                                    isExpanded: true,
+                                    hint:  Row(
+                                      children: [
+                                        Icon(
+                                          Icons.list,
+                                          size: 16,
+                                          color: Colors.black,
                                         ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 3.0, right: 0),
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: width/17.075,
-
-                                        child: Row(
-                                          children: [
-                                            value["gender"]=="Male"?  Padding(
-                                              padding: const EdgeInsets.only(right: 6.0),
-                                              child: Icon(Icons.male_rounded,size: 20,),
-                                            ):Padding(
-                                              padding: const EdgeInsets.only(right: 6.0),
-                                              child: Icon(Icons.female_rounded,size: 20,),
+                                        SizedBox(
+                                          width: 4,
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            'Select Option',
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 15
                                             ),
-                                            Text(
-                                              value["gender"],
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    items: classes
+                                        .map((String item) => DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Text(
+                                        item,
+                                        style:  GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ))
+                                        .toList(),
+                                    value:  _typeAheadControllerclass.text,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        _typeAheadControllerclass.text = value!;
+                                      });
+                                    },
+                                    buttonStyleData: ButtonStyleData(
+                                      height: 50,
+                                      width: 160,
+                                      padding: const EdgeInsets.only(left: 14, right: 14),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+
+                                        color: Color(0xffDDDEEE),
+                                      ),
+
+                                    ),
+                                    iconStyleData: const IconStyleData(
+                                      icon: Icon(
+                                        Icons.arrow_forward_ios_outlined,
+                                      ),
+                                      iconSize: 14,
+                                      iconEnabledColor: Colors.black,
+                                      iconDisabledColor: Colors.grey,
+                                    ),
+                                    dropdownStyleData: DropdownStyleData(
+                                      maxHeight: 200,
+                                      width: width/5.464,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(14),
+                                        color: Color(0xffDDDEEE),
+                                      ),
+
+                                      scrollbarTheme: ScrollbarThemeData(
+                                        radius: const Radius.circular(7),
+                                        thickness: MaterialStateProperty.all<double>(6),
+                                        thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                      ),
+                                    ),
+                                    menuItemStyleData: const MenuItemStyleData(
+                                      height: 40,
+                                      padding: EdgeInsets.only(left: 14, right: 14),
+                                    ),
+                                  ),
+                                ),
+                                  width: width/6.902,
+                                  height: height/16.42,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                ),
+                              ),
+
+                            ],
+
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:0.0),
+                                child: Text("By Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                child: Container(child:   DropdownButtonHideUnderline(
+                                  child: DropdownButton2<String>(
+                                    isExpanded: true,
+                                    hint:  Row(
+                                      children: [
+                                        Icon(
+                                          Icons.list,
+                                          size: 16,
+                                          color: Colors.black,
+                                        ),
+                                        SizedBox(
+                                          width: 4,
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            'Select Option',
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 15
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    items: section
+                                        .map((String item) => DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Text(
+                                        item,
+                                        style:  GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ))
+                                        .toList(),
+                                    value:  _typeAheadControllersection.text,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        _typeAheadControllersection.text = value!;
+                                      });
+                                    },
+                                    buttonStyleData: ButtonStyleData(
+                                      height: 50,
+                                      width: 160,
+                                      padding: const EdgeInsets.only(left: 14, right: 14),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+
+                                        color: Color(0xffDDDEEE),
+                                      ),
+
+                                    ),
+                                    iconStyleData: const IconStyleData(
+                                      icon: Icon(
+                                        Icons.arrow_forward_ios_outlined,
+                                      ),
+                                      iconSize: 14,
+                                      iconEnabledColor: Colors.black,
+                                      iconDisabledColor: Colors.grey,
+                                    ),
+                                    dropdownStyleData: DropdownStyleData(
+                                      maxHeight: 200,
+                                      width: width/5.464,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(14),
+                                        color: Color(0xffDDDEEE),
+                                      ),
+
+                                      scrollbarTheme: ScrollbarThemeData(
+                                        radius: const Radius.circular(7),
+                                        thickness: MaterialStateProperty.all<double>(6),
+                                        thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                      ),
+                                    ),
+                                    menuItemStyleData: const MenuItemStyleData(
+                                      height: 40,
+                                      padding: EdgeInsets.only(left: 14, right: 14),
+                                    ),
+                                  ),
+                                ),
+                                  width: width/6.902,
+                                  height: height/16.42,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                ),
+                              ),
+
+                            ],
+
+                          ),
+                          InkWell(
+                            onTap: (){
+                              if(_typeAheadControllerclass.text=="Select Option"||_typeAheadControllersection.text=="Select Option"){
+
+                              }
+                              else {
+                                setState(() {
+                                  byclass = true;
+                                  search = false;
+                                });
+                              }
+                            },
+                            child: Container(child: Center(child: Text("By Class",style: GoogleFonts.poppins(color:Colors.white),)),
+                              width: width/10.507,
+                              height: height/16.425,
+                              // color:Color(0xff00A0E3),
+                              decoration: BoxDecoration(color: const Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
+
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 0.0,top: 20),
+              child: Container(
+                width:  width/1.050,
+                
+                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+                child:  Column(
+
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height:height/13.14,
+                        width: width/1.066,
+                          decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
+
+                          ),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
+                              child: Checkbox(
+                                checkColor: Colors.white,
+                                  value: mainconcent,
+                                  onChanged: (value){
+                                    setState(() {
+                                      mainconcent = value!;
+                                      for(int i=0;i<1000;i++) {
+                                        check[i] = value!;
+                                      }
+
+                                    });
+
+                                  }
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 35.0, right: 40),
+                              child: Text(
+                                "App No",
+                                style:
+                                GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 0.0, right: 40),
+                              child: Text(
+                                "Roll No",
+                                style:
+                                GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                              ),
+                            ),
+                            Text(
+                              "Student Name",
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 40.0, right: 40,),
+                              child: Text(
+                                "Class",
+                                style:
+                                GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                              ),
+                            ),
+                            Text(
+                              "Section",
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 40.0, right: 45),
+                              child: Text(
+                                "Parent name",
+                                style:
+                                GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                              ),
+                            ),
+                            Text(
+                              "Phone Number",
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 55.0, right: 62),
+                              child: Text(
+                                "Gender",
+                                style:
+                                GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                              ),
+                            ),
+                            Text(
+                              "Actions",
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        //color: Colors.pink,
+
+
+                      ),
+                    ),
+
+                    StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance.collection("Students").orderBy("timestamp").snapshots(),
+
+                        builder: (context,snapshot){
+                          if(!snapshot.hasData)
+                          {
+                            return   Center(
+                              child:  CircularProgressIndicator(),
+                            );}
+                          if(snapshot.hasData==null)
+                          {
+                            return   Center(
+                              child:  CircularProgressIndicator(),
+                            );}
+                          return ListView.builder(
+                           
+                              shrinkWrap: true,
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context,index){
+                                var value = snapshot.data!.docs[index];
+                                return  search==true? value.id==studentid? Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    width: width/1.366,
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10.0),
+                                          child: Checkbox(
+
+                                              value: check[index],
+
+                                              onChanged: (bool? value){
+                                                print(value);
+                                                setState(() {
+                                                  check[index] = value!;
+                                                });
+
+                                              }
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10.0, right: 0),
+                                          child: Container(
+                                            width: width/13.66,
+
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              value["regno"],
                                               style:
                                               GoogleFonts.poppins(fontWeight: FontWeight.w500,),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: (){
-                                        setState(() {
-                                          studentid=value.id;
-                                          view=true;
-                                        });
-                                      },
-                                      child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(left: 45.0),
-                                        child: Container(
-                                          child: Center(
-                                              child: Text(
-                                                "View",
-                                                style: GoogleFonts.poppins(
-                                                    color: Colors.white),
-                                              )),
-                                          width: width/22.76,
-                                          height: height/21.9,
-                                          //color: Color(0xffD60A0B),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(5),
-                                            color: Color(0xff53B175),
                                           ),
                                         ),
-                                      ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 2.0, right: 0),
+                                          child: Container(
+                                            width: width/13.66,
+
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              value["rollno"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 30.0),
+                                          child: Container(
+                                            width: width/9.757,
+
+
+                                            child: Text(
+                                              value["stname"],
+                                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 0.0, right: 0),
+                                          child: Container(
+                                            width: width/22.766,
+
+                                            child: Text(
+                                              value["admitclass"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 13.0),
+                                          child: Container(
+                                            width:width/22.766,
+
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              value["section"],
+                                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 50, right: 0),
+                                          child: Container(
+                                            width: width/10.507,
+
+                                            child: Text(
+                                              value["fathername"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left:7.0),
+                                          child: Container(
+                                            width: width/9.7571,
+
+                                            child: Text(
+                                              value["mobile"],
+                                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 3.0, right: 0),
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            width: width/17.075,
+
+                                            child: Row(
+                                              children: [
+                                                value["gender"]=="Male"?  Padding(
+                                                  padding: const EdgeInsets.only(right: 6.0),
+                                                  child: Icon(Icons.male_rounded,size: 20,),
+                                                ):Padding(
+                                                  padding: const EdgeInsets.only(right: 6.0),
+                                                  child: Icon(Icons.female_rounded,size: 20,),
+                                                ),
+                                                Text(
+                                                  value["gender"],
+                                                  style:
+                                                  GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: (){
+                                            setState(() {
+                                              studentid=value.id;
+                                              view=true;
+                                            });
+                                          },
+                                          child: Padding(
+                                            padding:
+                                            const EdgeInsets.only(left: 45.0),
+                                            child: Container(
+                                              width: width/22.76,
+                                              height: height/21.9,
+                                              //color: Color(0xffD60A0B),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                color: Color(0xff53B175),
+                                              ),
+                                              child: Center(
+                                                  child: Text(
+                                                    "View",
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.white),
+                                                  )),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                //color: Colors.pink,
+                                    //color: Colors.pink,
 
 
-                              ),
-                            );
-                          });
+                                  ),
+                                ) : Container(): byclass==true? "${value["admitclass"]}${value["section"]}"=="${_typeAheadControllerclass.text}${_typeAheadControllersection.text}"?
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    width: width/1.366,
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10.0),
+                                          child: Checkbox(
 
-                    }),
-              ],
+                                              value: check[index],
+
+                                              onChanged: (bool? value){
+                                                print(value);
+                                                setState(() {
+                                                  check[index] = value!;
+                                                });
+
+                                              }
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10.0, right: 0),
+                                          child: Container(
+                                            width: width/13.66,
+
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              value["regno"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 2.0, right: 0),
+                                          child: Container(
+                                            width: width/13.66,
+
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              value["rollno"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 30.0),
+                                          child: Container(
+                                            width: width/9.757,
+
+
+                                            child: Text(
+                                              value["stname"],
+                                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 0.0, right: 0),
+                                          child: Container(
+                                            width: width/22.766,
+
+                                            child: Text(
+                                              value["admitclass"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 13.0),
+                                          child: Container(
+                                            width:width/22.766,
+
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              value["section"],
+                                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 50, right: 0),
+                                          child: Container(
+                                            width: width/10.507,
+
+                                            child: Text(
+                                              value["fathername"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left:7.0),
+                                          child: Container(
+                                            width: width/9.7571,
+
+                                            child: Text(
+                                              value["mobile"],
+                                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 3.0, right: 0),
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            width: width/17.075,
+
+                                            child: Row(
+                                              children: [
+                                                value["gender"]=="Male"?  Padding(
+                                                  padding: const EdgeInsets.only(right: 6.0),
+                                                  child: Icon(Icons.male_rounded,size: 20,),
+                                                ):Padding(
+                                                  padding: const EdgeInsets.only(right: 6.0),
+                                                  child: Icon(Icons.female_rounded,size: 20,),
+                                                ),
+                                                Text(
+                                                  value["gender"],
+                                                  style:
+                                                  GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: (){
+                                            setState(() {
+                                              studentid=value.id;
+                                              view=true;
+                                            });
+                                          },
+                                          child: Padding(
+                                            padding:
+                                            const EdgeInsets.only(left: 45.0),
+                                            child: Container(
+                                              width: width/22.76,
+                                              height: height/21.9,
+                                              //color: Color(0xffD60A0B),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                color: Color(0xff53B175),
+                                              ),
+                                              child: Center(
+                                                  child: Text(
+                                                    "View",
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.white),
+                                                  )),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+                                    //color: Colors.pink,
+
+
+                                  ),
+                                ) : Container() :
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    width: width/1.366,
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10.0),
+                                          child: Checkbox(
+
+                                              value: check[index],
+
+                                              onChanged: (bool? value){
+                                                print(value);
+                                                setState(() {
+                                                  check[index] = value!;
+                                                });
+
+                                              }
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10.0, right: 0),
+                                          child: Container(
+                                            width: width/13.66,
+
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              value["regno"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 2.0, right: 0),
+                                          child: Container(
+                                            width: width/13.66,
+
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              value["rollno"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 30.0),
+                                          child: Container(
+                                            width: width/9.757,
+
+
+                                            child: Text(
+                                              value["stname"],
+                                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 0.0, right: 0),
+                                          child: Container(
+                                            width: width/22.766,
+
+                                            child: Text(
+                                              value["admitclass"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 13.0),
+                                          child: Container(
+                                            width:width/22.766,
+
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              value["section"],
+                                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 50, right: 0),
+                                          child: Container(
+                                            width: width/10.507,
+
+                                            child: Text(
+                                              value["fathername"],
+                                              style:
+                                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left:7.0),
+                                          child: Container(
+                                            width: width/9.7571,
+
+                                            child: Text(
+                                              value["mobile"],
+                                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 3.0, right: 0),
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            width: width/17.075,
+
+                                            child: Row(
+                                              children: [
+                                                value["gender"]=="Male"?  Padding(
+                                                  padding: const EdgeInsets.only(right: 6.0),
+                                                  child: Icon(Icons.male_rounded,size: 20,),
+                                                ):Padding(
+                                                  padding: const EdgeInsets.only(right: 6.0),
+                                                  child: Icon(Icons.female_rounded,size: 20,),
+                                                ),
+                                                Text(
+                                                  value["gender"],
+                                                  style:
+                                                  GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: (){
+                                            setState(() {
+                                              studentid=value.id;
+                                              view=true;
+                                            });
+                                          },
+                                          child: Padding(
+                                            padding:
+                                            const EdgeInsets.only(left: 45.0),
+                                            child: Container(
+                                              width: width/22.76,
+                                              height: height/21.9,
+                                              //color: Color(0xffD60A0B),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                color: Color(0xff53B175),
+                                              ),
+                                              child: Center(
+                                                  child: Text(
+                                                    "View",
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.white),
+                                                  )),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+                                    //color: Colors.pink,
+
+
+                                  ),
+                                );
+                              });
+
+                        }),
+                  ],
+                ),
+
+              ),
             ),
+            SizedBox(height: 25,)
+          ],
+        ),
+      ),
 
-          ),
-        )
-      ],
     ) :
     SingleChildScrollView(
       child: ShowUpAnimation(
@@ -318,22 +1397,28 @@ class _StudentListState extends State<StudentList> {
                                   },
                                   child: CircleAvatar(
                                     radius: width/26.6666,
-                                    backgroundImage:AssetImage("assets/profile.jpg"),
+                                    backgroundImage:  NetworkImage(value!['imgurl']==""?"https://firebasestorage.googleapis.com/v0/b/vidhaan-4aee7.appspot.com/o/360_F_270188580_YDUEwBmDIxBMvCQxkcunmEkm93VqOgqm.jpg?alt=media&token=fe18ba43-4a31-4b53-9523-42bb4241d9a1"
+                                        :value['imgurl']),
 
                                   ),
                                 ),
 
                                 SizedBox(height:height/52.15,),
                                 Center(
-                                  child:Text('${value!['stname']}',style: GoogleFonts.montserrat(
-                                      fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                  ),),
+                                  child:Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('${value!['stname']}',style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                      ),),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(height:height/130.3,),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('Student ID :',style: GoogleFonts.montserrat(
+                                    Text('Application No :',style: GoogleFonts.montserrat(
                                         fontWeight:FontWeight.w500,color: Colors.black,fontSize: width/124.4
                                     ),),
                                     Text(value['regno'],style: GoogleFonts.montserrat(
@@ -472,6 +1557,17 @@ class _StudentListState extends State<StudentList> {
                                   ),
                                 ],),
                                 SizedBox(height:height/34.76,),
+                                GestureDetector(
+                                  onTap: (){
+
+                                  },
+                                  child: Container(width: width/5.464,
+                                    height: height/16.425,
+                                    // color:Color(0xff00A0E3),
+                                    decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(5)),child: Center(child: Text("View Fees Reports",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
+
+                                  ),
+                                ),
 
 
 
@@ -531,7 +1627,7 @@ class _StudentListState extends State<StudentList> {
                               padding: EdgeInsets.only(left:width/62.2,right:width/62.2),
                               child: Column(
                                 children: [
-                                  SizedBox(height:height/40,),
+                                /*  SizedBox(height:height/40,),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
@@ -541,83 +1637,9 @@ class _StudentListState extends State<StudentList> {
                                     ],
                                   ),
                                   SizedBox(height:height/30,),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                border: Border.all(color: Colors.red,width:width/186),
 
-                                              ),
-                                              height:height/8.69,
-                                              width:width/15.55,
-                                              child: Center(child: Text("50",style: GoogleFonts.montserrat(
-                                                  fontWeight:FontWeight.bold,color: Colors.red,fontSize:width/53.31
-                                              ),)),
-                                            ),
-                                            SizedBox(width:width/186,),
-                                            Text('Exam Status ',style: GoogleFonts.montserrat(
-                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                            ),),
-                                          ],),
-                                        SizedBox(width:width/14.35,),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(color: Colors.green,width:width/186)
-                                              ),
-                                              height:height/8.69,
-                                              width:width/15.55,
-                                              child: Center(child: Text("20",style: GoogleFonts.montserrat(
-                                                  fontWeight:FontWeight.bold,color: Colors.green,fontSize:width/53.31
-                                              ),)),
-                                            ),
-                                            SizedBox(width:width/186,),
-                                            Text('Attendance',style: GoogleFonts.montserrat(
-                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                            ),),
-                                          ],),
-                                      ],),
-                                  ),
                                   SizedBox(height:height/26.07,),
-                                  Container(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        GestureDetector(
-                                          onTap: (){
 
-                                          },
-                                          child: Container(child: Center(child: Text("View Exam Reports",style: GoogleFonts.poppins(color:Colors.white),)),
-                                            width: width/7.588,
-                                            height: height/16.425,
-                                            // color:Color(0xff00A0E3),
-                                            decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
-                                          ),
-                                        ),
-                                        SizedBox(width:width/10),
-                                        GestureDetector(
-                                          onTap: (){
-
-                                          },
-                                          child: Container(child: Center(child: Text("View Attendance Reports",style: GoogleFonts.poppins(color:Colors.white),)),
-                                            width: width/5.464,
-                                            height: height/16.425,
-                                            // color:Color(0xff00A0E3),
-                                            decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
-                                          ),
-                                        ),
-                                      ],),
-                                  ),
-                                  SizedBox(height:height/26.07,),
                                   Container(
                                     width: width/2.276,
                                     child: Divider(
@@ -625,14 +1647,68 @@ class _StudentListState extends State<StudentList> {
                                       thickness: 2,
                                     ),
                                   ),
-
+                                  */
                                   SizedBox(height:height/100,),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text('Personal Information',style: GoogleFonts.montserrat(
                                           fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                       ),),
+                                      InkWell(
+                                        onTap: (){
+setState(() {
+  view1=3;
+});
+
+                                        },
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.only(left: 45.0),
+                                          child: Container(
+                                            width: width/20.76,
+                                            height: height/21.9,
+                                            //color: Color(0xffD60A0B),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(5),
+                                              color: Color(0xff53B175),
+                                            ),
+                                            child: Center(
+                                                child: Text(
+                                                  "Edit",
+                                                  style: GoogleFonts.poppins(
+                                                      color: Colors.white),
+                                                )),
+                                          ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: (){
+                                          deletestudent(studentid);
+                                        },
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.only(left: 45.0),
+                                          child: Container(
+                                            width: width/20.76,
+                                            height: height/21.9,
+                                            //color: Color(0xffD60A0B),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(5),
+                                              color: Colors.red,
+                                            ),
+                                            child: Center(
+                                                child: Text(
+                                                  "Delete",
+                                                  style: GoogleFonts.poppins(
+                                                      color: Colors.white),
+                                                )),
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   SizedBox(height:height/30,),
@@ -641,25 +1717,238 @@ class _StudentListState extends State<StudentList> {
                                       children: [
                                         Column(crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
+                                            Text("Father Details ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 14),),
                                               Padding(
-                                              padding: const EdgeInsets.only(top: 8.0,bottom: 20),
+                                                padding: const EdgeInsets.all(4.0),
+                                                child: Container(
+                                                  width: 200,
+                                                    child: Divider()),
+                                              ),
+                                              Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
                                               child: Row(
                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
-                                                  Text("Father Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
+                                                  Text("Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
                                                   Text(value["fathername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
                                                 ],
                                               ),
                                             ),
-                                            Row(
-                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                              children: [
-                                                Text("Mother Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                Text(value["mothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
-                                              ],
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "Occupation: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    value["fatherOccupation"],
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.only(top: 20.0,bottom: 20),
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Office Address: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Container(
+                                                    width:210,
+                                                    child: Text(
+                                                      value["fatherOffice"],
+                                                      style: GoogleFonts.poppins(
+                                                          fontSize: 12,
+                                                          fontWeight: FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "Phone Number: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    value["fatherMobile"],
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "Aadhaar Number: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    value["fatherAadhaar"],
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Text("Mother Details ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 14),),
+                                            Padding(
+                                              padding: const EdgeInsets.all(4.0),
+                                              child: Container(
+                                                  width: 200,
+                                                  child: Divider()),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                children: [
+                                                  Text("Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
+                                                  Text(value["mothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "Occupation: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    value["motherOccupation"],
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Office Address: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Container(
+                                                    width:220,
+                                                    child: Text(
+                                                      value["motherOffice"],
+                                                      style: GoogleFonts.poppins(
+                                                          fontSize: 12,
+                                                          fontWeight: FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "Phone Number: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    value["motherMobile"],
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "Aadhaar Number: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    value["motherAadhaar"],
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+
+
+
+
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 70.0,right: 18),
+                                          child: Image.asset("assets/line.png"),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20.0),
+                                              child: Row(
+                                                children: [
+                                                  Text("Sibling Studying Here: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
+                                                  Text(value["brother studying here"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+
+                                                ],
+                                              ),
+                                            ),
+                                            value["brother studying here"]=="Yes"    ?  Padding(
+                                              padding: const EdgeInsets.only(top: 20.0,bottom: 0),
+                                              child: Row(
+                                                children: [
+                                                  Text("Sibling Name & Class: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
+                                                  Text(value["brothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+
+                                                ],
+                                              ),
+                                            ) :Container(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
                                               child: Row(
                                                 children: [
                                                   Text("Religion: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
@@ -675,75 +1964,48 @@ class _StudentListState extends State<StudentList> {
 
                                               ],
                                             ),
-
                                             Padding(
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("Sub Caste: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["subcaste"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
-
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(top: 20.0,bottom: 0),
-                                              child: Row(
-                                                children: [
-                                                  Text("Student Adhaar Number: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
+                                                  Text("Student Aadhaar Number: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
                                                   Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
 
                                                 ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 70.0,right: 18),
-                                          child: Image.asset("assets/line.png"),
-                                        ),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-
-
-
                                             Padding(
-                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text(
-                                                    "Parent Occupation: ",
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 13,
-                                                        fontWeight: FontWeight.bold),
-                                                  ),
-                                                  Text(
-                                                    value["occupation"],
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 12,
-                                                        fontWeight: FontWeight.w500),
-                                                  ),
+                                                  Text("Height in cms: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
+                                                  Text(value["sheight"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+
                                                 ],
                                               ),
                                             ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "Annual Income: ",
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.bold),
-                                                ),
-                                                Text(
-                                                  value["income"],
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.w500),
-                                                ),
-                                              ],
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 20.0,bottom: 0),
+                                              child: Row(
+                                                children: [
+                                                  Text("Weight in Kg: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
+                                                  Text(value["stweight"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+
+                                                ],
+                                              ),
                                             ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 20.0,bottom: 0),
+                                              child: Row(
+                                                children: [
+                                                  Text("EMIS NO: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
+                                                  Text(value["EMIS"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+
+                                                ],
+                                              ),
+                                            ),
+
+
                                             Padding(
                                               padding: const EdgeInsets.only(top:20.0),
                                               child: Row(
@@ -764,17 +2026,17 @@ class _StudentListState extends State<StudentList> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.only(top: 20.0,bottom: 8),
+                                              padding: const EdgeInsets.only(top:20.0),
                                               child: Row(
                                                 children: [
                                                   Text(
-                                                    "Home Address: ",
+                                                    "M.O.Transport: ",
                                                     style: GoogleFonts.poppins(
                                                         fontSize: 12,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
-                                                    value["address"],
+                                                    value["transport"],
                                                     style: GoogleFonts.poppins(
                                                         fontSize: 12,
                                                         fontWeight: FontWeight.w500),
@@ -782,19 +2044,73 @@ class _StudentListState extends State<StudentList> {
                                                 ],
                                               ),
                                             ),
-                                            GestureDetector(
-                                              onTap: (){
-
-                                              },
-                                              child: Container(child: Center(child: Text("View Fees Reports",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
-                                                width: width/5.464,
-                                                height: height/16.425,
-                                                // color:Color(0xff00A0E3),
-                                                decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(5)),
-
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 20.0,bottom: 8),
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Home Address: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Container(
+                                                    width:200,
+                                                    child: Text(
+                                                      value["address"],
+                                                      style: GoogleFonts.poppins(
+                                                          fontSize: 12,
+                                                          fontWeight: FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
 
+                                            Container(
+                                              child: Row(
+                                                children: [
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                        decoration: BoxDecoration(
+                                                          shape: BoxShape.circle,
+                                                          border: Border.all(color: Colors.red,width:width/186),
+
+                                                        ),
+                                                        height:height/8.69,
+                                                        width:width/15.55,
+                                                        child: Center(child: Text("50",style: GoogleFonts.montserrat(
+                                                            fontWeight:FontWeight.bold,color: Colors.red,fontSize:width/53.31
+                                                        ),)),
+                                                      ),
+                                                      SizedBox(height:20,),
+                                                      Text('Exam Status ',style: GoogleFonts.montserrat(
+                                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                      ),),
+                                                    ],),
+                                                  SizedBox(width:width/18.35,),
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                        decoration: BoxDecoration(
+                                                            shape: BoxShape.circle,
+                                                            border: Border.all(color: Colors.green,width:width/186)
+                                                        ),
+                                                        height:height/8.69,
+                                                        width:width/15.55,
+                                                        child: Center(child: Text("20",style: GoogleFonts.montserrat(
+                                                            fontWeight:FontWeight.bold,color: Colors.green,fontSize:width/53.31
+                                                        ),)),
+                                                      ),
+                                                      SizedBox(height:20,),
+                                                      Text('Attendance',style: GoogleFonts.montserrat(
+                                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                      ),),
+                                                    ],),
+                                                ],),
+                                            ),
                                           ],
                                         ),
 
@@ -815,6 +2131,20 @@ class _StudentListState extends State<StudentList> {
           },
         ),
       ),
+    ) : Stack(
+      children: [
+        StudentEdit(studentid),
+    Padding(
+    padding: const EdgeInsets.only(top:30.0,left:20),
+    child: InkWell(
+    onTap:(){
+      setState(() {
+    view1=0;
+      });
+    },
+    child: Icon(Icons.arrow_back_rounded)),
+    ),
+      ],
     );
 
 

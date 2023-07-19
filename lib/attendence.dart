@@ -1,10 +1,19 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
+
+class SalesData {
+  SalesData(this.year, this.sales);
+  final String year;
+  final double sales;
+}
 
 class Attendence extends StatefulWidget {
   const Attendence({Key? key}) : super(key: key);
@@ -22,8 +31,8 @@ class _AttendenceState extends State<Attendence> {
   final TextEditingController _typeAheadControllerstaffid = TextEditingController();
    TextEditingController date = new TextEditingController();
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
-  static final List<String> classes = [];
-  static final List<String> section = [];
+  static final List<String> classes = ["Select Option"];
+  static final List<String> section = ["Select Option"];
   static final List<String> staffid = [];
 
   static List<String> getSuggestionsclass(String query) {
@@ -47,17 +56,33 @@ class _AttendenceState extends State<Attendence> {
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
   }
+  late TooltipBehavior _tooltipBehavior;
   @override
   void initState() {
+    setState(() {
+      _typeAheadControllerclass.text="Select Option";
+      _typeAheadControllersection.text="Select Option";
+    });
+    _tooltipBehavior = TooltipBehavior(enable: true);
     adddropdownvalue();
 
     // TODO: implement initState
     super.initState();
   }
   adddropdownvalue() async {
+    var sudentsdocument = await  FirebaseFirestore.instance.collection("Students").get();
+    setState(() {
+      schooltotal=sudentsdocument.docs.length;
+      classes.clear();
+      section..clear();
+    });
     var document = await  FirebaseFirestore.instance.collection("ClassMaster").orderBy("order").get();
     var document2 = await  FirebaseFirestore.instance.collection("SectionMaster").orderBy("order").get();
     var document3 = await  FirebaseFirestore.instance.collection("Staffs").orderBy("entryno").get();
+    setState(() {
+      classes.add("Select Option");
+      section.add("Select Option");
+    });
     for(int i=0;i<document.docs.length;i++) {
       setState(() {
         classes.add(document.docs[i]["name"]);
@@ -107,19 +132,7 @@ class _AttendenceState extends State<Attendence> {
 
 
 
-  saveincharge() async {
 
-
-    var document = await FirebaseFirestore.instance.collection("Incharge").get();
-
-    FirebaseFirestore.instance.collection("Incharge").doc().set({
-      "class":_typeAheadControllerclass.text,
-      "section":_typeAheadControllersection.text,
-      "staffid":_typeAheadControllerstaffid.text,
-      "staffname": staffname,
-      "orderno":document.docs.length+1,
-    });
-  }
   Successdialog(){
     return AwesomeDialog(
       width: 450,
@@ -145,6 +158,7 @@ class _AttendenceState extends State<Attendence> {
   int total=0;
   int present=0;
   int absent=0;
+  int schooltotal=0;
 
   gettotal() async {
  var document=await  FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).get();
@@ -158,410 +172,803 @@ setState(() {
 });
   }
 
+
+  bool view= false;
+  bool absentonly= false;
+
   @override
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
     final double height=MediaQuery.of(context).size.height;
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0),
-          child: Container(child: Padding(
-            padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Students Attendance Register",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Container(child: Padding(
+              padding: const EdgeInsets.only(left: 38.0,top: 30),
+              child: Text("Students Attendance Register",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+            ),
+              //color: Colors.white,
+              width: width/1.050,
+              height: height/8.212,
+              decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+            ),
           ),
-            //color: Colors.white,
-            width: width/1.050,
-            height: height/8.212,
-            decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0,top: 20),
-          child: Container(
-            width: width/1.050,
-            height:height/1.263,
-            decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-            child:  Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0,top:20),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+
+          Row(
+            children: [
+              SizedBox(width: 20,),
+              Container(
+                  width: 450,
+                  child: SfCartesianChart(
+
+
+                      primaryXAxis: CategoryAxis(),
+                      // Chart title
+                      title: ChartTitle(text: '       Monthly Student Reports',textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Colors.black),alignment: ChartAlignment.near),
+                      // Enable legend
+                      legend: Legend(isVisible: true),
+                      // Enable tooltip
+                      tooltipBehavior: _tooltipBehavior,
+
+
+
+                      series: <LineSeries<SalesData, String>>[
+
+                        LineSeries<SalesData, String>(
+                          name: "Students \nAttendance",
+                          dataSource:  <SalesData>[
+                            SalesData('Jan', 35),
+                            SalesData('Feb', 28),
+                            SalesData('Mar', 34),
+                            SalesData('Apr', 32),
+                            SalesData('May', 40),
+                            SalesData('June', 50),
+                            SalesData('July', 50),
+                          ],
+                          xValueMapper: (SalesData sales, _) => sales.year,
+                          yValueMapper: (SalesData sales, _) => sales.sales,
+                          // Enable data label
+                          dataLabelSettings: DataLabelSettings(isVisible: true),
+                          color: Colors.green,
+                          width: 5,
+                          animationDuration: 2000,
+
+
+                        )
+                      ]
+                  )
+              ),
+              Column(
+                children: [
+                  SizedBox(height: height/32.85,),
+                  Row(
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child:
-                            TypeAheadFormField(
-
-
-                              suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                  color: Color(0xffDDDEEE),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(5),
-                                    bottomRight: Radius.circular(5),
-                                  )
-                              ),
-
-                              textFieldConfiguration: TextFieldConfiguration(
-                                style:  GoogleFonts.poppins(
-                                    fontSize: 15
-                                ),
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                  border: InputBorder.none,
-                                ),
-                                controller: this._typeAheadControllerclass,
-                              ),
-                              suggestionsCallback: (pattern) {
-                                return getSuggestionsclass(pattern);
-                              },
-                              itemBuilder: (context, String suggestion) {
-                                return ListTile(
-                                  title: Text(suggestion),
-                                );
-                              },
-
-                              transitionBuilder: (context, suggestionsBox, controller) {
-                                return suggestionsBox;
-                              },
-                              onSuggestionSelected: (String suggestion) {
-
-                                this._typeAheadControllerclass.text = suggestion;
-
-
-                              },
-                              suggestionsBoxController: suggestionBoxController,
-                              validator: (value) =>
-                              value!.isEmpty ? 'Please select a class' : null,
-                              onSaved: (value) => this._selectedCity = value,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:  Column(
+                          children: [
+                            CircularPercentIndicator(
+                              circularStrokeCap: CircularStrokeCap.round,
+                              radius: 50.0,
+                              lineWidth: 10.0,
+                              percent:  0.70,
+                              center:  Text("70%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                              progressColor: Colors.green,
                             ),
-                              width: width/6.83,
-                              height: height/16.42,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                            Padding(
+                              padding: const EdgeInsets.all( 8.0),
+                              child:  ChoiceChip(
 
-                            ),
-                          ),
-
-                        ],
-
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Section",style: GoogleFonts.poppins(fontSize: 15,)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child:
-
-                            TypeAheadFormField(
-
-                              suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                  color: Color(0xffDDDEEE),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(5),
-                                    bottomRight: Radius.circular(5),
-                                  )
-                              ),
-
-                              textFieldConfiguration: TextFieldConfiguration(
-                                style:  GoogleFonts.poppins(
-                                    fontSize: 15
-                                ),
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                  border: InputBorder.none,
-                                ),
-                                controller: this._typeAheadControllersection,
-                              ),
-                              suggestionsCallback: (pattern) {
-                                return getSuggestionssection(pattern);
-                              },
-                              itemBuilder: (context, String suggestion) {
-                                return ListTile(
-                                  title: Text(suggestion),
-                                );
-                              },
-
-                              transitionBuilder: (context, suggestionsBox, controller) {
-                                return suggestionsBox;
-                              },
-                              onSuggestionSelected: (String suggestion) {
-                                this._typeAheadControllersection.text = suggestion;
-                              },
-                              suggestionsBoxController: suggestionBoxController,
-                              validator: (value) =>
-                              value!.isEmpty ? 'Please select a section' : null,
-                              onSaved: (value) => this._selectedCity = value,
-                            ),
-                              width: width/6.83,
-                              height: height/16.42,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                            ),
-                          ),
-
-                        ],
-
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Date",style: GoogleFonts.poppins(fontSize: 15,)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(child:
-                            TextField(
-                              style:  GoogleFonts.poppins(
-                                  fontSize: 15
-                              ),
-                              controller: date,
-                              decoration: InputDecoration(
+                                label: Text("  Regular  ",style: TextStyle(color: Colors.white),),
 
 
-                                prefixIcon: Icon(Icons.calendar_today,size: 17,),
-                                hintText: 'Date',
-
-
-                                contentPadding: EdgeInsets.only(left: 10,top: 8),
-                                border: InputBorder.none,
-                            //editing controller of this TextField
-                              ),
-                              readOnly: true,  //set it true, so that user will not able to edit text
-                              onTap: () async {
-                                DateTime? pickedDate = await showDatePicker(
-                                    context: context, initialDate: DateTime.now(),
-                                    firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
-                                    lastDate: DateTime.now()
-                                );
-
-                                if(pickedDate != null ){
-                                  print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
-                                  String formattedDate = DateFormat('dd.MM.yyyy').format(pickedDate);
-                                  String formattedDate2 = DateFormat('dd-M-yyyy').format(pickedDate);
-                                  print(formattedDate); //formatted date output using intl package =>  2021-03-16
-                                  //you can implement different kind of Date Format here according to your requirement
+                                onSelected: (bool selected) {
 
                                   setState(() {
-                                    date.text = formattedDate;
-                                    selecteddate= formattedDate2;
-                                    //set output date to TextField value.
+
                                   });
-                                  print(selecteddate);
-                                  gettotal();
-                                  print("${_typeAheadControllerclass.text}""${_typeAheadControllerclass.text}");
-                                }else{
-                                  print("Date is not selected");
-                                }
-                              },
-                            ),
-                              width: width/6.83,
-                              height: height/16.42,
-                              //color: Color(0xffDDDEEE),
-                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                                },
+                                selectedColor: Color(0xff53B175),
+                                shape: StadiumBorder(
+                                    side: BorderSide(
+                                        color: Color(0xff53B175))),
+                                backgroundColor: Colors.white,
+                                labelStyle: TextStyle(color: Colors.black),
+
+                                elevation: 1.5, selected: true,),
 
                             ),
-                          ),
-
-                        ],
-
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          saveincharge();
-                          Successdialog();
-                        },
-                        child: Container(child: Center(child: Text("View All",style: GoogleFonts.poppins(color:Colors.white),)),
-                          width: width/10.507,
-                          height: height/16.425,
-                          // color:Color(0xff00A0E3),
-                          decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
-
+                          ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left:25.0),
-                        child: GestureDetector(
-                          onTap: (){
-                            saveincharge();
-                            Successdialog();
-                          },
-                          child: Container(child: Center(child: Text("Absent only",style: GoogleFonts.poppins(color:Colors.white),)),
-                            width: width/10.507,
-                            height: height/16.425,
-                            // color:Color(0xff00A0E3),
-                            decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.circular(5)),
+                        padding: const EdgeInsets.all(8.0),
+                        child:  Column(
+                          children: [
+                            CircularPercentIndicator(
+                              circularStrokeCap: CircularStrokeCap.round,
+                              radius: 50.0,
+                              lineWidth: 10.0,
+                              percent: 0.30,
+                              center:  Text("30%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                              progressColor: Colors.red,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all( 8.0),
+                              child: ChoiceChip(
 
-                          ),
+                                label: const Text("  Ir-regular  ",style: TextStyle(color: Colors.white),),
+
+
+                                onSelected: (bool selected) {
+
+                                  setState(() {
+
+                                  });
+                                },
+                                selectedColor: Colors.red,
+                                shape: StadiumBorder(
+                                    side: BorderSide(
+                                        color: Colors.red)),
+                                backgroundColor: Colors.white,
+                                labelStyle: TextStyle(color: Colors.black),
+
+                                elevation: 1.5, selected: true,),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
+                  SizedBox(height: height/32.85),
+
+                ],
+              ),
+              SizedBox(width: 20,),
+              Material(
+                elevation: 7,
+                borderRadius: BorderRadius.circular(12),
+                shadowColor:  Color(0xff53B175),
+                child: Container(
+                  height: height/7.3,
+                  width: width/5.464,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border:Border.all(color: Color(0xff53B175))
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Total No.of Students",style: GoogleFonts.poppins(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),),
+                      ChoiceChip(
+
+                        label: Text("${schooltotal.toString()} Students",style: TextStyle(color: Colors.white),),
+
+
+                        onSelected: (bool selected) {
+
+                          setState(() {
+
+                          });
+                        },
+                        selectedColor: Color(0xff53B175),
+                        shape: StadiumBorder(
+                            side: BorderSide(
+                                color: Color(0xff53B175))),
+                        backgroundColor: Colors.white,
+                        labelStyle: TextStyle(color: Colors.black),
+
+                        elevation: 1.5, selected: true,),
+                    ],
+                  ),
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0,top: 20),
+            child: Container(
+              width: width/1.050,
+
+              decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+              child:  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0,top:20),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: height/13.14,
-                            width: width/2.101,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
 
-                            decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
-                            ),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                  child: Text("Reg No",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 40.0,right: 8.0),
-                                  child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                  child: Text("Attendance",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                  child: Text("Mobile No",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                ),
-                              ],
-                            ),
-
-                          ),
-                        ),
-                        selecteddate!=""?   Container(
-                          width: width/2.101,
-                          child: StreamBuilder<QuerySnapshot>(
-                              stream: FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).orderBy("order").snapshots(),
-
-                              builder: (context,snapshot){
-                                if(!snapshot.hasData)
-                                {
-                                  return   Center(
-                                    child:  CircularProgressIndicator(),
-                                  );}
-                                if(snapshot.hasData==null)
-                                {
-                                  return   Center(
-                                    child:  CircularProgressIndicator(),
-                                  );}
-                                return ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data!.docs.length,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context,index){
-                                      var value = snapshot.data!.docs[index];
-                                      return Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          height: height/21.9,
-                                          width: width/2.101,
-
-                                          decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
-
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(left: 5.0,right: 0.0),
-                                                child: Container(
-                                                    width: width/11.383,
-
-                                                    child: Text(value["regno"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(left: 0.0,right: 0.0),
-                                                child: Container(
-
-                                                    width: width/6.2090,
-                                                    child: Text(value["stname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(left: 0.0,right: 0.0),
-                                                child: Container(
-
-                                                    width: width/8.035,
-                                                    child: Text(value["present"]==true?"Present": "Absent",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color:value["present"]==true? Colors.green: Colors.red),)),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(left: 0.0,right: 0.0),
-                                                child: Container(
-
-                                                    width: width/13.66,
-                                                    child: Text("7894561237",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
-                                              ),
-                                            ],
-                                          ),
-
-                                        ),
-                                      );
-                                    });
-
-                              }),
-                        ) : Container(),
-                      ],
-                    ),
-                    Column(
-                      children: [
-
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0,top:8.0),
-                          child: Container(
-                            height: height/13.14,
-                            width: width/4.553,
-
-                            decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
-                            ),
-                            child: Center(child: Text("Reports",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),)),
-
-                          ),
-                        ),
-                        SizedBox(height: height/32.85,),
-                        Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child:  Column(
+                              padding: const EdgeInsets.only(right:0.0),
+                              child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 0.0,right: 25),
+                              child: Container(child:
+                              DropdownButtonHideUnderline(
+                                child: DropdownButton2<String>(
+                                  isExpanded: true,
+                                  hint:  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.list,
+                                        size: 16,
+                                        color: Colors.black,
+                                      ),
+                                      SizedBox(
+                                        width: 4,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'Select Option',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 15
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  items: classes
+                                      .map((String item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style:  GoogleFonts.poppins(
+                                          fontSize: 15
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ))
+                                      .toList(),
+                                  value:  _typeAheadControllerclass.text,
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      _typeAheadControllerclass.text = value!;
+                                    });
+                                  },
+                                  buttonStyleData: ButtonStyleData(
+                                    height: 50,
+                                    width: 160,
+                                    padding: const EdgeInsets.only(left: 14, right: 14),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+
+                                      color: Color(0xffDDDEEE),
+                                    ),
+
+                                  ),
+                                  iconStyleData: const IconStyleData(
+                                    icon: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                    ),
+                                    iconSize: 14,
+                                    iconEnabledColor: Colors.black,
+                                    iconDisabledColor: Colors.grey,
+                                  ),
+                                  dropdownStyleData: DropdownStyleData(
+                                    maxHeight: 200,
+                                    width: width/5.464,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(14),
+                                      color: Color(0xffDDDEEE),
+                                    ),
+
+                                    scrollbarTheme: ScrollbarThemeData(
+                                      radius: const Radius.circular(7),
+                                      thickness: MaterialStateProperty.all<double>(6),
+                                      thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                    ),
+                                  ),
+                                  menuItemStyleData: const MenuItemStyleData(
+                                    height: 40,
+                                    padding: EdgeInsets.only(left: 14, right: 14),
+                                  ),
+                                ),
+                              ),
+                                width: width/6.83,
+                                height: height/16.42,
+                                //color: Color(0xffDDDEEE),
+                                decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right:0.0),
+                              child: Text("Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 0.0,right: 25),
+                              child: Container(child:
+
+                              DropdownButtonHideUnderline(
+                                child: DropdownButton2<String>(
+                                  isExpanded: true,
+                                  hint:  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.list,
+                                        size: 16,
+                                        color: Colors.black,
+                                      ),
+                                      SizedBox(
+                                        width: 4,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'Select Option',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 15
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  items: section
+                                      .map((String item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style:  GoogleFonts.poppins(
+                                          fontSize: 15
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ))
+                                      .toList(),
+                                  value:  _typeAheadControllersection.text,
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      _typeAheadControllersection.text = value!;
+                                    });
+                                  },
+                                  buttonStyleData: ButtonStyleData(
+                                    height: 50,
+                                    width: 160,
+                                    padding: const EdgeInsets.only(left: 14, right: 14),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+
+                                      color: Color(0xffDDDEEE),
+                                    ),
+
+                                  ),
+                                  iconStyleData: const IconStyleData(
+                                    icon: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                    ),
+                                    iconSize: 14,
+                                    iconEnabledColor: Colors.black,
+                                    iconDisabledColor: Colors.grey,
+                                  ),
+                                  dropdownStyleData: DropdownStyleData(
+                                    maxHeight: 200,
+                                    width: width/5.464,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(14),
+                                      color: Color(0xffDDDEEE),
+                                    ),
+
+                                    scrollbarTheme: ScrollbarThemeData(
+                                      radius: const Radius.circular(7),
+                                      thickness: MaterialStateProperty.all<double>(6),
+                                      thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                    ),
+                                  ),
+                                  menuItemStyleData: const MenuItemStyleData(
+                                    height: 40,
+                                    padding: EdgeInsets.only(left: 14, right: 14),
+                                  ),
+                                ),
+                              ),
+                                width: width/6.83,
+                                height: height/16.42,
+                                //color: Color(0xffDDDEEE),
+                                decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right:0.0),
+                              child: Text("Date",style: GoogleFonts.poppins(fontSize: 15,)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 0.0,right: 25),
+                              child: Container(child:
+                              TextField(
+                                style:  GoogleFonts.poppins(
+                                    fontSize: 15
+                                ),
+                                controller: date,
+                                decoration: InputDecoration(
+
+
+                                  prefixIcon: Icon(Icons.calendar_today,size: 17,),
+                                  hintText: 'Date',
+
+
+                                  contentPadding: EdgeInsets.only(left: 10,top: 8),
+                                  border: InputBorder.none,
+                              //editing controller of this TextField
+                                ),
+                                readOnly: true,  //set it true, so that user will not able to edit text
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context, initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
+                                      lastDate: DateTime.now()
+                                  );
+
+                                  if(pickedDate != null ){
+                                    print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
+                                    String formattedDate = DateFormat('dd.MM.yyyy').format(pickedDate);
+                                    String formattedDate2 = DateFormat('dd-M-yyyy').format(pickedDate);
+                                    print(formattedDate); //formatted date output using intl package =>  2021-03-16
+                                    //you can implement different kind of Date Format here according to your requirement
+
+                                    setState(() {
+                                      date.text = formattedDate;
+                                      selecteddate= formattedDate2;
+                                      //set output date to TextField value.
+                                    });
+                                    print(selecteddate);
+                                    gettotal();
+                                    print("${_typeAheadControllerclass.text}""${_typeAheadControllerclass.text}");
+                                  }else{
+                                    print("Date is not selected");
+                                  }
+                                },
+                              ),
+                                width: width/6.83,
+                                height: height/16.42,
+                                //color: Color(0xffDDDEEE),
+                                decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              view=true;
+                              absentonly=false;
+                            });
+
+                          },
+                          child: Container(child: Center(child: Text("View All",style: GoogleFonts.poppins(color:Colors.white),)),
+                            width: width/10.507,
+                            height: height/16.425,
+                            // color:Color(0xff00A0E3),
+                            decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
+
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left:25.0),
+                          child: GestureDetector(
+                            onTap: (){
+                             setState(() {
+                               absentonly=true;
+                             });
+
+                            },
+                            child: Container(child: Center(child: Text("Absent only",style: GoogleFonts.poppins(color:Colors.white),)),
+                              width: width/10.507,
+                              height: height/16.425,
+                              // color:Color(0xff00A0E3),
+                              decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.circular(5)),
+
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: height/13.14,
+                              width: width/2.101,
+
+                              decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
+
+                              ),
+                              child: Row(
                                 children: [
-                                  CircularPercentIndicator(
-                                    circularStrokeCap: CircularStrokeCap.round,
-                                    radius: 45.0,
-                                    lineWidth: 10.0,
-                                    percent: total ==0? 0.70: (present/total*100)/100,
-                                    center:  Text("${present/total*100}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
-                                    progressColor: Colors.green,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                                    child: Text("Reg No",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all( 8.0),
-                                    child:  ChoiceChip(
+                                    padding: const EdgeInsets.only(left: 40.0,right: 8.0),
+                                    child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 80.0,right: 8.0),
+                                    child: Text("Attendance",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 80.0,right: 8.0),
+                                    child: Text("Actions",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  ),
+                                ],
+                              ),
 
-                                      label: Text("  Present  ",style: TextStyle(color: Colors.white),),
+                            ),
+                          ),
+                          selecteddate!=""? view==true?  Container(
+                            width: width/2.101,
+                            child: StreamBuilder<QuerySnapshot>(
+                                stream: FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).orderBy("order").snapshots(),
+
+                                builder: (context,snapshot){
+                                  if(!snapshot.hasData)
+                                  {
+                                    return   Center(
+                                      child:  CircularProgressIndicator(),
+                                    );}
+                                  if(snapshot.hasData==null)
+                                  {
+                                    return   Center(
+                                      child:  CircularProgressIndicator(),
+                                    );}
+                                  return ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: snapshot.data!.docs.length,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemBuilder: (context,index){
+                                        var value = snapshot.data!.docs[index];
+                                        return absentonly==false?
+
+                                          Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            height: height/21.9,
+                                            width: width/2.101,
+
+                                            decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 5.0,right: 0.0),
+                                                  child: Container(
+                                                      width: width/11.383,
+
+                                                      child: Text(value["regno"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 0.0,right: 0.0),
+                                                  child: Container(
+
+                                                      width: width/6.2090,
+                                                      child: Text(value["stname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 0.0,right: 0.0),
+                                                  child: Container(
+
+                                                      width: width/8.035,
+                                                      child: Text(value["present"]==true?"Present": "Absent",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color:value["present"]==true? Colors.green: Colors.red),)),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 0.0,right: 0.0),
+                                                  child: Container(
+
+                                                      width: width/13.66,
+                                                      child: Text("View Student",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff00A0E3)),)),
+                                                ),
+                                              ],
+                                            ),
+
+                                          ),
+                                        ) : value["present"]==false? Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            height: height/21.9,
+                                            width: width/2.101,
+
+                                            decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 5.0,right: 0.0),
+                                                  child: Container(
+                                                      width: width/11.383,
+
+                                                      child: Text(value["regno"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 0.0,right: 0.0),
+                                                  child: Container(
+
+                                                      width: width/6.2090,
+                                                      child: Text(value["stname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 0.0,right: 0.0),
+                                                  child: Container(
+
+                                                      width: width/8.035,
+                                                      child: Text(value["present"]==true?"Present": "Absent",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color:value["present"]==true? Colors.green: Colors.red),)),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 0.0,right: 0.0),
+                                                  child: Container(
+
+                                                      width: width/13.66,
+                                                      child: Text("View Student",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff00A0E3)),)),
+                                                ),
+                                              ],
+                                            ),
+
+                                          ),
+                                        ): Container();
+                                      });
+
+                                }),
+                          ) : Container(): Container(),
+                          SizedBox(height: 20,)
+                        ],
+                      ),
+                      Column(
+                        children: [
+
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0,top:8.0),
+                            child: Container(
+                              height: height/13.14,
+                              width: width/4.553,
+
+                              decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
+
+                              ),
+                              child: Center(child: Text("Reports",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),)),
+
+                            ),
+                          ),
+                          SizedBox(height: height/32.85,),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child:  Column(
+                                  children: [
+                                    CircularPercentIndicator(
+                                      circularStrokeCap: CircularStrokeCap.round,
+                                      radius: 45.0,
+                                      lineWidth: 10.0,
+                                      percent: total ==0? 0.70: (present/total*100)/100,
+                                      center:  Text("${(present/total*100).toStringAsFixed(2)}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                      progressColor: Colors.green,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all( 8.0),
+                                      child:  ChoiceChip(
+
+                                        label: Text(" ${present.toString()} Present  ",style: TextStyle(color: Colors.white),),
+
+
+                                        onSelected: (bool selected) {
+
+                                          setState(() {
+
+                                          });
+                                        },
+                                        selectedColor: Color(0xff53B175),
+                                        shape: StadiumBorder(
+                                            side: BorderSide(
+                                                color: Color(0xff53B175))),
+                                        backgroundColor: Colors.white,
+                                        labelStyle: TextStyle(color: Colors.black),
+
+                                        elevation: 1.5, selected: true,),
+
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child:  Column(
+                                  children: [
+                                    CircularPercentIndicator(
+                                      circularStrokeCap: CircularStrokeCap.round,
+                                      radius: 45.0,
+                                      lineWidth: 10.0,
+                                      percent: total ==0? 0.30: (absent/total*100)/100,
+                                      center:  Text("${(absent/total*100).toStringAsFixed(2)}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                      progressColor: Colors.red,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all( 8.0),
+                                      child: ChoiceChip(
+
+                                        label: Text(" ${absent.toString()} Absent  ",style: TextStyle(color: Colors.white),),
+
+
+                                        onSelected: (bool selected) {
+
+                                          setState(() {
+
+                                          });
+                                        },
+                                        selectedColor: Colors.red,
+                                        shape: StadiumBorder(
+                                            side: BorderSide(
+                                                color: Colors.red)),
+                                        backgroundColor: Colors.white,
+                                        labelStyle: TextStyle(color: Colors.black),
+
+                                        elevation: 1.5, selected: true,),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: height/32.85),
+                          Material(
+                            elevation: 7,
+                            borderRadius: BorderRadius.circular(12),
+                            shadowColor:  Color(0xff53B175),
+                            child: Container(
+                              height: height/7.3,
+                              width: width/5.464,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  border:Border.all(color: Color(0xff53B175))
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("Total No.of Students",style: GoogleFonts.poppins(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                  ),),
+                                  ChoiceChip(
+
+                                      label: Text("${total} Students",style: TextStyle(color: Colors.white),),
 
 
                                       onSelected: (bool selected) {
@@ -578,106 +985,40 @@ setState(() {
                                       labelStyle: TextStyle(color: Colors.black),
 
                                       elevation: 1.5, selected: true,),
-
-                                  ),
                                 ],
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child:  Column(
-                                children: [
-                                  CircularPercentIndicator(
-                                    circularStrokeCap: CircularStrokeCap.round,
-                                    radius: 45.0,
-                                    lineWidth: 10.0,
-                                    percent: total ==0? 0.30: (absent/total*100)/100,
-                                    center:  Text("${absent/total*100}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
-                                    progressColor: Colors.red,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all( 8.0),
-                                    child: ChoiceChip(
-
-                                      label: Text("  Absent  ",style: TextStyle(color: Colors.white),),
-
-
-                                      onSelected: (bool selected) {
-
-                                        setState(() {
-
-                                        });
-                                      },
-                                      selectedColor: Colors.red,
-                                      shape: StadiumBorder(
-                                          side: BorderSide(
-                                              color: Colors.red)),
-                                      backgroundColor: Colors.white,
-                                      labelStyle: TextStyle(color: Colors.black),
-
-                                      elevation: 1.5, selected: true,),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: height/32.85),
-                        Material(
-                          elevation: 7,
-                          borderRadius: BorderRadius.circular(12),
-                          shadowColor:  Color(0xff53B175),
-                          child: Container(
-                            height: height/7.3,
-                            width: width/5.464,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border:Border.all(color: Color(0xff53B175))
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("Total No.of Students",style: GoogleFonts.poppins(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20,
-                                ),),
-                                ChoiceChip(
-
-                                    label: Text("${total} Students",style: TextStyle(color: Colors.white),),
-
-
-                                    onSelected: (bool selected) {
-
-                                      setState(() {
-
-                                      });
-                                    },
-                                    selectedColor: Color(0xff53B175),
-                                    shape: StadiumBorder(
-                                        side: BorderSide(
-                                            color: Color(0xff53B175))),
-                                    backgroundColor: Colors.white,
-                                    labelStyle: TextStyle(color: Colors.black),
-
-                                    elevation: 1.5, selected: true,),
-                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                        ],
+                      ),
+                    ],
+                  ),
 
 
 
-              ],
+                ],
+              ),
+
             ),
-
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
+  }
+
+
+  getstudents() async {
+
+    var doceumenttotal= await FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).orderBy("order").get();
+    var doceumentpresent= await FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).where("present",isEqualTo: true).get();
+    var doceumentabsent= await FirebaseFirestore.instance.collection("Attendance").doc("${_typeAheadControllerclass.text}""${_typeAheadControllersection.text}").collection(selecteddate).where("present",isEqualTo: false).get();
+
+    setState(() {
+      total=doceumenttotal.docs.length;
+      present=doceumentpresent.docs.length;
+      absent=doceumentabsent.docs.length;
+    });
+
+
   }
 }

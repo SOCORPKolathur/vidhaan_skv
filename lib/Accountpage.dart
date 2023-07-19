@@ -15,9 +15,10 @@ class _AccountpageState extends State<Accountpage> {
     double height= MediaQuery.of(context).size.height;
     double width= MediaQuery.of(context).size.width;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(right: 718.0,top: 30,bottom: 10),
+          padding: const EdgeInsets.only(right: 718.0,top: 10,bottom: 10),
           child: Container(child: Text("Accounts",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
             width: width/10.507,
             height: height/25.269,
@@ -30,7 +31,7 @@ class _AccountpageState extends State<Accountpage> {
         child: Container(child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 28.0,left:40),
+              padding: const EdgeInsets.only(top: 10.0,left:40),
               child: Row(
                 children: [
                   Container(child:  Image.asset("assets/Group 10.png"),
@@ -38,6 +39,7 @@ class _AccountpageState extends State<Accountpage> {
                     width: width/21.015,
                     height: height/10.107,
                   ),
+                  SizedBox(width: 10,),
                   Column(
                     children: [
                       Padding(
@@ -48,17 +50,7 @@ class _AccountpageState extends State<Accountpage> {
                         padding: const EdgeInsets.only(right:68.0),
                         child: Text("₹198K",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold),),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12.0,top: 8),
-                        child: Row(
-                          children: [
-                            Image.asset("assets/arrow.png"),
-                            Text("37.8%",style: GoogleFonts.poppins(fontSize: 13,fontWeight: FontWeight.bold,color: Color(0xff00AC4F)),),
-                            Text("this month",style: GoogleFonts.poppins(fontSize: 13,fontWeight: FontWeight.bold),),
 
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                   Padding(
@@ -70,23 +62,13 @@ class _AccountpageState extends State<Accountpage> {
                     width: width/21.015,
                     height: height/10.107,
                   ),
+                  SizedBox(width: 10,),
                   Column(
                     children: [
                       Text("Total Expenses",style: GoogleFonts.poppins(color: Color(0xffACACAC),fontSize: 12),),
                       Padding(
                         padding: const EdgeInsets.only(right: 40.0),
                         child: Text("₹2.4K",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold),),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 18.0,top: 8),
-                        child: Row(
-                          children: [
-                            Image.asset("assets/arrow1.png"),
-                            Text("2%",style: GoogleFonts.poppins(fontSize: 13,fontWeight: FontWeight.bold,color: Color(0xffDA001A)),),
-                            Text("this month",style: GoogleFonts.poppins(fontSize: 13,fontWeight: FontWeight.bold),),
-
-                          ],
-                        ),
                       ),
                     ],
                   ),
@@ -99,6 +81,7 @@ class _AccountpageState extends State<Accountpage> {
                     width: width/21.015,
                     height: height/10.107,
                   ),
+                  SizedBox(width: 10,),
                   Column(
                     children: [
                       Padding(
@@ -109,19 +92,43 @@ class _AccountpageState extends State<Accountpage> {
                         padding: const EdgeInsets.only(right: 48.0),
                         child: Text("₹ 89K",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold),),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0,top: 8),
-                        child: Row(
-                          children: [
-                            Image.asset("assets/arrow.png"),
-                            Text("11%",style: GoogleFonts.poppins(fontSize: 13,fontWeight: FontWeight.bold,color: Color(0xff00AC4F)),),
-                            Text("this month",style: GoogleFonts.poppins(fontSize: 13,fontWeight: FontWeight.bold),),
 
-                          ],
-                        ),
-                      ),
                     ],
                   ),
+                  SizedBox(width: 30,),
+                  Column(
+                    children: [
+                      Container(
+                        child: Center(
+                            child: Text(
+                              "Veiw In- Ward Payments",
+                              style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),
+                            )),
+                        width: width/6.83,
+                        //color: Color(0xff00A0E3),
+                        height: height/16.425,
+                        decoration: BoxDecoration(
+                            color: Color(0xff53B175),
+                            borderRadius: BorderRadius.circular(6)),
+                      ),
+                      SizedBox(height: 10,),
+                      Container(
+                        child: Center(
+                            child: Text(
+                              "View Expenses Payments",
+                              style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),
+                            )),
+                        width: width/6.83,
+                        //color: Color(0xff00A0E3),
+                        height: height/16.425,
+                        decoration: BoxDecoration(
+                            color: Color(0xffFFA002),
+                            borderRadius: BorderRadius.circular(6)),
+                      ),
+                      SizedBox(height: 10,),
+                    ],
+                  ),
+
                 ],
               ),
             ),
@@ -129,13 +136,13 @@ class _AccountpageState extends State<Accountpage> {
           ],
         ),
           color: Color(0xffFFFFFF),
-          width: width/1.821,
+          width: width/1.221,
           height: height/5.475,
           //decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
         ),
       ),
         Padding(
-          padding: const EdgeInsets.only(right: 408.0),
+          padding: const EdgeInsets.only(right: 138.0),
           child: Container(
             child: Column(
               children: [
@@ -156,146 +163,41 @@ class _AccountpageState extends State<Accountpage> {
                 ),
                 Column(
                   children: [
+
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 28.0,top: 18),
-                          child: Container(child: Image.asset("assets/Ellipse.png"),
-                            color: Color(0xffFFFFFF),
-                            width: width/34.15,
-                            height: height/16.425,
-
-                          ),
+                        Container(
+                          width:130,
+                          child: Text('Payment Type',style: GoogleFonts.montserrat(
+                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                          ),),
                         ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 12.0,top: 7),
-                                      child: Text("Transfer to",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 4.0,top: 7),
-                                      child: Text("Johdi",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16,color: Color(0xff4C49ED)),),
-                                    ),
-                                  ],
-
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 20.0),
-                                  child: Text("Event Manager",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
-                                ),
-
-                              ],
-
-                            ),
-                          ],
+                        Container(
+                          width:130,
+                          child: Text('Amount',style: GoogleFonts.montserrat(
+                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                          ),),
                         ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(left: 198.0),
-                          child: Text("-\$35.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xffD14F4F)),),
+                        Container(
+                          width:130,
+                          child: Text('Status',style: GoogleFonts.montserrat(
+                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                          ),),
                         ),
-
+                        Container(
+                          width:130,
+                          child: Text('Date',style: GoogleFonts.montserrat(
+                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                          ),),
+                        ),
+                        Container(
+                          width:130,
+                          child: Text('Time',style: GoogleFonts.montserrat(
+                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                          ),),
+                        ),
                       ],
-
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 28.0,top: 18),
-                          child: Container(child: Image.asset("assets/Ellipse 1.png"),
-                            color: Color(0xffFFFFFF),
-                            width: width/34.15,
-                            height: height/16.425,
-
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 12.0,top: 7),
-                                      child: Text("School ID",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 4.0,top: 7),
-                                      child: Text("Cards",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
-                                    ),
-                                  ],
-
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 80.0),
-                                  child: Text("Exp",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
-                                ),
-
-                              ],
-
-                            ),
-                          ],
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(left: 198.0),
-                          child: Text("-\$128.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xffD14F4F)),),
-                        ),
-
-                      ],
-
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 28.0,top: 18),
-                          child: Container(child: Image.asset("assets/Group 1.png"),
-                            color:Color(0xffFFFFFF),
-                            width: width/34.15,
-                            height: height/16.425,
-
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 7,right: 44,left:14),
-                                      child: Text("Canteen",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 4.0,top: 7),
-                                      child: Text("",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
-                                    ),
-                                  ],
-
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 30.0),
-                                  child: Text("Maintance",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
-                                ),
-
-                              ],
-
-                            ),
-                          ],
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(left: 204.0),
-                          child: Text("-\$10.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xffD14F4F)),),
-                        ),
-
-                      ],
-
                     ),
                     Row(
                       children: [
@@ -341,55 +243,13 @@ class _AccountpageState extends State<Accountpage> {
                       ],
 
                     ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 28.0,top: 18),
-                          child: Container(child: Image.asset("assets/Group 3.png"),
-                            color: Color(0xffFFFFFF),
-                            width: width/34.15,
-                            height: height/16.425,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 12.0,top: 7),
-                                      child: Text("Withdrawal    ",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
-                                    ),
 
-                                  ],
-
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 30.0,left: 4),
-                                  child: Text("Manitance",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
-                                ),
-
-                              ],
-
-                            ),
-                          ],
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(left: 208.0),
-                          child: Text("-\$128.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xffD14F4F)),),
-                        ),
-
-                      ],
-
-                    ),
                   ],
 
                 ),
               ],
             ),
-            width: width/2.845,
+            width: width/1.221,
             height: height/1.46,
             color: Color(0xffFFFFFF),
           ),
