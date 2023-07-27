@@ -68,6 +68,9 @@ dependencies:
   webviewx: ^0.2.2
   screenshot: ^2.1.0
   image_downloader_web: ^2.0.2
+  device_info_plus: ^9.0.2
+
+
 
 dev_dependencies:
   flutter_test:

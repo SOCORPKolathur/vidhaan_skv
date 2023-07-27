@@ -12,7 +12,9 @@ import 'dart:convert';
 
 
 class Excelsheet extends StatefulWidget {
-  const Excelsheet({Key? key}) : super(key: key);
+  List<bool> checklist;
+ bool main;
+  Excelsheet(this.checklist,this.main);
 
   @override
   State<Excelsheet> createState() => _ExcelsheetState();
@@ -63,15 +65,40 @@ class _ExcelsheetState extends State<Excelsheet> {
 
     var document = await FirebaseFirestore.instance.collection("Students").orderBy("timestamp").get();
     for(int i=0;i<document.docs.length;i++){
-      sheet.getRangeByName("A${i+2}").setText(document.docs[i]["admitclass"]);
-      sheet.getRangeByName("B${i+2}").setText(document.docs[i]["section"]);
-      sheet.getRangeByName("C${i+2}").setText(document.docs[i]["academic"]);
-      sheet.getRangeByName("D${i+2}").setText(document.docs[i]["stname"]);
-      sheet.getRangeByName("E${i+2}").setText(document.docs[i]["bloodgroup"]);
-      sheet.getRangeByName("F${i+2}").setText(document.docs[i]["dob"]);
-      sheet.getRangeByName("G${i+2}").setText(document.docs[i]["religion"]);
-      sheet.getRangeByName("H${i+2}").setText(document.docs[i]["gender"]);
-      sheet.getRangeByName("I${i+2}").setText(document.docs[i]["community"]);
+
+      if(widget.main==true) {
+        sheet.getRangeByName("A${i + 2}").setText(
+            document.docs[i]["admitclass"]);
+        sheet.getRangeByName("B${i + 2}").setText(document.docs[i]["section"]);
+        sheet.getRangeByName("C${i + 2}").setText(document.docs[i]["academic"]);
+        sheet.getRangeByName("D${i + 2}").setText(document.docs[i]["stname"]);
+        sheet.getRangeByName("E${i + 2}").setText(
+            document.docs[i]["bloodgroup"]);
+        sheet.getRangeByName("F${i + 2}").setText(document.docs[i]["dob"]);
+        sheet.getRangeByName("G${i + 2}").setText(document.docs[i]["religion"]);
+        sheet.getRangeByName("H${i + 2}").setText(document.docs[i]["gender"]);
+        sheet.getRangeByName("I${i + 2}").setText(
+            document.docs[i]["community"]);
+      }
+      else{
+        if(widget.checklist[i]==true) {
+          sheet.getRangeByName("A${i + 2}").setText(
+              document.docs[i]["admitclass"]);
+          sheet.getRangeByName("B${i + 2}").setText(document.docs[i]["section"]);
+          sheet.getRangeByName("C${i + 2}").setText(document.docs[i]["academic"]);
+          sheet.getRangeByName("D${i + 2}").setText(document.docs[i]["stname"]);
+          sheet.getRangeByName("E${i + 2}").setText(
+              document.docs[i]["bloodgroup"]);
+          sheet.getRangeByName("F${i + 2}").setText(document.docs[i]["dob"]);
+          sheet.getRangeByName("G${i + 2}").setText(document.docs[i]["religion"]);
+          sheet.getRangeByName("H${i + 2}").setText(document.docs[i]["gender"]);
+          sheet.getRangeByName("I${i + 2}").setText(
+              document.docs[i]["community"]);
+        }
+      }
+
+
+
     }
     final List<int>bytes = workbook.saveAsStream();
     workbook.dispose();

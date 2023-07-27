@@ -191,7 +191,12 @@ class _StudentIDState extends State<StudentID> {
   }
   final screenshotController = List<ScreenshotController>.generate(1000, (int index) => ScreenshotController(), growable: true);
 int j=0;
+int total=0;
+bool printingjob= false;
   Future<void> _downloadImage() async {
+    setState(() {
+      printingjob=true;
+    });
     var document = await FirebaseFirestore.instance.collection("Students").orderBy("timestamp").get();
     for(int i=0;i<document.docs.length;i++){
       setState(() {
@@ -199,14 +204,19 @@ int j=0;
       });
     }
     await  Future.delayed(Duration(seconds: 20),() async {
+      setState(() {
+        total=document.docs.length;
+      });
       for(int i=0;i<document.docs.length;i++) {
+
         await  Future.delayed(Duration(seconds: 10),(){
           print("Scren Shoot Started");
         screenshotController[i]
-            .capture(delay: Duration(seconds: 5))
+            .capture(delay: Duration(seconds: 5),pixelRatio: 3)
             .then((capturedImage) async {
+
           await  Future.delayed(Duration(seconds: 15),() async {
-          await WebImageDownloader.downloadImageFromUInt8List(
+          await WebImageDownloader.downloadImageFromUInt8List(imageQuality: 1,imageType: ImageType.jpeg,
               uInt8List: capturedImage!, name: "ID CARD F${i.toString()}");
           setState(() {
 
@@ -218,6 +228,10 @@ int j=0;
         });
 
       });
+        setState(() {
+          j=i;
+        });
+
       }
     });
   }
@@ -832,6 +846,11 @@ int j=0;
                         ),
                       ),
 
+                      printingjob==true? Text(
+                        "${j.toString()}  completed of ${total.toString()}...",
+                        style:
+                        GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.black),
+                      ) : Container(),
                       StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance.collection("Students").orderBy("timestamp").snapshots(),
 
@@ -3056,15 +3075,26 @@ int j=0;
                                                                 ],
                                                               ),
                                                               SizedBox(height: 15,),
-                                                              Text(value["stname"],style: GoogleFonts.poppins(
-                                                                  color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
+                                                              Row(
+
+                                  mainAxisAlignment:MainAxisAlignment.center,
+                                                                children: [
+                                                                  Text(value["stname"].toString(),style: GoogleFonts.poppins(
+                                                                      color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
+                                                                ],
+                                                              ),
                                                               Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                                   color:  pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
                                                               SizedBox(height: 10,),
                                                               Row(
                                                                 children: [
                                                                   SizedBox(width: 20,),
-                                                                  Text("Class       : ",style: GoogleFonts.poppins(
+                                                                  Container(
+                                                                    width:80,
+                                                                    child: Text("Class",style: GoogleFonts.poppins(
+                                                                        color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                  ),
+                                                                  Text(": ",style: GoogleFonts.poppins(
                                                                       color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
                                                                   Text("${value["admitclass"]} ${value["section"]}",style: GoogleFonts.poppins(
                                                                       color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
@@ -3073,8 +3103,12 @@ int j=0;
                                                               Row(
                                                                 children: [
                                                                   SizedBox(width: 20,),
-                                                                  Text("DOB          : ",style: GoogleFonts.poppins(
-
+                                                                  Container(
+                                                                      width:80,
+                                                                    child: Text("DOB",style: GoogleFonts.poppins(
+                                                                        color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                  ),
+                                                                  Text(": ",style: GoogleFonts.poppins(
                                                                       color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
                                                                   Text(value["dob"].toString().substring(0,10),style: GoogleFonts.poppins(
                                                                       color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
@@ -3083,8 +3117,13 @@ int j=0;
                                                               Row(
                                                                 children: [
                                                                   SizedBox(width: 20,),
-                                                                  Text("Blood Group       : ",style: GoogleFonts.poppins(
-                                                                      color:pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                  Container(
+                                                                  width:80,
+                                                                    child: Text("Blood Group",style: GoogleFonts.poppins(
+                                                                        color:pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                  ),
+                                                                  Text(": ",style: GoogleFonts.poppins(
+                                                                      color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
                                                                   Text(value["bloodgroup"],style: GoogleFonts.poppins(
                                                                       color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
                                                                 ],
@@ -3092,7 +3131,12 @@ int j=0;
                                                               Row(
                                                                 children: [
                                                                   SizedBox(width: 20,),
-                                                                  Text("Phone No    : ",style: GoogleFonts.poppins(
+                                                                  Container(
+                                                                    width:80,
+                                                                    child: Text("Phone No",style: GoogleFonts.poppins(
+                                                                        color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                  ),
+                                                                  Text(": ",style: GoogleFonts.poppins(
                                                                       color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
                                                                   Text(value["mobile"],style: GoogleFonts.poppins(
                                                                       color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),

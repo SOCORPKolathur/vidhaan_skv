@@ -247,6 +247,14 @@ class _StaffListState extends State<StaffList> {
                             ),
                           ),
                           Padding(
+                            padding: const EdgeInsets.only(left: 10.0, right: 10),
+                            child: Text(
+                              "Profile",
+                              style:
+                              GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                            ),
+                          ),
+                          Padding(
                             padding: const EdgeInsets.only(left: 35.0, right: 40),
                             child: Text(
                               "Reg NO",
@@ -270,14 +278,7 @@ class _StaffListState extends State<StaffList> {
                             "In Charge \n Section",
                             style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 80.0, right: 45),
-                            child: Text(
-                              "Email",
-                              style:
-                              GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                            ),
-                          ),
+
                           Padding(
                             padding: const EdgeInsets.only(left: 40.0),
                             child: Text(
@@ -346,6 +347,23 @@ class _StaffListState extends State<StaffList> {
                                         ),
                                       ),
                                       Padding(
+                                        padding: const EdgeInsets.only(left:10.0),
+                                        child: Material(
+                                          elevation: 1,
+                                          borderRadius: BorderRadius.circular(50),
+                                          child: Container(
+                                              width:50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(50)
+                                              ),
+                                              child: ClipRRect(
+                                                  borderRadius: BorderRadius.circular(50),
+                                                  child: Image.network(value["imgurl"],fit:BoxFit.cover))
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
                                         padding: const EdgeInsets.only(left: 10.0, right: 0),
                                         child: Container(
                                           width: width/13.66,
@@ -394,19 +412,9 @@ class _StaffListState extends State<StaffList> {
                                           ),
                                         ),
                                       ),
+
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 50, right: 0),
-                                        child: Container(
-                                          width: width/7.207,
-                                          child: Text(
-                                            value["email"],
-                                            style:
-                                            GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left:7.0),
+                                        padding: const EdgeInsets.only(left:70.0),
                                         child: Container(
                                           width: width/9.7571,
 
@@ -795,31 +803,7 @@ class _StaffListState extends State<StaffList> {
                                           ),
                                         ),
                                       ),
-                                      InkWell(
-                                        onTap: (){
-                                          //deletestudent(studentid);
-                                        },
-                                        child: Padding(
-                                          padding:
-                                          const EdgeInsets.only(left: 45.0),
-                                          child: Container(
-                                            width: width/20.76,
-                                            height: height/21.9,
-                                            //color: Color(0xffD60A0B),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(5),
-                                              color: Colors.red,
-                                            ),
-                                            child: Center(
-                                                child: Text(
-                                                  "Delete",
-                                                  style: GoogleFonts.poppins(
-                                                      color: Colors.white),
-                                                )),
-                                          ),
-                                        ),
-                                      ),
+
                                     ],
                                   ),
 

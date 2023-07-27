@@ -9,6 +9,7 @@ import 'package:vidhaan/setup.dart';
 import 'package:vidhaan/sidebar.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'Dashboard.dart';
+import 'demo2.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

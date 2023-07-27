@@ -148,7 +148,15 @@ String studentdocid="";
 
 
   }
+  static final List<String> regnolist = [];
 
+
+  static List<String> getSuggestionsregno(String query) {
+    List<String> matches = <String>[];
+    matches.addAll(regnolist);
+    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+    return matches;
+  }
   //------------------Dropdown-------------------------------
   @override
   void initState() {
@@ -193,10 +201,19 @@ String studentdocid="";
 
     }
     var document4 = await  FirebaseFirestore.instance.collection("Admission").orderBy("name").get();
+    var document5 = await  FirebaseFirestore.instance.collection("Students").orderBy("timestamp").get();
 
     for(int i=0;i<document4.docs.length;i++) {
       setState(() {
         student.add(document4.docs[i]["name"]);
+
+      });
+
+    }
+    for(int i=0;i<document5.docs.length;i++) {
+      setState(() {
+        regnolist.add(document5.docs[i]["regno"]);
+
       });
 
     }
@@ -204,7 +221,7 @@ String studentdocid="";
   getorderno() async {
     var document = await  FirebaseFirestore.instance.collection("Students").get();
     setState(() {
-      regno.text="VBSB${(document.docs.length+1).toString().padLeft(3, '0')}";
+      regno.text="VDRE${(document.docs.length+1).toString().padLeft(3, '0')}";
     });
   }
 
@@ -1120,20 +1137,24 @@ String studentdocid="";
                                     Padding(
                                       padding: const EdgeInsets.only(right: 25.0),
                                       child: Container(child:
-                                      TextFormField(
-                                        controller:  address,
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                      Padding(
+                                        padding: const EdgeInsets.only(top:8.0),
+                                        child: TextFormField(
+                                          controller:  address,
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 15
+                                          ),
+                                          maxLines: 5,
+                                          validator: (value) =>
+                                          value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                          decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
+                                            border: InputBorder.none,
+                                            hintText: "",
+
+
+                                          ),
+
                                         ),
-                                        validator: (value) =>
-                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
-                                          border: InputBorder.none,
-                                          hintText: "",
-
-
-                                        ),
-
                                       ),
                                         width: width/5.464,
                                         height: height/7.425,
@@ -2641,29 +2662,55 @@ String studentdocid="";
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right: 25.0),
-                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                      ],
-                                        controller: brothername,
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                      child: Container(child:
+                                      TypeAheadFormField(
+
+
+                                        suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                                            color: Color(0xffDDDEEE),
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(5),
+                                              bottomRight: Radius.circular(5),
+                                            )
                                         ),
-                                        validator: (value) {
-                                          if(_typeAheadControllerbrother.text=="Yes") {
-                                            if (value!.isEmpty) {
-                                              return 'Field Canot be Empty';
-                                            }
-                                            else {
-                                              return null;
-                                            }
-                                          }
+
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          style:  GoogleFonts.poppins(
+                                              fontSize: 15
+                                          ),
+                                          decoration: const InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                            border: InputBorder.none,
+                                          ),
+                                          controller: brothername,
+                                        ),
+                                        suggestionsCallback: (pattern) {
+                                          return getSuggestionsregno(pattern);
                                         },
-                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                          border: InputBorder.none,
+                                        itemBuilder: (context, String suggestion) {
+                                          return ListTile(
+                                            title: Text(suggestion),
+                                          );
+                                        },
+
+                                        transitionBuilder: (context, suggestionsBox, controller) {
+                                          return suggestionsBox;
+                                        },
+                                        onSuggestionSelected: (String suggestion) {
+                                          setState(() {
+                                            brothername.text = suggestion;
+                                          });
+
+                                          // getstaffbyid();
+                                          // getorderno();
 
 
 
-                                        ),
+                                        },
+                                        suggestionsBoxController: suggestionBoxController,
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Please select a class' : null,
+                                        onSaved: (value) => this._selectedCity = value,
                                       ),
                                         width: width/5.464,
                                         height: height/16.425,
@@ -3192,6 +3239,7 @@ String studentdocid="";
       },
     );
   }
+
   uploadToStorage() async{
 
     InputElement input = FileUploadInputElement()as InputElement ..accept = 'image/*';
@@ -3212,9 +3260,7 @@ String studentdocid="";
         print(imgUrl);
       });
     });
-
     print(imgUrl);
-
   }
   Successdialog(){
     return AwesomeDialog(
@@ -3415,6 +3461,7 @@ String studentdocid="";
      _typeAheadControllersection.text="Select Option";
      _typeAheadControlleracidemic.text="Select Option";
      _typeAheadControllergender.text="Select Option";
+     imgUrl="";
     });
      getorderno();
   }

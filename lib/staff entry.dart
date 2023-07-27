@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -128,7 +129,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
 
       setState(() {
-        regno.text="VBSBS${(document.docs.length+1).toString().padLeft(2, '0')}";
+        regno.text="VDRES${(document.docs.length+1).toString().padLeft(2, '0')}";
       });
 
   }
@@ -180,7 +181,9 @@ class _StaffEntryState extends State<StaffEntry> {
                               padding: const EdgeInsets.only(left: 0.0,right: 25),
                               child: Container(
                                 child: TextFormField(
-
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                   controller: stnamefirst,
                                   style: GoogleFonts.poppins(
                                       fontSize: 15
@@ -215,6 +218,9 @@ class _StaffEntryState extends State<StaffEntry> {
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0,right: 25),
                               child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                 controller: stnamemiddle,
                                 style: GoogleFonts.poppins(
                                     fontSize: 15
@@ -245,6 +251,9 @@ class _StaffEntryState extends State<StaffEntry> {
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0,right: 25),
                               child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                 controller: stnamelast,
                                 style: GoogleFonts.poppins(
                                     fontSize: 15
@@ -700,20 +709,24 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child:
-                                    TextFormField(
-                                      controller: address,
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot be Empty' : null,
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
+                                    Padding(
+                                      padding: const EdgeInsets.only(top:8.0),
+                                      child: TextFormField(
+                                        maxLines: 5,
+                                        controller: address,
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot be Empty' : null,
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+                                        ),
+
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
 
                                       ),
-
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-
                                     ),
                                       width: width/5.464,
                                       height: height/7.425,
@@ -743,6 +756,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                       controller: community,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -835,6 +851,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                       controller: religion,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1040,6 +1059,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 0.0,right: 25),
                                     child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                        controller: spousename,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1259,6 +1281,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                       controller: workexp,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1298,6 +1323,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                       controller: lang,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1338,6 +1366,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                       controller: special,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1377,6 +1408,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                       controller: lastschool,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1420,6 +1454,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                       controller: subject,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1469,6 +1506,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                  ],
                                       controller: workshop,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1699,6 +1739,7 @@ class _StaffEntryState extends State<StaffEntry> {
       "absentdays":0,
       "incharge":"",
       "inchargesec":"",
+      "userid":"",
 
 
     });

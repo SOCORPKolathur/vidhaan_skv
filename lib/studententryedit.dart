@@ -155,7 +155,7 @@ class _StudentEditState extends State<StudentEdit> {
   @override
   void initState() {
     adddropdownvalue();
-    getorderno();
+
     setState(() {
       _typeAheadControllermot.text="Select Option";
       _typeAheadControllerbrother.text="Select Option";
@@ -223,7 +223,7 @@ class _StudentEditState extends State<StudentEdit> {
       fathername.text=value["fathername"];
       mothername.text=value["mothername"];
       bloodgroup.text=value["bloodgroup"];
-      dob.text=value["dob"];
+      dob.text=value["dob"].toString().substring(0,10);
       community.text=value["community"];
       house.text=value["house"];
       religion.text=value["religion"];
@@ -241,7 +241,7 @@ class _StudentEditState extends State<StudentEdit> {
       mmobile.text=value["motherMobile"];
       memail.text=value["motherEmail"];
       maadhaar.text=value["motherAadhaar"];
-
+      imgUrl=value["imgurl"];
       aadhaarno.text=value["aadhaarno"];
       stheight.text=value["sheight"];
       stweight.text=value["stweight"];
@@ -1156,9 +1156,13 @@ class _StudentEditState extends State<StudentEdit> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child:
-                                    TextFormField(  inputFormatters: <TextInputFormatter>[
+                                    TextFormField(
+
+
+    inputFormatters: <TextInputFormatter>[
                                       FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z -]")),
                                     ],
+                                      maxLines: 5,
                                       controller:  address,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -3053,7 +3057,9 @@ class _StudentEditState extends State<StudentEdit> {
       _typeAheadControllerclass.text="Select Option";
       _typeAheadControllersection.text="Select Option";
       _typeAheadControlleracidemic.text="Select Option";
+      _typeAheadControllerstudent.text="";
+      _typeAheadControllergender.text="Select Option";
     });
-    getorderno();
+
   }
 }

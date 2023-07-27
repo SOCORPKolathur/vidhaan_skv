@@ -314,3 +314,158 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 }
+
+
+class Demopage extends StatefulWidget {
+  const Demopage({Key? key}) : super(key: key);
+
+  @override
+  State<Demopage> createState() => _DemopageState();
+}
+
+class _DemopageState extends State<Demopage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child:  Container(
+            height: 252.35,
+            width: 161.5,
+
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset("assets/idbg4.png",color: Color(0xff00A0E3),),
+                    Image.asset("assets/idbg6.png",color: Color(0xff00A0E3),),
+
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+
+                  children: [
+                    SizedBox(height: 8,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            width:30,
+                            height:30, decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color:Colors.white
+                        ),
+                            ),
+                      ],
+                    ),
+                    SizedBox(height: 2,),
+                    Text("Vidhaan Educare",style: GoogleFonts.poppins(
+                        color: Colors.white, fontSize: 8,fontWeight: FontWeight.w600),),
+                    Text("120/2 Cathedral Nagar Eeast 11th street ",style: GoogleFonts.poppins(
+                        color: Colors.white, fontSize: 4,fontWeight: FontWeight.w400),textAlign: TextAlign.center),
+                    Text("Phone: +91 ${"7708804532"}",style: GoogleFonts.poppins(
+                        color: Colors.white, fontSize: 4,fontWeight: FontWeight.w400),),
+
+                    Text("www.vidhaan.in",style: GoogleFonts.poppins(
+                        color: Colors.white, fontSize: 4,fontWeight: FontWeight.w400),),
+                    SizedBox(height: 8,),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Color(0xff00A0E3),
+                              borderRadius: BorderRadius.circular(60)
+                          ),
+
+
+                        ),
+                        Container(
+                          width: 56,
+                          height: 56,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50)
+                          ),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60),
+                              child: Image.asset("assets/profile.jpg")),
+                        ),
+
+                      ],
+                    ),
+                    SizedBox(height: 15,),
+                    Text("Sam Jebaseelan",style: GoogleFonts.poppins(
+                        color: Colors.black, fontSize: 10,fontWeight: FontWeight.w700),),
+                    Text("ID: VBSB004",style: GoogleFonts.poppins(
+                        color:  Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                    SizedBox(height: 5,),
+                    Row(
+                      children: [
+                        SizedBox(width: 10,),
+                        Container(
+                          width:80,
+                          child: Text("Class",style: GoogleFonts.poppins(
+                              color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                        ),
+                        Text(": ",style: GoogleFonts.poppins(
+                            color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                        Text("LKG A",style: GoogleFonts.poppins(
+                            color: Colors.black, fontSize: 8,fontWeight: FontWeight.w600),),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(width: 10,),
+                        Container(
+                          width:80,
+                          child: Text("DOB",style: GoogleFonts.poppins(
+                              color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                        ),
+                        Text(": ",style: GoogleFonts.poppins(
+                            color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                        Text("11/05/2002".substring(0,10),style: GoogleFonts.poppins(
+                            color: Colors.black, fontSize: 8,fontWeight: FontWeight.w600),),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(width: 10,),
+                        Container(
+                          width:80,
+                          child: Text("Blood Group",style: GoogleFonts.poppins(
+                              color:Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                        ),
+                        Text(": ",style: GoogleFonts.poppins(
+                            color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                        Text("B+ve",style: GoogleFonts.poppins(
+                            color: Colors.black, fontSize: 8,fontWeight: FontWeight.w600),),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(width: 10,),
+                        Container(
+                          width:80,
+                          child: Text("Phone No",style: GoogleFonts.poppins(
+                              color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                        ),
+                        Text(": ",style: GoogleFonts.poppins(
+                            color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                        Text("9176582347",style: GoogleFonts.poppins(
+                            color: Colors.black, fontSize: 8,fontWeight: FontWeight.w600),),
+                      ],
+                    ),
+
+                  ],
+                ),
+
+              ],
+            ),
+          ),
+      ),
+    );
+  }
+}
