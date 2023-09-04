@@ -1,24 +1,27 @@
-import 'dart:html';
-
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
+import 'dart:html';
 
-class StaffEntry extends StatefulWidget {
-  const StaffEntry({Key? key}) : super(key: key);
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
+
+class StaffEdit extends StatefulWidget {
+  String docid;
+   StaffEdit(this.docid);
 
   @override
-  State<StaffEntry> createState() => _StaffEntryState();
+  State<StaffEdit> createState() => _StaffEditState();
 }
 
-class _StaffEntryState extends State<StaffEntry> {
+class _StaffEditState extends State<StaffEdit> {
 
   TextEditingController regno=new TextEditingController();
   TextEditingController entryno=new TextEditingController();
@@ -101,11 +104,50 @@ class _StaffEntryState extends State<StaffEntry> {
     setState(() {
       _typeAheadControllerdesignation.text="Select Option";
     });
+    setvalue();
     adddropdownvalue();
-    getorderno();
+
 
     // TODO: implement initState
     super.initState();
+  }
+  setvalue() async {
+    var doucment = await FirebaseFirestore.instance.collection("Staffs").doc(widget.docid).get();
+    Map<String,dynamic>? value = doucment.data();
+    setState(() {
+      regno.text=value!["regno"];
+      entrydate.text=value["entrydate"];
+
+      stnamefirst.text= value["stname"];
+          stnamemiddle.text=value["stmiddlename"];
+          stnamelast.text=value["stlastname"];
+          _typeAheadControllerdesignation.text=value["designation"];
+          fathername.text=value["fathername"];
+          bloodgroup.text=value["bloodgroup"];
+          dob.text=value["dob"];
+          _typeAheadControllergender.text=value["gender"];
+          address.text=value["address"];
+          community.text=value["community"];
+          mobile.text=value["mobile"];
+          religion.text=value["religion"];
+          email.text=value["email"];
+          aadhaarno.text=value["aadhaarno"];
+          if( value["Maritalstatus"]=="Single"){single=true;}else{married=true;};
+          spousename.text=value["Spousename"];
+          sphone.text=value["Spousephone"];
+          soffice.text=value["Spouseoffice"];
+          semail.text=value["Spouseemail"];
+          saadhaar.text=value["Spouseaadhaar"];
+          workexp.text=value["Work Experience"];
+          lang.text=value["Language Known"];
+          special.text=value["Specialisation"];
+          lastschool.text=value["School Last"];
+          subject.text=value["Subject"];
+          workshop.text=value["Seminar/Workshop"];
+          imgUrl=value["imgurl"];
+
+
+    });
   }
   adddropdownvalue() async {
     setState(() {
@@ -124,15 +166,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
 
   }
-  getorderno() async {
-    var document = await  FirebaseFirestore.instance.collection("Staffs").get();
 
-
-      setState(() {
-        regno.text="VDRES${(document.docs.length+1).toString().padLeft(2, '0')}";
-      });
-
-  }
   final  _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -146,7 +180,7 @@ class _StaffEntryState extends State<StaffEntry> {
             padding: const EdgeInsets.only(left: 20.0),
             child: Container(child: Padding(
               padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Text("Staff Entry",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+              child: Text("Edit Staff Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
             ),
               //color: Colors.white,
               width: width/1.050,
@@ -218,9 +252,9 @@ class _StaffEntryState extends State<StaffEntry> {
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0,right: 25),
                               child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                ],
                                 controller: stnamemiddle,
                                 style: GoogleFonts.poppins(
                                     fontSize: 15
@@ -251,9 +285,9 @@ class _StaffEntryState extends State<StaffEntry> {
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0,right: 25),
                               child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                ],
                                 controller: stnamelast,
                                 style: GoogleFonts.poppins(
                                     fontSize: 15
@@ -756,9 +790,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                      ],
                                       controller: community,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -851,9 +885,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                      ],
                                       controller: religion,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -945,7 +979,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                         if(value!.isEmpty){
                                           return 'Field Cannot Be Empty';
                                         }
-                                         if(value.characters.length!=12){
+                                        if(value.characters.length!=12){
                                           return 'Enter the Aadhaar number correctly';
                                         }
                                         else{
@@ -999,18 +1033,18 @@ class _StaffEntryState extends State<StaffEntry> {
                                         )),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 10),
-                                    child: Checkbox(
-                                      value: single,
-                                      onChanged: (value){
-                                        setState(() {
-                                          single=value!;
-                                          if(single==true){
-                                            married=false;
-                                          }
-                                        });
-                                      },
-                                    )
+                                      padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                      child: Checkbox(
+                                        value: single,
+                                        onChanged: (value){
+                                          setState(() {
+                                            single=value!;
+                                            if(single==true){
+                                              married=false;
+                                            }
+                                          });
+                                        },
+                                      )
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left:45.0),
@@ -1059,10 +1093,10 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 0.0,right: 25),
                                     child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
-                                       controller: spousename,
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                      ],
+                                      controller: spousename,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
                                       ),
@@ -1149,7 +1183,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 0.0,right: 25),
                                     child: Container(
-                                   child:   TextFormField(
+                                      child:   TextFormField(
                                         controller: soffice,
 
                                         decoration: InputDecoration(
@@ -1237,7 +1271,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 0.0,right:25),
                                     child: Container(child: TextFormField(
-                                       controller: saadhaar,
+                                      controller: saadhaar,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
                                       ),
@@ -1281,9 +1315,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                   // FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                      ],
                                       controller: workexp,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1323,9 +1357,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                      ],
                                       controller: lang,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1366,9 +1400,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                      ],
                                       controller: special,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1408,9 +1442,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                      ],
                                       controller: lastschool,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1454,9 +1488,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                      ],
                                       controller: subject,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1506,9 +1540,9 @@ class _StaffEntryState extends State<StaffEntry> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 25.0),
                                     child: Container(child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
-                                  ],
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                                      ],
                                       controller: workshop,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
@@ -1675,8 +1709,8 @@ class _StaffEntryState extends State<StaffEntry> {
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
-      title: 'Staff Added Successfully',
-      desc: 'Staff - ${stnamefirst.text} is been added',
+      title: 'Staff Updated Successfully',
+      desc: 'Staff - ${stnamefirst.text} is been updated',
 
       btnCancelOnPress: () {
 
@@ -1690,7 +1724,7 @@ class _StaffEntryState extends State<StaffEntry> {
     )..show();
   }
   uploadstudent(){
-    FirebaseFirestore.instance.collection("Staffs").doc().set({
+    FirebaseFirestore.instance.collection("Staffs").doc(widget.docid).update({
       "stname": stnamefirst.text,
       "stmiddlename": stnamemiddle.text,
       "stlastname": stnamelast.text,
@@ -1731,15 +1765,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
       "imgurl":imgUrl,
 
-      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
-      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
-      "timestamp": DateTime.now().microsecondsSinceEpoch,
-      "absent":false,
-      "classasigned":false,
-      "absentdays":0,
-      "incharge":"",
-      "inchargesec":"",
-      "userid":"",
+
 
 
     });
@@ -1763,53 +1789,53 @@ class _StaffEntryState extends State<StaffEntry> {
       },
     )..show();
   }
-  
+
   clearall(){
-setState(() {
+    setState(() {
 
 
-     regno.clear();
-     entryno.clear();
-     entrydate.clear();
-     stnamefirst.clear();
-     stnamemiddle.clear();
-     stnamelast.clear();
-     fathername.clear();
+      regno.clear();
+      entryno.clear();
+      entrydate.clear();
+      stnamefirst.clear();
+      stnamemiddle.clear();
+      stnamelast.clear();
+      fathername.clear();
 
-     bloodgroup.clear();
-     dob.clear();
-     community.clear();
-     religion.clear();
-     mobile.clear();
-     email.clear();
-     address.clear();
+      bloodgroup.clear();
+      dob.clear();
+      community.clear();
+      religion.clear();
+      mobile.clear();
+      email.clear();
+      address.clear();
 
-     spousename.clear();
-     sphone.clear();
-     soffice.clear();
-     semail.clear();
-     saadhaar.clear();
-
-
-     workexp.clear();
-     lang.clear();
-     special.clear();
-     lastschool.clear();
-     subject.clear();
-     salary.clear();
-     expectedsalary.clear();
-     workshop.clear();
+      spousename.clear();
+      sphone.clear();
+      soffice.clear();
+      semail.clear();
+      saadhaar.clear();
 
 
+      workexp.clear();
+      lang.clear();
+      special.clear();
+      lastschool.clear();
+      subject.clear();
+      salary.clear();
+      expectedsalary.clear();
+      workshop.clear();
 
-     maritalmark.clear();
-     family.clear();
-     income.clear();
-     aadhaarno.clear();
-     identificationmark.clear();
-     _typeAheadControllergender.text="";
-     _typeAheadControllerdesignation.text="Select Option";
-     imgUrl="";
-});
+
+
+      maritalmark.clear();
+      family.clear();
+      income.clear();
+      aadhaarno.clear();
+      identificationmark.clear();
+      _typeAheadControllergender.text="";
+      _typeAheadControllerdesignation.text="Select Option";
+      imgUrl="";
+    });
   }
 }

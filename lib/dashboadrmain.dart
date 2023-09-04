@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:vidhaan/profile.dart';
+import 'package:vidhaan/profiledw.dart';
 
 import 'demo2.dart';
 
@@ -93,7 +94,7 @@ class _Dashboard2State extends State<Dashboard2> {
             final navigator = Navigator.of(context);
             await Future.delayed(Duration.zero);
             navigator.push(
-              MaterialPageRoute(builder: (_) => Profile()),
+              MaterialPageRoute(builder: (_) => ProfileDarwer()),
             );
 
           },

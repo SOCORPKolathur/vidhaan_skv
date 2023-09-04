@@ -28,7 +28,8 @@ class _AccountpageState extends State<Accountpage> {
         ),
       Padding(
         padding: const EdgeInsets.only(right: 138.0,bottom: 14),
-        child: Container(child: Column(
+        child: Container(
+            child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10.0,left:40),
@@ -41,14 +42,15 @@ class _AccountpageState extends State<Accountpage> {
                   ),
                   SizedBox(width: 10,),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 38.0),
-                        child: Text("Fee received",style: GoogleFonts.poppins(color: Color(0xffACACAC),fontSize: 12),),
+                        child: Text("Fee received",style: GoogleFonts.poppins(color: Colors.black,fontSize: 12),),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right:68.0),
-                        child: Text("₹198K",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold),),
+                        child: Text("Rs 50,000",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold),),
                       ),
 
                     ],
@@ -64,11 +66,12 @@ class _AccountpageState extends State<Accountpage> {
                   ),
                   SizedBox(width: 10,),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Total Expenses",style: GoogleFonts.poppins(color: Color(0xffACACAC),fontSize: 12),),
+                      Text("Total Expenses",style: GoogleFonts.poppins(color: Colors.black,fontSize: 12),),
                       Padding(
                         padding: const EdgeInsets.only(right: 40.0),
-                        child: Text("₹2.4K",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold),),
+                        child: Text("Rs 20,000",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold),),
                       ),
                     ],
                   ),
@@ -83,14 +86,15 @@ class _AccountpageState extends State<Accountpage> {
                   ),
                   SizedBox(width: 10,),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Text("Total Balance",style: GoogleFonts.poppins(color: Color(0xffACACAC),fontSize: 12),),
+                        child: Text("Total Balance",style: GoogleFonts.poppins(color: Colors.black,fontSize: 12),),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 48.0),
-                        child: Text("₹ 89K",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold),),
+                        child: Text("Rs 30,000",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold),),
                       ),
 
                     ],
@@ -135,10 +139,10 @@ class _AccountpageState extends State<Accountpage> {
 
           ],
         ),
-          color: Color(0xffFFFFFF),
-          width: width/1.221,
+
+          width:width/1.1,
           height: height/5.475,
-          //decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),color: Color(0xffFFFFFF),),
         ),
       ),
         Padding(
@@ -147,101 +151,140 @@ class _AccountpageState extends State<Accountpage> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 28.0,top: 20),
-                        child: Text("Lastest Transaction",style: GoogleFonts.mulish(fontSize: 20,fontWeight: FontWeight.bold),),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 208.0,top: 20),
-                        child: Image.asset("assets/vec.png"),
-                      ),
-                    ],
-                  ),
+                  padding: const EdgeInsets.only(left: 28.0,top: 20),
+                  child: Text("Lastest Transaction",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
                 ),
-                Column(
+                SizedBox(height: 10,),
+                Container(
+                    width: 500,
+                    child: Divider()),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          width:130,
-                          child: Text('Payment Type',style: GoogleFonts.montserrat(
-                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                          ),),
-                        ),
-                        Container(
-                          width:130,
-                          child: Text('Amount',style: GoogleFonts.montserrat(
-                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                          ),),
-                        ),
-                        Container(
-                          width:130,
-                          child: Text('Status',style: GoogleFonts.montserrat(
-                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                          ),),
-                        ),
-                        Container(
-                          width:130,
-                          child: Text('Date',style: GoogleFonts.montserrat(
-                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                          ),),
-                        ),
-                        Container(
-                          width:130,
-                          child: Text('Time',style: GoogleFonts.montserrat(
-                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                          ),),
-                        ),
-                      ],
+                    Container(
+                      width:130,
+                      child: Text('Payment Type',style: GoogleFonts.montserrat(
+                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                      ),),
                     ),
-                    Row(
+                    Container(
+                      width:130,
+                      child: Text('Amount',style: GoogleFonts.montserrat(
+                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                      ),),
+                    ),
+                    SizedBox(width: 1,),
+                    Container(
+                      width:130,
+                      child: Text('Status',style: GoogleFonts.montserrat(
+                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                      ),),
+                    ),
+                    Container(
+                      width:130,
+                      child: Text('Date',style: GoogleFonts.montserrat(
+                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                      ),),
+                    ),
+                    Container(
+                      width:130,
+                      child: Text('Time',style: GoogleFonts.montserrat(
+                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                      ),),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 28.0,top: 18),
+                      child: Container(child: Image.asset("assets/Group 4.png"),
+                        color:Color(0xffFFFFFF),
+                        width: width/34.15,
+                        height: height/16.425,
+
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 28.0,top: 18),
-                          child: Container(child: Image.asset("assets/Group 4.png"),
-                            color:Color(0xffFFFFFF),
-                            width: width/34.15,
-                            height: height/16.425,
-
-                          ),
+                          padding: const EdgeInsets.only(left: 8.0,top: 7),
+                          child: Text("Fee Received",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
                         ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0,top: 7),
-                                      child: Text("Fee Received",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
-                                    ),
-
-                                  ],
-
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 20.0,left: 15),
-                                  child: Text("Monthly Fee",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
-                                ),
-
-                              ],
-
-                            ),
-                          ],
-                        ),
-
                         Padding(
-                          padding: const EdgeInsets.only(left: 218.0),
-                          child: Text("+\$300.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff6ED69E)),),
+                          padding: const EdgeInsets.only(right: 20.0,left: 8),
+                          child: Text("Monthly Fee",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
                         ),
 
                       ],
 
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 60.0),
+                      child: Text("RS 50,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 120.0),
+                      child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100.0),
+                      child: Text("01-08-3023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100.0),
+                      child: Text("11:50 PM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                    ),
+
+                  ],
+
+                ),
+                SizedBox(height: 8,),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 28.0,top: 18),
+                      child: Container(child: Image.asset("assets/Frame 39.png"),
+                        color:Color(0xffFFFFFF),
+                        width: width/34.15,
+                        height: height/16.425,
+
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0,top: 7),
+                          child: Text("Maintenance",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20.0,left: 8),
+                          child: Text("Bus Driver",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
+                        ),
+
+                      ],
+
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 60.0),
+                      child: Text("RS 20,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.red),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 120.0),
+                      child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100.0),
+                      child: Text("02-08-2023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100.0),
+                      child: Text("12:57 AM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
                     ),
 
                   ],

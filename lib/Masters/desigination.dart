@@ -68,13 +68,13 @@ class _DesiginationState extends State<Desigination> {
         children: [
 
           Padding(
-            padding: const EdgeInsets.only(left: 0.0,top: 0),
+            padding: const EdgeInsets.only(left: 20.0,top: 0,right: 25),
             child: Material(
               elevation: 5,
               borderRadius: BorderRadius.circular(12),
               child: Container(
                 width: width/1.050,
-                height:width/1.263,
+
                 decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
                 child:  Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,6 +96,7 @@ class _DesiginationState extends State<Desigination> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
                                 child: Container(child: TextField(
+                                  readOnly: true,
                                   controller: orderno,
                                   style: GoogleFonts.poppins(
                                       fontSize: 15

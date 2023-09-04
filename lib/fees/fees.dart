@@ -1052,6 +1052,9 @@ class _FeesRegState extends State<FeesReg> {
             ]),
           )),
     );
+    final container4 = p.Center(
+      //child:
+    );
 
     final profileImage = p.MemoryImage((await rootBundle.load('assets/schoollogo.png')).buffer.asUint8List(),);
     final paid = p.MemoryImage((await rootBundle.load('assets/paid.png')).buffer.asUint8List(),);
@@ -1073,6 +1076,7 @@ class _FeesRegState extends State<FeesReg> {
           padding: p.EdgeInsets.only(top: 0),
           child: p.Container(
               height: 600,
+
               child: p.Column(children: [
                 p.Row(mainAxisAlignment: p.MainAxisAlignment.start, children: [
                   p.Container(

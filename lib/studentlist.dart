@@ -1589,7 +1589,7 @@ class _StudentListState extends State<StudentList> {
                                   GestureDetector(onTap: (){
 
                                   },
-                                    child: Text(value["dob"]!="Null"?'${value["dob"].toString().substring(0,10)}':"Null",style: GoogleFonts.montserrat(
+                                    child: Text(value["dob"]!="Null"?value["dob"].toString().length>15?'${value["dob"].toString().substring(0,10)}':'${value["dob"].toString().replaceAll(" ", "")}':"Null",style: GoogleFonts.montserrat(
                                         fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
                                     ),),
                                   ),
@@ -1756,13 +1756,14 @@ setState(() {
                                   SizedBox(height:height/30,),
                                   Container(
                                     child:  Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20.0),
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 0.0),
                                               child: Row(
                                                 children: [
                                                   Text("Sibling Studying Here: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
@@ -1772,10 +1773,10 @@ setState(() {
                                               ),
                                             ),
                                             value["brother studying here"]=="Yes"    ?  Padding(
-                                              padding: const EdgeInsets.only(top: 20.0,bottom: 0),
+                                              padding: const EdgeInsets.only(top: 20.0,bottom: 20),
                                               child: Row(
                                                 children: [
-                                                  Text("Sibling Name & Class: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
+                                                  Text("Sibling Reg No: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
                                                   Text(value["brothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
 
                                                 ],

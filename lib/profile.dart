@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:random_string/random_string.dart';
 import 'package:show_up_animation/show_up_animation.dart';
+import 'package:sidebarx/sidebarx.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 import 'package:vidhaan/Dashboard.dart';
 import 'package:vidhaan/timetable/classsubjects.dart';
@@ -19,6 +20,9 @@ import 'Masters/desigination.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:excel/excel.dart';
+
+import 'Masters/excelgen.dart';
+
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -1562,141 +1566,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                 ),
               ),
             ),
-            Container(child: Column(
-              children: [
-                SizedBox(height:20),
-                Text(selectfile==false?'Bulk Upload Students': "Your File is Uploaded to Database",style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
 
-                Container(
-                    width: 400,
-                    height: 350,
-
-                    child: selectfile==false? Lottie.asset("assets/file choosing.json"):Lottie.asset("assets/uploaded.json",repeat: false)),
-                selectfile==false?  InkWell(
-                  onTap: () async {
-
-                    FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
-                      type: FileType.custom,
-                      allowedExtensions: ['xlsx'],
-                      allowMultiple: false,
-                    );
-
-
-                    var bytes = pickedFile!.files.single.bytes;
-                    var excel = Excel.decodeBytes(bytes!);
-
-
-                    final row = excel.tables[excel.tables.keys.first]!.rows
-                        .map((e) => e.map((e) => e!.value).toList()).toList();
-
-                    for(int i = 1;i <row.length;i++) {
-                      print(row[i][1]);
-                      setState(() {
-                        studentid=randomAlphaNumeric(16);
-                      });
-                      var document = await  FirebaseFirestore.instance.collection("Students").where("admitclass",isEqualTo:row[i][0].toString()).where("section",isEqualTo:row[i][1].toString()).get();
-                      setState(() {
-                        rollno=(document.docs.length +1).toString().padLeft(2,"0");
-                      });
-                      FirebaseFirestore.instance.collection("Students").doc(studentid).set({
-                        "stname": row[i][3].toString(),
-                        "stmiddlename": "",
-                        "stlastname": "",
-                        "regno": "VDSB${i.toString().padLeft(3, '0')}",
-                        "studentid": studentid,
-                        "rollno":rollno,
-                        "entrydate": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
-                        "admitclass":row[i][0].toString(),
-                        "section": row[i][1].toString(),
-                        "academic": row[i][2].toString(),
-                        "bloodgroup": row[i][4].toString(),
-                        "dob": row[i][5].toString(),
-                        "gender": row[i][7].toString(),
-                        "address": row[i][14].toString(),
-                        "community": row[i][8].toString(),
-                        "house": row[i][11].toString(),
-                        "religion": row[i][10].toString(),
-                        "mobile": row[i][12].toString(),
-                        "email": row[i][13].toString(),
-                        "aadhaarno": row[i][18].toString(),
-                        "sheight": row[i][16].toString(),
-                        "stweight": row[i][17].toString(),
-                        "EMIS": row[i][19].toString(),
-                        "transport": row[i][20].toString(),
-                        "identificatiolmark": row[i][15].toString(),
-
-                        "fathername": row[i][21].toString(),
-                        "fatherOccupation": row[i][22].toString(),
-                        "fatherOffice":row[i][23].toString(),
-                        "fatherMobile": row[i][25].toString(),
-                        "fatherEmail": "",
-                        "fatherAadhaar": row[i][26].toString(),
-
-                        "mothername": row[i][27].toString(),
-                        "motherOccupation": row[i][28].toString(),
-                        "motherOffice":row[i][29].toString(),
-                        "motherMobile": row[i][31].toString(),
-                        "motherEmail":"",
-                        "motherAadhaar": row[i][32].toString(),
-
-                        "guardianname": row[i][36].toString(),
-                        "guardianOccupation": row[i][38].toString(),
-                        "guardianMobile": row[i][37].toString(),
-                        "guardianEmail": "",
-                        "guardianAadhaar": "",
-
-                        "brother studying here": row[i][34].toString(),
-                        "brothername": "${row[i][33].toString()} - ${row[i][35].toString()}",
-
-                        "imgurl":"",
-                        "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
-                        "time": "${DateTime.now().hour}:${DateTime.now().minute}",
-                        "timestamp": DateTime.now().microsecondsSinceEpoch,
-                        "absentdays":0,
-                        "behaviour":0,
-                      });
-                      FirebaseFirestore.instance.collection("Classstudents").doc("${row[i][0].toString()}${row[i][1].toString()}").collection("Students").doc(studentid).set({
-                        "regno": "VDSB${i.toString().padLeft(3, '0')}",
-                        "studentid": studentid,
-                        "admitclass": row[i][0].toString(),
-                        "section": row[i][1].toString(),
-                        "stname": row[i][3].toString(),
-                        "absentdays":0,
-                        "behaviour":0,
-                      });
-
-                    }
-                    setState(() {
-                      selectfile=true;
-                    });
-
-
-                  },
-                  child: Material(
-                    borderRadius: BorderRadius.circular(5),
-                    elevation: 7,
-                    child: Container(child: Center(child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(Icons.file_upload,color: Colors.white,),
-                        ),
-                        Text("Select Excel",style: GoogleFonts.poppins(color:Colors.white),),
-                      ],
-                    )),
-                      width: width/10.507,
-                      height: height/20.425,
-                      // color:Color(0xff00A0E3),
-                      decoration: BoxDecoration(color:  Colors.green,borderRadius: BorderRadius.circular(5)),
-
-                    ),
-                  ),
-                ) :
-                Container(),
-              ],
-            )),
             Padding(
               padding: const EdgeInsets.only(right:45.0,left:20),
               child: ClassSubjects(),
@@ -2087,4 +1957,181 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
       },
     );
   }
+}
+
+
+
+class BulkUploadfunction extends StatefulWidget {
+  const BulkUploadfunction({Key? key}) : super(key: key);
+
+  @override
+  State<BulkUploadfunction> createState() => _BulkUploadfunctionState();
+}
+
+class _BulkUploadfunctionState extends State<BulkUploadfunction> {
+  bool selectfile=false;
+  String studentid = "";
+  String rollno="";
+  @override
+  Widget build(BuildContext context) {
+    final double width=MediaQuery.of(context).size.width;
+    final double height=MediaQuery.of(context).size.height;
+    return Container(
+        child: Row(
+          children: [
+            SizedBox(width:150),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Download the sample template here",style: GoogleFonts.poppins(
+                      color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Templatedown(),
+                ),
+              ],
+            ),
+            Column(
+      children: [
+            SizedBox(height:20),
+            Text(selectfile==false?'Bulk Upload Students': "Your File is Uploaded to Database",style: GoogleFonts.poppins(
+                color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+
+            Container(
+                width: 400,
+                height: 350,
+
+                child: selectfile==false? Lottie.asset("assets/file choosing.json"):Lottie.asset("assets/uploaded.json",repeat: false)),
+            selectfile==false?  InkWell(
+              onTap: () async {
+
+                FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: ['xlsx'],
+                  allowMultiple: false,
+                );
+
+
+                var bytes = pickedFile!.files.single.bytes;
+                var excel = Excel.decodeBytes(bytes!);
+
+
+                final row = excel.tables[excel.tables.keys.first]!.rows
+                    .map((e) => e.map((e) => e!.value).toList()).toList();
+
+                for(int i = 1;i <row.length;i++) {
+                  print(row[i][1]);
+                  setState(() {
+                    studentid=randomAlphaNumeric(16);
+                  });
+                  var document = await  FirebaseFirestore.instance.collection("Students").where("admitclass",isEqualTo:row[i][0].toString()).where("section",isEqualTo:row[i][1].toString()).get();
+                  setState(() {
+                    rollno=(document.docs.length +1).toString().padLeft(2,"0");
+                  });
+                  FirebaseFirestore.instance.collection("Students").doc(studentid).set({
+                    "stname": row[i][3].toString(),
+                    "stmiddlename": "",
+                    "stlastname": "",
+                    "regno": "VDSB${i.toString().padLeft(3, '0')}",
+                    "studentid": studentid,
+                    "rollno":rollno,
+                    "entrydate": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+                    "admitclass":row[i][0].toString(),
+                    "section": row[i][1].toString(),
+                    "academic": row[i][2].toString(),
+                    "bloodgroup": row[i][4].toString(),
+                    "dob": row[i][5].toString(),
+                    "gender": row[i][7].toString(),
+                    "address": row[i][14].toString(),
+                    "community": row[i][8].toString(),
+                    "house": row[i][11].toString(),
+                    "religion": row[i][10].toString(),
+                    "mobile": row[i][12].toString(),
+                    "email": row[i][13].toString(),
+                    "aadhaarno": row[i][18].toString(),
+                    "sheight": row[i][16].toString(),
+                    "stweight": row[i][17].toString(),
+                    "EMIS": row[i][19].toString(),
+                    "transport": row[i][20].toString(),
+                    "identificatiolmark": row[i][15].toString(),
+
+                    "fathername": row[i][21].toString(),
+                    "fatherOccupation": row[i][22].toString(),
+                    "fatherOffice":row[i][23].toString(),
+                    "fatherMobile": row[i][25].toString(),
+                    "fatherEmail": "",
+                    "fatherAadhaar": row[i][26].toString(),
+
+                    "mothername": row[i][27].toString(),
+                    "motherOccupation": row[i][28].toString(),
+                    "motherOffice":row[i][29].toString(),
+                    "motherMobile": row[i][31].toString(),
+                    "motherEmail":"",
+                    "motherAadhaar": row[i][32].toString(),
+
+                    "guardianname": row[i][36].toString(),
+                    "guardianOccupation": row[i][38].toString(),
+                    "guardianMobile": row[i][37].toString(),
+                    "guardianEmail": "",
+                    "guardianAadhaar": "",
+
+                    "brother studying here": row[i][34].toString(),
+                    "brothername": "${row[i][33].toString()} - ${row[i][35].toString()}",
+
+                    "imgurl":"",
+                    "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+                    "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+                    "timestamp": DateTime.now().microsecondsSinceEpoch,
+                    "absentdays":0,
+                    "behaviour":0,
+                  });
+                  FirebaseFirestore.instance.collection("Classstudents").doc("${row[i][0].toString()}${row[i][1].toString()}").collection("Students").doc(studentid).set({
+                    "regno": "VDSB${i.toString().padLeft(3, '0')}",
+                    "studentid": studentid,
+                    "admitclass": row[i][0].toString(),
+                    "section": row[i][1].toString(),
+                    "stname": row[i][3].toString(),
+                    "absentdays":0,
+                    "behaviour":0,
+                  });
+
+                }
+                setState(() {
+                  selectfile=true;
+                });
+
+
+              },
+              child: Material(
+                borderRadius: BorderRadius.circular(5),
+                elevation: 7,
+                child: Container(child: Center(child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Icon(Icons.file_upload,color: Colors.white,),
+                    ),
+                    Text("Select Excel",style: GoogleFonts.poppins(color:Colors.white),),
+                  ],
+                )),
+                  width: width/10.507,
+                  height: height/20.425,
+                  // color:Color(0xff00A0E3),
+                  decoration: BoxDecoration(color:  Colors.green,borderRadius: BorderRadius.circular(5)),
+
+                ),
+              ),
+            ) :
+            Container(),
+      ],
+    ),
+
+          ],
+        ));
+  }
+
 }

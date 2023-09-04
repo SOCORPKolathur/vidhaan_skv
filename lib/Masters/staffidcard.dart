@@ -1,9 +1,13 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pdf/widgets.dart' as p;
+import 'package:printing/printing.dart';
+import 'package:pdf/pdf.dart';
 
 class StaffID extends StatefulWidget {
   const StaffID({Key? key}) : super(key: key);
@@ -51,6 +55,7 @@ class _StaffIDState extends State<StaffID> {
   void initState() {
     adddropdownvalue();
     getadmin();
+    addinglist();
     setState(() {
       _typeAheadControllerclass.text="Select Option";
       _typeAheadControllersection.text="Select Option";
@@ -135,6 +140,3678 @@ class _StaffIDState extends State<StaffID> {
       schoolweb=document.docs[0]["web"];
     });
   }
+  getvalue() async {
+    print("gbdffd");
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+
+    List<p.Widget> widgets = [];
+
+    final bg1 = p.MemoryImage((await rootBundle.load("assets/staffid1.png")).buffer.asUint8List(),);
+   
+    final bg3 = p.MemoryImage((await rootBundle.load("assets/staffid2.png")).buffer.asUint8List(),);
+
+    final vidhaanlogo = p.MemoryImage((await rootBundle.load('assets/VIDHAANLOGO.png')).buffer.asUint8List(),);
+    final plusicon = p.MemoryImage((await rootBundle.load('assets/plus.png')).buffer.asUint8List(),);
+    final schoollogoii = await flutterImageProvider(NetworkImage(schoollogo));
+
+    var fontsemipoppoins = await PdfGoogleFonts.poppinsSemiBold();
+    var fontregpoppoins = await PdfGoogleFonts.poppinsRegular();
+    var fontrmedpoppoins = await PdfGoogleFonts.poppinsMedium();
+    var fontsemimon = await PdfGoogleFonts.montserratSemiBold();
+
+
+    widgets.add(
+
+        p.Padding(
+            padding: p.EdgeInsets.only(top: 0),
+            child:   p.ListView.builder(itemBuilder: (context,index){
+              return
+                p.Container(
+                    height: 1190,
+                    width:840,
+                    child:
+                    p.Column(children: [
+                      p.Container(
+                        height: 12.1,
+
+                      ),
+                      p.Padding(
+                        padding: p.EdgeInsets.only(left:20),
+                        child:
+                        p.Row(
+                            mainAxisAlignment: p.MainAxisAlignment.start,
+                            children: [
+                              namelist[index].length>0?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment: p.MainAxisAlignment.end,
+                                            children: [
+                                               p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                             
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:
+                                                    p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Padding(
+                                                      padding: p.EdgeInsets.only(top:0),
+                                                      child:
+                                                      p.ClipRRect(
+                                                          horizontalRadius: 14,
+                                                          verticalRadius: 20,
+                                                          child:
+                                                          p.Image(imglist[index][0],height: 55,width: 55))
+                                                  )
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][0]} ${lastnamelist[index][0]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color:  PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][0]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                               p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][0]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][0],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][0],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][0],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),]
+                              ):
+                              p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+                              namelist[index].length>1?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment:  p.MainAxisAlignment.end,
+                                            children: [
+                                               p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                             
+
+
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:   p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.ClipRRect(
+                                                      horizontalRadius: 14,
+                                                      verticalRadius: 20,
+                                                      child:
+                                                      p.Image(imglist[index][1],height: 55,width: 55))
+
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][1]} ${lastnamelist[index][1]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][1]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                               p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][1]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][1],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][1],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][1],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),]
+                              ):
+                               p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+                              namelist[index].length>2?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment:  p.MainAxisAlignment.end,
+                                            children: [
+                                               p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                             
+
+
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:   p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.ClipRRect(
+                                                      horizontalRadius: 14,
+                                                      verticalRadius: 20,
+                                                      child:
+                                                      p.Image(imglist[index][2],height: 55,width: 55))
+
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][2]} ${lastnamelist[index][2]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][2]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                               p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][2]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][2],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][2],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][2],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),]
+                              ):
+                               p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+                              namelist[index].length>3?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment:  p.MainAxisAlignment.end,
+                                            children: [
+                                               p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                             
+
+
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:   p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.ClipRRect(
+                                                      horizontalRadius: 14,
+                                                      verticalRadius: 20,
+                                                      child:
+                                                      p.Image(imglist[index][3],height: 55,width: 55))
+
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][3]} ${lastnamelist[index][3]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][3]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                               p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][3]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][3],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][3],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][3],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),]
+                              ):
+                               p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+                              namelist[index].length>4?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment:  p.MainAxisAlignment.end,
+                                            children: [
+                                               p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                             
+
+
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:   p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.ClipRRect(
+                                                      horizontalRadius: 14,
+                                                      verticalRadius: 20,
+                                                      child:
+                                                      p.Image(imglist[index][4],height: 55,width: 55))
+
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][4]} ${lastnamelist[index][4]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][4]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                               p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][4]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][4],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][4],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][4],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),]
+                              ):
+                               p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+
+
+
+
+
+
+                            ]
+                        ),
+                      ),
+                      p.Container(
+                        height: 30.1,
+
+                      ),
+                      p.Padding(
+                        padding: p.EdgeInsets.only(left:20),
+                        child:
+                        p.Row(
+                            mainAxisAlignment: p.MainAxisAlignment.start,
+                            children: [
+                              namelist[index].length>5?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment:  p.MainAxisAlignment.end,
+                                            children: [
+                                               p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                             
+
+
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:   p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.ClipRRect(
+                                                      horizontalRadius: 14,
+                                                      verticalRadius: 20,
+                                                      child:
+                                                      p.Image(imglist[index][5],height: 55,width: 55))
+
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][5]} ${lastnamelist[index][5]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][5]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                               p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][5]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][5],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][5],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][5],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+                                  ]
+                              ): p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+                              namelist[index].length>6?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment:  p.MainAxisAlignment.end,
+                                            children: [
+                                               p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                             
+
+
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:   p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.ClipRRect(
+                                                      horizontalRadius: 14,
+                                                      verticalRadius: 20,
+                                                      child:
+                                                      p.Image(imglist[index][6],height: 55,width: 55))
+
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][6]} ${lastnamelist[index][6]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][6]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                               p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][6]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][6],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][6],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][6],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+                                  ]
+                              ): p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+                              namelist[index].length>7?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment:  p.MainAxisAlignment.end,
+                                            children: [
+                                            
+                                              p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                              
+                                             
+                                             
+
+
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:   p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.ClipRRect(
+                                                      horizontalRadius: 14,
+                                                      verticalRadius: 20,
+                                                      child:
+                                                      p.Image(imglist[index][7],height: 55,width: 55))
+
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][7]} ${lastnamelist[index][7]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][7]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                              p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][7]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][7],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][7],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][7],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+                                  ]
+                              ): p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+                              namelist[index].length>8?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment:  p.MainAxisAlignment.end,
+                                            children: [
+                                               p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                             
+
+
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:   p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.ClipRRect(
+                                                      horizontalRadius: 14,
+                                                      verticalRadius: 20,
+                                                      child:
+                                                      p.Image(imglist[index][8],height: 55,width: 55))
+
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][8]} ${lastnamelist[index][8]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][8]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                               p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][8]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][8],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][8],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][8],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+                                  ]
+                              ): p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+                              namelist[index].length>9?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+
+                                    p.Container(
+                                      height: 252.35,
+                                      width: 161.5,
+                                      color:PdfColors.white,
+
+                                      child: p.Stack(
+                                        children: [
+                                          p.Column(
+                                            mainAxisAlignment:  p.MainAxisAlignment.end,
+                                            children: [
+                                               p.Container(
+                                                  width:161.5,
+                                                height: 180.35, 
+                                                child:
+                                                p.Image(bg1,fit: p.BoxFit.fill),
+                                              )
+                                             
+
+
+                                            ],
+                                          ),
+                                          p.Column(
+                                            crossAxisAlignment: p.CrossAxisAlignment.center,
+                                            children: [
+                                              p.SizedBox(height: 16,),
+                                              p.Row(
+                                                mainAxisAlignment: p.MainAxisAlignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width:30,
+                                                    height:30,
+                                                    child:   p.ClipRRect(
+                                                      verticalRadius: 18,
+                                                      horizontalRadius: 18,
+                                                      child: p.Image(schoollogoii),),
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              p.Text(schoolname,style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.black, fontSize: 8,fontWeight: p.FontWeight.bold),),
+                                              p.Text(schooladdress,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                              p.Text("Phone: +91 ${schoolphone}",style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+
+                                              p.Text(schoolweb,style: p.TextStyle(
+                                                  font: fontregpoppoins,
+                                                  color: PdfColors.black, fontSize: 4,fontWeight: p.FontWeight.normal),),
+                                              p.SizedBox(height: 8,),
+                                              p.Stack(
+                                                alignment: p.Alignment.center,
+                                                children: [
+                                                  p.Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration:  p.BoxDecoration(
+                                                      color: PdfColor.fromHex("25507D"),
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.Container(
+                                                    width: 55,
+                                                    height: 55,
+                                                    decoration: p.BoxDecoration(
+                                                      color:PdfColors.white,
+                                                      shape: p.BoxShape.circle,
+                                                    ),
+
+
+                                                  ),
+                                                  p.ClipRRect(
+                                                      horizontalRadius: 14,
+                                                      verticalRadius: 20,
+                                                      child:
+                                                      p.Image(imglist[index][9],height: 55,width: 55))
+
+                                                ],
+                                              ),
+                                              p.SizedBox(height: 8,),
+                                              p.Text("${namelist[index][9]} ${lastnamelist[index][9]}",style: p.TextStyle(
+                                                  font: fontsemipoppoins,
+                                                  color: PdfColors.white, fontSize: 10,fontWeight: p.FontWeight.bold),),
+                                              /*p.Text("ID: ${regnolist[index][9]}",style: p.TextStyle(
+                                                  font: fontrmedpoppoins,
+                                                  color:  PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),*/
+                                               p.SizedBox(height: 2,),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("Designation",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text("${classlist[index][9]}",style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child: p.Text("ID",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(regnolist[index][9],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Blood Group",style: p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color:PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style: p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(bloodlist[index][9],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+                                              p.Row(
+                                                children: [
+                                                  p.SizedBox(width: 10,),
+                                                  p.Container(
+                                                    width:80,
+                                                    child:  p.Text("Phone No",style:  p.TextStyle(
+                                                        font: fontsemipoppoins,
+                                                        color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  ),
+                                                  p.Text(": ",style:  p.TextStyle(
+                                                      font: fontsemipoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                  p.Text(phonelist[index][9],style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.white, fontSize: 8,fontWeight: p.FontWeight.normal),),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+                                  ]
+                              ): p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+
+
+
+
+                            ]
+                        ),),
+                      p.Container(
+                        height: 3.1,
+
+                      ),
+                      p.Padding(
+                        padding: p.EdgeInsets.only(left:20),
+                        child:
+                        p.Container(
+                          width:820,
+                          child: p.Divider( thickness: 2,color:PdfColors.black),
+
+                        ),
+                      ),
+
+                      p.Container(
+                        height: 3.1,
+
+                      ),
+                      p.Padding(
+                        padding: p.EdgeInsets.only(left:20),
+                        child:
+                        p.Row(
+                            mainAxisAlignment: p.MainAxisAlignment.start,
+                            children: [
+                              namelist[index].length>5?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Row(
+                                                  mainAxisAlignment: p.MainAxisAlignment.center,
+                                                  children: [
+                                                    p.Container(
+                                                      width:40,
+                                                      height:40, decoration: p.BoxDecoration(
+                                                        shape: p.BoxShape.circle,
+                                                        color:PdfColors.white
+                                                    ),
+                                                      child:   p.ClipRRect(
+                                                        verticalRadius: 18,
+                                                        horizontalRadius: 18,
+                                                        child: p.Image(schoollogoii),),),
+                                                  ],
+                                                ),
+
+                                                p.SizedBox(height: 10,),
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][5]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][5]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ]) : p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+                              namelist[index].length>6?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Row(
+                                                 mainAxisAlignment: p.MainAxisAlignment.center,
+                                                  children: [
+                                                    p.Container(
+                                                      width:40,
+                                                      height:40, decoration: p.BoxDecoration(
+                                                        shape: p.BoxShape.circle,
+                                                        color:PdfColors.white
+                                                    ),
+                                                      child:   p.ClipRRect(
+                                                        verticalRadius: 18,
+                                                        horizontalRadius: 18,
+                                                        child: p.Image(schoollogoii),),),
+                                                  ],
+                                                ),
+                                                p.SizedBox(height: 10,),
+
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][6]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][6]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ]) : p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+                              namelist[index].length>7?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Row(
+                                                 mainAxisAlignment: p.MainAxisAlignment.center,
+                                                  children: [
+                                                    p.Container(
+                                                      width:40,
+                                                      height:40, decoration: p.BoxDecoration(
+                                                        shape: p.BoxShape.circle,
+                                                        color:PdfColors.white
+                                                    ),
+                                                      child:   p.ClipRRect(
+                                                        verticalRadius: 18,
+                                                        horizontalRadius: 18,
+                                                        child: p.Image(schoollogoii),),),
+                                                  ],
+                                                ),
+                                                p.SizedBox(height: 10,),
+
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][7]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][7]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ]) : p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+                              namelist[index].length>8? p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Row(
+                                                 mainAxisAlignment: p.MainAxisAlignment.center,
+                                                  children: [
+                                                    p.Container(
+                                                      width:40,
+                                                      height:40, decoration: p.BoxDecoration(
+                                                        shape: p.BoxShape.circle,
+                                                        color:PdfColors.white
+                                                    ),
+                                                      child:   p.ClipRRect(
+                                                        verticalRadius: 18,
+                                                        horizontalRadius: 18,
+                                                        child: p.Image(schoollogoii),),),
+                                                  ],
+                                                ),
+                                                p.SizedBox(height: 10,),
+
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][8]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][8]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ]) : p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+                              namelist[index].length>9? p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Row(
+                                                 mainAxisAlignment: p.MainAxisAlignment.center,
+                                                  children: [
+                                                    p.Container(
+                                                      width:40,
+                                                      height:40, decoration: p.BoxDecoration(
+                                                        shape: p.BoxShape.circle,
+                                                        color:PdfColors.white
+                                                    ),
+                                                      child:   p.ClipRRect(
+                                                        verticalRadius: 18,
+                                                        horizontalRadius: 18,
+                                                        child: p.Image(schoollogoii),),),
+                                                  ],
+                                                ),
+                                                p.SizedBox(height: 10,),
+
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][9]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][9]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ]) : p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+                                  p.Container(
+                                    height: 16,
+                                    width: 16,
+                                    child: p.Image(plusicon),
+                                  ),
+                                  p.Container(
+                                    height: 3.0,
+
+                                  ),
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ),]
+                            ),
+
+
+
+
+
+
+
+                            ]
+                        ),
+                      ),
+                      p.Container(
+                        height: 30.1,
+                      ),
+                      p.Padding(
+                        padding: p.EdgeInsets.only(left:20),
+                        child:
+                        p.Row(
+                            mainAxisAlignment: p.MainAxisAlignment.start,
+                            children: [
+                              namelist[index].length>0?
+                              p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Row(
+                                                 mainAxisAlignment: p.MainAxisAlignment.center,
+                                                  children: [
+                                                    p.Container(
+                                                      width:40,
+                                                      height:40, decoration: p.BoxDecoration(
+                                                        shape: p.BoxShape.circle,
+                                                        color:PdfColors.white
+                                                    ),
+                                                      child:   p.ClipRRect(
+                                                        verticalRadius: 18,
+                                                        horizontalRadius: 18,
+                                                        child: p.Image(schoollogoii),),),
+                                                  ],
+                                                ),
+                                                p.SizedBox(height: 10,),
+
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][0]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][0]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                  ]): p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+                              namelist[index].length>1? p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Container(
+                                                  width:40,
+                                                  height:40, decoration: p.BoxDecoration(
+                                                    shape: p.BoxShape.circle,
+                                                    color:PdfColors.white
+                                                ),
+                                                  child:   p.ClipRRect(
+                                                    verticalRadius: 18,
+                                                    horizontalRadius: 18,
+                                                    child: p.Image(schoollogoii),),),
+                                                p.SizedBox(height: 10,),
+
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][1]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][1]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                  ]) : p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+                              namelist[index].length>2?  p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Row(
+                                                 mainAxisAlignment: p.MainAxisAlignment.center,
+                                                  children: [
+                                                    p.Container(
+                                                      width:40,
+                                                      height:40, decoration: p.BoxDecoration(
+                                                        shape: p.BoxShape.circle,
+                                                        color:PdfColors.white
+                                                    ),
+                                                      child:   p.ClipRRect(
+                                                        verticalRadius: 18,
+                                                        horizontalRadius: 18,
+                                                        child: p.Image(schoollogoii),),),
+                                                  ],
+                                                ),
+                                                p.SizedBox(height: 10,),
+
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][2]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][2]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                  ]) : p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+                              namelist[index].length>3? p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Row(
+                                                 mainAxisAlignment: p.MainAxisAlignment.center,
+                                                  children: [
+                                                    p.Container(
+                                                      width:40,
+                                                      height:40, decoration: p.BoxDecoration(
+                                                        shape: p.BoxShape.circle,
+                                                        color:PdfColors.white
+                                                    ),
+                                                      child:   p.ClipRRect(
+                                                        verticalRadius: 18,
+                                                        horizontalRadius: 18,
+                                                        child: p.Image(schoollogoii),),),
+                                                  ],
+                                                ),
+                                                p.SizedBox(height: 10,),
+
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][3]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][3]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                  ]) : p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+                              namelist[index].length>4? p.Column(
+                                  crossAxisAlignment: p.CrossAxisAlignment.center,
+                                  children:[
+                                    p.Transform.scale(scale: -1,
+                                      child:
+                                      p.Container(
+                                        height: 252.35,
+                                        width: 161.5,
+                                        color:PdfColors.white,
+
+                                        child: p.Stack(
+                                          children: [
+                                            p.Column(
+                                              mainAxisAlignment: p.MainAxisAlignment.end,
+                                              children: [
+                                                p.Image(bg3,),
+                                               
+
+                                              ],
+                                            ),
+                                            p.Column(
+                                              crossAxisAlignment: p.CrossAxisAlignment.center,
+
+                                              children: [
+                                                p.SizedBox(height: 16,),
+                                                p.Row(
+                                                 mainAxisAlignment: p.MainAxisAlignment.center,
+                                                  children: [
+                                                    p.Container(
+                                                      width:40,
+                                                      height:40, decoration: p.BoxDecoration(
+                                                        shape: p.BoxShape.circle,
+                                                        color:PdfColors.white
+                                                    ),
+                                                      child:   p.ClipRRect(
+                                                        verticalRadius: 18,
+                                                        horizontalRadius: 18,
+                                                        child: p.Image(schoollogoii),),),
+                                                  ],
+                                                ),
+                                                p.SizedBox(height: 10,),
+
+
+                                                p.Text("Emergency Contact No",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Text("+91 ${emgphonelist[index][4]}",style: p.TextStyle(
+                                                    font: fontregpoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                p.SizedBox(height:5),
+                                                p.Text("Address",style: p.TextStyle(
+                                                    font: fontsemipoppoins,
+                                                    color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+
+                                                p.Container(
+                                                    width:90,
+                                                    height:2,
+                                                    child: p.Divider()
+                                                ),
+                                                p.SizedBox(height: 2,),
+
+                                                p.Container(
+                                                  width:150,
+                                                  child: p.Text(getCapitalizedName(addresslist[index][4]),style: p.TextStyle(
+                                                      font: fontregpoppoins,
+                                                      color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                ),
+
+
+
+
+                                                p.Padding(
+                                                  padding: p.EdgeInsets.only(left: 0.0),
+                                                  child: p.Row(
+                                                    mainAxisAlignment: p.MainAxisAlignment.center,
+                                                    children: [
+                                                      p.Column(
+                                                        children: [
+                                                          p.SizedBox(height:5),
+                                                          p.Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child: p.Image(vidhaanlogo)),
+
+                                                          p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
+                                                              font: fontsemimon,
+                                                              color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+                                  ]) : p.Column(
+                                crossAxisAlignment: p.CrossAxisAlignment.center,
+                                children:[
+
+                                  p.Container(
+                                    height: 252.35,
+                                    width: 161.5,
+                                    color:PdfColors.white,
+                                  ), p.Container(
+                                      height: 3.0,
+
+                                    ),
+                                    p.Container(
+                                      height: 16,
+                                      width: 16,
+                                      child: p.Image(plusicon),
+                                    ),
+
+]
+                            ),
+
+
+
+                            ]
+                        ),
+                      ),
+
+
+
+                    ]));
+            }, itemCount: namelist.length)
+
+
+
+        ));
+
+    final pdf = p.Document();
+    pdf.addPage(
+
+      p.MultiPage(
+        pageFormat: PdfPageFormat.a3,
+        orientation: p.PageOrientation.portrait,
+        margin: p.EdgeInsets.all(0),
+        build: (context) => widgets, //here goes the widgets list
+      ),
+    );
+    Printing.layoutPdf(
+      onLayout: (PdfPageFormat format) async => pdf.save(),
+    );
+
+    setState(() {
+
+    });
+  }
+  String getCapitalizedName(String name) {
+    final names = name.split(' ');
+    String finalName = '';
+    for (var n in names) {
+      n.trim();
+      if (n.isNotEmpty) {
+        finalName += '${n[0].toUpperCase()}${n.substring(1)} ';
+      }
+    }
+    return finalName.trim();
+  }
+
+  List namelist = [];
+  List lastnamelist = [];
+  List imglist = [];
+  List regnolist = [];
+  List classlist = [];
+  List doblist = [];
+  List bloodlist = [];
+  List phonelist = [];
+  List emgphonelist = [];
+  List addresslist = [];
+  addinglist() async {
+    var doucment = await FirebaseFirestore.instance.collection("Staffs").orderBy("timestamp").get();
+    print("Reg NO changed successfully");
+    int temp= doucment.docs.length~/10;
+    int remainder = doucment.docs.length.remainder(10);
+    int pagecount=0;
+    int g=0;
+    print(temp);
+    print(remainder);
+    if(remainder!=0){
+      setState(() {
+        pagecount=temp+1;
+      });
+    }
+    print(pagecount);
+    for (int i=0;i<pagecount;i++){
+      setState(() {
+
+
+        namelist.add([]);
+        lastnamelist.add([]);
+        imglist.add([]);
+        regnolist.add([]);
+        classlist.add([]);
+        doblist.add([]);
+        bloodlist.add([]);
+        phonelist.add([]);
+        emgphonelist.add([]);
+        addresslist.add([]);
+      });
+    }
+    for (int j=0;j<doucment.docs.length;j++) {
+
+      setState(()  {
+        namelist[g].add(doucment.docs[j]["stname"]);
+        lastnamelist[g].add(doucment.docs[j]["stlastname"]);
+        regnolist[g].add(doucment.docs[j]["regno"]);
+        classlist[g].add(doucment.docs[j]["designation"]);
+        doblist[g].add(doucment.docs[j]["dob"]);
+        bloodlist[g].add(doucment.docs[j]["bloodgroup"]);
+        phonelist[g].add(doucment.docs[j]["mobile"]);
+        emgphonelist[g].add(doucment.docs[j]["Spousephone"]);
+        addresslist[g].add(doucment.docs[j]["address"]);
+      });
+      imglist[g].add(await flutterImageProvider(NetworkImage(doucment.docs[j]["imgurl"]==""?"https://firebasestorage.googleapis.com/v0/b/vidhaan-4aee7.appspot.com/o/360_F_270188580_YDUEwBmDIxBMvCQxkcunmEkm93VqOgqm.jpg?alt=media&token=fe18ba43-4a31-4b53-9523-42bb4241d9a1":doucment.docs[j]["imgurl"])));
+
+      if((j+1)%10==0){
+        printtext(g);
+        setState(() {
+          g=g+1;
+        });
+      }
+    }
+    print("Added sucessfully");
+
+
+
+  }
+  printtext(g){
+    print(namelist[g].length);
+    print(imglist[g].length);
+    print(regnolist[g].length);
+    print(classlist[g].length);
+    print(doblist[g].length);
+    print(bloodlist[g].length);
+    print(phonelist[g].length);
+    print("Next Set------------------------${g+1}");
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     double height =MediaQuery.of(context).size.height;
@@ -829,13 +4506,16 @@ class _StaffIDState extends State<StaffID> {
                                                               children: [
                                                                 SizedBox(width: 20,),
                                                                 Container(
-                                                                  width: 110,
+                                                                  width: 90,
                                                                   child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                                       color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
                                                                 ),
-                                                                Text(value["address"],style: GoogleFonts.poppins(
-                                                                    color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                Container(
+                                                                  width: 150,
+                                                                  child: Text(value["address"],style: GoogleFonts.poppins(
+                                                                      color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                ),
                                                               ],
                                                             ),
 
@@ -862,7 +4542,6 @@ class _StaffIDState extends State<StaffID> {
 
                                                           ],
                                                         ),
-
                                                       ],
                                                     ),
                                                   ),
@@ -892,7 +4571,7 @@ class _StaffIDState extends State<StaffID> {
 
         floatingActionButton: mainconcent==true || check.contains(true)? InkWell(
           onTap: (){
-            // getstaffbyid();
+            getvalue();
           },
           child: Padding(
             padding: const EdgeInsets.only(left:10.0),

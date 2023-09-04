@@ -173,14 +173,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
       "amount": int.parse(amount.text),
       "timestamp": DateTime.now().microsecondsSinceEpoch,
       "paytype": paytype.text,
+      "status":false,
     });
-    FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc().set({
-        "feesname":  _typeAheadControllerfees.text,
-        "amount": int.parse(amount.text),
-      "timestamp": DateTime.now().microsecondsSinceEpoch,
-        "paytype": paytype.text,
-        "status":false,
-      });
+
   }
   addgen() async {
     FirebaseFirestore.instance.collection("Fees").doc().set({
@@ -210,8 +205,6 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         getorderno();
         gettotal1();
         gettotal2();
-
-
       },
     )..show();
   }
@@ -276,7 +269,8 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
   Future<void> _monthpick({
     required BuildContext context,
     String? locale,
-  }) async {
+  })
+  async {
     final localeObj = locale != null ? Locale(locale) : null;
     final selected = await showMonthYearPicker(
       context: context,
@@ -795,8 +789,6 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   ],
                                 ) :
                               Container(),
-
-
                               ],
                             ),
                           ),

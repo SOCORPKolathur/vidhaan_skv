@@ -142,82 +142,67 @@ class _ClassSubjectsState extends State<ClassSubjects> {
 
 
   }
+
+  Errordialog(){
+    return AwesomeDialog(
+      width: 450,
+      context: context,
+      dialogType: DialogType.error,
+      animType: AnimType.rightSlide,
+      title: 'Field cannot be empty',
+
+
+      btnOkOnPress: () {
+
+      },
+    )..show();
+  }
   @override
   Widget build(BuildContext context) {
     double height= MediaQuery.of(context).size.height;
     double width= MediaQuery.of(context).size.width;
-    return   Material(
-        elevation: 5,
-        borderRadius: BorderRadius.circular(12),
-    child: Container(
-    width: width/1.050,
-      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+    return   Padding(
+      padding: const EdgeInsets.only(left: 0.0,right:0),
+      child: Material(
+          elevation: 5,
+          borderRadius: BorderRadius.circular(12),
+      child: Container(
+      width: width/1.050,
+        decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
 
-      child: SingleChildScrollView(
-        child: Column(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 0.0,top: 0),
+              child: Container(
+                width: width/2.609,
 
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 0.0,top: 0),
-                  child: Container(
-                    width: width/2.550,
+                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+                child:  SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                    decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-                    child:  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,top:20),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0,top:20),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right:0.0),
-                                    child: Text("Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 10),
-                                    child: Container(
-                                      child: TextField(
-                                        controller: orderno,
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 15
-                                        ),
-                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                          border: InputBorder.none,
-                                        ),
-                                      ),
-                                      width: width/7.902,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-
-                                ],
-
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right:0.0),
-                                    child: Text("Subject",style: GoogleFonts.poppins(fontSize: 15,)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 10),
-                                    child: Container(child: TextField(
-                                      controller: name,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right:0.0),
+                                  child: Text("Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  child: Container(
+                                    child: TextField(
+                                      readOnly: true,
+                                      controller: orderno,
                                       style: GoogleFonts.poppins(
                                           fontSize: 15
                                       ),
@@ -225,376 +210,411 @@ class _ClassSubjectsState extends State<ClassSubjects> {
                                         border: InputBorder.none,
                                       ),
                                     ),
-                                      width: width/7.902,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                                    width: width/7.902,
+                                    height: height/16.425,
+                                    //color: Color(0xffDDDEEE),
+                                    decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
+                                  ),
+                                ),
+
+                              ],
+
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right:0.0),
+                                  child: Text("Subject",style: GoogleFonts.poppins(fontSize: 15,)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  child: Container(child: TextField(
+                                    controller: name,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 15
+                                    ),
+                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                      border: InputBorder.none,
                                     ),
                                   ),
+                                    width: width/7.902,
+                                    height: height/16.425,
+                                    //color: Color(0xffDDDEEE),
+                                    decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
-                                ],
+                                  ),
+                                ),
 
-                              ),
-                              GestureDetector(
-                                onTap: (){
+                              ],
+
+                            ),
+                            GestureDetector(
+                              onTap: (){
+                                if(name.text!="") {
                                   addclass();
                                   Successdialog();
-                                },
-                                child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
-                                  width: width/8.907,
-                                  height: height/16.425,
-                                  // color:Color(0xff00A0E3),
-                                  decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
+                                }
+                                else{
+                                  Errordialog();
+                                }
+                              },
+                              child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
+                                width: width/9.307,
+                                height: height/16.425,
+                                // color:Color(0xff00A0E3),
+                                decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
-                                ),
                               ),
-
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: height/13.14,
-                            width: width/ 1.241,
-
-                            decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
-                            ),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                  child: Text("Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                  child: Text("Subject",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                ),
-                              ],
                             ),
 
-                          ),
+                          ],
                         ),
-                        StreamBuilder<QuerySnapshot>(
-                            stream: FirebaseFirestore.instance.collection("SubjectMaster").orderBy("order").snapshots(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: height/13.14,
+                          width: width/ 1.241,
 
-                            builder: (context,snapshot){
-                              if(!snapshot.hasData)
-                              {
-                                return   Center(
-                                  child:  CircularProgressIndicator(),
-                                );}
-                              if(snapshot.hasData==null)
-                              {
-                                return   Center(
-                                  child:  CircularProgressIndicator(),
-                                );}
-                              return ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.docs.length,
-                                  itemBuilder: (context,index){
-                                    var value = snapshot.data!.docs[index];
-                                    return  Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
+                          decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
 
-                                        width: width/ 1.241,
-
-                                        decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
-
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                              child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                            ),
-                                            Padding(
-
-                                              padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                              child: Container(
-                                                  width: 100,
-                                                  child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
-                                            ),
-                                            InkWell(
-                                              onTap: (){
-                                                addsubject(value["name"]);
-
-                                              },
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                child: Container(
-
-                                                  width: 40,
-                                                  height: 20,
-                                                  decoration: BoxDecoration(
-                                                    color:Color(0xff00A0E3),
-                                                    borderRadius: BorderRadius.circular(5)
-                                                  ),
-                                                  child: Center(
-                                                    child: Icon(Icons.add_circle,color: Colors.white,size: 15,),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-
-                                            InkWell(
-                                              onTap: (){
-                                                deletestudent2(value.id);
-                                              },
-                                              child: Padding(
-                                                  padding:
-                                                  const EdgeInsets.only(left: 100.0),
-                                                  child: Container(
-                                                      width: 30,
-
-                                                      child: Image.asset("assets/delete.png"))
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-
-                                      ),
-                                    );
-                                  });
-
-                            }),
-
-
-                      ],
-                    ),
-
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0,top: 0),
-                  child: Container(
-                    width:width/2.550,
-
-                    decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-                    child:  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-
-                      children: [
-
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0,top:20),
+                          ),
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right:0.0),
-                                    child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                    child: Container(child:
-
-
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        hint:  Row(
-                                          children: [
-                                            Icon(
-                                              Icons.list,
-                                              size: 16,
-                                              color: Colors.black,
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'Select Option',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        items: classes
-                                            .map((String item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style:  GoogleFonts.poppins(
-                                                fontSize: 15
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                            .toList(),
-                                        value:  _typeAheadControllerclass.text,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            _typeAheadControllerclass.text = value!;
-                                          });
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          height: 50,
-                                          width: 160,
-                                          padding: const EdgeInsets.only(left: 14, right: 14),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                        ),
-                                        iconStyleData: const IconStyleData(
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios_outlined,
-                                          ),
-                                          iconSize: 14,
-                                          iconEnabledColor: Colors.black,
-                                          iconDisabledColor: Colors.grey,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: 200,
-                                          width: width/5.464,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(14),
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                          scrollbarTheme: ScrollbarThemeData(
-                                            radius: const Radius.circular(7),
-                                            thickness: MaterialStateProperty.all<double>(6),
-                                            thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                          ),
-                                        ),
-                                        menuItemStyleData: const MenuItemStyleData(
-                                          height: 40,
-                                          padding: EdgeInsets.only(left: 14, right: 14),
-                                        ),
-                                      ),
-                                    ),
-                                      width: width/6.902,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-
-                                ],
-
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                                child: Text("Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
-
-
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                child: Text("Subject",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                              ),
                             ],
                           ),
+
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: height/13.14,
-                            width: width/ 1.241,
+                      ),
+                      StreamBuilder<QuerySnapshot>(
+                          stream: FirebaseFirestore.instance.collection("SubjectMaster").orderBy("order").snapshots(),
 
-                            decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
+                          builder: (context,snapshot){
+                            if(!snapshot.hasData)
+                            {
+                              return   Center(
+                                child:  CircularProgressIndicator(),
+                              );}
+                            if(snapshot.hasData==null)
+                            {
+                              return   Center(
+                                child:  CircularProgressIndicator(),
+                              );}
+                            return ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: (context,index){
+                                  var value = snapshot.data!.docs[index];
+                                  return  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
 
-                            ),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                  child: Text("Si.No",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 28.0,right: 8.0),
-                                  child: Text("Subjects",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                ),
-                              ],
-                            ),
+                                      width: width/ 1.241,
 
-                          ),
-                        ),
-                        StreamBuilder<QuerySnapshot>(
-                            stream: FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Sections").doc("${_typeAheadControllerclass.text}A").collection("Subjects").orderBy("timestamp").snapshots(),
+                                      decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
 
-                            builder: (context,snapshot){
-                              if(!snapshot.hasData)
-                              {
-                                return   Center(
-                                  child:  CircularProgressIndicator(),
-                                );}
-                              if(snapshot.hasData==null)
-                              {
-                                return   Center(
-                                  child:  CircularProgressIndicator(),
-                                );}
-                              return ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.docs.length,
-                                  itemBuilder: (context,index){
-                                    var value = snapshot.data!.docs[index];
-                                    return  Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        height: height/ 21.9,
-                                        width: width/ 1.241,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 30.0,right: 70.0),
+                                            child: Text("00${(index+1).toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          ),
+                                          Padding(
 
-                                        decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+                                            padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                            child: Container(
+                                                width: 100,
+                                                child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                          ),
+                                          InkWell(
+                                            onTap: (){
+                                              addsubject(value["name"]);
 
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                              child: Text("${(index+1).toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                            ),
-                                            Padding(
+                                            },
+                                            child: Padding(
                                               padding: const EdgeInsets.only(left: 8.0,right: 8.0),
                                               child: Container(
-                                                  width: 150,
 
-                                                  child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
-                                            ),
-                                            InkWell(
-                                              onTap: (){
-                                                deletestudent1(value.id);
-                                              },
-                                              child: Padding(
-                                                  padding:
-                                                  const EdgeInsets.only(left: 100.0),
-                                                  child: Container(
-                                                      width: 30,
-
-                                                      child: Image.asset("assets/delete.png"))
+                                                width: 40,
+                                                height: 20,
+                                                decoration: BoxDecoration(
+                                                  color:Color(0xff00A0E3),
+                                                  borderRadius: BorderRadius.circular(5)
+                                                ),
+                                                child: Center(
+                                                  child: Icon(Icons.add_circle,color: Colors.white,size: 15,),
+                                                ),
                                               ),
                                             ),
-                                          ],
+                                          ),
+
+                                          InkWell(
+                                            onTap: (){
+                                              deletestudent2(value.id);
+                                            },
+                                            child: Padding(
+                                                padding:
+                                                const EdgeInsets.only(left: 100.0),
+                                                child: Container(
+                                                    width: 30,
+
+                                                    child: Image.asset("assets/delete.png"))
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                    ),
+                                  );
+                                });
+
+                          }),
+
+
+                    ],
+                  ),
+                ),
+
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0,top: 0),
+              child: Container(
+                width:width/2.550,
+
+                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+                child:  SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+
+                    children: [
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,top:20),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right:0.0),
+                                  child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                  child: Container(child:
+
+
+                                  DropdownButtonHideUnderline(
+                                    child: DropdownButton2<String>(
+                                      isExpanded: true,
+                                      hint:  Row(
+                                        children: [
+                                          Icon(
+                                            Icons.list,
+                                            size: 16,
+                                            color: Colors.black,
+                                          ),
+                                          SizedBox(
+                                            width: 4,
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              'Select Option',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 15
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      items: classes
+                                          .map((String item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style:  GoogleFonts.poppins(
+                                              fontSize: 15
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
+                                          .toList(),
+                                      value:  _typeAheadControllerclass.text,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          _typeAheadControllerclass.text = value!;
+                                        });
+                                      },
+                                      buttonStyleData: ButtonStyleData(
+                                        height: 50,
+                                        width: 160,
+                                        padding: const EdgeInsets.only(left: 14, right: 14),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+
+                                          color: Color(0xffDDDEEE),
                                         ),
 
                                       ),
-                                    );
-                                  });
+                                      iconStyleData: const IconStyleData(
+                                        icon: Icon(
+                                          Icons.arrow_forward_ios_outlined,
+                                        ),
+                                        iconSize: 14,
+                                        iconEnabledColor: Colors.black,
+                                        iconDisabledColor: Colors.grey,
+                                      ),
+                                      dropdownStyleData: DropdownStyleData(
+                                        maxHeight: 200,
+                                        width: width/5.464,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(14),
+                                          color: Color(0xffDDDEEE),
+                                        ),
 
-                            }),
+                                        scrollbarTheme: ScrollbarThemeData(
+                                          radius: const Radius.circular(7),
+                                          thickness: MaterialStateProperty.all<double>(6),
+                                          thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                        ),
+                                      ),
+                                      menuItemStyleData: const MenuItemStyleData(
+                                        height: 40,
+                                        padding: EdgeInsets.only(left: 14, right: 14),
+                                      ),
+                                    ),
+                                  ),
+                                    width: width/6.902,
+                                    height: height/16.42,
+                                    //color: Color(0xffDDDEEE),
+                                    decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                  ),
+                                ),
+
+                              ],
+
+                            ),
 
 
-                      ],
-                    ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: height/13.14,
+                          width: width/ 1.241,
 
+                          decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
+
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                child: Text("Si.No",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 28.0,right: 8.0),
+                                child: Text("Subjects",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                              ),
+                            ],
+                          ),
+
+                        ),
+                      ),
+                      StreamBuilder<QuerySnapshot>(
+                          stream: FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Sections").doc("${_typeAheadControllerclass.text}A").collection("Subjects").orderBy("timestamp").snapshots(),
+
+                          builder: (context,snapshot){
+                            if(!snapshot.hasData)
+                            {
+                              return   Center(
+                                child:  CircularProgressIndicator(),
+                              );}
+                            if(snapshot.hasData==null)
+                            {
+                              return   Center(
+                                child:  CircularProgressIndicator(),
+                              );}
+                            return ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: (context,index){
+                                  var value = snapshot.data!.docs[index];
+                                  return  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height: height/ 21.9,
+                                      width: width/ 1.241,
+
+                                      decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 30.0,right: 70.0),
+                                            child: Text("${(index+1).toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                            child: Container(
+                                                width: 150,
+
+                                                child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                          ),
+                                          InkWell(
+                                            onTap: (){
+                                              deletestudent1(value.id);
+                                            },
+                                            child: Padding(
+                                                padding:
+                                                const EdgeInsets.only(left: 100.0),
+                                                child: Container(
+                                                    width: 30,
+
+                                                    child: Image.asset("assets/delete.png"))
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                    ),
+                                  );
+                                });
+
+                          }),
+
+
+                    ],
                   ),
                 ),
-              ],
+
+              ),
             ),
           ],
         ),
-      ),
-    ));
+      )),
+    );
   }
-
 
   Future<void> deletestudent1(id) async {
     return showDialog<void>(

@@ -69,6 +69,8 @@ dependencies:
   screenshot: ^2.1.0
   image_downloader_web: ^2.0.2
   device_info_plus: ^9.0.2
+  ip_geolocation: ^1.0.0
+  pattern_lock: ^2.0.0
 
 
 

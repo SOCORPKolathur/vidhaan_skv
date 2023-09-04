@@ -116,3 +116,101 @@ class _ExcelsheetState extends State<Excelsheet> {
     }
   }
 }
+class Templatedown extends StatefulWidget {
+  const Templatedown({Key? key}) : super(key: key);
+
+  @override
+  State<Templatedown> createState() => _TemplatedownState();
+}
+
+class _TemplatedownState extends State<Templatedown> {
+  @override
+  Widget build(BuildContext context) {
+    final double width=MediaQuery.of(context).size.width;
+    final double height=MediaQuery.of(context).size.height;
+    return InkWell(
+      onTap: (){
+        createExcel();
+      },
+      child: Material(
+        borderRadius: BorderRadius.circular(5),
+        elevation: 7,
+        child: Container(child: Center(
+          child:
+
+          Text("Download Template",style: GoogleFonts.poppins(color:Colors.white),),
+        ),
+          width: width/6.507,
+          height: height/16.425,
+          // color:Color(0xff00A0E3),
+          decoration: BoxDecoration(color: const Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
+
+        ),
+      ),
+    );
+  }
+  createExcel()async{
+
+    final Workbook workbook = Workbook();
+    final Worksheet sheet   = workbook.worksheets[0];
+
+    sheet.getRangeByName("A1").setText("First Name");
+    sheet.getRangeByName("B1").setText("Middle Name");
+    sheet.getRangeByName("C1").setText("Last Name");
+    sheet.getRangeByName("D1").setText("Class");
+    sheet.getRangeByName("E1").setText("Section");
+    sheet.getRangeByName("F1").setText("Academic Year");
+    sheet.getRangeByName("G1").setText("Blood Group");
+    sheet.getRangeByName("H1").setText("Date of Birth");
+    sheet.getRangeByName("I1").setText("Gender");
+    sheet.getRangeByName("J1").setText("Address");
+    sheet.getRangeByName("K1").setText("Community");
+    sheet.getRangeByName("L1").setText("House");
+    sheet.getRangeByName("M1").setText("Religion");
+    sheet.getRangeByName("N1").setText("Mobile");
+    sheet.getRangeByName("O1").setText("Email");
+    sheet.getRangeByName("P1").setText("Aadhaar No");
+    sheet.getRangeByName("Q1").setText("Height (CMS)");
+    sheet.getRangeByName("R1").setText("Weight (KG)");
+    sheet.getRangeByName("S1").setText("EMIS");
+    sheet.getRangeByName("T1").setText("Transport");
+
+    sheet.getRangeByName("U1").setText("Father Name");
+    sheet.getRangeByName("V1").setText("Father Occupation");
+    sheet.getRangeByName("W1").setText("Father Office");
+    sheet.getRangeByName("X1").setText("Father Mobile");
+    sheet.getRangeByName("Y1").setText("Father Email");
+    sheet.getRangeByName("Z1").setText("Father Aadhaar");
+
+    sheet.getRangeByName("AA1").setText("Mother Name");
+    sheet.getRangeByName("AB1").setText("Mother Occupation");
+    sheet.getRangeByName("AC1").setText("Mother Office");
+    sheet.getRangeByName("AD1").setText("Mother Mobile");
+    sheet.getRangeByName("AE1").setText("Mother Email");
+    sheet.getRangeByName("AF1").setText("Mother Aadhaar");
+
+    sheet.getRangeByName("AG1").setText("Guardian Name");
+    sheet.getRangeByName("AH1").setText("Guardian Occupation");
+    sheet.getRangeByName("AI1").setText("Guardian Mobile");
+    sheet.getRangeByName("AJ1").setText("Guardian Email");
+    sheet.getRangeByName("AK1").setText("Guardian Aadhaar");
+
+    sheet.getRangeByName("AL1").setText("Brother Studying Here");
+    sheet.getRangeByName("AM1").setText("Brother Name");
+
+    final List<int>bytes = workbook.saveAsStream();
+    workbook.dispose();
+
+    if(kIsWeb){
+      AnchorElement(href: 'data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}')
+        ..setAttribute('download', 'BULK UPLOAD TEMPLATE.xlsx')
+        ..click();
+    }else {
+      final String path = (await getApplicationSupportDirectory()).path;
+      final String fileName = Platform.isWindows?'$path\\Student Data.xlsx':"$path/Student Data.xlsx";
+      final File file = File(fileName);
+      await file.writeAsBytes(bytes, flush: true);
+      OpenFile.open(fileName);
+    }
+  }
+}

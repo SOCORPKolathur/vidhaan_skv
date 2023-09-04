@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:show_up_animation/show_up_animation.dart';
+import 'package:vidhaan/staffentryedit.dart';
 
 class StaffList extends StatefulWidget {
   const StaffList({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class StaffList extends StatefulWidget {
 class _StaffListState extends State<StaffList> {
   String studentid= "";
   bool view=false;
+  int view1=0;
 
   String? _selectedCity;
   final TextEditingController _typeAheadControllerclass = TextEditingController();
@@ -89,7 +91,8 @@ class _StaffListState extends State<StaffList> {
   Widget build(BuildContext context) {
     double height =MediaQuery.of(context).size.height;
     double width =MediaQuery.of(context).size.width;
-    return view==false? SingleChildScrollView(
+    return view1==0?
+    view==false? SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -267,6 +270,14 @@ class _StaffListState extends State<StaffList> {
                             style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                           ),
                           Padding(
+                            padding: const EdgeInsets.only(left: 40.0, right: 0,),
+                            child: Text(
+                              "Designation",
+                              style:
+                              GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                            ),
+                          ),
+                          Padding(
                             padding: const EdgeInsets.only(left: 40.0, right: 40,),
                             child: Text(
                               "In Charge",
@@ -385,6 +396,17 @@ class _StaffListState extends State<StaffList> {
                                           child: Text(
                                             value["stname"],
                                             style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 0.0, right: 0,),
+                                        child: Container(
+                                          width: width/9.766,
+                                          child: Text(
+                                            value["designation"],
+                                            style:
+                                            GoogleFonts.poppins(fontWeight: FontWeight.w500,),
                                           ),
                                         ),
                                       ),
@@ -583,8 +605,8 @@ class _StaffListState extends State<StaffList> {
 
 
                                 SizedBox(height:height/52.15),
-                                Divider(),
-                                Row(
+                                value["incharge"]!="" ? Divider() :Container(),
+                                value["incharge"]!="" ?  Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     SizedBox(height:height/20.86),
@@ -593,9 +615,9 @@ class _StaffListState extends State<StaffList> {
                                         fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                     ),),
                                   ],
-                                ),
-                                SizedBox(height: height/65.7,),
-                                Row(
+                                ):Container(),
+                                value["incharge"]!="" ?  SizedBox(height: height/65.7,):Container(),
+                                value["incharge"]!="" ? Row(
                                   children: [
                                     SizedBox(width:width/62.2),
                                     Material(
@@ -643,7 +665,7 @@ class _StaffListState extends State<StaffList> {
 
                                     ),
                                   ],
-                                ),
+                                ):Container(),
                                 Divider(),
                                 SizedBox(height:height/32.85,),
                                 Row(children: [
@@ -778,7 +800,7 @@ class _StaffListState extends State<StaffList> {
                                       InkWell(
                                         onTap: (){
                                           setState(() {
-                                            //view1=3;
+                                            view1=3;
                                           });
 
                                         },
@@ -826,25 +848,7 @@ class _StaffListState extends State<StaffList> {
                                               ),
                                             ),
 
-                                            Padding(
-                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    "Address: ",
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 13,
-                                                        fontWeight: FontWeight.bold),
-                                                  ),
-                                                  Text(
-                                                    value["address"],
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 12,
-                                                        fontWeight: FontWeight.w500),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+
                                             Padding(
                                               padding: const EdgeInsets.only(top: 0.0,bottom: 20),
                                               child: Row(
@@ -909,6 +913,29 @@ class _StaffListState extends State<StaffList> {
                                                 children: [
                                                   Text("Aadhaar No: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
                                                   Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Address: ",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Container(
+                                                    width:200,
+                                                    child: Text(
+                                                      value["address"],
+                                                      style: GoogleFonts.poppins(
+                                                          fontSize: 12,
+                                                          fontWeight: FontWeight.w500),
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -1029,7 +1056,7 @@ class _StaffListState extends State<StaffList> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              padding: const EdgeInsets.only(top: 0.0,bottom: 10),
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -1195,7 +1222,21 @@ class _StaffListState extends State<StaffList> {
               );
           },
         ),
-      ),
-    );
+      )
+    ) : Stack(
+      children: [
+        StaffEdit(studentid),
+        Padding(
+          padding: const EdgeInsets.only(top:30.0,left:20),
+          child: InkWell(
+              onTap:(){
+                setState(() {
+                  view1=0;
+                });
+              },
+              child: Icon(Icons.arrow_back_rounded)),
+        ),
+      ],
+    ) ;
   }
 }
