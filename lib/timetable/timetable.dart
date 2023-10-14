@@ -2,8 +2,13 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pdf/widgets.dart' as p;
+import 'package:printing/printing.dart';
+import 'package:pdf/pdf.dart';
+import 'package:vidhaan/demopdf.dart';
 
 class TimeTable extends StatefulWidget {
   const TimeTable({Key? key}) : super(key: key);
@@ -648,7 +653,7 @@ class _TimeTableState extends State<TimeTable> {
                       ),
                       InkWell(
                         onTap: (){
-
+                          getvalue();
                         },
                         child: Material(
                           borderRadius: BorderRadius.circular(5),
@@ -3389,5 +3394,162 @@ class _TimeTableState extends State<TimeTable> {
         ],
       ),
     );
+  }
+  getvalue() async {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+
+    List<p.Widget> widgets = [];
+
+    //container for profile image decoration
+    final container = p.Center(
+      child: p.Container(
+          child: p.Padding(
+            padding: p.EdgeInsets.only(top: 5),
+            child: p.Row(mainAxisAlignment: p.MainAxisAlignment.start, children: [
+              p.Container(
+                  width: 60,
+                  child: p.Center(
+                    child: p.Text("Si.No".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  )),
+              p.SizedBox(width: width / 273.2),
+              p.Container(
+                  width: 80,
+                  child: p.Center(
+                    child: p.Text("Descriptions".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  )),
+              p.SizedBox(width: width / 273.2),
+
+              p.SizedBox(width: width / 273.2),
+
+              p.SizedBox(width: 200),
+              p.Container(
+                  width: 60,
+                  child: p.Center(
+                    child: p.Text("Rate".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  )),
+              p.SizedBox(width: width / 273.2),
+
+              p.SizedBox(width: width / 273.2),
+              p.Container(
+                  width: 60,
+                  child: p.Center(
+                    child: p.Text("Total".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  ))
+            ]),
+          )),
+    );
+    final container2 = p.Center(
+      child: p.Container(
+          child: p.Padding(
+            padding: p.EdgeInsets.only(top: 5),
+            child: p.Row(mainAxisAlignment: p.MainAxisAlignment.start, children: [
+              p.Container(
+                  width: 60,
+                  child: p.Center(
+                    child: p.Text("001".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  )),
+              p.SizedBox(width: width / 273.2),
+              p.Container(
+                  width: 80,
+                  child: p.Center(
+                    child: p.Text("First Mid Term Fees".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  )),
+              p.SizedBox(width: width / 273.2),
+
+              p.SizedBox(width: width / 273.2),
+
+              p.SizedBox(width: 200),
+              p.Container(
+                  width: 60,
+                  child: p.Center(
+                    child: p.Text("15000".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  )),
+              p.SizedBox(width: width / 273.2),
+
+              p.SizedBox(width: width / 273.2),
+              p.Container(
+                  width: 60,
+                  child: p.Center(
+                    child: p.Text("1500".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  ))
+            ]),
+          )),
+    );
+
+    final container3 = p.Center(
+      child: p.Container(
+          child: p.Padding(
+            padding: p.EdgeInsets.only(top: 5),
+            child: p.Row(mainAxisAlignment: p.MainAxisAlignment.start, children: [
+              p.Container(
+                  width: 60,
+                  child: p.Center(
+                    child: p.Text("   ".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  )),
+              p.SizedBox(width: width / 273.2),
+              p.Container(
+                  width: 80,
+                  child: p.Center(
+                    child: p.Text("               ".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  )),
+              p.SizedBox(width: width / 273.2),
+
+              p.SizedBox(width: width / 273.2),
+
+              p.SizedBox(width: 200),
+              p.Container(
+                  width: 60,
+                  child: p.Center(
+                    child: p.Text("Total:".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  )),
+              p.SizedBox(width: width / 273.2),
+
+              p.SizedBox(width: width / 273.2),
+              p.Container(
+                  width: 60,
+                  child: p.Center(
+                    child: p.Text("1500".toString(),
+                        style: p.TextStyle(color: PdfColors.black)),
+                  ))
+            ]),
+          )),
+    );
+    final container4 = p.Center(
+      //child:
+    );
+
+    final profileImage = p.MemoryImage((await rootBundle.load('assets/schoollogo.png')).buffer.asUint8List(),);
+    final paid = p.MemoryImage((await rootBundle.load('assets/paid.png')).buffer.asUint8List(),);
+
+
+    widgets.add(p.SizedBox(height: 5));
+    widgets.add(p.SizedBox(height: 5));
+
+    final pdf = p.Document();
+    pdf.addPage(
+      p.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        build: (context) => widgets, //here goes the widgets list
+      ),
+    );
+    Printing.layoutPdf(
+
+      onLayout: (PdfPageFormat format) async => pdf.save(),
+    );
+
+
   }
 }

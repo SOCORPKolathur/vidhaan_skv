@@ -219,13 +219,15 @@ setState(() {
                         LineSeries<SalesData, String>(
                           name: "Students \nAttendance",
                           dataSource:  <SalesData>[
-                            SalesData('Jan', 35),
+                          /*  SalesData('Jan', 35),
                             SalesData('Feb', 28),
                             SalesData('Mar', 34),
                             SalesData('Apr', 32),
                             SalesData('May', 40),
                             SalesData('June', 50),
                             SalesData('July', 50),
+
+                           */
                           ],
                           xValueMapper: (SalesData sales, _) => sales.year,
                           yValueMapper: (SalesData sales, _) => sales.sales,
@@ -253,8 +255,8 @@ setState(() {
                               circularStrokeCap: CircularStrokeCap.round,
                               radius: 50.0,
                               lineWidth: 10.0,
-                              percent:  0.70,
-                              center:  Text("70%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                              percent:  0.00,
+                              center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                               progressColor: Colors.green,
                             ),
                             Padding(
@@ -291,8 +293,8 @@ setState(() {
                               circularStrokeCap: CircularStrokeCap.round,
                               radius: 50.0,
                               lineWidth: 10.0,
-                              percent: 0.30,
-                              center:  Text("30%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                              percent: 0.00,
+                              center:  Text("00%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                               progressColor: Colors.red,
                             ),
                             Padding(
@@ -679,6 +681,7 @@ setState(() {
                           child: GestureDetector(
                             onTap: (){
                              setState(() {
+                               view=true;
                                absentonly=true;
                              });
 

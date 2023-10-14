@@ -2,7 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+import 'modules/home/controllers/home_controller.dart';
 
 
 class NotificationCus extends StatefulWidget {
@@ -13,6 +17,7 @@ class NotificationCus extends StatefulWidget {
 }
 
 class _NotificationCusState extends State<NotificationCus> {
+  final homecontroller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
@@ -264,8 +269,15 @@ class _NotificationCusState extends State<NotificationCus> {
                             "Descr":body.text,
                             "reason":title.text,
                             "From":"Principle",
+                            "Date":"${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}",
+                            "Time":"${DateFormat('hh:mm a').format(DateTime.now())}",
+                            "timestamp":DateTime.now().millisecondsSinceEpoch
                           });
-
+                          setState(() {
+                            homecontroller.body.text=body.text;
+                            homecontroller.title.text=title.text;
+                          });
+                          homecontroller.findusers();
                           _showMyDialog1();
                         },
                         style: ElevatedButton.styleFrom(

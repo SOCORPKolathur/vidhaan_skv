@@ -806,7 +806,7 @@ class _StudentListState extends State<StudentList> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 62),
+                              padding: const EdgeInsets.only(right: 70),
                               child: Text(
                                 "Phone Number",
                                 style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
@@ -1010,7 +1010,7 @@ class _StudentListState extends State<StudentList> {
                                           },
                                           child: Padding(
                                             padding:
-                                            const EdgeInsets.only(left: 45.0),
+                                            const EdgeInsets.only(left: 20.0),
                                             child: Container(
                                               width: width/22.76,
                                               height: height/21.9,
@@ -1193,7 +1193,7 @@ class _StudentListState extends State<StudentList> {
                                           },
                                           child: Padding(
                                             padding:
-                                            const EdgeInsets.only(left: 45.0),
+                                            const EdgeInsets.only(left: 20.0),
                                             child: Container(
                                               width: width/22.76,
                                               height: height/21.9,
@@ -1376,7 +1376,7 @@ class _StudentListState extends State<StudentList> {
                                           },
                                           child: Padding(
                                             padding:
-                                            const EdgeInsets.only(left: 45.0),
+                                            const EdgeInsets.only(left: 20.0),
                                             child: Container(
                                               width: width/22.76,
                                               height: height/21.9,
@@ -1916,7 +1916,7 @@ setState(() {
                                                         ),
                                                         height:height/8.69,
                                                         width:width/15.55,
-                                                        child: Center(child: Text("50",style: GoogleFonts.montserrat(
+                                                        child: Center(child: Text("0",style: GoogleFonts.montserrat(
                                                             fontWeight:FontWeight.bold,color: Colors.red,fontSize:width/53.31
                                                         ),)),
                                                       ),
@@ -1935,7 +1935,7 @@ setState(() {
                                                         ),
                                                         height:height/8.69,
                                                         width:width/15.55,
-                                                        child: Center(child: Text("20",style: GoogleFonts.montserrat(
+                                                        child: Center(child: Text("0",style: GoogleFonts.montserrat(
                                                             fontWeight:FontWeight.bold,color: Colors.green,fontSize:width/53.31
                                                         ),)),
                                                       ),

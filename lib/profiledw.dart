@@ -8,10 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sidebarx/sidebarx.dart';
+import 'package:vidhaan/Masters/student%20id%20card.dart';
 import 'package:vidhaan/profile.dart';
 import 'package:vidhaan/timetable/classsubjects.dart';
+import 'package:vidhaan/timetable/subjectteacher.dart';
 
 import 'Masters/desigination.dart';
+import 'Masters/staffidcard.dart';
+import 'classincharge.dart';
 
 
 
@@ -367,24 +371,7 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
                             width:900
                         ),
 
-                        Padding(
-                          padding: const EdgeInsets.only(top:30.0,left:20),
-                          child: InkWell(
-                            onTap: (){
 
-                              //admin();
-                              //_bulkuploadstudent();
-
-                            },
-                            child: Container(child: Center(child: Text("Update Profile",style: GoogleFonts.poppins(color:Colors.white),)),
-                              width: width/10.507,
-                              height: height/16.425,
-                              // color:Color(0xff00A0E3),
-                              decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                     Divider(),
@@ -396,6 +383,158 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
           ),
     ]
       ),
+    );
+  }
+  String imgUrl="";
+  String imgUrl2="";
+  String imgUrl3="";
+  bool isloading=false;
+  bool isloading2=false;
+  bool isloading3=false;
+  uploadToStorage() async{
+
+    InputElement input = FileUploadInputElement()as InputElement ..accept = 'image/*';
+    FirebaseStorage fs = FirebaseStorage.instance;
+    input.click();
+    input.onChange.listen((event) {
+      final file = input.files!.first;
+      final reader = FileReader();
+      reader.readAsDataUrl(file);
+      reader.onLoadEnd.listen((event) async {
+        var snapshot = await fs.ref().child('studentsimages').child("${file.name}").putBlob(file);
+        String downloadUrl = await snapshot.ref.getDownloadURL();
+        setState(() {
+          imgUrl = downloadUrl;
+          isloading= false;
+
+        });
+
+        print(imgUrl);
+      });
+    });
+
+
+
+
+  }
+  uploadToStorage2() async{
+
+    InputElement input = FileUploadInputElement()as InputElement ..accept = 'image/*';
+    FirebaseStorage fs = FirebaseStorage.instance;
+    input.click();
+    input.onChange.listen((event) {
+      final file = input.files!.first;
+      final reader = FileReader();
+      reader.readAsDataUrl(file);
+      reader.onLoadEnd.listen((event) async {
+        var snapshot = await fs.ref().child('studentsimages').child("${file.name}").putBlob(file);
+        String downloadUrl = await snapshot.ref.getDownloadURL();
+        setState(() {
+          imgUrl2 = downloadUrl;
+          isloading2= false;
+
+        });
+
+        print(imgUrl2);
+      });
+    });
+
+
+
+
+  }
+  uploadToStorage3() async{
+
+    InputElement input = FileUploadInputElement()as InputElement ..accept = 'image/*';
+    FirebaseStorage fs = FirebaseStorage.instance;
+    input.click();
+    input.onChange.listen((event) {
+      final file = input.files!.first;
+      final reader = FileReader();
+      reader.readAsDataUrl(file);
+      reader.onLoadEnd.listen((event) async {
+        var snapshot = await fs.ref().child('studentsimages').child("${file.name}").putBlob(file);
+        String downloadUrl = await snapshot.ref.getDownloadURL();
+        setState(() {
+          imgUrl3 = downloadUrl;
+          isloading3= false;
+
+        });
+
+        print(imgUrl3);
+      });
+    });
+
+
+
+
+  }
+  admin(){
+    FirebaseFirestore.instance.collection("Admin").doc("AbeOpc23Rx9Z6n4fxIVw").set({
+      "schoolname":schoolname.text,
+      "solgan":solgan.text,
+      "phone":schoolphone.text,
+      "buildingno":schoolbuilding.text,
+      "street":schoolstreet.text,
+      "area":schoolarea.text,
+      "city":schoolcity.text,
+      "state":schoolstate.text,
+      "pincode":schoolpincode.text,
+      "idcard":design,
+      "logo":imgUrl,
+      "logo2":imgUrl2,
+      "web":schoolweb.text,
+    });
+  }
+  Future<void> _bulkuploadstudent() async {
+    return showDialog<void>(
+      context: context,
+
+      builder: (BuildContext context) {
+        double width=MediaQuery.of(context).size.width;
+        double height=MediaQuery.of(context).size.height;
+        return StatefulBuilder(
+            builder: (context,setState) {
+              return AlertDialog(
+                title:  Text('Profile Updated Sucessfully',style: GoogleFonts.poppins(
+                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                content:  Container(
+                    width: 350,
+                    height: 250,
+
+                    child:  Lottie.asset("assets/uploaded.json")
+                ),
+                actions: [
+                  InkWell(
+                    onTap: (){
+                      Navigator.of(context).pop();
+                    },
+                    child: Material(
+                      borderRadius: BorderRadius.circular(5),
+                      elevation: 7,
+                      child: Container(child: Center(child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(Icons.cancel,color: Colors.white,),
+                          ),
+                          Text("Ok",style: GoogleFonts.poppins(color:Colors.white),),
+                        ],
+                      )),
+                        width: width/10.507,
+                        height: height/20.425,
+                        // color:Color(0xff00A0E3),
+                        decoration: BoxDecoration(color:  Colors.green,borderRadius: BorderRadius.circular(5)),
+
+                      ),
+                    ),
+                  )
+                ],
+              );
+            }
+        );
+      },
     );
   }
 }
@@ -495,6 +634,22 @@ headerBuilder: (context, extended)  {
           const SidebarXItem(
             icon: Icons.person,
             label: 'Designation',
+          ),
+          const SidebarXItem(
+            icon: Icons.person,
+            label: 'Student ID ',
+          ),
+          const SidebarXItem(
+            icon: Icons.person,
+            label: 'Staff ID',
+          ),
+          const SidebarXItem(
+            icon: Icons.person,
+            label: 'Class In-charge',
+          ),
+          const SidebarXItem(
+            icon: Icons.person,
+            label: 'Subject Staffs',
           ),
         ],
       ),
@@ -1354,7 +1509,24 @@ class _ScreensExampleState extends State<_ScreensExample> {
                             ),
                           ),
 
-                          SizedBox(height: 20,),
+                          SizedBox(height: 10,),
+                          Padding(
+                            padding: const EdgeInsets.only(top:30.0,left:20),
+                            child: InkWell(
+                              onTap: (){
+                                admin();
+                                _bulkuploadstudent();
+
+                              },
+                              child: Container(child: Center(child: Text("Update Profile",style: GoogleFonts.poppins(color:Colors.white),)),
+                                width: width/10.507,
+                                height: height/16.425,
+                                // color:Color(0xff00A0E3),
+                                decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
+
+                              ),
+                            ),
+                          ),
 
 
                         ],
@@ -2030,6 +2202,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                       height:500,
                       decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
                       child:  Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
 
                         children: [
 
@@ -2102,8 +2275,13 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                 ),
                                 GestureDetector(
                                   onTap: (){
+                                    if(name.text==""){
+                                      Errordialog();
+                                    }
+                                    else{
                                     addfees();
                                     Successdialogfees();
+                                    }
                                   },
                                   child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
                                     width: width/10.507,
@@ -2118,7 +2296,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.only(left:10.0,top:10,bottom: 10),
                             child: Container(
                               height: height/13.14,
                               width: 1000,
@@ -2228,6 +2406,14 @@ class _ScreensExampleState extends State<_ScreensExample> {
               padding: const EdgeInsets.only(right:25.0),
               child: Desigination(),
             );
+          case 6:
+            return  StudentID();
+          case 7:
+            return  StaffID();
+          case 8:
+            return  ClassIncharge();
+          case 9:
+            return  SubjectTeacher();
           default:
             return Text(
               pageTitle,
@@ -2347,6 +2533,57 @@ class _ScreensExampleState extends State<_ScreensExample> {
       "logo2":imgUrl2,
       "web":schoolweb.text,
     });
+  }
+  Future<void> _bulkuploadstudent() async {
+    return showDialog<void>(
+      context: context,
+
+      builder: (BuildContext context) {
+        double width=MediaQuery.of(context).size.width;
+        double height=MediaQuery.of(context).size.height;
+        return StatefulBuilder(
+            builder: (context,setState) {
+              return AlertDialog(
+                title:  Text('Profile Updated Sucessfully',style: GoogleFonts.poppins(
+                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                content:  Container(
+                    width: 350,
+                    height: 250,
+
+                    child:  Lottie.asset("assets/uploaded.json")
+                ),
+                actions: [
+                  InkWell(
+                    onTap: (){
+                      Navigator.of(context).pop();
+                    },
+                    child: Material(
+                      borderRadius: BorderRadius.circular(5),
+                      elevation: 7,
+                      child: Container(child: Center(child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(Icons.cancel,color: Colors.white,),
+                          ),
+                          Text("Ok",style: GoogleFonts.poppins(color:Colors.white),),
+                        ],
+                      )),
+                        width: width/10.507,
+                        height: height/20.425,
+                        // color:Color(0xff00A0E3),
+                        decoration: BoxDecoration(color:  Colors.green,borderRadius: BorderRadius.circular(5)),
+
+                      ),
+                    ),
+                  )
+                ],
+              );
+            }
+        );
+      },
+    );
   }
 }
 

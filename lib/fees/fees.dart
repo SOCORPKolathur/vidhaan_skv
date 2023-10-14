@@ -1167,5 +1167,4 @@ class _FeesRegState extends State<FeesReg> {
   }
 
 
-
 }

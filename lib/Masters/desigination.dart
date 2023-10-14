@@ -31,6 +31,20 @@ class _DesiginationState extends State<Desigination> {
       "order": int.parse(orderno.text),
     });
   }
+  Errordialog(){
+    return AwesomeDialog(
+      width: 450,
+      context: context,
+      dialogType: DialogType.error,
+      animType: AnimType.rightSlide,
+      title: 'Field cannot be empty',
+
+
+      btnOkOnPress: () {
+
+      },
+    )..show();
+  }
   Successdialog(){
     return AwesomeDialog(
       width: 450,
@@ -148,8 +162,13 @@ class _DesiginationState extends State<Desigination> {
                           ),
                           GestureDetector(
                             onTap: (){
-                              addclass();
-                              Successdialog();
+                              if(name.text==""){
+                                Errordialog();
+                              }
+                              else {
+                                addclass();
+                                Successdialog();
+                              }
                             },
                             child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
                               width: width/10.507,

@@ -224,7 +224,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
                       primaryXAxis: CategoryAxis(),
                       // Chart title
-                      title: ChartTitle(text: '       Monthly Student Reports',textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Colors.black),alignment: ChartAlignment.near),
+                      title: ChartTitle(text: '       Monthly Staff Reports',textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Colors.black),alignment: ChartAlignment.near),
                       // Enable legend
                       legend: Legend(isVisible: true),
                       // Enable tooltip
@@ -237,13 +237,14 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                         LineSeries<SalesData, String>(
                           name: "Staffs \nAttendance",
                           dataSource:  <SalesData>[
-                            SalesData('Jan', 35),
+                         /*   SalesData('Jan', 35),
                             SalesData('Feb', 28),
                             SalesData('Mar', 34),
                             SalesData('Apr', 32),
                             SalesData('May', 40),
                             SalesData('June', 50),
                             SalesData('July', 50),
+                            */
                           ],
                           xValueMapper: (SalesData sales, _) => sales.year,
                           yValueMapper: (SalesData sales, _) => sales.sales,
@@ -271,8 +272,8 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                               circularStrokeCap: CircularStrokeCap.round,
                               radius: 50.0,
                               lineWidth: 10.0,
-                              percent:  0.92,
-                              center:  Text("92%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                              percent:  0.0,
+                              center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                               progressColor: Colors.green,
                             ),
                             Padding(
@@ -309,8 +310,8 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                               circularStrokeCap: CircularStrokeCap.round,
                               radius: 50.0,
                               lineWidth: 10.0,
-                              percent: 0.08,
-                              center:  Text("8%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                              percent: 0.00,
+                              center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                               progressColor: Colors.red,
                             ),
                             Padding(
@@ -486,7 +487,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
                           ),
                         ),
-                        Padding(
+                       /* Padding(
                           padding: const EdgeInsets.only(left:25.0),
                           child: GestureDetector(
                             onTap: (){
@@ -503,7 +504,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
                             ),
                           ),
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -535,10 +536,12 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                     padding: const EdgeInsets.only(left: 80.0,right: 8.0),
                                     child: Text("Attendance",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
                                   ),
-                                  Padding(
+                                  /*Padding(
                                     padding: const EdgeInsets.only(left: 80.0,right: 8.0),
                                     child: Text("Time",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
                                   ),
+
+                                   */
                                 ],
                               ),
 
@@ -605,13 +608,15 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                         }
                                                       )),
                                                 ),
-                                                Padding(
+                                               /* Padding(
                                                   padding: const EdgeInsets.only(left: 0.0,right: 0.0),
                                                   child: Container(
 
                                                       width: width/13.66,
                                                       child: Text("View Staff",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff00A0E3)),)),
                                                 ),
+
+                                                */
                                               ],
                                             ),
 

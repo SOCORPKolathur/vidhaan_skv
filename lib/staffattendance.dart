@@ -236,8 +236,7 @@ class _StaffAttendanceState extends State<StaffAttendance> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          saveincharge();
-                          Successdialog();
+
                         },
                         child: Container(child: Center(child: Text("View All",style: GoogleFonts.poppins(color:Colors.white),)),
                           width: width/10.507,
@@ -251,8 +250,7 @@ class _StaffAttendanceState extends State<StaffAttendance> {
                         padding: const EdgeInsets.only(left:25.0),
                         child: GestureDetector(
                           onTap: (){
-                            saveincharge();
-                            Successdialog();
+
                           },
                           child: Container(child: Center(child: Text("Absent only",style: GoogleFonts.poppins(color:Colors.white),)),
                             width: width/10.507,

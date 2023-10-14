@@ -45,6 +45,7 @@ import 'admission.dart';
 import 'dashboadrmain.dart';
 
 import 'fees/feesreports.dart';
+import 'feesdemo.dart';
 import 'leavemanagement.dart';
 import 'studententry.dart';
 
@@ -103,11 +104,11 @@ String rollno="";
   }
   updatestudentregno() async {
 
-    var document = await FirebaseFirestore.instance.collection("Staffs").orderBy("timestamp").get();
+    var document = await FirebaseFirestore.instance.collection("Students").orderBy("timestamp").get();
     for(int i=0;i<document.docs.length;i++){
 
-      FirebaseFirestore.instance.collection("Staffs").doc(document.docs[i].id).update({
-        "dep":"",
+      FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).update({
+        "token":"",
       });
     }
     print("Reg No Changed");
@@ -3927,7 +3928,8 @@ setState(() {
                                       GestureDetector(
                                         onTap: (){
                                           //checkdemo();
-                                          getvalue();
+                                          //getvalue();
+                                          updatestudentregno();
                                          // updatestudentregno();
                                         },
                                         child: Container(
@@ -4059,7 +4061,7 @@ setState(() {
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 1?  Colors.white : Color(0xff9197B3)),
                                         )),
-                                    ListTile(
+                                 /*   ListTile(
                                         onTap:(){
                                           setState((){
                                           pages=StudentID();
@@ -4071,6 +4073,8 @@ setState(() {
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 1?  Colors.white : Color(0xff9197B3)),
                                         )),
+
+                                  */
 
 
 
@@ -4237,7 +4241,7 @@ setState(() {
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                           )),
-                                      ListTile(
+                                     /* ListTile(
                                           onTap:(){
                                             setState((){
                                              pages=StaffID();
@@ -4247,8 +4251,8 @@ setState(() {
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 3?  Colors.white : Color(0xff9197B3)),
-                                      )),
-                                      ListTile(
+                                      )),*/
+                                     /* ListTile(
                                           onTap:(){
                                             setState((){
                                               pages=ClassIncharge();
@@ -4259,6 +4263,8 @@ setState(() {
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                           )),
+
+                                      */
                                     /*  ExpansionTile(
                                         iconColor: Colors.white,
                                         collapsedIconColor: Colors.white,
@@ -4383,7 +4389,7 @@ setState(() {
                                       },
                                     ),
 
-                                    ListTile(
+                                 /*   ListTile(
                                         onTap: () {
                                           setState(() {
 
@@ -4396,6 +4402,8 @@ setState(() {
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 10?  Colors.white : Color(0xff9197B3)),
                                         )),
+
+                                  */
                                     ListTile(
                                         onTap: () {
                                           setState(() {

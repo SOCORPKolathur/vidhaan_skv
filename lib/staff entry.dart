@@ -1402,7 +1402,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                          child: Text("Name of School Lastly worked :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Last School :",style: GoogleFonts.poppins(fontSize: 15,)),
                                         )),
                                   ),
                                   Padding(

@@ -174,6 +174,13 @@ String studentdocid="";
     super.initState();
   }
   adddropdownvalue() async {
+    setState(() {
+      classes.clear();
+      section.clear();
+      acidemic.clear();
+      student.clear();
+      regnolist.clear();
+    });
     var document = await  FirebaseFirestore.instance.collection("ClassMaster").orderBy("order").get();
     var document2 = await  FirebaseFirestore.instance.collection("SectionMaster").orderBy("order").get();
     var document3 = await  FirebaseFirestore.instance.collection("AcademicMaster").orderBy("order").get();
