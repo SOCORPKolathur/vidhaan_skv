@@ -11,31 +11,38 @@ class Subtution extends StatefulWidget {
   State<Subtution> createState() => _SubtutionState();
 }
 
-class _SubtutionState extends State<Subtution> {
-
-
-  bool view=false;
-  String staffid="";
-  String staffname="";
+class _SubtutionState extends State<Subtution>
+    with SingleTickerProviderStateMixin {
+  bool view = false;
+  String staffid = "";
+  String staffname = "";
+  TabController? tabController;
 
   @override
   void initState() {
     getdate();
     firstcall();
     adddropvalue();
+    tabController = TabController(length: 2, vsync: this);
     // TODO: implement initState
     super.initState();
   }
-  final TextEditingController _typeAheadControllerclass = TextEditingController();
 
-  final textediting = List<TextEditingController>.generate(200, (int index) => TextEditingController(), growable: true);
-  final textediting2 = List<TextEditingController>.generate(200, (int index) => TextEditingController(), growable: true);
-  static final classes = List<List<String>>.generate(200, (int index) => [], growable: true);
+  final TextEditingController _typeAheadControllerclass =
+      TextEditingController();
+
+  final textediting = List<TextEditingController>.generate(
+      200, (int index) => TextEditingController(),
+      growable: true);
+  final textediting2 = List<TextEditingController>.generate(
+      200, (int index) => TextEditingController(),
+      growable: true);
+  static final classes =
+      List<List<String>>.generate(200, (int index) => [], growable: true);
 
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
 
-
-  static List<String> getSuggestionsclass(String query,index) {
+  static List<String> getSuggestionsclass(String query, index) {
     List<String> matches = <String>[];
     matches.addAll(classes[index]);
 
@@ -47,141 +54,159 @@ class _SubtutionState extends State<Subtution> {
     setState(() {
       classes.clear();
       section.clear();
-
     });
-    var document3 = await  FirebaseFirestore.instance.collection("ClassMaster").orderBy("order").get();
-    var document2 = await  FirebaseFirestore.instance.collection("SectionMaster").orderBy("order").get();
-    for(int i=0;i<document3.docs.length;i++) {
+    var document3 = await FirebaseFirestore.instance
+        .collection("ClassMaster")
+        .orderBy("order")
+        .get();
+    var document2 = await FirebaseFirestore.instance
+        .collection("SectionMaster")
+        .orderBy("order")
+        .get();
+    for (int i = 0; i < document3.docs.length; i++) {
       setState(() {
         classes.add(document3.docs[i]["name"]);
       });
-
     }
-    for(int i=0;i<document2.docs.length;i++) {
+    for (int i = 0; i < document2.docs.length; i++) {
       setState(() {
         section.add(document2.docs[i]["name"]);
       });
-
     }
   }
 
   staffdroup() async {
-    var documentmain = await FirebaseFirestore.instance.collection("Staffs").doc(staffid).collection("Timetable").orderBy("period").get();
-    var document = await  FirebaseFirestore.instance.collection("Staffs").orderBy("entryno").get();
-    for(int i=0;i<documentmain.docs.length;i++){
+    var documentmain = await FirebaseFirestore.instance
+        .collection("Staffs")
+        .doc(staffid)
+        .collection("Timetable")
+        .orderBy("period")
+        .get();
+    var document = await FirebaseFirestore.instance
+        .collection("Staffs")
+        .orderBy("entryno")
+        .get();
+    for (int i = 0; i < documentmain.docs.length; i++) {
       print("Loop Ok 01");
-      if(documentmain.docs[i]["day"]==day) {
+      if (documentmain.docs[i]["day"] == day) {
         print("Loop Ok 02");
         for (int j = 0; j < document.docs.length; j++) {
           print("Loop Ok 03");
           if (document.docs[j]["absent"] == false) {
             print("Loop Ok 01");
-            var documentmain2 = await FirebaseFirestore.instance.collection("Staffs").doc(document.docs[j].id).collection("Timetable")
-                .where("day", isEqualTo: day).where("period", isEqualTo: documentmain.docs[i]["period"])
+            var documentmain2 = await FirebaseFirestore.instance
+                .collection("Staffs")
+                .doc(document.docs[j].id)
+                .collection("Timetable")
+                .where("day", isEqualTo: day)
+                .where("period", isEqualTo: documentmain.docs[i]["period"])
                 .get();
             if (documentmain2.docs.length > 0) {
               print("Staff has period");
-            }
-            else {
+            } else {
               setState(() {
                 staffidn[documentmain.docs[i]["period"]].clear();
                 staffid2[documentmain.docs[i]["period"]].clear();
               });
               print("List Cleared");
               setState(() {
-                staffidn[documentmain.docs[i]["period"]].add(document.docs[j]["regno"]);
-                staffid2[documentmain.docs[i]["period"]].add(document.docs[j]["stname"]);
+                staffidn[documentmain.docs[i]["period"]]
+                    .add(document.docs[j]["regno"]);
+                staffid2[documentmain.docs[i]["period"]]
+                    .add(document.docs[j]["stname"]);
               });
             }
           }
         }
       }
-
     }
   }
-  String classid="";
+
+  String classid = "";
+
   firstcall() async {
-    var document3 = await  FirebaseFirestore.instance.collection("ClassMaster").orderBy("order").get();
-    var document = await  FirebaseFirestore.instance.collection("SectionMaster").orderBy("order").get();
+    var document3 = await FirebaseFirestore.instance
+        .collection("ClassMaster")
+        .orderBy("order")
+        .get();
+    var document = await FirebaseFirestore.instance
+        .collection("SectionMaster")
+        .orderBy("order")
+        .get();
     setState(() {
-      _typeAheadControllerclass.text=document3.docs[0]["name"];
-      _typeAheadControllersection.text=document.docs[0]["name"];
-      classid=document3.docs[0].id;
+      _typeAheadControllerclass.text = document3.docs[0]["name"];
+      _typeAheadControllersection.text = document.docs[0]["name"];
+      classid = document3.docs[0].id;
     });
-
-
   }
-
 
   getstaffbyid() async {
     print("fdgggggggggg");
 
-    var document = await FirebaseFirestore.instance.collection("ClassMaster").get();
-    for(int i=0;i<document.docs.length;i++){
-      if(_typeAheadControllerclass.text==document.docs[i]["name"]){
+    var document =
+        await FirebaseFirestore.instance.collection("ClassMaster").get();
+    for (int i = 0; i < document.docs.length; i++) {
+      if (_typeAheadControllerclass.text == document.docs[i]["name"]) {
         setState(() {
-          classid= document.docs[i].id;
-        }
-        );
+          classid = document.docs[i].id;
+        });
       }
     }
     print("fdgggggggggg");
-
-
   }
-  getstaffbyid2(value,index) async {
+
+  getstaffbyid2(value, index) async {
     print("fdgggggggggg");
 
     var document = await FirebaseFirestore.instance.collection("Staffs").get();
-    for(int i=0;i<document.docs.length;i++){
-      if(value==document.docs[i]["regno"]){
+    for (int i = 0; i < document.docs.length; i++) {
+      if (value == document.docs[i]["regno"]) {
         setState(() {
-          textediting2[index].text= document.docs[i]["stname"];
-        }
-        );
+          textediting2[index].text = document.docs[i]["stname"];
+        });
       }
     }
     print("fdgggggggggg");
-
-
   }
-  getstaffbyid3(value,index) async {
+
+  getstaffbyid3(value, index) async {
     print("fdgggggggggg");
 
     var document = await FirebaseFirestore.instance.collection("Staffs").get();
-    for(int i=0;i<document.docs.length;i++){
-      if(value==document.docs[i]["stname"]){
+    for (int i = 0; i < document.docs.length; i++) {
+      if (value == document.docs[i]["stname"]) {
         setState(() {
-          textediting[index].text= document.docs[i]["regno"];
-        }
-        );
+          textediting[index].text = document.docs[i]["regno"];
+        });
       }
     }
     print("fdgggggggggg");
-
-
   }
 
-  static final staffidn = List<List<String>>.generate(200, (int index) => [], growable: true);
-  static final staffid2 = List<List<String>>.generate(200, (int index) => [], growable: true);
+  static final staffidn =
+      List<List<String>>.generate(200, (int index) => [], growable: true);
+  static final staffid2 =
+      List<List<String>>.generate(200, (int index) => [], growable: true);
 
-
-  static List<String> getSuggestionsstaffid(String query,index) {
+  static List<String> getSuggestionsstaffid(String query, index) {
     List<String> matches = <String>[];
     matches.addAll(staffidn[index]);
 
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
   }
-  static List<String> getSuggestionsstaffname(String query,index) {
+
+  static List<String> getSuggestionsstaffname(String query, index) {
     List<String> matches = <String>[];
     matches.addAll(staffid2[index]);
 
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
   }
+
   static final List<String> section = [];
-  final TextEditingController _typeAheadControllersection = TextEditingController();
+  final TextEditingController _typeAheadControllersection =
+      TextEditingController();
 
   static List<String> getSuggestionssection(String query) {
     List<String> matches = <String>[];
@@ -193,593 +218,1057 @@ class _SubtutionState extends State<Subtution> {
 
   @override
   Widget build(BuildContext context) {
-    double height= MediaQuery.of(context).size.height;
-    double width= MediaQuery.of(context).size.width;
-    return view==false? Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0),
-          child: Container(child: Padding(
-            padding: const EdgeInsets.only(left: 38.0,top: 0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text("Substitution Teachers",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-                SizedBox(width:500),
-                InkWell(
-                  onTap: (){
-                    // getstaffbyid();
-                    setState(() {
-                    //  viewtem=true;
-                    });
-                  },
-                  child: Material(
-                    borderRadius: BorderRadius.circular(5),
-                    elevation: 7,
-                    child: Container(child: Center(child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return view == false
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 38.0, top: 0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(Icons.history,color: Colors.white,),
+                        Text(
+                          "Substitution Teachers",
+                          style: GoogleFonts.poppins(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        Text("View Substitution History",style: GoogleFonts.poppins(color:Colors.white),),
+                        SizedBox(width: 500),
+                        InkWell(
+                          onTap: () {
+                            // getstaffbyid();
+                            setState(() {
+                              //  viewtem=true;
+                            });
+                          },
+                          child: Material(
+                            borderRadius: BorderRadius.circular(5),
+                            elevation: 7,
+                            child: Container(
+                              child: Center(
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: Icon(
+                                      Icons.history,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "View Substitution History",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )),
+                              width: width / 5.507,
+                              height: height / 16.425,
+                              // color:Color(0xff00A0E3),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xff53B175),
+                                  borderRadius: BorderRadius.circular(5)),
+                            ),
+                          ),
+                        ),
                       ],
-                    )),
-                      width: width/5.507,
-                      height: height/16.425,
-                      // color:Color(0xff00A0E3),
-                      decoration: BoxDecoration(color: const Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
-
                     ),
                   ),
+                  //color: Colors.white,
+                  width: width / 1.366,
+                  height: height / 8.212,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12)),
                 ),
-              ],
-            ),
-          ),
-            //color: Colors.white,
-            width: width/1.366,
-            height: height/8.212,
-            decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left:20.0,top:20),
-          child: Text("Today Absent Teachers",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            height:height/13.14,
-            width: width/1.366,
-            decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
-            ),
-            child: Row(
-              children: [
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 35.0, right: 40),
-                  child: Text(
-                    "Reg NO",
-                    style:
-                    GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                  ),
-                ),
-                Text(
-                  "Staff Name",
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 40.0, right: 40,),
-                  child: Text(
-                    "In Charge",
-                    style:
-                    GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                  ),
-                ),
-                Text(
-                  "In Charge \n Section",
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 80.0, right: 45),
-                  child: Text(
-                    "Today Handling hours",
-                    style:
-                    GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                  ),
-                ),
-
-                Text(
-                  "Actions",
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                ),
-              ],
-            ),
-            //color: Colors.pink,
-
-
-          ),
-        ),
-        StreamBuilder<QuerySnapshot>(
-            stream:  FirebaseFirestore.instance.collection("Staffs").orderBy("timestamp").snapshots(),
-
-            builder: (context,snapshot){
-              if(!snapshot.hasData)
-              {
-                return   Center(
-                  child:  CircularProgressIndicator(),
-                );}
-              if(snapshot.hasData==null)
-              {
-                return   Center(
-                  child:  CircularProgressIndicator(),
-                );}
-              return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context,index){
-                    var value = snapshot.data!.docs[index];
-                    return  value["absent"]==true? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: width/1.366,
-                        child: Row(
-                          children: [
-
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0, right: 0),
-                              child: Container(
-                                width: width/13.66,
-
-                                alignment: Alignment.center,
-                                child: Text(
-                                  value["regno"],
-                                  style:
-                                  GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30.0),
-                              child: Container(
-                                width: width/9.757,
-
-
-                                child: Text(
-                                  value["stname"],
-                                  style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 0.0, right: 0),
-                              child: Container(
-                                width: width/22.766,
-
-                                child: Text(
-                                  value["incharge"],
-                                  style:
-                                  GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 13.0),
-                              child: Container(
-                                width:width/22.766,
-
-                                alignment: Alignment.center,
-                                child: Text(
-                                  value["inchargesec"],
-                                  style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 150, right: 0),
-                              child: Container(
-
-                                child:
-                                StreamBuilder(
-                                  stream: FirebaseFirestore.instance.collection("Staffs").doc(value.id).collection("Timetable").where("day",isEqualTo: day).snapshots(),
-                                  builder: (context,snap){
-                                    return  Text(
-                                      snap.data!.docs.length.toString(),
-                                      style:
-                                      GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                    );
-                                  },
-                                )
-
-
-                              ),
-                            ),
-
-                            value["classasigned"]==true?
-                            Padding(
-                              padding: const EdgeInsets.only(left: 130.0),
-                              child: InkWell(
-                                onTap: (){
-                                  setState(() {
-                                    staffid=value.id;
-                                    staffname=value["stname"];
-                                    view=true;
-                                  });
-                                  staffdroup();
-                                },
-                                child: Container(
-                                  child: Center(
-                                      child: Text(
-                                        "Assign Staffs",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white),
-                                      )),
-                                  width: width/9.76,
-                                  height: height/21.9,
-                                  //color: Color(0xffD60A0B),
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(5),
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              ),
-                            )
-                                :
-                            Padding(
-                              padding: const EdgeInsets.only(left: 130.0),
-                              child: InkWell(
-                                onTap: (){
-                                  setState(() {
-
-                                  });
-                                },
-                                child: Container(
-                                  child: Center(
-                                      child: Text(
-                                        "Staffs Assigned",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white),
-                                      )),
-                                  width: width/9.76,
-                                  height: height/21.9,
-                                  //color: Color(0xffD60A0B),
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(5),
-                                    color: Color(0xff53B175),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        //color: Colors.pink,
-
-
-                      ),
-                    ) : Container();
-                  });
-
-            }),
-      ],
-    )
-        :  SingleChildScrollView(
-          child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Container(child: Padding(
-              padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Assign Teachers",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-                  SizedBox(width:10),
-                ],
               ),
-            ),
-              //color: Colors.white,
-              width: width/1.050,
-              height: height/8.212,
-              decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: Row(
+              const SizedBox(height: 20),
+              SizedBox(
+                height: 50,
+                child: TabBar(
+                  isScrollable: false,
+                  controller: tabController,
+                  labelColor: Color(0xff00A0E3),
+                  dividerColor: Colors.transparent,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicatorColor: Color(0xff00A0E3),
+                  indicatorPadding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                  labelPadding: const EdgeInsets.all(0),
+                  splashBorderRadius: BorderRadius.zero,
+                  splashFactory: NoSplash.splashFactory,
+                  labelStyle: GoogleFonts.openSans(
+                    fontWeight: FontWeight.w800,
+                  ),
+                  unselectedLabelStyle: GoogleFonts.openSans(
+                    fontWeight: FontWeight.w600,
+                  ),
+                  onTap: (index) {
+                    // setState(() {
+                    //   selectTabIndex = index;
+                    //   isLoading = true;
+                    // });
+                  },
+                  tabs: const [
+                    Tab(
+                      child: Text("Applied Leaves"),
+                    ),
+                    Tab(
+                      child: Text("Sudden Leaves"),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: SizedBox(
+                  width: width,
+                  child: TabBarView(
+                    controller: tabController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: height / 13.14,
+                              width: width / 1.366,
+                              decoration: BoxDecoration(
+                                  color: Color(0xff00A0E3),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 35.0, right: 40),
+                                    child: Text(
+                                      "Reg NO",
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Staff Name",
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 40.0,
+                                      right: 40,
+                                    ),
+                                    child: Text(
+                                      "In Charge",
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                  Text(
+                                    "In Charge \n Section",
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 80.0, right: 45),
+                                    child: Text(
+                                      "Today Handling hours",
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Actions",
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              //color: Colors.pink,
+                            ),
+                          ),
+                          StreamBuilder<QuerySnapshot>(
+                              stream: FirebaseFirestore.instance
+                                  .collection("Staffs")
+                                  .orderBy("timestamp")
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                if (snapshot.hasData == null) {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.docs.length,
+                                    itemBuilder: (context, index) {
+                                      var value = snapshot.data!.docs[index];
+                                      return value["absent"] == true
+                                          ? Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Container(
+                                                width: width / 1.366,
+                                                child: Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10.0, right: 0),
+                                                      child: Container(
+                                                        width: width / 13.66,
+                                                        alignment: Alignment.center,
+                                                        child: Text(
+                                                          value["regno"],
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 30.0),
+                                                      child: Container(
+                                                        width: width / 9.757,
+                                                        child: Text(
+                                                          value["stname"],
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 0.0, right: 0),
+                                                      child: Container(
+                                                        width: width / 22.766,
+                                                        child: Text(
+                                                          value["incharge"],
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 13.0),
+                                                      child: Container(
+                                                        width: width / 22.766,
+                                                        alignment: Alignment.center,
+                                                        child: Text(
+                                                          value["inchargesec"],
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 150, right: 0),
+                                                      child: Container(
+                                                          child: StreamBuilder(
+                                                        stream: FirebaseFirestore
+                                                            .instance
+                                                            .collection("Staffs")
+                                                            .doc(value.id)
+                                                            .collection("Timetable")
+                                                            .where("day",
+                                                                isEqualTo: day)
+                                                            .snapshots(),
+                                                        builder: (context, snap) {
+                                                          return Text(
+                                                            snap.data!.docs.length
+                                                                .toString(),
+                                                            style:
+                                                                GoogleFonts.poppins(
+                                                              fontWeight:
+                                                                  FontWeight.w500,
+                                                            ),
+                                                          );
+                                                        },
+                                                      )),
+                                                    ),
+                                                    value["classasigned"] == true
+                                                        ? Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 130.0),
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  staffid =
+                                                                      value.id;
+                                                                  staffname = value[
+                                                                      "stname"];
+                                                                  view = true;
+                                                                });
+                                                                staffdroup();
+                                                              },
+                                                              child: Container(
+                                                                child: Center(
+                                                                    child: Text(
+                                                                  "Assign Staffs",
+                                                                  style: GoogleFonts
+                                                                      .poppins(
+                                                                          color: Colors
+                                                                              .white),
+                                                                )),
+                                                                width: width / 9.76,
+                                                                height:
+                                                                    height / 21.9,
+                                                                //color: Color(0xffD60A0B),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5),
+                                                                  color: Colors.red,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        : Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 130.0),
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                setState(() {});
+                                                              },
+                                                              child: Container(
+                                                                child: Center(
+                                                                    child: Text(
+                                                                  "Staffs Assigned",
+                                                                  style: GoogleFonts
+                                                                      .poppins(
+                                                                          color: Colors
+                                                                              .white),
+                                                                )),
+                                                                width: width / 9.76,
+                                                                height:
+                                                                    height / 21.9,
+                                                                //color: Color(0xffD60A0B),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5),
+                                                                  color: Color(
+                                                                      0xff53B175),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                  ],
+                                                ),
+                                                //color: Colors.pink,
+                                              ),
+                                            )
+                                          : Container();
+                                    });
+                              }),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: height / 13.14,
+                              width: width / 1.366,
+                              decoration: BoxDecoration(
+                                  color: Color(0xff00A0E3),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 35.0, right: 40),
+                                    child: Text(
+                                      "Reg NO",
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Staff Name",
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 40.0,
+                                      right: 40,
+                                    ),
+                                    child: Text(
+                                      "In Charge",
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                  Text(
+                                    "In Charge \n Section",
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 80.0, right: 45),
+                                    child: Text(
+                                      "Today Handling hours",
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Actions",
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              //color: Colors.pink,
+                            ),
+                          ),
+                          StreamBuilder<QuerySnapshot>(
+                              stream: FirebaseFirestore.instance
+                                  .collection("Staffs")
+                                  .orderBy("timestamp")
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                if (snapshot.hasData == null) {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.docs.length,
+                                    itemBuilder: (context, index) {
+                                      var value = snapshot.data!.docs[index];
+                                      return value["absent"] == true
+                                          ? Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Container(
+                                                width: width / 1.366,
+                                                child: Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10.0, right: 0),
+                                                      child: Container(
+                                                        width: width / 13.66,
+                                                        alignment: Alignment.center,
+                                                        child: Text(
+                                                          value["regno"],
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 30.0),
+                                                      child: Container(
+                                                        width: width / 9.757,
+                                                        child: Text(
+                                                          value["stname"],
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 0.0, right: 0),
+                                                      child: Container(
+                                                        width: width / 22.766,
+                                                        child: Text(
+                                                          value["incharge"],
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 13.0),
+                                                      child: Container(
+                                                        width: width / 22.766,
+                                                        alignment: Alignment.center,
+                                                        child: Text(
+                                                          value["inchargesec"],
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 150, right: 0),
+                                                      child: Container(
+                                                          child: StreamBuilder(
+                                                        stream: FirebaseFirestore
+                                                            .instance
+                                                            .collection("Staffs")
+                                                            .doc(value.id)
+                                                            .collection("Timetable")
+                                                            .where("day",
+                                                                isEqualTo: day)
+                                                            .snapshots(),
+                                                        builder: (context, snap) {
+                                                          return Text(
+                                                            snap.data!.docs.length
+                                                                .toString(),
+                                                            style:
+                                                                GoogleFonts.poppins(
+                                                              fontWeight:
+                                                                  FontWeight.w500,
+                                                            ),
+                                                          );
+                                                        },
+                                                      )),
+                                                    ),
+                                                    value["classasigned"] == true
+                                                        ? Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 130.0),
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  staffid =
+                                                                      value.id;
+                                                                  staffname = value[
+                                                                      "stname"];
+                                                                  view = true;
+                                                                });
+                                                                staffdroup();
+                                                              },
+                                                              child: Container(
+                                                                child: Center(
+                                                                    child: Text(
+                                                                  "Assign Staffs",
+                                                                  style: GoogleFonts
+                                                                      .poppins(
+                                                                          color: Colors
+                                                                              .white),
+                                                                )),
+                                                                width: width / 9.76,
+                                                                height:
+                                                                    height / 21.9,
+                                                                //color: Color(0xffD60A0B),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5),
+                                                                  color: Colors.red,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        : Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 130.0),
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                setState(() {});
+                                                              },
+                                                              child: Container(
+                                                                child: Center(
+                                                                    child: Text(
+                                                                  "Staffs Assigned",
+                                                                  style: GoogleFonts
+                                                                      .poppins(
+                                                                          color: Colors
+                                                                              .white),
+                                                                )),
+                                                                width: width / 9.76,
+                                                                height:
+                                                                    height / 21.9,
+                                                                //color: Color(0xffD60A0B),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5),
+                                                                  color: Color(
+                                                                      0xff53B175),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                  ],
+                                                ),
+                                                //color: Colors.pink,
+                                              ),
+                                            )
+                                          : Container();
+                                    });
+                              }),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )
+        : SingleChildScrollView(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
-                  child: InkWell(
-                      onTap: (){
-                        setState(() {
-                          view=false;
-                        });
-                      },
-                      child: Icon(Icons.arrow_back_rounded)),
+                  child: Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 38.0, top: 30),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Assign Teachers",
+                            style: GoogleFonts.poppins(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(width: 10),
+                        ],
+                      ),
+                    ),
+                    //color: Colors.white,
+                    width: width / 1.050,
+                    height: height / 8.212,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left:8.0,top:0),
-                  child: Text(staffname,style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-                ),
-
-                SizedBox(width: 550,),
-
-
-                GestureDetector(
-                  onTap: (){
-
-                  },
-                  child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
-                    width: width/10.507,
-                    height: height/16.425,
-                    // color:Color(0xff00A0E3),
-                    decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                view = false;
+                              });
+                            },
+                            child: Icon(Icons.arrow_back_rounded)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, top: 0),
+                        child: Text(
+                          staffname,
+                          style: GoogleFonts.poppins(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 550,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          child: Center(
+                              child: Text(
+                            "Save",
+                            style: GoogleFonts.poppins(color: Colors.white),
+                          )),
+                          width: width / 10.507,
+                          height: height / 16.425,
+                          // color:Color(0xff00A0E3),
+                          decoration: BoxDecoration(
+                              color: Color(0xff00A0E3),
+                              borderRadius: BorderRadius.circular(5)),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: height / 13.14,
+                    width: width / 1.366,
+                    decoration: BoxDecoration(
+                        color: Color(0xff00A0E3),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 35.0, right: 40),
+                          child: Text(
+                            "Period No:",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        Text(
+                          "Class",
+                          style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 40.0,
+                            right: 40,
+                          ),
+                          child: Text(
+                            "Section",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        Text(
+                          "Subject",
+                          style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(left: 80.0, right: 145),
+                          child: Text(
+                            "Staff ID",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        Text(
+                          "Staff Name",
+                          style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    //color: Colors.pink,
+                  ),
+                ),
+                StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection("Staffs")
+                        .doc(staffid)
+                        .collection("Timetable")
+                        .orderBy("period")
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (snapshot.hasData == null) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) {
+                            var value = snapshot.data!.docs[index];
+                            return value["day"] == day
+                                ? Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: width / 1.366,
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0, right: 0),
+                                            child: Container(
+                                              width: width / 13.66,
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                ((value["period"]
+                                                            .remainder(8)) +
+                                                        1)
+                                                    .toString(),
+                                                style: GoogleFonts.poppins(
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 30.0),
+                                            child: Container(
+                                              width: width / 13.757,
+                                              child: Text(
+                                                value["class"],
+                                                style: GoogleFonts.poppins(
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 0.0, right: 0),
+                                            child: Container(
+                                              width: width / 22.766,
+                                              child: Text(
+                                                value["section"],
+                                                style: GoogleFonts.poppins(
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 13.0),
+                                            child: Container(
+                                              width: width / 22.766,
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                value["subject"],
+                                                style: GoogleFonts.poppins(
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 30.0),
+                                            child: Container(
+                                              width: width / 6.83,
+                                              height: height / 16.425,
+                                              //color: Color(0xffDDDEEE),
+                                              decoration: BoxDecoration(
+                                                  color: Color(0xffDDDEEE),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+
+                                              child: TypeAheadFormField(
+                                                suggestionsBoxDecoration:
+                                                    SuggestionsBoxDecoration(
+                                                        color:
+                                                            Color(0xffDDDEEE),
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  5),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  5),
+                                                        )),
+                                                textFieldConfiguration:
+                                                    TextFieldConfiguration(
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 15),
+                                                  decoration: InputDecoration(
+                                                    hintText: "",
+                                                    contentPadding:
+                                                        EdgeInsets.only(
+                                                            left: 10,
+                                                            bottom: 8),
+                                                    border: InputBorder.none,
+                                                  ),
+                                                  controller:
+                                                      this.textediting[index],
+                                                ),
+                                                suggestionsCallback: (pattern) {
+                                                  return getSuggestionsstaffid(
+                                                      pattern, value["period"]);
+                                                },
+                                                itemBuilder: (context,
+                                                    String suggestion) {
+                                                  return ListTile(
+                                                    title: Text(suggestion),
+                                                  );
+                                                },
+                                                transitionBuilder: (context,
+                                                    suggestionsBox,
+                                                    controller) {
+                                                  return suggestionsBox;
+                                                },
+                                                onSuggestionSelected:
+                                                    (String suggestion) {
+                                                  this.textediting[index].text =
+                                                      suggestion;
+                                                  getstaffbyid2(
+                                                      textediting[index].text,
+                                                      index);
+                                                },
+                                                suggestionsBoxController:
+                                                    suggestionBoxController,
+                                                validator: (value) => value!
+                                                        .isEmpty
+                                                    ? 'Please select a section'
+                                                    : null,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 30),
+                                            child: Container(
+                                              width: width / 6.83,
+                                              height: height / 16.425,
+                                              //color: Color(0xffDDDEEE),
+                                              decoration: BoxDecoration(
+                                                  color: Color(0xffDDDEEE),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+
+                                              child: TypeAheadFormField(
+                                                suggestionsBoxDecoration:
+                                                    SuggestionsBoxDecoration(
+                                                        color:
+                                                            Color(0xffDDDEEE),
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  5),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  5),
+                                                        )),
+                                                textFieldConfiguration:
+                                                    TextFieldConfiguration(
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 15),
+                                                  decoration: InputDecoration(
+                                                    hintText: "",
+                                                    contentPadding:
+                                                        EdgeInsets.only(
+                                                            left: 10,
+                                                            bottom: 8),
+                                                    border: InputBorder.none,
+                                                  ),
+                                                  controller:
+                                                      this.textediting2[index],
+                                                ),
+                                                suggestionsCallback: (pattern) {
+                                                  return getSuggestionsstaffname(
+                                                      pattern, value["period"]);
+                                                },
+                                                itemBuilder: (context,
+                                                    String suggestion) {
+                                                  return ListTile(
+                                                    title: Text(suggestion),
+                                                  );
+                                                },
+                                                transitionBuilder: (context,
+                                                    suggestionsBox,
+                                                    controller) {
+                                                  return suggestionsBox;
+                                                },
+                                                onSuggestionSelected:
+                                                    (String suggestion) {
+                                                  getstaffbyid();
+                                                  this
+                                                      .textediting2[index]
+                                                      .text = suggestion;
+                                                  getstaffbyid3(
+                                                      textediting2[index].text,
+                                                      index);
+                                                },
+                                                suggestionsBoxController:
+                                                    suggestionBoxController,
+                                                validator: (value) => value!
+                                                        .isEmpty
+                                                    ? 'Please select a section'
+                                                    : null,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      //color: Colors.pink,
+                                    ),
+                                  )
+                                : Container();
+                          });
+                    }),
               ],
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height:height/13.14,
-              width: width/1.366,
-              decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
-              ),
-              child: Row(
-                children: [
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 35.0, right: 40),
-                    child: Text(
-                      "Period No:",
-                      style:
-                      GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                    ),
-                  ),
-                  Text(
-                    "Class",
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 40.0, right: 40,),
-                    child: Text(
-                      "Section",
-                      style:
-                      GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                    ),
-                  ),
-                  Text(
-                    "Subject",
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 80.0, right: 145),
-                    child: Text(
-                      "Staff ID",
-                      style:
-                      GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                    ),
-                  ),
-
-                  Text(
-                    "Staff Name",
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                  ),
-                ],
-              ),
-              //color: Colors.pink,
-
-
-            ),
-          ),
-          StreamBuilder<QuerySnapshot>(
-              stream:  FirebaseFirestore.instance.collection("Staffs").doc(staffid).collection("Timetable").orderBy("period").snapshots(),
-
-              builder: (context,snapshot){
-                if(!snapshot.hasData)
-                {
-                  return   Center(
-                    child:  CircularProgressIndicator(),
-                  );}
-                if(snapshot.hasData==null)
-                {
-                  return   Center(
-                    child:  CircularProgressIndicator(),
-                  );}
-                return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context,index){
-                      var value = snapshot.data!.docs[index];
-                      return  value["day"]==day? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: width/1.366,
-                          child: Row(
-                            children: [
-
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0, right: 0),
-                                child: Container(
-                                  width: width/13.66,
-
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    ((value["period"].remainder(8))+1).toString(),
-                                    style:
-                                    GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 30.0),
-                                child: Container(
-                                  width: width/13.757,
-
-
-                                  child: Text(
-                                    value["class"],
-                                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 0.0, right: 0),
-                                child: Container(
-                                  width: width/22.766,
-
-                                  child: Text(
-                                    value["section"],
-                                    style:
-                                    GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 13.0),
-                                child: Container(
-                                  width:width/22.766,
-
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    value["subject"],
-                                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 30.0),
-                                child: Container(
-                                  width: width/6.83,
-                                  height: height/16.425,
-                                  //color: Color(0xffDDDEEE),
-                                  decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                  child: TypeAheadFormField(
-
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
-                                    ),
-
-                                    textFieldConfiguration: TextFieldConfiguration(
-                                      style:  GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText:"",
-                                        contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-                                      ),
-                                      controller: this.textediting[index],
-                                    ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsstaffid(pattern,value["period"]);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-
-                                    transitionBuilder: (context, suggestionsBox, controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-
-                                      this.textediting[index].text = suggestion;
-                                      getstaffbyid2(textediting[index].text,index);
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: Container(
-                                  width: width/6.83,
-                                  height: height/16.425,
-                                  //color: Color(0xffDDDEEE),
-                                  decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                  child: TypeAheadFormField(
-
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
-                                    ),
-
-                                    textFieldConfiguration: TextFieldConfiguration(
-                                      style:  GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: "",
-                                        contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-                                      ),
-                                      controller: this.textediting2[index],
-                                    ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsstaffname(pattern,value["period"]);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-
-                                    transitionBuilder: (context, suggestionsBox, controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-                                      getstaffbyid();
-                                      this.textediting2[index].text = suggestion;
-                                      getstaffbyid3(textediting2[index].text,index);
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-
-                                  ),
-                                ),
-                              ),
-
-                            ],
-                          ),
-                          //color: Colors.pink,
-
-
-                        ),
-                      ) : Container();
-                    });
-
-              }),
-      ],
-    ),
-        );
+          );
   }
-  String day="";
-  getdate(){
+
+  String day = "";
+
+  getdate() {
     setState(() {
       day = DateFormat('EEEE').format(DateTime.now());
     });

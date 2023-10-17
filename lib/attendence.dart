@@ -7,6 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:vidhaan/models/attendance_pdf_model.dart';
+import 'package:vidhaan/print/attendance_print.dart';
+import 'package:pdf/pdf.dart';
 
 
 class SalesData {
@@ -25,6 +28,7 @@ class Attendence extends StatefulWidget {
 class _AttendenceState extends State<Attendence> {
 
 
+  List<AttendancePdfModel> studentAttendanceListForPdf = [];
   String? _selectedCity;
   final TextEditingController _typeAheadControllerclass = TextEditingController();
   final TextEditingController _typeAheadControllersection = TextEditingController();
@@ -642,7 +646,6 @@ setState(() {
                                       //set output date to TextField value.
                                     });
                                     print(selecteddate);
-                                    gettotal();
                                     print("${_typeAheadControllerclass.text}""${_typeAheadControllerclass.text}");
                                   }else{
                                     print("Date is not selected");
@@ -666,7 +669,7 @@ setState(() {
                               view=true;
                               absentonly=false;
                             });
-
+                            gettotal();
                           },
                           child: Container(child: Center(child: Text("View All",style: GoogleFonts.poppins(color:Colors.white),)),
                             width: width/10.507,
@@ -684,8 +687,7 @@ setState(() {
                                view=true;
                                absentonly=true;
                              });
-
-                            },
+                             },
                             child: Container(child: Center(child: Text("Absent only",style: GoogleFonts.poppins(color:Colors.white),)),
                               width: width/10.507,
                               height: height/16.425,
@@ -751,6 +753,32 @@ setState(() {
                                     return   Center(
                                       child:  CircularProgressIndicator(),
                                     );}
+                                  studentAttendanceListForPdf.clear();
+                                  snapshot.data!.docs.forEach((element) {
+                                    if(absentonly){
+                                      if(element["present"]==false){
+                                        studentAttendanceListForPdf.add(
+                                          AttendancePdfModel(
+                                            name: element['stname'],
+                                            id: element['regno'],
+                                            attendance: element['present'],
+                                            date: selecteddate,
+                                            clasS: "${_typeAheadControllerclass.text}-${_typeAheadControllersection.text}"
+                                          )
+                                        );
+                                      }
+                                    }else{
+                                      studentAttendanceListForPdf.add(
+                                          AttendancePdfModel(
+                                              name: element['stname'],
+                                              id: element['regno'],
+                                              attendance: element['present'],
+                                            date: selecteddate,
+                                              clasS: "${_typeAheadControllerclass.text}-${_typeAheadControllersection.text}"
+                                          )
+                                      );
+                                    }
+                                  });
                                   return ListView.builder(
                                       shrinkWrap: true,
                                       itemCount: snapshot.data!.docs.length,
@@ -758,7 +786,6 @@ setState(() {
                                       itemBuilder: (context,index){
                                         var value = snapshot.data!.docs[index];
                                         return absentonly==false?
-
                                           Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Container(
@@ -992,13 +1019,26 @@ setState(() {
                               ),
                             ),
                           ),
+                          SizedBox(height: height/32.85),
+                          Padding(
+                            padding: const EdgeInsets.only(left:25.0),
+                            child: GestureDetector(
+                              onTap: (){
+                                generateAttendancePdf(PdfPageFormat.letter,studentAttendanceListForPdf,true);
+                              },
+                              child: Container(child: Center(child: Text("Print",style: GoogleFonts.poppins(color:Colors.white),)),
+                                width: width/10.507,
+                                height: height/16.425,
+                                // color:Color(0xff00A0E3),
+                                decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.circular(5)),
+
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   ),
-
-
-
                 ],
               ),
 
