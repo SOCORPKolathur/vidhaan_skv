@@ -7,6 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:vidhaan/print/attendance_print.dart';
+import 'package:pdf/pdf.dart';
+import 'models/attendance_pdf_model.dart';
 
 
 class SalesData {
@@ -25,6 +28,7 @@ class StaffAttendence extends StatefulWidget {
 class _StaffAttendenceState extends State<StaffAttendence> {
 
 
+  List<AttendancePdfModel> staffAttendanceListForPdf = [];
   String? _selectedCity;
   final TextEditingController _typeAheadControllerclass = TextEditingController();
   final TextEditingController _typeAheadControllersection = TextEditingController();
@@ -453,7 +457,6 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                       //set output date to TextField value.
                                     });
                                     print(selecteddate);
-                                    gettotal();
                                     print("${_typeAheadControllerclass.text}""${_typeAheadControllerclass.text}");
                                   }else{
                                     print("Date is not selected");
@@ -467,9 +470,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
                               ),
                             ),
-
                           ],
-
                         ),
                         GestureDetector(
                           onTap: (){
@@ -477,7 +478,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                               view=true;
                               absentonly=false;
                             });
-
+                            gettotal();
                           },
                           child: Container(child: Center(child: Text("View All",style: GoogleFonts.poppins(color:Colors.white),)),
                             width: width/10.507,
@@ -485,6 +486,20 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                             // color:Color(0xff00A0E3),
                             decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
 
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left:25.0),
+                          child: GestureDetector(
+                            onTap: (){
+                              generateAttendancePdf(PdfPageFormat.letter,staffAttendanceListForPdf,false);
+                            },
+                            child: Container(child: Center(child: Text("Print",style: GoogleFonts.poppins(color:Colors.white),)),
+                              width: width/10.507,
+                              height: height/16.425,
+                              // color:Color(0xff00A0E3),
+                              decoration: BoxDecoration(color: Colors.red,borderRadius: BorderRadius.circular(5)),
+                            ),
                           ),
                         ),
                        /* Padding(
@@ -563,6 +578,16 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                     return   Center(
                                       child:  CircularProgressIndicator(),
                                     );}
+                                  staffAttendanceListForPdf.clear();
+                                  snapshot.data!.docs.forEach((element) {
+                                      staffAttendanceListForPdf.add(
+                                          AttendancePdfModel(
+                                              name: element['stname'],
+                                              id: element['regno'],
+                                            date: selecteddate,
+                                          )
+                                      );
+                                  });
                                   return ListView.builder(
                                       shrinkWrap: true,
                                       itemCount: snapshot.data!.docs.length,
@@ -604,6 +629,11 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                       child: StreamBuilder(
                                                         stream: FirebaseFirestore.instance.collection("Staffs").doc(value.id).collection("Attendance").where("Date",isEqualTo: selecteddate).snapshots(),
                                                         builder: (context,snap2) {
+                                                          staffAttendanceListForPdf.forEach((element) {
+                                                            if(element.id == value['regno'] && element.name == value['stname']){
+                                                              element.attendance = snap2.data!.docs.length==0? false : true;
+                                                            }
+                                                          });
                                                           return Text(snap2.data!.docs.length==0? "Absent":"Present",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: snap2.data!.docs.length==0? Colors.red:Colors.green),);
                                                         }
                                                       )),
