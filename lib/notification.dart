@@ -268,7 +268,7 @@ class _NotificationCusState extends State<NotificationCus> {
                           FirebaseFirestore.instance.collection("Circulars").doc().set({
                             "Descr":body.text,
                             "reason":title.text,
-                            "From":"Principle",
+                            "From":"Principal",
                             "Date":"${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}",
                             "Time":"${DateFormat('hh:mm a').format(DateTime.now())}",
                             "timestamp":DateTime.now().millisecondsSinceEpoch
