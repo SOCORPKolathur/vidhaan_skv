@@ -6,16 +6,20 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:show_up_animation/show_up_animation.dart';
+import 'package:syncfusion_flutter_charts/charts.dart' as sfc;
 import 'package:vidhaan/models/attendance_pdf_model.dart';
 import 'package:vidhaan/print/attendance_print.dart';
 import 'package:pdf/pdf.dart';
 
 
 class SalesData {
-  SalesData(this.year, this.sales);
+  SalesData(this.year, this.sales,this.absentDay, this.presentDay);
+
   final String year;
-  final double sales;
+  late double sales;
+  final String absentDay;
+  final String presentDay;
 }
 
 class Attendence extends StatefulWidget {
@@ -60,14 +64,14 @@ class _AttendenceState extends State<Attendence> {
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
   }
-  late TooltipBehavior _tooltipBehavior;
+  late sfc.TooltipBehavior _tooltipBehavior;
   @override
   void initState() {
     setState(() {
       _typeAheadControllerclass.text="Select Option";
       _typeAheadControllersection.text="Select Option";
     });
-    _tooltipBehavior = TooltipBehavior(enable: true);
+    _tooltipBehavior = sfc.TooltipBehavior(enable: true);
     adddropdownvalue();
 
     // TODO: implement initState
@@ -180,11 +184,517 @@ setState(() {
   bool view= false;
   bool absentonly= false;
 
+
+
+  int viewTab = 0;
+  String studentid = '';
+
   @override
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
     final double height=MediaQuery.of(context).size.height;
-    return SingleChildScrollView(
+    return viewTab == 1 ? SingleChildScrollView(
+      child: ShowUpAnimation(
+        curve: Curves.fastOutSlowIn,
+        direction: Direction.horizontal,
+        delayStart: Duration(milliseconds: 200),
+        child:
+        FutureBuilder<dynamic>(
+          future: FirebaseFirestore.instance.collection('Students').doc(studentid).get(),
+          builder: (context, snapshot) {
+            if(snapshot.hasData==null)
+            {
+              return Container(
+                  width: width/17.075,
+                  height: height/8.212,
+                  child: Center(child:CircularProgressIndicator(),));
+            }
+            Map<String,dynamic>?value = snapshot.data!.data();
+            return
+              Padding(
+                padding:EdgeInsets.only(left: width/93.3,top:0),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Material(
+                          elevation: 15,
+                          borderRadius: BorderRadius.circular(15),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color:Colors.white,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            width: width/4.44,
+                            height: height/1.050,
+                            child: Column(
+                              children: [
+                                SizedBox(height:height/30,),
+                                GestureDetector(
+                                  onTap: (){
+                                    print(width);
+                                  },
+                                  child: CircleAvatar(
+                                    radius: width/26.6666,
+                                    backgroundImage:  NetworkImage(value!['imgurl']==""?"https://firebasestorage.googleapis.com/v0/b/vidhaan-4aee7.appspot.com/o/360_F_270188580_YDUEwBmDIxBMvCQxkcunmEkm93VqOgqm.jpg?alt=media&token=fe18ba43-4a31-4b53-9523-42bb4241d9a1"
+                                        :value['imgurl']),
+
+                                  ),
+                                ),
+
+                                SizedBox(height:height/52.15,),
+                                Center(
+                                  child:Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('${value!['stname']}',style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                      ),),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height:height/130.3,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('Application No :',style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.w500,color: Colors.black,fontSize: width/124.4
+                                    ),),
+                                    Text(value['regno'],style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.w500,color: Colors.black,fontSize: width/124.4
+                                    ),),
+                                  ],
+                                ),
+
+
+                                SizedBox(height:height/52.15),
+                                Divider(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height:height/20.86),
+                                    SizedBox(width:width/62.2),
+                                    Text('Current Class',style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                    ),),
+                                  ],
+                                ),
+                                SizedBox(height: height/65.7,),
+                                Row(
+                                  children: [
+                                    SizedBox(width:width/62.2),
+                                    Material(
+                                      elevation: 7,
+                                      borderRadius: BorderRadius.circular(12),
+                                      shadowColor:  Color(0xff53B175),
+                                      child: Container(
+                                        height: height/8.212,
+                                        width: width/7.588,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(12),
+                                            border:Border.all(color: Color(0xff53B175))
+                                        ),
+                                        child:  Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text("Class / Section",style:GoogleFonts.montserrat(
+                                                fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/98.13
+                                            ),),
+                                            SizedBox(height: height/65.7,),
+                                            ChoiceChip(
+
+                                              label: Text("    ${value["admitclass"]} / ${value["section"]}    ",style: TextStyle(color: Colors.white),),
+
+
+                                              onSelected: (bool selected) {
+
+                                                setState(() {
+
+                                                });
+                                              },
+                                              selectedColor: Color(0xff53B175),
+                                              shape: StadiumBorder(
+                                                  side: BorderSide(
+                                                      color: Color(0xff53B175))),
+                                              backgroundColor: Colors.white,
+                                              labelStyle: TextStyle(color: Colors.black),
+
+                                              elevation: 1.5, selected: true,),
+                                          ],
+                                        ),
+
+                                      ),
+
+
+                                    ),
+                                  ],
+                                ),
+                                Divider(),
+                                SizedBox(height:height/32.85,),
+                                Row(children: [
+                                  SizedBox(width:width/62.2),
+                                  Icon(Icons.email_outlined,),
+                                  SizedBox(width:width/373.2),
+                                  GestureDetector(onTap: (){
+
+                                  },
+                                    child: Text('${value["email"]}',style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                    ),),
+                                  ),
+                                ],),
+                                SizedBox(height:height/34.76,),
+                                Row(children: [
+                                  SizedBox(width:width/62.2),
+                                  Icon(Icons.call,),
+                                  SizedBox(width:width/373.2),
+                                  GestureDetector(onTap: (){
+
+                                  },
+                                    child: Text('${value["mobile"]}',style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                    ),),
+                                  ),
+                                ],),
+                                SizedBox(height:height/34.76,),
+                                Row(children: [
+                                  SizedBox(width:width/62.2),
+                                  Icon(Icons.calendar_month_sharp,),
+                                  SizedBox(width:width/373.2),
+                                  GestureDetector(onTap: (){
+
+                                  },
+                                    child: Text(value["dob"]!="Null"?value["dob"].toString().length>15?'${value["dob"].toString().substring(0,10)}':'${value["dob"].toString().replaceAll(" ", "")}':"Null",style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                    ),),
+                                  ),
+                                ],),
+                                SizedBox(height:height/34.76,),
+                                Row(children: [
+                                  SizedBox(width:width/62.2),
+                                  value["gender"]=="Male"? Icon(Icons.male_rounded,) :Icon(Icons.female_rounded,),
+                                  SizedBox(width:width/373.2),
+                                  GestureDetector(onTap: (){
+
+                                  },
+                                    child: Text('${value["gender"]}',style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                    ),),
+                                  ),
+                                ],),
+
+
+                                SizedBox(height:height/34.76,),
+                                Row(children: [
+                                  SizedBox(width:width/62.2),
+                                  Icon(Icons.bloodtype_rounded,) ,
+                                  SizedBox(width:width/373.2),
+                                  GestureDetector(onTap: (){
+
+                                  },
+                                    child: Text('${value["bloodgroup"]}',style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                    ),),
+                                  ),
+                                ],),
+                                SizedBox(height:height/34.76,),
+                                GestureDetector(
+                                  onTap: (){
+
+                                  },
+                                  child: Container(width: width/5.464,
+                                    height: height/16.425,
+                                    // color:Color(0xff00A0E3),
+                                    decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(5)),child: Center(child: Text("View Fees Reports",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
+
+                                  ),
+                                ),
+
+
+
+
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(width:width/62.2,),
+                    Column(
+                      children: [
+                        Material(
+                          elevation: 15,
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight:Radius.circular(15)  ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight:Radius.circular(15)  ),
+                              color: Colors.white,
+                            ),
+                            width:width/1.8600,
+                            height:height/19,
+                            child: Padding(
+                              padding: EdgeInsets.only(left:width/62.2,right:width/62.2),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Student  Details',style: GoogleFonts.montserrat(
+                                    fontSize:width/81.13,fontWeight: FontWeight.bold,
+                                  ),),
+                                  InkWell(
+                                      onTap: (){
+                                        setState(() {
+                                          viewTab = 0;
+                                        });
+                                      },
+                                      child: Icon(Icons.cancel,color: Colors.red,))
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height:height/58,),
+                        Material(
+                          elevation: 15,
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight:Radius.circular(15)  ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight:Radius.circular(15)  ),
+                                color:Colors.white
+                            ),
+                            width:width/1.86,
+                            height: height/1.140,
+                            child: Padding(
+                              padding: EdgeInsets.only(left:width/62.2,right:width/62.2),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                        width: 800,
+                                        child: FutureBuilder<StudentAttendanceReportModel>(
+                                          future: getMonthlyAttendanceReportForStudent(studentid),
+                                          builder: (ctx,snapshot){
+                                            if(snapshot.hasData){
+                                              return Column(
+                                                children: [
+                                                  Container(
+                                                    height: 250,
+                                                    width: 780,
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        Container(
+                                                          height: 250,
+                                                          width: 480,
+                                                          child: sfc.SfCartesianChart(
+
+                                                              primaryXAxis: sfc.CategoryAxis(),
+
+                                                              title: sfc.ChartTitle(
+                                                                  text: '   Monthly Present Reports',
+                                                                  textStyle: GoogleFonts.poppins(
+                                                                    fontWeight: FontWeight.w600,
+                                                                    color: Colors.black,
+                                                                  ),
+                                                                  alignment: sfc.ChartAlignment.near
+                                                              ),
+                                                              legend: sfc.Legend(isVisible: true),
+                                                              tooltipBehavior: sfc.TooltipBehavior(enable: true),
+                                                              series: <sfc.LineSeries<SalesData, String>>[
+                                                                sfc.LineSeries<SalesData, String>(
+                                                                  name: "",
+                                                                  dataSource: snapshot.data!.presentReport,
+                                                                  xValueMapper: (SalesData sales, _) => sales.year,
+                                                                  yValueMapper: (SalesData sales, _) => sales.sales,
+                                                                  // Enable data label
+                                                                  dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                                                  color: Colors.green,
+                                                                  width: 5,
+                                                                  animationDuration: 2000,
+                                                                )
+                                                              ]
+                                                          ),
+                                                        ),
+                                                        Column(
+                                                          mainAxisAlignment : MainAxisAlignment.center,
+                                                          children: [
+                                                            CircularPercentIndicator(
+                                                              circularStrokeCap: CircularStrokeCap.round,
+                                                              radius: 45.0,
+                                                              lineWidth: 10.0,
+                                                              percent: getStudentAttendancePersantage(snapshot.data!).present,
+                                                              center:  Text("${((getStudentAttendancePersantage(snapshot.data!).present)*100).toString()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                              progressColor: Colors.green,
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets.all( 8.0),
+                                                              child:  ChoiceChip(
+                                                                label: Text("${(getStudentAttendancePersantage(snapshot.data!).present * getStudentAttendancePersantage(snapshot.data!).total)} Present  ",style: TextStyle(color: Colors.white),),
+                                                                onSelected: (bool selected) {
+                                                                  setState(() {
+
+                                                                  });
+                                                                },
+                                                                selectedColor: Colors.green,
+                                                                shape: StadiumBorder(
+                                                                    side: BorderSide(
+                                                                        color: Color(0xff53B175))),
+                                                                backgroundColor: Colors.white,
+                                                                labelStyle: TextStyle(color: Colors.black),
+
+                                                                elevation: 1.5, selected: true,),
+
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 250,
+                                                    width: 780,
+                                                    child: Row(
+                                                      mainAxisAlignment : MainAxisAlignment.center,
+                                                      children: [
+                                                        Container(
+                                                          height: 250,
+                                                          width: 480,
+                                                          child: sfc.SfCartesianChart(
+                                                              primaryXAxis: sfc.CategoryAxis(),
+                                                              title: sfc.ChartTitle(
+                                                                  text: '   Monthly Absent Reports',
+                                                                  textStyle: GoogleFonts.poppins(
+                                                                    fontWeight: FontWeight.w600,
+                                                                    color: Colors.black,
+                                                                  ),
+                                                                  alignment: sfc.ChartAlignment.near
+                                                              ),
+                                                              legend: sfc.Legend(isVisible: true),
+                                                              tooltipBehavior: sfc.TooltipBehavior(enable: true),
+                                                              series: <sfc.LineSeries<SalesData, String>>[
+                                                                sfc.LineSeries<SalesData, String>(
+                                                                  name: '',
+                                                                  dataSource: snapshot.data!.absentReport,
+                                                                  xValueMapper: (SalesData sales, _) => sales.year,
+                                                                  yValueMapper: (SalesData sales, _) => sales.sales,
+                                                                  // Enable data label
+                                                                  dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                                                  color: Colors.red,
+                                                                  width: 5,
+                                                                  animationDuration: 2000,
+                                                                )
+                                                              ]
+                                                          ),
+                                                        ),
+                                                        Column(
+                                                          mainAxisAlignment : MainAxisAlignment.center,
+                                                          children: [
+                                                            CircularPercentIndicator(
+                                                              circularStrokeCap: CircularStrokeCap.round,
+                                                              radius: 45.0,
+                                                              lineWidth: 10.0,
+                                                              percent: getStudentAttendancePersantage(snapshot.data!).absent,
+                                                              center:  Text("${((getStudentAttendancePersantage(snapshot.data!).absent * 100).toString())}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                              progressColor: Colors.red,
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets.all( 8.0),
+                                                              child:  ChoiceChip(
+                                                                label: Text("${(getStudentAttendancePersantage(snapshot.data!).absent * getStudentAttendancePersantage(snapshot.data!).total)} Absent  ",style: TextStyle(color: Colors.white),),
+                                                                onSelected: (bool selected) {
+                                                                  setState(() {
+
+                                                                  });
+                                                                },
+                                                                selectedColor: Colors.red,
+                                                                shape: StadiumBorder(
+                                                                    side: BorderSide(
+                                                                        color: Colors.red)),
+                                                                backgroundColor: Colors.white,
+                                                                labelStyle: TextStyle(color: Colors.black),
+
+                                                                elevation: 1.5, selected: true,),
+
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 20),
+                                                  Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        "Absent Days",
+                                                        style: TextStyle(
+                                                          fontWeight: FontWeight.w700,
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 20),
+                                                      Container(
+                                                        height:300,
+                                                        child: ListView.builder(
+                                                          itemCount: snapshot.data!.absentDays.length,
+                                                          itemBuilder: (ctx, i){
+                                                            return Padding(
+                                                              padding: const EdgeInsets.all(8.0),
+                                                              child: Text(
+                                                                  snapshot.data!.absentDays[i],
+                                                                style: TextStyle(
+                                                                  fontWeight: FontWeight.normal,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },),
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              );
+                                            }return sfc.SfCartesianChart(
+                                                primaryXAxis: sfc.CategoryAxis(),
+                                                title: sfc.ChartTitle(
+                                                    text: '   Monthly Student Reports',
+                                                    textStyle: GoogleFonts.poppins(
+                                                      fontWeight: FontWeight.w600,
+                                                      color: Colors.black,
+                                                    ),
+                                                    alignment: sfc.ChartAlignment.near
+                                                ),
+                                                legend: sfc.Legend(isVisible: true),
+                                                tooltipBehavior: sfc.TooltipBehavior(enable: true),
+                                                series: <sfc.LineSeries<SalesData, String>>[
+                                                  sfc.LineSeries<SalesData, String>(
+                                                    name: "Students \nAttendance",
+                                                    dataSource: [],
+                                                    xValueMapper: (SalesData sales, _) => sales.year,
+                                                    yValueMapper: (SalesData sales, _) => sales.sales,
+                                                    // Enable data label
+                                                    dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                                    color: Colors.green,
+                                                    width: 5,
+                                                    animationDuration: 2000,
+                                                  )
+                                                ]
+                                            );
+                                          },
+                                        )
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],)
+
+                  ],),
+              );
+          },
+        ),
+      ),
+    ) : SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -200,182 +710,351 @@ setState(() {
             ),
           ),
 
-          Row(
-            children: [
-              SizedBox(width: 20,),
-              Container(
-                  width: 450,
-                  child: SfCartesianChart(
-
-
-                      primaryXAxis: CategoryAxis(),
-                      // Chart title
-                      title: ChartTitle(text: '       Monthly Student Reports',textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Colors.black),alignment: ChartAlignment.near),
-                      // Enable legend
-                      legend: Legend(isVisible: true),
-                      // Enable tooltip
-                      tooltipBehavior: _tooltipBehavior,
-
-
-
-                      series: <LineSeries<SalesData, String>>[
-
-                        LineSeries<SalesData, String>(
-                          name: "Students \nAttendance",
-                          dataSource:  <SalesData>[
-                          /*  SalesData('Jan', 35),
-                            SalesData('Feb', 28),
-                            SalesData('Mar', 34),
-                            SalesData('Apr', 32),
-                            SalesData('May', 40),
-                            SalesData('June', 50),
-                            SalesData('July', 50),
-
-                           */
-                          ],
-                          xValueMapper: (SalesData sales, _) => sales.year,
-                          yValueMapper: (SalesData sales, _) => sales.sales,
-                          // Enable data label
-                          dataLabelSettings: DataLabelSettings(isVisible: true),
-                          color: Colors.green,
-                          width: 5,
-                          animationDuration: 2000,
-
-
+          FutureBuilder(
+            future: getMonthlyAttendanceReportForClass(),
+            builder: (ctx, snapshot){
+              if(snapshot.hasData){
+                return Row(
+                  children: [
+                    SizedBox(width: 20,),
+                    Container(
+                        width: 450,
+                        child: Container(
+                          height: 250,
+                          width: 850,
+                          child: sfc.SfCartesianChart(
+                              primaryXAxis: sfc.CategoryAxis(),
+                              title: sfc.ChartTitle(
+                                  text: '   Monthly Student Reports',
+                                  textStyle: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                  alignment: sfc.ChartAlignment.near
+                              ),
+                              legend: sfc.Legend(isVisible: true),
+                              tooltipBehavior: _tooltipBehavior,
+                              series: <sfc.LineSeries<SalesData, String>>[
+                                sfc.LineSeries<SalesData, String>(
+                                  name: "",
+                                  dataSource: snapshot.data!.presentReport,
+                                  xValueMapper: (SalesData sales, _) => sales.year,
+                                  yValueMapper: (SalesData sales, _) => sales.sales,
+                                  // Enable data label
+                                  dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                  color: Colors.green,
+                                  width: 5,
+                                  animationDuration: 2000,
+                                )
+                              ]
+                          ),
                         )
-                      ]
-                  )
-              ),
-              Column(
-                children: [
-                  SizedBox(height: height/32.85,),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:  Column(
+                    ),
+                    Column(
+                      children: [
+                        SizedBox(height: height/32.85,),
+                        Row(
                           children: [
-                            CircularPercentIndicator(
-                              circularStrokeCap: CircularStrokeCap.round,
-                              radius: 50.0,
-                              lineWidth: 10.0,
-                              percent:  0.00,
-                              center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
-                              progressColor: Colors.green,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child:  Column(
+                                children: [
+                                  CircularPercentIndicator(
+                                    circularStrokeCap: CircularStrokeCap.round,
+                                    radius: 50.0,
+                                    lineWidth: 10.0,
+                                    percent:  getClassRegularPercentage(snapshot.data!).regular/100,
+                                    center:  Text("${getClassRegularPercentage(snapshot.data!).regular.toInt()} %",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                    progressColor: Colors.green,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all( 8.0),
+                                    child:  ChoiceChip(
+
+                                      label: Text("  Regular  ",style: TextStyle(color: Colors.white),),
+
+
+                                      onSelected: (bool selected) {
+
+                                        setState(() {
+
+                                        });
+                                      },
+                                      selectedColor: Color(0xff53B175),
+                                      shape: StadiumBorder(
+                                          side: BorderSide(
+                                              color: Color(0xff53B175))),
+                                      backgroundColor: Colors.white,
+                                      labelStyle: TextStyle(color: Colors.black),
+
+                                      elevation: 1.5, selected: true,),
+
+                                  ),
+                                ],
+                              ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all( 8.0),
-                              child:  ChoiceChip(
+                              padding: const EdgeInsets.all(8.0),
+                              child:  Column(
+                                children: [
+                                  CircularPercentIndicator(
+                                    circularStrokeCap: CircularStrokeCap.round,
+                                    radius: 50.0,
+                                    lineWidth: 10.0,
+                                    percent: getClassRegularPercentage(snapshot.data!).irregular/100,
+                                    center:  Text("${getClassRegularPercentage(snapshot.data!).irregular.toInt()} %",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                    progressColor: Colors.red,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all( 8.0),
+                                    child: ChoiceChip(
 
-                                label: Text("  Regular  ",style: TextStyle(color: Colors.white),),
+                                      label: const Text("  Ir-regular  ",style: TextStyle(color: Colors.white),),
 
 
-                                onSelected: (bool selected) {
+                                      onSelected: (bool selected) {
 
-                                  setState(() {
+                                        setState(() {
 
-                                  });
-                                },
-                                selectedColor: Color(0xff53B175),
-                                shape: StadiumBorder(
-                                    side: BorderSide(
-                                        color: Color(0xff53B175))),
-                                backgroundColor: Colors.white,
-                                labelStyle: TextStyle(color: Colors.black),
+                                        });
+                                      },
+                                      selectedColor: Colors.red,
+                                      shape: StadiumBorder(
+                                          side: BorderSide(
+                                              color: Colors.red)),
+                                      backgroundColor: Colors.white,
+                                      labelStyle: TextStyle(color: Colors.black),
 
-                                elevation: 1.5, selected: true,),
-
+                                      elevation: 1.5, selected: true,),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:  Column(
-                          children: [
-                            CircularPercentIndicator(
-                              circularStrokeCap: CircularStrokeCap.round,
-                              radius: 50.0,
-                              lineWidth: 10.0,
-                              percent: 0.00,
-                              center:  Text("00%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
-                              progressColor: Colors.red,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all( 8.0),
-                              child: ChoiceChip(
+                        SizedBox(height: height/32.85),
 
-                                label: const Text("  Ir-regular  ",style: TextStyle(color: Colors.white),),
-
-
-                                onSelected: (bool selected) {
-
-                                  setState(() {
-
-                                  });
-                                },
-                                selectedColor: Colors.red,
-                                shape: StadiumBorder(
-                                    side: BorderSide(
-                                        color: Colors.red)),
-                                backgroundColor: Colors.white,
-                                labelStyle: TextStyle(color: Colors.black),
-
-                                elevation: 1.5, selected: true,),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: height/32.85),
-
-                ],
-              ),
-              SizedBox(width: 20,),
-              Material(
-                elevation: 7,
-                borderRadius: BorderRadius.circular(12),
-                shadowColor:  Color(0xff53B175),
-                child: Container(
-                  height: height/7.3,
-                  width: width/5.464,
-                  decoration: BoxDecoration(
+                      ],
+                    ),
+                    SizedBox(width: 20,),
+                    Material(
+                      elevation: 7,
                       borderRadius: BorderRadius.circular(12),
-                      border:Border.all(color: Color(0xff53B175))
+                      shadowColor:  Color(0xff53B175),
+                      child: Container(
+                        height: height/7.3,
+                        width: width/5.464,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border:Border.all(color: Color(0xff53B175))
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Total No.of Students",style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                            ),),
+                            ChoiceChip(
+
+                              label: Text("${schooltotal.toString()} Students",style: TextStyle(color: Colors.white),),
+
+
+                              onSelected: (bool selected) {
+
+                                setState(() {
+
+                                });
+                              },
+                              selectedColor: Color(0xff53B175),
+                              shape: StadiumBorder(
+                                  side: BorderSide(
+                                      color: Color(0xff53B175))),
+                              backgroundColor: Colors.white,
+                              labelStyle: TextStyle(color: Colors.black),
+
+                              elevation: 1.5, selected: true,),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }return Row(
+                children: [
+                  SizedBox(width: 20,),
+                  Container(
+                      width: 450,
+                      child: Container(
+                        height: 250,
+                        width: 850,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            sfc.SfCartesianChart(
+                                primaryXAxis: sfc.CategoryAxis(),
+                                title: sfc.ChartTitle(
+                                    text: '   Monthly Student Reports',
+                                    textStyle: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                    ),
+                                    alignment: sfc.ChartAlignment.near
+                                ),
+                                legend: sfc.Legend(isVisible: true),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <sfc.LineSeries<SalesData, String>>[
+                                  sfc.LineSeries<SalesData, String>(
+                                    name: "",
+                                    dataSource: [],
+                                    xValueMapper: (SalesData sales, _) => sales.year,
+                                    yValueMapper: (SalesData sales, _) => sales.sales,
+                                    // Enable data label
+                                    dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                    color: Colors.green,
+                                    width: 5,
+                                    animationDuration: 2000,
+                                  )
+                                ]
+                            ),
+                            CircularProgressIndicator()
+                          ],
+                        ),
+                      )
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
-                      Text("Total No.of Students",style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                      ),),
-                      ChoiceChip(
+                      SizedBox(height: height/32.85,),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child:  Column(
+                              children: [
+                                CircularPercentIndicator(
+                                  circularStrokeCap: CircularStrokeCap.round,
+                                  radius: 50.0,
+                                  lineWidth: 10.0,
+                                  percent:  0.00,
+                                  center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                  progressColor: Colors.green,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all( 8.0),
+                                  child:  ChoiceChip(
 
-                        label: Text("${schooltotal.toString()} Students",style: TextStyle(color: Colors.white),),
+                                    label: Text("  Regular  ",style: TextStyle(color: Colors.white),),
 
 
-                        onSelected: (bool selected) {
+                                    onSelected: (bool selected) {
 
-                          setState(() {
+                                      setState(() {
 
-                          });
-                        },
-                        selectedColor: Color(0xff53B175),
-                        shape: StadiumBorder(
-                            side: BorderSide(
-                                color: Color(0xff53B175))),
-                        backgroundColor: Colors.white,
-                        labelStyle: TextStyle(color: Colors.black),
+                                      });
+                                    },
+                                    selectedColor: Color(0xff53B175),
+                                    shape: StadiumBorder(
+                                        side: BorderSide(
+                                            color: Color(0xff53B175))),
+                                    backgroundColor: Colors.white,
+                                    labelStyle: TextStyle(color: Colors.black),
 
-                        elevation: 1.5, selected: true,),
+                                    elevation: 1.5, selected: true,),
+
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child:  Column(
+                              children: [
+                                CircularPercentIndicator(
+                                  circularStrokeCap: CircularStrokeCap.round,
+                                  radius: 50.0,
+                                  lineWidth: 10.0,
+                                  percent: 0.00,
+                                  center:  Text("00%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                  progressColor: Colors.red,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all( 8.0),
+                                  child: ChoiceChip(
+
+                                    label: const Text("  Ir-regular  ",style: TextStyle(color: Colors.white),),
+
+
+                                    onSelected: (bool selected) {
+
+                                      setState(() {
+
+                                      });
+                                    },
+                                    selectedColor: Colors.red,
+                                    shape: StadiumBorder(
+                                        side: BorderSide(
+                                            color: Colors.red)),
+                                    backgroundColor: Colors.white,
+                                    labelStyle: TextStyle(color: Colors.black),
+
+                                    elevation: 1.5, selected: true,),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: height/32.85),
+
                     ],
                   ),
-                ),
-              ),
-            ],
+                  SizedBox(width: 20,),
+                  Material(
+                    elevation: 7,
+                    borderRadius: BorderRadius.circular(12),
+                    shadowColor:  Color(0xff53B175),
+                    child: Container(
+                      height: height/7.3,
+                      width: width/5.464,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border:Border.all(color: Color(0xff53B175))
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Total No.of Students",style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20,
+                          ),),
+                          ChoiceChip(
+
+                            label: Text("${schooltotal.toString()} Students",style: TextStyle(color: Colors.white),),
+
+
+                            onSelected: (bool selected) {
+
+                              setState(() {
+
+                              });
+                            },
+                            selectedColor: Color(0xff53B175),
+                            shape: StadiumBorder(
+                                side: BorderSide(
+                                    color: Color(0xff53B175))),
+                            backgroundColor: Colors.white,
+                            labelStyle: TextStyle(color: Colors.black),
+
+                            elevation: 1.5, selected: true,),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0,top: 20),
@@ -820,10 +1499,18 @@ setState(() {
                                                 ),
                                                 Padding(
                                                   padding: const EdgeInsets.only(left: 0.0,right: 0.0),
-                                                  child: Container(
+                                                  child: InkWell(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        viewTab = 1;
+                                                        studentid = value['stdocid'];
+                                                      });
+                                                    },
+                                                    child: Container(
 
-                                                      width: width/13.66,
-                                                      child: Text("View Student",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff00A0E3)),)),
+                                                        width: width/13.66,
+                                                        child: Text("View Student",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff00A0E3)),)),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -863,10 +1550,18 @@ setState(() {
                                                 ),
                                                 Padding(
                                                   padding: const EdgeInsets.only(left: 0.0,right: 0.0),
-                                                  child: Container(
+                                                  child: InkWell(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        viewTab = 1;
+                                                        studentid = value['stdocid'];
+                                                      });
+                                                    },
+                                                    child: Container(
 
-                                                      width: width/13.66,
-                                                      child: Text("View Student",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff00A0E3)),)),
+                                                        width: width/13.66,
+                                                        child: Text("View Student",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff00A0E3)),)),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1049,6 +1744,207 @@ setState(() {
     );
   }
 
+  Future<StudentAttendanceReportModel> getMonthlyAttendanceReportForClass() async {
+    var snapshot = await FirebaseFirestore.instance.collection("Attendance").get();
+    List<SalesData> attendanceData = [];
+    List<SalesData> attendanceData1 = [];
+    List<SalesData> absentData = [];
+    List<SalesData> absentData1 = [];
+    snapshot.docs.forEach((standard) async {
+      int presentCount = 0;
+      int absentCount = 0;
+      DateTime startDate = DateFormat("dd-M-yyyy").parse('01-06-2023');
+      Duration dur =  DateTime.now().difference(startDate);
+      try{
+        for(int i =0; i < dur.inDays.abs()+1; i++){
+          var document1 = await FirebaseFirestore.instance.collection("Attendance").doc(standard.id).collection(DateFormat('dd-M-yyyy').format(startDate.add(Duration(days: i+1)))).get();
+          for (var element in document1.docs) {
+            if(element.get("present")){
+              presentCount++;
+              String month = await getMonthForData(startDate.add(Duration(days: i+1)).month);
+              SalesData sale = SalesData(month, presentCount.toDouble(),'','');
+              attendanceData.add(sale);
+            }
+            if(!element.get("present")){
+              absentCount++;
+              String month = await getMonthForData(startDate.add(Duration(days: i+1)).month);
+              SalesData sale = SalesData(month, presentCount.toDouble(),'','');
+              absentData.add(sale);
+            }
+          }
+        }
+      }catch(e){
+      }
+    });
+    await Future.delayed(Duration(seconds: 30));
+    attendanceData1.add(SalesData('June',attendanceData.where((element) => element.year == 'June').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('July',attendanceData.where((element) => element.year == 'July').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Aug',attendanceData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Sep',attendanceData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Oct',attendanceData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Nov',attendanceData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Dec',attendanceData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Jan',attendanceData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Feb',attendanceData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Mar',attendanceData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Apr',attendanceData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('June',absentData.where((element) => element.year == 'June').length.toDouble(),'',''));
+    absentData1.add(SalesData('July',absentData.where((element) => element.year == 'July').length.toDouble(),'',''));
+    absentData1.add(SalesData('Aug',absentData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+    absentData1.add(SalesData('Sep',absentData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+    absentData1.add(SalesData('Oct',absentData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+    absentData1.add(SalesData('Nov',absentData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+    absentData1.add(SalesData('Dec',absentData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+    absentData1.add(SalesData('Jan',absentData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+    absentData1.add(SalesData('Feb',absentData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+    absentData1.add(SalesData('Mar',absentData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+    absentData1.add(SalesData('Apr',absentData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+    // print("fetcjhed");
+    // return attendanceData1;
+    StudentAttendanceReportModel studentReport = StudentAttendanceReportModel(
+      absentReport: absentData1,
+      presentReport: attendanceData1,
+      absentDays: [],
+      presentDays: [],
+    );
+    return studentReport;
+  }
+
+
+  Future<StudentAttendanceReportModel> getMonthlyAttendanceReportForStudent(String id) async {
+    var snapshot = await FirebaseFirestore.instance.collection("Students").doc(id).collection('Attendance').get();
+    List<SalesData> attendanceData = [];
+    List<SalesData> attendanceData1 = [];
+    List<SalesData> absentData = [];
+    List<SalesData> absentData1 = [];
+    List<String> presentDays = [];
+    List<String> absentDays = [];
+    snapshot.docs.forEach((element) async {
+      int presentCount = 0;
+      int absentCount = 0;
+      if(element.get("Attendance").toString().toLowerCase() == "present"){
+        presentCount++;
+        DateTime startDate = DateFormat('dd-M-yyyy').parse(element.id);
+        String month = await getMonthForData(startDate.month);
+        SalesData sale = SalesData(month, presentCount.toDouble(),'',element.id);
+        attendanceData.add(sale);
+      }
+      if(element.get("Attendance").toString().toLowerCase() == "absent"){
+        absentCount++;
+        DateTime startDate = DateFormat('dd-M-yyyy').parse(element.id);
+        String month = await getMonthForData(startDate.month);
+        SalesData sale = SalesData(month, absentCount.toDouble(),element.id,'');
+        absentData.add(sale);
+      }
+    });
+    await Future.delayed(Duration(seconds: 1));
+
+    attendanceData.forEach((element) {
+      presentDays.add(element.presentDay);
+    });
+    absentData.forEach((element) {
+      absentDays.add(element.absentDay);
+    });
+     attendanceData1.add(SalesData('June',attendanceData.where((element) => element.year == 'June').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('July',attendanceData.where((element) => element.year == 'July').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Aug',attendanceData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+
+     attendanceData1.add(SalesData('Sep',attendanceData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+
+     attendanceData1.add(SalesData('Oct',attendanceData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Nov',attendanceData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Dec',attendanceData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Jan',attendanceData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Feb',attendanceData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Mar',attendanceData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Apr',attendanceData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+
+
+
+    absentData1.add(SalesData('June',absentData.where((element) => element.year == 'June').length.toDouble(),'',''));
+
+     absentData1.add(SalesData('July',absentData.where((element) => element.year == 'July').length.toDouble(),'',''));
+
+     absentData1.add(SalesData('Aug',absentData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Sep',absentData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Oct',absentData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Nov',absentData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Dec',absentData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Jan',absentData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Feb',absentData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Mar',absentData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Apr',absentData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+    StudentAttendanceReportModel studentReport = StudentAttendanceReportModel(
+      absentReport: absentData1,
+      presentReport: attendanceData1,
+      absentDays: absentDays,
+      presentDays: presentDays,
+    );
+    return studentReport;
+  }
+
+  getMonthForData(int month){
+    String result = '';
+    switch(month){
+      case 1:
+        result = 'Jan';
+        break;
+      case 2:
+        result = 'Feb';
+        break;
+      case 3:
+        result = 'Mar';
+        break;
+      case 4:
+        result = 'Apr';
+        break;
+      case 5:
+        result = 'May';
+        break;
+      case 6:
+        result = 'June';
+        break;
+      case 7:
+        result = 'July';
+        break;
+      case 8:
+        result = 'Aug';
+        break;
+      case 9:
+        result = 'Sep';
+        break;
+      case 10:
+        result = 'Oct';
+        break;
+      case 11:
+        result = 'Nov';
+        break;
+      case 12:
+        result = 'Dec';
+        break;
+
+    }
+    return result;
+  }
+
 
   getstudents() async {
 
@@ -1064,4 +1960,75 @@ setState(() {
 
 
   }
+
+  StudentAttendancePercentage getStudentAttendancePersantage(StudentAttendanceReportModel report){
+    double presentPersantage = 0.0;
+    double absentPersantage = 0.0;
+    double totalPersantage = 0.0;
+    report.presentReport.forEach((element) {
+      presentPersantage = presentPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    report.absentReport.forEach((element) {
+      absentPersantage = absentPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    StudentAttendancePercentage percentage = StudentAttendancePercentage(
+      present: (presentPersantage/totalPersantage),
+      absent: (absentPersantage/totalPersantage),
+      total: totalPersantage
+    );
+    return percentage;
+  }
+
+
+  ClassAttendancePercentage getClassRegularPercentage(StudentAttendanceReportModel report){
+    double regulatPersantage = 0.0;
+    double irregularPersantage = 0.0;
+    double totalPersantage = 0.0;
+    report.presentReport.forEach((element) {
+      regulatPersantage = regulatPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    report.absentReport.forEach((element) {
+      irregularPersantage = irregularPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    ClassAttendancePercentage percentage = ClassAttendancePercentage(
+        regular: (regulatPersantage/totalPersantage) * 100,
+        irregular: (irregularPersantage/totalPersantage) * 100,
+        total: totalPersantage
+    );
+    print(regulatPersantage);
+    print(irregularPersantage);
+    print(totalPersantage);
+    return percentage;
+  }
+
+
+
+}
+
+
+class StudentAttendanceReportModel {
+  StudentAttendanceReportModel({required this.presentReport,required this.absentReport,required this.presentDays, required this.absentDays});
+
+  List<SalesData> presentReport;
+  List<SalesData> absentReport;
+  List<String> presentDays;
+  List<String> absentDays;
+}
+
+class StudentAttendancePercentage{
+  StudentAttendancePercentage({required this.present, required this.absent, required this.total});
+  double present;
+  double absent;
+  double total;
+}
+
+class ClassAttendancePercentage{
+  ClassAttendancePercentage({required this.regular, required this.irregular, required this.total});
+  double regular;
+  double irregular;
+  double total;
 }

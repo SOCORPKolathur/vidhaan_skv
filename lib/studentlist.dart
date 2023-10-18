@@ -3,10 +3,13 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:show_up_animation/show_up_animation.dart';
+import 'package:syncfusion_flutter_charts/charts.dart' as sfc;
 import 'package:vidhaan/Masters/excelgen.dart';
 import 'package:vidhaan/studententryedit.dart';
+import 'attendence.dart';
 
 
 class StudentList extends StatefulWidget {
@@ -1714,6 +1717,7 @@ class _StudentListState extends State<StudentList> {
                                     ),
                                   ),
                                   */
+
                                   SizedBox(height:height/100,),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -2194,4 +2198,51 @@ setState(() {
 
 
   }
+
+
+
+  getMonthForData(int month){
+    String result = '';
+    switch(month){
+      case 1:
+        result = 'Jan';
+        break;
+      case 2:
+        result = 'Feb';
+        break;
+      case 3:
+        result = 'Mar';
+        break;
+      case 4:
+        result = 'Apr';
+        break;
+      case 5:
+        result = 'May';
+        break;
+      case 6:
+        result = 'June';
+        break;
+      case 7:
+        result = 'July';
+        break;
+      case 8:
+        result = 'Aug';
+        break;
+      case 9:
+        result = 'Sep';
+        break;
+      case 10:
+        result = 'Oct';
+        break;
+      case 11:
+        result = 'Nov';
+        break;
+      case 12:
+        result = 'Dec';
+        break;
+
+    }
+    return result;
+  }
+
 }
