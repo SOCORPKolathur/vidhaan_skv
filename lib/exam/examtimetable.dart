@@ -688,7 +688,8 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
 
                                             if(pickedDate != null ){
                                               print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
-                                              String formattedDate = DateFormat('dd / M / yyyy').format(pickedDate);
+                                              //String formattedDate = DateFormat('dd / M / yyyy').format(pickedDate);
+                                              String formattedDate = "${DateFormat.d().format(pickedDate)} ${DateFormat.MMM().format(pickedDate)} ${DateFormat.y().format(pickedDate)}";
                                               print(formattedDate); //formatted date output using intl package =>  2021-03-16
                                               //you can implement different kind of Date Format here according to your requirement
 

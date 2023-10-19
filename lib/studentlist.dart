@@ -10,6 +10,7 @@ import 'package:syncfusion_flutter_charts/charts.dart' as sfc;
 import 'package:vidhaan/Masters/excelgen.dart';
 import 'package:vidhaan/studententryedit.dart';
 import 'attendence.dart';
+import 'models/student_csv_model.dart';
 
 
 class StudentList extends StatefulWidget {
@@ -33,6 +34,8 @@ class _StudentListState extends State<StudentList> {
   static final List<String> regno = [];
   static final List<String> student = [];
   static final List<String> section = [];
+
+  List<StudentModelForCsv> studentsListForCsv = [];
 
 
   static List<String> getSuggestionsregno(String query) {
@@ -317,7 +320,7 @@ class _StudentListState extends State<StudentList> {
                           ),
                         ),
                         SizedBox(width: 140,),
-                        Excelsheet(check,mainconcent),
+                        Excelsheet(check,mainconcent,studentsListForCsv),
                       ],
                     ),
                     Padding(
@@ -851,6 +854,104 @@ class _StudentListState extends State<StudentList> {
                             return   Center(
                               child:  CircularProgressIndicator(),
                             );}
+                          studentsListForCsv.clear();
+                          if(search == true){
+                            snapshot.data!.docs.forEach((element) {
+                              if(element.id == studentid){
+                                studentsListForCsv.add(
+                                    StudentModelForCsv(
+                                      name: element.get("stname"),
+                                      clasS: element.get("admitclass"),
+                                      height:element.get("sheight"),
+                                      phone:element.get("mobile"),
+                                      email: element.get("email"),
+                                      dob: element.get("dob"),
+                                      bloodGroup: element.get("bloodgroup"),
+                                      gender: element.get("gender"),
+                                      address: element.get("address"),
+                                      aadhaarNumber: element.get("aadhaarno"),
+                                      applicationNumber: element.get("regno"),
+                                      community: element.get("community"),
+                                      emiNo: element.get("EMIS"),
+                                      weight: element.get("stweight"),
+                                      fatherAadhaar: element.get("fatherAadhaar"),
+                                      fatherName: element.get("fathername"),
+                                      fatherOccupation:element.get("fatherOccupation"),
+                                      fatherOfficeAddress: element.get("fatherOffice"),
+                                      fatherPhone: element.get("fatherMobile"),
+                                      identificationMark: element.get("identificatiolmark"),
+                                      modeOfTransport: element.get("transport"),
+                                      motherAadhaar: element.get("motherAadhaar"),
+                                      motherName: element.get("mothername"),
+                                      motherOccupation: element.get("motherOccupation"),
+                                      motherPhone:element.get("motherMobile"),
+                                      religion: element.get("religion"),
+                                      section: element.get("section"),
+                                      guardianPhone: element.get("guardianMobile"),
+                                      lastName:element.get("stlastname"),
+                                      academicYear: element.get("academic"),
+                                      brotherName: element.get("brothername"),
+                                      brotherStudyingHere: element.get("brother studying here"),
+                                      fatherEmail: element.get("fatherEmail"),
+                                      guardianAadhaar: element.get("guardianAadhaar"),
+                                      guardianEmail: element.get("guardianEmail"),
+                                      guardianName: element.get("guardianname"),
+                                      guardianOccupation: element.get("guardianOccupation"),
+                                      house: element.get("house"),
+                                      motherEmail: element.get("motherEmail"),
+                                      motherOffice: element.get("motherOffice"),
+                                    )
+                                );
+                              }
+                            });
+                          }else{
+                            snapshot.data!.docs.forEach((element) {
+                              studentsListForCsv.add(
+                                  StudentModelForCsv(
+                                    name: element.get("stname"),
+                                    clasS: element.get("admitclass"),
+                                    height:element.get("sheight"),
+                                    phone:element.get("mobile"),
+                                    email: element.get("email"),
+                                    dob: element.get("dob"),
+                                    bloodGroup: element.get("bloodgroup"),
+                                    gender: element.get("gender"),
+                                    address: element.get("address"),
+                                    aadhaarNumber: element.get("aadhaarno"),
+                                    applicationNumber: element.get("regno"),
+                                    community: element.get("community"),
+                                    emiNo: element.get("EMIS"),
+                                    weight: element.get("stweight"),
+                                    fatherAadhaar: element.get("fatherAadhaar"),
+                                    fatherName: element.get("fathername"),
+                                    fatherOccupation:element.get("fatherOccupation"),
+                                    fatherOfficeAddress: element.get("fatherOffice"),
+                                    fatherPhone: element.get("fatherMobile"),
+                                    identificationMark: element.get("identificatiolmark"),
+                                    modeOfTransport: element.get("transport"),
+                                    motherAadhaar: element.get("motherAadhaar"),
+                                    motherName: element.get("mothername"),
+                                    motherOccupation: element.get("motherOccupation"),
+                                    motherPhone:element.get("motherMobile"),
+                                    religion: element.get("religion"),
+                                    section: element.get("section"),
+                                    guardianPhone: element.get("guardianMobile"),
+                                    lastName:element.get("stlastname"),
+                                    academicYear: element.get("academic"),
+                                    brotherName: element.get("brothername"),
+                                    brotherStudyingHere: element.get("brother studying here"),
+                                    fatherEmail: element.get("fatherEmail"),
+                                    guardianAadhaar: element.get("guardianAadhaar"),
+                                    guardianEmail: element.get("guardianEmail"),
+                                    guardianName: element.get("guardianname"),
+                                    guardianOccupation: element.get("guardianOccupation"),
+                                    house: element.get("house"),
+                                    motherEmail: element.get("motherEmail"),
+                                    motherOffice: element.get("motherOffice"),
+                                  )
+                              );
+                            });
+                          }
                           return ListView.builder(
                            
                               shrinkWrap: true,

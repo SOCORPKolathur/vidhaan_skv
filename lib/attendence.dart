@@ -637,12 +637,27 @@ setState(() {
                                                         child: ListView.builder(
                                                           itemCount: snapshot.data!.absentDays.length,
                                                           itemBuilder: (ctx, i){
-                                                            return Padding(
-                                                              padding: const EdgeInsets.all(8.0),
-                                                              child: Text(
-                                                                  snapshot.data!.absentDays[i],
-                                                                style: TextStyle(
-                                                                  fontWeight: FontWeight.normal,
+                                                            return Card(
+                                                              child: Padding(
+                                                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                                                                child: Row(
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      width: 50,
+                                                                      child: Text(
+                                                                        'Date : ',
+                                                                        style: TextStyle(
+                                                                          fontWeight: FontWeight.bold,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                        "${snapshot.data!.absentDays[i]} / ${DateFormat('EEEE').format(DateFormat('dd-M-yyyy').parse(snapshot.data!.absentDays[i]))}",
+                                                                      style: const TextStyle(
+                                                                        fontWeight: FontWeight.normal,
+                                                                      ),
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ),
                                                             );

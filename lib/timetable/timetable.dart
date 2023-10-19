@@ -3395,6 +3395,11 @@ class _TimeTableState extends State<TimeTable> {
       ),
     );
   }
+
+  printTimeTable() {
+
+  }
+
   getvalue() async {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -3552,4 +3557,115 @@ class _TimeTableState extends State<TimeTable> {
 
 
   }
+}
+
+
+class TimeTablePrintModel {
+  TimeTablePrintModel({
+    required this.mondayFirst,
+    required this.mondaySecond,
+    required this.mondayThird,
+    required this.mondayFourth,
+    required this.mondayFifth,
+    required this.mondaySixth,
+    required this.mondaySeventh,
+    required this.mondayEighth,
+    required this.tuesdayFirst,
+    required this.tuesdaySecond,
+    required this.tuesdayThird,
+    required this.tuesdayFourth,
+    required this.tuesdayFifth,
+    required this.tuesdaySixth,
+    required this.tuesdaySeventh,
+    required this.tuesdayEighth,
+    required this.wednesdayFirst,
+    required this.wednesdaySecond,
+    required this.wednesdayThird,
+    required this.wednesdayFourth,
+    required this.wednesdayFifth,
+    required this.wednesdaySixth,
+    required this.wednesdaySeventh,
+    required this.wednesdayEighth,
+
+    required this.thursdayFirst,
+    required this.thursdaySecond,
+    required this.thursdayThird,
+    required this.thursdayFourth,
+    required this.thursdayFifth,
+    required this.thursdaySixth,
+    required this.thursdaySeventh,
+    required this.thursdayEighth,
+
+    required this.fridayFirst,
+    required this.fridaySecond,
+    required this.fridayThird,
+    required this.fridayFourth,
+    required this.fridayFifth,
+    required this.fridaySixth,
+    required this.fridaySeventh,
+    required this.fridayEighth,
+
+    required this.saturdayFirst,
+    required this.saturdaySecond,
+    required this.saturdayThird,
+    required this.saturdayFourth,
+    required this.saturdayFifth,
+    required this.saturdaySixth,
+    required this.saturdaySeventh,
+    required this.saturdayEighth,
+  });
+
+  String mondayFirst;
+  String mondaySecond;
+  String mondayThird;
+  String mondayFourth;
+  String mondayFifth;
+  String mondaySixth;
+  String mondaySeventh;
+  String mondayEighth;
+
+  String tuesdayFirst;
+  String tuesdaySecond;
+  String tuesdayThird;
+  String tuesdayFourth;
+  String tuesdayFifth;
+  String tuesdaySixth;
+  String tuesdaySeventh;
+  String tuesdayEighth;
+
+  String wednesdayFirst;
+  String wednesdaySecond;
+  String wednesdayThird;
+  String wednesdayFourth;
+  String wednesdayFifth;
+  String wednesdaySixth;
+  String wednesdaySeventh;
+  String wednesdayEighth;
+
+  String thursdayFirst;
+  String thursdaySecond;
+  String thursdayThird;
+  String thursdayFourth;
+  String thursdayFifth;
+  String thursdaySixth;
+  String thursdaySeventh;
+  String thursdayEighth;
+
+  String fridayFirst;
+  String fridaySecond;
+  String fridayThird;
+  String fridayFourth;
+  String fridayFifth;
+  String fridaySixth;
+  String fridaySeventh;
+  String fridayEighth;
+
+  String saturdayFirst;
+  String saturdaySecond;
+  String saturdayThird;
+  String saturdayFourth;
+  String saturdayFifth;
+  String saturdaySixth;
+  String saturdaySeventh;
+  String saturdayEighth;
 }

@@ -25,12 +25,21 @@ class _PreviousState extends State<Previous> {
               padding: const EdgeInsets.only(left: 20.0),
               child: Container(child: Padding(
                 padding: const EdgeInsets.only(left: 38.0,top: 30),
-                child: Text(" View Previous Circulars",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                child: Text(" View Previous Circulars",
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
               ),
                 //color: Colors.white,
                 width: width/1.050,
                 height: height/8.212,
-                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(
+                    color: Color(0xff00A0E3),
+                    borderRadius: BorderRadius.circular(12)
+                ),
               ),
             ),
             StreamBuilder<QuerySnapshot>(
