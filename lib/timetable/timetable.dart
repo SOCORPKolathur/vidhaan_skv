@@ -10,6 +10,8 @@ import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:vidhaan/demopdf.dart';
 
+import '../print/time_table_print.dart';
+
 class TimeTable extends StatefulWidget {
   const TimeTable({Key? key}) : super(key: key);
 
@@ -653,7 +655,8 @@ class _TimeTableState extends State<TimeTable> {
                       ),
                       InkWell(
                         onTap: (){
-                          getvalue();
+                          printTimeTable();
+                          //getvalue();
                         },
                         child: Material(
                           borderRadius: BorderRadius.circular(5),
@@ -3397,7 +3400,57 @@ class _TimeTableState extends State<TimeTable> {
   }
 
   printTimeTable() {
-
+    TimeTablePrintModel timeTable = TimeTablePrintModel(
+        mondayFirst: texteditingmonday[0].text,
+        mondaySecond: texteditingmonday[1].text,
+        mondayThird: texteditingmonday[2].text,
+        mondayFourth: texteditingmonday[3].text,
+        mondayFifth: texteditingmonday[4].text,
+        mondaySixth: texteditingmonday[5].text,
+        mondaySeventh: texteditingmonday[6].text,
+        mondayEighth: texteditingmonday[7].text,
+        tuesdayFirst: texteditingmonday[8].text,
+        tuesdaySecond: texteditingmonday[9].text,
+        tuesdayThird: texteditingmonday[10].text,
+        tuesdayFourth: texteditingmonday[11].text,
+        tuesdayFifth: texteditingmonday[12].text,
+        tuesdaySixth: texteditingmonday[13].text,
+        tuesdaySeventh: texteditingmonday[14].text,
+        tuesdayEighth: texteditingmonday[15].text,
+        wednesdayFirst: texteditingmonday[16].text,
+        wednesdaySecond: texteditingmonday[17].text,
+        wednesdayThird: texteditingmonday[18].text,
+        wednesdayFourth: texteditingmonday[19].text,
+        wednesdayFifth: texteditingmonday[20].text,
+        wednesdaySixth: texteditingmonday[21].text,
+        wednesdaySeventh: texteditingmonday[22].text,
+        wednesdayEighth: texteditingmonday[23].text,
+        thursdayFirst: texteditingmonday[24].text,
+        thursdaySecond: texteditingmonday[25].text,
+        thursdayThird: texteditingmonday[26].text,
+        thursdayFourth: texteditingmonday[27].text,
+        thursdayFifth: texteditingmonday[28].text,
+        thursdaySixth: texteditingmonday[29].text,
+        thursdaySeventh: texteditingmonday[30].text,
+        thursdayEighth: texteditingmonday[31].text,
+        fridayFirst: texteditingmonday[32].text,
+        fridaySecond: texteditingmonday[33].text,
+        fridayThird: texteditingmonday[34].text,
+        fridayFourth: texteditingmonday[35].text,
+        fridayFifth: texteditingmonday[36].text,
+        fridaySixth: texteditingmonday[37].text,
+        fridaySeventh: texteditingmonday[38].text,
+        fridayEighth: texteditingmonday[39].text,
+        saturdayFirst: texteditingmonday[40].text,
+        saturdaySecond: texteditingmonday[41].text,
+        saturdayThird: texteditingmonday[42].text,
+        saturdayFourth: texteditingmonday[43].text,
+        saturdayFifth: texteditingmonday[44].text,
+        saturdaySixth: texteditingmonday[45].text,
+        saturdaySeventh: texteditingmonday[46].text,
+        saturdayEighth: texteditingmonday[47].text
+    );
+    generateTimeTablePdf(PdfPageFormat.a4,timeTable);
   }
 
   getvalue() async {
@@ -3406,7 +3459,6 @@ class _TimeTableState extends State<TimeTable> {
 
 
     List<p.Widget> widgets = [];
-
     //container for profile image decoration
     final container = p.Center(
       child: p.Container(

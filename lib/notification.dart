@@ -268,6 +268,7 @@ class _NotificationCusState extends State<NotificationCus> {
                           FirebaseFirestore.instance.collection("Circulars").doc().set({
                             "Descr":body.text,
                             "reason":title.text,
+                            "type" : droupvalue,
                             "From":"Principal",
                             "Date":"${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}",
                             "Time":"${DateFormat('hh:mm a').format(DateTime.now())}",
@@ -277,7 +278,7 @@ class _NotificationCusState extends State<NotificationCus> {
                             homecontroller.body.text=body.text;
                             homecontroller.title.text=title.text;
                           });
-                          homecontroller.findusers();
+                          homecontroller.findusers(droupvalue);
                           _showMyDialog1();
                         },
                         style: ElevatedButton.styleFrom(
@@ -364,7 +365,7 @@ class _NotificationCusState extends State<NotificationCus> {
   }
 
 
-  final List<String>  sendto = ["All","Students","Staffs"];
+  final List<String>  sendto = ["All","Student","Staff"];
   String droupvalue ="All";
 
 

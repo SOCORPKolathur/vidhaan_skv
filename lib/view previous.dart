@@ -9,20 +9,33 @@ class Previous extends StatefulWidget {
   State<Previous> createState() => _PreviousState();
 }
 
-class _PreviousState extends State<Previous> {
+class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin {
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+
+  TabController? tabController;
+
+  @override
+  void initState() {
+    tabController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     final double width=MediaQuery.of(context).size.width;
     final double height=MediaQuery.of(context).size.height;
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+        height: size.height,
+        width: size.width,
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(child: Padding(
                 padding: const EdgeInsets.only(left: 38.0,top: 30),
                 child: Text(" View Previous Circulars",
@@ -42,118 +55,404 @@ class _PreviousState extends State<Previous> {
                 ),
               ),
             ),
-            StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collection("Circulars").orderBy("timestamp",descending: true).snapshots(),
-
-                builder: (context,snapshot){
-                  if(!snapshot.hasData)
-                  {
-                    return   Center(
-                      child:  CircularProgressIndicator(),
-                    );}
-                  if(snapshot.hasData==null)
-                  {
-                    return   Center(
-                      child:  CircularProgressIndicator(),
-                    );}
-                  return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context,index){
-                        var value = snapshot.data!.docs[index];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            child: ListTile(
-                              leading: IconButton(
-                                  onPressed: (){
-                                    setState(() {
-                                      titleController.text = value["reason"];
-                                      descriptionController.text = value["Descr"];
-                                    });
-                                    editNoticePopUp(value.id);
-                                  },
-                                  icon: Icon(Icons.edit),
-                              ),
-                              title: Text(
-                                  "${value["reason"]}",
-                                  style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
-                              ),
-                              subtitle: Text(
-                                  "${value["Descr"]}",
-                                  style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
-                              ),
-                              trailing: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    "${value["Date"]}",
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xff00A0E3),
-                                    ),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  Text(
-                                    "${value["Time"]}",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff00A0E3),
-                                    ),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          // child: Container(
-                          //
-                          //   width: width/1.241,
-                          //   decoration: BoxDecoration(
-                          //       color:Colors.white,
-                          //       borderRadius: BorderRadius.circular(12),
-                          //     border: Border.all(
-                          //       color: Colors.black
-                          //     )
-                          //   ),
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.all(8.0),
-                          //     child: Column(
-                          //       crossAxisAlignment: CrossAxisAlignment.start,
-                          //       children: [
-                          //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
-                          //         Container(
-                          //           width: width/1.841,
-                          //           child: Divider(
-                          //             thickness: 2,
-                          //           ),
-                          //         ),
-                          //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
-                          //
-                          //         Row(
-                          //           crossAxisAlignment: CrossAxisAlignment.end,
-                          //           mainAxisAlignment: MainAxisAlignment.end,
-                          //           children: [
-                          //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
-                          //
-                          //             SizedBox(width: 40,),
-                          //
-                          //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
-                          //           ],
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          //
-                          //
-                          //
-                          // ),
-                        );
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Center(
+                child: Container(
+                  height: 70,
+                  width: size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: EdgeInsets.all(10),
+                  child: TabBar(
+                    isScrollable:false,
+                    controller: tabController,
+                    labelColor: Color(0xff00A0E3),
+                    dividerColor: Colors.transparent,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorColor: Color(0xff00A0E3),
+                    indicatorPadding: const EdgeInsets.symmetric(
+                        horizontal: 0, vertical: 0),
+                    labelPadding: const EdgeInsets.all(0),
+                    splashBorderRadius: BorderRadius.zero,
+                    splashFactory: NoSplash.splashFactory,
+                    labelStyle: GoogleFonts.openSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    unselectedLabelStyle: GoogleFonts.openSans(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    onTap: (index){
+                      setState(() {
+                        // selectTabIndex = index;
+                        // isLoading = true;
                       });
+                    },
+                    tabs: [
+                      Tab(
+                        child: const Text("All"),
+                      ),
+                      Tab(
+                        child: const Text("Students"),
+                      ),
+                      Tab(
+                        child: const Text("Staff"),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: tabController,
+                children: [
+                  StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance.collection("Circulars").orderBy("timestamp",descending: true).snapshots(),
+                      builder: (context,snapshot){
+                        if(!snapshot.hasData)
+                        {
+                          return   Center(
+                            child:  CircularProgressIndicator(),
+                          );}
+                        if(snapshot.hasData==null)
+                        {
+                          return   Center(
+                            child:  CircularProgressIndicator(),
+                          );}
 
-                }),
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context,index){
+                              var value = snapshot.data!.docs[index];
+                              return
+                                value['type'].toString().toLowerCase() == 'all'.toString().toLowerCase()  ?
+                                Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Card(
+                                  child: ListTile(
+                                    leading: IconButton(
+                                      onPressed: (){
+                                        setState(() {
+                                          titleController.text = value["reason"];
+                                          descriptionController.text = value["Descr"];
+                                        });
+                                        editNoticePopUp(value.id);
+                                      },
+                                      icon: Icon(Icons.edit),
+                                    ),
+                                    title: Text(
+                                        "${value["reason"]}",
+                                        style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
+                                    ),
+                                    subtitle: Text(
+                                        "${value["Descr"]}",
+                                        style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
+                                    ),
+                                    trailing: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          "${value["Date"]}",
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color(0xff00A0E3),
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        Text(
+                                          "${value["Time"]}",
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color(0xff00A0E3),
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                // child: Container(
+                                //
+                                //   width: width/1.241,
+                                //   decoration: BoxDecoration(
+                                //       color:Colors.white,
+                                //       borderRadius: BorderRadius.circular(12),
+                                //     border: Border.all(
+                                //       color: Colors.black
+                                //     )
+                                //   ),
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.all(8.0),
+                                //     child: Column(
+                                //       crossAxisAlignment: CrossAxisAlignment.start,
+                                //       children: [
+                                //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
+                                //         Container(
+                                //           width: width/1.841,
+                                //           child: Divider(
+                                //             thickness: 2,
+                                //           ),
+                                //         ),
+                                //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
+                                //
+                                //         Row(
+                                //           crossAxisAlignment: CrossAxisAlignment.end,
+                                //           mainAxisAlignment: MainAxisAlignment.end,
+                                //           children: [
+                                //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //
+                                //             SizedBox(width: 40,),
+                                //
+                                //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //           ],
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                //
+                                //
+                                //
+                                // ),
+                              ) : SizedBox();
+                            });
+
+                      }),
+                  StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance.collection("Circulars").orderBy("timestamp",descending: true).snapshots(),
+
+                      builder: (context,snapshot){
+                        if(!snapshot.hasData)
+                        {
+                          return   Center(
+                            child:  CircularProgressIndicator(),
+                          );}
+                        if(snapshot.hasData==null)
+                        {
+                          return   Center(
+                            child:  CircularProgressIndicator(),
+                          );}
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context,index){
+                              var value = snapshot.data!.docs[index];
+                              return value['type'].toString().toLowerCase() == 'student'.toString().toLowerCase()  ?
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Card(
+                                  child: ListTile(
+                                    leading: IconButton(
+                                      onPressed: (){
+                                        setState(() {
+                                          titleController.text = value["reason"];
+                                          descriptionController.text = value["Descr"];
+                                        });
+                                        editNoticePopUp(value.id);
+                                      },
+                                      icon: Icon(Icons.edit),
+                                    ),
+                                    title: Text(
+                                        "${value["reason"]}",
+                                        style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
+                                    ),
+                                    subtitle: Text(
+                                        "${value["Descr"]}",
+                                        style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
+                                    ),
+                                    trailing: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          "${value["Date"]}",
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color(0xff00A0E3),
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        Text(
+                                          "${value["Time"]}",
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color(0xff00A0E3),
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                // child: Container(
+                                //
+                                //   width: width/1.241,
+                                //   decoration: BoxDecoration(
+                                //       color:Colors.white,
+                                //       borderRadius: BorderRadius.circular(12),
+                                //     border: Border.all(
+                                //       color: Colors.black
+                                //     )
+                                //   ),
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.all(8.0),
+                                //     child: Column(
+                                //       crossAxisAlignment: CrossAxisAlignment.start,
+                                //       children: [
+                                //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
+                                //         Container(
+                                //           width: width/1.841,
+                                //           child: Divider(
+                                //             thickness: 2,
+                                //           ),
+                                //         ),
+                                //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
+                                //
+                                //         Row(
+                                //           crossAxisAlignment: CrossAxisAlignment.end,
+                                //           mainAxisAlignment: MainAxisAlignment.end,
+                                //           children: [
+                                //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //
+                                //             SizedBox(width: 40,),
+                                //
+                                //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //           ],
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                //
+                                //
+                                //
+                                // ),
+                              ) : SizedBox();
+                            });
+
+                      }),
+                  StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance.collection("Circulars").orderBy("timestamp",descending: true).snapshots(),
+                      builder: (context,snapshot){
+                        if(!snapshot.hasData)
+                        {
+                          return   Center(
+                            child:  CircularProgressIndicator(),
+                          );}
+                        if(snapshot.hasData==null)
+                        {
+                          return   Center(
+                            child:  CircularProgressIndicator(),
+                          );}
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context,index){
+                              var value = snapshot.data!.docs[index];
+                              return value['type'].toString().toLowerCase() == 'staff'.toString().toLowerCase()  ?
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Card(
+                                  child: ListTile(
+                                    leading: IconButton(
+                                      onPressed: (){
+                                        setState(() {
+                                          titleController.text = value["reason"];
+                                          descriptionController.text = value["Descr"];
+                                        });
+                                        editNoticePopUp(value.id);
+                                      },
+                                      icon: Icon(Icons.edit),
+                                    ),
+                                    title: Text(
+                                        "${value["reason"]}",
+                                        style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
+                                    ),
+                                    subtitle: Text(
+                                        "${value["Descr"]}",
+                                        style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
+                                    ),
+                                    trailing: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          "${value["Date"]}",
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color(0xff00A0E3),
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        Text(
+                                          "${value["Time"]}",
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color(0xff00A0E3),
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                // child: Container(
+                                //
+                                //   width: width/1.241,
+                                //   decoration: BoxDecoration(
+                                //       color:Colors.white,
+                                //       borderRadius: BorderRadius.circular(12),
+                                //     border: Border.all(
+                                //       color: Colors.black
+                                //     )
+                                //   ),
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.all(8.0),
+                                //     child: Column(
+                                //       crossAxisAlignment: CrossAxisAlignment.start,
+                                //       children: [
+                                //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
+                                //         Container(
+                                //           width: width/1.841,
+                                //           child: Divider(
+                                //             thickness: 2,
+                                //           ),
+                                //         ),
+                                //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
+                                //
+                                //         Row(
+                                //           crossAxisAlignment: CrossAxisAlignment.end,
+                                //           mainAxisAlignment: MainAxisAlignment.end,
+                                //           children: [
+                                //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //
+                                //             SizedBox(width: 40,),
+                                //
+                                //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //           ],
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                //
+                                //
+                                //
+                                // ),
+                              ) : SizedBox();
+                            });
+
+                      }),
+                ],
+              ),
+            )
           ],
         ),
       ),

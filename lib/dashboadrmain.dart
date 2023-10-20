@@ -442,7 +442,7 @@ class _Dashboard2State extends State<Dashboard2> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       FutureBuilder(
                         future: getTodayStaffPresent(),
@@ -453,7 +453,7 @@ class _Dashboard2State extends State<Dashboard2> {
                               borderRadius: BorderRadius.circular(12),
                               shadowColor:  Color(0xff53B175).withOpacity(0.20),
                               child: Container(
-                                width:width*0.35,
+                                width: 500,
                                 height: height / 2.87,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
@@ -628,7 +628,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                 borderRadius: BorderRadius.circular(12),
                                 shadowColor:  Color(0xff53B175).withOpacity(0.20),
                                 child: Container(
-                                  width:width*0.35,
+                                  width: 500,
                                   height: height / 2.87,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
@@ -800,6 +800,7 @@ class _Dashboard2State extends State<Dashboard2> {
                           );
                         },
                       ),
+                      SizedBox(width: 12),
                       FutureBuilder<TodayPresentReport>(
                         future: getTodayStudentPresent(),
                         builder: (ctx, snap){
@@ -809,7 +810,7 @@ class _Dashboard2State extends State<Dashboard2> {
                               borderRadius: BorderRadius.circular(12),
                               shadowColor:  Color(0xff53B175).withOpacity(0.20),
                               child: Container(
-                                width:width*0.35,
+                                width: 500,
                                 height: height / 2.87,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
@@ -984,7 +985,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                 borderRadius: BorderRadius.circular(12),
                                 shadowColor:  Color(0xff53B175).withOpacity(0.20),
                                 child: Container(
-                                  width:width*0.35,
+                                  width: 500,
                                   height: height / 2.87,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
@@ -1179,50 +1180,161 @@ class _Dashboard2State extends State<Dashboard2> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top:20.0,left: 15),
-                              child: Text("Fees Due Students",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 17),),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Fees Due Students",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
                             ),
+                            Padding(
+                              padding: const EdgeInsets.only(top:15.0),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 0.0,top:8,bottom: 8),
+                                    child:  Column(
+                                      children: [
+                                        CircularPercentIndicator(
+                                          circularStrokeCap: CircularStrokeCap.round,
+                                          radius: 40.0,
+                                          lineWidth: 12.0,
+                                          percent: 0.7,
+                                          center:  Text("70%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                          progressColor: Colors.green,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 8.0,right: 8,top: 12),
+                                          child:  ChoiceChip(
+
+                                            label: Text("  Present  ",style: TextStyle(color: Colors.white),),
+
+
+                                            onSelected: (bool selected) {
+
+                                              setState(() {
+
+                                              });
+                                            },
+                                            selectedColor: Color(0xff53B175),
+                                            shape: StadiumBorder(
+                                                side: BorderSide(
+                                                    color: Color(0xff53B175))),
+                                            backgroundColor: Colors.white,
+                                            labelStyle: TextStyle(color: Colors.black),
+
+                                            elevation: 1.5, selected: true,),
+
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 0.0,top: 8,bottom: 8.0),
+                                    child:  Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            CircularPercentIndicator(
+                                              circularStrokeCap: CircularStrokeCap.round,
+                                              radius: 40.0,
+                                              lineWidth: 12.0,
+                                              percent: 0.3,
+                                              center:  Text("30%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                              progressColor: Colors.red,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 8.0,right: 8,top: 12),
+                                              child: ChoiceChip(
+
+                                                label: Text("  Absent  ",style: TextStyle(color: Colors.white),),
+
+
+                                                onSelected: (bool selected) {
+
+                                                  setState(() {
+
+                                                  });
+                                                },
+                                                selectedColor: Colors.red,
+                                                shape: StadiumBorder(
+                                                    side: BorderSide(
+                                                        color: Colors.red)),
+                                                backgroundColor: Colors.white,
+                                                labelStyle: TextStyle(color: Colors.black),
+
+                                                elevation: 1.5, selected: true,),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("Fees Pending Students",
+                                          style: GoogleFonts.poppins(
+                                              fontWeight: FontWeight.w600,fontSize: 14),
+                                        ),
+                                      ),
+                                      Container(
+                                          height: height / 5.57,
+                                          width: 260,
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              itemCount: 0,
+                                              itemBuilder: (context,i){
+                                                return Column(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        //radio button
+                                                        Radio(
+                                                            value: 1,
+                                                            activeColor: Color(0xff263646),
+                                                            groupValue:selectedvalue,
+                                                            onChanged:(value){
+                                                              setState(() {
+                                                                value=selectedvalue;
+                                                                selectedvalue=1;
+                                                                selectedvalue2=0;
+                                                                selectedvalue3=0;
+                                                                selectedvalue4=0;
+                                                              });
+                                                            }),
+                                                        //text1
+                                                        Text(
+                                                          "Nagaraj.k",
+                                                          style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 12),
+                                                        ),
+                                                        Text(
+                                                          "- ID VDE00011",
+                                                          style: GoogleFonts.poppins(
+                                                              fontWeight: FontWeight.w500,
+                                                              fontSize: 10,color: Colors.grey),
+                                                        ),
+
+
+
+
+
+                                                      ],
+                                                    ),
+
+
+
+
+                                                  ],);
+                                              })
+                                      ),
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+
                           ],
                         ),
-                        // child:  Padding(
-                        //   padding: const EdgeInsets.all(12.0),
-                        //   child: TableCalendar(
-                        //     firstDay: DateTime.utc(2010,10,20),
-                        //     lastDay: DateTime.utc(2040,10,20),
-                        //     focusedDay: _chosenDate,
-                        //     headerVisible: true,
-                        //     daysOfWeekVisible: true,
-                        //     sixWeekMonthsEnforced: true,
-                        //     shouldFillViewport: false,
-                        //     headerStyle: HeaderStyle(titleTextStyle: GoogleFonts.montserrat(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w800)),
-                        //     calendarStyle: CalendarStyle(todayTextStyle: GoogleFonts.montserrat(fontSize:12, color: Colors.white, fontWeight: FontWeight.bold )),
-                        //     onDaySelected: (date,e){
-                        //       setState((){
-                        //         _chosenDate=e;
-                        //         dateselected=true;
-                        //         formattedDate = DateFormat('ddMyyyy').format(_chosenDate);
-                        //       });
-                        //       print(formattedDate);
-                        //       print(_chosenDate);
-                        //       print(dateselected);
-                        //
-                        //     },
-                        //     onDisabledDayTapped: (date){
-                        //       setState((){
-                        //
-                        //         _chosenDay=date as String;
-                        //       });
-                        //       print(_chosenDay);
-                        //
-                        //     },
-                        //     currentDay: _chosenDate,
-                        //     pageJumpingEnabled: true,
-                        //     pageAnimationCurve: Curves.decelerate,
-                        //     pageAnimationEnabled: true,
-                        //     pageAnimationDuration: Duration(milliseconds: 800),
-                        //
-                        //   ),
-                        // ),
                       ),
                     ),
                   ),
@@ -1244,7 +1356,7 @@ class _Dashboard2State extends State<Dashboard2> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top:20.0,left: 15),
-                                child: Text("Exam Remainders",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 17),),
+                                child: Text("Exam Remainders",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
                               ),
                               Expanded(
                                 child: StreamBuilder(

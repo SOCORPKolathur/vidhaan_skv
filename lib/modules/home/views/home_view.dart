@@ -37,7 +37,7 @@ class MainScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                homecontroller.findusers();
+                homecontroller.findusers('All');
               },
               child: Text("Send Notification All"),
             )

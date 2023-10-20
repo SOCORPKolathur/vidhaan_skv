@@ -112,8 +112,6 @@ class _StudentIDState extends State<StudentID> {
   }
 
   getstaffbyid() async {
-    print("fdgggggggggg");
-    print(_typeAheadControllerregno.text);
     var document = await FirebaseFirestore.instance.collection("Students").get();
     for(int i=0;i<document.docs.length;i++){
       if(_typeAheadControllerregno.text==document.docs[i]["regno"]){
@@ -123,13 +121,10 @@ class _StudentIDState extends State<StudentID> {
         );
       }
     }
-    print("fdgggggggggg");
 
 
   }
   getstaffbyid2() async {
-    print("fdgggggggggg");
-    print(_typeAheadControllerregno.text);
     var document = await FirebaseFirestore.instance.collection("Students").get();
     for(int i=0;i<document.docs.length;i++){
       if(_typeAheadControllerstudent.text==document.docs[i]["stname"]){
@@ -139,13 +134,10 @@ class _StudentIDState extends State<StudentID> {
         );
       }
     }
-    print("fdgggggggggg");
 
 
   }
   getstaffbyid2a() async {
-    print("fdgggggggggg");
-    print(_typeAheadControllerregno.text);
     var document = await FirebaseFirestore.instance.collection("Students").get();
     for(int i=0;i<document.docs.length;i++){
       if(_typeAheadControllerregno.text==document.docs[i]["regno"]){
@@ -155,7 +147,6 @@ class _StudentIDState extends State<StudentID> {
         );
       }
     }
-    print("fdgggggggggg");
 
 
   }
@@ -3653,19 +3644,15 @@ class _StudentIDState extends State<StudentID> {
   List addresslist = [];
   addinglist() async {
     var doucment = await FirebaseFirestore.instance.collection("Students").orderBy("timestamp").get();
-    print("Reg NO changed successfully");
     int temp= doucment.docs.length~/10;
     int remainder = doucment.docs.length.remainder(10);
     int pagecount=0;
     int g=0;
-    print(temp);
-    print(remainder);
     if(remainder!=0){
       setState(() {
         pagecount=temp+1;
       });
     }
-    print(pagecount);
     for (int i=0;i<pagecount;i++){
       setState(() {
 
@@ -3699,27 +3686,16 @@ class _StudentIDState extends State<StudentID> {
       imglist[g].add(await flutterImageProvider(NetworkImage(doucment.docs[j]["imgurl"]==""?"https://firebasestorage.googleapis.com/v0/b/vidhaan-4aee7.appspot.com/o/360_F_270188580_YDUEwBmDIxBMvCQxkcunmEkm93VqOgqm.jpg?alt=media&token=fe18ba43-4a31-4b53-9523-42bb4241d9a1":doucment.docs[j]["imgurl"])));
 
       if((j+1)%10==0){
-        printtext(g);
         setState(() {
           g=g+1;
         });
       }
     }
-    print("Added sucessfully");
 
 
 
   }
-  printtext(g){
-    print(namelist[g].length);
-    print(imglist[g].length);
-    print(regnolist[g].length);
-    print(classlist[g].length);
-    print(doblist[g].length);
-    print(bloodlist[g].length);
-    print(phonelist[g].length);
-    print("Next Set------------------------${g+1}");
-  }
+
 
 int j=0;
 int total=0;
@@ -3732,8 +3708,8 @@ bool printingjob= false;
   bool viewtem = false;
 
   bool mainconcent= false;
-  final check = List<bool>.generate(1000, (int index) => false, growable: true);
-  final expand = List<bool>.generate(1000, (int index) => false, growable: true);
+  final check = List<bool>.generate(1000, (int index) => false,);
+  final expand = List<bool>.generate(1000, (int index) => false,);
 // create some values
   Color pickerColor = Color(0xff00A0E3);
   Color currentColor = Color(0xff00A0E3);
@@ -3770,7 +3746,6 @@ bool printingjob= false;
           child: Column(
             children: [
               Container(width: width/1.050,
-
                 decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
                   padding: const EdgeInsets.only(left: 10.0,top: 30),
                   child: Column(
@@ -4246,13 +4221,10 @@ bool printingjob= false;
                 padding: const EdgeInsets.only(left: 0.0,top: 20),
                 child: Container(
                   width:  width/1.050,
-
                   decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
                   child:  Column(
-
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
@@ -4335,7 +4307,6 @@ bool printingjob= false;
 
                         ),
                       ),
-
                       printingjob==true? Text(
                         "${j.toString()}  completed of ${total.toString()}...",
                         style:
@@ -4343,7 +4314,6 @@ bool printingjob= false;
                       ) : Container(),
                       StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance.collection("Students").orderBy("timestamp").snapshots(),
-
                           builder: (context,snapshot){
                             if(!snapshot.hasData)
                             {
@@ -4356,12 +4326,13 @@ bool printingjob= false;
                                 child:  CircularProgressIndicator(),
                               );}
                             return ListView.builder(
-
                                 shrinkWrap: true,
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context,index){
                                   var value = snapshot.data!.docs[index];
-                                  return  search==true? value.id==studentid? Padding(
+                                  return  search==true
+                                      ? value.id==studentid
+                                               ? Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: AnimatedContainer(
                                       duration: Duration(seconds: 1),
@@ -4378,7 +4349,6 @@ bool printingjob= false;
                                                     value: check[index],
 
                                                     onChanged: (bool? value){
-                                                      print(value);
                                                       setState(() {
                                                         check[index] = value!;
                                                       });
@@ -4484,6 +4454,9 @@ bool printingjob= false;
                                               ),
                                               InkWell(
                                                 onTap: (){
+                                                  print("view clicked 1");
+                                                  print(index);
+                                                  print(expand[index]);
                                                   if(expand[index]==true) {
                                                     setState(() {
                                                       expand[index] = false;
@@ -4591,8 +4564,6 @@ bool printingjob= false;
                                                                       color: pickerColor,
                                                                       borderRadius: BorderRadius.circular(60)
                                                                   ),
-
-
                                                                 ),
                                                                 Container(
                                                                   width: 112,
@@ -4603,16 +4574,16 @@ bool printingjob= false;
                                                                   ),
                                                                   child: ClipRRect(
                                                                       borderRadius: BorderRadius.circular(60),
-                                                                      child: Image.network(value!['imgurl']==""?"https://firebasestorage.googleapis.com/v0/b/vidhaan-4aee7.appspot.com/o/360_F_270188580_YDUEwBmDIxBMvCQxkcunmEkm93VqOgqm.jpg?alt=media&token=fe18ba43-4a31-4b53-9523-42bb4241d9a1"
-                                        :value['imgurl'],),),
+                                                                      child: Image.network(snapshot.data!.docs[index]['imgurl']==""?"https://firebasestorage.googleapis.com/v0/b/vidhaan-4aee7.appspot.com/o/360_F_270188580_YDUEwBmDIxBMvCQxkcunmEkm93VqOgqm.jpg?alt=media&token=fe18ba43-4a31-4b53-9523-42bb4241d9a1"
+                                        :snapshot.data!.docs[index]['imgurl'],),),
                                                                 ),
 
                                                               ],
                                                             ),
                                                             SizedBox(height: 15,),
-                                                            Text(value["stname"],style: GoogleFonts.poppins(
+                                                            Text(snapshot.data!.docs[index]["stname"],style: GoogleFonts.poppins(
                                                                 color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
-                                                            Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
+                                                            Text("ID: ${snapshot.data!.docs[index]["regno"]}",style: GoogleFonts.poppins(
                                                                 color:  pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
                                                             SizedBox(height: 10,),
                                                             Row(
@@ -4620,7 +4591,7 @@ bool printingjob= false;
                                                                 SizedBox(width: 20,),
                                                                 Text("Class       : ",style: GoogleFonts.poppins(
                                                                     color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
-                                                                Text("${value["admitclass"]} ${value["section"]}",style: GoogleFonts.poppins(
+                                                                Text("${snapshot.data!.docs[index]["admitclass"]} ${snapshot.data!.docs[index]["section"]}",style: GoogleFonts.poppins(
                                                                     color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
                                                               ],
                                                             ),
@@ -4630,7 +4601,7 @@ bool printingjob= false;
                                                                 Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                     color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
-                                                                Text(value["dob"].toString().substring(0,10),style: GoogleFonts.poppins(
+                                                                Text(snapshot.data!.docs[index]["dob"].toString().substring(0,10),style: GoogleFonts.poppins(
                                                                     color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
                                                               ],
                                                             ),
@@ -4639,7 +4610,7 @@ bool printingjob= false;
                                                                 SizedBox(width: 20,),
                                                                 Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                                     color:pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
-                                                                Text(value["bloodgroup"],style: GoogleFonts.poppins(
+                                                                Text(snapshot.data!.docs[index]["bloodgroup"],style: GoogleFonts.poppins(
                                                                     color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
                                                               ],
                                                             ),
@@ -4648,7 +4619,7 @@ bool printingjob= false;
                                                                 SizedBox(width: 20,),
                                                                 Text("Emergency Contact No    : ",style: GoogleFonts.poppins(
                                                                     color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
-                                                                Text(value["mobile"],style: GoogleFonts.poppins(
+                                                                Text(snapshot.data!.docs[index]["mobile"],style: GoogleFonts.poppins(
                                                                     color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
                                                               ],
                                                             ),
@@ -4710,7 +4681,7 @@ bool printingjob= false;
                                                           ),
                                                           SizedBox(height: 2,),
 
-                                                          Text("+91 ${value["fatherMobile"]}",style: GoogleFonts.poppins(
+                                                          Text("+91 ${snapshot.data!.docs[index]["fatherMobile"]}",style: GoogleFonts.poppins(
 
                                                               color: Colors.black, fontSize: 7,fontWeight: FontWeight.normal),),
                                                           SizedBox(height:5),
@@ -4727,7 +4698,7 @@ bool printingjob= false;
 
                                                           Container(
                                                             width:150,
-                                                            child: Text(getCapitalizedName(value["address"]),style: TextStyle(
+                                                            child: Text(getCapitalizedName(snapshot.data!.docs[index]["address"]),style: TextStyle(
 
                                                                 color: Colors.black, fontSize: 7,fontWeight: FontWeight.normal),textAlign: TextAlign.center),
                                                           ),
@@ -5341,9 +5312,11 @@ bool printingjob= false;
 
 
                                     ),
-                                  ) : Container(): byclass==true?
-                                  "${value["admitclass"]}${value["section"]}"=="${_typeAheadControllerclass.text}${_typeAheadControllersection.text}"?
-                                  Padding(
+                                  )
+                                               : Container()
+                                      : byclass==true
+                                          ? "${value["admitclass"]}${value["section"]}"=="${_typeAheadControllerclass.text}${_typeAheadControllersection.text}"
+                                                    ? Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: AnimatedContainer(
                                       duration: Duration(seconds: 1),
@@ -5360,7 +5333,6 @@ bool printingjob= false;
                                                     value: check[index],
 
                                                     onChanged: (bool? value){
-                                                      print(value);
                                                       setState(() {
                                                         check[index] = value!;
                                                       });
@@ -5445,7 +5417,6 @@ bool printingjob= false;
                                                 child: Container(
                                                   alignment: Alignment.center,
                                                   width: width/17.075,
-
                                                   child: Row(
                                                     children: [
                                                       value["gender"]=="Male"?  Padding(
@@ -5466,6 +5437,9 @@ bool printingjob= false;
                                               ),
                                               InkWell(
                                                 onTap: (){
+                                                  print("view clicked 2");
+                                                  print(index);
+                                                  print(expand[index]);
                                                   if(expand[index]==true) {
                                                     setState(() {
                                                       expand[index] = false;
@@ -5475,6 +5449,8 @@ bool printingjob= false;
                                                       expand[index] = true;
                                                     });
                                                   }
+                                                  print(index);
+                                                  print(expand[index]);
                                                 },
                                                 child: Padding(
                                                   padding:
@@ -5492,7 +5468,8 @@ bool printingjob= false;
                                                         child: Text(
                                                           "View",
                                                           style: GoogleFonts.poppins(
-                                                              color: Colors.white),
+                                                              color: Colors.white
+                                                          ),
                                                         )),
                                                   ) :
                                                   Container(
@@ -6322,13 +6299,14 @@ bool printingjob= false;
 
 
                                     ),
-                                  ) : Container() :
-                                  Padding(
+                                  )
+                                                    : Container()
+                                      : Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: AnimatedContainer(
                                       duration: Duration(seconds: 1),
                                       width: width/1.366,
-                                      height: expand[index]==false?50:500,
+                                      height: expand[index]==false? 50: 500,
                                       child: Column(
                                         children: [
                                           Row(
@@ -6336,15 +6314,11 @@ bool printingjob= false;
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 10.0),
                                                 child: Checkbox(
-
                                                     value: check[index],
-
                                                     onChanged: (bool? value){
-                                                      print(value);
                                                       setState(() {
                                                         check[index] = value!;
                                                       });
-
                                                     }
                                                 ),
                                               ),
@@ -6446,6 +6420,7 @@ bool printingjob= false;
                                               ),
                                               InkWell(
                                                 onTap: (){
+                                                  print("view clicked");
                                                   if(expand[index]==true) {
                                                     setState(() {
                                                       expand[index] = false;
@@ -6459,7 +6434,7 @@ bool printingjob= false;
                                                 child: Padding(
                                                   padding:
                                                   const EdgeInsets.only(left: 45.0),
-                                                  child: expand[index]==false? Container(
+                                                  child: expand[index] == false ? Container(
                                                     width: width/22.76,
                                                     height: height/21.9,
                                                     //color: Color(0xffD60A0B),
@@ -6495,18 +6470,16 @@ bool printingjob= false;
                                               ),
                                             ],
                                           ),
-                                          expand[index]!=false? idcarddesign=="1"? Padding(
+                                          expand[index] == true ?
+                                          idcarddesign=="1"? Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
                                               children: [
                                                 Material(
-
-
                                                     child: Container(
                                                       width: 260,
                                                       height: 410,
                                                       color:Colors.white,
-
                                                       child: Stack(
                                                         children: [
                                                           Column(
@@ -6514,12 +6487,10 @@ bool printingjob= false;
                                                             children: [
                                                               Image.asset("assets/idbg4.png",color: pickerColor,),
                                                               Image.asset("assets/idbg6.png",color: pickerColor,),
-
                                                             ],
                                                           ),
                                                           Column(
                                                             crossAxisAlignment: CrossAxisAlignment.center,
-
                                                             children: [
                                                               SizedBox(height: 20,),
                                                               Row(
@@ -6568,7 +6539,8 @@ bool printingjob= false;
                                                                     child: ClipRRect(
                                                                         borderRadius: BorderRadius.circular(60),
                                                                         child: Image.network(value!['imgurl']==""?"https://firebasestorage.googleapis.com/v0/b/vidhaan-4aee7.appspot.com/o/360_F_270188580_YDUEwBmDIxBMvCQxkcunmEkm93VqOgqm.jpg?alt=media&token=fe18ba43-4a31-4b53-9523-42bb4241d9a1"
-                                        :value['imgurl'],),),
+                                                                      :value['imgurl']
+                                                                        ),),
                                                                   ),
 
                                                                 ],
@@ -6759,10 +6731,8 @@ bool printingjob= false;
                                               ],
                                             ),
                                           ) :
-
                                           idcarddesign=="2"?
                                           Row(children: [
-
                                             Material(
 
                                               child: Container(
@@ -7646,11 +7616,9 @@ bool printingjob= false;
                                     displayThumbColor: false,
 
                                     onHistoryChanged: (value)  {
-                                      print(value);
                                     },
 
                                     onHsvColorChanged: (value)  {
-                                      print(value);
                                     },
 
                                   ),
@@ -7982,11 +7950,9 @@ bool printingjob= false;
                                     displayThumbColor: false,
 
                                     onHistoryChanged: (value)  {
-                                      print(value);
                                     },
 
                                     onHsvColorChanged: (value)  {
-                                      print(value);
                                     },
 
                                   ),
@@ -8319,11 +8285,9 @@ bool printingjob= false;
                                     displayThumbColor: false,
 
                                     onHistoryChanged: (value)  {
-                                      print(value);
                                     },
 
                                     onHsvColorChanged: (value)  {
-                                      print(value);
                                     },
 
                                   ),

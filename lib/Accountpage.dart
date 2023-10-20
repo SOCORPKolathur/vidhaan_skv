@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -174,7 +175,6 @@ class _AccountpageState extends State<Accountpage> {
                           fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                       ),),
                     ),
-                    SizedBox(width: 1,),
                     Container(
                       width:130,
                       child: Text('Status',style: GoogleFonts.montserrat(
@@ -195,101 +195,180 @@ class _AccountpageState extends State<Accountpage> {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 28.0,top: 18),
-                      child: Container(child: Image.asset("assets/Group 4.png"),
-                        color:Color(0xffFFFFFF),
-                        width: width/34.15,
-                        height: height/16.425,
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance.collection('Accounts').snapshots(),
+                  builder: (ctx, snap){
+                    if(snap.hasData){
+                      return Container(
+                        height: 330,
+                        child: ListView.builder(
+                          itemCount: snap.data!.docs.length,
+                          itemBuilder: (ctx, i){
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 28.0),
+                                    child: Container(
+                                      child: snap.data!.docs[i]['type'].toString().toLowerCase() == "credit" ? Image.asset("assets/Group 4.png"):Image.asset("assets/Group 3.png"),
+                                      color:Color(0xffFFFFFF),
+                                      width: width/34.15,
+                                      height: height/16.425,
+                                    ),
+                                  ),
+                                  Container(
+                                    width:160,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 8.0,top: 7),
+                                          child: Text(
+                                            snap.data!.docs[i]['title'],
+                                            style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 20.0,left: 8),
+                                          child: Text(snap.data!.docs[i]['payee'],style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
+                                        ),
 
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0,top: 7),
-                          child: Text("Fee Received",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
+                                      ],
+
+                                    ),
+                                  ),
+
+                                  Container(
+                                    width:200,
+                                    child: Text("RS ${snap.data!.docs[i]['amount']}",
+                                      style: GoogleFonts.mulish(
+                                          fontWeight: FontWeight.bold,fontSize: 15,
+                                          color: snap.data!.docs[i]['type'].toString().toLowerCase() == "credit" ? Color(0xff53B175) : Colors.red
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width:100,
+                                    child: Text(snap.data!.docs[i]['status'],
+                                      style: GoogleFonts.mulish(
+                                          fontWeight: FontWeight.bold,fontSize: 15,
+                                          color: snap.data!.docs[i]['status'].toString().toLowerCase() == "completed" ? Color(0xff53B175) : Colors.red
+                                      ),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 100.0),
+                                    child: Text(snap.data!.docs[i]['date'],style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 100.0),
+                                    child: Text(snap.data!.docs[i]['time'],style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                                  ),
+
+                                ],
+
+                              ),
+                            );
+                          },
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 20.0,left: 8),
-                          child: Text("Monthly Fee",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
-                        ),
-
-                      ],
-
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left: 60.0),
-                      child: Text("RS 50,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 120.0),
-                      child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 100.0),
-                      child: Text("01-08-3023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 100.0),
-                      child: Text("11:50 PM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
-                    ),
-
-                  ],
-
+                      );
+                    }return Container();
+                  },
                 ),
-                SizedBox(height: 8,),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 28.0,top: 18),
-                      child: Container(child: Image.asset("assets/Frame 39.png"),
-                        color:Color(0xffFFFFFF),
-                        width: width/34.15,
-                        height: height/16.425,
-
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0,top: 7),
-                          child: Text("Maintenance",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 20.0,left: 8),
-                          child: Text("Bus Driver",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
-                        ),
-
-                      ],
-
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left: 60.0),
-                      child: Text("RS 20,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.red),),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 120.0),
-                      child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 100.0),
-                      child: Text("02-08-2023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 100.0),
-                      child: Text("12:57 AM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
-                    ),
-
-                  ],
-
-                ),
+                // Row(
+                //   children: [
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 28.0,top: 18),
+                //       child: Container(child: Image.asset("assets/Group 4.png"),
+                //         color:Color(0xffFFFFFF),
+                //         width: width/34.15,
+                //         height: height/16.425,
+                //
+                //       ),
+                //     ),
+                //     Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Padding(
+                //           padding: const EdgeInsets.only(left: 8.0,top: 7),
+                //           child: Text("Fee Received",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.only(right: 20.0,left: 8),
+                //           child: Text("Monthly Fee",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
+                //         ),
+                //
+                //       ],
+                //
+                //     ),
+                //
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 60.0),
+                //       child: Text("RS 50,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 120.0),
+                //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 100.0),
+                //       child: Text("01-08-3023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 100.0),
+                //       child: Text("11:50 PM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                //     ),
+                //
+                //   ],
+                //
+                // ),
+                // SizedBox(height: 8,),
+                // Row(
+                //   children: [
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 28.0,top: 18),
+                //       child: Container(child: Image.asset("assets/Frame 39.png"),
+                //         color:Color(0xffFFFFFF),
+                //         width: width/34.15,
+                //         height: height/16.425,
+                //
+                //       ),
+                //     ),
+                //     Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Padding(
+                //           padding: const EdgeInsets.only(left: 8.0,top: 7),
+                //           child: Text("Maintenance",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.only(right: 20.0,left: 8),
+                //           child: Text("Bus Driver",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
+                //         ),
+                //
+                //       ],
+                //
+                //     ),
+                //
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 60.0),
+                //       child: Text("RS 20,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.red),),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 120.0),
+                //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 100.0),
+                //       child: Text("02-08-2023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 100.0),
+                //       child: Text("12:57 AM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                //     ),
+                //
+                //   ],
+                //
+                // ),
               ],
             ),
             width: width/1.221,

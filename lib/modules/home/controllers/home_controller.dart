@@ -108,22 +108,37 @@ class HomeController extends GetxController {
   final Rx<List<Usermodel>> _allclint = Rx<List<Usermodel>>([]);
   List<Usermodel> get clientusers => _allclint.value;
 
-  Future<void> findusers() async {
+  Future<void> findusers(String type) async {
    /* for (var i = 0; i < clientusers.length; i++) {
       sendPushMessage(clientusers[i].token!, body.text, title.text);
     }*/
     print("Notification Started");
     var document= await FirebaseFirestore.instance.collection("Staffs").get();
     var document2= await FirebaseFirestore.instance.collection("Students").get();
-    for(var i = 0; i < document.docs.length; i++){
-      if(document.docs[i]["token"]!="") {
-        print(document.docs[i]["token"]);
-        sendPushMessage(document.docs[i]["token"], body.text, title.text);
+
+    if(type.toLowerCase() == 'staff'){
+      for(var j = 0; j < document.docs.length; j++){
+        if(document.docs[j]["token"]!="") {
+          sendPushMessage(document.docs[j]["token"], body.text, title.text);
+        }
       }
-    }
-    for(var j = 0; j < document2.docs.length; j++){
-      if(document2.docs[j]["token"]!="") {
-        sendPushMessage(document2.docs[j]["token"], body.text, title.text);
+    }else if(type.toLowerCase() == 'student'){
+      for(var i = 0; i < document2.docs.length; i++){
+        if(document2.docs[i]["token"]!="") {
+          sendPushMessage(document2.docs[i]["token"], body.text, title.text);
+        }
+      }
+    }else{
+      for(var i = 0; i < document.docs.length; i++){
+        if(document.docs[i]["token"]!="") {
+          print(document.docs[i]["token"]);
+          sendPushMessage(document.docs[i]["token"], body.text, title.text);
+        }
+      }
+      for(var j = 0; j < document2.docs.length; j++){
+        if(document2.docs[j]["token"]!="") {
+          sendPushMessage(document2.docs[j]["token"], body.text, title.text);
+        }
       }
     }
   }
