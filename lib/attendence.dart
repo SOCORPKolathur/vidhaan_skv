@@ -523,7 +523,7 @@ setState(() {
                                                               radius: 45.0,
                                                               lineWidth: 10.0,
                                                               percent: getStudentAttendancePersantage(snapshot.data!).present,
-                                                              center:  Text("${((getStudentAttendancePersantage(snapshot.data!).present)*100).toString()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                              center:  Text("${((getStudentAttendancePersantage(snapshot.data!).present)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                                                               progressColor: Colors.green,
                                                             ),
                                                             Padding(
@@ -594,7 +594,7 @@ setState(() {
                                                               radius: 45.0,
                                                               lineWidth: 10.0,
                                                               percent: getStudentAttendancePersantage(snapshot.data!).absent,
-                                                              center:  Text("${((getStudentAttendancePersantage(snapshot.data!).absent * 100).toString())}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                              center:  Text("${((getStudentAttendancePersantage(snapshot.data!).absent * 100).toInt())}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                                                               progressColor: Colors.red,
                                                             ),
                                                             Padding(

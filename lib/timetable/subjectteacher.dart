@@ -515,7 +515,6 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
 
                           GestureDetector(
                             onTap: (){
-
                               checkaa();
                             },
                             child: Padding(
@@ -729,9 +728,9 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                               return suggestionsBox;
                                             },
                                             onSuggestionSelected: (String suggestion) {
-                                              getstaffbyid();
+                                              // getstaffbyid();
                                               this.textediting2[index].text = suggestion;
-                                              getstaffbyid3(textediting2[index].text,index);
+                                               getstaffbyid3(textediting2[index].text,index);
                                             },
                                             suggestionsBoxController: suggestionBoxController,
                                             validator: (value) =>

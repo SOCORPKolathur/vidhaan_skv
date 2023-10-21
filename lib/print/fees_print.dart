@@ -1,89 +1,38 @@
-
-import 'dart:js';
 import 'dart:typed_data';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:intl/intl.dart';
+import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-import 'package:vidhaan/fees/fees.dart';
-
-class CustomData {
-  const CustomData({this.name = 'John David'});
-
-  final String name;
-}
+import 'package:pdf/widgets.dart' as pw;
+import '../fees/fees.dart';
+import '../models/attendance_pdf_model.dart';
 
 
-// class DmeoPDF extends StatefulWidget {
-//   const DmeoPDF({Key? key}) : super(key: key);
-//
-//   @override
-//   State<DmeoPDF> createState() => _DmeoPDFState();
-// }
-//
-// class _DmeoPDFState extends State<DmeoPDF> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body:     PdfPreview(
-//         build: (format) => generateInvoice(format, CustomData(name: "Demo")),
-//       ),
-//     );
-//   }
-// }
+Future<Uint8List> generateFeesPdf(PdfPageFormat pageFormat,StudentFeesPdfModel feesDetails) async {
 
-
-Future<Uint8List> generateInvoice(PdfPageFormat pageFormat, StudentFeesPdfModel data) async {
-
-  List<Product> products = <Product>[
-    Product('01', data.feesName, double.parse(data.amount), 1),
-  ];
-
-  final schoolLogoImg = await flutterImageProvider(NetworkImage(data.schoolLogo));
-
-  final invoice = Invoice(
-    invoiceNumber: '#0001',
-    products: products,
-    customerName: data.studentName,
-    customerAddress: data.studentAddress,
-    schoolName: data.schoolName,
-    schoolLogo: schoolLogoImg,
-    schoolAddress: data.schoolAdderss,
-    schoolPhone: data.schoolPhone,
-    paymentInfo: 'Payment Mode: Cash \n${data.date}\nTime: ${data.time}',
-    tax: .15,
-    baseColor: PdfColor.fromHex('00A0E3'),
-    accentColor: PdfColors.blueGrey900,
+  final attendance = FeesModelforPdfPrint(
+      accentColor: PdfColor.fromHex('0xff00A0E3'),
+      baseColor: PdfColor.fromHex('0xff00A0E3'),
+      customerAddress: '',
+      customerName: '',
+      invoiceNumber: '',
+      paymentInfo: '',
+      tax: 1,
+      title: "Attendance",
+      feesDetails: feesDetails,
+    products: []
   );
 
-  return await invoice.buildPdf(pageFormat);
+  return await attendance.buildPdf(pageFormat);
 }
 
-class Invoice {
-  Invoice({
-    required this.products,
-    required this.customerName,
-    required this.schoolName,
-    required this.schoolLogo,
-    required this.schoolAddress,
-    required this.schoolPhone,
-    required this.customerAddress,
-    required this.invoiceNumber,
-    required this.tax,
-    required this.paymentInfo,
-    required this.baseColor,
-    required this.accentColor,
-  });
+class FeesModelforPdfPrint{
 
-  final List<Product> products;
+  FeesModelforPdfPrint({required this.products,required this.customerName, required this.customerAddress,required  this.invoiceNumber,required  this.tax,required  this.paymentInfo,required  this.baseColor,required  this.accentColor, required this.title, required this.feesDetails});
+  String? title;
+  StudentFeesPdfModel feesDetails;
+
   final String customerName;
-  final String schoolName;
-  final pw.ImageProvider schoolLogo;
-  final String schoolAddress;
-  final String schoolPhone;
+  final List products;
   final String customerAddress;
   final String invoiceNumber;
   final double tax;
@@ -98,22 +47,18 @@ class Invoice {
 
   PdfColor get _accentTextColor => baseColor.isLight ? _lightColor : _darkColor;
 
-  double get _total =>
-      products.map<double>((p) => p.total).reduce((a, b) => a + b);
-
-  double get _grandTotal => _total;
 
   String? _logo;
 
   String? _bgShape;
 
-
   Future<Uint8List> buildPdf(PdfPageFormat pageFormat) async {
-    // Create a PDF document.
-    final doc = pw.Document();
+
     _logo = await rootBundle.loadString('assets/schoollogo1.svg');
     _bgShape = await rootBundle.loadString('assets/invoice.svg');
-    // Add page to the PDF
+
+    final doc = pw.Document();
+
     doc.addPage(
       pw.MultiPage(
         pageTheme: _buildTheme(
@@ -122,26 +67,22 @@ class Invoice {
           await PdfGoogleFonts.robotoBold(),
           await PdfGoogleFonts.robotoItalic(),
         ),
-        header: _buildHeader,
-        footer: _buildFooter,
+        //header: _buildHeader,
+        //footer: _buildFooter,
         build: (context) => [
-          _contentHeader(context),
+          _contentHeader(context,feesDetails),
           _contentTable(context),
           pw.SizedBox(height: 20),
-          _contentFooter(context),
+          _contentFooter(context,feesDetails),
           pw.SizedBox(height: 20),
 
         ],
       ),
     );
     Printing.layoutPdf(
-
       onLayout: (PdfPageFormat format) async => doc.save(),
     );
-    // Return the PDF file content
     return doc.save();
-
-
   }
 
   pw.Widget _buildHeader(pw.Context context) {
@@ -152,11 +93,11 @@ class Invoice {
           children: [
 
             pw.Container(
-                alignment: pw.Alignment.topRight,
-                padding: const pw.EdgeInsets.only(bottom: 8, left: 30),
-                height: 100,
-                /////////////////////////////////////////////////////////
-                child: pw.Image(schoolLogo)
+              alignment: pw.Alignment.topRight,
+              padding: const pw.EdgeInsets.only(bottom: 8, left: 30),
+              height: 100,
+              child:
+              _logo != null ? pw.SvgImage(svg: _logo!) : pw.PdfLogo(),
             ),
             // pw.Container(
             //   color: baseColor,
@@ -172,7 +113,7 @@ class Invoice {
                     padding: const pw.EdgeInsets.only(left: 0),
                     alignment: pw.Alignment.centerLeft,
                     child: pw.Text(
-                      schoolName,
+                      '',
                       style: pw.TextStyle(
                         color: baseColor,
                         fontWeight: pw.FontWeight.bold,
@@ -180,43 +121,15 @@ class Invoice {
                       ),
                     ),
                   ),
-                  pw.Text(schoolAddress, style: pw.TextStyle(
-                    color: _darkColor,
-                    fontSize: 13,
-                  ),),
-                  pw.Text("Call: $schoolPhone",style: pw.TextStyle(
+                  pw.Text("Kolathur,Padi Chennai - 600062", style: pw.TextStyle(
                     color: _darkColor,
 
                     fontSize: 13,
                   ),),
-                  /*  pw.Container(
-                    decoration: pw.BoxDecoration(
-                      borderRadius:
-                      const pw.BorderRadius.all(pw.Radius.circular(2)),
-                      color: accentColor,
-                    ),
-                    padding: const pw.EdgeInsets.only(
-                        left: 40, top: 10, bottom: 10, right: 20),
-                    alignment: pw.Alignment.centerLeft,
-                    height: 50,
-                    child: pw.DefaultTextStyle(
-                      style: pw.TextStyle(
-                        color: _accentTextColor,
-                        fontSize: 12,
-                      ),
-                      child: pw.GridView(
-                        crossAxisCount: 2,
-                        children: [
-                          pw.Text('Invoice #'),
-                          pw.Text(invoiceNumber),
-                          pw.Text('Date:'),
-                          pw.Text(_formatDate(DateTime.now())),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                 */
+                  pw.Text("Call: +91 770880963",style: pw.TextStyle(
+                    color: _darkColor,
+                    fontSize: 13,
+                  ),),
                 ],
               ),
             ),
@@ -261,7 +174,7 @@ class Invoice {
     );
   }
 
-  pw.Widget _contentHeader(pw.Context context) {
+  pw.Widget _contentHeader(pw.Context context,StudentFeesPdfModel feesDetails) {
     return pw.Row(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
@@ -286,7 +199,7 @@ class Invoice {
                   height: 70,
                   child: pw.RichText(
                       text: pw.TextSpan(
-                          text: '$customerName\n',
+                          text: '${feesDetails.studentName}\n',
                           style: pw.TextStyle(
                             color: _darkColor,
                             fontWeight: pw.FontWeight.bold,
@@ -300,7 +213,7 @@ class Invoice {
                               ),
                             ),
                             pw.TextSpan(
-                              text: customerAddress,
+                              text: feesDetails.studentAddress,
                               style: pw.TextStyle(
                                 fontWeight: pw.FontWeight.normal,
                                 fontSize: 10,
@@ -316,7 +229,7 @@ class Invoice {
     );
   }
 
-  pw.Widget _contentFooter(pw.Context context) {
+  pw.Widget _contentFooter(pw.Context context,StudentFeesPdfModel feesDetails) {
     return pw.Row(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
@@ -378,7 +291,7 @@ class Invoice {
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: [
                       pw.Text('Total:'),
-                      pw.Text(_formatCurrency(_grandTotal)),
+                      pw.Text(_formatCurrency(double.parse(feesDetails.amount.toString()))),
                     ],
                   ),
                 ),
@@ -449,47 +362,10 @@ class Invoice {
       ),
     );
   }
-}
 
 
-
-
-String _formatCurrency(double amount) {
-  return 'Rs ${amount.toStringAsFixed(2)}';
-}
-
-String _formatDate(DateTime date) {
-  final format = DateFormat.yMMMd('en_US');
-  return format.format(date);
-}
-
-class Product {
-  const Product(
-      this.sku,
-      this.productName,
-      this.price,
-      this.quantity,
-      );
-
-  final String sku;
-  final String productName;
-  final double price;
-  final int quantity;
-  double get total => price * quantity;
-
-  String getIndex(int index) {
-    switch (index) {
-      case 0:
-        return sku;
-      case 1:
-        return productName;
-      case 2:
-        return _formatCurrency(price);
-      case 3:
-        return quantity.toString();
-      case 4:
-        return _formatCurrency(total);
-    }
-    return '';
+  String _formatCurrency(double amount) {
+    return 'Rs ${amount.toStringAsFixed(2)}';
   }
 }
+

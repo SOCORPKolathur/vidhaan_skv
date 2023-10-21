@@ -129,6 +129,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
     }
   }
+
   firsttimecall() async {
     var document = await  FirebaseFirestore.instance.collection("ClassMaster").get();
     var document2 = await  FirebaseFirestore.instance.collection("Students").get();
@@ -163,6 +164,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "timestamp": DateTime.now().microsecondsSinceEpoch,
         "paytype": paytype.text,
         "status":false,
+        "date" : "",
+        "time" : "",
+        "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
       });
     }
   }
@@ -174,6 +178,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
       "timestamp": DateTime.now().microsecondsSinceEpoch,
       "paytype": paytype.text,
       "status":false,
+      "date" : "",
+      "time" : "",
+      "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
     });
 
   }

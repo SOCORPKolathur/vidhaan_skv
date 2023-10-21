@@ -114,8 +114,6 @@ class _FeesReportsState extends State<FeesReports> {
   String studentid="";
 
   getstaffbyid() async {
-    print("fdgggggggggg");
-    print(_typeAheadControllerregno.text);
     var document = await FirebaseFirestore.instance.collection("Students").get();
     for(int i=0;i<document.docs.length;i++){
       if(_typeAheadControllerregno.text==document.docs[i]["regno"]){
@@ -129,13 +127,10 @@ class _FeesReportsState extends State<FeesReports> {
       search=true;
       byclass=false;
     });
-    print("fdgggggggggg");
 
 
   }
   getstaffbyid2() async {
-    print("fdgggggggggg");
-    print(_typeAheadControllerregno.text);
     var document = await FirebaseFirestore.instance.collection("Students").get();
     for(int i=0;i<document.docs.length;i++){
       if(_typeAheadControllerstudent.text==document.docs[i]["stname"]){
@@ -145,7 +140,6 @@ class _FeesReportsState extends State<FeesReports> {
         );
       }
     }
-    print("fdgggggggggg");
 
 
   }
@@ -243,7 +237,6 @@ class _FeesReportsState extends State<FeesReports> {
                             single=false;
                             married=false;
                             married2=false;
-
                           });
                         },
                         child: Material(
@@ -897,9 +890,6 @@ class _FeesReportsState extends State<FeesReports> {
                                       this._typeAheadControllersection.text = suggestion;
                                     });
 
-
-
-
                                   },
                                   suggestionsBoxController: suggestionBoxController,
                                   validator: (value) =>
@@ -948,10 +938,8 @@ class _FeesReportsState extends State<FeesReports> {
                                       );
 
                                       if(pickedDate != null ){
-                                        print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
                                         String formattedDate = DateFormat('dd / M / yyyy').format(pickedDate);
-                                        print(formattedDate); //formatted date output using intl package =>  2021-03-16
-                                        //you can implement different kind of Date Format here according to your requirement
+                                       //you can implement different kind of Date Format here according to your requirement
 
                                         setState(() {
                                           year2= pickedDate.year;
@@ -961,16 +949,10 @@ class _FeesReportsState extends State<FeesReports> {
 
                                           //set output date to TextField value.
                                         });
-                                        print(year2);
-                                        print(day2);
-                                        print(month2);
                                         DateTime startDate = DateTime.utc(year1, month1, day1);
                                         DateTime endDate = DateTime.utc(year2, month2, day2);
-                                        print(startDate);
-                                        print(endDate);
                                         getDaysInBetween() {
                                           final int difference = endDate.difference(startDate).inDays;
-                                          print(difference);
                                           return difference;
                                         }
                                         final items = List<DateTime>.generate(getDaysInBetween(), (i) {
@@ -986,10 +968,8 @@ class _FeesReportsState extends State<FeesReports> {
                                           });
 
                                         }
-                                        print(mydate);
 
                                       }else{
-                                        print("Date is not selected");
                                       }
                                     },
                                   ),
@@ -1031,9 +1011,7 @@ class _FeesReportsState extends State<FeesReports> {
                                       );
 
                                       if(pickedDate != null ){
-                                        print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
                                         String formattedDate = DateFormat('dd / M / yyyy').format(pickedDate);
-                                        print(formattedDate); //formatted date output using intl package =>  2021-03-16
                                         //you can implement different kind of Date Format here according to your requirement
 
                                         setState(() {
@@ -1044,7 +1022,6 @@ class _FeesReportsState extends State<FeesReports> {
                                           //set output date to TextField value.
                                         });
                                       }else{
-                                        print("Date is not selected");
                                       }
                                     },
                                   ),
@@ -1094,10 +1071,6 @@ class _FeesReportsState extends State<FeesReports> {
                           ),
                         ),
                         SizedBox(width: 15,),
-
-
-
-
                       ],
                     ),
                   ),
@@ -1172,8 +1145,176 @@ class _FeesReportsState extends State<FeesReports> {
             ],
           ),
         ),
+        Container(
+          height: 310,
+          width: width/1.366,
+          child: FutureBuilder<FeesDetailsModel>(
+            future: getFeesDetails(),
+            builder: (ctx,snap){
+              if(snap.hasData){
+                return ListView.builder(
+                  itemCount: married2 ? snap.data!.paidStudents.length : married ? snap.data!.overDueStudents.length : snap.data!.pendingStudents.length,
+                  itemBuilder: (ctx,i){
+                    StudentFeesModel feesDetail = married2 ? snap.data!.paidStudents[i] : married ? snap.data!.overDueStudents[i] : snap.data!.pendingStudents[i];
+                    return Container(
+                      height: 70,
+                      width: width/1.366,
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            width: 60,
+                          ),
+                          Container(
+                            width:130,
+                            child: Text(
+                                feesDetail.feesName,
+                              style: GoogleFonts.montserrat(
+                                fontWeight:FontWeight.normal,
+                                  fontSize:width/81.13
+                            ),),
+                          ),
+                          Container(
+                            width:130,
+                            child: Text(
+                              feesDetail.amount.toString(),
+                              style: GoogleFonts.montserrat(
+                                fontWeight:FontWeight.normal,fontSize:width/81.13
+                            ),),
+                          ),
+                          Container(
+                            width:130,
+                            child: Text(
+                                feesDetail.status == true ? 'Paid' : 'Pending',
+                              style: GoogleFonts.montserrat(
+                                fontWeight:FontWeight.normal,
+                                  color: feesDetail.status == true ? Colors.green : Colors.red,
+                                  fontSize:width/81.13
+                            ),),
+                          ),
+                          Container(
+                            width:130,
+                            child: Text(
+                              feesDetail.date,
+                              style: GoogleFonts.montserrat(
+                                fontWeight:FontWeight.normal,fontSize:width/81.13
+                            ),),
+                          ),
+                          Container(
+                            width:130,
+                            child: Text(
+                              feesDetail.time,
+                              style: GoogleFonts.montserrat(
+                                fontWeight:FontWeight.normal,fontSize:width/81.13
+                            ),),
+                          ),
+                          Container(
+                            width:130,
+                            child: Text(
+                                feesDetail.studentName,
+                              style: GoogleFonts.montserrat(
+                                fontWeight:FontWeight.normal,fontSize:width/81.13
+                            ),),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              }return Container(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            },
+          ),
+        )
 
       ],
     );
   }
+
+  Future<FeesDetailsModel> getFeesDetails() async {
+
+    List<StudentFeesModel> paidStudentsList = [];
+    List<StudentFeesModel> pendingStudentsList = [];
+    List<StudentFeesModel> overDuestudentsList = [];
+
+    var studentDocument = await FirebaseFirestore.instance.collection('Students').get();
+    studentDocument.docs.forEach((student) async {
+      var studentFeesDocument = await FirebaseFirestore.instance.collection('Students').doc(student.id).collection('Fees').orderBy("timestamp",descending: true).get();
+      studentFeesDocument.docs.forEach((fees) {
+        if(fees.get("status") == true){
+          paidStudentsList.add(
+                StudentFeesModel(
+                    studentName: student.get("stname"),
+                    amount: double.parse(fees.get("amount").toString()),
+                    feesName: fees.get("feesname"),
+                    date: fees.get("date"),
+                    time: fees.get("time"),
+                    status: fees.get("status")
+                )
+            );
+        } else if(fees.get("status") == false && (DateFormat('dd / M / yyyy').parse(fees.get('duedate')).difference(DateTime.now()).inDays + 1 <= 0)){
+          overDuestudentsList.add(
+              StudentFeesModel(
+                  studentName: student.get("stname"),
+                  amount: double.parse(fees.get("amount").toString()),
+                  feesName: fees.get("feesname"),
+                  date: fees.get("date"),
+                  time: fees.get("time"),
+                  status: fees.get("status")
+              )
+          );
+        }else{
+          pendingStudentsList.add(
+              StudentFeesModel(
+                  studentName: student.get("stname"),
+                  amount: double.parse(fees.get("amount").toString()),
+                  feesName: fees.get("feesname"),
+                  date: fees.get("date"),
+                  time: fees.get("time"),
+                  status: fees.get("status")
+              )
+          );
+        }
+      });
+    });
+    await Future.delayed(Duration(seconds: 3));
+    FeesDetailsModel feesDetails = FeesDetailsModel(
+      overDueStudents: overDuestudentsList,
+      paidStudents: paidStudentsList,
+      pendingStudents: pendingStudentsList
+    );
+
+    print(paidStudentsList.length.toString() + "000000000000000000000000000000000");
+    print(pendingStudentsList.length.toString() + "000000000000000000000000000000000");
+    print(overDuestudentsList.length.toString() + "000000000000000000000000000000000");
+    return feesDetails;
+  }
+}
+
+class FeesDetailsModel{
+  FeesDetailsModel({required this.overDueStudents, required this.paidStudents, required this.pendingStudents});
+  List<StudentFeesModel> paidStudents = [];
+  List<StudentFeesModel> pendingStudents = [];
+  List<StudentFeesModel> overDueStudents = [];
+}
+
+class StudentFeesModel {
+  StudentFeesModel({
+    required this.studentName,
+    required this.amount,
+    required this.feesName,
+    required this.date,
+    required this.time,
+    required this.status,
+  });
+  String studentName;
+  double amount;
+  String feesName;
+  String date;
+  String time;
+  bool status;
 }

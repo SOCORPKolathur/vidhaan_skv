@@ -398,11 +398,8 @@ class _SubtutionState extends State<Subtution>
                               //color: Colors.pink,
                             ),
                           ),
-                          StreamBuilder<QuerySnapshot>(
-                              stream: FirebaseFirestore.instance
-                                  .collection("Staffs")
-                                  .orderBy("timestamp")
-                                  .snapshots(),
+                          FutureBuilder<List<DocumentSnapshot>>(
+                              future: getAppliedLeaves(),
                               builder: (context, snapshot) {
                                 if (!snapshot.hasData) {
                                   return Center(
@@ -416,190 +413,174 @@ class _SubtutionState extends State<Subtution>
                                 }
                                 return ListView.builder(
                                     shrinkWrap: true,
-                                    itemCount: snapshot.data!.docs.length,
+                                    itemCount: snapshot.data!.length,
                                     itemBuilder: (context, index) {
-                                      var value = snapshot.data!.docs[index];
-                                      return value["absent"] == true
-                                          ? Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Container(
-                                                width: width / 1.366,
-                                                child: Row(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 10.0, right: 0),
-                                                      child: Container(
-                                                        width: width / 13.66,
-                                                        alignment: Alignment.center,
-                                                        child: Text(
-                                                          value["regno"],
-                                                          style:
-                                                              GoogleFonts.poppins(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
+                                      var value = snapshot.data![index];
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          width: width / 1.366,
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10.0, right: 0),
+                                                child: Container(
+                                                  width: width / 13.66,
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    value["regno"],
+                                                    style: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FontWeight.w500,
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 30.0),
-                                                      child: Container(
-                                                        width: width / 9.757,
-                                                        child: Text(
-                                                          value["stname"],
-                                                          style:
-                                                              GoogleFonts.poppins(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 0.0, right: 0),
-                                                      child: Container(
-                                                        width: width / 22.766,
-                                                        child: Text(
-                                                          value["incharge"],
-                                                          style:
-                                                              GoogleFonts.poppins(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 13.0),
-                                                      child: Container(
-                                                        width: width / 22.766,
-                                                        alignment: Alignment.center,
-                                                        child: Text(
-                                                          value["inchargesec"],
-                                                          style:
-                                                              GoogleFonts.poppins(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 150, right: 0),
-                                                      child: Container(
-                                                          child: StreamBuilder(
-                                                        stream: FirebaseFirestore
-                                                            .instance
-                                                            .collection("Staffs")
-                                                            .doc(value.id)
-                                                            .collection("Timetable")
-                                                            .where("day",
-                                                                isEqualTo: day)
-                                                            .snapshots(),
-                                                        builder: (context, snap) {
-                                                          return Text(
-                                                            snap.data!.docs.length
-                                                                .toString(),
-                                                            style:
-                                                                GoogleFonts.poppins(
-                                                              fontWeight:
-                                                                  FontWeight.w500,
-                                                            ),
-                                                          );
-                                                        },
-                                                      )),
-                                                    ),
-                                                    value["classasigned"] == true
-                                                        ? Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 130.0),
-                                                            child: InkWell(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  staffid =
-                                                                      value.id;
-                                                                  staffname = value[
-                                                                      "stname"];
-                                                                  view = true;
-                                                                });
-                                                                staffdroup();
-                                                              },
-                                                              child: Container(
-                                                                child: Center(
-                                                                    child: Text(
-                                                                  "Assign Staffs",
-                                                                  style: GoogleFonts
-                                                                      .poppins(
-                                                                          color: Colors
-                                                                              .white),
-                                                                )),
-                                                                width: width / 9.76,
-                                                                height:
-                                                                    height / 21.9,
-                                                                //color: Color(0xffD60A0B),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                  color: Colors.red,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          )
-                                                        : Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 130.0),
-                                                            child: InkWell(
-                                                              onTap: () {
-                                                                setState(() {});
-                                                              },
-                                                              child: Container(
-                                                                child: Center(
-                                                                    child: Text(
-                                                                  "Staffs Assigned",
-                                                                  style: GoogleFonts
-                                                                      .poppins(
-                                                                          color: Colors
-                                                                              .white),
-                                                                )),
-                                                                width: width / 9.76,
-                                                                height:
-                                                                    height / 21.9,
-                                                                //color: Color(0xffD60A0B),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                  color: Color(
-                                                                      0xff53B175),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                  ],
+                                                  ),
                                                 ),
-                                                //color: Colors.pink,
                                               ),
-                                            )
-                                          : Container();
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 30.0),
+                                                child: Container(
+                                                  width: width / 9.757,
+                                                  child: Text(
+                                                    value["stname"],
+                                                    style: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 0.0, right: 0),
+                                                child: Container(
+                                                  width: width / 22.766,
+                                                  child: Text(
+                                                    value["incharge"],
+                                                    style: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 13.0),
+                                                child: Container(
+                                                  width: width / 22.766,
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    value["inchargesec"],
+                                                    style: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 150, right: 0),
+                                                child: Container(
+                                                    child: StreamBuilder(
+                                                  stream: FirebaseFirestore
+                                                      .instance
+                                                      .collection("Staffs")
+                                                      .doc(value.id)
+                                                      .collection("Timetable")
+                                                      .where("day",
+                                                          isEqualTo: day)
+                                                      .snapshots(),
+                                                  builder: (context, snap) {
+                                                    return Text(
+                                                      snap.data!.docs.length
+                                                          .toString(),
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    );
+                                                  },
+                                                )),
+                                              ),
+                                              value["classasigned"] == true
+                                                  ? Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 130.0),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            staffid = value.id;
+                                                            staffname =
+                                                                value["stname"];
+                                                            view = true;
+                                                          });
+                                                          staffdroup();
+                                                        },
+                                                        child: Container(
+                                                          child: Center(
+                                                              child: Text(
+                                                            "Assign Staffs",
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                                    color: Colors
+                                                                        .white),
+                                                          )),
+                                                          width: width / 9.76,
+                                                          height: height / 21.9,
+                                                          //color: Color(0xffD60A0B),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            color: Colors.red,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 130.0),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          setState(() {});
+                                                        },
+                                                        child: Container(
+                                                          child: Center(
+                                                              child: Text(
+                                                            "Staffs Assigned",
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                                    color: Colors
+                                                                        .white),
+                                                          )),
+                                                          width: width / 9.76,
+                                                          height: height / 21.9,
+                                                          //color: Color(0xffD60A0B),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            color: Color(
+                                                                0xff53B175),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                            ],
+                                          ),
+                                          //color: Colors.pink,
+                                        ),
+                                      );
                                     });
                               }),
                         ],
@@ -671,11 +652,8 @@ class _SubtutionState extends State<Subtution>
                               //color: Colors.pink,
                             ),
                           ),
-                          StreamBuilder<QuerySnapshot>(
-                              stream: FirebaseFirestore.instance
-                                  .collection("Staffs")
-                                  .orderBy("timestamp")
-                                  .snapshots(),
+                          FutureBuilder<List<DocumentSnapshot>>(
+                              future: getSuddenLeaves(),
                               builder: (context, snapshot) {
                                 if (!snapshot.hasData) {
                                   return Center(
@@ -689,190 +667,174 @@ class _SubtutionState extends State<Subtution>
                                 }
                                 return ListView.builder(
                                     shrinkWrap: true,
-                                    itemCount: snapshot.data!.docs.length,
+                                    itemCount: snapshot.data!.length,
                                     itemBuilder: (context, index) {
-                                      var value = snapshot.data!.docs[index];
-                                      return value["absent"] == true
-                                          ? Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Container(
-                                                width: width / 1.366,
-                                                child: Row(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 10.0, right: 0),
-                                                      child: Container(
-                                                        width: width / 13.66,
-                                                        alignment: Alignment.center,
-                                                        child: Text(
-                                                          value["regno"],
-                                                          style:
-                                                              GoogleFonts.poppins(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
+                                      var value = snapshot.data![index];
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          width: width / 1.366,
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10.0, right: 0),
+                                                child: Container(
+                                                  width: width / 13.66,
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    value["regno"],
+                                                    style: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FontWeight.w500,
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 30.0),
-                                                      child: Container(
-                                                        width: width / 9.757,
-                                                        child: Text(
-                                                          value["stname"],
-                                                          style:
-                                                              GoogleFonts.poppins(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 0.0, right: 0),
-                                                      child: Container(
-                                                        width: width / 22.766,
-                                                        child: Text(
-                                                          value["incharge"],
-                                                          style:
-                                                              GoogleFonts.poppins(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 13.0),
-                                                      child: Container(
-                                                        width: width / 22.766,
-                                                        alignment: Alignment.center,
-                                                        child: Text(
-                                                          value["inchargesec"],
-                                                          style:
-                                                              GoogleFonts.poppins(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 150, right: 0),
-                                                      child: Container(
-                                                          child: StreamBuilder(
-                                                        stream: FirebaseFirestore
-                                                            .instance
-                                                            .collection("Staffs")
-                                                            .doc(value.id)
-                                                            .collection("Timetable")
-                                                            .where("day",
-                                                                isEqualTo: day)
-                                                            .snapshots(),
-                                                        builder: (context, snap) {
-                                                          return Text(
-                                                            snap.data!.docs.length
-                                                                .toString(),
-                                                            style:
-                                                                GoogleFonts.poppins(
-                                                              fontWeight:
-                                                                  FontWeight.w500,
-                                                            ),
-                                                          );
-                                                        },
-                                                      )),
-                                                    ),
-                                                    value["classasigned"] == true
-                                                        ? Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 130.0),
-                                                            child: InkWell(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  staffid =
-                                                                      value.id;
-                                                                  staffname = value[
-                                                                      "stname"];
-                                                                  view = true;
-                                                                });
-                                                                staffdroup();
-                                                              },
-                                                              child: Container(
-                                                                child: Center(
-                                                                    child: Text(
-                                                                  "Assign Staffs",
-                                                                  style: GoogleFonts
-                                                                      .poppins(
-                                                                          color: Colors
-                                                                              .white),
-                                                                )),
-                                                                width: width / 9.76,
-                                                                height:
-                                                                    height / 21.9,
-                                                                //color: Color(0xffD60A0B),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                  color: Colors.red,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          )
-                                                        : Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 130.0),
-                                                            child: InkWell(
-                                                              onTap: () {
-                                                                setState(() {});
-                                                              },
-                                                              child: Container(
-                                                                child: Center(
-                                                                    child: Text(
-                                                                  "Staffs Assigned",
-                                                                  style: GoogleFonts
-                                                                      .poppins(
-                                                                          color: Colors
-                                                                              .white),
-                                                                )),
-                                                                width: width / 9.76,
-                                                                height:
-                                                                    height / 21.9,
-                                                                //color: Color(0xffD60A0B),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                  color: Color(
-                                                                      0xff53B175),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                  ],
+                                                  ),
                                                 ),
-                                                //color: Colors.pink,
                                               ),
-                                            )
-                                          : Container();
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 30.0),
+                                                child: Container(
+                                                  width: width / 9.757,
+                                                  child: Text(
+                                                    value["stname"],
+                                                    style: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 0.0, right: 0),
+                                                child: Container(
+                                                  width: width / 22.766,
+                                                  child: Text(
+                                                    value["incharge"],
+                                                    style: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 13.0),
+                                                child: Container(
+                                                  width: width / 22.766,
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    value["inchargesec"],
+                                                    style: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 150, right: 0),
+                                                child: Container(
+                                                    child: StreamBuilder(
+                                                  stream: FirebaseFirestore
+                                                      .instance
+                                                      .collection("Staffs")
+                                                      .doc(value.id)
+                                                      .collection("Timetable")
+                                                      .where("day",
+                                                          isEqualTo: day)
+                                                      .snapshots(),
+                                                  builder: (context, snap) {
+                                                    return Text(
+                                                      snap.data!.docs.length
+                                                          .toString(),
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    );
+                                                  },
+                                                )),
+                                              ),
+                                              value["classasigned"] == true
+                                                  ? Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 130.0),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            staffid = value.id;
+                                                            staffname =
+                                                                value["stname"];
+                                                            view = true;
+                                                          });
+                                                          staffdroup();
+                                                        },
+                                                        child: Container(
+                                                          child: Center(
+                                                              child: Text(
+                                                            "Assign Staffs",
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                                    color: Colors
+                                                                        .white),
+                                                          )),
+                                                          width: width / 9.76,
+                                                          height: height / 21.9,
+                                                          //color: Color(0xffD60A0B),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            color: Colors.red,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 130.0),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          setState(() {});
+                                                        },
+                                                        child: Container(
+                                                          child: Center(
+                                                              child: Text(
+                                                            "Staffs Assigned",
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                                    color: Colors
+                                                                        .white),
+                                                          )),
+                                                          width: width / 9.76,
+                                                          height: height / 21.9,
+                                                          //color: Color(0xffD60A0B),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            color: Color(
+                                                                0xff53B175),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                            ],
+                                          ),
+                                          //color: Colors.pink,
+                                        ),
+                                      );
                                     });
                               }),
                         ],
@@ -1272,5 +1234,59 @@ class _SubtutionState extends State<Subtution>
     setState(() {
       day = DateFormat('EEEE').format(DateTime.now());
     });
+  }
+
+  Future<List<DocumentSnapshot>> getAppliedLeaves() async {
+    List<String> staffRegNos = [];
+    List<DocumentSnapshot> staffs = [];
+    var leaveDocument =
+        await FirebaseFirestore.instance.collection('Leave').get();
+    leaveDocument.docs.forEach((element) {
+      if (element.get("leaveon") ==
+          '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}') {
+        staffRegNos.add(element.get("regno"));
+      }
+    });
+
+    var staffDocument =
+        await FirebaseFirestore.instance.collection('Staffs').get();
+    staffDocument.docs.forEach((staff) {
+      staffRegNos.forEach((regNo) {
+        if (regNo == staff.get("regno")) {
+          staffs.add(staff);
+        }
+      });
+    });
+
+    return staffs;
+  }
+
+  Future<List<DocumentSnapshot>> getSuddenLeaves() async {
+    List<String> staffRegNos = [];
+    List<DocumentSnapshot> staffs = [];
+    var staffDocument =
+        await FirebaseFirestore.instance.collection('Staffs').get();
+    staffDocument.docs.forEach((staff) {
+      if (staff.get("absent") == true) {
+        staffRegNos.add(staff.get("regno"));
+      }
+    });
+    var leaveDocument =
+        await FirebaseFirestore.instance.collection('Leave').get();
+    leaveDocument.docs.forEach((leave) {
+      staffRegNos.forEach((regno) {
+        if (leave.get("regno") == regno) {
+          staffRegNos.remove(regno);
+        }
+      });
+    });
+    staffDocument.docs.forEach((staff) {
+      staffRegNos.forEach((regno) {
+        if (staff.get("regno") == regno) {
+          staffs.add(staff);
+        }
+      });
+    });
+    return staffs;
   }
 }

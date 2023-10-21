@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 import 'package:pdf/widgets.dart' as p;
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:vidhaan/demopdf.dart';
+
+import '../print/fees_print.dart';
 
 class FeesReg extends StatefulWidget {
   const FeesReg({Key? key}) : super(key: key);
@@ -19,6 +22,12 @@ class FeesReg extends StatefulWidget {
 }
 
 class _FeesRegState extends State<FeesReg> {
+
+  String schoolname="";
+  String schooladdress="";
+  String schoolphone="";
+  String schoollogo="";
+
 
   String? _selectedCity;
   final TextEditingController _typeAheadControllerregno = TextEditingController();
@@ -40,6 +49,16 @@ class _FeesRegState extends State<FeesReg> {
 
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
+  }
+
+  getadmin() async {
+    var document = await FirebaseFirestore.instance.collection("Admin").get();
+    setState(() {
+      schoolname=document.docs[0]["schoolname"];
+      schooladdress="${document.docs[0]["area"]} ${document.docs[0]["city"]} ${document.docs[0]["pincode"]}";
+      schoollogo=document.docs[0]["logo"];
+      schoolphone=document.docs[0]["phone"];
+    });
   }
 
   feesdrop() async {
@@ -143,6 +162,7 @@ class _FeesRegState extends State<FeesReg> {
 
   @override
   void initState() {
+    getadmin();
     adddropdownvalue();
     // TODO: implement initState
     super.initState();
@@ -440,7 +460,7 @@ class _FeesRegState extends State<FeesReg> {
                                                       },
                                                       child: CircleAvatar(
                                                         radius: width/26.6666,
-                                                        backgroundImage:AssetImage("assets/profile.jpg"),
+                                                        backgroundImage: NetworkImage(value!['imgurl']),
 
                                                       ),
                                                     ),
@@ -743,11 +763,27 @@ class _FeesRegState extends State<FeesReg> {
                                                                     ),
                                                                     SizedBox(width:20),
                                                                     GestureDetector(
-                                                                      onTap: (){
-
-                                                                        generateInvoice(PdfPageFormat.a4, CustomData(name: "Demo"));
-
-                                                                      },
+                                                                      onTap: () async {
+                                                                        StudentFeesPdfModel feesDetails = StudentFeesPdfModel(
+                                                                          date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                                                                          time: DateFormat('hh:mm aa').format(DateTime.now()),
+                                                                          amount: value2["amount"].toString(),
+                                                                          feesName: value2["feesname"].toString(),
+                                                                          schoolAdderss: schooladdress,
+                                                                          schoolName: schoolname,
+                                                                          schoolLogo: schoollogo,
+                                                                          schoolPhone: schoolphone,
+                                                                          studentAddress: value['address'].toString(),
+                                                                          studentName: value['stname'].toString(),
+                                                                        );
+                                                                        setState(() {
+                                                                          isloading = true;
+                                                                        });
+                                                                        await generateInvoice(PdfPageFormat.a4,feesDetails);
+                                                                        setState(() {
+                                                                          isloading = false;
+                                                                        });
+                                                                        },
                                                                       child: Padding(
                                                                         padding: const EdgeInsets.all(8.0),
                                                                         child: Container(child: Center(child: Text("Print Receipt",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
@@ -755,7 +791,6 @@ class _FeesRegState extends State<FeesReg> {
                                                                           height: height/16.425,
                                                                           // color:Color(0xff00A0E3),
                                                                           decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
-
                                                                         ),
                                                                       ),
                                                                     ),
@@ -890,7 +925,34 @@ class _FeesRegState extends State<FeesReg> {
             ],
           ),
         ),
-
+       Visibility(
+         visible: isloading,
+         child: Center(
+           child: Container(
+             width: 400,
+             height: 300,
+             decoration: BoxDecoration(
+                 color: Colors.white,
+                 borderRadius: BorderRadius.circular(20)
+             ),
+             child: Column(
+               crossAxisAlignment: CrossAxisAlignment.center,
+               children: [
+                 SizedBox(
+                   height: 20,
+                 ),
+                 Text("Printing is getting ready...",style: GoogleFonts.poppins(
+                     color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                 SizedBox(
+                   height: 20,
+                 ),
+                 Container(
+                     width:200,child: Lottie.asset("assets/printing3.json")),
+               ],
+             ),
+           ),
+         ),
+       ),
        isloading==true? Center(
          child: Container(
             width: 400,
@@ -923,10 +985,7 @@ class _FeesRegState extends State<FeesReg> {
   getvalue() async {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
-
     List<p.Widget> widgets = [];
-
     //container for profile image decoration
     final container = p.Center(
       child: p.Container(
@@ -1167,4 +1226,33 @@ class _FeesRegState extends State<FeesReg> {
   }
 
 
+}
+
+
+class StudentFeesPdfModel {
+  StudentFeesPdfModel(
+  {
+    required this.schoolName,
+    required this.schoolAdderss,
+    required this.schoolPhone,
+    required this.studentName,
+    required this.schoolLogo,
+    required this.studentAddress,
+    required this.feesName,
+    required this.amount,
+    required this.date,
+    required this.time
+    }
+      );
+
+  String schoolName;
+  String schoolAdderss;
+  String schoolPhone;
+  String studentName;
+  String schoolLogo;
+  String studentAddress;
+  String feesName;
+  String amount;
+  String date;
+  String time;
 }

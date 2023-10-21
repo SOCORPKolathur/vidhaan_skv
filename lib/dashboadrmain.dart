@@ -453,7 +453,7 @@ class _Dashboard2State extends State<Dashboard2> {
                               borderRadius: BorderRadius.circular(12),
                               shadowColor:  Color(0xff53B175).withOpacity(0.20),
                               child: Container(
-                                width: 500,
+                                width: 535,
                                 height: height / 2.87,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
@@ -628,7 +628,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                 borderRadius: BorderRadius.circular(12),
                                 shadowColor:  Color(0xff53B175).withOpacity(0.20),
                                 child: Container(
-                                  width: 500,
+                                  width: 535,
                                   height: height / 2.87,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
@@ -810,7 +810,7 @@ class _Dashboard2State extends State<Dashboard2> {
                               borderRadius: BorderRadius.circular(12),
                               shadowColor:  Color(0xff53B175).withOpacity(0.20),
                               child: Container(
-                                width: 500,
+                                width: 535,
                                 height: height / 2.87,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
@@ -985,7 +985,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                 borderRadius: BorderRadius.circular(12),
                                 shadowColor:  Color(0xff53B175).withOpacity(0.20),
                                 child: Container(
-                                  width: 500,
+                                  width: 535,
                                   height: height / 2.87,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
@@ -1170,7 +1170,7 @@ class _Dashboard2State extends State<Dashboard2> {
                       borderRadius: BorderRadius.circular(12),
                       shadowColor:  Color(0xff53B175).withOpacity(0.20),
                       child: Container(
-                        width: 500,
+                        width: 535,
                         height: 420,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
@@ -1345,7 +1345,7 @@ class _Dashboard2State extends State<Dashboard2> {
                       borderRadius: BorderRadius.circular(12),
                       shadowColor:  Color(0xff53B175).withOpacity(0.20),
                       child: Container(
-                          width: 500,
+                          width: 535,
                           height: 420,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -1393,7 +1393,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                           );
                                         },
                                       );
-                                    }return CircularProgressIndicator();
+                                    }return Center(child: CircularProgressIndicator());
                                   },
                                 )
                               ),

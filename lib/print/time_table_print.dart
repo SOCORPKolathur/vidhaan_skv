@@ -115,7 +115,7 @@ class TimeTablePrintModelPdf{
                   row == 0
                       ? col == 0 ? 'Monday' : col == 1 ? timetable.mondayFirst : col == 2 ? timetable.mondaySecond : col == 3 ? timetable.mondayThird : col == 4 ? timetable.mondayFourth : col == 5 ? timetable.mondayFifth : col == 6 ? timetable.mondaySixth : col == 7 ? timetable.mondaySeventh : timetable.mondayEighth
                       : row == 1
-                      ? col == 0 ? 'Tuesday' : col == 1 ? timetable.tuesdayFirst : col == 2 ? timetable.tuesdaySecond : col == 3 ? timetable.tuesdayThird : col == 4 ? timetable.tuesdayFourth : col == 5 ? timetable.tuesdayFirst : col == 6 ? timetable.tuesdaySixth : col == 7 ? timetable.tuesdaySeventh : timetable.tuesdayEighth
+                      ? col == 0 ? 'Tuesday' : col == 1 ? timetable.tuesdayFirst : col == 2 ? timetable.tuesdaySecond : col == 3 ? timetable.tuesdayThird : col == 4 ? timetable.tuesdayFourth : col == 5 ? timetable.tuesdayFifth : col == 6 ? timetable.tuesdaySixth : col == 7 ? timetable.tuesdaySeventh : timetable.tuesdayEighth
                       : row == 2
                       ? col == 0 ? 'Wednesday' : col == 1 ? timetable.wednesdayFirst : col == 2 ? timetable.wednesdaySecond : col == 3 ? timetable.wednesdayThird : col == 4 ? timetable.wednesdayFourth : col == 5 ? timetable.wednesdayFifth : col == 6 ? timetable.wednesdaySixth : col == 7 ? timetable.wednesdaySeventh : timetable.wednesdayEighth
                       : row == 3
