@@ -3766,6 +3766,10 @@ bool printingjob= false;
                               setState(() {
                                 byclass=false;
                                 search=false;
+                                _typeAheadControllerclass.text="Select Option";
+                                _typeAheadControllersection.text="Select Option";
+                                _typeAheadControllerstudent.clear();
+                                _typeAheadControllerregno.clear();
                               });
                             },
                             child: Material(
@@ -4601,7 +4605,7 @@ bool printingjob= false;
                                                                 Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                     color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
-                                                                Text(snapshot.data!.docs[index]["dob"].toString().substring(0,10),style: GoogleFonts.poppins(
+                                                                Text(snapshot.data!.docs[index]["dob"].toString(),style: GoogleFonts.poppins(
                                                                     color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
                                                               ],
                                                             ),
@@ -5589,7 +5593,7 @@ bool printingjob= false;
                                                                 Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                     color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
-                                                                Text(value["dob"].toString().substring(0,10),style: GoogleFonts.poppins(
+                                                                Text(value["dob"].toString(),style: GoogleFonts.poppins(
                                                                     color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
                                                               ],
                                                             ),
@@ -6581,7 +6585,7 @@ bool printingjob= false;
                                                                   ),
                                                                   Text(": ",style: GoogleFonts.poppins(
                                                                       color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
-                                                                  Text(value["dob"].toString().substring(0,10),style: GoogleFonts.poppins(
+                                                                  Text(value["dob"].toString(),style: GoogleFonts.poppins(
                                                                       color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
                                                                 ],
                                                               ),

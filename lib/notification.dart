@@ -220,16 +220,11 @@ class _NotificationCusState extends State<NotificationCus> {
                         child: TextField(
                           controller: body,
                           keyboardType: TextInputType.multiline,
-                          minLines: 1, // <-- SEE HERE
-                          maxLines: 5,
-
+                          minLines: 1,
+                          maxLines: 20,
                           decoration: InputDecoration(
-
                             hintText: ' Description',
                             border: InputBorder.none,
-
-
-
                             labelStyle: TextStyle(fontSize: 12),
                             contentPadding: EdgeInsets.only(left: 30),
 
@@ -266,8 +261,8 @@ class _NotificationCusState extends State<NotificationCus> {
                             ))),
                         onPressed: (){
                           FirebaseFirestore.instance.collection("Circulars").doc().set({
-                            "Descr":body.text,
-                            "reason":title.text,
+                            "Descr":title.text,
+                            "reason":body.text,
                             "type" : droupvalue,
                             "From":"Principal",
                             "Date":"${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}",
@@ -275,8 +270,8 @@ class _NotificationCusState extends State<NotificationCus> {
                             "timestamp":DateTime.now().millisecondsSinceEpoch
                           });
                           setState(() {
-                            homecontroller.body.text=body.text;
-                            homecontroller.title.text=title.text;
+                            homecontroller.body.text=title.text;
+                            homecontroller.title.text="Announcement 🔔";
                           });
                           homecontroller.findusers(droupvalue);
                           _showMyDialog1();

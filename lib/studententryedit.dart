@@ -283,2553 +283,2563 @@ class _StudentEditState extends State<StudentEdit> {
   Widget build(BuildContext context) {
     double height =MediaQuery.of(context).size.height;
     double width =MediaQuery.of(context).size.width;
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Container(child: Padding(
-              padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-
-                  Text("Edit Students Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-                  SizedBox(width:10),
-
-                ],
-              ),
-            ),
-              //color: Colors.white,
-              width: width/1.050,
-              height: height/8.212,
-              decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0,top: 10),
-            child: Container(
-              width: width/1.050,
-
-              decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
-              padding: const EdgeInsets.only(top: 38.0),
-              child: Form(
-                key:_formkey,
-                child: Column(
+    return Scaffold(
+         body: SingleChildScrollView(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Container(child: Padding(
+                padding: const EdgeInsets.only(left: 38.0,top: 30),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        SizedBox(width: 10,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right:0.0),
-                              child: Text("Student First Name *",style: GoogleFonts.poppins(fontSize: 15,)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 0.0,right: 25),
-                              child: Container(
-                                child: TypeAheadFormField(
-
-
-                                  suggestionsBoxDecoration: const SuggestionsBoxDecoration(
-                                      color: Color(0xffDDDEEE),
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(5),
-                                        bottomRight: Radius.circular(5),
-                                      )
-                                  ),
-
-                                  textFieldConfiguration: TextFieldConfiguration(
-                                    style:  GoogleFonts.poppins(
-                                        fontSize: 15
-                                    ),
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-
-
-                                    decoration: const InputDecoration(
-
-                                      contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                      border: InputBorder.none,
-                                    ),
-                                    controller: this._typeAheadControllerstudent,
-                                  ),
-                                  suggestionsCallback: (pattern) {
-                                    return getSuggestionsstudent(pattern);
-                                  },
-                                  itemBuilder: (context, String suggestion) {
-                                    return ListTile(
-                                      title: Text(suggestion),
-                                    );
-                                  },
-
-                                  transitionBuilder: (context, suggestionsBox, controller) {
-                                    return suggestionsBox;
-                                  },
-                                  onSuggestionSelected: (String suggestion) {
-                                    setState(() {
-                                      this._typeAheadControllerstudent.text = suggestion;
-                                    });
-
-                                    getstaffbyid2();
-
-
-
-
-                                  },
-                                  suggestionsBoxController: suggestionBoxController,
-                                  validator: (value) =>
-                                  value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                  onSaved: (value) => this._selectedCity = value,
-                                ),
-                                width: width/5.106,
-                                height: height/16.42,
-                                //color: Color(0xffDDDEEE),
-                                decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                              ),
-                            ),
-
-                          ],
-
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right:0.0),
-                              child: Text("Middle Name",style: GoogleFonts.poppins(fontSize: 15,)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 0.0,right: 25),
-                              child: Container(child: TextFormField(
-                                controller: stnamemiddle,
-                                style: GoogleFonts.poppins(
-                                    fontSize: 15
-                                ),
-                                inputFormatters: <TextInputFormatter>[
-                                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                ],
-                                decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                                width: width/5.106,
-                                height: height/16.42,
-                                //color: Color(0xffDDDEEE),
-                                decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                              ),
-                            ),
-
-                          ],
-
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right:0.0),
-                              child: Text("Last Name *",style: GoogleFonts.poppins(fontSize: 15,)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 0.0,right: 25),
-                              child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                              ],
-                                controller: stnamelast,
-                                style: GoogleFonts.poppins(
-                                    fontSize: 15
-                                ),
-                                validator: (value) =>
-                                value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                  border: InputBorder.none,
-                                ),
-                              ),
-
-                                width: width/5.106,
-                                height: height/16.42,
-                                //color: Color(0xffDDDEEE),
-                                decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                              ),
-                            ),
-
-                          ],
-
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(right:20),
+                      child: InkWell(
+                          onTap:(){
+                            Navigator.of(context).pop();
+                          },
+                          child: Icon(Icons.arrow_back_rounded)),
                     ),
-                    SizedBox(
-                      height:20,
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                child: Text("Student Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
+                    Text("Edit Students Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                    SizedBox(width:10),
 
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Application No. * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                    child: Container(child: TextFormField(
-                                      controller: regno,
-                                      readOnly: true,
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-                                      ),
-
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Entry Date * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                    child: Container(child: TextFormField(
-                                      controller:  entrydate,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      onTap: () async {
-                                        DateTime? pickedDate = await showDatePicker(
-                                            context: context, initialDate: DateTime.now(),
-                                            firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
-                                            lastDate: DateTime(2101)
-                                        );
-
-                                        if(pickedDate != null ){
-                                          print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
-                                          String formattedDate = DateFormat('dd-M-yyyy').format(pickedDate);
-                                          print(formattedDate); //formatted date output using intl package =>  2021-03-16
-                                          //you can implement different kind of Date Format here according to your requirement
-
-                                          setState(() {
-
-                                            entrydate.text = formattedDate;
-
-                                            //set output date to TextField value.
-                                          });
-
-
-
-
-                                        }else{
-                                          print("Date is not selected");
-                                        }
-                                      },
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
-                                        border: InputBorder.none,
-                                        hintText: "12/12/2023",
-
-                                        suffixIcon: Icon(Icons.calendar_month),
-                                      ),
-
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Academic Year * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                    child: Container(child:
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        hint:  Row(
-                                          children: [
-                                            Icon(
-                                              Icons.list,
-                                              size: 16,
-                                              color: Colors.black,
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'Select Option',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        items: acidemic
-                                            .map((String item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style:  GoogleFonts.poppins(
-                                                fontSize: 15
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                            .toList(),
-                                        value:  _typeAheadControlleracidemic.text,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            _typeAheadControlleracidemic.text = value!;
-                                          });
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          height: 50,
-                                          width: 160,
-                                          padding: const EdgeInsets.only(left: 14, right: 14),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                        ),
-                                        iconStyleData: const IconStyleData(
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios_outlined,
-                                          ),
-                                          iconSize: 14,
-                                          iconEnabledColor: Colors.black,
-                                          iconDisabledColor: Colors.grey,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: 200,
-                                          width: width/5.464,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(14),
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                          scrollbarTheme: ScrollbarThemeData(
-                                            radius: const Radius.circular(7),
-                                            thickness: MaterialStateProperty.all<double>(6),
-                                            thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                          ),
-                                        ),
-                                        menuItemStyleData: const MenuItemStyleData(
-                                          height: 40,
-                                          padding: EdgeInsets.only(left: 14, right: 14),
-                                        ),
-                                      ),
-                                    ),
-                                      width:  width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Admit Class * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                    child: Container(child:
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        hint:  Row(
-                                          children: [
-                                            Icon(
-                                              Icons.list,
-                                              size: 16,
-                                              color: Colors.black,
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'Select Option',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        items: classes
-                                            .map((String item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style:  GoogleFonts.poppins(
-                                                fontSize: 15
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                            .toList(),
-                                        value:  _typeAheadControllerclass.text,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            _typeAheadControllerclass.text = value!;
-                                          });
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          height: 50,
-                                          width: 160,
-                                          padding: const EdgeInsets.only(left: 14, right: 14),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                        ),
-                                        iconStyleData: const IconStyleData(
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios_outlined,
-                                          ),
-                                          iconSize: 14,
-                                          iconEnabledColor: Colors.black,
-                                          iconDisabledColor: Colors.grey,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: 200,
-                                          width: width/5.464,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(14),
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                          scrollbarTheme: ScrollbarThemeData(
-                                            radius: const Radius.circular(7),
-                                            thickness: MaterialStateProperty.all<double>(6),
-                                            thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                          ),
-                                        ),
-                                        menuItemStyleData: const MenuItemStyleData(
-                                          height: 40,
-                                          padding: EdgeInsets.only(left: 14, right: 14),
-                                        ),
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Section * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child:
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        hint:  Row(
-                                          children: [
-                                            Icon(
-                                              Icons.list,
-                                              size: 16,
-                                              color: Colors.black,
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'Select Option',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        items: section
-                                            .map((String item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style:  GoogleFonts.poppins(
-                                                fontSize: 15
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                            .toList(),
-                                        value:  _typeAheadControllersection.text,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            _typeAheadControllersection.text = value!;
-                                          });
-                                          getrollno();
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          height: 50,
-                                          width: 160,
-                                          padding: const EdgeInsets.only(left: 14, right: 14),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                        ),
-                                        iconStyleData: const IconStyleData(
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios_outlined,
-                                          ),
-                                          iconSize: 14,
-                                          iconEnabledColor: Colors.black,
-                                          iconDisabledColor: Colors.grey,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: 200,
-                                          width: width/5.464,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(14),
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                          scrollbarTheme: ScrollbarThemeData(
-                                            radius: const Radius.circular(7),
-                                            thickness: MaterialStateProperty.all<double>(6),
-                                            thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                          ),
-                                        ),
-                                        menuItemStyleData: const MenuItemStyleData(
-                                          height: 40,
-                                          padding: EdgeInsets.only(left: 14, right: 14),
-                                        ),
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Roll No * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-
-                                      controller: rollno,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      readOnly: true,
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Blood Group * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: bloodgroup,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Date of Birth * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: dob,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      onTap: () async {
-                                        DateTime? pickedDate = await showDatePicker(
-                                            context: context, initialDate: DateTime.now(),
-                                            firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
-                                            lastDate: DateTime(2101)
-                                        );
-
-                                        if(pickedDate != null ){
-                                          print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
-                                          String formattedDate = DateFormat('dd-M-yyyy').format(pickedDate);
-                                          print(formattedDate); //formatted date output using intl package =>  2021-03-16
-                                          //you can implement different kind of Date Format here according to your requirement
-
-                                          setState(() {
-
-                                            dob.text = formattedDate;
-
-                                            //set output date to TextField value.
-                                          });
-
-
-
-
-                                        }else{
-                                          print("Date is not selected");
-                                        }
-                                      },
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Gender * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child:
-                                    TypeAheadFormField(
-
-                                      suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                          color: Color(0xffDDDEEE),
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(5),
-                                            bottomRight: Radius.circular(5),
-                                          )
-                                      ),
-
-                                      textFieldConfiguration: TextFieldConfiguration(
-                                        style:  GoogleFonts.poppins(
-                                            fontSize: 15
-                                        ),
-                                        decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                          border: InputBorder.none,
-                                        ),
-                                        controller: this._typeAheadControllergender,
-                                      ),
-                                      suggestionsCallback: (pattern) {
-                                        return getSuggestionsgender(pattern);
-                                      },
-                                      itemBuilder: (context, String suggestion) {
-                                        return ListTile(
-                                          title: Text(suggestion),
-                                        );
-                                      },
-
-                                      transitionBuilder: (context, suggestionsBox, controller) {
-                                        return suggestionsBox;
-                                      },
-                                      onSuggestionSelected: (String suggestion) {
-                                        this._typeAheadControllergender.text = suggestion;
-                                      },
-                                      suggestionsBoxController: suggestionBoxController,
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Please select a gender' : null,
-                                      onSaved: (value) => this._selectedCity = value,
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                          child: Text("Residential Address * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child:
-                                    TextFormField(
-
-
-                                      maxLines: 5,
-                                      controller:  address,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
-                                        border: InputBorder.none,
-                                        hintText: "",
-
-
-                                      ),
-
-                                    ),
-                                      width: width/5.464,
-                                      height: height/7.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Community * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller: community,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("House & Color :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller: house,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Religion * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller: religion,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Mobile No * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: mobile,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                                      ],
-                                      validator: (value) {
-                                        if(value!.isEmpty){
-                                          return 'Field Cannot Be Empty';
-                                        }
-                                        else if(value.characters.length!=10){
-                                          return 'Enter the phone number correctly';
-                                        }
-                                        else{
-                                          return null;
-                                        }
-                                      },
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Email * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: email,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Aadhaar No * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: aadhaarno,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                                      ],
-                                      validator: (value) {
-                                        if(value!.isEmpty){
-                                          return 'Field Cannot Be Empty';
-                                        }
-                                        if(value.characters.length!=12){
-                                          return 'Enter the Aadhaar number correctly';
-                                        }
-                                        else{
-                                          return null;
-                                        }
-                                      },
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Height in cms :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: stheight,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Weight kg :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: stweight,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("EMIS No :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: EMIS,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("M.O.Transport * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child:
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        hint:  Row(
-                                          children: [
-                                            Icon(
-                                              Icons.list,
-                                              size: 16,
-                                              color: Colors.black,
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'Select Item',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        items: mot
-                                            .map((String item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style:  GoogleFonts.poppins(
-                                                fontSize: 15
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                            .toList(),
-                                        value:  _typeAheadControllermot.text,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            _typeAheadControllermot.text = value!;
-                                          });
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          height: 50,
-                                          width: 160,
-                                          padding: const EdgeInsets.only(left: 14, right: 14),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                        ),
-                                        iconStyleData: const IconStyleData(
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios_outlined,
-                                          ),
-                                          iconSize: 14,
-                                          iconEnabledColor: Colors.black,
-                                          iconDisabledColor: Colors.grey,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: 200,
-                                          width: width/5.464,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(14),
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                          scrollbarTheme: ScrollbarThemeData(
-                                            radius: const Radius.circular(7),
-                                            thickness: MaterialStateProperty.all<double>(6),
-                                            thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                          ),
-                                        ),
-                                        menuItemStyleData: const MenuItemStyleData(
-                                          height: 40,
-                                          padding: EdgeInsets.only(left: 14, right: 14),
-                                        ),
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(top: 0.0),
-                                          child: Text("Identification Mark :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller: identificationmark,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-
-                            ],
-                          ),
-                        ),
-                        SizedBox(width: 35,),
-                        SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                child: Text("Parent Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Father Name * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller: fathername,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Occupation * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller:  foccupation,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
-                                        border: InputBorder.none,
-                                        hintText: "",
-
-                                        //suffixIcon: Icon(Icons.calendar_month),
-                                      ),
-
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Office Address :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                    child: Container(child:
-                                    TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z -]")),
-                                    ],
-                                      controller:  faddress,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Mobile No :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child:
-                                    TextFormField(
-                                      controller:  fmobile,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                                      ],
-                                      validator: (value) {
-
-
-                                        if(value!.isNotEmpty) {
-                                          if (value.characters.length !=
-                                              10) {
-                                            return 'Enter the  number correctly';
-                                          }
-                                          else{
-                                            return null;
-                                          }
-                                        }
-                                        else{
-                                          return null;
-                                        }
-                                      },
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Email :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                    child: Container(child:
-                                    TextFormField(
-                                      controller:  femail,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-
-                                    ),
-                                      width:  width/5.464,
-                                      height: height/16.42,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Aadhaar No  :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0.0,right:25),
-                                    child: Container(child: TextFormField(
-                                      controller: faadhaar,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                                      ],
-                                      validator: (value) {
-
-                                        if(value!.isNotEmpty) {
-                                          if (value.characters.length !=
-                                              12) {
-                                            return 'Enter the aadhaar number correctly';
-                                          }
-                                          else{
-                                            return null;
-                                          }
-                                        }
-                                        else{
-                                          return null;
-                                        }
-                                      },
-
-
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom:8),
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Mother Name * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller: mothername,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Occupation * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller: moccupation,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) =>
-                                      value!.isEmpty ? 'Field Cannot Be Empty' : null,
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Office Address :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child:
-                                    TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z -]")),
-                                    ],
-                                      controller:  maddress,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Mobile No :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: mmobile,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                                      ],
-                                      validator: (value) {
-
-                                        if(value!.isNotEmpty) {
-                                          if (value.characters.length !=
-                                              10) {
-                                            return 'Enter the number correctly';
-                                          }
-                                          else{
-                                            return null;
-                                          }
-                                        }
-                                        else{
-                                          return null;
-                                        }
-                                      },
-
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Email :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: memail,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Aadhaar No  :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: maadhaar,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                                      ],
-                                      validator: (value) {
-
-                                        if(value!.isNotEmpty) {
-                                          if (value.characters.length !=
-                                              12) {
-                                            return 'Enter the aadhaar number correctly';
-                                          }
-                                          else{
-                                            return null;
-                                          }
-                                        }
-                                        else{
-                                          return null;
-                                        }
-                                      },
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                child: Text("Other Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-                              ),
-
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Guardian's Name :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                      ],
-                                      controller: gname,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Occupation :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller: goccupation,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Mobile No :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: gmobile,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                                      ],
-                                      validator: (value) {
-                                        if(value!.isNotEmpty) {
-                                          if (value.characters.length !=
-                                              10) {
-                                            return 'Enter the number correctly';
-                                          }
-                                          else{
-                                            return null;
-                                          }
-                                        }
-                                        else{
-                                          return null;
-                                        }
-                                      },
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Email :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: gemail,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Aadhaar No  :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(
-                                      controller: gaadhaar,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                                      ],
-                                      validator: (value) {
-
-                                        if(value!.isNotEmpty) {
-                                          if (value.characters.length !=
-                                              12) {
-                                            return 'Enter the aadhaar number correctly';
-                                          }
-                                          else{
-                                            return null;
-                                          }
-                                        }
-                                        else{
-                                          return null;
-                                        }
-                                      },
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/15.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                          child: Text("Brother/Sister Studying Here * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child:
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        hint:  Row(
-                                          children: [
-                                            Icon(
-                                              Icons.list,
-                                              size: 16,
-                                              color: Colors.black,
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'Select Option',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        items: brother
-                                            .map((String item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style:  GoogleFonts.poppins(
-                                                fontSize: 15
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                            .toList(),
-                                        value:  _typeAheadControllerbrother.text,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            _typeAheadControllerbrother.text = value!;
-                                          });
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          height: 50,
-                                          width: 160,
-                                          padding: const EdgeInsets.only(left: 14, right: 14),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                        ),
-                                        iconStyleData: const IconStyleData(
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios_outlined,
-                                          ),
-                                          iconSize: 14,
-                                          iconEnabledColor: Colors.black,
-                                          iconDisabledColor: Colors.grey,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: 200,
-                                          width: width/5.464,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(14),
-                                            color: Color(0xffDDDEEE),
-                                          ),
-
-                                          scrollbarTheme: ScrollbarThemeData(
-                                            radius: const Radius.circular(7),
-                                            thickness: MaterialStateProperty.all<double>(6),
-                                            thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                          ),
-                                        ),
-                                        menuItemStyleData: const MenuItemStyleData(
-                                          height: 40,
-                                          padding: EdgeInsets.only(left: 14, right: 14),
-                                        ),
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              _typeAheadControllerbrother.text=="Yes" ?     Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left:10.0),
-                                    child: Container(
-                                        width: width/10.106,
-                                        height: height/16.42,
-
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                          child: Text("If Yes, Reg ID * :",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 25.0),
-                                    child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
-                                    ],
-                                      controller: brothername,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      validator: (value) {
-                                        if(_typeAheadControllerbrother.text=="Yes") {
-                                          if (value!.isEmpty) {
-                                            return 'Field Canot be Empty';
-                                          }
-                                          else {
-                                            return null;
-                                          }
-                                        }
-                                      },
-                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                        border: InputBorder.none,
-
-
-
-                                      ),
-                                    ),
-                                      width: width/5.464,
-                                      height: height/16.425,
-                                      //color: Color(0xffDDDEEE),
-                                      decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    ),
-                                  ),
-                                ],
-                              ): Container(),
-                              SizedBox(
-                                height: 10,
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top:8.0,left:50,right:10),
-                          child: Container(
-
-                            child: isloading==false ?imgUrl==""?   Center(
-                              child: Icon(Icons.upload,size: 40,),
-                            )
-                                :
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(52),
-                                child: Image.network(imgUrl,fit: BoxFit.cover,)) : Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                            width: width/13.66,
-                            height: height/6.57,
-                            //color: Color(0xffDDDEEE),
-                            decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(52)),
-
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left:48.0),
-                              child: Text("Upload Student Photo(150pxX150px)",style: GoogleFonts.poppins(fontSize: 15),),
-                            ),
-                            Row(
-                              children: [
-                                GestureDetector(
-                                  onTap: (){
-                                    setState(() {
-                                      isloading=true;
-                                    });
-                                    uploadToStorage();
-                                  },
-                                  child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: 16))),
-                                    width: width/10.507,
-                                    height: height/16.425,
-                                    // color: Color(0xffDDDEEE),
-                                    decoration: BoxDecoration(border: Border.all(color: Colors.black),color: Color(0xffDDDEEE)),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: 13),),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(left:28.0,right:20),
-                          child: GestureDetector(
-                            onTap: (){
-                              if(_typeAheadControllermot.text=="Select Option" ||
-                                  _typeAheadControllerbrother.text=="Select Option"||
-
-                                  _typeAheadControllerclass.text=="Select Option"||
-                                  _typeAheadControllersection.text=="Select Option"||
-                                  _typeAheadControlleracidemic.text=="Select Option"
-
-                              ){
-                                Successdialog3();
-                              }
-                              else {
-                                final isvalid = _formkey.currentState!
-                                    .validate();
-                                print(isvalid);
-                                if (_formkey.currentState!.validate()) {
-                                  print("fghdddddddddddddd");
-                                  uploadstudent();
-                                  Successdialog();
-                                }
-                              }
-
-
-                            },
-                            child: Container(child: Center(child: Text("Save ",style: GoogleFonts.poppins(color:Colors.white),)),
-                              width: width/10.507,
-                              height: height/16.425,
-                              //color:Color(0xffD60A0B),
-                              decoration: BoxDecoration(color: Color(0xffD60A0B),borderRadius: BorderRadius.circular(5)),
-
-                            ),
-                          ),
-                        ),
-                        Container(child: Center(child: Text("Reset ",style: GoogleFonts.poppins(color:Colors.white),)),
-                          width: width/10.507,
-                          height: height/16.425,
-                          // color:Color(0xff00A0E3),
-                          decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
-                        ),
-                      ],
-                    ),
-                    SizedBox(height:50)
                   ],
                 ),
               ),
+                //color: Colors.white,
+                width: width/1.050,
+                height: height/8.212,
+                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+              ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0,top: 10),
+              child: Container(
+                width: width/1.490,
 
-            ),
-          )
-        ],
+                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
+                padding: const EdgeInsets.only(top: 38.0),
+                child: Form(
+                  key:_formkey,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:0.0),
+                                child: Text("Student First Name *",style: GoogleFonts.poppins(fontSize: 15,)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                child: Container(
+                                  child: TypeAheadFormField(
+
+
+                                    suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                                        color: Color(0xffDDDEEE),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(5),
+                                          bottomRight: Radius.circular(5),
+                                        )
+                                    ),
+
+                                    textFieldConfiguration: TextFieldConfiguration(
+                                      style:  GoogleFonts.poppins(
+                                          fontSize: 15
+                                      ),
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+
+
+                                      decoration: const InputDecoration(
+
+                                        contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                        border: InputBorder.none,
+                                      ),
+                                      controller: this._typeAheadControllerstudent,
+                                    ),
+                                    suggestionsCallback: (pattern) {
+                                      return getSuggestionsstudent(pattern);
+                                    },
+                                    itemBuilder: (context, String suggestion) {
+                                      return ListTile(
+                                        title: Text(suggestion),
+                                      );
+                                    },
+
+                                    transitionBuilder: (context, suggestionsBox, controller) {
+                                      return suggestionsBox;
+                                    },
+                                    onSuggestionSelected: (String suggestion) {
+                                      setState(() {
+                                        this._typeAheadControllerstudent.text = suggestion;
+                                      });
+
+                                      getstaffbyid2();
+
+
+
+
+                                    },
+                                    suggestionsBoxController: suggestionBoxController,
+                                    validator: (value) =>
+                                    value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                    onSaved: (value) => this._selectedCity = value,
+                                  ),
+                                  width: width/5.106,
+                                  height: height/16.42,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                ),
+                              ),
+
+                            ],
+
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:0.0),
+                                child: Text("Middle Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                child: Container(child: TextFormField(
+                                  controller: stnamemiddle,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 15
+                                  ),
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                  ],
+                                  decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                                  width: width/5.106,
+                                  height: height/16.42,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                ),
+                              ),
+
+                            ],
+
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:0.0),
+                                child: Text("Last Name *",style: GoogleFonts.poppins(fontSize: 15,)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                ],
+                                  controller: stnamelast,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 15
+                                  ),
+                                  validator: (value) =>
+                                  value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                  decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+
+                                  width: width/5.106,
+                                  height: height/16.42,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                ),
+                              ),
+
+                            ],
+
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height:20,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0,bottom: 10),
+                                  child: Text("Student Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Application No. * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      child: Container(child: TextFormField(
+                                        controller: regno,
+                                        readOnly: true,
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+                                        ),
+
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Entry Date * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      child: Container(child: TextFormField(
+                                        controller:  entrydate,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        onTap: () async {
+                                          DateTime? pickedDate = await showDatePicker(
+                                              context: context, initialDate: DateTime.now(),
+                                              firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
+                                              lastDate: DateTime(2101)
+                                          );
+
+                                          if(pickedDate != null ){
+                                            print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
+                                            String formattedDate = DateFormat('dd-M-yyyy').format(pickedDate);
+                                            print(formattedDate); //formatted date output using intl package =>  2021-03-16
+                                            //you can implement different kind of Date Format here according to your requirement
+
+                                            setState(() {
+
+                                              entrydate.text = formattedDate;
+
+                                              //set output date to TextField value.
+                                            });
+
+
+
+
+                                          }else{
+                                            print("Date is not selected");
+                                          }
+                                        },
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
+                                          border: InputBorder.none,
+                                          hintText: "12/12/2023",
+
+                                          suffixIcon: Icon(Icons.calendar_month),
+                                        ),
+
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Academic Year * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      child: Container(child:
+                                      DropdownButtonHideUnderline(
+                                        child: DropdownButton2<String>(
+                                          isExpanded: true,
+                                          hint:  Row(
+                                            children: [
+                                              Icon(
+                                                Icons.list,
+                                                size: 16,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(
+                                                width: 4,
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  'Select Option',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 15
+                                                  ),
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          items: acidemic
+                                              .map((String item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style:  GoogleFonts.poppins(
+                                                  fontSize: 15
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                              .toList(),
+                                          value:  _typeAheadControlleracidemic.text,
+                                          onChanged: (String? value) {
+                                            setState(() {
+                                              _typeAheadControlleracidemic.text = value!;
+                                            });
+                                          },
+                                          buttonStyleData: ButtonStyleData(
+                                            height: 50,
+                                            width: 160,
+                                            padding: const EdgeInsets.only(left: 14, right: 14),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5),
+
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                          ),
+                                          iconStyleData: const IconStyleData(
+                                            icon: Icon(
+                                              Icons.arrow_forward_ios_outlined,
+                                            ),
+                                            iconSize: 14,
+                                            iconEnabledColor: Colors.black,
+                                            iconDisabledColor: Colors.grey,
+                                          ),
+                                          dropdownStyleData: DropdownStyleData(
+                                            maxHeight: 200,
+                                            width: width/5.464,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(14),
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                            scrollbarTheme: ScrollbarThemeData(
+                                              radius: const Radius.circular(7),
+                                              thickness: MaterialStateProperty.all<double>(6),
+                                              thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                            ),
+                                          ),
+                                          menuItemStyleData: const MenuItemStyleData(
+                                            height: 40,
+                                            padding: EdgeInsets.only(left: 14, right: 14),
+                                          ),
+                                        ),
+                                      ),
+                                        width:  width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Admit Class * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      child: Container(child:
+                                      DropdownButtonHideUnderline(
+                                        child: DropdownButton2<String>(
+                                          isExpanded: true,
+                                          hint:  Row(
+                                            children: [
+                                              Icon(
+                                                Icons.list,
+                                                size: 16,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(
+                                                width: 4,
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  'Select Option',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 15
+                                                  ),
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          items: classes
+                                              .map((String item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style:  GoogleFonts.poppins(
+                                                  fontSize: 15
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                              .toList(),
+                                          value:  _typeAheadControllerclass.text,
+                                          onChanged: (String? value) {
+                                            setState(() {
+                                              _typeAheadControllerclass.text = value!;
+                                            });
+                                          },
+                                          buttonStyleData: ButtonStyleData(
+                                            height: 50,
+                                            width: 160,
+                                            padding: const EdgeInsets.only(left: 14, right: 14),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5),
+
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                          ),
+                                          iconStyleData: const IconStyleData(
+                                            icon: Icon(
+                                              Icons.arrow_forward_ios_outlined,
+                                            ),
+                                            iconSize: 14,
+                                            iconEnabledColor: Colors.black,
+                                            iconDisabledColor: Colors.grey,
+                                          ),
+                                          dropdownStyleData: DropdownStyleData(
+                                            maxHeight: 200,
+                                            width: width/5.464,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(14),
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                            scrollbarTheme: ScrollbarThemeData(
+                                              radius: const Radius.circular(7),
+                                              thickness: MaterialStateProperty.all<double>(6),
+                                              thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                            ),
+                                          ),
+                                          menuItemStyleData: const MenuItemStyleData(
+                                            height: 40,
+                                            padding: EdgeInsets.only(left: 14, right: 14),
+                                          ),
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Section * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child:
+                                      DropdownButtonHideUnderline(
+                                        child: DropdownButton2<String>(
+                                          isExpanded: true,
+                                          hint:  Row(
+                                            children: [
+                                              Icon(
+                                                Icons.list,
+                                                size: 16,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(
+                                                width: 4,
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  'Select Option',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 15
+                                                  ),
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          items: section
+                                              .map((String item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style:  GoogleFonts.poppins(
+                                                  fontSize: 15
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                              .toList(),
+                                          value:  _typeAheadControllersection.text,
+                                          onChanged: (String? value) {
+                                            setState(() {
+                                              _typeAheadControllersection.text = value!;
+                                            });
+                                            getrollno();
+                                          },
+                                          buttonStyleData: ButtonStyleData(
+                                            height: 50,
+                                            width: 160,
+                                            padding: const EdgeInsets.only(left: 14, right: 14),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5),
+
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                          ),
+                                          iconStyleData: const IconStyleData(
+                                            icon: Icon(
+                                              Icons.arrow_forward_ios_outlined,
+                                            ),
+                                            iconSize: 14,
+                                            iconEnabledColor: Colors.black,
+                                            iconDisabledColor: Colors.grey,
+                                          ),
+                                          dropdownStyleData: DropdownStyleData(
+                                            maxHeight: 200,
+                                            width: width/5.464,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(14),
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                            scrollbarTheme: ScrollbarThemeData(
+                                              radius: const Radius.circular(7),
+                                              thickness: MaterialStateProperty.all<double>(6),
+                                              thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                            ),
+                                          ),
+                                          menuItemStyleData: const MenuItemStyleData(
+                                            height: 40,
+                                            padding: EdgeInsets.only(left: 14, right: 14),
+                                          ),
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Roll No * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+
+                                        controller: rollno,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        readOnly: true,
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Blood Group * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: bloodgroup,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Date of Birth * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: dob,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        onTap: () async {
+                                          DateTime? pickedDate = await showDatePicker(
+                                              context: context, initialDate: DateTime.now(),
+                                              firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
+                                              lastDate: DateTime(2101)
+                                          );
+
+                                          if(pickedDate != null ){
+                                            print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
+                                            String formattedDate = DateFormat('dd-M-yyyy').format(pickedDate);
+                                            print(formattedDate); //formatted date output using intl package =>  2021-03-16
+                                            //you can implement different kind of Date Format here according to your requirement
+
+                                            setState(() {
+
+                                              dob.text = formattedDate;
+
+                                              //set output date to TextField value.
+                                            });
+
+
+
+
+                                          }else{
+                                            print("Date is not selected");
+                                          }
+                                        },
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Gender * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child:
+                                      TypeAheadFormField(
+
+                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                            color: Color(0xffDDDEEE),
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(5),
+                                              bottomRight: Radius.circular(5),
+                                            )
+                                        ),
+
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          style:  GoogleFonts.poppins(
+                                              fontSize: 15
+                                          ),
+                                          decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                            border: InputBorder.none,
+                                          ),
+                                          controller: this._typeAheadControllergender,
+                                        ),
+                                        suggestionsCallback: (pattern) {
+                                          return getSuggestionsgender(pattern);
+                                        },
+                                        itemBuilder: (context, String suggestion) {
+                                          return ListTile(
+                                            title: Text(suggestion),
+                                          );
+                                        },
+
+                                        transitionBuilder: (context, suggestionsBox, controller) {
+                                          return suggestionsBox;
+                                        },
+                                        onSuggestionSelected: (String suggestion) {
+                                          this._typeAheadControllergender.text = suggestion;
+                                        },
+                                        suggestionsBoxController: suggestionBoxController,
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Please select a gender' : null,
+                                        onSaved: (value) => this._selectedCity = value,
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 0.0),
+                                            child: Text("Residential Address * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child:
+                                      TextFormField(
+
+
+                                        maxLines: 5,
+                                        controller:  address,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
+                                          border: InputBorder.none,
+                                          hintText: "",
+
+
+                                        ),
+
+                                      ),
+                                        width: width/5.464,
+                                        height: height/7.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Community * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller: community,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("House & Color :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller: house,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Religion * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller: religion,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Mobile No * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: mobile,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                                        ],
+                                        validator: (value) {
+                                          if(value!.isEmpty){
+                                            return 'Field Cannot Be Empty';
+                                          }
+                                          else if(value.characters.length!=10){
+                                            return 'Enter the phone number correctly';
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Email * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: email,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Aadhaar No * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: aadhaarno,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                                        ],
+                                        validator: (value) {
+                                          if(value!.isEmpty){
+                                            return 'Field Cannot Be Empty';
+                                          }
+                                          if(value.characters.length!=12){
+                                            return 'Enter the Aadhaar number correctly';
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Height in cms :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: stheight,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Weight kg :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: stweight,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("EMIS No :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: EMIS,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("M.O.Transport * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child:
+                                      DropdownButtonHideUnderline(
+                                        child: DropdownButton2<String>(
+                                          isExpanded: true,
+                                          hint:  Row(
+                                            children: [
+                                              Icon(
+                                                Icons.list,
+                                                size: 16,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(
+                                                width: 4,
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  'Select Item',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 15
+                                                  ),
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          items: mot
+                                              .map((String item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style:  GoogleFonts.poppins(
+                                                  fontSize: 15
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                              .toList(),
+                                          value:  _typeAheadControllermot.text,
+                                          onChanged: (String? value) {
+                                            setState(() {
+                                              _typeAheadControllermot.text = value!;
+                                            });
+                                          },
+                                          buttonStyleData: ButtonStyleData(
+                                            height: 50,
+                                            width: 160,
+                                            padding: const EdgeInsets.only(left: 14, right: 14),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5),
+
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                          ),
+                                          iconStyleData: const IconStyleData(
+                                            icon: Icon(
+                                              Icons.arrow_forward_ios_outlined,
+                                            ),
+                                            iconSize: 14,
+                                            iconEnabledColor: Colors.black,
+                                            iconDisabledColor: Colors.grey,
+                                          ),
+                                          dropdownStyleData: DropdownStyleData(
+                                            maxHeight: 200,
+                                            width: width/5.464,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(14),
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                            scrollbarTheme: ScrollbarThemeData(
+                                              radius: const Radius.circular(7),
+                                              thickness: MaterialStateProperty.all<double>(6),
+                                              thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                            ),
+                                          ),
+                                          menuItemStyleData: const MenuItemStyleData(
+                                            height: 40,
+                                            padding: EdgeInsets.only(left: 14, right: 14),
+                                          ),
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(top: 0.0),
+                                            child: Text("Identification Mark :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller: identificationmark,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 35,),
+                          SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0,bottom: 10),
+                                  child: Text("Parent Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Father Name * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller: fathername,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Occupation * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller:  foccupation,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
+                                          border: InputBorder.none,
+                                          hintText: "",
+
+                                          //suffixIcon: Icon(Icons.calendar_month),
+                                        ),
+
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Office Address :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      child: Container(child:
+                                      TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z -]")),
+                                      ],
+                                        controller:  faddress,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Mobile No :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child:
+                                      TextFormField(
+                                        controller:  fmobile,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                                        ],
+                                        validator: (value) {
+
+
+                                          if(value!.isNotEmpty) {
+                                            if (value.characters.length !=
+                                                10) {
+                                              return 'Enter the  number correctly';
+                                            }
+                                            else{
+                                              return null;
+                                            }
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Email :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      child: Container(child:
+                                      TextFormField(
+                                        controller:  femail,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+
+                                      ),
+                                        width:  width/5.464,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Aadhaar No  :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right:25),
+                                      child: Container(child: TextFormField(
+                                        controller: faadhaar,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                                        ],
+                                        validator: (value) {
+
+                                          if(value!.isNotEmpty) {
+                                            if (value.characters.length !=
+                                                12) {
+                                              return 'Enter the aadhaar number correctly';
+                                            }
+                                            else{
+                                              return null;
+                                            }
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+
+
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom:8),
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Mother Name * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller: mothername,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Occupation * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller: moccupation,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Office Address :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child:
+                                      TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z -]")),
+                                      ],
+                                        controller:  maddress,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Mobile No :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: mmobile,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                                        ],
+                                        validator: (value) {
+
+                                          if(value!.isNotEmpty) {
+                                            if (value.characters.length !=
+                                                10) {
+                                              return 'Enter the number correctly';
+                                            }
+                                            else{
+                                              return null;
+                                            }
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Email :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: memail,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Aadhaar No  :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: maadhaar,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                                        ],
+                                        validator: (value) {
+
+                                          if(value!.isNotEmpty) {
+                                            if (value.characters.length !=
+                                                12) {
+                                              return 'Enter the aadhaar number correctly';
+                                            }
+                                            else{
+                                              return null;
+                                            }
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0,bottom: 10),
+                                  child: Text("Other Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                ),
+
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Guardian's Name :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                        ],
+                                        controller: gname,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Occupation :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller: goccupation,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Mobile No :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: gmobile,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                                        ],
+                                        validator: (value) {
+                                          if(value!.isNotEmpty) {
+                                            if (value.characters.length !=
+                                                10) {
+                                              return 'Enter the number correctly';
+                                            }
+                                            else{
+                                              return null;
+                                            }
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Email :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: gemail,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                            child: Text("Aadhaar No  :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(
+                                        controller: gaadhaar,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                                        ],
+                                        validator: (value) {
+
+                                          if(value!.isNotEmpty) {
+                                            if (value.characters.length !=
+                                                12) {
+                                              return 'Enter the aadhaar number correctly';
+                                            }
+                                            else{
+                                              return null;
+                                            }
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/15.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 0.0),
+                                            child: Text("Brother/Sister Studying Here * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child:
+                                      DropdownButtonHideUnderline(
+                                        child: DropdownButton2<String>(
+                                          isExpanded: true,
+                                          hint:  Row(
+                                            children: [
+                                              Icon(
+                                                Icons.list,
+                                                size: 16,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(
+                                                width: 4,
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  'Select Option',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 15
+                                                  ),
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          items: brother
+                                              .map((String item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style:  GoogleFonts.poppins(
+                                                  fontSize: 15
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                              .toList(),
+                                          value:  _typeAheadControllerbrother.text,
+                                          onChanged: (String? value) {
+                                            setState(() {
+                                              _typeAheadControllerbrother.text = value!;
+                                            });
+                                          },
+                                          buttonStyleData: ButtonStyleData(
+                                            height: 50,
+                                            width: 160,
+                                            padding: const EdgeInsets.only(left: 14, right: 14),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5),
+
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                          ),
+                                          iconStyleData: const IconStyleData(
+                                            icon: Icon(
+                                              Icons.arrow_forward_ios_outlined,
+                                            ),
+                                            iconSize: 14,
+                                            iconEnabledColor: Colors.black,
+                                            iconDisabledColor: Colors.grey,
+                                          ),
+                                          dropdownStyleData: DropdownStyleData(
+                                            maxHeight: 200,
+                                            width: width/5.464,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(14),
+                                              color: Color(0xffDDDEEE),
+                                            ),
+
+                                            scrollbarTheme: ScrollbarThemeData(
+                                              radius: const Radius.circular(7),
+                                              thickness: MaterialStateProperty.all<double>(6),
+                                              thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                            ),
+                                          ),
+                                          menuItemStyleData: const MenuItemStyleData(
+                                            height: 40,
+                                            padding: EdgeInsets.only(left: 14, right: 14),
+                                          ),
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                _typeAheadControllerbrother.text=="Yes" ?     Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10.0),
+                                      child: Container(
+                                          width: width/10.106,
+                                          height: height/16.42,
+
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 0.0),
+                                            child: Text("If Yes, Reg ID * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 25.0),
+                                      child: Container(child: TextFormField(  inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
+                                      ],
+                                        controller: brothername,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) {
+                                          if(_typeAheadControllerbrother.text=="Yes") {
+                                            if (value!.isEmpty) {
+                                              return 'Field Canot be Empty';
+                                            }
+                                            else {
+                                              return null;
+                                            }
+                                          }
+                                        },
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+
+
+
+                                        ),
+                                      ),
+                                        width: width/5.464,
+                                        height: height/16.425,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+                                  ],
+                                ): Container(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top:8.0,left:50,right:10),
+                            child: Container(
+
+                              child: isloading==false ?imgUrl==""?   Center(
+                                child: Icon(Icons.upload,size: 40,),
+                              )
+                                  :
+                              ClipRRect(
+                                  borderRadius: BorderRadius.circular(52),
+                                  child: Image.network(imgUrl,fit: BoxFit.cover,)) : Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                              width: width/13.66,
+                              height: height/6.57,
+                              //color: Color(0xffDDDEEE),
+                              decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(52)),
+
+                            ),
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left:48.0),
+                                child: Text("Upload Student Photo(150pxX150px)",style: GoogleFonts.poppins(fontSize: 15),),
+                              ),
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: (){
+                                      setState(() {
+                                        isloading=true;
+                                      });
+                                      uploadToStorage();
+                                    },
+                                    child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: 16))),
+                                      width: width/10.507,
+                                      height: height/16.425,
+                                      // color: Color(0xffDDDEEE),
+                                      decoration: BoxDecoration(border: Border.all(color: Colors.black),color: Color(0xffDDDEEE)),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: 13),),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(left:28.0,right:20),
+                            child: GestureDetector(
+                              onTap: (){
+                                if(_typeAheadControllermot.text=="Select Option" ||
+                                    _typeAheadControllerbrother.text=="Select Option"||
+
+                                    _typeAheadControllerclass.text=="Select Option"||
+                                    _typeAheadControllersection.text=="Select Option"||
+                                    _typeAheadControlleracidemic.text=="Select Option"
+
+                                ){
+                                  Successdialog3();
+                                }
+                                else {
+                                  final isvalid = _formkey.currentState!
+                                      .validate();
+                                  print(isvalid);
+                                  if (_formkey.currentState!.validate()) {
+                                    print("fghdddddddddddddd");
+                                    uploadstudent();
+                                    Successdialog();
+                                  }
+                                }
+
+
+                              },
+                              child: Container(child: Center(child: Text("Save ",style: GoogleFonts.poppins(color:Colors.white),)),
+                                width: width/10.507,
+                                height: height/16.425,
+                                //color:Color(0xffD60A0B),
+                                decoration: BoxDecoration(color: Color(0xffD60A0B),borderRadius: BorderRadius.circular(5)),
+
+                              ),
+                            ),
+                          ),
+                          Container(child: Center(child: Text("Reset ",style: GoogleFonts.poppins(color:Colors.white),)),
+                            width: width/10.507,
+                            height: height/16.425,
+                            // color:Color(0xff00A0E3),
+                            decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
+
+                          ),
+                        ],
+                      ),
+                      SizedBox(height:50)
+                    ],
+                  ),
+                ),
+              ),
+
+              ),
+            )
+          ],
+        ),
       ),
     );
 
@@ -2871,13 +2881,12 @@ class _StudentEditState extends State<StudentEdit> {
       title: 'Student Updated Successfully',
       desc: 'Student - ${stnamefirst.text} is been added',
 
-      btnCancelOnPress: () {
 
-      },
 
       btnOkText: "Ok",
       btnOkOnPress: () {
-
+        clearall();
+        Navigator.of(context).pop();
       },
     )..show();
   }
@@ -2890,9 +2899,7 @@ class _StudentEditState extends State<StudentEdit> {
       title: 'Data has been Already Exits',
 
 
-      btnCancelOnPress: () {
 
-      },
       btnCancelText: "Cancel",
       btnOkText: "Ok",
       btnOkOnPress: () {
@@ -2909,9 +2916,7 @@ class _StudentEditState extends State<StudentEdit> {
       title: 'Enter the details correctly',
 
 
-      btnCancelOnPress: () {
 
-      },
       btnCancelText: "Cancel",
       btnOkText: "Ok",
       btnOkOnPress: () {

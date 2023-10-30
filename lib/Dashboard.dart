@@ -73,7 +73,7 @@ class _DashboardState extends State<Dashboard> {
   var pages;
   @override
   void initState() {
-    addinglist();
+    //addinglist();
     getadmin();
     setState(() {
       pages=Dashboard2();
@@ -3888,6 +3888,8 @@ setState(() {
       },
     );
   }
+
+
   @override
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
@@ -4419,6 +4421,19 @@ setState(() {
                                         )),
                                     ListTile(
                                         onTap: () {
+                                         /* setState(() {
+
+                                            pages=StaffTimeTable();
+
+                                          });*/
+                                        },
+                                        title: Text("Classwise TimeTable",style: GoogleFonts.poppins(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: dawer == 10?  Colors.white : Color(0xff9197B3)),
+                                        )),
+                                    ListTile(
+                                        onTap: () {
                                           setState(() {
                                             pages=Subtution();
 
@@ -4784,74 +4799,32 @@ setState(() {
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 6?  Colors.white : Color(0xff9197B3)),
                                       )),
-
-                                      ExpansionTile(
-                                        iconColor: Colors.white,
-                                        collapsedIconColor: Colors.white,
-
-                                        title: Text("Exam Master",style: GoogleFonts.poppins(
+                                      ListTile(
+                                        onTap: (){
+                                          setState(() {
+                                            pages=ExamMaster();
+                                          });
+                                        },
+                                        title: Text("Add Exam",style: GoogleFonts.poppins(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 6?  Colors.white : Color(0xff9197B3)),
-                                        ),
-                                        expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          ListTile(
-                                            onTap:(){
-                                              setState(() {
-                                                pages=ExamMaster();
-                                              });
-                                            },
-
-                                            title: Text("Add Exam",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 6?  Colors.white : Color(0xff9197B3)),
-                                            ),
-                                          ),
-
-
-
-                                        ],
-                                      ),
-
-                                      ExpansionTile(
-                                        iconColor: Colors.white,
-                                        collapsedIconColor: Colors.white,
-
+                                      )),
+                                      ListTile(
+                                        onTap: (){
+                                          setState(() {
+                                           // pages=ExamMaster();
+                                          });
+                                        },
                                         title: Text("Exam Reports",style: GoogleFonts.poppins(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 6?  Colors.white : Color(0xff9197B3)),
-                                        ),
-                                        expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Class Wise",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 6?  Colors.white : Color(0xff9197B3)),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Subject Wise",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 6?  Colors.white : Color(0xff9197B3)),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text("Student Wise",style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: dawer == 6?  Colors.white : Color(0xff9197B3)),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                      )),
+
+
+
+
 
 
 

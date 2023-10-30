@@ -9,6 +9,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 import 'package:syncfusion_flutter_charts/charts.dart' as sfc;
 import 'package:vidhaan/models/attendance_pdf_model.dart';
+import 'package:vidhaan/photoview.dart';
 import 'package:vidhaan/print/attendance_print.dart';
 import 'package:pdf/pdf.dart';
 
@@ -138,9 +139,6 @@ class _AttendenceState extends State<Attendence> {
   }
   String selecteddate="";
 
-
-
-
   Successdialog(){
     return AwesomeDialog(
       width: 450,
@@ -159,7 +157,6 @@ class _AttendenceState extends State<Attendence> {
       },
     )..show();
   }
-
   final DateFormat formatter = DateFormat('d-M-yyy');
 
 
@@ -188,6 +185,8 @@ setState(() {
 
   int viewTab = 0;
   String studentid = '';
+
+  int totalWorkDay = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -233,7 +232,9 @@ setState(() {
                                 SizedBox(height:height/30,),
                                 GestureDetector(
                                   onTap: (){
-                                    print(width);
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context)=>Photoviewpage(value['imgurl']))
+                                    );
                                   },
                                   child: CircleAvatar(
                                     radius: width/26.6666,
@@ -248,7 +249,7 @@ setState(() {
                                   child:Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text('${value!['stname']}',style: GoogleFonts.montserrat(
+                                      Text('${value!['stname']} ${value['stlastname']}',style: GoogleFonts.montserrat(
                                           fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                       ),),
                                     ],
@@ -266,15 +267,12 @@ setState(() {
                                     ),),
                                   ],
                                 ),
-
-
                                 SizedBox(height:height/52.15),
                                 Divider(),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(height:height/20.86),
-                                    SizedBox(width:width/62.2),
+
                                     Text('Current Class',style: GoogleFonts.montserrat(
                                         fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                     ),),
@@ -282,8 +280,9 @@ setState(() {
                                 ),
                                 SizedBox(height: height/65.7,),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(width:width/62.2),
+
                                     Material(
                                       elevation: 7,
                                       borderRadius: BorderRadius.circular(12),
@@ -477,6 +476,21 @@ setState(() {
                                             if(snapshot.hasData){
                                               return Column(
                                                 children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(15.0),
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                      children: [
+                                                        Text(
+                                                          'Total Working Days : ${((getStudentAttendancePersantage(snapshot.data!).present * getStudentAttendancePersantage(snapshot.data!).total)) + (getStudentAttendancePersantage(snapshot.data!).absent * getStudentAttendancePersantage(snapshot.data!).total)}',
+                                                          style: GoogleFonts.poppins(
+                                                            fontWeight: FontWeight.w600,
+                                                            color: Colors.black,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
                                                   Container(
                                                     height: 250,
                                                     width: 780,
@@ -529,7 +543,8 @@ setState(() {
                                                             Padding(
                                                               padding: const EdgeInsets.all( 8.0),
                                                               child:  ChoiceChip(
-                                                                label: Text("${(getStudentAttendancePersantage(snapshot.data!).present * getStudentAttendancePersantage(snapshot.data!).total)} Present  ",style: TextStyle(color: Colors.white),),
+                                                                label: Text(
+                                                                  "${(getStudentAttendancePersantage(snapshot.data!).present * getStudentAttendancePersantage(snapshot.data!).total)} Present  ",style: TextStyle(color: Colors.white),),
                                                                 onSelected: (bool selected) {
                                                                   setState(() {
 
@@ -612,9 +627,7 @@ setState(() {
                                                                         color: Colors.red)),
                                                                 backgroundColor: Colors.white,
                                                                 labelStyle: TextStyle(color: Colors.black),
-
                                                                 elevation: 1.5, selected: true,),
-
                                                             ),
                                                           ],
                                                         ),
@@ -1341,6 +1354,7 @@ setState(() {
                                     });
                                     print(selecteddate);
                                     print("${_typeAheadControllerclass.text}""${_typeAheadControllerclass.text}");
+                                    gettotal();
                                   }else{
                                     print("Date is not selected");
                                   }

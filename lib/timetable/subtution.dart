@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:vidhaan/modules/home/controllers/home_controller.dart';
 
 class Subtution extends StatefulWidget {
   const Subtution({Key? key}) : super(key: key);
@@ -27,7 +29,7 @@ class _SubtutionState extends State<Subtution>
     // TODO: implement initState
     super.initState();
   }
-
+  final homecontroller = Get.put(HomeController());
   final TextEditingController _typeAheadControllerclass =
       TextEditingController();
 
@@ -120,6 +122,17 @@ class _SubtutionState extends State<Subtution>
         }
       }
     }
+
+
+/*    var userdoc= await FirebaseFirestore.instance.collection('Staffs').doc("").get();
+    Map<String,dynamic> ? val = userdoc.data();
+    homecontroller.sendPushMessage(val!["token"],
+
+        "Dear ${val!["stnmae"]},\nPlease be informed that your presence is required for the class ${classes} - ${textediting} and you are responsible for on  ${val["date"] ==
+            "${DateTime.now().year}-${ DateTime.now().month}-${ DateTime.now().day +
+                1}" ? "Tomorrow":val["date"] ==  "${DateTime.now().year}-${ DateTime.now().month}-${ DateTime.now().day}"? "Today": val["date"] }. You will be supporting the session, and your guidance or input during the class would be greatly appreciated to ensure a smooth continuation of the curriculum.",
+        "Substitute Teacher Notification");*/
+
   }
 
   String classid = "";
@@ -424,7 +437,7 @@ class _SubtutionState extends State<Subtution>
                                             children: [
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                    left: 10.0, right: 0),
+                                                    left: 67.0, right: 0),
                                                 child: Container(
                                                   width: width / 13.66,
                                                   alignment: Alignment.center,
@@ -510,7 +523,7 @@ class _SubtutionState extends State<Subtution>
                                                   ? Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              left: 130.0),
+                                                              left: 110.0),
                                                       child: InkWell(
                                                         onTap: () {
                                                           setState(() {
@@ -524,7 +537,7 @@ class _SubtutionState extends State<Subtution>
                                                         child: Container(
                                                           child: Center(
                                                               child: Text(
-                                                            "Assign Staffs",
+                                                            "Yet to Assign",
                                                             style: GoogleFonts
                                                                 .poppins(
                                                                     color: Colors
@@ -539,7 +552,7 @@ class _SubtutionState extends State<Subtution>
                                                                 BorderRadius
                                                                     .circular(
                                                                         5),
-                                                            color: Colors.red,
+                                                            color: Color(0xfffcba03),
                                                           ),
                                                         ),
                                                       ),
@@ -547,7 +560,7 @@ class _SubtutionState extends State<Subtution>
                                                   : Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              left: 130.0),
+                                                              left: 110.0),
                                                       child: InkWell(
                                                         onTap: () {
                                                           setState(() {});

@@ -73,6 +73,7 @@ dependencies:
   get: 4.6.5
   firebase_messaging: any
   flutter_local_notifications: ^11.0.1
+  photo_view: ^0.14.0
 
 
 

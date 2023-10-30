@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 import 'package:syncfusion_flutter_charts/charts.dart' as sfc;
 import 'package:vidhaan/Masters/excelgen.dart';
+import 'package:vidhaan/photoview.dart';
 import 'package:vidhaan/studententryedit.dart';
 import 'attendence.dart';
 import 'models/student_csv_model.dart';
@@ -262,7 +263,7 @@ class _StudentListState extends State<StudentList> {
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
     final double height=MediaQuery.of(context).size.height;
-    return view1==0 ?view== false?
+    return view == false?
     Scaffold(
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
@@ -1561,9 +1562,12 @@ class _StudentListState extends State<StudentList> {
                                 SizedBox(height:height/30,),
                                 GestureDetector(
                                   onTap: (){
-                                    print(width);
+                                   Navigator.of(context).push(
+                                     MaterialPageRoute(builder: (context)=>Photoviewpage(value['imgurl']))
+                                   );
                                   },
                                   child: CircleAvatar(
+
                                     radius: width/26.6666,
                                     backgroundImage:  NetworkImage(value!['imgurl']==""?"https://firebasestorage.googleapis.com/v0/b/vidhaan-4aee7.appspot.com/o/360_F_270188580_YDUEwBmDIxBMvCQxkcunmEkm93VqOgqm.jpg?alt=media&token=fe18ba43-4a31-4b53-9523-42bb4241d9a1"
                                         :value['imgurl']),
@@ -1576,7 +1580,7 @@ class _StudentListState extends State<StudentList> {
                                   child:Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text('${value!['stname']}',style: GoogleFonts.montserrat(
+                                      Text('${value["stname"]} ${value["stlastname"]}',style: GoogleFonts.montserrat(
                                           fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                       ),),
                                     ],
@@ -1599,10 +1603,9 @@ class _StudentListState extends State<StudentList> {
                                 SizedBox(height:height/52.15),
                                 Divider(),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(height:height/20.86),
-                                    SizedBox(width:width/62.2),
+
                                     Text('Current Class',style: GoogleFonts.montserrat(
                                         fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                     ),),
@@ -1610,8 +1613,9 @@ class _StudentListState extends State<StudentList> {
                                 ),
                                 SizedBox(height: height/65.7,),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(width:width/62.2),
+
                                     Material(
                                         elevation: 7,
                                         borderRadius: BorderRadius.circular(12),
@@ -1730,6 +1734,10 @@ class _StudentListState extends State<StudentList> {
                                 GestureDetector(
                                   onTap: (){
 
+                                    setState(() {
+                                      view1=3;
+                                    });
+
                                   },
                                   child: Container(width: width/5.464,
                                     height: height/16.425,
@@ -1766,14 +1774,21 @@ class _StudentListState extends State<StudentList> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('Student  Details',style: GoogleFonts.montserrat(
+                                  Text(view1 ==3? 'Fees Reports':'Student  Details',style: GoogleFonts.montserrat(
                                     fontSize:width/81.13,fontWeight: FontWeight.bold,
                                   ),),
                                   InkWell(
                                       onTap: (){
-                                        setState(() {
-                                          view=false;
-                                        });
+                                        if(view1 ==3){
+                                          setState(() {
+                                            view1=0;
+                                          });
+                                        }
+                                        else {
+                                          setState(() {
+                                            view = false;
+                                          });
+                                        }
                                       },
 
                                       child: Icon(Icons.cancel,color: Colors.red,))
@@ -1783,7 +1798,135 @@ class _StudentListState extends State<StudentList> {
                           ),
                         ),
                         SizedBox(height:height/58,),
-                        Material(
+                        view1 ==3 ? Material(
+                          elevation: 15,
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight:Radius.circular(15)  ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight:Radius.circular(15)  ),
+                                color:Colors.white
+                            ),
+                            width:width/1.86,
+                            height: height/1.140,
+                            child: Padding(
+                              padding: EdgeInsets.only(left:width/62.2,right:width/62.2),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                    children:[
+                                      SizedBox(height: 15,),
+                                      Row(
+                                        children: [
+                                          Container(
+
+                                            child: Text('Previous Payments',style: GoogleFonts.montserrat(
+                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                            ),),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 15,),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                            width:130,
+                                            child: Text('Fees Name',style: GoogleFonts.montserrat(
+                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                            ),),
+                                          ),
+                                          Container(
+                                            width:130,
+                                            child: Text('Amount',style: GoogleFonts.montserrat(
+                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                            ),),
+                                          ),
+
+                                          Container(
+                                            width:130,
+                                            child: Text('Due Date',style: GoogleFonts.montserrat(
+                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                            ),),
+                                          ),
+                                          Container(
+                                            width:130,
+                                            child: Text('Paid Date \nTime',
+                                            textAlign: TextAlign.center,
+
+                                              style: GoogleFonts.montserrat(
+                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                            ),),
+                                          ),
+                                          Container(
+                                            width:130,
+                                            child: Text('Status',style: GoogleFonts.montserrat(
+                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                            ),),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Divider(),
+                                      ),
+                                      StreamBuilder(
+                                          stream: FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").orderBy("timestamp").snapshots(),
+                                          builder: (context,snapshot){
+                                            return ListView.builder(
+                                                shrinkWrap: true,
+                                                physics: NeverScrollableScrollPhysics(),
+                                                itemCount: snapshot.data!.docs.length,
+                                                itemBuilder: (context,index){
+
+                                                  return
+                                                    snapshot.data!.docs[index]["status"]==true?
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(bottom: 10.0),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        children: [
+                                                          Container(
+                                                            width:130,
+                                                            child: Text(snapshot.data!.docs[index]["feesname"],style: GoogleFonts.montserrat(
+                                                                fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                                            ),),
+                                                          ),
+                                                          Container(
+                                                            width:130,
+                                                            child: Text(snapshot.data!.docs[index]["amount"].toString(),style: GoogleFonts.montserrat(
+                                                                fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                                            ),),
+                                                          ),
+                                                          Container(
+                                                            width:130,
+                                                            child: Text(snapshot.data!.docs[index]["status"]==true?"Paid": "Unpaid",style: GoogleFonts.montserrat(
+                                                                fontWeight:FontWeight.bold,color:snapshot.data!.docs[index]["status"]==true? Color(0xff53B175):Colors.red,fontSize:width/91.13
+                                                            ),),
+                                                          ),
+                                                          Container(
+                                                            width:130,
+                                                            child: Text(snapshot.data!.docs[index]["date"],style: GoogleFonts.montserrat(
+                                                                fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                                            ),),
+                                                          ),
+                                                          Container(
+                                                            width:130,
+                                                            child: Text(snapshot.data!.docs[index]["time"],style: GoogleFonts.montserrat(
+                                                                fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                                            ),),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )  : Container();
+                                                });
+
+                                          })
+                                    ]
+                                ),
+                              )
+                            ),
+                          ),
+                        ) :
+                       Material(
                           elevation: 15,
                           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight:Radius.circular(15)  ),
                           child: Container(
@@ -1829,10 +1972,9 @@ class _StudentListState extends State<StudentList> {
                                       ),),
                                       InkWell(
                                         onTap: (){
-setState(() {
-  view1=3;
-});
-
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(builder: (context)=>StudentEdit(studentid))
+                                          );
                                         },
                                         child: Padding(
                                           padding:
@@ -1878,7 +2020,7 @@ setState(() {
                                               ),
                                             ),
                                             value["brother studying here"]=="Yes"    ?  Padding(
-                                              padding: const EdgeInsets.only(top: 20.0,bottom: 20),
+                                              padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
                                                   Text("Sibling Reg No: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
@@ -1888,7 +2030,7 @@ setState(() {
                                               ),
                                             ) :Container(),
                                             Padding(
-                                              padding: const EdgeInsets.only(top: 0.0,bottom: 20),
+                                              padding: const EdgeInsets.only(top: 20.0,bottom: 20),
                                               child: Row(
                                                 children: [
                                                   Text("Religion: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
@@ -2008,49 +2150,7 @@ setState(() {
                                               ),
                                             ),
 
-                                            Container(
-                                              child: Row(
-                                                children: [
-                                                  Column(
-                                                    children: [
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                          shape: BoxShape.circle,
-                                                          border: Border.all(color: Colors.red,width:width/186),
 
-                                                        ),
-                                                        height:height/8.69,
-                                                        width:width/15.55,
-                                                        child: Center(child: Text("0",style: GoogleFonts.montserrat(
-                                                            fontWeight:FontWeight.bold,color: Colors.red,fontSize:width/53.31
-                                                        ),)),
-                                                      ),
-                                                      SizedBox(height:20,),
-                                                      Text('Exam Status ',style: GoogleFonts.montserrat(
-                                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                      ),),
-                                                    ],),
-                                                  SizedBox(width:width/18.35,),
-                                                  Column(
-                                                    children: [
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            border: Border.all(color: Colors.green,width:width/186)
-                                                        ),
-                                                        height:height/8.69,
-                                                        width:width/15.55,
-                                                        child: Center(child: Text("0",style: GoogleFonts.montserrat(
-                                                            fontWeight:FontWeight.bold,color: Colors.green,fontSize:width/53.31
-                                                        ),)),
-                                                      ),
-                                                      SizedBox(height:20,),
-                                                      Text('Attendance',style: GoogleFonts.montserrat(
-                                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                      ),),
-                                                    ],),
-                                                ],),
-                                            ),
                                           ],
                                         ),
                                         Padding(
@@ -2281,20 +2381,6 @@ setState(() {
           },
         ),
       ),
-    ) : Stack(
-      children: [
-        StudentEdit(studentid),
-    Padding(
-    padding: const EdgeInsets.only(top:30.0,left:20),
-    child: InkWell(
-    onTap:(){
-      setState(() {
-    view1=0;
-      });
-    },
-    child: Icon(Icons.arrow_back_rounded)),
-    ),
-      ],
     );
 
 

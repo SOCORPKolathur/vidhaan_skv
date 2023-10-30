@@ -623,10 +623,7 @@ headerBuilder: (context, extended)  {
             icon: Icons.upload,
             label: 'Bulk Upload',
           ),
-          const SidebarXItem(
-            icon: Icons.subject,
-            label: 'Subjects',
-          ),
+
           const SidebarXItem(
             icon: Icons.monetization_on_outlined,
             label: 'Fees',
@@ -646,6 +643,10 @@ headerBuilder: (context, extended)  {
           const SidebarXItem(
             icon: Icons.person,
             label: 'Class In-charge',
+          ),
+          const SidebarXItem(
+            icon: Icons.subject,
+            label: 'Subjects',
           ),
           const SidebarXItem(
             icon: Icons.person,
@@ -2183,11 +2184,6 @@ class _ScreensExampleState extends State<_ScreensExample> {
             return  BulkUploadfunction();
           case 3:
             return  Padding(
-              padding: const EdgeInsets.only(right:45.0,left:20),
-              child: ClassSubjects(),
-            );
-          case 4:
-            return  Padding(
               padding: const EdgeInsets.only(left:20,right:45),
               child: Material(
                 elevation: 5,
@@ -2199,62 +2195,32 @@ class _ScreensExampleState extends State<_ScreensExample> {
                     padding: const EdgeInsets.only(left: 20.0,top: 20),
                     child: Container(
                       width: width/1.050,
-                      height:500,
+
                       decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
-                      child:  Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child:  SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
 
-                        children: [
+                          children: [
 
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0,top:20),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10.0,top:20),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
 
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                      child: Container(child: TextField(
-                                        readOnly: true,
-                                        controller: ordernofees,
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 15
-                                        ),
-                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                          border: InputBorder.none,
-                                        ),
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(right:0.0),
+                                        child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
                                       ),
-                                        width: width/4.102,
-                                        height: height/16.425,
-                                        //color: Color(0xffDDDEEE),
-                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                      ),
-                                    ),
-
-                                  ],
-
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Fees",style: GoogleFonts.poppins(fontSize: 15,)),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                      child: Container(
-                                        child: TextField(
-                                          controller: name,
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                        child: Container(child: TextField(
+                                          readOnly: true,
+                                          controller: ordernofees,
                                           style: GoogleFonts.poppins(
                                               fontSize: 15
                                           ),
@@ -2262,138 +2228,170 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                             border: InputBorder.none,
                                           ),
                                         ),
-                                        width: width/4.102,
-                                        height: height/16.425,
-                                        //color: Color(0xffDDDEEE),
-                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                                          width: width/4.102,
+                                          height: height/16.425,
+                                          //color: Color(0xffDDDEEE),
+                                          decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
+                                        ),
                                       ),
+
+                                    ],
+
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(right:0.0),
+                                        child: Text("Fees",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                        child: Container(
+                                          child: TextField(
+                                            controller: name,
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 15
+                                            ),
+                                            decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                              border: InputBorder.none,
+                                            ),
+                                          ),
+                                          width: width/4.102,
+                                          height: height/16.425,
+                                          //color: Color(0xffDDDEEE),
+                                          decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                        ),
+                                      ),
+
+                                    ],
+
+                                  ),
+                                  GestureDetector(
+                                    onTap: (){
+                                      if(name.text==""){
+                                        Errordialog();
+                                      }
+                                      else{
+                                      addfees();
+                                      Successdialogfees();
+                                      }
+                                    },
+                                    child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
+                                      width: width/10.507,
+                                      height: height/16.425,
+                                      // color:Color(0xff00A0E3),
+                                      decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
+
                                     ),
-
-                                  ],
-
-                                ),
-                                GestureDetector(
-                                  onTap: (){
-                                    if(name.text==""){
-                                      Errordialog();
-                                    }
-                                    else{
-                                    addfees();
-                                    Successdialogfees();
-                                    }
-                                  },
-                                  child: Container(child: Center(child: Text("Save",style: GoogleFonts.poppins(color:Colors.white),)),
-                                    width: width/10.507,
-                                    height: height/16.425,
-                                    // color:Color(0xff00A0E3),
-                                    decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
                                   ),
-                                ),
 
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left:10.0,top:10,bottom: 10),
-                            child: Container(
-                              height: height/13.14,
-                              width: 1000,
-
-                              decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
-                              ),
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                    child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                    child: Text("Fee Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                  ),
                                 ],
                               ),
-
                             ),
-                          ),
-                          StreamBuilder<QuerySnapshot>(
-                              stream: FirebaseFirestore.instance.collection("FeesMaster").orderBy("order").snapshots(),
+                            Padding(
+                              padding: const EdgeInsets.only(left:10.0,top:10,bottom: 10),
+                              child: Container(
+                                height: height/13.14,
+                                width: 1000,
 
-                              builder: (context,snapshot){
-                                if(!snapshot.hasData)
-                                {
-                                  return   Center(
-                                    child:  CircularProgressIndicator(),
-                                  );}
-                                if(snapshot.hasData==null)
-                                {
-                                  return   Center(
-                                    child:  CircularProgressIndicator(),
-                                  );}
-                                return ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data!.docs.length,
-                                    itemBuilder: (context,index){
-                                      var value = snapshot.data!.docs[index];
-                                      return  MouseRegion(
-                                        onEnter: (_){
-                                          setState(() {
-                                            deletecheck4[index]=true;
-                                          });
-                                        },
-                                        onExit: (_){
-                                          setState(() {
-                                            deletecheck4[index]=false;
-                                          });
-                                        },
+                                decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
 
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            height: height/ 21.9,
-                                            width: width/1.050,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                                      child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                      child: Text("Fee Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                    ),
+                                  ],
+                                ),
 
-                                            decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+                              ),
+                            ),
+                            StreamBuilder<QuerySnapshot>(
+                                stream: FirebaseFirestore.instance.collection("FeesMaster").orderBy("order").snapshots(),
 
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                                  child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                  child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                                ),
-                                                deletecheck4[index]==true?     InkWell(
-                                                  onTap: (){
-                                                    deletestudent("FeesMaster",value.id);
-                                                  },
-                                                  child: Padding(
-                                                      padding:
-                                                      const EdgeInsets.only(left: 15.0),
-                                                      child: Container(
-                                                          width: 30,
+                                builder: (context,snapshot){
+                                  if(!snapshot.hasData)
+                                  {
+                                    return   Center(
+                                      child:  CircularProgressIndicator(),
+                                    );}
+                                  if(snapshot.hasData==null)
+                                  {
+                                    return   Center(
+                                      child:  CircularProgressIndicator(),
+                                    );}
+                                  return ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: snapshot.data!.docs.length,
+                                      itemBuilder: (context,index){
+                                        var value = snapshot.data!.docs[index];
+                                        return  MouseRegion(
+                                          onEnter: (_){
+                                            setState(() {
+                                              deletecheck4[index]=true;
+                                            });
+                                          },
+                                          onExit: (_){
+                                            setState(() {
+                                              deletecheck4[index]=false;
+                                            });
+                                          },
 
-                                                          child: Image.asset("assets/delete.png"))
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              height: height/ 21.9,
+                                              width: width/1.050,
+
+                                              decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(left: 30.0,right: 70.0),
+                                                    child: Text("${(index+1).toString().padLeft(3,"0")}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
                                                   ),
-                                                ) : Container()
-                                              ],
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                                    child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                                  ),
+                                                  deletecheck4[index]==true?     InkWell(
+                                                    onTap: (){
+                                                      deletestudent("FeesMaster",value.id);
+                                                    },
+                                                    child: Padding(
+                                                        padding:
+                                                        const EdgeInsets.only(left: 15.0),
+                                                        child: Container(
+                                                            width: 30,
+
+                                                            child: Image.asset("assets/delete.png"))
+                                                    ),
+                                                  ) : Container()
+                                                ],
+                                              ),
+
                                             ),
-
                                           ),
-                                        ),
-                                      );
-                                    });
+                                        );
+                                      });
 
-                              }),
+                                }),
 
 
-                        ],
+                          ],
+                        ),
                       ),
 
                     ),
@@ -2401,17 +2399,22 @@ class _ScreensExampleState extends State<_ScreensExample> {
                 ),
               ),
             );
-          case 5:
+          case 4:
             return  Padding(
               padding: const EdgeInsets.only(right:25.0),
               child: Desigination(),
             );
-          case 6:
+          case 5:
             return  StudentID();
-          case 7:
+          case 6:
             return  StaffID();
-          case 8:
+          case 7:
             return  ClassIncharge();
+          case 8:
+            return  Padding(
+              padding: const EdgeInsets.only(right:45.0,left:20),
+              child: ClassSubjects(),
+            );
           case 9:
             return  SubjectTeacher();
           default:

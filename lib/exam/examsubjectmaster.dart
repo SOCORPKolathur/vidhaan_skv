@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:lottie/lottie.dart';
+import 'package:random_string/random_string.dart';
 
 
 class ExamsubjectMaster extends StatefulWidget {
@@ -121,18 +122,65 @@ class _ExamsubjectMasterState extends State<ExamsubjectMaster> {
   }
 
 
-  addsubject(subname) async {
+  getfeesid(val) async {
+    var document2 = await  FirebaseFirestore.instance.collection("ExamMaster").get();
+    for(int i=0;i<document2.docs.length;i++){
+      if(document2.docs[i]["name"]==val){
+        setState(() {
+          feesid = document2.docs[i].id;
+        });
+      }
+    }
 
-      FirebaseFirestore.instance.collection("ExamMaster").doc(feesid).collection(_typeAheadControllerclass.text).doc()
+
+  }
+
+
+  String docid ="";
+
+
+  addsubject(subname) async {
+    setState(() {
+      docid=randomAlphaNumeric(16);
+    });
+
+      FirebaseFirestore.instance.collection("ExamMaster").doc(feesid).collection(_typeAheadControllerclass.text).doc(docid)
           .set({
         "name": subname,
         "exam": _typeAheadControllerexam.text,
         "class": _typeAheadControllerclass.text,
         "timestamp": DateTime.now().microsecondsSinceEpoch,
-        "date":""
-      });
+        "date":"",
+        "timestamp2": ""
+          });
+
+
+      var docu = await FirebaseFirestore.instance.collection("Students").orderBy("regno").get();
+      for(int i=0;i<docu.docs.length;i++){
+        if(docu.docs[i]["admitclass"]==_typeAheadControllerclass.text){
+
+
+          FirebaseFirestore.instance.collection("Students").doc(docu.docs[i].id).collection("Exams").doc(feesid).set({
+            "name":_typeAheadControllerexam.text
+          });
+          FirebaseFirestore.instance.collection("Students").doc(docu.docs[i].id).collection("Exams").doc(feesid).collection("Timetable").doc(docid)
+              .set({
+            "name": subname,
+            "exam": _typeAheadControllerexam.text,
+            "class": _typeAheadControllerclass.text,
+            "timestamp": DateTime.now().microsecondsSinceEpoch,
+            "date":"",
+            "timestamp2": "",
+            "mark":"",
+            "total":"",
+            "percentage":""
+              });
+        }
+      }
 
   }
+
+
   @override
   void initState() {
     getorderno();
@@ -491,6 +539,7 @@ class _ExamsubjectMasterState extends State<ExamsubjectMaster> {
                                                   setState(() {
                                                     _typeAheadControllerexam.text = value!;
                                                   });
+                                                  getfeesid(value);
                                                 },
                                                 buttonStyleData: ButtonStyleData(
                                                   height: 50,

@@ -139,19 +139,19 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                     leading: IconButton(
                                       onPressed: (){
                                         setState(() {
-                                          titleController.text = value["reason"];
-                                          descriptionController.text = value["Descr"];
+                                          titleController.text = value["Descr"];
+                                          descriptionController.text = value["reason"];
                                         });
                                         editNoticePopUp(value.id);
                                       },
                                       icon: Icon(Icons.edit),
                                     ),
                                     title: Text(
-                                        "${value["reason"]}",
+                                        "${value["Descr"]}",
                                         style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
                                     ),
                                     subtitle: Text(
-                                        "${value["Descr"]}",
+                                        "${value["reason"]}",
                                         style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
                                     ),
                                     trailing: Column(
@@ -252,19 +252,19 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                     leading: IconButton(
                                       onPressed: (){
                                         setState(() {
-                                          titleController.text = value["reason"];
-                                          descriptionController.text = value["Descr"];
+                                          titleController.text = value["Descr"];
+                                          descriptionController.text = value["reason"];
                                         });
                                         editNoticePopUp(value.id);
                                       },
                                       icon: Icon(Icons.edit),
                                     ),
                                     title: Text(
-                                        "${value["reason"]}",
+                                        "${value["Descr"]}",
                                         style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
                                     ),
                                     subtitle: Text(
-                                        "${value["Descr"]}",
+                                        "${value["reason"]}",
                                         style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
                                     ),
                                     trailing: Column(
@@ -364,19 +364,19 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                     leading: IconButton(
                                       onPressed: (){
                                         setState(() {
-                                          titleController.text = value["reason"];
-                                          descriptionController.text = value["Descr"];
+                                          titleController.text = value["Descr"];
+                                          descriptionController.text = value["reason"];
                                         });
                                         editNoticePopUp(value.id);
                                       },
                                       icon: Icon(Icons.edit),
                                     ),
                                     title: Text(
-                                        "${value["reason"]}",
+                                        "${value["Descr"]}",
                                         style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
                                     ),
                                     subtitle: Text(
-                                        "${value["Descr"]}",
+                                        "${value["reason"]}",
                                         style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
                                     ),
                                     trailing: Column(
@@ -511,8 +511,8 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                               onTap: () async {
                                 FirebaseFirestore.instance.collection("Circulars").doc(id).update(
                                   {
-                                    "reason" : titleController.text,
-                                    "Descr" : descriptionController.text
+                                    "Descr" : titleController.text,
+                                    "reason" : descriptionController.text
                                   }
                                 );
 

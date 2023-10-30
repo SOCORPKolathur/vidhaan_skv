@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:month_year_picker/month_year_picker.dart';
+import 'package:random_string/random_string.dart';
 
 
 class ClasswiseFees extends StatefulWidget {
@@ -58,6 +59,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
   static final List<String> fees = ["Select Option"];
   static final List<String> typeclass = ["Select Option","Class","Student","General"];
   static final List<String> paytypelist = ["Select Option","Monthly","Admission Time","Custom",];
+  static final List<String> paytypelist1 = ["Select Option","Monthly","Custom"];
 
 
   static List<String> getSuggestionsclass(String query) {
@@ -150,46 +152,209 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
   }
 
   addclass() async {
-    FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").doc().set({
-      "feesname": _typeAheadControllerfees.text,
-      "amount": int.parse(amount.text),
-      "timestamp": DateTime.now().microsecondsSinceEpoch,
-      "paytype": paytype.text,
-    });
-    var document = await FirebaseFirestore.instance.collection("Students").where("admitclass",isEqualTo: _typeAheadControllerclass.text).get();
-    for(int i=0;i<document.docs.length;i++) {
-      FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc().set({
-        "feesname":  _typeAheadControllerfees.text,
+    String docId = randomAlphaNumeric(16);
+    //"Admission Time"
+    if(paytype.text == "Admission Time"){
+      FirebaseFirestore.instance.collection("AdmissionTimeFees").doc(docId).set({
+        "feesname": _typeAheadControllerfees.text,
         "amount": int.parse(amount.text),
         "timestamp": DateTime.now().microsecondsSinceEpoch,
         "paytype": paytype.text,
-        "status":false,
-        "date" : "",
-        "time" : "",
-        "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+        "class": _typeAheadControllerclass.text,
+        //"status": false,
+        // "date": "",
+        // "time": "",
+        // "duedate": paytype.text.toLowerCase() == 'monthly'
+        //     ? '01/01/2023'
+        //     : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+      });
+    }
+    else{
+      FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").doc(docId).set({
+        "feesname": _typeAheadControllerfees.text,
+        "amount": int.parse(amount.text),
+        "timestamp": DateTime.now().microsecondsSinceEpoch,
+        "paytype": paytype.text,
+      });
+      var document = await FirebaseFirestore.instance.collection("Students").where("admitclass",isEqualTo: _typeAheadControllerclass.text).get();
+      for(int i=0;i<document.docs.length;i++) {
+        FirebaseFirestore.instance.collection("FeesCollection").doc("${document.docs[i].id}:$docId").set({
+          "feesname":  _typeAheadControllerfees.text,
+          "amount": int.parse(amount.text),
+          "payedamount": 0.0,
+          "timestamp": DateTime.now().millisecondsSinceEpoch,
+          "paytype": paytype.text,
+          "status":false,
+          "date" : "",
+          "time" : "",
+          "class" : document.docs[i].get("admitclass"),
+          "section" : document.docs[i].get("section"),
+          "stRegNo" : document.docs[i].get("regno"),
+          "stName" : document.docs[i].get("stname"),
+          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+        });
+        FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({
+          "feesname":  _typeAheadControllerfees.text,
+          "amount": int.parse(amount.text),
+          "payedamount": 0.0,
+          "timestamp": DateTime.now().millisecondsSinceEpoch,
+          "paytype": paytype.text,
+          "status":false,
+          "date" : "",
+          "time" : "",
+          "class" : document.docs[i].get("admitclass"),
+          "section" : document.docs[i].get("section"),
+          "stRegNo" : document.docs[i].get("regno"),
+          "stName" : document.docs[i].get("stname"),
+          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+        });
+      }
+    }
+  }
+
+  addstudent() async {
+    String docId = randomAlphaNumeric(16);
+    if(paytype.text == "Admission Time"){
+      FirebaseFirestore.instance.collection("AdmissionTimeFees").doc(docId).set({
+        "feesname": _typeAheadControllerfees.text,
+        "amount": int.parse(amount.text),
+        "timestamp": DateTime.now().millisecondsSinceEpoch,
+        "paytype": paytype.text,
+        "class": _typeAheadControllerclass.text,
+        //"status": false,
+        // "date": "",
+        // "time": "",
+        // "duedate": paytype.text.toLowerCase() == 'monthly'
+        //     ? '01/01/2023'
+        //     : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+      });
+    }else {
+      var student = await FirebaseFirestore.instance.collection("Students").doc(studentid).get();
+      FirebaseFirestore.instance.collection("FeesCollection").doc("$studentid:$docId").set({
+        "feesname": _typeAheadControllerfees.text,
+        "amount": int.parse(amount.text),
+        "payedamount": 0.0,
+        "timestamp": DateTime.now().millisecondsSinceEpoch,
+        "paytype": paytype.text,
+        "status": false,
+        "date": "",
+        "time": "",
+        "class" : student.get("admitclass"),
+        "section" : student.get("section"),
+        "stRegNo" : student.get("regno"),
+        "stName" : student.get("stname"),
+        "duedate": paytype.text.toLowerCase() == 'monthly'
+            ? '01/01/2023'
+            : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+      });
+      FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
+        "feesname": _typeAheadControllerfees.text,
+        "amount": int.parse(amount.text),
+        "payedamount": 0.0,
+        "timestamp": DateTime.now().millisecondsSinceEpoch,
+        "paytype": paytype.text,
+        "status": false,
+        "date": "",
+        "time": "",
+        "class" : student.get("admitclass"),
+        "section" : student.get("section"),
+        "stRegNo" : student.get("regno"),
+        "stName" : student.get("stname"),
+        "duedate": paytype.text.toLowerCase() == 'monthly'
+            ? '01/01/2023'
+            : paytype.text.toLowerCase() == 'custom' ? date.text : ''
       });
     }
   }
-  addstudent() async {
-    print(studentid);
-    FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc().set({
-      "feesname": _typeAheadControllerfees.text,
-      "amount": int.parse(amount.text),
-      "timestamp": DateTime.now().microsecondsSinceEpoch,
-      "paytype": paytype.text,
-      "status":false,
-      "date" : "",
-      "time" : "",
-      "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
-    });
 
-  }
   addgen() async {
-    FirebaseFirestore.instance.collection("Fees").doc().set({
-      "feesname": _typeAheadControllerfees.text,
-      "amount": int.parse(amount.text),
-      "timestamp": DateTime.now().microsecondsSinceEpoch,
-      "paytype": paytype.text,
+    String docId = randomAlphaNumeric(16);
+    if(paytype.text == "Admission Time"){
+      FirebaseFirestore.instance.collection("AdmissionTimeFees").doc(docId).set({
+        "feesname": _typeAheadControllerfees.text,
+        "amount": int.parse(amount.text),
+        "timestamp": DateTime.now().microsecondsSinceEpoch,
+        "paytype": paytype.text,
+        "class": 'All',
+        // "date": "",
+        // "time": "",
+        // "duedate": paytype.text.toLowerCase() == 'monthly'
+        //     ? '01/01/2023'
+        //     : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+      });
+    }else {
+      var document = await FirebaseFirestore.instance.collection("Students").get();
+      for(int i=0;i<document.docs.length;i++) {
+        FirebaseFirestore.instance.collection("FeesCollection").doc("${document.docs[i].id}:$docId").set({
+          "feesname":  _typeAheadControllerfees.text,
+          "amount": double.parse(amount.text),
+          "payedamount": 0.0,
+          "timestamp": DateTime.now().millisecondsSinceEpoch,
+          "paytype": paytype.text,
+          "status":false,
+          "date" : "",
+          "time" : "",
+          "class" : document.docs[i].get("admitclass"),
+          "section" : document.docs[i].get("section"),
+          "stRegNo" : document.docs[i].get("regno"),
+          "stName" : document.docs[i].get("stname"),
+          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+        });
+        FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({
+          "feesname":  _typeAheadControllerfees.text,
+          "amount": double.parse(amount.text),
+          "payedamount": 0.0,
+          "timestamp": DateTime.now().millisecondsSinceEpoch,
+          "paytype": paytype.text,
+          "status":false,
+          "date" : "",
+          "time" : "",
+          "class" : document.docs[i].get("admitclass"),
+          "section" : document.docs[i].get("section"),
+          "stRegNo" : document.docs[i].get("regno"),
+          "stName" : document.docs[i].get("stname"),
+          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+        });
+      }
+      // FirebaseFirestore.instance.collection("Fees").doc(docId).set({
+      //   "feesname": _typeAheadControllerfees.text,
+      //   "amount": int.parse(amount.text),
+      //   "timestamp": DateTime
+      //       .now()
+      //       .microsecondsSinceEpoch,
+      //   "paytype": paytype.text,
+      // });
+    }
+  }
+
+  deleteClassFees(String classId,String docId) async {
+    FirebaseFirestore.instance.collection("AdmissionTimeFees").doc(docId).delete();
+    FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").doc(docId).delete();
+    var studentDocument = await FirebaseFirestore.instance.collection("Students").get();
+    studentDocument.docs.forEach((student) {
+      FirebaseFirestore.instance.collection("FeesCollection").doc("${student.id}:$docId").delete();
+      FirebaseFirestore.instance.collection("Students").doc(student.id).collection("Fees").doc(docId).delete();
+    });
+  }
+
+  deleteStudentFees(String studentRegNo, String docId) async {
+    FirebaseFirestore.instance.collection("AdmissionTimeFees").doc(docId).delete();
+    var studentDoc = await FirebaseFirestore.instance.collection("Students").get();
+    studentDoc.docs.forEach((student) {
+      if(student.get("regno") == studentRegNo){
+        FirebaseFirestore.instance.collection("FeesCollection").doc("${student.id}:$docId").delete();
+        FirebaseFirestore.instance.collection("Students").doc(student.id).collection("Fees").doc(docId).delete();
+      }
+    });
+  }
+
+  deleteAllFees(String docId) async {
+    print('----------------------- $docId ---------------------------------------');
+    FirebaseFirestore.instance.collection("AdmissionTimeFees").doc(docId).delete();
+    var studentDoc = await FirebaseFirestore.instance.collection("Students").get();
+    studentDoc.docs.forEach((student) {
+        FirebaseFirestore.instance.collection("FeesCollection").doc("${student.id}:$docId").delete();
+        FirebaseFirestore.instance.collection("Students").doc(student.id).collection("Fees").doc(docId).delete();
     });
   }
 
@@ -995,7 +1160,17 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                                 ),
                                               ],
                                             ),
-                                            items: paytypelist
+                                            items: type.text == 'Student' ? paytypelist1.map((String item) => DropdownMenuItem<String>(
+                                              value: item,
+                                              child: Text(
+                                                item,
+                                                style:  GoogleFonts.poppins(
+                                                    fontSize: 15
+                                                ),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ))
+                                                .toList() : paytypelist
                                                 .map((String item) => DropdownMenuItem<String>(
                                               value: item,
                                               child: Text(
@@ -1022,10 +1197,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
                                                   if(pickedDate != null ){
                                                     print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
-                                                    String formattedDate = DateFormat('dd / M / yyyy').format(pickedDate);
+                                                    String formattedDate = DateFormat('dd/M/yyyy').format(pickedDate);
                                                     print(formattedDate); //formatted date output using intl package =>  2021-03-16
                                                     //you can implement different kind of Date Format here according to your requirement
-
                                                     setState(() {
 
                                                       date.text = formattedDate;
@@ -1249,14 +1423,14 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
                                         InkWell(
                                           onTap: (){
-                                            deletestudent(value.id);
+                                            deleteClassFees(classid,value.id);
+                                            //deletestudent(value.id);
                                           },
                                           child: Padding(
                                               padding:
                                               const EdgeInsets.only(left: 15.0),
                                               child: Container(
                                                   width: 30,
-
                                                   child: Image.asset("assets/delete.png"))
                                           ),
                                         ),
@@ -1319,7 +1493,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         ),
                                         InkWell(
                                           onTap: (){
-                                            deletestudent2(value.id);
+                                            deleteStudentFees(_typeAheadControllerregno.text,value.id);
                                           },
                                           child: Padding(
                                               padding:
@@ -1338,8 +1512,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                 );
                               });
 
-                        }) : StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance.collection("Fees").snapshots(),
+                        })
+                        : StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance.collection("FeesCollection").snapshots(),
 
                         builder: (context,snapshot){
                           if(!snapshot.hasData)
@@ -1389,7 +1564,8 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         ),
                                         InkWell(
                                           onTap: (){
-                                            deletestudent3(value.id);
+                                            deleteAllFees(value.id.split(":").last);
+                                            //deletestudent3(value.id);
                                           },
                                           child: Padding(
                                               padding:
@@ -1444,7 +1620,6 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                 content:  Container(
                     width: 350,
                     height: 250,
-
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
                 actions: <Widget>[

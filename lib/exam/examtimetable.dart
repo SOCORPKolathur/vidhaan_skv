@@ -19,7 +19,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
   TextEditingController name = new TextEditingController();
   TextEditingController orderno = new TextEditingController();
 
-
+  ExamWithSubjects examData = ExamWithSubjects(examName: '',subjects: []);
 
 
   getorderno() async {
@@ -36,10 +36,30 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
           .collection(_typeAheadControllerclass.text).doc(document.docs[i].id)
           .update({
         "date": textediting[i].text,
+        "timestamp2": timestamp[i]
       });
     }
+
+     var docu = await FirebaseFirestore.instance.collection("Students").orderBy("regno").get();
+     for(int i=0;i<docu.docs.length;i++){
+       if(docu.docs[i]["admitclass"]==_typeAheadControllerclass.text) {
+         var docu2 = await FirebaseFirestore.instance.collection("Students").doc(docu.docs[i].id).collection("Exams").doc(classid).collection("Timetable").orderBy("timestamp").get();
+         for (int j = 0; j < docu2.docs.length; j++) {
+           FirebaseFirestore.instance.collection("Students").doc(docu.docs[i].id).collection("Exams").doc(classid).collection("Timetable").doc(docu2.docs[j].id)
+               .update({
+             "date": textediting[j].text,
+             "timestamp2": timestamp[j]
+           });
+         }
+       }
+     }
+
+
      Successdialog();
   }
+
+
+
   setvalue() async {
 
      var document = await FirebaseFirestore.instance.collection("ExamMaster").doc(classid).collection(_typeAheadControllerclass.text).orderBy("timestamp").get();
@@ -58,7 +78,6 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
       animType: AnimType.rightSlide,
       title: 'Exam Timetable Assigned Successfully',
       desc: '',
-
       btnCancelOnPress: () {
 
       },
@@ -71,6 +90,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
 
   final textediting = List<TextEditingController>.generate(200, (int index) => TextEditingController(), growable: true);
   final textediting2 = List<TextEditingController>.generate(200, (int index) => TextEditingController(), growable: true);
+  final timestamp = List<int>.generate(200, (int index) => 0, growable: true);
 
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
 
@@ -351,6 +371,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                       setState(() {
                                         _typeAheadControllerclass.text = value!;
                                       });
+                                      getstaffbyid();
                                     },
                                     buttonStyleData: ButtonStyleData(
                                       height: 50,
@@ -465,6 +486,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                         _typeAheadControllerexam.text =
                                         value!;
                                       });
+                                      getstaffbyid();
                                     },
                                     buttonStyleData: ButtonStyleData(
                                       height: 50,
@@ -524,25 +546,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                           ),
 
 
-                          GestureDetector(
-                            onTap: () {
-                              getstaffbyid();
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 25.0),
-                              child: Container(child: Center(child: Text("Assign",
-                                style: GoogleFonts.poppins(
-                                    color: Colors.white),)),
-                                width: width / 10.507,
-                                height: height / 16.425,
-                                // color:Color(0xff00A0E3),
-                                decoration: BoxDecoration(
-                                    color: Color(0xff00A0E3),
-                                    borderRadius: BorderRadius.circular(5)),
 
-                              ),
-                            ),
-                          ),
                           GestureDetector(
                             onTap: () {
                               addclass();
@@ -625,16 +629,17 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                             child: CircularProgressIndicator(),
                           );
                         }
+                        examData.examName = _typeAheadControllerexam.text;
+                        examData.subjects!.clear();
                         return ListView.builder(
                             shrinkWrap: true,
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context, index) {
                               var value = snapshot.data!.docs[index];
+
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
-
-                                  width: width / 1.241,
 
                                   decoration: BoxDecoration(
                                       color: Colors.white60,
@@ -646,11 +651,14 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             left: 30.0, right: 70.0),
-                                        child: Text("${(index + 1).toString()}",
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black),),
+                                        child: Container(
+                                          width: width / 120.83,
+                                          child: Text("${(index + 1).toString()}",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black),),
+                                        ),
                                       ),
                                       Container(
                                         width: width / 6.83,
@@ -674,7 +682,6 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                                 5)),
 
                                         child:TextFormField(
-
                                           controller:  textediting[index],
                                           style: GoogleFonts.poppins(
                                               fontSize: 15
@@ -682,7 +689,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                           onTap: () async {
                                             DateTime? pickedDate = await showDatePicker(
                                                 context: context, initialDate: DateTime.now(),
-                                                firstDate: DateTime(1900), //DateTime.now() - not to allow to choose before today.
+                                                firstDate: DateTime.now(), //DateTime.now() - not to allow to choose before today.
                                                 lastDate: DateTime(2101)
                                             );
 
@@ -696,6 +703,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                               setState(() {
 
                                                 textediting[index].text = formattedDate;
+                                                timestamp[index] = pickedDate.millisecondsSinceEpoch;
 
                                                 //set output date to TextField value.
                                               });
@@ -724,8 +732,8 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
 
                                 ),
                               );
-                            });
-                      }),
+                            },);
+                      },),
                 ],
               ),
 
@@ -736,3 +744,61 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
     );
   }
 }
+
+class ExamWithSubjects {
+  String? examName;
+  List<Subjects>? subjects;
+
+  ExamWithSubjects({this.examName, this.subjects});
+
+  ExamWithSubjects.fromJson(Map<String, dynamic> json) {
+    examName = json['examName'];
+    if (json['subjects'] != null) {
+      subjects = <Subjects>[];
+      json['subjects'].forEach((v) {
+        subjects!.add(new Subjects.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['examName'] = this.examName;
+    if (this.subjects != null) {
+      data['subjects'] = this.subjects!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Subjects {
+  String? examname;
+  String? subject;
+  String? mark;
+  String? totalmark;
+  num? timestamp;
+  String? date;
+
+  Subjects({this.subject, this.date,this.timestamp, this.examname, this.mark,this.totalmark});
+
+  Subjects.fromJson(Map<String, dynamic> json) {
+    subject = json['subject'];
+    date = json['date'];
+    date = json['timestamp'];
+    date = json['totalmark'];
+    date = json['mark'];
+    date = json['examname'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['subject'] = this.subject;
+    data['date'] = this.date;
+    data['date'] = this.date;
+    data['date'] = this.date;
+    data['date'] = this.date;
+    data['date'] = this.date;
+    return data;
+  }
+}
+

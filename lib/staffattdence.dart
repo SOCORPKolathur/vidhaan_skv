@@ -6,16 +6,22 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:show_up_animation/show_up_animation.dart' as an;
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:vidhaan/photoview.dart';
 import 'package:vidhaan/print/attendance_print.dart';
 import 'package:pdf/pdf.dart';
 import 'models/attendance_pdf_model.dart';
+import 'package:syncfusion_flutter_charts/charts.dart' as sfc;
 
 
 class SalesData {
-  SalesData(this.year, this.sales);
+  SalesData(this.year, this.sales,this.absentDay, this.presentDay);
+
   final String year;
-  final double sales;
+  late double sales;
+  final String absentDay;
+  final String presentDay;
 }
 
 class StaffAttendence extends StatefulWidget {
@@ -198,11 +204,536 @@ class _StaffAttendenceState extends State<StaffAttendence> {
   bool view= false;
   bool absentonly= false;
 
+  bool staffDetailView = false;
+
+  String selectedStaffId = '';
+
   @override
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
     final double height=MediaQuery.of(context).size.height;
-    return SingleChildScrollView(
+    return staffDetailView == true
+        ? SingleChildScrollView(
+        child: an.ShowUpAnimation(
+          curve: Curves.fastOutSlowIn,
+          direction: an.Direction.horizontal,
+          delayStart: Duration(milliseconds: 200),
+          child:
+          FutureBuilder<dynamic>(
+            future: FirebaseFirestore.instance.collection('Staffs').doc(selectedStaffId).get(),
+            builder: (context, snapshot) {
+              if(snapshot.hasData==null)
+              {
+                return Container(
+                    width: width/17.075,
+                    height: height/8.212,
+                    child: Center(child:CircularProgressIndicator(),));
+              }
+              Map<String,dynamic>?value = snapshot.data!.data();
+              return
+                Padding(
+                  padding:EdgeInsets.only(left: width/93.3,top:0),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Material(
+                            elevation: 15,
+                            borderRadius: BorderRadius.circular(15),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color:Colors.white,
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                              width: width/4.44,
+                              height: height/1.050,
+                              child: Column(
+                                children: [
+                                  SizedBox(height:height/30,),
+                                  GestureDetector(
+                                    onTap: (){
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(builder: (context)=>Photoviewpage(value['imgurl']))
+                                      );
+                                    },
+                                    child: CircleAvatar(
+                                      radius: width/26.6666,
+                                      backgroundImage:NetworkImage(value!['imgurl']==""?"https://firebasestorage.googleapis.com/v0/b/vidhaan-4aee7.appspot.com/o/teacher.jpg?alt=media&token=1782c5a6-34c3-42ab-819f-07d52ea06014"
+                                          :value['imgurl']),
+
+                                    ),
+                                  ),
+
+                                  SizedBox(height:height/52.15,),
+                                  Center(
+                                    child:Text('${value["stname"]} ${value["stlastname"]}',style: GoogleFonts.montserrat(
+                                        fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                    ),),
+                                  ),
+                                  SizedBox(height:height/130.3,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('Staff ID :',style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.w500,color: Colors.black,fontSize: width/124.4
+                                      ),),
+                                      Text(value['regno'],style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.w500,color: Colors.black,fontSize: width/124.4
+                                      ),),
+                                    ],
+                                  ),
+                                  SizedBox(height:height/52.15,),
+                                  GestureDetector(
+                                    onTap: (){
+
+                                    },
+
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffFFB946),
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      width: width/7.46,
+                                      height:height/28,
+                                      child: Center(child: Text("View Payroll",style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/103.6
+                                      ),)),
+                                    ),
+                                  ),
+
+
+                                  SizedBox(height:height/52.15),
+                                  value["incharge"]!="" ? Divider() :Container(),
+                                  value["incharge"]!="" ?  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+
+                                      Text('In Charge Class',style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                      ),),
+                                    ],
+                                  ):Container(),
+                                  value["incharge"]!="" ?  SizedBox(height: height/65.7,):Container(),
+                                  value["incharge"]!="" ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+
+                                      Material(
+                                        elevation: 7,
+                                        borderRadius: BorderRadius.circular(12),
+                                        shadowColor:  Color(0xff53B175),
+                                        child: Container(
+                                          height: height/8.212,
+                                          width: width/7.588,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(12),
+                                              border:Border.all(color: Color(0xff53B175))
+                                          ),
+                                          child:  Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text("Class / Section",style:GoogleFonts.montserrat(
+                                                  fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/98.13
+                                              ),),
+                                              SizedBox(height: height/65.7,),
+                                              ChoiceChip(
+
+                                                label: Text("    ${value["incharge"]} / ${value["inchargesec"]}    ",style: TextStyle(color: Colors.white),),
+
+
+                                                onSelected: (bool selected) {
+
+                                                  setState(() {
+
+                                                  });
+                                                },
+                                                selectedColor: Color(0xff53B175),
+                                                shape: StadiumBorder(
+                                                    side: BorderSide(
+                                                        color: Color(0xff53B175))),
+                                                backgroundColor: Colors.white,
+                                                labelStyle: TextStyle(color: Colors.black),
+
+                                                elevation: 1.5, selected: true,),
+                                            ],
+                                          ),
+
+                                        ),
+
+
+                                      ),
+                                    ],
+                                  ):Container(),
+                                  Divider(),
+                                  SizedBox(height:height/32.85,),
+                                  Row(children: [
+                                    SizedBox(width:width/62.2),
+                                    Icon(Icons.email_outlined,),
+                                    SizedBox(width:width/373.2),
+                                    GestureDetector(onTap: (){
+
+                                    },
+                                      child: Text('${value["email"]}',style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                      ),),
+                                    ),
+                                  ],),
+                                  SizedBox(height:height/34.76,),
+                                  Row(children: [
+                                    SizedBox(width:width/62.2),
+                                    Icon(Icons.call,),
+                                    SizedBox(width:width/373.2),
+                                    GestureDetector(onTap: (){
+
+                                    },
+                                      child: Text('${value["mobile"]}',style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                      ),),
+                                    ),
+                                  ],),
+                                  SizedBox(height:height/34.76,),
+                                  Row(children: [
+                                    SizedBox(width:width/62.2),
+                                    Icon(Icons.calendar_month_sharp,),
+                                    SizedBox(width:width/373.2),
+                                    GestureDetector(onTap: (){
+
+                                    },
+                                      child: Text('${value["dob"]}',style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                      ),),
+                                    ),
+                                  ],),
+                                  SizedBox(height:height/34.76,),
+                                  Row(children: [
+                                    SizedBox(width:width/62.2),
+                                    value["gender"]=="Male"? Icon(Icons.male_rounded,) :Icon(Icons.female_rounded,),
+                                    SizedBox(width:width/373.2),
+                                    GestureDetector(onTap: (){
+
+                                    },
+                                      child: Text('${value["gender"]}',style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                      ),),
+                                    ),
+                                  ],),
+                                  SizedBox(height:height/34.76,),
+                                  Row(children: [
+                                    SizedBox(width:width/62.2),
+                                    Icon(Icons.bloodtype_rounded,) ,
+                                    SizedBox(width:width/373.2),
+                                    GestureDetector(onTap: (){
+
+                                    },
+                                      child: Text('${value["bloodgroup"]}',style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/124.4
+                                      ),),
+                                    ),
+                                  ],),
+                                  SizedBox(height:height/34.76,),
+
+
+
+
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(width:width/62.2,),
+                      Column(
+                        children: [
+                          Material(
+                            elevation: 15,
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight:Radius.circular(15)  ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight:Radius.circular(15)  ),
+                                color: Colors.white,
+                              ),
+                              width:width/1.8600,
+                              height:height/19,
+                              child: Padding(
+                                padding: EdgeInsets.only(left:width/62.2,right:width/62.2),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Staff  Details',style: GoogleFonts.montserrat(
+                                      fontSize:width/81.13,fontWeight: FontWeight.bold,
+                                    ),),
+
+                                    InkWell(
+                                        onTap: (){
+                                          setState(() {
+                                            staffDetailView=false;
+                                            selectedStaffId = "";
+                                          });
+                                        },
+                                        child: Icon(Icons.cancel,color: Colors.red,))
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height:height/58,),
+                          Material(
+                            elevation: 15,
+                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight:Radius.circular(15)  ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight:Radius.circular(15)  ),
+                                  color:Colors.white
+                              ),
+                              width:width/1.86,
+                              height: height/1.140,
+                              child: Padding(
+                                padding: EdgeInsets.only(left:width/62.2,right:width/62.2),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                          width: 800,
+                                          child: FutureBuilder<StaffAttendanceReportModel>(
+                                            future: getMonthlyAttendanceReportForStaff(selectedStaffId),
+                                            builder: (ctx,snapshot){
+                                              if(snapshot.hasData){
+                                                return Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 250,
+                                                      width: 780,
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Container(
+                                                            height: 250,
+                                                            width: 480,
+                                                            child: sfc.SfCartesianChart(
+
+                                                                primaryXAxis: sfc.CategoryAxis(),
+
+                                                                title: sfc.ChartTitle(
+                                                                    text: '   Monthly Present Reports',
+                                                                    textStyle: GoogleFonts.poppins(
+                                                                      fontWeight: FontWeight.w600,
+                                                                      color: Colors.black,
+                                                                    ),
+                                                                    alignment: sfc.ChartAlignment.near
+                                                                ),
+                                                                legend: sfc.Legend(isVisible: true),
+                                                                tooltipBehavior: sfc.TooltipBehavior(enable: true),
+                                                                series: <sfc.LineSeries<SalesData, String>>[
+                                                                  sfc.LineSeries<SalesData, String>(
+                                                                    name: "",
+                                                                    dataSource: snapshot.data!.presentReport,
+                                                                    xValueMapper: (SalesData sales, _) => sales.year,
+                                                                    yValueMapper: (SalesData sales, _) => sales.sales,
+                                                                    // Enable data label
+                                                                    dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                                                    color: Colors.green,
+                                                                    width: 5,
+                                                                    animationDuration: 2000,
+                                                                  )
+                                                                ]
+                                                            ),
+                                                          ),
+                                                          Column(
+                                                            mainAxisAlignment : MainAxisAlignment.center,
+                                                            children: [
+                                                              CircularPercentIndicator(
+                                                                circularStrokeCap: CircularStrokeCap.round,
+                                                                radius: 45.0,
+                                                                lineWidth: 10.0,
+                                                                percent: getStudentAttendancePersantage(snapshot.data!).present,
+                                                                center:  Text("${((getStudentAttendancePersantage(snapshot.data!).present)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                progressColor: Colors.green,
+                                                              ),
+                                                              Padding(
+                                                                padding: const EdgeInsets.all( 8.0),
+                                                                child:  ChoiceChip(
+                                                                  label: Text("${(getStudentAttendancePersantage(snapshot.data!).present * getStudentAttendancePersantage(snapshot.data!).total)} Present  ",style: TextStyle(color: Colors.white),),
+                                                                  onSelected: (bool selected) {
+                                                                    setState(() {
+
+                                                                    });
+                                                                  },
+                                                                  selectedColor: Colors.green,
+                                                                  shape: StadiumBorder(
+                                                                      side: BorderSide(
+                                                                          color: Color(0xff53B175))),
+                                                                  backgroundColor: Colors.white,
+                                                                  labelStyle: TextStyle(color: Colors.black),
+
+                                                                  elevation: 1.5, selected: true,),
+
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      height: 250,
+                                                      width: 780,
+                                                      child: Row(
+                                                        mainAxisAlignment : MainAxisAlignment.center,
+                                                        children: [
+                                                          Container(
+                                                            height: 250,
+                                                            width: 480,
+                                                            child: sfc.SfCartesianChart(
+                                                                primaryXAxis: sfc.CategoryAxis(),
+                                                                title: sfc.ChartTitle(
+                                                                    text: '   Monthly Absent Reports',
+                                                                    textStyle: GoogleFonts.poppins(
+                                                                      fontWeight: FontWeight.w600,
+                                                                      color: Colors.black,
+                                                                    ),
+                                                                    alignment: sfc.ChartAlignment.near
+                                                                ),
+                                                                legend: sfc.Legend(isVisible: true),
+                                                                tooltipBehavior: sfc.TooltipBehavior(enable: true),
+                                                                series: <sfc.LineSeries<SalesData, String>>[
+                                                                  sfc.LineSeries<SalesData, String>(
+                                                                    name: '',
+                                                                    dataSource: snapshot.data!.absentReport,
+                                                                    xValueMapper: (SalesData sales, _) => sales.year,
+                                                                    yValueMapper: (SalesData sales, _) => sales.sales,
+                                                                    // Enable data label
+                                                                    dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                                                    color: Colors.red,
+                                                                    width: 5,
+                                                                    animationDuration: 2000,
+                                                                  )
+                                                                ]
+                                                            ),
+                                                          ),
+                                                          Column(
+                                                            mainAxisAlignment : MainAxisAlignment.center,
+                                                            children: [
+                                                              CircularPercentIndicator(
+                                                                circularStrokeCap: CircularStrokeCap.round,
+                                                                radius: 45.0,
+                                                                lineWidth: 10.0,
+                                                                percent: getStudentAttendancePersantage(snapshot.data!).absent,
+                                                                center:  Text("${((getStudentAttendancePersantage(snapshot.data!).absent * 100).toInt())}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                progressColor: Colors.red,
+                                                              ),
+                                                              Padding(
+                                                                padding: const EdgeInsets.all( 8.0),
+                                                                child:  ChoiceChip(
+                                                                  label: Text("${(getStudentAttendancePersantage(snapshot.data!).absent * getStudentAttendancePersantage(snapshot.data!).total)} Absent  ",style: TextStyle(color: Colors.white),),
+                                                                  onSelected: (bool selected) {
+                                                                    setState(() {
+
+                                                                    });
+                                                                  },
+                                                                  selectedColor: Colors.red,
+                                                                  shape: StadiumBorder(
+                                                                      side: BorderSide(
+                                                                          color: Colors.red)),
+                                                                  backgroundColor: Colors.white,
+                                                                  labelStyle: TextStyle(color: Colors.black),
+
+                                                                  elevation: 1.5, selected: true,),
+
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 20),
+                                                    Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                          "Absent Days",
+                                                          style: TextStyle(
+                                                            fontWeight: FontWeight.w700,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 20),
+                                                        Container(
+                                                          height:300,
+                                                          child: ListView.builder(
+                                                            itemCount: snapshot.data!.absentDays.length,
+                                                            itemBuilder: (ctx, i){
+                                                              return Card(
+                                                                child: Padding(
+                                                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      SizedBox(
+                                                                        width: 50,
+                                                                        child: Text(
+                                                                          'Date : ',
+                                                                          style: TextStyle(
+                                                                            fontWeight: FontWeight.bold,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        "${snapshot.data!.absentDays[i]} / ${DateFormat('EEEE').format(DateFormat('dd-M-yyyy').parse(snapshot.data!.absentDays[i]))}",
+                                                                        style: const TextStyle(
+                                                                          fontWeight: FontWeight.normal,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },),
+                                                        )
+                                                      ],
+                                                    )
+                                                  ],
+                                                );
+                                              }return sfc.SfCartesianChart(
+                                                  primaryXAxis: sfc.CategoryAxis(),
+                                                  title: sfc.ChartTitle(
+                                                      text: '   Monthly Student Reports',
+                                                      textStyle: GoogleFonts.poppins(
+                                                        fontWeight: FontWeight.w600,
+                                                        color: Colors.black,
+                                                      ),
+                                                      alignment: sfc.ChartAlignment.near
+                                                  ),
+                                                  legend: sfc.Legend(isVisible: true),
+                                                  tooltipBehavior: sfc.TooltipBehavior(enable: true),
+                                                  series: <sfc.LineSeries<SalesData, String>>[
+                                                    sfc.LineSeries<SalesData, String>(
+                                                      name: "Students \nAttendance",
+                                                      dataSource: [],
+                                                      xValueMapper: (SalesData sales, _) => sales.year,
+                                                      yValueMapper: (SalesData sales, _) => sales.sales,
+                                                      // Enable data label
+                                                      dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                                      color: Colors.green,
+                                                      width: 5,
+                                                      animationDuration: 2000,
+                                                    )
+                                                  ]
+                                              );
+                                            },
+                                          )
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],)
+                    ],),
+                );
+            },
+          ),
+        )
+    )
+        : SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -224,8 +755,6 @@ class _StaffAttendenceState extends State<StaffAttendence> {
               Container(
                   width: 450,
                   child: SfCartesianChart(
-
-
                       primaryXAxis: CategoryAxis(),
                       // Chart title
                       title: ChartTitle(text: '       Monthly Staff Reports',textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Colors.black),alignment: ChartAlignment.near),
@@ -638,15 +1167,23 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                         }
                                                       )),
                                                 ),
-                                               /* Padding(
+                                                Padding(
                                                   padding: const EdgeInsets.only(left: 0.0,right: 0.0),
-                                                  child: Container(
+                                                  child: InkWell(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        selectedStaffId = value.id;
+                                                        staffDetailView = true;
+                                                      });
+                                                    },
+                                                    child: Container(
 
-                                                      width: width/13.66,
-                                                      child: Text("View Staff",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff00A0E3)),)),
+                                                        width: width/13.66,
+                                                        child: Text("View Staff",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff00A0E3)),)),
+                                                  ),
                                                 ),
 
-                                                */
+
                                               ],
                                             ),
 
@@ -815,6 +1352,163 @@ class _StaffAttendenceState extends State<StaffAttendence> {
     );
   }
 
+  Future<StaffAttendanceReportModel> getMonthlyAttendanceReportForStaff(String id) async {
+    var snapshot = await FirebaseFirestore.instance.collection("Staff_attendance").get();//.doc(id).collection('Attendance').get();
+    List<SalesData> attendanceData = [];
+    List<SalesData> attendanceData1 = [];
+    List<SalesData> absentData = [];
+    List<SalesData> absentData1 = [];
+    List<String> presentDays = [];
+    List<String> absentDays = [];
+    snapshot.docs.forEach((date) async {
+      print("------------------------------------- ${date.id} -----------------------------");
+      int presentCount = 0;
+      int absentCount = 0;
+      var staff = await FirebaseFirestore.instance.collection('Staff_attendance').doc(date.id).collection('Staffs').doc(id).get();
+        if(staff.get("Staffattendance") == true){
+          presentCount++;
+          print("-------------------------------------${date.id} -----------------------------");
+          DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
+          String month = await getMonthForData(startDate.month);
+          SalesData sale = SalesData(month, presentCount.toDouble(),'',DateFormat("MMM yyyy").format(startDate));
+          attendanceData.add(sale);
+        }
+        if(staff.get("Staffattendance") == false){
+          absentCount++;
+          DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
+          String month = await getMonthForData(startDate.month);
+          SalesData sale = SalesData(month, absentCount.toDouble(),DateFormat("MMM yyyy").format(startDate),'');
+          absentData.add(sale);
+        }
+    });
+    await Future.delayed(Duration(seconds: 10));
+
+    attendanceData.forEach((element) {
+      presentDays.add(element.presentDay);
+    });
+    absentData.forEach((element) {
+      absentDays.add(element.absentDay);
+    });
+    attendanceData1.add(SalesData('June',attendanceData.where((element) => element.year == 'June').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('July',attendanceData.where((element) => element.year == 'July').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Aug',attendanceData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Sep',attendanceData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Oct',attendanceData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Nov',attendanceData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Dec',attendanceData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Jan',attendanceData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Feb',attendanceData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Mar',attendanceData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Apr',attendanceData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+
+
+
+    absentData1.add(SalesData('June',absentData.where((element) => element.year == 'June').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('July',absentData.where((element) => element.year == 'July').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Aug',absentData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Sep',absentData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Oct',absentData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Nov',absentData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Dec',absentData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Jan',absentData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Feb',absentData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Mar',absentData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Apr',absentData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+    StaffAttendanceReportModel studentReport = StaffAttendanceReportModel(
+      absentReport: absentData1,
+      presentReport: attendanceData1,
+      absentDays: absentDays,
+      presentDays: presentDays,
+    );
+    return studentReport;
+  }
+
+  getMonthForData(int month){
+    String result = '';
+    switch(month){
+      case 1:
+        result = 'Jan';
+        break;
+      case 2:
+        result = 'Feb';
+        break;
+      case 3:
+        result = 'Mar';
+        break;
+      case 4:
+        result = 'Apr';
+        break;
+      case 5:
+        result = 'May';
+        break;
+      case 6:
+        result = 'June';
+        break;
+      case 7:
+        result = 'July';
+        break;
+      case 8:
+        result = 'Aug';
+        break;
+      case 9:
+        result = 'Sep';
+        break;
+      case 10:
+        result = 'Oct';
+        break;
+      case 11:
+        result = 'Nov';
+        break;
+      case 12:
+        result = 'Dec';
+        break;
+
+    }
+    return result;
+  }
+
+
+
+  StaffAttendancePercentage getStudentAttendancePersantage(StaffAttendanceReportModel report){
+    double presentPersantage = 0.0;
+    double absentPersantage = 0.0;
+    double totalPersantage = 0.0;
+    report.presentReport.forEach((element) {
+      presentPersantage = presentPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    report.absentReport.forEach((element) {
+      absentPersantage = absentPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    StaffAttendancePercentage percentage = StaffAttendancePercentage(
+        present: (presentPersantage/totalPersantage),
+        absent: (absentPersantage/totalPersantage),
+        total: totalPersantage
+    );
+    return percentage;
+  }
+
 
   getstudents() async {
 
@@ -830,4 +1524,29 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
 
   }
+}
+
+
+
+class StaffAttendanceReportModel {
+  StaffAttendanceReportModel({required this.presentReport,required this.absentReport,required this.presentDays, required this.absentDays});
+
+  List<SalesData> presentReport;
+  List<SalesData> absentReport;
+  List<String> presentDays;
+  List<String> absentDays;
+}
+
+class StaffAttendancePercentage{
+  StaffAttendancePercentage({required this.present, required this.absent, required this.total});
+  double present;
+  double absent;
+  double total;
+}
+
+class ClassAttendancePercentage{
+  ClassAttendancePercentage({required this.regular, required this.irregular, required this.total});
+  double regular;
+  double irregular;
+  double total;
 }

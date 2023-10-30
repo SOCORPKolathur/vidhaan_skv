@@ -1746,7 +1746,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                     children: [
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                                        child: Text("${(index+1).toString().padLeft(3,"0")}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 8.0,right: 8.0),

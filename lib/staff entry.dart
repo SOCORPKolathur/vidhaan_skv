@@ -344,7 +344,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Entry Date * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Joining Date * :",style: GoogleFonts.poppins(fontSize: 15,)),
                                         )),
                                   ),
                                   Padding(
@@ -1678,9 +1678,6 @@ class _StaffEntryState extends State<StaffEntry> {
       title: 'Staff Added Successfully',
       desc: 'Staff - ${stnamefirst.text} is been added',
 
-      btnCancelOnPress: () {
-
-      },
 
       btnOkText: "Ok",
       btnOkOnPress: () {

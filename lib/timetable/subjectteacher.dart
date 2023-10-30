@@ -528,7 +528,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                               ),
                             ),
                           ),
-                          InkWell(
+                       /*   InkWell(
                             onTap: (){
 
                             },
@@ -556,7 +556,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
 
                               ),
                             ),
-                          ),
+                          ),*/
 
 
                         ],
@@ -747,6 +747,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                             });
 
                       }),
+                  SizedBox(height: height/2,)
                 ],
               ),
 

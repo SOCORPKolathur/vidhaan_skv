@@ -295,7 +295,7 @@ class _AccountpageState extends State<Accountpage> {
                                 Container(
                                   width: 130,
                                   child: Text(
-                                    'Status',
+                                    'Received By',
                                     style: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -401,17 +401,11 @@ class _AccountpageState extends State<Accountpage> {
                                         SizedBox(
                                           width: 100,
                                           child: Text(
-                                            snap.data!.docs[i]['status'],
+                                            snap.data!.docs[i]['receivedBy'],
                                             style: GoogleFonts.mulish(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 15,
-                                                color: snap.data!
-                                                            .docs[i]['status']
-                                                            .toString()
-                                                            .toLowerCase() ==
-                                                        "completed"
-                                                    ? Color(0xff53B175)
-                                                    : Colors.red),
+                                            ),
                                           ),
                                         ),
                                         Padding(
@@ -639,7 +633,7 @@ class _AccountpageState extends State<Accountpage> {
                     Container(
                       width: 130,
                       child: Text(
-                        'Status',
+                        'Received By',
                         style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
@@ -668,120 +662,117 @@ class _AccountpageState extends State<Accountpage> {
                     ),
                   ],
                 ),
-                Container(
-                  height: 330,
-                  child: ListView.builder(
-                    itemCount: docs.length,
-                    itemBuilder: (ctx, i) {
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding:
-                              const EdgeInsets.only(left: 28.0),
-                              child: Container(
-                                child: docs[i]['type']
-                                    .toString()
-                                    .toLowerCase() ==
-                                    "credit"
-                                    ? Image.asset(
-                                    "assets/Group 4.png")
-                                    : Image.asset(
-                                    "assets/Group 3.png"),
-                                color: Color(0xffFFFFFF),
-                                width: width / 34.15,
-                                height: height / 16.425,
+                Expanded(
+                  child: Container(
+                    //height: 330,
+                    child: ListView.builder(
+                      itemCount: docs.length,
+                      itemBuilder: (ctx, i) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding:
+                                const EdgeInsets.only(left: 28.0),
+                                child: Container(
+                                  child: docs[i]['type']
+                                      .toString()
+                                      .toLowerCase() ==
+                                      "credit"
+                                      ? Image.asset(
+                                      "assets/Group 4.png")
+                                      : Image.asset(
+                                      "assets/Group 3.png"),
+                                  color: Color(0xffFFFFFF),
+                                  width: width / 34.15,
+                                  height: height / 16.425,
+                                ),
                               ),
-                            ),
-                            Container(
-                              width: 160,
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, top: 7),
-                                    child: Text(
-                                      docs[i]['title'],
-                                      style: GoogleFonts.mulish(
-                                          fontWeight:
-                                          FontWeight.bold,
-                                          fontSize: 16),
+                              Container(
+                                width: 160,
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8.0, top: 7),
+                                      child: Text(
+                                        docs[i]['title'],
+                                        style: GoogleFonts.mulish(
+                                            fontWeight:
+                                            FontWeight.bold,
+                                            fontSize: 16),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 20.0, left: 8),
-                                    child: Text(
-                                      docs[i]['payee'],
-                                      style: GoogleFonts.mulish(
-                                          fontWeight:
-                                          FontWeight.bold,
-                                          fontSize: 13,
-                                          color: Color(0xffA29EBC)),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 20.0, left: 8),
+                                      child: Text(
+                                        docs[i]['payee'],
+                                        style: GoogleFonts.mulish(
+                                            fontWeight:
+                                            FontWeight.bold,
+                                            fontSize: 13,
+                                            color: Color(0xffA29EBC)),
+                                      ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: 200,
+                                child: Text(
+                                  "RS ${docs[i]['amount']}",
+                                  style: GoogleFonts.mulish(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: docs[i]['type']
+                                          .toString()
+                                          .toLowerCase() ==
+                                          "credit"
+                                          ? Color(0xff53B175)
+                                          : Colors.red),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 100,
+                                child: Text(
+                                  docs[i]['receivedBy'],
+                                  style: GoogleFonts.mulish(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              width: 200,
-                              child: Text(
-                                "RS ${docs[i]['amount']}",
-                                style: GoogleFonts.mulish(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: docs[i]['type']
-                                        .toString()
-                                        .toLowerCase() ==
-                                        "credit"
-                                        ? Color(0xff53B175)
-                                        : Colors.red),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 100.0),
+                                child: Text(
+                                  docs[i]['date'],
+                                  style: GoogleFonts.mulish(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.black),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 100,
-                              child: Text(
-                                docs[i]['status'],
-                                style: GoogleFonts.mulish(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: docs[i]['status']
-                                        .toString()
-                                        .toLowerCase() ==
-                                        "completed"
-                                        ? Color(0xff53B175)
-                                        : Colors.red),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 100.0),
+                                child: Text(
+                                  docs[i]['time'],
+                                  style: GoogleFonts.mulish(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.black),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 100.0),
-                              child: Text(
-                                docs[i]['date'],
-                                style: GoogleFonts.mulish(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: Colors.black),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 100.0),
-                              child: Text(
-                                docs[i]['time'],
-                                style: GoogleFonts.mulish(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 // Row(

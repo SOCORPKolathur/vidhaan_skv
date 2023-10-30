@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class Desigination extends StatefulWidget {
   const Desigination({Key? key}) : super(key: key);
@@ -70,7 +71,7 @@ class _DesiginationState extends State<Desigination> {
     // TODO: implement initState
     super.initState();
   }
-
+  final deletecheck4 = List<bool>.generate(1000, (int index) => false, growable: true);
 
   @override
   Widget build(BuildContext context) {
@@ -227,26 +228,51 @@ class _DesiginationState extends State<Desigination> {
                                 var value = snapshot.data!.docs[index];
                                 return  Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    height: height/21.9,
-                                    width: width/1.241,
+                                  child: MouseRegion(
+                                    onEnter: (_){
+                                      setState(() {
+                                        deletecheck4[index]=true;
+                                      });
+                                    },
+                                    onExit: (_){
+                                      setState(() {
+                                        deletecheck4[index]=false;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: height/21.9,
+                                      width: width/1.241,
 
-                                    decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+                                      decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
+
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 30.0,right: 70.0),
+                                            child: Text("${(index+1).toString().padLeft(3,"0")}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                            child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          ),
+                                          deletecheck4[index]==true?     InkWell(
+                                            onTap: (){
+                                              deletestudent("DesignationMaster",value.id);
+                                            },
+                                            child: Padding(
+                                                padding:
+                                                const EdgeInsets.only(left: 15.0),
+                                                child: Container(
+                                                    width: 30,
+
+                                                    child: Image.asset("assets/delete.png"))
+                                            ),
+                                          ) : Container()
+                                        ],
+                                      ),
 
                                     ),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                          child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                          child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                        ),
-                                      ],
-                                    ),
-
                                   ),
                                 );
                               });
@@ -262,6 +288,84 @@ class _DesiginationState extends State<Desigination> {
           )
         ],
       ),
+    );
+  }
+  Future<void> deletestudent(coll,id) async {
+    return showDialog<void>(
+      context: context,
+
+      builder: (BuildContext context) {
+
+        double width=MediaQuery.of(context).size.width;
+        double height=MediaQuery.of(context).size.height;
+        return StatefulBuilder(
+            builder: (context,setState) {
+              return AlertDialog(
+                title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
+                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                content:  Container(
+                    width: 350,
+                    height: 250,
+
+                    child: Lottie.asset("assets/delete file.json")),
+                //child:  Lottie.asset("assets/file choosing.json")),
+                actions: <Widget>[
+                  InkWell(
+                    onTap: (){
+                      Navigator.of(context).pop();
+                    },
+                    child: Material(
+                      borderRadius: BorderRadius.circular(5),
+                      elevation: 7,
+                      child: Container(child: Center(child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(Icons.cancel,color: Colors.white,),
+                          ),
+                          Text("Cancel",style: GoogleFonts.poppins(color:Colors.white),),
+                        ],
+                      )),
+                        width: width/10.507,
+                        height: height/20.425,
+                        // color:Color(0xff00A0E3),
+                        decoration: BoxDecoration(color:  Colors.red,borderRadius: BorderRadius.circular(5)),
+
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: (){
+                      FirebaseFirestore.instance.collection(coll).doc(id).delete();
+                      getorderno();
+                      Navigator.of(context).pop();
+
+                    },
+
+                    child: Material(
+                      borderRadius: BorderRadius.circular(5),
+                      elevation: 7,
+                      child: Container(child: Center(child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          Text("Ok",style: GoogleFonts.poppins(color:Colors.white),),
+                        ],
+                      )),
+                        width: width/10.507,
+                        height: height/20.425,
+                        // color:Color(0xff00A0E3),
+                        decoration: BoxDecoration(color:  Colors.green,borderRadius: BorderRadius.circular(5)),
+
+                      ),
+                    ),
+                  )
+                ],
+              );
+            }
+        );
+      },
     );
   }
 }

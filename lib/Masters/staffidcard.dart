@@ -3924,6 +3924,7 @@ class _StaffIDState extends State<StaffID> {
                     onTap: (){
                       setState(() {
                         staffregno="";
+                        _typeAheadControllerstaffid.clear();
                       });
                     },
                     child: Container(child: Center(child: Text("Clear Search",style: GoogleFonts.poppins(color:Colors.white),)),

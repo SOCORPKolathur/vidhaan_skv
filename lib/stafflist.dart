@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:show_up_animation/show_up_animation.dart';
+import 'package:vidhaan/photoview.dart';
 import 'package:vidhaan/staffentryedit.dart';
+import 'package:vidhaan/studententryedit.dart';
 
 class StaffList extends StatefulWidget {
   const StaffList({Key? key}) : super(key: key);
@@ -516,7 +518,8 @@ class _StaffListState extends State<StaffList> {
           ),
         ],
       ),
-    ) :  SingleChildScrollView(
+    ) :
+    SingleChildScrollView(
       child: ShowUpAnimation(
         curve: Curves.fastOutSlowIn,
         direction: Direction.horizontal,
@@ -556,7 +559,9 @@ class _StaffListState extends State<StaffList> {
                                 SizedBox(height:height/30,),
                                 GestureDetector(
                                   onTap: (){
-                                    print(width);
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context)=>Photoviewpage(value['imgurl']))
+                                    );
                                   },
                                   child: CircleAvatar(
                                     radius: width/26.6666,
@@ -568,7 +573,7 @@ class _StaffListState extends State<StaffList> {
 
                                 SizedBox(height:height/52.15,),
                                 Center(
-                                  child:Text('${value!['stname']}',style: GoogleFonts.montserrat(
+                                  child:Text('${value["stname"]} ${value["stlastname"]}',style: GoogleFonts.montserrat(
                                       fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                   ),),
                                 ),
@@ -607,10 +612,9 @@ class _StaffListState extends State<StaffList> {
                                 SizedBox(height:height/52.15),
                                 value["incharge"]!="" ? Divider() :Container(),
                                 value["incharge"]!="" ?  Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(height:height/20.86),
-                                    SizedBox(width:width/62.2),
+
                                     Text('In Charge Class',style: GoogleFonts.montserrat(
                                         fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                     ),),
@@ -618,8 +622,9 @@ class _StaffListState extends State<StaffList> {
                                 ):Container(),
                                 value["incharge"]!="" ?  SizedBox(height: height/65.7,):Container(),
                                 value["incharge"]!="" ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(width:width/62.2),
+
                                     Material(
                                       elevation: 7,
                                       borderRadius: BorderRadius.circular(12),
@@ -799,9 +804,10 @@ class _StaffListState extends State<StaffList> {
                                     children: [
                                       InkWell(
                                         onTap: (){
-                                          setState(() {
-                                            view1=3;
-                                          });
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(builder: (context)=>StaffEdit(studentid))
+                                          );
+
 
                                         },
                                         child: Padding(
@@ -1160,7 +1166,7 @@ class _StaffListState extends State<StaffList> {
                                             ),
                                             SizedBox(height:height/30,),
 
-                                            Container(
+                                          /*  Container(
                                               child: Row(
                                                 children: [
                                                   Column(
@@ -1202,7 +1208,7 @@ class _StaffListState extends State<StaffList> {
                                                       ),),
                                                     ],),
                                                 ],),
-                                            ),
+                                            ),*/
                                           ],
                                         ),
 

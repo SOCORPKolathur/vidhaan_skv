@@ -11,6 +11,8 @@ import 'package:pdf/widgets.dart' as p;
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:vidhaan/demopdf.dart';
+import 'package:get/get.dart';
+import 'package:vidhaan/modules/home/controllers/home_controller.dart';
 
 import '../print/fees_print.dart';
 
@@ -28,10 +30,13 @@ class _FeesRegState extends State<FeesReg> {
   String schoolphone="";
   String schoollogo="";
 
+  final homecontroller = Get.put(HomeController());
 
   String? _selectedCity;
   final TextEditingController _typeAheadControllerregno = TextEditingController();
   final TextEditingController _typeAheadControllerstudent = TextEditingController();
+  final TextEditingController payAmount = TextEditingController();
+  final TextEditingController balanceAmount = TextEditingController();
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
   static final List<String> regno = [];
   static final List<String> student = [];
@@ -167,14 +172,48 @@ class _FeesRegState extends State<FeesReg> {
     // TODO: implement initState
     super.initState();
   }
-  String studentid="";
-  updatefees(){
-  FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(feesid).update({
 
-    "status":true,
-    "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
-    "time": "${DateTime.now().hour}:${DateTime.now().minute}",
-    "timestamp": DateTime.now().microsecondsSinceEpoch,
+  String studentid="";
+  updatefees({required String feesAmount,required String feesName, required String payAmount, required String balanceAmount}){
+  if(double.parse(balanceAmount.toString()) == 0.0){
+    FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(feesid).update({
+      "status":true,
+      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "timestamp": DateTime.now().microsecondsSinceEpoch,
+    });
+  }else{
+    FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(feesid).update({
+      "payedamount": double.parse(feesAmount.toString()) - double.parse(payAmount),
+      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "timestamp": DateTime.now().microsecondsSinceEpoch,
+    });
+  }
+  if(double.parse(balanceAmount.toString()) == 0.0){
+    FirebaseFirestore.instance.collection("FeesCollection").doc("$studentid:$feesid").update({
+      "status":true,
+      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "timestamp": DateTime.now().microsecondsSinceEpoch,
+    });
+  }else{
+    FirebaseFirestore.instance.collection("FeesCollection").doc("$studentid:$feesid").update({
+      "payedamount": double.parse(feesAmount.toString()) - double.parse(payAmount),
+      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "timestamp": DateTime.now().microsecondsSinceEpoch,
+    });
+  }
+  FirebaseFirestore.instance.collection('Accounts').doc().set({
+    "amount" : payAmount,
+    "date" : "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
+    "payee" : feesName,
+    "receivedBy" : "Admin",
+    "time" : DateFormat('hh:mm aa').format(DateTime.now()),
+    "timestamp" : DateTime.now().millisecondsSinceEpoch,
+    "title" : "Fees Received",
+    "type" : "credit",
   });
 }
   Successdialog(){
@@ -576,7 +615,6 @@ class _FeesRegState extends State<FeesReg> {
                                         SizedBox(width:width/62.2,),
                                         Column(
                                           children: [
-
                                             Material(
                                               elevation: 15,
                                               borderRadius: BorderRadius.circular(15 ),
@@ -589,320 +627,436 @@ class _FeesRegState extends State<FeesReg> {
                                                 height:  height/1.600,
                                                 child: Padding(
                                                   padding: EdgeInsets.only(left:width/62.2,right:width/62.2),
-                                                  child: Column(
-                                                    children: [
-                                                      SizedBox(height:height/30,),
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                        children: [
-                                                          Container(
-                                                            width:130,
-                                                            child: Row(
-                                                              children: [
-                                                                Text('Select Fees',style: GoogleFonts.montserrat(
-                                                                    fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                                ),),
-
-                                                                InkWell(
-                                                                  onTap: (){
-                                                                    feesdrop();
-                                                                  },
-                                                                  child: Padding(
-                                                                    padding: const EdgeInsets.only(left: 4.0),
-                                                                    child: Icon(Icons.refresh),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding: const EdgeInsets.only(left: 50.0,right: 25),
-                                                            child: Container(width: width/4.83,
-                                                              height: height/16.42,
-                                                              //color: Color(0xffDDDEEE),
-                                                              decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                                              child:
-
-                                                              TypeAheadFormField(
-
-                                                                suggestionsBoxDecoration: const SuggestionsBoxDecoration(
-                                                                    color: Color(0xffDDDEEE),
-                                                                    borderRadius: BorderRadius.only(
-                                                                      bottomLeft: Radius.circular(5),
-                                                                      bottomRight: Radius.circular(5),
-                                                                    )
-                                                                ),
-
-                                                                textFieldConfiguration: TextFieldConfiguration(
-                                                                  style:  GoogleFonts.poppins(
-                                                                      fontSize: 15
-                                                                  ),
-                                                                  decoration: const InputDecoration(
-                                                                    contentPadding: EdgeInsets.only(left: 10,bottom: 8),
-                                                                    border: InputBorder.none,
-                                                                  ),
-                                                                  controller: this._typeAheadControllerfees,
-                                                                ),
-                                                                suggestionsCallback: (pattern) {
-                                                                  return getSuggestionsfees(pattern);
-                                                                },
-                                                                itemBuilder: (context, String suggestion) {
-                                                                  return ListTile(
-                                                                    title: Text(suggestion),
-                                                                  );
-                                                                },
-
-                                                                transitionBuilder: (context, suggestionsBox, controller) {
-                                                                  return suggestionsBox;
-                                                                },
-                                                                onSuggestionSelected: (String suggestion) {
-                                                                  this._typeAheadControllerfees.text = suggestion;
-                                                                  getfeesid();
-
-                                                                },
-                                                                suggestionsBoxController: suggestionBoxController,
-                                                                validator: (value) =>
-                                                                value!.isEmpty ? 'Please select a fees': null,
-                                                                onSaved: (value) => this._selectedCity = value,
-                                                              ),
-
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(height:height/27,),
-                                                      feesid!=""?    FutureBuilder<dynamic>(
-                                                          future: FirebaseFirestore.instance.collection('Students').doc(studentid).collection("Fees").doc(feesid).get(),
-                                                          builder: (context, snapshot) {
-                                                            if (snapshot.hasData == null) {
-                                                              return Container(
-                                                                  width: width / 17.075,
-                                                                  height: height / 8.212,
-                                                                  child: Center(child: CircularProgressIndicator(),));
-                                                            }
-                                                            Map<String, dynamic>?value2 = snapshot.data!.data();
-                                                            return Column(
-                                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                                              children: [
-                                                                Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                                  children: [
-                                                                    Container(
-                                                                      width:130,
-
-                                                                      child: Text('Fees Name',style: GoogleFonts.montserrat(
-                                                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                                      ),),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: const EdgeInsets.only(left: 50.0,right: 25),
-                                                                      child: Container(width: width/4.83,
-                                                                        height: height/16.42,
-                                                                        //color: Color(0xffDDDEEE),
-                                                                        decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                                                        child: Padding(
-                                                                          padding: const EdgeInsets.all(8.0),
-                                                                          child: Text(value2!["feesname"],style: GoogleFonts.montserrat(
-                                                                              fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/85.13
-                                                                          ),),
-                                                                        )
-
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                SizedBox(height:height/37,),
-                                                                Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                                  children: [
-                                                                    Container(
-                                                                      width:130,
-                                                                      child: Text('Fees Amount',style: GoogleFonts.montserrat(
-                                                                          fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                                      ),),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: const EdgeInsets.only(left: 50.0,right: 25),
-                                                                      child: Container(width: width/4.83,
-                                                                        height: height/16.42,
-                                                                        //color: Color(0xffDDDEEE),
-                                                                        decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                                                        child: Padding(
-                                                                          padding: const EdgeInsets.all(8.0),
-                                                                          child: Text(value2["amount"].toString(),style: GoogleFonts.montserrat(
-                                                                              fontWeight:FontWeight.w600,color: Colors.red,fontSize:width/85.13
-                                                                          ),),
-                                                                        )
-
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                SizedBox(height:height/25,),
-
-                                                                Row(
-                                                                  children: [
-                                                                    GestureDetector(
-                                                                      onTap: (){
-                                                                        updatefees();
-                                                                        Successdialog();
-                                                                      },
-                                                                      child: Padding(
-                                                                        padding: const EdgeInsets.all(8.0),
-                                                                        child: Container(child: Center(child: Text("Payment Received",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
-                                                                          width: width/5.464,
-                                                                          height: height/16.425,
-                                                                          // color:Color(0xff00A0E3),
-                                                                          decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
-
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    SizedBox(width:20),
-                                                                    GestureDetector(
-                                                                      onTap: () async {
-                                                                        StudentFeesPdfModel feesDetails = StudentFeesPdfModel(
-                                                                          date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
-                                                                          time: DateFormat('hh:mm aa').format(DateTime.now()),
-                                                                          amount: value2["amount"].toString(),
-                                                                          feesName: value2["feesname"].toString(),
-                                                                          schoolAdderss: schooladdress,
-                                                                          schoolName: schoolname,
-                                                                          schoolLogo: schoollogo,
-                                                                          schoolPhone: schoolphone,
-                                                                          studentAddress: value['address'].toString(),
-                                                                          studentName: value['stname'].toString(),
-                                                                        );
-                                                                        setState(() {
-                                                                          isloading = true;
-                                                                        });
-                                                                        await generateInvoice(PdfPageFormat.a4,feesDetails);
-                                                                        setState(() {
-                                                                          isloading = false;
-                                                                        });
-                                                                        },
-                                                                      child: Padding(
-                                                                        padding: const EdgeInsets.all(8.0),
-                                                                        child: Container(child: Center(child: Text("Print Receipt",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
-                                                                          width: width/5.464,
-                                                                          height: height/16.425,
-                                                                          // color:Color(0xff00A0E3),
-                                                                          decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                            ],);
-                                                          }
-                                                      ) : Container(),
-
-                                                      Row(
-                                                        children: [
-                                                          Container(
-
-                                                            child: Text('Previous Payments,',style: GoogleFonts.montserrat(
-                                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                            ),),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(height: 15,),
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                        children: [
-                                                          Container(
-                                                            width:130,
-                                                            child: Text('Fees Name',style: GoogleFonts.montserrat(
-                                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                            ),),
-                                                          ),
-                                                          Container(
-                                                            width:130,
-                                                            child: Text('Amount',style: GoogleFonts.montserrat(
-                                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                            ),),
-                                                          ),
-                                                          Container(
-                                                            width:130,
-                                                            child: Text('Status',style: GoogleFonts.montserrat(
-                                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                            ),),
-                                                          ),
-                                                          Container(
-                                                            width:130,
-                                                            child: Text('Date',style: GoogleFonts.montserrat(
-                                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                            ),),
-                                                          ),
-                                                          Container(
-                                                            width:130,
-                                                            child: Text('Time',style: GoogleFonts.montserrat(
-                                                                fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                                            ),),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsets.all(8.0),
-                                                        child: Divider(),
-                                                      ),
-                                                      StreamBuilder(
-                                                          stream: FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").orderBy("timestamp").snapshots(),
-                                                          builder: (context,snapshot){
-                                                            return ListView.builder(
-                                                              shrinkWrap: true,
-                                                                physics: NeverScrollableScrollPhysics(),
-                                                                itemCount: snapshot.data!.docs.length,
-                                                                itemBuilder: (context,index){
-
-                                                              return
-                                                                snapshot.data!.docs[index]["status"]==true?
-                                                                Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  child: SingleChildScrollView(
+                                                    child: Column(
+                                                      children: [
+                                                        SizedBox(height:height/30,),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                          children: [
+                                                            Container(
+                                                              width:130,
+                                                              child: Row(
                                                                 children: [
-                                                                  Container(
-                                                                    width:130,
-                                                                    child: Text(snapshot.data!.docs[index]["feesname"],style: GoogleFonts.montserrat(
-                                                                        fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
-                                                                    ),),
-                                                                  ),
-                                                                  Container(
-                                                                    width:130,
-                                                                    child: Text(snapshot.data!.docs[index]["amount"].toString(),style: GoogleFonts.montserrat(
-                                                                        fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
-                                                                    ),),
-                                                                  ),
-                                                                  Container(
-                                                                    width:130,
-                                                                    child: Text(snapshot.data!.docs[index]["status"]==true?"Paid": "Unpaid",style: GoogleFonts.montserrat(
-                                                                        fontWeight:FontWeight.bold,color:snapshot.data!.docs[index]["status"]==true? Color(0xff53B175):Colors.red,fontSize:width/91.13
-                                                                    ),),
-                                                                  ),
-                                                                  Container(
-                                                                    width:130,
-                                                                    child: Text(snapshot.data!.docs[index]["date"],style: GoogleFonts.montserrat(
-                                                                        fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
-                                                                    ),),
-                                                                  ),
-                                                                  Container(
-                                                                    width:130,
-                                                                    child: Text(snapshot.data!.docs[index]["time"],style: GoogleFonts.montserrat(
-                                                                        fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
-                                                                    ),),
-                                                                  ),
+                                                                  Text('Select Fees',style: GoogleFonts.montserrat(
+                                                                      fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                                  ),),
+
+                                                                  InkWell(
+                                                                    onTap: (){
+                                                                      feesdrop();
+                                                                    },
+                                                                    child: Padding(
+                                                                      padding: const EdgeInsets.only(left: 4.0),
+                                                                      child: Icon(Icons.refresh),
+                                                                    ),
+                                                                  )
                                                                 ],
-                                                              )  : Container();
-                                                            });
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                              child: Container(width: width/4.83,
+                                                                height: height/16.42,
+                                                                //color: Color(0xffDDDEEE),
+                                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
-                                                      })
+                                                                child:
+
+                                                                TypeAheadFormField(
+
+                                                                  suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                                                                      color: Color(0xffDDDEEE),
+                                                                      borderRadius: BorderRadius.only(
+                                                                        bottomLeft: Radius.circular(5),
+                                                                        bottomRight: Radius.circular(5),
+                                                                      )
+                                                                  ),
+
+                                                                  textFieldConfiguration: TextFieldConfiguration(
+                                                                    style:  GoogleFonts.poppins(
+                                                                        fontSize: 15
+                                                                    ),
+                                                                    decoration: const InputDecoration(
+                                                                      contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                                                      border: InputBorder.none,
+                                                                    ),
+                                                                    controller: this._typeAheadControllerfees,
+                                                                  ),
+                                                                  suggestionsCallback: (pattern) {
+                                                                    return getSuggestionsfees(pattern);
+                                                                  },
+                                                                  itemBuilder: (context, String suggestion) {
+                                                                    return ListTile(
+                                                                      title: Text(suggestion),
+                                                                    );
+                                                                  },
+
+                                                                  transitionBuilder: (context, suggestionsBox, controller) {
+                                                                    return suggestionsBox;
+                                                                  },
+                                                                  onSuggestionSelected: (String suggestion) {
+                                                                    this._typeAheadControllerfees.text = suggestion;
+                                                                    getfeesid();
+
+                                                                  },
+                                                                  suggestionsBoxController: suggestionBoxController,
+                                                                  validator: (value) =>
+                                                                  value!.isEmpty ? 'Please select a fees': null,
+                                                                  onSaved: (value) => this._selectedCity = value,
+                                                                ),
+
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(height:height/27,),
+                                                        feesid!=""?    FutureBuilder<dynamic>(
+                                                            future: FirebaseFirestore.instance.collection('Students').doc(studentid).collection("Fees").doc(feesid).get(),
+                                                            builder: (context, snapshot) {
+                                                              if (snapshot.hasData == null) {
+                                                                return Container(
+                                                                    width: width / 17.075,
+                                                                    height: height / 8.212,
+                                                                    child: Center(child: CircularProgressIndicator(),));
+                                                              }
+                                                              Map<String, dynamic>?value2 = snapshot.data!.data();
+                                                              return Column(
+                                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                                children: [
+                                                                  Row(
+                                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:130,
+
+                                                                        child: Text('Fees Name',style: GoogleFonts.montserrat(
+                                                                            fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                                        ),),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                        child: Container(width: width/4.83,
+                                                                          height: height/16.42,
+                                                                          //color: Color(0xffDDDEEE),
+                                                                          decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                                                          child: Padding(
+                                                                            padding: const EdgeInsets.all(8.0),
+                                                                            child: Text(value2!["feesname"],style: GoogleFonts.montserrat(
+                                                                                fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/85.13
+                                                                            ),),
+                                                                          )
+
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  SizedBox(height:height/37,),
+                                                                  Row(
+                                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:130,
+                                                                        child: Text('Fees Amount',style: GoogleFonts.montserrat(
+                                                                            fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                                        ),),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                        child: Container(width: width/4.83,
+                                                                          height: height/16.42,
+                                                                          //color: Color(0xffDDDEEE),
+                                                                          decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                                                          child: Padding(
+                                                                            padding: const EdgeInsets.all(8.0),
+                                                                            child: Text(
+                                                                              value2["amount"].toString(),
+                                                                              style: GoogleFonts.montserrat(
+                                                                                fontWeight:FontWeight.w600,color: Colors.red,fontSize:width/85.13
+                                                                            ),),
+                                                                          )
+
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  SizedBox(height:height/37,),
+                                                                  Visibility(
+                                                                    visible: double.parse(value2["payedamount"].toString()) != 0.0,
+                                                                    child: Row(
+                                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                                      children: [
+                                                                        Container(
+                                                                          width:130,
+                                                                          child: Text('Altready Payed Amount',style: GoogleFonts.montserrat(
+                                                                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                                          ),),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                          child: Container(width: width/4.83,
+                                                                              height: height/16.42,
+                                                                              //color: Color(0xffDDDEEE),
+                                                                              decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsets.all(8.0),
+                                                                                child: Text(
+                                                                                  value2["payedamount"].toString(),
+                                                                                  style: GoogleFonts.montserrat(
+                                                                                      fontWeight:FontWeight.w600,color: Colors.red,fontSize:width/85.13
+                                                                                  ),),
+                                                                              )
+
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(height:height/37,),
+                                                                  Row(
+                                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:130,
+                                                                        child: Text('Payment',style: GoogleFonts.montserrat(
+                                                                            fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                                        ),),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                        child: Container(width: width/4.83,
+                                                                            height: height/16.42,
+                                                                            //color: Color(0xffDDDEEE),
+                                                                            decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                                                            child: Padding(
+                                                                              padding: const EdgeInsets.all(8.0),
+                                                                              child: TextFormField(
+                                                                                onChanged: (val){
+                                                                                  setState(() {
+                                                                                    balanceAmount.text = (double.parse(value2["amount"].toString())-double.parse(value2["payedamount"].toString()) - double.parse(val.toString())).toString();
+                                                                                  });
+                                                                                },
+                                                                                controller: payAmount,
+                                                                                decoration: InputDecoration(
+                                                                                  border: InputBorder.none,
+                                                                                ),
+                                                                              )
+                                                                            )
+
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  SizedBox(height:height/37,),
+                                                                  Row(
+                                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:130,
+                                                                        child: Text('Balance Amount',style: GoogleFonts.montserrat(
+                                                                            fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                                        ),),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                        child: Container(width: width/4.83,
+                                                                            height: height/16.42,
+                                                                            //color: Color(0xffDDDEEE),
+                                                                            decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                                                                            child: Padding(
+                                                                              padding: const EdgeInsets.all(8.0),
+                                                                              child: TextFormField(
+                                                                                readOnly: true,
+                                                                                controller: balanceAmount,
+                                                                                decoration: InputDecoration(
+                                                                                  border: InputBorder.none,
+                                                                                ),
+                                                                              ),
+                                                                            )
+
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  SizedBox(height:height/25,),
+                                                                  Row(
+                                                                    children: [
+                                                                      GestureDetector(
+                                                                        onTap: () async {
+                                                                          updatefees(
+                                                                              feesAmount: value2["amount"].toString(),
+                                                                              feesName: value2!["feesname"].toString(),
+                                                                            payAmount: payAmount.text,
+                                                                            balanceAmount: balanceAmount.text,
+                                                                          );
+                                                                          var userdoc= await FirebaseFirestore.instance.collection('Students').doc(studentid).get();
+                                                                          Map<String,dynamic> ? val = userdoc.data();
+                                                                          homecontroller.sendPushMessage(val!["token"],"Your payment of RS${value2["amount"].toString()} has been successfully processed. Thank you for your prompt settlement of the school fees. We appreciate your cooperation", "Successful Payment of School Fees");
+                                                                          Successdialog();
+                                                                          setState(() {
+                                                                            payAmount.clear();
+                                                                            balanceAmount.clear();
+                                                                          });
+                                                                        },
+                                                                        child: Padding(
+                                                                          padding: const EdgeInsets.all(8.0),
+                                                                          child: Container(child: Center(child: Text("Payment Received",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
+                                                                            width: width/5.464,
+                                                                            height: height/16.425,
+                                                                            // color:Color(0xff00A0E3),
+                                                                            decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
+
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      SizedBox(width:20),
+                                                                      GestureDetector(
+                                                                        onTap: () async {
+                                                                          StudentFeesPdfModel feesDetails = StudentFeesPdfModel(
+                                                                            date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                                                                            time: DateFormat('hh:mm aa').format(DateTime.now()),
+                                                                            amount: value2["amount"].toString(),
+                                                                            feesName: value2["feesname"].toString(),
+                                                                            schoolAdderss: schooladdress,
+                                                                            schoolName: schoolname,
+                                                                            schoolLogo: schoollogo,
+                                                                            schoolPhone: schoolphone,
+                                                                            studentAddress: value['address'].toString(),
+                                                                            studentName: value['stname'].toString(),
+                                                                          );
+                                                                          setState(() {
+                                                                            isloading = true;
+                                                                          });
+                                                                          await generateInvoice(PdfPageFormat.a4,feesDetails);
+                                                                          setState(() {
+                                                                            isloading = false;
+                                                                          });
+                                                                          },
+                                                                        child: Padding(
+                                                                          padding: const EdgeInsets.all(8.0),
+                                                                          child: Container(child: Center(child: Text("Print Receipt",style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w600),)),
+                                                                            width: width/5.464,
+                                                                            height: height/16.425,
+                                                                            // color:Color(0xff00A0E3),
+                                                                            decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                              ],
+
+                                                              );
+                                                            }
+                                                        ) : Container(),
+                                                        Row(
+                                                          children: [
+                                                            Container(
+
+                                                              child: Text('Previous Payments,',style: GoogleFonts.montserrat(
+                                                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                              ),),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(height: 15,),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                          children: [
+                                                            Container(
+                                                              width:130,
+                                                              child: Text('Fees Name',style: GoogleFonts.montserrat(
+                                                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                              ),),
+                                                            ),
+                                                            Container(
+                                                              width:130,
+                                                              child: Text('Amount',style: GoogleFonts.montserrat(
+                                                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                              ),),
+                                                            ),
+                                                            Container(
+                                                              width:130,
+                                                              child: Text('Status',style: GoogleFonts.montserrat(
+                                                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                              ),),
+                                                            ),
+                                                            Container(
+                                                              width:130,
+                                                              child: Text('Date',style: GoogleFonts.montserrat(
+                                                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                              ),),
+                                                            ),
+                                                            Container(
+                                                              width:130,
+                                                              child: Text('Time',style: GoogleFonts.montserrat(
+                                                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                              ),),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: Divider(),
+                                                        ),
+                                                        StreamBuilder(
+                                                            stream: FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").orderBy("timestamp").snapshots(),
+                                                            builder: (context,snapshot){
+                                                              return ListView.builder(
+                                                                shrinkWrap: true,
+                                                                  physics: NeverScrollableScrollPhysics(),
+                                                                  itemCount: snapshot.data!.docs.length,
+                                                                  itemBuilder: (context,index){
+
+                                                                return
+                                                                  snapshot.data!.docs[index]["status"]==true?
+                                                                  Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                  children: [
+                                                                    Container(
+                                                                      width:130,
+                                                                      child: Text(snapshot.data!.docs[index]["feesname"],style: GoogleFonts.montserrat(
+                                                                          fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                                                      ),),
+                                                                    ),
+                                                                    Container(
+                                                                      width:130,
+                                                                      child: Text(snapshot.data!.docs[index]["amount"].toString(),style: GoogleFonts.montserrat(
+                                                                          fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                                                      ),),
+                                                                    ),
+                                                                    Container(
+                                                                      width:130,
+                                                                      child: Text(snapshot.data!.docs[index]["status"]==true?"Paid": "Unpaid",style: GoogleFonts.montserrat(
+                                                                          fontWeight:FontWeight.bold,color:snapshot.data!.docs[index]["status"]==true? Color(0xff53B175):Colors.red,fontSize:width/91.13
+                                                                      ),),
+                                                                    ),
+                                                                    Container(
+                                                                      width:130,
+                                                                      child: Text(snapshot.data!.docs[index]["date"],style: GoogleFonts.montserrat(
+                                                                          fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                                                      ),),
+                                                                    ),
+                                                                    Container(
+                                                                      width:130,
+                                                                      child: Text(snapshot.data!.docs[index]["time"],style: GoogleFonts.montserrat(
+                                                                          fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                                                      ),),
+                                                                    ),
+                                                                  ],
+                                                                )  : Container();
+                                                              });
+
+                                                        })
 
 
 
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),

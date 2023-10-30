@@ -56,6 +56,8 @@ class _FeesReportsState extends State<FeesReports> {
     return matches;
   }
   adddropdownvalue() async {
+    pos1.text = DateFormat('dd/MM/yyyy').format(DateTime.now());
+    pos2.text = DateFormat('dd/MM/yyyy').format(DateTime.now().subtract(Duration(days: 30)));
     setState(() {
       regno.clear();
       student.clear();
@@ -110,6 +112,7 @@ class _FeesReportsState extends State<FeesReports> {
         fees.add(document5.docs[i]["name"]);
       });
     }
+
   }
   String studentid="";
 
@@ -200,9 +203,11 @@ class _FeesReportsState extends State<FeesReports> {
 
   bool single= false;
   bool married= false;
-  bool married2= true;
+  bool married2= false;
   bool mainconcent= false;
   final check = List<bool>.generate(1000, (int index) => false, growable: true);
+  
+  List<DocumentSnapshot> students = [];
   @override
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
@@ -926,7 +931,7 @@ class _FeesReportsState extends State<FeesReports> {
                                     controller: pos2,
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.only(bottom: width/136.6, left: width/91.06),
-                                      hintText: "mm/dd/yyyy",
+                                      hintText: "dd/MM/yyyy",
                                       hintStyle: TextStyle(color: Colors.black),
                                       border: InputBorder.none,
                                     ),
@@ -938,7 +943,7 @@ class _FeesReportsState extends State<FeesReports> {
                                       );
 
                                       if(pickedDate != null ){
-                                        String formattedDate = DateFormat('dd / M / yyyy').format(pickedDate);
+                                        String formattedDate = DateFormat('dd/M/yyyy').format(pickedDate);
                                        //you can implement different kind of Date Format here according to your requirement
 
                                         setState(() {
@@ -998,7 +1003,7 @@ class _FeesReportsState extends State<FeesReports> {
                                     controller: pos1,
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.only(bottom: width/136.6, left: width/91.06),
-                                      hintText: "mm/dd/yyyy",
+                                      hintText: "dd/MM/yyyy",
                                       hintStyle: TextStyle(color: Colors.black),
                                       border: InputBorder.none,
                                     ),
@@ -1011,7 +1016,7 @@ class _FeesReportsState extends State<FeesReports> {
                                       );
 
                                       if(pickedDate != null ){
-                                        String formattedDate = DateFormat('dd / M / yyyy').format(pickedDate);
+                                        String formattedDate = DateFormat('dd/M/yyyy').format(pickedDate);
                                         //you can implement different kind of Date Format here according to your requirement
 
                                         setState(() {
@@ -1054,13 +1059,14 @@ class _FeesReportsState extends State<FeesReports> {
                         InkWell(
                           onTap: (){
                            // getstaffbyid();
+                            //sendEmail(docid, to, subject, description);
                           },
                           child: Container(child: Center(child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(Icons.send,color:Colors.white),
                               SizedBox(width:10),
-                              Text("Send Message",style: GoogleFonts.poppins(color:Colors.white),),
+                              Text("Send Remainder",style: GoogleFonts.poppins(color:Colors.white),),
                             ],
                           )),
                             width: width/8.507,
@@ -1108,6 +1114,12 @@ class _FeesReportsState extends State<FeesReports> {
               ),
               Container(
                 width:130,
+                child: Text('Student Name',style: GoogleFonts.montserrat(
+                    fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
+                ),),
+              ),
+              Container(
+                width:130,
                 child: Text('Fees Name',style: GoogleFonts.montserrat(
                     fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
                 ),),
@@ -1132,13 +1144,7 @@ class _FeesReportsState extends State<FeesReports> {
               ),
               Container(
                 width:130,
-                child: Text('Time',style: GoogleFonts.montserrat(
-                    fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
-                ),),
-              ),
-              Container(
-                width:130,
-                child: Text('Student Name',style: GoogleFonts.montserrat(
+                  child: Text('Time',style: GoogleFonts.montserrat(
                     fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
                 ),),
               ),
@@ -1148,14 +1154,80 @@ class _FeesReportsState extends State<FeesReports> {
         Container(
           height: 310,
           width: width/1.366,
-          child: FutureBuilder<FeesDetailsModel>(
-            future: getFeesDetails(),
+          child: StreamBuilder(
+            stream: FirebaseFirestore.instance.collection('FeesCollection').where('').orderBy("timestamp",descending: true).snapshots(),
             builder: (ctx,snap){
               if(snap.hasData){
+                students.clear();
+                List<DocumentSnapshot> filterList1 = [];
+                List<DocumentSnapshot> filterList2 = [];
+                snap.data!.docs.forEach((element) {
+                  students.add(element);
+                });
+    //             if(_typeAheadControllerfees.text != "Select Option"){
+    //               snap.data!.docs.forEach((element) {
+    //                 if(element.get("timestamp") < DateFormat("dd/MM/yyyy").parse(pos1.text).add(const Duration(days: 1)).millisecondsSinceEpoch && element.get("timestamp") >= DateFormat("dd/MM/yyyy").parse(pos2.text).millisecondsSinceEpoch){
+    //                 if(_typeAheadControllerfees.text.toLowerCase() == "all fees"){
+    //                   filterList1.add(element);
+    //                 }else if(element.get("feesname").toString().toLowerCase() == _typeAheadControllerfees.text.toLowerCase()){
+    //                   filterList1.add(element);
+    //                 }
+    // }
+    //               });
+    //             }
+    //             else{
+    //               snap.data!.docs.forEach((element) {
+    //                 if(element.get("timestamp") < DateFormat("dd/M/yyyy").parse(pos1.text).add(const Duration(days: 1)).millisecondsSinceEpoch && element.get("timestamp") >= DateFormat("dd/M/yyyy").parse(pos2.text).millisecondsSinceEpoch){
+    //                   filterList1.add(element);
+    //                 }
+    //               });
+    //             }
+                // filterList1.forEach((element) {
+                //   if(type.text.toLowerCase() == 'school'){
+                //     filterList2.add(element);
+                //   }else if(type.text.toLowerCase() == 'class'){
+                //     if(element.get("class") == _typeAheadControllerclass.text){
+                //       filterList2.add(element);
+                //     }
+                //   }else if(type.text.toLowerCase() == 'section'){
+                //     if(element.get("class") == _typeAheadControllerclass.text && element.get("section") == _typeAheadControllersection.text){
+                //       filterList2.add(element);
+                //     }
+                //   }else if(type.text.toLowerCase() == 'student'){
+                //     if(element.get("stRegNo") == _typeAheadControllerregno.text || element.get("stName").toString().toLowerCase() == _typeAheadControllerstudent.text.toLowerCase()){
+                //       filterList2.add(element);
+                //     }
+                //   }else{
+                //     filterList2.add(element);
+                //   }
+                // });
+                // filterList2.forEach((element) {
+                //   //over due
+                //   if(married){
+                //     if(differenceDatefunction(element.get('duedate')) < 0){
+                //       students.add(element);
+                //     }
+                //   }
+                //   // paid
+                //   if(married2){
+                //     if(element.get('status')){
+                //       students.add(element);
+                //     }
+                //   }
+                //   // pending
+                //   if(single){
+                //     if(!element.get('status')){
+                //       students.add(element);
+                //     }
+                //   }
+                //   if(!married && !single && !married2){
+                //     students.add(element);
+                //   }
+                // });
                 return ListView.builder(
-                  itemCount: married2 ? snap.data!.paidStudents.length : married ? snap.data!.overDueStudents.length : snap.data!.pendingStudents.length,
+                  itemCount: students.length,
                   itemBuilder: (ctx,i){
-                    StudentFeesModel feesDetail = married2 ? snap.data!.paidStudents[i] : married ? snap.data!.overDueStudents[i] : snap.data!.pendingStudents[i];
+                    var data = students[i];
                     return Container(
                       height: 70,
                       width: width/1.366,
@@ -1164,55 +1236,72 @@ class _FeesReportsState extends State<FeesReports> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SizedBox(
-                            width: 60,
+                            width: 80,
                           ),
                           Container(
-                            width:130,
+                            width:150,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data.get("stName"),
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight:FontWeight.bold,
+                                      fontSize: 14,
+                                  ),
+                                ),
+                                Text(
+                                  data.get("stRegNo"),
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.grey,
+                                    fontWeight:FontWeight.normal,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width:160,
                             child: Text(
-                                feesDetail.feesName,
+                              data.get("feesname"),
                               style: GoogleFonts.montserrat(
                                 fontWeight:FontWeight.normal,
+                                  fontSize: 14
+                            ),),
+                          ),
+                          Container(
+                            width:150,
+                            child: Text(
+                              data.get("amount").toString(),
+                              style: GoogleFonts.montserrat(
+                                fontWeight:FontWeight.normal,fontSize:width/81.13
+                            ),),
+                          ),
+                          Container(
+                            width:150,
+                            child: Text(
+                              (differenceDatefunction(data.get('duedate')) < 0) ? 'Over Due' : data.get("status") == true ? 'Paid' : 'Pending',
+                              style: GoogleFonts.montserrat(
+                                fontWeight:FontWeight.normal,
+                                  color: (differenceDatefunction(data.get('duedate')) < 0) ? Colors.red : data.get("status") == true ? Colors.green : Colors.black,
                                   fontSize:width/81.13
                             ),),
                           ),
                           Container(
-                            width:130,
+                            width:160,
                             child: Text(
-                              feesDetail.amount.toString(),
+                              data.get("date"),
                               style: GoogleFonts.montserrat(
                                 fontWeight:FontWeight.normal,fontSize:width/81.13
-                            ),),
+                            ),
+                            ),
                           ),
                           Container(
                             width:130,
                             child: Text(
-                                feesDetail.status == true ? 'Paid' : 'Pending',
-                              style: GoogleFonts.montserrat(
-                                fontWeight:FontWeight.normal,
-                                  color: feesDetail.status == true ? Colors.green : Colors.red,
-                                  fontSize:width/81.13
-                            ),),
-                          ),
-                          Container(
-                            width:130,
-                            child: Text(
-                              feesDetail.date,
-                              style: GoogleFonts.montserrat(
-                                fontWeight:FontWeight.normal,fontSize:width/81.13
-                            ),),
-                          ),
-                          Container(
-                            width:130,
-                            child: Text(
-                              feesDetail.time,
-                              style: GoogleFonts.montserrat(
-                                fontWeight:FontWeight.normal,fontSize:width/81.13
-                            ),),
-                          ),
-                          Container(
-                            width:130,
-                            child: Text(
-                                feesDetail.studentName,
+                              data.get("time"),
                               style: GoogleFonts.montserrat(
                                 fontWeight:FontWeight.normal,fontSize:width/81.13
                             ),),
@@ -1233,6 +1322,27 @@ class _FeesReportsState extends State<FeesReports> {
 
       ],
     );
+  }
+
+  sendEmail(String docid,String to, String subject, String description) async {
+    DocumentReference documentReferencer = FirebaseFirestore.instance.collection('mail').doc();
+    var json = {
+      "to": to,
+      "message": {
+        "subject": subject,
+        "text": description,
+      },
+    };
+    var result = await documentReferencer.set(json).whenComplete(() {
+      //Successdialog();
+    }).catchError((e) {
+
+    });
+  }
+
+  differenceDatefunction(date1) {
+    int diffrencedays = DateFormat('dd/MM/yyyy').parse(date1).difference(DateTime.now()).inDays;
+    return diffrencedays;
   }
 
   Future<FeesDetailsModel> getFeesDetails() async {
@@ -1256,7 +1366,9 @@ class _FeesReportsState extends State<FeesReports> {
                     status: fees.get("status")
                 )
             );
-        } else if(fees.get("status") == false && (DateFormat('dd / M / yyyy').parse(fees.get('duedate')).difference(DateTime.now()).inDays + 1 <= 0)){
+        }
+        else if(fees.get("status") == false &&
+            (DateFormat('dd / M / yyyy').parse(fees.get('duedate')).difference(DateTime.now()).inDays + 1 <= 0)){
           overDuestudentsList.add(
               StudentFeesModel(
                   studentName: student.get("stname"),
@@ -1267,7 +1379,8 @@ class _FeesReportsState extends State<FeesReports> {
                   status: fees.get("status")
               )
           );
-        }else{
+        }
+        else{
           pendingStudentsList.add(
               StudentFeesModel(
                   studentName: student.get("stname"),
@@ -1293,6 +1406,12 @@ class _FeesReportsState extends State<FeesReports> {
     print(overDuestudentsList.length.toString() + "000000000000000000000000000000000");
     return feesDetails;
   }
+
+
+  sendMail(){
+
+  }
+
 }
 
 class FeesDetailsModel{

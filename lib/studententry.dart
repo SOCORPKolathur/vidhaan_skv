@@ -19,6 +19,11 @@ class StudentEntry extends StatefulWidget {
 }
 
 class _StudentEntryState extends State<StudentEntry> {
+
+  String snapID = '';
+  TextEditingController payAmount =new TextEditingController();
+  TextEditingController balanceAmount =new TextEditingController();
+
   TextEditingController regno=new TextEditingController();
   TextEditingController entrydate=new TextEditingController();
   TextEditingController stnamefirst=new TextEditingController();
@@ -251,7 +256,8 @@ String studentdocid="";
   Widget build(BuildContext context) {
     double height =MediaQuery.of(context).size.height;
     double width =MediaQuery.of(context).size.width;
-    return view==false? SingleChildScrollView(
+    return view==false?
+    SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -261,7 +267,9 @@ String studentdocid="";
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Add New Students",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                  Text(
+                    "Add New Students",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),
+                  ),
                SizedBox(width:10),
                InkWell(
                  onTap:(){
@@ -273,14 +281,29 @@ String studentdocid="";
                    alignment: Alignment.topRight,
                    children: [
                      Icon(Icons.notifications,color:Color(0xffFFA002),size: 30,),
-                     Container(
-                         width:15,
-                         height: 15,
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(10),
-                           color:Colors.red,
-                       ),
-                         child:Center(child: Text("0",style: GoogleFonts.poppins(color:Colors.white,fontSize: 8),))
+                     FutureBuilder(
+                         future: FirebaseFirestore.instance.collection('AdmissionForms').get(),
+                         builder: (ctx, snap) {
+                           if(snap.hasData){
+                             return Container(
+                                 width:15,
+                                 height: 15,
+                                 decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(10),
+                                   color:Colors.red,
+                                 ),
+                                 child:Center(child: Text(snap.data!.docs.length.toString(),style: GoogleFonts.poppins(color:Colors.white,fontSize: 8),))
+                             );
+                           }return Container(
+                               width:15,
+                               height: 15,
+                               decoration: BoxDecoration(
+                                 borderRadius: BorderRadius.circular(10),
+                                 color:Colors.red,
+                               ),
+                               child:Center(child: Text("0",style: GoogleFonts.poppins(color:Colors.white,fontSize: 8),))
+                           );
+                         },
                      )
                    ],
                  ),
@@ -2669,10 +2692,7 @@ String studentdocid="";
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right: 25.0),
-                                      child: Container(child:
-                                      TypeAheadFormField(
-
-
+                                       child: Container(child: TypeAheadFormField(
                                         suggestionsBoxDecoration: const SuggestionsBoxDecoration(
                                             color: Color(0xffDDDEEE),
                                             borderRadius: BorderRadius.only(
@@ -2793,28 +2813,44 @@ String studentdocid="";
                           Padding(
                             padding: const EdgeInsets.only(left:28.0,right:20),
                             child: GestureDetector(
-                              onTap: (){
-                                if(_typeAheadControllermot.text=="Select Option" ||
-                                _typeAheadControllerbrother.text=="Select Option"||
+                              onTap: () async {
+                                // if(_typeAheadControllermot.text=="Select Option" ||
+                                // _typeAheadControllerbrother.text=="Select Option"||
+                                //
+                                // _typeAheadControllerclass.text=="Select Option"||
+                                // _typeAheadControllersection.text=="Select Option"||
+                                // _typeAheadControlleracidemic.text=="Select Option"
+                                //
+                                // ){
+                                //   Successdialog3();
+                                // }
+                                // else {
+                                //   final isvalid = _formkey.currentState!.validate();
+                                //   print(isvalid);
+                                //   if (_formkey.currentState!.validate()) {
+                                //     print("fghdddddddddddddd");
+                                //     already();
+                                //   }
+                                // }
 
-                                _typeAheadControllerclass.text=="Select Option"||
-                                _typeAheadControllersection.text=="Select Option"||
-                                _typeAheadControlleracidemic.text=="Select Option"
-
-                                ){
-                                  Successdialog3();
+                                var document= await FirebaseFirestore.instance.collection("Students").where("mobile",isEqualTo: mobile.text).get();
+                                if(document.docs.length>0){
+                                  Successdialog2();
                                 }
-                                else {
-                                  final isvalid = _formkey.currentState!
-                                      .validate();
-                                  print(isvalid);
-                                  if (_formkey.currentState!.validate()) {
-                                    print("fghdddddddddddddd");
-                                    already();
+                                else{
+                                  List<DocumentSnapshot> feesList = [];
+                                  var admissionFeesDocument = await FirebaseFirestore.instance.collection('AdmissionTimeFees').get();
+                                  if(admissionFeesDocument.docs.isNotEmpty){
+                                    admissionFeesDocument.docs.forEach((element) {
+                                      if(element.get("class") == 'IV' || element.get("class") == 'All'){
+                                        feesList.add(element);
+                                      }
+                                    });
+                                    if(feesList.isNotEmpty){
+                                      showAdmissionTimeFeesPopUp(snapID,feesList);
+                                    }
                                   }
                                 }
-
-
                               },
                               child: Container(child: Center(child: Text("Save ",style: GoogleFonts.poppins(color:Colors.white),)),
                                 width: width/10.507,
@@ -2955,9 +2991,7 @@ String studentdocid="";
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0,),
                   child: Container(
-
                     width: width/1.366,
-                    height: height/13.14,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12)),
@@ -2968,7 +3002,7 @@ String studentdocid="";
 
                         child: StreamBuilder(
                           stream: FirebaseFirestore.instance
-                              .collection("Admission").orderBy("timestamp",descending: true)
+                              .collection("AdmissionForms").orderBy("dateOfApplication",descending: true)
                               .snapshots(),
                           builder: (context, snapshot) {
                             if(snapshot.hasData==null){
@@ -3002,33 +3036,29 @@ String studentdocid="";
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           left: 8.0, right: 19),
-                                      child: Text(snapshot.data!.docs[index]
-                                      ["date"],selectionColor: Color(0xff109CF1),),
+                                      child: Text(snapshot.data!.docs[index]["dateOfApplication"],selectionColor: Color(0xff109CF1),),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 36.0,left: 20),
-                                      child: Text(snapshot.data!.docs[index]
-                                      ["name"]),
+                                      padding: const EdgeInsets.only(right: 86.0,left: 20),
+                                      child: Text(snapshot.data!.docs[index]["studentName"]),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 45.0),
-                                      child: Text(snapshot.data!.docs[index]
-                                      ["class"]),
+                                      child: Text(snapshot.data!.docs[index]["standardSought"]),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           left: 50.0, right: 30),
-                                      child: Text(snapshot.data!.docs[index]
-                                      ["phone"]),
+                                      child: Text(snapshot.data!.docs[index]["fatherMobileNo"]),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 18.0,right: 80),
+                                      child: Text(snapshot.data!.docs[index]["fatherName"]),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 18.0,right: 50),
-                                      child: Text(snapshot.data!.docs[index]
-                                      ["parent"]),
+                                      child: Text(snapshot.data!.docs[index]["previousSchool"]),
                                     ),
-                                    Text(snapshot.data!.docs[index]
-                                    ["lastschool"]),
 
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -3036,7 +3066,7 @@ String studentdocid="";
                                       child: ElevatedButton(
 
 
-                                        onPressed: () => _dialogBuilder(context),
+                                        onPressed: () => _dialogBuilder(context,snapshot.data!.docs[index]),
                                         child:  Text('View'),
 
                                       ),
@@ -3067,16 +3097,16 @@ String studentdocid="";
     );
 
   }
+
+
   String imgUrl="";
   String fileName = Uuid().v1();
   bool  isloading = false;
-  Future<void> _dialogBuilder(BuildContext context) {
+  Future<void> _dialogBuilder(BuildContext context, DocumentSnapshot snap) {
     double height= MediaQuery.of(context).size.height;
     double width= MediaQuery.of(context).size.width;
     return showDialog(
-
       context: context,
-
       builder: (BuildContext context) {
         return AlertDialog(
           title:  Text('Admissions Details',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),
@@ -3086,27 +3116,27 @@ String studentdocid="";
             children: [
               Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Name:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Name: ${snap.get("studentName")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                    child: Text("Class:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                    child: Text("Class: ${snap.get("standardSought")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   ),
-                  Text("Phone:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Phone: ${snap.get("fatherMobileNo")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                    child: Text("Father Name:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                    child: Text("Father Name: ${snap.get("fatherName")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   ),
-                  Text("Mother Name:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Mother Name: ${snap.get("motherName")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                    child: Text("Religion:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                    child: Text("Religion: ${snap.get("religion")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   ),
-                  Text("Community:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Community: ${snap.get("caste")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                    child: Text("D.O.B:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                    child: Text("D.O.B: ${snap.get("dob")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                   ),
-                  Text("Student Adhaar Number:",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Student Adhaar Number: ${snap.get("aadhaarNo")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
                 ],
               ),
               Padding(
@@ -3119,20 +3149,20 @@ String studentdocid="";
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
                     child: Text(
-                      "School Last studied:",
+                      "School Last studied: ${snap.get("previousSchool")}",
                       style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(
-                    "% of Marks obtained:",
+                    "% of Marks obtained: ",
                     style: GoogleFonts.poppins(
                         fontSize: 12,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "Name Of Board:",
+                    "Name Of Board: ",
                     style: GoogleFonts.poppins(
                         fontSize: 12,
                         fontWeight: FontWeight.bold),
@@ -3140,14 +3170,14 @@ String studentdocid="";
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
                     child: Text(
-                      "Parent Occupation:",
+                      "Father Occupation:  ${snap.get("fatherOccupation")}",
                       style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(
-                    "Annual Income:",
+                    "Annual Income:  ${snap.get("fatherAnnualIncome")}",
                     style: GoogleFonts.poppins(
                         fontSize: 12,
                         fontWeight: FontWeight.bold),
@@ -3155,7 +3185,7 @@ String studentdocid="";
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
                     child: Text(
-                      "Residential Address:",
+                      "Residential Address:  ${snap.get("residentialAddress")}",
                       style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: FontWeight.bold),
@@ -3165,8 +3195,7 @@ String studentdocid="";
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(onTap: () {
-                        Navigator.of(context).pop();
-                        Successdialog();
+                        addNewStudent(snap);
                       },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 20,right: 20),
@@ -3177,56 +3206,55 @@ String studentdocid="";
                             child: Center(child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Send Enrollment Link",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),),
+                                Text("Add to Student",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Icon(Icons.send,color: Colors.white,),
+                                  child: Icon(Icons.add_circle_outline,color: Colors.white,),
                                 )
                               ],
                             )),
                             decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(7)),
-
                           ),
                         ),
                       ),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                              Successdialog2();
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Container(
-                                // color: Colors.yellow,
-                                width: width/12.209,
-                                height: height/21.9,
-                                child: Center(child: Text("Waiting List",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
-                                decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(7)),
-
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                              Successdialog3();
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 10,left: 20),
-                              child: Container(
-                                // color: Colors.yellow,
-                                width: width/12.209,
-                                height: height/21.9,
-                                child: Center(child: Text("Reject",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
-                                decoration: BoxDecoration(color: Color(0xffD60A0B),borderRadius: BorderRadius.circular(7)),
-
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     GestureDetector(
+                      //       onTap: () {
+                      //         Navigator.of(context).pop();
+                      //         Successdialog2();
+                      //       },
+                      //       child: Padding(
+                      //         padding: const EdgeInsets.only(top: 10),
+                      //         child: Container(
+                      //           // color: Colors.yellow,
+                      //           width: width/12.209,
+                      //           height: height/21.9,
+                      //           child: Center(child: Text("Waiting List",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
+                      //           decoration: BoxDecoration(color: Color(0xffFFA002),borderRadius: BorderRadius.circular(7)),
+                      //
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     GestureDetector(
+                      //       onTap: () {
+                      //         Navigator.of(context).pop();
+                      //         Successdialog3();
+                      //       },
+                      //       child: Padding(
+                      //         padding: const EdgeInsets.only(top: 10,left: 20),
+                      //         child: Container(
+                      //           // color: Colors.yellow,
+                      //           width: width/12.209,
+                      //           height: height/21.9,
+                      //           child: Center(child: Text("Reject",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),)),
+                      //           decoration: BoxDecoration(color: Color(0xffD60A0B),borderRadius: BorderRadius.circular(7)),
+                      //
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
 
                     ],
                   ),
@@ -3247,8 +3275,7 @@ String studentdocid="";
     );
   }
 
-  uploadToStorage() async{
-
+  uploadToStorage() async {
     InputElement input = FileUploadInputElement()as InputElement ..accept = 'image/*';
     FirebaseStorage fs = FirebaseStorage.instance;
     input.click();
@@ -3314,7 +3341,7 @@ String studentdocid="";
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
       title: 'Enter the details correctly',
-      desc: "Select all the value in  drop down",
+      desc: "Please fill out the required fields",
 
 
 
@@ -3332,14 +3359,362 @@ String studentdocid="";
       Successdialog2();
     }
     else{
-      uploadstudent();
-      Successdialog();
+      List<DocumentSnapshot> feesList = [];
+      var admissionFeesDocument = await FirebaseFirestore.instance.collection('AdmissionTimeFees').get();
+      if(admissionFeesDocument.docs.isNotEmpty){
+        admissionFeesDocument.docs.forEach((element) {
+          if(element.get("class") == 'IV' || element.get("class") == 'All'){
+            feesList.add(element);
+          }
+        });
+        if(feesList.isNotEmpty){
+          showAdmissionTimeFeesPopUp(snapID,feesList);
+        }
+      }
     }
   }
 
+  addNewStudent(DocumentSnapshot snap) async {
+    Navigator.pop(context);
+    setState(() {
+      snapID = snap.id;
+      view = false;
+      imgUrl = snap.get("imgUrl");
+      _typeAheadControllerstudent.text = snap.get("studentName");
+      _typeAheadControllerclass.text = snap.get("standardSought");
+      _typeAheadControllersection.text = 'A';
+      bloodgroup.text = snap.get("bloodGroup");
+      dob.text = snap.get("dob");
+      address.text = snap.get("residentialAddress");
+      community.text = snap.get("caste");
+      religion.text = snap.get("religion");
+      mobile.text = snap.get("fatherMobileNo");
+      email.text = snap.get("fatherEmail");
+      aadhaarno.text = snap.get("aadhaarNo");
+      identificationmark.text = snap.get("identificationMark");
+      fathername.text = snap.get("fatherName");
+      faddress.text = snap.get("fatherOfficeAddress");
+      foccupation.text = snap.get("fatherOccupation");
+      fmobile.text = snap.get("fatherMobileNo");
+      femail.text = snap.get("fatherEmail");
+      mothername.text = snap.get("motherName");
+      moccupation.text = snap.get("motherOccupation");
+      maddress.text = snap.get("motherOfficeAddress");
+      mmobile.text = snap.get("motherMobileNo");
+      memail.text = snap.get("motherEmail");
+    });
+  //   List<DocumentSnapshot> feesList = [];
+  //   var admissionFeesDocument = await FirebaseFirestore.instance.collection('AdmissionTimeFees').get();
+  //   if(admissionFeesDocument.docs.isNotEmpty){
+  //     admissionFeesDocument.docs.forEach((element) {
+  //       if(element.get("class") == 'IV' || element.get("class") == 'All'){
+  //         feesList.add(element);
+  //       }
+  //     });
+  //     if(feesList.isNotEmpty){
+  //       showAdmissionTimeFeesPopUp(snap,feesList);
+  //     }
+  //   }
+  }
 
-  uploadstudent(){
+  sendEmail(String to, String subject, String description) async {
+    DocumentReference documentReferencer = FirebaseFirestore.instance
+        .collection('mail').doc();
+    var json = {
+      "to": to,
+      "message": {
+        "subject": subject,
+        "text": description,
+      },
+    };
+    var result = await documentReferencer.set(json).whenComplete(() {
+      //Successdialog();
+    }).catchError((e) {
 
+    });
+  }
+
+
+  showAdmissionTimeFeesPopUp(String id,List<DocumentSnapshot> feesList) async {
+    Size size = MediaQuery.of(context).size;
+    double height = size.height;
+    double width = size.width;
+    double totalFeesAmount = 0.0;
+    List<FeesWithAmount> feesDetailsList = [];
+    bool isAll = false;
+    return showDialog(context: context, builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context,setStat) {
+            totalFeesAmount = 0.0;
+            feesList.forEach((element) {
+              totalFeesAmount += double.parse(element.get("amount").toString());
+              feesDetailsList.add(
+                  FeesWithAmount(
+                    feesName: element.get("feesname"),
+                    amount: double.parse(element.get("amount").toString()),
+                    isSelected: false,
+                    payedAmount: 0.0,
+                  )
+              );
+            });
+            return AlertDialog(
+              title:  Text('Fees Details',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold)),
+              content: Container(
+                height: 400,
+                width: 500,
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: feesList.length,
+                        itemBuilder: (ctx,i){
+                          return ListTile(
+                            leading: Checkbox(
+                              value: feesDetailsList[i].isSelected,
+                              onChanged: (val){
+                                setStat(() {
+                                  feesDetailsList[i].isSelected = val!;
+                                });
+                              },
+                            ),
+                            title: Text(
+                                feesList[i].get("feesname"),
+                                style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                              )
+                            ),
+                            trailing: Text(feesList[i].get("amount").toString()
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    ListTile(
+                      leading: Checkbox(
+                        value: isAll,
+                        onChanged: (val){
+                          setState(() {
+                            isAll = val!;
+                          });
+                          for(int i = 0; i < feesDetailsList.length; i++){
+                              setStat(() {
+                                feesDetailsList[i].isSelected = val!;
+                              });
+                          }
+                        },
+                      ),
+                      title: Text(
+                          "Total",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                          )
+                      ),
+                      trailing: Text(
+                          totalFeesAmount.toString()
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Container(
+                      height: 100,
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width:130,
+                                child: Text('Payment',style: GoogleFonts.montserrat(
+                                    fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                ),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                child: Container(width: width/4.83,
+                                    height: height/16.42,
+                                    //color: Color(0xffDDDEEE),
+                                    decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: TextFormField(
+                                          onChanged: (val){
+                                            setStat(() {
+                                              balanceAmount.text = (totalFeesAmount - double.parse(payAmount.text.toString())).toString();
+                                            });
+                                          },
+                                          controller: payAmount,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                          ),
+                                        )
+                                    )
+
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height:height/37,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width:130,
+                                child: Text('Balance Amount',style: GoogleFonts.montserrat(
+                                    fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                ),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                child: Container(width: width/4.83,
+                                    height: height/16.42,
+                                    //color: Color(0xffDDDEEE),
+                                    decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: TextFormField(
+                                        readOnly: true,
+                                        controller: balanceAmount,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    )
+
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 70,
+                      width: double.infinity,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              uploadstudent(id,feesList);
+                              Navigator.pop(context);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 20,right: 20,left: 20),
+                              child: Container(
+                                // color: Colors.yellow,
+                                height: height/21.9,
+                                child: Center(
+                                    child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Pay Fees & Print Receipt",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Icon(Icons.add_circle_outline,color: Colors.white,),
+                                    )
+                                  ],
+                                )),
+                                decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(7)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    )
+                  ],
+                ),
+              ),
+            );
+          }
+        );
+      },
+    );
+  }
+  
+  createStudent(DocumentSnapshot snap,List<DocumentSnapshot> feesList) async {
+    String studId = randomAlphaNumeric(16);
+    var schoolDoc = await FirebaseFirestore.instance.collection('Admin').get();
+    String code = schoolDoc.docs.first.get("code");
+    FirebaseFirestore.instance.collection("Students").doc(studId).set({
+      "stname": snap.get("studentName"),
+      "stmiddlename": '',
+      "stlastname": '',
+      "regno": snap.get("registrationNo"),
+      "rollno": '',
+      "studentid": studId,
+      "entrydate": '',
+      "admitclass": '',
+      "section": '',
+      "academic": '',
+      "bloodgroup": snap.get("bloodGroup"),
+      "dob": snap.get("dob"),
+      "gender": '',
+      "address": snap.get("residentialAddress"),
+      "community": snap.get("caste"),
+      "house": '',
+      "religion": snap.get("religion"),
+      "mobile": snap.get("fatherMobileNo"),
+      "email": snap.get("fatherEmail"),
+      "aadhaarno": snap.get("aadhaarNo"),
+      "sheight": '',
+      "stweight": '',
+      "EMIS": '',
+      "transport": '',
+      "identificatiolmark": snap.get("identificationMark"),
+      "fathername": snap.get("fatherName"),
+      "fatherOccupation": snap.get("fatherOccupation"),
+      "fatherOffice": snap.get("fatherOfficeAddress"),
+      "fatherMobile": snap.get("fatherMobileNo"),
+      "fatherEmail": snap.get("fatherEmail"),
+      "fatherAadhaar": '',
+      "mothername": snap.get("motherName"),
+      "motherOccupation": snap.get("motherOccupation"),
+      "motherOffice": snap.get("motherOfficeAddress"),
+      "motherMobile": snap.get("motherMobileNo"),
+      "motherEmail": snap.get("motherEmail"),
+      "motherAadhaar": '',
+      "guardianname": '',
+      "guardianOccupation": '',
+      "guardianMobile": '',
+      "guardianEmail": '',
+      "guardianAadhaar": '',
+      "brother studying here": '',
+      "brothername": '',
+      "imgurl": snap.get("imgUrl"),
+      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "timestamp": DateTime.now().microsecondsSinceEpoch,
+      "absentdays":0,
+      "behaviour":0,
+    }).whenComplete(() {
+      Successdialog();
+      feesList.forEach((element) {
+        FirebaseFirestore.instance.collection('Accounts').doc().set({
+          "amount" : element.get("amount"),
+          "date" : "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
+          "payee" : element.get("feesname"),
+          "receivedBy" : "Admin",
+          "time" : DateFormat('hh:mm aa').format(DateTime.now()),
+          "timestamp" : DateTime.now().millisecondsSinceEpoch,
+          "title" : "Fees Received",
+          "type" : "credit",
+        });
+      });
+      sendEmail(snap.get("fatherEmail"), "Welcome ${snap.get("studentName")}", 'Register Number : ${snap.get("registrationNo")} login with following phone number\n phone : ${snap.get("fatherMobileNo")} \n school id $code');
+      FirebaseFirestore.instance.collection('AdmissionForms').doc(snap.id).delete();
+      Navigator.pop(context);
+    }).onError((error, stackTrace) {
+      
+    });
+  }
+
+
+  uploadstudent(String id,feesList) async {
+    var schoolDoc = await FirebaseFirestore.instance.collection('Admin').get();
+    String code = schoolDoc.docs.first.get("code");
     setState(() {
       studentid=randomAlphaNumeric(16);
     });
@@ -3399,6 +3774,23 @@ String studentdocid="";
       "timestamp": DateTime.now().microsecondsSinceEpoch,
       "absentdays":0,
       "behaviour":0,
+    }).whenComplete(() {
+      Successdialog();
+      feesList.forEach((element) {
+        FirebaseFirestore.instance.collection('Accounts').doc().set({
+          "amount" : element.get("amount"),
+          "date" : "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
+          "payee" : element.get("feesname"),
+          "receivedBy" : "Admin",
+          "time" : DateFormat('hh:mm aa').format(DateTime.now()),
+          "timestamp" : DateTime.now().millisecondsSinceEpoch,
+          "title" : "Fees Received",
+          "type" : "credit",
+        });
+      });
+      sendEmail(femail.text, "Welcome ${_typeAheadControllerstudent.text}", 'Register Number : ${regno.text} login with following phone number\n phone : ${mobile.text} \n school id $code');
+      FirebaseFirestore.instance.collection('AdmissionForms').doc(id).delete();
+      Navigator.pop(context);
     });
     FirebaseFirestore.instance.collection("Classstudents").doc("${_typeAheadControllerclass.text}${_typeAheadControllersection.text}").set({
       "name":"${_typeAheadControllerclass.text}${_typeAheadControllersection.text}",
@@ -3412,7 +3804,7 @@ String studentdocid="";
       "absentdays":0,
       "behaviour":0,
     });
-
+    Successdialog();
     clearall();
 
   }
@@ -3472,4 +3864,13 @@ String studentdocid="";
     });
      getorderno();
   }
+}
+
+class FeesWithAmount{
+  FeesWithAmount({required this.amount,required  this.feesName,required  this.isSelected, required this.payedAmount});
+
+  bool isSelected;
+  String feesName;
+  double amount;
+  double payedAmount;
 }
