@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pdf/widgets.dart' as p;
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
-import 'package:vidhaan/demopdf.dart';
+import 'package:vidhaan/timetable/timetable.dart';
 import '../print/time_table_print.dart';
 
 class ClassWiseTimeTable extends StatefulWidget {
@@ -41,11 +41,11 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
   }
 
 
-  static final List<String> subject = [];
+  static final List<String> staffs = [];
 
   static List<String> getSuggestionsubject(String query) {
     List<String> matches = <String>[];
-    matches.addAll(subject);
+    matches.addAll(staffs);
 
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
@@ -92,12 +92,12 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
   }
   subjectdrop() async {
     setState(() {
-      subject.clear();
+      staffs.clear();
     });
     var document = await  FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Sections").doc("${_typeAheadControllerclass.text}${_typeAheadControllersection.text}").collection("Subjects").orderBy("timestamp").get();
     for(int i=0;i<document.docs.length;i++) {
       setState(() {
-        subject.add(document.docs[i]["name"]);
+        staffs.add(document.docs[i]["staffname"]);
       });
     }
   }
@@ -320,54 +320,54 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
     var snap = await FirebaseFirestore.instance.collection("ClassTimeTable").doc("${_typeAheadControllerclass.text}${_typeAheadControllersection.text}").collection("TimeTable").orderBy("order").get();
     var value=snap.docs;
     setState(() {
-      texteditingmonday[0].text=snap.docs.length<1?"":value[0]["subject"];
-      texteditingmonday[1].text=snap.docs.length<2?"":value[1]["subject"];
-      texteditingmonday[2].text=snap.docs.length<3?"":value[2]["subject"];
-      texteditingmonday[3].text=snap.docs.length<4?"":value[3]["subject"];
-      texteditingmonday[4].text=snap.docs.length<5?"":value[4]["subject"];
-      texteditingmonday[5].text=snap.docs.length<6?"":value[5]["subject"];
-      texteditingmonday[6].text=snap.docs.length<7?"":value[6]["subject"];
-      texteditingmonday[7].text=snap.docs.length<8?"":value[7]["subject"];
-      texteditingmonday[8].text=snap.docs.length<9?"":value[8]["subject"];
-      texteditingmonday[9].text=snap.docs.length<10?"":value[9]["subject"];
-      texteditingmonday[10].text=snap.docs.length<11?"":value[10]["subject"];
-      texteditingmonday[11].text=snap.docs.length<12?"":value[11]["subject"];
-      texteditingmonday[12].text=snap.docs.length<13?"":value[12]["subject"];
-      texteditingmonday[13].text=snap.docs.length<14?"":value[13]["subject"];
-      texteditingmonday[14].text=snap.docs.length<15?"":value[14]["subject"];
-      texteditingmonday[15].text=snap.docs.length<16?"":value[15]["subject"];
-      texteditingmonday[16].text=snap.docs.length<17?"":value[16]["subject"];
-      texteditingmonday[17].text=snap.docs.length<18?"":value[17]["subject"];
-      texteditingmonday[18].text=snap.docs.length<19?"":value[18]["subject"];
-      texteditingmonday[19].text=snap.docs.length<20?"":value[19]["subject"];
-      texteditingmonday[20].text=snap.docs.length<21?"":value[20]["subject"];
-      texteditingmonday[21].text=snap.docs.length<22?"":value[21]["subject"];
-      texteditingmonday[22].text=snap.docs.length<23?"":value[22]["subject"];
-      texteditingmonday[23].text=snap.docs.length<24?"":value[23]["subject"];
-      texteditingmonday[24].text=snap.docs.length<25?"":value[24]["subject"];
-      texteditingmonday[25].text=snap.docs.length<26?"":value[25]["subject"];
-      texteditingmonday[26].text=snap.docs.length<27?"":value[26]["subject"];
-      texteditingmonday[27].text=snap.docs.length<28?"":value[27]["subject"];
-      texteditingmonday[28].text=snap.docs.length<29?"":value[28]["subject"];
-      texteditingmonday[29].text=snap.docs.length<30?"":value[29]["subject"];
-      texteditingmonday[30].text=snap.docs.length<31?"":value[30]["subject"];
-      texteditingmonday[31].text=snap.docs.length<32?"":value[31]["subject"];
-      texteditingmonday[32].text=snap.docs.length<33?"":value[32]["subject"];
-      texteditingmonday[33].text=snap.docs.length<34?"":value[33]["subject"];
-      texteditingmonday[34].text=snap.docs.length<35?"":value[34]["subject"];
-      texteditingmonday[35].text=snap.docs.length<36?"":value[35]["subject"];
-      texteditingmonday[36].text=snap.docs.length<37?"":value[36]["subject"];
-      texteditingmonday[37].text=snap.docs.length<38?"":value[37]["subject"];
-      texteditingmonday[38].text=snap.docs.length<39?"":value[38]["subject"];
-      texteditingmonday[39].text=snap.docs.length<40?"":value[39]["subject"];
-      texteditingmonday[40].text=snap.docs.length<41?"":value[40]["subject"];
-      texteditingmonday[41].text=snap.docs.length<42?"":value[41]["subject"];
-      texteditingmonday[42].text=snap.docs.length<43?"":value[42]["subject"];
-      texteditingmonday[43].text=snap.docs.length<44?"":value[43]["subject"];
-      texteditingmonday[44].text=snap.docs.length<45?"":value[44]["subject"];
-      texteditingmonday[45].text=snap.docs.length<46?"":value[45]["subject"];
-      texteditingmonday[46].text=snap.docs.length<47?"":value[46]["subject"];
-      texteditingmonday[47].text=snap.docs.length<48?"":value[47]["subject"];
+      texteditingmonday[0].text=snap.docs.length<1?"":value[0]["staff"];
+      texteditingmonday[1].text=snap.docs.length<2?"":value[1]["staff"];
+      texteditingmonday[2].text=snap.docs.length<3?"":value[2]["staff"];
+      texteditingmonday[3].text=snap.docs.length<4?"":value[3]["staff"];
+      texteditingmonday[4].text=snap.docs.length<5?"":value[4]["staff"];
+      texteditingmonday[5].text=snap.docs.length<6?"":value[5]["staff"];
+      texteditingmonday[6].text=snap.docs.length<7?"":value[6]["staff"];
+      texteditingmonday[7].text=snap.docs.length<8?"":value[7]["staff"];
+      texteditingmonday[8].text=snap.docs.length<9?"":value[8]["staff"];
+      texteditingmonday[9].text=snap.docs.length<10?"":value[9]["staff"];
+      texteditingmonday[10].text=snap.docs.length<11?"":value[10]["staff"];
+      texteditingmonday[11].text=snap.docs.length<12?"":value[11]["staff"];
+      texteditingmonday[12].text=snap.docs.length<13?"":value[12]["staff"];
+      texteditingmonday[13].text=snap.docs.length<14?"":value[13]["staff"];
+      texteditingmonday[14].text=snap.docs.length<15?"":value[14]["staff"];
+      texteditingmonday[15].text=snap.docs.length<16?"":value[15]["staff"];
+      texteditingmonday[16].text=snap.docs.length<17?"":value[16]["staff"];
+      texteditingmonday[17].text=snap.docs.length<18?"":value[17]["staff"];
+      texteditingmonday[18].text=snap.docs.length<19?"":value[18]["staff"];
+      texteditingmonday[19].text=snap.docs.length<20?"":value[19]["staff"];
+      texteditingmonday[20].text=snap.docs.length<21?"":value[20]["staff"];
+      texteditingmonday[21].text=snap.docs.length<22?"":value[21]["staff"];
+      texteditingmonday[22].text=snap.docs.length<23?"":value[22]["staff"];
+      texteditingmonday[23].text=snap.docs.length<24?"":value[23]["staff"];
+      texteditingmonday[24].text=snap.docs.length<25?"":value[24]["staff"];
+      texteditingmonday[25].text=snap.docs.length<26?"":value[25]["staff"];
+      texteditingmonday[26].text=snap.docs.length<27?"":value[26]["staff"];
+      texteditingmonday[27].text=snap.docs.length<28?"":value[27]["staff"];
+      texteditingmonday[28].text=snap.docs.length<29?"":value[28]["staff"];
+      texteditingmonday[29].text=snap.docs.length<30?"":value[29]["staff"];
+      texteditingmonday[30].text=snap.docs.length<31?"":value[30]["staff"];
+      texteditingmonday[31].text=snap.docs.length<32?"":value[31]["staff"];
+      texteditingmonday[32].text=snap.docs.length<33?"":value[32]["staff"];
+      texteditingmonday[33].text=snap.docs.length<34?"":value[33]["staff"];
+      texteditingmonday[34].text=snap.docs.length<35?"":value[34]["staff"];
+      texteditingmonday[35].text=snap.docs.length<36?"":value[35]["staff"];
+      texteditingmonday[36].text=snap.docs.length<37?"":value[36]["staff"];
+      texteditingmonday[37].text=snap.docs.length<38?"":value[37]["staff"];
+      texteditingmonday[38].text=snap.docs.length<39?"":value[38]["staff"];
+      texteditingmonday[39].text=snap.docs.length<40?"":value[39]["staff"];
+      texteditingmonday[40].text=snap.docs.length<41?"":value[40]["staff"];
+      texteditingmonday[41].text=snap.docs.length<42?"":value[41]["staff"];
+      texteditingmonday[42].text=snap.docs.length<43?"":value[42]["staff"];
+      texteditingmonday[43].text=snap.docs.length<44?"":value[43]["staff"];
+      texteditingmonday[44].text=snap.docs.length<45?"":value[44]["staff"];
+      texteditingmonday[45].text=snap.docs.length<46?"":value[45]["staff"];
+      texteditingmonday[46].text=snap.docs.length<47?"":value[46]["staff"];
+      texteditingmonday[47].text=snap.docs.length<48?"":value[47]["staff"];
     });
 
   }
@@ -3451,7 +3451,7 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
         saturdaySeventh: texteditingmonday[46].text,
         saturdayEighth: texteditingmonday[47].text
     );
-    //generateTimeTablePdf(PdfPageFormat.a4,timeTable);
+    generateTimeTablePdf(PdfPageFormat.a4,timeTable);
   }
 
   getvalue() async {
@@ -3612,113 +3612,3 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
   }
 }
 
-
-class TimeTablePrintModel {
-  TimeTablePrintModel({
-    required this.mondayFirst,
-    required this.mondaySecond,
-    required this.mondayThird,
-    required this.mondayFourth,
-    required this.mondayFifth,
-    required this.mondaySixth,
-    required this.mondaySeventh,
-    required this.mondayEighth,
-    required this.tuesdayFirst,
-    required this.tuesdaySecond,
-    required this.tuesdayThird,
-    required this.tuesdayFourth,
-    required this.tuesdayFifth,
-    required this.tuesdaySixth,
-    required this.tuesdaySeventh,
-    required this.tuesdayEighth,
-    required this.wednesdayFirst,
-    required this.wednesdaySecond,
-    required this.wednesdayThird,
-    required this.wednesdayFourth,
-    required this.wednesdayFifth,
-    required this.wednesdaySixth,
-    required this.wednesdaySeventh,
-    required this.wednesdayEighth,
-
-    required this.thursdayFirst,
-    required this.thursdaySecond,
-    required this.thursdayThird,
-    required this.thursdayFourth,
-    required this.thursdayFifth,
-    required this.thursdaySixth,
-    required this.thursdaySeventh,
-    required this.thursdayEighth,
-
-    required this.fridayFirst,
-    required this.fridaySecond,
-    required this.fridayThird,
-    required this.fridayFourth,
-    required this.fridayFifth,
-    required this.fridaySixth,
-    required this.fridaySeventh,
-    required this.fridayEighth,
-
-    required this.saturdayFirst,
-    required this.saturdaySecond,
-    required this.saturdayThird,
-    required this.saturdayFourth,
-    required this.saturdayFifth,
-    required this.saturdaySixth,
-    required this.saturdaySeventh,
-    required this.saturdayEighth,
-  });
-
-  String mondayFirst;
-  String mondaySecond;
-  String mondayThird;
-  String mondayFourth;
-  String mondayFifth;
-  String mondaySixth;
-  String mondaySeventh;
-  String mondayEighth;
-
-  String tuesdayFirst;
-  String tuesdaySecond;
-  String tuesdayThird;
-  String tuesdayFourth;
-  String tuesdayFifth;
-  String tuesdaySixth;
-  String tuesdaySeventh;
-  String tuesdayEighth;
-
-  String wednesdayFirst;
-  String wednesdaySecond;
-  String wednesdayThird;
-  String wednesdayFourth;
-  String wednesdayFifth;
-  String wednesdaySixth;
-  String wednesdaySeventh;
-  String wednesdayEighth;
-
-  String thursdayFirst;
-  String thursdaySecond;
-  String thursdayThird;
-  String thursdayFourth;
-  String thursdayFifth;
-  String thursdaySixth;
-  String thursdaySeventh;
-  String thursdayEighth;
-
-  String fridayFirst;
-  String fridaySecond;
-  String fridayThird;
-  String fridayFourth;
-  String fridayFifth;
-  String fridaySixth;
-  String fridaySeventh;
-  String fridayEighth;
-
-  String saturdayFirst;
-  String saturdaySecond;
-  String saturdayThird;
-  String saturdayFourth;
-  String saturdayFifth;
-  String saturdaySixth;
-  String saturdaySeventh;
-  String saturdayEighth;
-}
