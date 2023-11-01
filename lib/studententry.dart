@@ -22,7 +22,7 @@ class _StudentEntryState extends State<StudentEntry> {
 
   String snapID = '';
   TextEditingController payAmount =new TextEditingController();
-  TextEditingController balanceAmount =new TextEditingController();
+  TextEditingController balanceAmount =new TextEditingController(text: "0.0");
 
   TextEditingController regno=new TextEditingController();
   TextEditingController entrydate=new TextEditingController();
@@ -3440,14 +3440,19 @@ String studentdocid="";
     double height = size.height;
     double width = size.width;
     double totalFeesAmount = 0.0;
+    double totalFeesAmount1 = 0.0;
     List<FeesWithAmount> feesDetailsList = [];
     bool isAll = false;
-    return showDialog(context: context, builder: (BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (context,setStat) {
             totalFeesAmount = 0.0;
+            feesDetailsList.clear();
             feesList.forEach((element) {
               totalFeesAmount += double.parse(element.get("amount").toString());
+              totalFeesAmount1 += double.parse(element.get("amount").toString());
               feesDetailsList.add(
                   FeesWithAmount(
                     feesName: element.get("feesname"),
@@ -3465,98 +3470,116 @@ String studentdocid="";
                 color: Colors.white,
                 child: Column(
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          width:130,
+                          child: Text('Payment',style: GoogleFonts.montserrat(
+                              fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                          ),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 50.0,right: 25),
+                          child: Container(width: width/4.83,
+                              height: height/16.42,
+                              //color: Color(0xffDDDEEE),
+                              decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextFormField(
+                                    onChanged: (val){
+                                      setStat(() {
+                                        balanceAmount.text = payAmount.text;
+                                      });
+                                    },
+                                    controller: payAmount,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                    ),
+                                  )
+                              )
+
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height:height/37),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: feesList.length,
+                        itemCount: feesDetailsList.length,
                         itemBuilder: (ctx,i){
                           return ListTile(
                             leading: Checkbox(
                               value: feesDetailsList[i].isSelected,
                               onChanged: (val){
-                                setStat(() {
-                                  feesDetailsList[i].isSelected = val!;
-                                });
+                                if(val!){
+                                  setState(() {
+                                    feesDetailsList[i].isSelected = val!;
+                                    print(balanceAmount.text.toString()+"______________________payment");
+                                    if(double.parse(balanceAmount.text.toString()) >= feesDetailsList[i].amount){
+                                      feesDetailsList[i].payedAmount = double.parse(balanceAmount.text.toString()) - (double.parse(balanceAmount.text.toString())-feesDetailsList[i].amount);
+                                      print(feesDetailsList[i].payedAmount.toString()+"______________________payed");
+                                      balanceAmount.text = (double.parse(balanceAmount.text.toString()) - feesDetailsList[i].payedAmount).abs().toString();
+                                    }else{
+                                      feesDetailsList[i].payedAmount = double.parse(balanceAmount.text.toString());
+                                      print(feesDetailsList[i].payedAmount.toString()+"______________________payed");
+                                      balanceAmount.text = (double.parse(balanceAmount.text.toString()) - feesDetailsList[i].amount).abs().toString();
+                                    }
+                                  });
+                                }
                               },
                             ),
                             title: Text(
-                                feesList[i].get("feesname"),
+                                feesDetailsList[i].feesName,
                                 style: TextStyle(
                                 fontWeight: FontWeight.w700,
                               )
                             ),
-                            trailing: Text(feesList[i].get("amount").toString()
+                            trailing: Column(
+                              children: [
+                                Text(feesDetailsList[i].amount.toString()),
+                                Text(
+                                (feesDetailsList[i].payedAmount.toString()).toString(),
+                                ),
+                              ],
                             ),
                           );
                         },
                       ),
                     ),
-                    SizedBox(height: 5),
-                    ListTile(
-                      leading: Checkbox(
-                        value: isAll,
-                        onChanged: (val){
-                          setState(() {
-                            isAll = val!;
-                          });
-                          for(int i = 0; i < feesDetailsList.length; i++){
-                              setStat(() {
-                                feesDetailsList[i].isSelected = val!;
-                              });
-                          }
-                        },
-                      ),
-                      title: Text(
-                          "Total",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                          )
-                      ),
-                      trailing: Text(
-                          totalFeesAmount.toString()
-                      ),
-                    ),
+                    // SizedBox(height: 5),
+                    // ListTile(
+                    //   leading: Checkbox(
+                    //     value: isAll,
+                    //     onChanged: (val){
+                    //       setState(() {
+                    //         isAll = val!;
+                    //       });
+                    //       for(int i = 0; i < feesDetailsList.length; i++){
+                    //           setStat(() {
+                    //             feesDetailsList[i].isSelected = val!;
+                    //           });
+                    //       }
+                    //     },
+                    //   ),
+                    //   title: Text(
+                    //       "Total",
+                    //       style: TextStyle(
+                    //         fontWeight: FontWeight.w700,
+                    //       )
+                    //   ),
+                    //   trailing: Text(
+                    //       (totalFeesAmount - double.parse(balanceAmount.text.toString())).toString(),
+                    //   ),
+                    // ),
                     SizedBox(height: 5),
                     Container(
                       height: 100,
                       width: double.infinity,
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width:130,
-                                child: Text('Payment',style: GoogleFonts.montserrat(
-                                    fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                ),),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 50.0,right: 25),
-                                child: Container(width: width/4.83,
-                                    height: height/16.42,
-                                    //color: Color(0xffDDDEEE),
-                                    decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          onChanged: (val){
-                                            setStat(() {
-                                              balanceAmount.text = (totalFeesAmount - double.parse(payAmount.text.toString())).toString();
-                                            });
-                                          },
-                                          controller: payAmount,
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                          ),
-                                        )
-                                    )
-
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height:height/37,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -3598,8 +3621,8 @@ String studentdocid="";
                         children: [
                           GestureDetector(
                             onTap: () {
-                              uploadstudent(id,feesList);
-                              Navigator.pop(context);
+                              uploadstudent(id,feesDetailsList);
+                              // Navigator.pop(context);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 20,right: 20,left: 20),
@@ -3712,7 +3735,7 @@ String studentdocid="";
   }
 
 
-  uploadstudent(String id,feesList) async {
+  uploadstudent(String id,List<FeesWithAmount> feesList) async {
     var schoolDoc = await FirebaseFirestore.instance.collection('Admin').get();
     String code = schoolDoc.docs.first.get("code");
     setState(() {
@@ -3775,18 +3798,20 @@ String studentdocid="";
       "absentdays":0,
       "behaviour":0,
     }).whenComplete(() {
-      Successdialog();
+      //Successdialog();
       feesList.forEach((element) {
-        FirebaseFirestore.instance.collection('Accounts').doc().set({
-          "amount" : element.get("amount"),
-          "date" : "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
-          "payee" : element.get("feesname"),
-          "receivedBy" : "Admin",
-          "time" : DateFormat('hh:mm aa').format(DateTime.now()),
-          "timestamp" : DateTime.now().millisecondsSinceEpoch,
-          "title" : "Fees Received",
-          "type" : "credit",
-        });
+        if(element.isSelected){
+          FirebaseFirestore.instance.collection('Accounts').doc().set({
+            "amount" : element.payedAmount,
+            "date" : "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
+            "payee" : element.feesName,
+            "receivedBy" : "Admin",
+            "time" : DateFormat('hh:mm aa').format(DateTime.now()),
+            "timestamp" : DateTime.now().millisecondsSinceEpoch,
+            "title" : "Fees Received",
+            "type" : "credit",
+          });
+        }
       });
       sendEmail(femail.text, "Welcome ${_typeAheadControllerstudent.text}", 'Register Number : ${regno.text} login with following phone number\n phone : ${mobile.text} \n school id $code');
       FirebaseFirestore.instance.collection('AdmissionForms').doc(id).delete();

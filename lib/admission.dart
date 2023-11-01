@@ -352,12 +352,9 @@ class _admissionState extends State<admission> {
                     ),
                   ),
                 ),
-
-
               ],
             ),
             width: width/0.9927,
-
             color: Color(0xffF5F5F5),
           )
         ],
@@ -393,6 +390,9 @@ class _admissionState extends State<admission> {
             {
               Map<String,dynamic> ? val = snap.data!.data();
               return Container(
+                width: width/1.5682,
+                height: height/1.828,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
                 child:
                 Row(
                   children: [
@@ -819,9 +819,6 @@ class _admissionState extends State<admission> {
 
                   ],
                 ),
-                width: width/1.5682,
-                height: height/1.828,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
 
               );
             }

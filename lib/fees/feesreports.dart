@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -187,6 +188,9 @@ class _FeesReportsState extends State<FeesReports> {
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
   }
+
+  List<String> studentsListForNotification = [];
+  bool isAllStudentForNotification = false;
 
   @override
   void initState() {
@@ -826,10 +830,6 @@ class _FeesReportsState extends State<FeesReports> {
                                     setState(() {
                                       this._typeAheadControllerclass.text = suggestion;
                                     });
-
-
-
-
                                   },
                                   suggestionsBoxController: suggestionBoxController,
                                   validator: (value) =>
@@ -1060,6 +1060,14 @@ class _FeesReportsState extends State<FeesReports> {
                           onTap: (){
                            // getstaffbyid();
                             //sendEmail(docid, to, subject, description);
+                            if(!married2){
+                              sendNotificationsToStudents(
+                                //married ? 'overdue' : single ? 'pending' : ''
+                              );
+                              setState(() {
+                                studentsListForNotification.clear();
+                              });
+                            }
                           },
                           child: Container(child: Center(child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -1089,8 +1097,8 @@ class _FeesReportsState extends State<FeesReports> {
         Container(
           height:height/13.14,
           width: width/1.366,
-          decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
+          decoration: BoxDecoration(
+              color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1103,12 +1111,10 @@ class _FeesReportsState extends State<FeesReports> {
                     onChanged: (value){
                       setState(() {
                         mainconcent = value!;
-                        for(int i=0;i<1000;i++) {
-                          check[i] = value!;
+                        for(int i=0;i<students.length;i++) {
+                          studentsListForNotification.add(students[i].get("stRegNo"));
                         }
-
                       });
-
                     }
                 ),
               ),
@@ -1155,75 +1161,72 @@ class _FeesReportsState extends State<FeesReports> {
           height: 310,
           width: width/1.366,
           child: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection('FeesCollection').where('').orderBy("timestamp",descending: true).snapshots(),
+            stream: FirebaseFirestore.instance.collection('FeesCollection').orderBy("timestamp",descending: true).snapshots(),
             builder: (ctx,snap){
               if(snap.hasData){
                 students.clear();
                 List<DocumentSnapshot> filterList1 = [];
                 List<DocumentSnapshot> filterList2 = [];
-                snap.data!.docs.forEach((element) {
-                  students.add(element);
+                if(_typeAheadControllerfees.text != "Select Option"){
+                  snap.data!.docs.forEach((element) {
+                    if(element.get("timestamp") < DateFormat("dd/MM/yyyy").parse(pos1.text).add(const Duration(days: 1)).millisecondsSinceEpoch && element.get("timestamp") >= DateFormat("dd/MM/yyyy").parse(pos2.text).millisecondsSinceEpoch){
+                        if(_typeAheadControllerfees.text.toLowerCase() == "all fees"){
+                          filterList1.add(element);
+                        }else if(element.get("feesname").toString().toLowerCase() == _typeAheadControllerfees.text.toLowerCase()){
+                          filterList1.add(element);
+                        }
+                    }
+                  });
+                }
+                else{
+                  snap.data!.docs.forEach((element) {
+                    if(element.get("timestamp") < DateFormat("dd/M/yyyy").parse(pos1.text).add(const Duration(days: 1)).millisecondsSinceEpoch && element.get("timestamp") >= DateFormat("dd/M/yyyy").parse(pos2.text).millisecondsSinceEpoch){
+                      filterList1.add(element);
+                    }
+                  });
+                }
+                filterList1.forEach((element) {
+                  if(type.text.toLowerCase() == 'school'){
+                    filterList2.add(element);
+                  }else if(type.text.toLowerCase() == 'class'){
+                    if(element.get("class") == _typeAheadControllerclass.text){
+                      filterList2.add(element);
+                    }
+                  }else if(type.text.toLowerCase() == 'section'){
+                    if(element.get("class") == _typeAheadControllerclass.text && element.get("section") == _typeAheadControllersection.text){
+                      filterList2.add(element);
+                    }
+                  }else if(type.text.toLowerCase() == 'student'){
+                    if(element.get("stRegNo") == _typeAheadControllerregno.text || element.get("stName").toString().toLowerCase() == _typeAheadControllerstudent.text.toLowerCase()){
+                      filterList2.add(element);
+                    }
+                  }else{
+                    filterList2.add(element);
+                  }
                 });
-    //             if(_typeAheadControllerfees.text != "Select Option"){
-    //               snap.data!.docs.forEach((element) {
-    //                 if(element.get("timestamp") < DateFormat("dd/MM/yyyy").parse(pos1.text).add(const Duration(days: 1)).millisecondsSinceEpoch && element.get("timestamp") >= DateFormat("dd/MM/yyyy").parse(pos2.text).millisecondsSinceEpoch){
-    //                 if(_typeAheadControllerfees.text.toLowerCase() == "all fees"){
-    //                   filterList1.add(element);
-    //                 }else if(element.get("feesname").toString().toLowerCase() == _typeAheadControllerfees.text.toLowerCase()){
-    //                   filterList1.add(element);
-    //                 }
-    // }
-    //               });
-    //             }
-    //             else{
-    //               snap.data!.docs.forEach((element) {
-    //                 if(element.get("timestamp") < DateFormat("dd/M/yyyy").parse(pos1.text).add(const Duration(days: 1)).millisecondsSinceEpoch && element.get("timestamp") >= DateFormat("dd/M/yyyy").parse(pos2.text).millisecondsSinceEpoch){
-    //                   filterList1.add(element);
-    //                 }
-    //               });
-    //             }
-                // filterList1.forEach((element) {
-                //   if(type.text.toLowerCase() == 'school'){
-                //     filterList2.add(element);
-                //   }else if(type.text.toLowerCase() == 'class'){
-                //     if(element.get("class") == _typeAheadControllerclass.text){
-                //       filterList2.add(element);
-                //     }
-                //   }else if(type.text.toLowerCase() == 'section'){
-                //     if(element.get("class") == _typeAheadControllerclass.text && element.get("section") == _typeAheadControllersection.text){
-                //       filterList2.add(element);
-                //     }
-                //   }else if(type.text.toLowerCase() == 'student'){
-                //     if(element.get("stRegNo") == _typeAheadControllerregno.text || element.get("stName").toString().toLowerCase() == _typeAheadControllerstudent.text.toLowerCase()){
-                //       filterList2.add(element);
-                //     }
-                //   }else{
-                //     filterList2.add(element);
-                //   }
-                // });
-                // filterList2.forEach((element) {
-                //   //over due
-                //   if(married){
-                //     if(differenceDatefunction(element.get('duedate')) < 0){
-                //       students.add(element);
-                //     }
-                //   }
-                //   // paid
-                //   if(married2){
-                //     if(element.get('status')){
-                //       students.add(element);
-                //     }
-                //   }
-                //   // pending
-                //   if(single){
-                //     if(!element.get('status')){
-                //       students.add(element);
-                //     }
-                //   }
-                //   if(!married && !single && !married2){
-                //     students.add(element);
-                //   }
-                // });
+                filterList2.forEach((element) {
+                  //over due
+                  if(married){
+                    if(differenceDatefunction(element.get('duedate')) < 0){
+                      students.add(element);
+                    }
+                  }
+                  // paid
+                  if(married2){
+                    if(element.get('status')){
+                      students.add(element);
+                    }
+                  }
+                  // pending
+                  if(single){
+                    if(!element.get('status')){
+                      students.add(element);
+                    }
+                  }
+                  if(!married && !single && !married2){
+                    students.add(element);
+                  }
+                });
                 return ListView.builder(
                   itemCount: students.length,
                   itemBuilder: (ctx,i){
@@ -1237,6 +1240,20 @@ class _FeesReportsState extends State<FeesReports> {
                         children: [
                           SizedBox(
                             width: 80,
+                            child: Checkbox(
+                              value: studentsListForNotification.contains(data.get("stRegNo")),
+                              onChanged: (val){
+                                if(!studentsListForNotification.contains(data.get("stRegNo"))){
+                                  setState(() {
+                                    studentsListForNotification.add(data.get("stRegNo"));
+                                  });
+                                }else{
+                                  setState(() {
+                                    studentsListForNotification.remove(data.get("stRegNo"));
+                                  });
+                                }
+                              },
+                            ),
                           ),
                           Container(
                             width:150,
@@ -1324,7 +1341,52 @@ class _FeesReportsState extends State<FeesReports> {
     );
   }
 
-  sendEmail(String docid,String to, String subject, String description) async {
+  sendNotificationsToStudents(){
+    String subjectForPending = 'Gentle remainder for fee';
+    String subjectForOverDue = 'Outstanding School Fees Notice';
+    List<DocumentSnapshot> snaps = [];
+    studentsListForNotification.forEach((element) {
+      students.forEach((student) { 
+        if(student.get("stRegNo") == element){
+          snaps.add(student);
+        }
+      });
+    });
+    snaps.forEach((element) {
+      if(element.get("email") != null){
+        print(element.get("email"));
+        sendEmail(
+          element.get("email"),
+          (differenceDatefunction(element.get('duedate')) < 0) ? subjectForOverDue : subjectForPending,
+          (differenceDatefunction(element.get('duedate')) < 0)
+              ? 'Secure your child&#39;s bright academic journey! Just a friendly reminder that the school fee payment is due soon. Your timely action is greatly appreciated. Thank you for your ongoing support'
+              : 'Dear Parent, we kindly request your attention to complete the school fee payment for ${element.get("stName")} ${element.get("stRegNo")}. Your prompt payment is appreciated. Thank you.',
+        );
+      }
+    });
+    Successdialog();
+  }
+
+  Successdialog(){
+    return AwesomeDialog(
+      width: 450,
+      context: context,
+      dialogType: DialogType.success,
+      animType: AnimType.rightSlide,
+      title: 'Email Sended Sucessfully',
+      desc: '',
+
+      btnCancelOnPress: () {
+
+      },
+      btnOkOnPress: () {
+
+
+      },
+    )..show();
+  }
+
+  sendEmail(String to, String subject, String description) async {
     DocumentReference documentReferencer = FirebaseFirestore.instance.collection('mail').doc();
     var json = {
       "to": to,
@@ -1436,4 +1498,10 @@ class StudentFeesModel {
   String date;
   String time;
   bool status;
+}
+
+class StudentListForNotification{
+  StudentListForNotification({required this.selected,required this.student});
+  bool selected;
+  DocumentSnapshot student;
 }

@@ -20,6 +20,9 @@ class _SubtutionState extends State<Subtution>
   String staffname = "";
   TabController? tabController;
 
+  List<String> staffRegNos = [];
+  List<String> staffNames = [];
+  List<SubstitutionModel> substitutionsList = [];
   @override
   void initState() {
     getdate();
@@ -77,51 +80,80 @@ class _SubtutionState extends State<Subtution>
     }
   }
 
-  staffdroup() async {
-    var documentmain = await FirebaseFirestore.instance
-        .collection("Staffs")
-        .doc(staffid)
-        .collection("Timetable")
-        .orderBy("period")
-        .get();
-    var document = await FirebaseFirestore.instance
-        .collection("Staffs")
-        .orderBy("entryno")
-        .get();
-    for (int i = 0; i < documentmain.docs.length; i++) {
-      print("Loop Ok 01");
-      if (documentmain.docs[i]["day"] == day) {
-        print("Loop Ok 02");
-        for (int j = 0; j < document.docs.length; j++) {
-          print("Loop Ok 03");
-          if (document.docs[j]["absent"] == false) {
-            print("Loop Ok 01");
-            var documentmain2 = await FirebaseFirestore.instance
-                .collection("Staffs")
-                .doc(document.docs[j].id)
-                .collection("Timetable")
-                .where("day", isEqualTo: day)
-                .where("period", isEqualTo: documentmain.docs[i]["period"])
-                .get();
-            if (documentmain2.docs.length > 0) {
-              print("Staff has period");
-            } else {
-              setState(() {
-                staffidn[documentmain.docs[i]["period"]].clear();
-                staffid2[documentmain.docs[i]["period"]].clear();
-              });
-              print("List Cleared");
-              setState(() {
-                staffidn[documentmain.docs[i]["period"]]
-                    .add(document.docs[j]["regno"]);
-                staffid2[documentmain.docs[i]["period"]]
-                    .add(document.docs[j]["stname"]);
-              });
-            }
-          }
+  Future<List<String>> staffdroup(int index) async {
+    print(index.toString() + "__________________________________________________________________index");
+    List<String> ids = [];
+    List<String> names = [];
+    List<int> subtitutePeriods = [];
+    var leaveAppliedStaff = await FirebaseFirestore.instance.collection("Staffs").doc(staffid).collection("Timetable").where("day", isEqualTo: day).get();
+    leaveAppliedStaff.docs.forEach((element) {
+      subtitutePeriods.add(element.get("period"));
+    });
+    var staffs = await FirebaseFirestore.instance.collection("Staffs").get();
+    staffs.docs.forEach((staff) async { 
+      if(staff.id != staffid){
+        var timetables = await FirebaseFirestore.instance.collection("Staffs").doc(staff.id).collection('Timetable').where("day", isEqualTo: day).get();
+        // timetables.docs.forEach((timetable) {
+        //   ids.add(staff.get("stname"));
+        //   names.add(staff.get("regno"));
+        //   //}
+        // });
+        // if(timetables.docs.length != 8){
+        //   ids.add(staff.get("stname"));
+        //   names.add(staff.get("regno"));
+        // }
+        print(subtitutePeriods.length.toString() + "____________________________________________________length");
+        print(subtitutePeriods[index].toString() + "____________________________________________________element");
+        Iterable<QueryDocumentSnapshot<Map<String, dynamic>>> isHave = timetables.docs.where((element) => element.get("period") == subtitutePeriods[index]);
+        if(isHave.isEmpty){
+          ids.add(staff.get("stname"));
+          names.add(staff.get("regno"));
         }
       }
-    }
+    });
+    await Future.delayed(Duration(seconds: 30));
+    staffNames.addAll(names);
+    staffRegNos.addAll(ids);
+    setState(() {
+      view = true;
+    });
+
+    return names;
+    
+    // var documentmain = await FirebaseFirestore.instance.collection("Staffs").doc(staffid).collection("Timetable").orderBy("period").get();
+    // var document = await FirebaseFirestore.instance.collection("Staffs").orderBy("entryno").get();
+    // for (int i = 0; i < documentmain.docs.length; i++) {
+    //   print("Loop Ok 01");
+    //   if (documentmain.docs[i]["day"] == day) {
+    //     print("Loop Ok 02");
+    //     for (int j = 0; j < document.docs.length; j++) {
+    //       print("Loop Ok 03");
+    //       if (document.docs[j]["absent"] == false) {
+    //         print("Loop Ok 01");
+    //         var documentmain2 = await FirebaseFirestore.instance
+    //             .collection("Staffs")
+    //             .doc(document.docs[j].id)
+    //             .collection("Timetable")
+    //             .where("day", isEqualTo: day)
+    //             .where("period", isEqualTo: documentmain.docs[i]["period"])
+    //             .get();
+    //         if (documentmain2.docs.length > 0) {
+    //           print("Staff has period");
+    //         } else {
+    //           setState(() {
+    //             staffidn[documentmain.docs[i]["period"]].clear();
+    //             staffid2[documentmain.docs[i]["period"]].clear();
+    //           });
+    //           print("List Cleared");
+    //           setState(() {
+    //             //staffidn[documentmain.docs[i]["period"]].add(document.docs[j]["regno"]);
+    //             //staffid2[documentmain.docs[i]["period"]].add(document.docs[j]["stname"]);
+    //           });
+    //         }
+    //       }
+    //     }
+    //   }
+    //}
 
 
 /*    var userdoc= await FirebaseFirestore.instance.collection('Staffs').doc("").get();
@@ -201,17 +233,27 @@ class _SubtutionState extends State<Subtution>
   static final staffid2 =
       List<List<String>>.generate(200, (int index) => [], growable: true);
 
-  static List<String> getSuggestionsstaffid(String query, index) {
+  List<String> getSuggestionsstaffid(String query, index) {
     List<String> matches = <String>[];
-    matches.addAll(staffidn[index]);
+    staffNames.forEach((element) {
+      if(!matches.contains(element)){
+        matches.add(element);
+      }
+    });
+    //matches.addAll(staffidn[index]);
 
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
   }
 
-  static List<String> getSuggestionsstaffname(String query, index) {
+  List<String> getSuggestionsstaffname(String query, index) {
     List<String> matches = <String>[];
-    matches.addAll(staffid2[index]);
+    staffRegNos.forEach((element) {
+      if(!matches.contains(element)){
+        matches.add(element);
+      }
+    });
+    //matches.addAll(staffid2[index]);
 
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
@@ -494,8 +536,7 @@ class _SubtutionState extends State<Subtution>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 150, right: 0),
+                                                padding: const EdgeInsets.only(left: 150, right: 0),
                                                 child: Container(
                                                     child: StreamBuilder(
                                                   stream: FirebaseFirestore
@@ -503,8 +544,7 @@ class _SubtutionState extends State<Subtution>
                                                       .collection("Staffs")
                                                       .doc(value.id)
                                                       .collection("Timetable")
-                                                      .where("day",
-                                                          isEqualTo: day)
+                                                      .where("day", isEqualTo: day)
                                                       .snapshots(),
                                                   builder: (context, snap) {
                                                     return Text(
@@ -519,8 +559,8 @@ class _SubtutionState extends State<Subtution>
                                                   },
                                                 )),
                                               ),
-                                              value["classasigned"] == true
-                                                  ? Padding(
+                                              value["classasigned"] == false
+                                                   ? Padding(
                                                       padding:
                                                           const EdgeInsets.only(
                                                               left: 110.0),
@@ -528,11 +568,9 @@ class _SubtutionState extends State<Subtution>
                                                         onTap: () {
                                                           setState(() {
                                                             staffid = value.id;
-                                                            staffname =
-                                                                value["stname"];
+                                                            staffname = value["stname"];
                                                             view = true;
                                                           });
-                                                          staffdroup();
                                                         },
                                                         child: Container(
                                                           child: Center(
@@ -786,7 +824,7 @@ class _SubtutionState extends State<Subtution>
                                                                 value["stname"];
                                                             view = true;
                                                           });
-                                                          staffdroup();
+                                                          //staffdroup();
                                                         },
                                                         child: Container(
                                                           child: Center(
@@ -914,7 +952,9 @@ class _SubtutionState extends State<Subtution>
                         width: 550,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          updateSubstitutionTeachers(substitutionsList);
+                        },
                         child: Container(
                           child: Center(
                               child: Text(
@@ -1011,13 +1051,21 @@ class _SubtutionState extends State<Subtution>
                           child: CircularProgressIndicator(),
                         );
                       }
+                      List<DocumentSnapshot> snaps = [];
+                      snapshot.data!.docs.forEach((element) {
+                        if(element.get("day") == day){
+                          snaps.add(element);
+                        }
+                      });
                       return ListView.builder(
                           shrinkWrap: true,
-                          itemCount: snapshot.data!.docs.length,
+                          itemCount: snaps.length,
                           itemBuilder: (context, index) {
-                            var value = snapshot.data!.docs[index];
-                            return value["day"] == day
-                                ? Padding(
+                            var value = snaps[index];
+                            return
+                              // value["day"] == day
+                              //   ?
+                            Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       width: width / 1.366,
@@ -1118,12 +1166,10 @@ class _SubtutionState extends State<Subtution>
                                                             bottom: 8),
                                                     border: InputBorder.none,
                                                   ),
-                                                  controller:
-                                                      this.textediting[index],
+                                                  controller: this.textediting[index],
                                                 ),
                                                 suggestionsCallback: (pattern) {
-                                                  return getSuggestionsstaffid(
-                                                      pattern, value["period"]);
+                                                  return staffdroup(index);//getSuggestionsstaffid(pattern, value["period"]);
                                                 },
                                                 itemBuilder: (context,
                                                     String suggestion) {
@@ -1137,12 +1183,22 @@ class _SubtutionState extends State<Subtution>
                                                   return suggestionsBox;
                                                 },
                                                 onSuggestionSelected:
-                                                    (String suggestion) {
-                                                  this.textediting[index].text =
-                                                      suggestion;
-                                                  getstaffbyid2(
-                                                      textediting[index].text,
-                                                      index);
+                                                    (String suggestion) async {
+                                                  this.textediting[index].text = suggestion;
+                                                  getstaffbyid2(textediting[index].text,index);
+                                                  substitutionsList.add(
+                                                        SubstitutionModel(
+                                                          timestamp: DateTime.now().millisecondsSinceEpoch,
+                                                          date: DateFormat('dd/MM/yyyy').format(DateTime.now()).toString(),
+                                                          day: value.get("day").toString(),
+                                                          period: value.get("period").toString(),
+                                                          section: value.get("section").toString(),
+                                                          subject: value.get("subject").toString(),
+                                                          className: value.get("class").toString(),
+                                                          regNo: textediting[index].text,
+                                                          docId: '',
+                                                        )
+                                                    );
                                                 },
                                                 suggestionsBoxController:
                                                     suggestionBoxController,
@@ -1232,8 +1288,8 @@ class _SubtutionState extends State<Subtution>
                                       ),
                                       //color: Colors.pink,
                                     ),
-                                  )
-                                : Container();
+                                  );
+                                // : Container();
                           });
                     }),
               ],
@@ -1252,17 +1308,14 @@ class _SubtutionState extends State<Subtution>
   Future<List<DocumentSnapshot>> getAppliedLeaves() async {
     List<String> staffRegNos = [];
     List<DocumentSnapshot> staffs = [];
-    var leaveDocument =
-        await FirebaseFirestore.instance.collection('Leave').get();
+    var leaveDocument = await FirebaseFirestore.instance.collection('Leave').get();
     leaveDocument.docs.forEach((element) {
-      if (element.get("leaveon") ==
-          '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}') {
+      if (element.get("leaveon") == '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}' && element.get("status").toString().toLowerCase() == "approved") {
         staffRegNos.add(element.get("regno"));
       }
     });
 
-    var staffDocument =
-        await FirebaseFirestore.instance.collection('Staffs').get();
+    var staffDocument = await FirebaseFirestore.instance.collection('Staffs').get();
     staffDocument.docs.forEach((staff) {
       staffRegNos.forEach((regNo) {
         if (regNo == staff.get("regno")) {
@@ -1284,8 +1337,7 @@ class _SubtutionState extends State<Subtution>
         staffRegNos.add(staff.get("regno"));
       }
     });
-    var leaveDocument =
-        await FirebaseFirestore.instance.collection('Leave').get();
+    var leaveDocument = await FirebaseFirestore.instance.collection('Leave').get();
     leaveDocument.docs.forEach((leave) {
       staffRegNos.forEach((regno) {
         if (leave.get("regno") == regno) {
@@ -1302,4 +1354,66 @@ class _SubtutionState extends State<Subtution>
     });
     return staffs;
   }
+
+  updateSubstitutionTeachers(List<SubstitutionModel> susbstitutionStaffs) async {
+
+    var staffs = await FirebaseFirestore.instance.collection('Staffs').get();
+    susbstitutionStaffs.forEach((subStaff) { 
+      staffs.docs.forEach((staff) { 
+        if(subStaff.regNo == staff.get("regno")){
+          subStaff.docId = staff.id;
+        }
+      });
+    });
+
+    susbstitutionStaffs.forEach((element) {
+      FirebaseFirestore.instance.collection('Staffs').doc(element.docId).collection('Subtitution').doc().set({
+        "class" : element.className,
+        "date" : element.date,
+        "day" : element.day,
+        "period" : element.period,
+        "section" : element.section,
+        "subject" : element.subject,
+        "timestamp" : DateTime.now().millisecondsSinceEpoch,
+      });
+      FirebaseFirestore.instance.collection('Staffs').doc(staffid).update({
+        "classasigned":true
+      });
+      setState(() {
+        view = false;
+        setState(() {
+          staffid = '';
+          staffname = '';
+          textediting.clear();
+          textediting2.clear();
+        });
+      });
+    });
+    
+  }
+}
+
+class SubstitutionModel{
+  SubstitutionModel({
+    required this.timestamp,
+    required this.date,
+    required this.day,
+    required this.period,
+    required this.section,
+    required this.subject,
+    required this.className,
+    required this.regNo,
+    required this.docId,
+});
+
+  String regNo;
+  String docId;
+
+  String className;
+  String date;
+  String day;
+  String period;
+  String section;
+  String subject;
+  num timestamp;
 }

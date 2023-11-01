@@ -191,6 +191,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "section" : document.docs[i].get("section"),
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
+          "email" : document.docs[i].get("email"),
           "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
         });
         FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({
@@ -243,6 +244,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "section" : student.get("section"),
         "stRegNo" : student.get("regno"),
         "stName" : student.get("stname"),
+        "email" : student.get("email"),
         "duedate": paytype.text.toLowerCase() == 'monthly'
             ? '01/01/2023'
             : paytype.text.toLowerCase() == 'custom' ? date.text : ''
@@ -298,6 +300,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "section" : document.docs[i].get("section"),
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
+          "email" : document.docs[i].get("email"),
           "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
         });
         FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({

@@ -402,7 +402,10 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Container(
-                      color:  Color(0xff00A0E3),
+                      decoration: BoxDecoration(
+                        color:  Color(0xff00A0E3),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: TabBar(
                         onTap: (int index) {
                           setState(() {
@@ -718,33 +721,40 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
             ),
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 35.0, right: 40),
+                SizedBox(width: 30),
+                SizedBox(
+                  width: 100,
                   child: Text(
                     "Reg NO",
                     style:
                     GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                   ),
                 ),
-                Text(
-                  "Staff Name",
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                SizedBox(
+                  width: 200,
+                  child: Text(
+                    "Staff Name",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 40.0, right: 40,),
+                SizedBox(
+                  width: 200,
                   child: Text(
                     "Date Applied",
                     style:
                     GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                   ),
                 ),
-                Text(
-                  "Leave Date",
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                SizedBox(
+                  width: 200,
+                  child: Text(
+                    "Leave Date",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                  ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                SizedBox(
+                  width: 200,
                   child: Text(
                     "Phone Number",
                     style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
@@ -771,7 +781,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0, right: 0),
                         child: Container(
-                          width: width/13.66,
+                          width: 100,
                           alignment: Alignment.center,
                           child: Text(
                             value["regno"],
@@ -783,7 +793,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left: 30.0),
                         child: Container(
-                          width: width/11.757,
+                          width: 200,
                           child: Text(
                             value["staffname"],
                             style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
@@ -793,7 +803,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left: 0.0, right: 0),
                         child: Container(
-                          width: width/15.766,
+                          width: 110,
 
                           child: Text(
                             value["date"],
@@ -805,7 +815,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Container(
-                          width:width/15.766,
+                          width: 200,
 
                           alignment: Alignment.center,
                           child: Text(
@@ -818,7 +828,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left:50.0),
                         child: Container(
-                          width: width/9.7571,
+                          width: 200,
                           child: Text(
                             value["phoneno"],
                             style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),
@@ -896,7 +906,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
         SizedBox(height: 20,),
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
-          child: Text("Denied Requests,",style: GoogleFonts.poppins(
+          child: Text("Approved Requests,",style: GoogleFonts.poppins(
             fontSize:width/75.88,
             fontWeight: FontWeight.w700,
           ),),
@@ -911,38 +921,46 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
             ),
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 35.0, right: 40),
+                SizedBox(width: 30),
+                SizedBox(
+                  width: 100,
                   child: Text(
                     "Reg NO",
                     style:
                     GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                   ),
                 ),
-                Text(
-                  "Staff Name",
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                SizedBox(
+                  width: 200,
+                  child: Text(
+                    "Staff Name",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 40.0, right: 40,),
+                SizedBox(
+                  width: 200,
                   child: Text(
                     "Date Applied",
                     style:
                     GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                   ),
                 ),
-                Text(
-                  "Leave Date",
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                SizedBox(
+                  width: 200,
+                  child: Text(
+                    "Leave Date",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
+                  ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                SizedBox(
+                  width: 200,
                   child: Text(
                     "Phone Number",
                     style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                   ),
                 ),
+
               ],
             ),
             //color: Colors.pink,
@@ -963,7 +981,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0, right: 0),
                         child: Container(
-                          width: width/13.66,
+                          width: 100,
                           alignment: Alignment.center,
                           child: Text(
                             value["regno"],
@@ -975,7 +993,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left: 30.0),
                         child: Container(
-                          width: width/11.757,
+                          width: 200,
                           child: Text(
                             value["staffname"],
                             style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
@@ -985,7 +1003,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left: 0.0, right: 0),
                         child: Container(
-                          width: width/15.766,
+                          width: 110,
 
                           child: Text(
                             value["date"],
@@ -997,7 +1015,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Container(
-                          width:width/15.766,
+                          width: 200,
 
                           alignment: Alignment.center,
                           child: Text(
@@ -1010,7 +1028,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                       Padding(
                         padding: const EdgeInsets.only(left:50.0),
                         child: Container(
-                          width: width/9.7571,
+                          width: 200,
                           child: Text(
                             value["phoneno"],
                             style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),

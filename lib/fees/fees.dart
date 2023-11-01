@@ -180,29 +180,49 @@ class _FeesRegState extends State<FeesReg> {
       "status":true,
       "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
-      "timestamp": DateTime.now().microsecondsSinceEpoch,
+      "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
-  }else{
-    FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(feesid).update({
-      "payedamount": double.parse(feesAmount.toString()) - double.parse(payAmount),
+
+    FirebaseFirestore.instance.collection("Students").doc(studentid).collection("PaymentHistory").doc().set({
+      "status":true,
+      "feesname": feesName,
+      "amount": double.parse(payAmount),
       "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
-      "timestamp": DateTime.now().microsecondsSinceEpoch,
+      "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
+
+  }else{
+    FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(feesid).update({
+      "payedamount": FieldValue.increment(double.parse(payAmount)),
+      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "timestamp": DateTime.now().millisecondsSinceEpoch,
+    });
+
+    FirebaseFirestore.instance.collection("Students").doc(studentid).collection("PaymentHistory").doc().set({
+      "status":true,
+      "feesname": feesName,
+      "amount": double.parse(payAmount),
+      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "timestamp": DateTime.now().millisecondsSinceEpoch,
+    });
+
   }
   if(double.parse(balanceAmount.toString()) == 0.0){
     FirebaseFirestore.instance.collection("FeesCollection").doc("$studentid:$feesid").update({
       "status":true,
       "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
-      "timestamp": DateTime.now().microsecondsSinceEpoch,
+      "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
   }else{
     FirebaseFirestore.instance.collection("FeesCollection").doc("$studentid:$feesid").update({
       "payedamount": double.parse(feesAmount.toString()) - double.parse(payAmount),
       "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
-      "timestamp": DateTime.now().microsecondsSinceEpoch,
+      "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
   }
   FirebaseFirestore.instance.collection('Accounts').doc().set({
@@ -224,12 +244,9 @@ class _FeesRegState extends State<FeesReg> {
       animType: AnimType.rightSlide,
       title: 'Fees paid Sucessfully',
       desc: '',
-
       btnCancelOnPress: () {
-
       },
       btnOkOnPress: () {
-
 
       },
     )..show();
@@ -919,7 +936,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                           StudentFeesPdfModel feesDetails = StudentFeesPdfModel(
                                                                             date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
                                                                             time: DateFormat('hh:mm aa').format(DateTime.now()),
-                                                                            amount: value2["amount"].toString(),
+                                                                            amount: payAmount.text,
                                                                             feesName: value2["feesname"].toString(),
                                                                             schoolAdderss: schooladdress,
                                                                             schoolName: schoolname,
@@ -954,11 +971,24 @@ class _FeesRegState extends State<FeesReg> {
                                                             }
                                                         ) : Container(),
                                                         Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                           children: [
                                                             Container(
-
                                                               child: Text('Previous Payments,',style: GoogleFonts.montserrat(
                                                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                                                              ),),
+                                                            ),
+                                                            InkWell(
+                                                              onTap: (){
+                                                                paymentHistoryPopUp(context);
+                                                              },
+                                                              child: Text(
+                                                                'Payment History',
+                                                                style: GoogleFonts.montserrat(
+                                                                  decoration: TextDecoration.underline,
+                                                                  fontWeight:FontWeight.bold,
+                                                                  color: Color(0xff00A0E3),
+                                                                    fontSize:width/81.13,
                                                               ),),
                                                             ),
                                                           ],
@@ -1377,6 +1407,142 @@ class _FeesRegState extends State<FeesReg> {
     setState(() {
       isloading=false;
     });
+  }
+
+
+  Future<void> paymentHistoryPopUp(BuildContext context) {
+    double height= MediaQuery.of(context).size.height;
+    double width= MediaQuery.of(context).size.width;
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title:  Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Fees Payment History',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),
+              ),
+              IconButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.cancel,
+                    color: Colors.black,
+                  )
+              )
+            ],
+          ),
+          content: StreamBuilder(
+              stream:  FirebaseFirestore.instance.collection("Students").doc(studentid).collection('PaymentHistory').snapshots(),
+              builder: (context,snapshot) {
+                if(snapshot.hasData){
+                  return Container(
+                    height: 500,
+                    width: width * 0.6,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              width:130,
+                              child: Text('Fees Name',style: GoogleFonts.montserrat(
+                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                              ),),
+                            ),
+                            Container(
+                              width:130,
+                              child: Text('Amount',style: GoogleFonts.montserrat(
+                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                              ),),
+                            ),
+                            Container(
+                              width:130,
+                              child: Text('Status',style: GoogleFonts.montserrat(
+                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                              ),),
+                            ),
+                            Container(
+                              width:130,
+                              child: Text('Date',style: GoogleFonts.montserrat(
+                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                              ),),
+                            ),
+                            Container(
+                              width:130,
+                              child: Text('Time',style: GoogleFonts.montserrat(
+                                  fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
+                              ),),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Divider(),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context,index){
+                              return
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      width:130,
+                                      child: Text(snapshot.data!.docs[index]["feesname"],style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                      ),),
+                                    ),
+                                    Container(
+                                      width:130,
+                                      child: Text(snapshot.data!.docs[index]["amount"].toString(),style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                      ),),
+                                    ),
+                                    Container(
+                                      width:130,
+                                      child: Text(
+                                        snapshot.data!.docs[index]["status"]==true?"Paid": "Unpaid",style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.bold,
+                                          color:snapshot.data!.docs[index]["status"]==true
+                                              ? Color(0xff53B175)
+                                              :Colors.red,
+                                          fontSize:width/91.13
+                                      ),),
+                                    ),
+                                    Container(
+                                      width:130,
+                                      child: Text(snapshot.data!.docs[index]["date"],style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                      ),),
+                                    ),
+                                    Container(
+                                      width:130,
+                                      child: Text(snapshot.data!.docs[index]["time"],style: GoogleFonts.montserrat(
+                                          fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
+                                      ),),
+                                    ),
+                                  ],
+                                );
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }return Container();
+              }
+          ),
+
+
+        );
+      },
+    );
   }
 
 

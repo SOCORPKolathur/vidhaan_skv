@@ -501,6 +501,21 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                               if(snapshot.hasData){
                                                 return Column(
                                                   children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.all(15.0),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.end,
+                                                        children: [
+                                                          Text(
+                                                            'Total Working Days : ${((getStudentAttendancePersantage(snapshot.data!).present * getStudentAttendancePersantage(snapshot.data!).total)) + (getStudentAttendancePersantage(snapshot.data!).absent * getStudentAttendancePersantage(snapshot.data!).total)}',
+                                                            style: GoogleFonts.poppins(
+                                                              fontWeight: FontWeight.w600,
+                                                              color: Colors.black,
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
                                                     Container(
                                                       height: 250,
                                                       width: 780,
@@ -1360,27 +1375,33 @@ class _StaffAttendenceState extends State<StaffAttendence> {
     List<SalesData> absentData1 = [];
     List<String> presentDays = [];
     List<String> absentDays = [];
-    snapshot.docs.forEach((date) async {
-      print("------------------------------------- ${date.id} -----------------------------");
-      int presentCount = 0;
-      int absentCount = 0;
-      var staff = await FirebaseFirestore.instance.collection('Staff_attendance').doc(date.id).collection('Staffs').doc(id).get();
-        if(staff.get("Staffattendance") == true){
-          presentCount++;
-          print("-------------------------------------${date.id} -----------------------------");
-          DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
-          String month = await getMonthForData(startDate.month);
-          SalesData sale = SalesData(month, presentCount.toDouble(),'',DateFormat("MMM yyyy").format(startDate));
-          attendanceData.add(sale);
+
+
+    try{
+      snapshot.docs.forEach((date) async {
+        int presentCount = 0;
+        int absentCount = 0;
+        var staff = await FirebaseFirestore.instance.collection('Staff_attendance').doc(date.id).collection('Staffs').doc(id).get();
+        if(staff.exists){
+          if(staff.get("Staffattendance") == true){
+            presentCount++;
+            DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
+            String month = await getMonthForData(startDate.month);
+            SalesData sale = SalesData(month, presentCount.toDouble(),'',DateFormat("MMM yyyy").format(startDate));
+            attendanceData.add(sale);
+          }
+          if(staff.get("Staffattendance") == false){
+            absentCount++;
+            DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
+            String month = await getMonthForData(startDate.month);
+            SalesData sale = SalesData(month, absentCount.toDouble(),DateFormat("MMM yyyy").format(startDate),'');
+            absentData.add(sale);
+          }
         }
-        if(staff.get("Staffattendance") == false){
-          absentCount++;
-          DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
-          String month = await getMonthForData(startDate.month);
-          SalesData sale = SalesData(month, absentCount.toDouble(),DateFormat("MMM yyyy").format(startDate),'');
-          absentData.add(sale);
-        }
-    });
+      });
+    }catch(e){
+
+    }
     await Future.delayed(Duration(seconds: 10));
 
     attendanceData.forEach((element) {
