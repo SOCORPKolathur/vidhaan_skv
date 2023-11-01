@@ -559,43 +559,8 @@ class _SubtutionState extends State<Subtution>
                                                   },
                                                 )),
                                               ),
-                                              value["classasigned"] == false
-                                                   ? Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 110.0),
-                                                      child: InkWell(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            staffid = value.id;
-                                                            staffname = value["stname"];
-                                                            view = true;
-                                                          });
-                                                        },
-                                                        child: Container(
-                                                          child: Center(
-                                                              child: Text(
-                                                            "Yet to Assign",
-                                                            style: GoogleFonts
-                                                                .poppins(
-                                                                    color: Colors
-                                                                        .white),
-                                                          )),
-                                                          width: width / 9.76,
-                                                          height: height / 21.9,
-                                                          //color: Color(0xffD60A0B),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                            color: Color(0xfffcba03),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  : Padding(
+                                              value["substitutionAssigned"] == DateFormat("dd/MM/yyyy").format(DateTime.now())
+                                                  ? Padding(
                                                       padding:
                                                           const EdgeInsets.only(
                                                               left: 110.0),
@@ -626,7 +591,40 @@ class _SubtutionState extends State<Subtution>
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
+                                                    )
+                                                   :  Padding(
+                                      padding: const EdgeInsets.only(left: 110.0),
+                                      child: InkWell(
+                                      onTap: () {
+                                      setState(() {
+                                      staffid = value.id;
+                                      staffname = value["stname"];
+                                      view = true;
+                                      });
+                                      },
+                                      child: Container(
+                                      child: Center(
+                                      child: Text(
+                                      "Yet to Assign",
+                                      style: GoogleFonts
+                                          .poppins(
+                                      color: Colors
+                                          .white),
+                                      )),
+                                      width: width / 9.76,
+                                      height: height / 21.9,
+                                      //color: Color(0xffD60A0B),
+                                      decoration:
+                                      BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius
+                                          .circular(
+                                      5),
+                                      color: Color(0xfffcba03),
+                                      ),
+                                      ),
+                                      ),
+                                      ),
                                             ],
                                           ),
                                           //color: Colors.pink,
@@ -1310,7 +1308,7 @@ class _SubtutionState extends State<Subtution>
     List<DocumentSnapshot> staffs = [];
     var leaveDocument = await FirebaseFirestore.instance.collection('Leave').get();
     leaveDocument.docs.forEach((element) {
-      if (element.get("leaveon") == '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}' && element.get("status").toString().toLowerCase() == "approved") {
+      if (element.get("leaveon") == DateFormat('dd-MM-yyyy').format(DateTime.now()) && element.get("status").toString().toLowerCase() == "approved") {
         staffRegNos.add(element.get("regno"));
       }
     });
@@ -1366,7 +1364,10 @@ class _SubtutionState extends State<Subtution>
       });
     });
 
+    await Future.delayed(Duration(seconds: 10));
+
     susbstitutionStaffs.forEach((element) {
+
       FirebaseFirestore.instance.collection('Staffs').doc(element.docId).collection('Subtitution').doc().set({
         "class" : element.className,
         "date" : element.date,
@@ -1377,7 +1378,7 @@ class _SubtutionState extends State<Subtution>
         "timestamp" : DateTime.now().millisecondsSinceEpoch,
       });
       FirebaseFirestore.instance.collection('Staffs').doc(staffid).update({
-        "classasigned":true
+        "substitutionAssigned": DateFormat('dd/MM/yyyy').format(DateTime.now())
       });
       setState(() {
         view = false;

@@ -2814,43 +2814,43 @@ String studentdocid="";
                             padding: const EdgeInsets.only(left:28.0,right:20),
                             child: GestureDetector(
                               onTap: () async {
-                                // if(_typeAheadControllermot.text=="Select Option" ||
-                                // _typeAheadControllerbrother.text=="Select Option"||
-                                //
-                                // _typeAheadControllerclass.text=="Select Option"||
-                                // _typeAheadControllersection.text=="Select Option"||
-                                // _typeAheadControlleracidemic.text=="Select Option"
-                                //
-                                // ){
-                                //   Successdialog3();
-                                // }
-                                // else {
-                                //   final isvalid = _formkey.currentState!.validate();
-                                //   print(isvalid);
-                                //   if (_formkey.currentState!.validate()) {
-                                //     print("fghdddddddddddddd");
-                                //     already();
-                                //   }
-                                // }
+                                if(_typeAheadControllermot.text=="Select Option" ||
+                                _typeAheadControllerbrother.text=="Select Option"||
 
-                                var document= await FirebaseFirestore.instance.collection("Students").where("mobile",isEqualTo: mobile.text).get();
-                                if(document.docs.length>0){
-                                  Successdialog2();
+                                _typeAheadControllerclass.text=="Select Option"||
+                                _typeAheadControllersection.text=="Select Option"||
+                                _typeAheadControlleracidemic.text=="Select Option"
+
+                                ){
+                                  Successdialog3();
                                 }
-                                else{
-                                  List<DocumentSnapshot> feesList = [];
-                                  var admissionFeesDocument = await FirebaseFirestore.instance.collection('AdmissionTimeFees').get();
-                                  if(admissionFeesDocument.docs.isNotEmpty){
-                                    admissionFeesDocument.docs.forEach((element) {
-                                      if(element.get("class") == 'IV' || element.get("class") == 'All'){
-                                        feesList.add(element);
-                                      }
-                                    });
-                                    if(feesList.isNotEmpty){
-                                      showAdmissionTimeFeesPopUp(snapID,feesList);
-                                    }
+                                else {
+                                  final isvalid = _formkey.currentState!.validate();
+                                  print(isvalid);
+                                  if (_formkey.currentState!.validate()) {
+                                    print("fghdddddddddddddd");
+                                    already();
                                   }
                                 }
+
+                                // var document= await FirebaseFirestore.instance.collection("Students").where("mobile",isEqualTo: mobile.text).get();
+                                // if(document.docs.length>0){
+                                //   Successdialog2();
+                                // }
+                                // else{
+                                //   List<DocumentSnapshot> feesList = [];
+                                //   var admissionFeesDocument = await FirebaseFirestore.instance.collection('AdmissionTimeFees').get();
+                                //   if(admissionFeesDocument.docs.isNotEmpty){
+                                //     admissionFeesDocument.docs.forEach((element) {
+                                //       if(element.get("class") == 'IV' || element.get("class") == 'All'){
+                                //         feesList.add(element);
+                                //       }
+                                //     });
+                                //     if(feesList.isNotEmpty){
+                                //       showAdmissionTimeFeesPopUp(snapID,feesList);
+                                //     }
+                                //   }
+                                // }
                               },
                               child: Container(child: Center(child: Text("Save ",style: GoogleFonts.poppins(color:Colors.white),)),
                                 width: width/10.507,
@@ -3311,7 +3311,7 @@ String studentdocid="";
 
       btnOkText: "Ok",
       btnOkOnPress: () {
-
+        clearall();
       },
     )..show();
   }
@@ -3363,7 +3363,7 @@ String studentdocid="";
       var admissionFeesDocument = await FirebaseFirestore.instance.collection('AdmissionTimeFees').get();
       if(admissionFeesDocument.docs.isNotEmpty){
         admissionFeesDocument.docs.forEach((element) {
-          if(element.get("class") == 'IV' || element.get("class") == 'All'){
+          if(element.get("class") == _typeAheadControllerclass.text || element.get("class") == 'All'){
             feesList.add(element);
           }
         });
@@ -3434,34 +3434,35 @@ String studentdocid="";
     });
   }
 
+  List<FeesWithAmount> feesDetailsList = [];
+  double totalFeesAmount = 0.0;
+  double totalFeesAmount1 = 0.0;
+
+  TextEditingController dueDateForAdmissionFees = TextEditingController();
 
   showAdmissionTimeFeesPopUp(String id,List<DocumentSnapshot> feesList) async {
     Size size = MediaQuery.of(context).size;
     double height = size.height;
     double width = size.width;
-    double totalFeesAmount = 0.0;
-    double totalFeesAmount1 = 0.0;
-    List<FeesWithAmount> feesDetailsList = [];
-    bool isAll = false;
     return showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
+        feesDetailsList.clear();
+        bool isAll = false;
+        feesList.forEach((element) {
+          totalFeesAmount += double.parse(element.get("amount").toString());
+          totalFeesAmount1 += double.parse(element.get("amount").toString());
+          feesDetailsList.add(
+              FeesWithAmount(
+                feesName: element.get("feesname"),
+                amount: double.parse(element.get("amount").toString()),
+                isSelected: false,
+                payedAmount: 0.0,
+              )
+          );
+        });
         return StatefulBuilder(
-          builder: (context,setStat) {
-            totalFeesAmount = 0.0;
-            feesDetailsList.clear();
-            feesList.forEach((element) {
-              totalFeesAmount += double.parse(element.get("amount").toString());
-              totalFeesAmount1 += double.parse(element.get("amount").toString());
-              feesDetailsList.add(
-                  FeesWithAmount(
-                    feesName: element.get("feesname"),
-                    amount: double.parse(element.get("amount").toString()),
-                    isSelected: false,
-                    payedAmount: 0.0,
-                  )
-              );
-            });
+            builder: (ctx,setState1) {
             return AlertDialog(
               title:  Text('Fees Details',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold)),
               content: Container(
@@ -3490,7 +3491,7 @@ String studentdocid="";
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextFormField(
                                     onChanged: (val){
-                                      setStat(() {
+                                      setState1(() {
                                         balanceAmount.text = payAmount.text;
                                       });
                                     },
@@ -3508,15 +3509,15 @@ String studentdocid="";
                     SizedBox(height:height/37),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: feesDetailsList.length,
+                        itemCount: feesList.length,
                         itemBuilder: (ctx,i){
                           return ListTile(
                             leading: Checkbox(
                               value: feesDetailsList[i].isSelected,
                               onChanged: (val){
                                 if(val!){
-                                  setState(() {
-                                    feesDetailsList[i].isSelected = val!;
+                                  setState1(() {
+                                    feesDetailsList[i].isSelected = val;
                                     print(balanceAmount.text.toString()+"______________________payment");
                                     if(double.parse(balanceAmount.text.toString()) >= feesDetailsList[i].amount){
                                       feesDetailsList[i].payedAmount = double.parse(balanceAmount.text.toString()) - (double.parse(balanceAmount.text.toString())-feesDetailsList[i].amount);
@@ -3541,7 +3542,7 @@ String studentdocid="";
                               children: [
                                 Text(feesDetailsList[i].amount.toString()),
                                 Text(
-                                (feesDetailsList[i].payedAmount.toString()).toString(),
+                                "-"+(feesDetailsList[i].payedAmount.toString()).toString(),
                                 ),
                               ],
                             ),
@@ -3610,6 +3611,58 @@ String studentdocid="";
                               ),
                             ],
                           ),
+                          Visibility(
+                            visible: double.parse(balanceAmount.text.toString()) != 0.0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width:130,
+                                  child: Text(
+                                    'Due date',
+                                    style: GoogleFonts.montserrat(
+                                      fontWeight:FontWeight.bold,color: Colors.black,
+                                        fontSize:width/100.13
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                  child: Container(width: width/4.83,
+                                      height: height/16.42,
+                                      //color: Color(0xffDDDEEE),
+                                      decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: TextFormField(
+                                          onTap: () async {
+                                            DateTime? pickedDate = await showDatePicker(
+                                                context: context, initialDate: DateTime.now(),
+                                                firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
+                                                lastDate: DateTime(2101)
+                                            );
+                                            if(pickedDate != null ){
+                                              String formattedDate = DateFormat('dd / M / yyyy').format(pickedDate);
+                                              setState1(() {
+                                                dueDateForAdmissionFees.text = formattedDate;
+                                              });
+                                            }else{
+                                              print("Date is not selected");
+                                            }
+                                          },
+                                          readOnly: true,
+                                          controller: dueDateForAdmissionFees,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                          ),
+                                        ),
+                                      )
+
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -3621,8 +3674,13 @@ String studentdocid="";
                         children: [
                           GestureDetector(
                             onTap: () {
+                              feesDetailsList.forEach((element) {
+                                print(element.isSelected);
+                                print(element.payedAmount);
+                                print(element.feesName);
+                              });
                               uploadstudent(id,feesDetailsList);
-                              // Navigator.pop(context);
+                              Navigator.pop(context);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 20,right: 20,left: 20),
@@ -3735,12 +3793,16 @@ String studentdocid="";
   }
 
 
+  String docId = '';
   uploadstudent(String id,List<FeesWithAmount> feesList) async {
     var schoolDoc = await FirebaseFirestore.instance.collection('Admin').get();
     String code = schoolDoc.docs.first.get("code");
     setState(() {
       studentid=randomAlphaNumeric(16);
     });
+
+    print("---------------------------$studentid StudentID------------------------------------------");
+
     FirebaseFirestore.instance.collection("Students").doc(studentid).set({
       "stname": _typeAheadControllerstudent.text,
       "stmiddlename": stnamemiddle.text,
@@ -3799,20 +3861,6 @@ String studentdocid="";
       "behaviour":0,
     }).whenComplete(() {
       //Successdialog();
-      feesList.forEach((element) {
-        if(element.isSelected){
-          FirebaseFirestore.instance.collection('Accounts').doc().set({
-            "amount" : element.payedAmount,
-            "date" : "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
-            "payee" : element.feesName,
-            "receivedBy" : "Admin",
-            "time" : DateFormat('hh:mm aa').format(DateTime.now()),
-            "timestamp" : DateTime.now().millisecondsSinceEpoch,
-            "title" : "Fees Received",
-            "type" : "credit",
-          });
-        }
-      });
       sendEmail(femail.text, "Welcome ${_typeAheadControllerstudent.text}", 'Register Number : ${regno.text} login with following phone number\n phone : ${mobile.text} \n school id $code');
       FirebaseFirestore.instance.collection('AdmissionForms').doc(id).delete();
       Navigator.pop(context);
@@ -3829,8 +3877,178 @@ String studentdocid="";
       "absentdays":0,
       "behaviour":0,
     });
+
+    await Future.delayed(Duration(seconds: 5));
+    feesList.forEach((element) async {
+      if(element.isSelected){
+        if((element.amount - element.payedAmount) == 0){
+          docId = randomAlphaNumeric(16);
+          print("---------------------------$docId DocID------------------------------------------");
+          print("---- fees payed ----");
+          print(element.feesName);
+          print(element.payedAmount);
+
+          FirebaseFirestore.instance.collection("Students").doc(studentid).collection("PaymentHistory").doc().set({
+            "status":true,
+            "feesname": element.feesName,
+            "amount": element.payedAmount,
+            "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+            "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+            "timestamp": DateTime.now().millisecondsSinceEpoch,
+          });
+
+          FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
+            "feesname":   element.feesName,
+            "amount": element.payedAmount,
+            "payedamount": element.payedAmount,
+            "timestamp": DateTime.now().millisecondsSinceEpoch,
+            "paytype": '',
+            "status": true,
+            "date" : "",
+            "time" : "",
+            "class" : _typeAheadControllerclass.text,
+            "section" : _typeAheadControllersection.text,
+            "stRegNo" : regno.text,
+            "stName" : _typeAheadControllerstudent.text,
+            "duedate" : ''
+          });
+
+          FirebaseFirestore.instance.collection('Accounts').doc().set({
+            "amount" : element.payedAmount,
+            "date" : "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
+            "payee" : element.feesName,
+            "receivedBy" : "Admin",
+            "time" : DateFormat('hh:mm aa').format(DateTime.now()),
+            "timestamp" : DateTime.now().millisecondsSinceEpoch,
+            "title" : "Fees Received",
+            "type" : "credit",
+          });
+
+        }else if(element.payedAmount != 0){
+
+          docId = randomAlphaNumeric(16);
+          print("---------------------------$docId DocID------------------------------------------");
+          print("---- fees half payed ----");
+          print(element.feesName);
+          print(element.payedAmount);
+
+          FirebaseFirestore.instance.collection("Students").doc(studentid).collection("PaymentHistory").doc().set({
+            "status":true,
+            "feesname": element.feesName,
+            "amount": element.payedAmount,
+            "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+            "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+            "timestamp": DateTime.now().millisecondsSinceEpoch,
+          });
+
+          FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
+            "feesname":   element.feesName,
+            "amount": element.payedAmount,
+            "payedamount": element.payedAmount,
+            "timestamp": DateTime.now().millisecondsSinceEpoch,
+            "paytype": '',
+            "status": true,
+            "date" : "",
+            "time" : "",
+            "class" : _typeAheadControllerclass.text,
+            "section" : _typeAheadControllersection.text,
+            "stRegNo" : regno.text,
+            "stName" : _typeAheadControllerstudent.text,
+            "duedate" : ''
+          });
+
+          FirebaseFirestore.instance.collection('Accounts').doc().set({
+            "amount" : element.payedAmount,
+            "date" : "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
+            "payee" : element.feesName,
+            "receivedBy" : "Admin",
+            "time" : DateFormat('hh:mm aa').format(DateTime.now()),
+            "timestamp" : DateTime.now().millisecondsSinceEpoch,
+            "title" : "Fees Received",
+            "type" : "credit",
+          });
+          ///////////////////////////////////////////////////
+          print("---- fees balance amount ----");
+          print(element.feesName);
+          print(element.amount - element.payedAmount);
+
+          FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
+            "feesname":   element.feesName,
+            "amount": element.amount - element.payedAmount,
+            "payedamount": element.payedAmount,
+            "timestamp": DateTime.now().millisecondsSinceEpoch,
+            "paytype": '',
+            "status": false,
+            "date" : "",
+            "time" : "",
+            "class" : _typeAheadControllerclass.text,
+            "section" : _typeAheadControllersection.text,
+            "stRegNo" : regno.text,
+            "stName" : _typeAheadControllerstudent.text,
+            "duedate" : dueDateForAdmissionFees.text,
+          });
+
+          FirebaseFirestore.instance.collection("FeesCollection").doc("${studentid}:$docId").set({
+            "feesname":  element.feesName,
+            "amount": element.amount - element.payedAmount,
+            "payedamount": element.payedAmount,
+            "timestamp": DateTime.now().millisecondsSinceEpoch,
+            "paytype": '',
+            "status":false,
+            "date" : "",
+            "time" : "",
+            "class" : _typeAheadControllerclass.text,
+            "section" : _typeAheadControllersection.text,
+            "stRegNo" : regno.text,
+            "stName" : _typeAheadControllerstudent.text,
+            "email" : email.text,
+            "duedate" : dueDateForAdmissionFees.text,
+          });
+
+        }
+      }else{
+        docId = randomAlphaNumeric(16);
+        print("---------------------------$docId DocID------------------------------------------");
+        print("---- fees pending ----");
+        print(element.feesName);
+        print(element.amount - element.payedAmount);
+
+        FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
+          "feesname": element.feesName,
+          "amount": element.amount - element.payedAmount,
+          "payedamount": element.payedAmount,
+          "timestamp": DateTime.now().millisecondsSinceEpoch,
+          "paytype": '',
+          "status": false,
+          "date" : "",
+          "time" : "",
+          "class" : _typeAheadControllerclass.text,
+          "section" : _typeAheadControllersection.text,
+          "stRegNo" : regno.text,
+          "stName" : _typeAheadControllerstudent.text,
+          "duedate" : dueDateForAdmissionFees.text,
+        });
+
+        FirebaseFirestore.instance.collection("FeesCollection").doc("${studentid}:$docId").set({
+          "feesname":  element.feesName,
+          "amount": element.amount - element.payedAmount,
+          "payedamount": element.payedAmount,
+          "timestamp": DateTime.now().millisecondsSinceEpoch,
+          "paytype": '',
+          "status": false,
+          "date" : "",
+          "time" : "",
+          "class" : _typeAheadControllerclass.text,
+          "section" : _typeAheadControllersection.text,
+          "stRegNo" : regno.text,
+          "stName" : _typeAheadControllerstudent.text,
+          "email" : email.text,
+          "duedate" : dueDateForAdmissionFees.text,
+        });
+
+      }
+    });
     Successdialog();
-    clearall();
 
   }
   

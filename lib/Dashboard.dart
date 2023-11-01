@@ -24,6 +24,7 @@ import 'package:vidhaan/stafflist.dart';
 import 'package:vidhaan/studentlist.dart';
 
 import 'package:vidhaan/staff%20entry.dart';
+import 'package:vidhaan/timetable/classTimeTable.dart';
 import 'package:vidhaan/timetable/stafftimetable.dart';
 import 'package:vidhaan/timetable/subtution.dart';
 
@@ -4421,11 +4422,13 @@ setState(() {
                                         )),
                                     ListTile(
                                         onTap: () {
-                                         /* setState(() {
+                                          setState(() {
 
-                                            pages=StaffTimeTable();
+                                            pages= ClassWiseTimeTable();
 
-                                          });*/
+                                            dawer=10;
+
+                                          });
                                         },
                                         title: Text("Classwise TimeTable",style: GoogleFonts.poppins(
                                             fontSize: 12,
