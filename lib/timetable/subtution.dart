@@ -4,6 +4,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:random_string/random_string.dart';
 import 'package:vidhaan/modules/home/controllers/home_controller.dart';
 
 class Subtution extends StatefulWidget {
@@ -18,6 +19,7 @@ class _SubtutionState extends State<Subtution>
   bool view = false;
   String staffid = "";
   String staffname = "";
+  String staffRegNo = "";
   TabController? tabController;
 
   List<String> staffRegNos = [];
@@ -81,7 +83,6 @@ class _SubtutionState extends State<Subtution>
   }
 
   Future<List<String>> staffdroup(int index) async {
-    print(index.toString() + "__________________________________________________________________index");
     List<String> ids = [];
     List<String> names = [];
     List<int> subtitutePeriods = [];
@@ -90,28 +91,30 @@ class _SubtutionState extends State<Subtution>
       subtitutePeriods.add(element.get("period"));
     });
     var staffs = await FirebaseFirestore.instance.collection("Staffs").get();
-    staffs.docs.forEach((staff) async { 
+    await Future.forEach(
+      staffs.docs, (staff) async {
       if(staff.id != staffid){
         var timetables = await FirebaseFirestore.instance.collection("Staffs").doc(staff.id).collection('Timetable').where("day", isEqualTo: day).get();
-        // timetables.docs.forEach((timetable) {
-        //   ids.add(staff.get("stname"));
-        //   names.add(staff.get("regno"));
-        //   //}
-        // });
-        // if(timetables.docs.length != 8){
-        //   ids.add(staff.get("stname"));
-        //   names.add(staff.get("regno"));
-        // }
-        print(subtitutePeriods.length.toString() + "____________________________________________________length");
-        print(subtitutePeriods[index].toString() + "____________________________________________________element");
-        Iterable<QueryDocumentSnapshot<Map<String, dynamic>>> isHave = timetables.docs.where((element) => element.get("period") == subtitutePeriods[index]);
-        if(isHave.isEmpty){
+        var timetables1 = await FirebaseFirestore.instance.collection("Staffs").doc(staff.id).collection('Subtitution').where("day", isEqualTo: day).get();
+        print(staff.id+"_______________ staffid");
+        print(subtitutePeriods[index].toString()+"_______________ index");
+        print(day.toString()+"_______________ day");
+        print(timetables.docs.length.toString()+"_______________ timetable len");
+        print(timetables1.docs.length.toString()+"_______________ timetable1 len");
+        timetables1.docs.forEach((element) {
+          print(element.get("period").toString()+"_______________ period");
+        });
+        Iterable<QueryDocumentSnapshot<Map<String, dynamic>>> isHaveClass = timetables.docs.where((element) => element.get("period") == subtitutePeriods[index]);
+        Iterable<QueryDocumentSnapshot<Map<String, dynamic>>> isHaveSubstitution = timetables1.docs.where((element) => element.get("period") == subtitutePeriods[index]);
+        print(isHaveClass.length.toString()+"_______________ class len");
+        print(isHaveSubstitution.length.toString()+"_______________ subst len");
+        if(isHaveClass.isEmpty && isHaveSubstitution.isEmpty){
           ids.add(staff.get("stname"));
           names.add(staff.get("regno"));
         }
       }
-    });
-    await Future.delayed(Duration(seconds: 30));
+        },
+    );
     staffNames.addAll(names);
     staffRegNos.addAll(ids);
     setState(() {
@@ -271,11 +274,304 @@ class _SubtutionState extends State<Subtution>
     return matches;
   }
 
+  bool viewSubstituteHistory = false;
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return view == false
+    return viewSubstituteHistory == true
+        ? Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 38.0, top: 0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Substitution History",
+                    style: GoogleFonts.poppins(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 500),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        viewSubstituteHistory = false;
+                      });
+                    },
+                    child: Material(
+                      borderRadius: BorderRadius.circular(5),
+                      elevation: 7,
+                      child: Container(
+                        child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Icon(
+                                    Icons.cancel_outlined,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  "Close",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white),
+                                ),
+                              ],
+                            )),
+                        width: width / 5.507,
+                        height: height / 16.425,
+                        // color:Color(0xff00A0E3),
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(5)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //color: Colors.white,
+            width: width / 1.366,
+            height: height / 8.212,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+        const SizedBox(height: 20),
+        Expanded(
+          child: SizedBox(
+            width: width,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Container(
+                    height: height / 13.14,
+                    width: width,
+                    decoration: BoxDecoration(
+                      color: Color(0xff00A0E3),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 30),
+                        SizedBox(
+                          width: 80,
+                          child: Text(
+                            "SI NO",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 100,
+                          child: Text(
+                            "Date",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            "Register No",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            "Staff Name",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            "Today Handling hours",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            "Actions",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                    //color: Colors.pink,
+                  ),
+                ),
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance.collection('SubstitutionHistory').snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (snapshot.hasData == null) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) {
+                            var value = snapshot.data!.docs[index];
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Container(
+                                width: width,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: 40),
+                                      Container(
+                                        width: 60,
+                                        child: Text(
+                                          (index+1).toString(),
+                                          style: GoogleFonts.poppins(
+                                            fontWeight:
+                                            FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 110,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          value["date"],
+                                          style: GoogleFonts.poppins(
+                                            fontWeight:
+                                            FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 160,
+                                        child: Text(
+                                          value["staffRegNo"],
+                                          style: GoogleFonts.poppins(
+                                            fontWeight:
+                                            FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 200,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          value["staffName"],
+                                          style: GoogleFonts.poppins(
+                                            fontWeight:
+                                            FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 200,
+                                        alignment: Alignment.center,
+                                        child: FutureBuilder(
+                                          future: FirebaseFirestore.instance.collection('SubstitutionHistory').doc(value.id).collection('SubstitutionStaffs').where("date", isEqualTo: value["date"]).get(),
+                                          builder: (ctx, snap){
+                                            if(snap.hasData){
+                                              return Text(
+                                                snap.data!.docs.length.toString(),
+                                                style: GoogleFonts.poppins(
+                                                  fontWeight:
+                                                  FontWeight.w500,
+                                                ),
+                                              );
+                                            }return Text(
+                                              '0',
+                                              style: GoogleFonts.poppins(
+                                                fontWeight:
+                                                FontWeight.w500,
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      ),
+                                      Padding(
+                                        padding:
+                                        const EdgeInsets.only(left: 30.0),
+                                        child: InkWell(
+                                          onTap: () {
+                                            viewSubstituteStaffs(context,value.id,value["date"]);
+                                          },
+                                          child: Container(
+                                            child: Center(
+                                                child: Text(
+                                                  "View Staffs",
+                                                  style: GoogleFonts
+                                                      .poppins(
+                                                      color: Colors
+                                                          .white),
+                                                )),
+                                            width: width / 9.76,
+                                            height: height / 21.9,
+                                            //color: Color(0xffD60A0B),
+                                            decoration:
+                                            BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius
+                                                  .circular(
+                                                  5),
+                                              color: Color(
+                                                  0xff53B175),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                //color: Colors.pink,
+                              ),
+                            );
+                          });
+                    }),
+              ],
+            ),
+          ),
+        ),
+      ],
+    )
+        : view == false
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -295,9 +591,8 @@ class _SubtutionState extends State<Subtution>
                         SizedBox(width: 500),
                         InkWell(
                           onTap: () {
-                            // getstaffbyid();
                             setState(() {
-                              //  viewtem=true;
+                              viewSubstituteHistory = true;
                             });
                           },
                           child: Material(
@@ -599,6 +894,7 @@ class _SubtutionState extends State<Subtution>
                                       setState(() {
                                       staffid = value.id;
                                       staffname = value["stname"];
+                                      staffRegNo = value["regno"];
                                       view = true;
                                       });
                                       },
@@ -934,6 +1230,8 @@ class _SubtutionState extends State<Subtution>
                             onTap: () {
                               setState(() {
                                 view = false;
+                                staffname = '';
+                                staffRegNo = '';
                               });
                             },
                             child: Icon(Icons.arrow_back_rounded)),
@@ -951,7 +1249,7 @@ class _SubtutionState extends State<Subtution>
                       ),
                       GestureDetector(
                         onTap: () {
-                          updateSubstitutionTeachers(substitutionsList);
+                          updateSubstitutionTeachers(substitutionsList,staffname,staffRegNo);
                         },
                         child: Container(
                           child: Center(
@@ -1195,6 +1493,7 @@ class _SubtutionState extends State<Subtution>
                                                           className: value.get("class").toString(),
                                                           regNo: textediting[index].text,
                                                           docId: '',
+                                                          staffName: '',
                                                         )
                                                     );
                                                 },
@@ -1303,6 +1602,109 @@ class _SubtutionState extends State<Subtution>
     });
   }
 
+  Future<void> viewSubstituteStaffs(BuildContext context, docid,date) {
+    double height= MediaQuery.of(context).size.height;
+    double width= MediaQuery.of(context).size.width;
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title:  Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Subtitution Staffs',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),
+              ),
+              IconButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.cancel,
+                    color: Colors.black,
+                  ),
+              )
+            ],
+          ),
+          content: FutureBuilder(
+              future: FirebaseFirestore.instance.collection('SubstitutionHistory').doc(docid).collection('SubstitutionStaffs').where("date", isEqualTo: date).get(),
+              builder: (context,snap) {
+                if(snap.hasData){
+                  return Container(
+                    width: width * 0.5,
+                    height: height/1.828,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                    child: ListView.builder(
+                      itemCount: snap.data!.docs.length,
+                      itemBuilder: (ctx,i){
+                        var val = snap.data!.docs[i];
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Material(
+                            elevation: 4,
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              height: 150,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Staff Name :   "+val.get("staffName"),
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Subject :   "+val.get("subject"),
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Class :   "+val.get("class") +" - "+ val.get("section"),
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Date :   "+val.get("date"),
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Period :   ${int.parse(val.get("period").toString()).remainder(8) + 1}",
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                  );
+                }return Container();
+              }
+          ),
+
+
+        );
+      },
+    );
+  }
+
   Future<List<DocumentSnapshot>> getAppliedLeaves() async {
     List<String> staffRegNos = [];
     List<DocumentSnapshot> staffs = [];
@@ -1353,21 +1755,33 @@ class _SubtutionState extends State<Subtution>
     return staffs;
   }
 
-  updateSubstitutionTeachers(List<SubstitutionModel> susbstitutionStaffs) async {
-
+  updateSubstitutionTeachers(List<SubstitutionModel> susbstitutionStaffs,String staffName, String staffRegNo) async {
     var staffs = await FirebaseFirestore.instance.collection('Staffs').get();
-    susbstitutionStaffs.forEach((subStaff) { 
-      staffs.docs.forEach((staff) { 
-        if(subStaff.regNo == staff.get("regno")){
-          subStaff.docId = staff.id;
-        }
+    susbstitutionStaffs.forEach((subStaff) {
+      // staffs.docs.forEach((staff) {
+      //   if(subStaff.regNo == staff.get("regno")){
+      //     subStaff.docId = staff.id;
+      //   }
+      // });
+      Future.forEach(staffs.docs, (staff){
+        staffs.docs.forEach((staff) {
+          if(subStaff.regNo == staff.get("regno")){
+            subStaff.docId = staff.id;
+            subStaff.staffName = staff.get("stname");
+          }
+        });
       });
     });
+    //await Future.delayed(Duration(seconds: 10));
+    String documentId = randomAlphaNumeric(16);
 
-    await Future.delayed(Duration(seconds: 10));
+    FirebaseFirestore.instance.collection('SubstitutionHistory').doc(documentId).set({
+      "staffName" : staffName,
+      "staffRegNo" : staffRegNo,
+      "date" : DateFormat('dd/MM/yyyy').format(DateTime.now()).toString(),
+    });
 
-    susbstitutionStaffs.forEach((element) {
-
+    Future.forEach(susbstitutionStaffs, (element) async {
       FirebaseFirestore.instance.collection('Staffs').doc(element.docId).collection('Subtitution').doc().set({
         "class" : element.className,
         "date" : element.date,
@@ -1376,18 +1790,33 @@ class _SubtutionState extends State<Subtution>
         "section" : element.section,
         "subject" : element.subject,
         "timestamp" : DateTime.now().millisecondsSinceEpoch,
+        "leaveStaffRegNo" : staffRegNo,
       });
-      FirebaseFirestore.instance.collection('Staffs').doc(staffid).update({
-        "substitutionAssigned": DateFormat('dd/MM/yyyy').format(DateTime.now())
+
+      FirebaseFirestore.instance.collection('SubstitutionHistory').doc(documentId).collection('SubstitutionStaffs').doc(element.docId).set({
+        "class" : element.className,
+        "date" : element.date,
+        "day" : element.day,
+        "period" : element.period,
+        "section" : element.section,
+        "subject" : element.subject,
+        "timestamp" : DateTime.now().millisecondsSinceEpoch,
+        "staffRegNo" : element.regNo,
+        "staffName" : element.staffName,
       });
+    });
+
+    FirebaseFirestore.instance.collection('Staffs').doc(staffid).update({
+      "substitutionAssigned": DateFormat('dd/MM/yyyy').format(DateTime.now())
+    });
+
+    setState(() {
+      view = false;
       setState(() {
-        view = false;
-        setState(() {
-          staffid = '';
-          staffname = '';
-          textediting.clear();
-          textediting2.clear();
-        });
+        staffid = '';
+        staffname = '';
+        textediting.clear();
+        textediting2.clear();
       });
     });
     
@@ -1405,12 +1834,14 @@ class SubstitutionModel{
     required this.className,
     required this.regNo,
     required this.docId,
+    required this.staffName,
 });
 
   String regNo;
   String docId;
 
   String className;
+  String staffName;
   String date;
   String day;
   String period;

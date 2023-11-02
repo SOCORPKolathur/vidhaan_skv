@@ -356,6 +356,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                       setState(() {
                                         _typeAheadControllerclass.text = value!;
                                       });
+                                      setteacher();
                                     },
                                     buttonStyleData: ButtonStyleData(
                                       height: 50,
@@ -460,6 +461,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                       setState(() {
                                         _typeAheadControllersection.text = value!;
                                       });
+                                      setteacher();
                                     },
                                     buttonStyleData: ButtonStyleData(
                                       height: 50,

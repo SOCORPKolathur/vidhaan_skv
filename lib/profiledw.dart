@@ -686,6 +686,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
   TextEditingController schoolname = new TextEditingController();
   TextEditingController schoolphone = new TextEditingController();
   TextEditingController schoolweb = new TextEditingController();
+  TextEditingController schooldays = new TextEditingController();
   TextEditingController schooladdress = new TextEditingController();
   TextEditingController schoolbuilding = new TextEditingController();
   TextEditingController schoolstreet = new TextEditingController();
@@ -912,6 +913,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
       schoolstate.text=document.docs[0]["state"];
       schoolstreet.text=document.docs[0]["street"];
       schoolweb.text=document.docs[0]["web"];
+      schooldays.text=document.docs[0]["days"].toString();
       design=document.docs[0]["idcard"];
     });
   }
@@ -1168,7 +1170,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                         ),
                                       ),
 
-                                        width: width/7.106,
+                                        width: width/5.106,
                                         height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
@@ -1201,7 +1203,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                         ),
                                       ),
 
-                                        width: width/7.106,
+                                        width: width/5.106,
                                         height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
@@ -1234,7 +1236,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                         ),
                                       ),
 
-                                        width: width/7.106,
+                                        width: width/5.106,
                                         height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
@@ -1245,6 +1247,17 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                   ],
 
                                 ),
+
+
+
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top:28.0,left: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -1267,7 +1280,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                         ),
                                       ),
 
-                                        width: width/7.106,
+                                        width: width/5.106,
                                         height: height/16.42,
                                         //color: Color(0xffDDDEEE),
                                         decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
@@ -1278,17 +1291,6 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                   ],
 
                                 ),
-
-
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top:28.0,left: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -1355,6 +1357,17 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                   ],
 
                                 ),
+
+
+
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top:28.0,left: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -1388,13 +1401,46 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                   ],
 
                                 ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right:0.0),
+                                      child: Text("Total no of working days(Monthly) : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      child: Container(child: TextFormField(
+                                        controller: schooldays,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15
+                                        ),
+                                        validator: (value) =>
+                                        value!.isEmpty ? 'Field Cannot Be Empty' : null,
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+
+                                        width: width/5.106,
+                                        height: height/16.42,
+                                        //color: Color(0xffDDDEEE),
+                                        decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                      ),
+                                    ),
+
+                                  ],
+
+                                ),
 
 
                               ],
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left:10.0,top:58),
+                            padding: const EdgeInsets.only(left:10.0,top:18),
                             child: Row(
                               children: [
                                 InkWell(
@@ -2535,6 +2581,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
       "logo":imgUrl,
       "logo2":imgUrl2,
       "web":schoolweb.text,
+      "days":int.parse(schooldays.text),
     });
   }
   Future<void> _bulkuploadstudent() async {

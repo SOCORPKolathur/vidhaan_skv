@@ -327,16 +327,14 @@ class _admissionState extends State<admission> {
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           left: 40.0, right: 20, top: 3),
-                                     child: Visibility(
-                                       visible: data["status"].toString().toLowerCase() == 'pending',
-                                       child: ElevatedButton(
-                                         style: ButtonStyle(
-                                //backgroundColor: MaterialStateColor().green
+                                     child: ElevatedButton(
+                                       style: ButtonStyle(
+                                backgroundColor:currentIndex == 1? MaterialStateProperty.all<Color>(Colors.green) : currentIndex == 0? MaterialStateProperty.all<Color>(Colors.blue)
+                                    :MaterialStateProperty.all<Color>(Colors.red)
                                 ),
-                                         onPressed: () => _dialogBuilder(context,data.id),
-                                         child:  Text(currentIndex != 1? 'View':'Approved'),
+                                       onPressed: () => _dialogBuilder(context,data.id),
+                                       child:  Text(currentIndex == 1? 'Approved' :currentIndex == 0? 'View':"Rejected"),
 
-                                       ),
                                      ),
 
 
@@ -743,7 +741,8 @@ class _admissionState extends State<admission> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            GestureDetector(onTap: () {
+                            currentIndex != 1 ?  GestureDetector(
+                              onTap: () {
                               Navigator.of(context).pop();
                               sendEmail(docid,val['email'],"Enrollment link - Vidhaan","https://vidhaanadmissionform.web.app \n Please click the above link to enroll");
                             },
@@ -767,7 +766,7 @@ class _admissionState extends State<admission> {
 
                                 ),
                               ),
-                            ),
+                            ) :SizedBox(),
                             currentIndex != 2 ?    Row(
                               children: [
                                 GestureDetector(

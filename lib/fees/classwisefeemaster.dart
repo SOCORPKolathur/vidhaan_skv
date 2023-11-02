@@ -1376,7 +1376,6 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                     ),
                     type.text=="Class"?   StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").orderBy("timestamp").snapshots(),
-
                         builder: (context,snapshot){
                           if(!snapshot.hasData)
                           {
@@ -1443,11 +1442,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   ),
                                 );
                               });
-
                         }):
                     type.text=="Student"? StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").snapshots(),
-
                         builder: (context,snapshot){
                           if(!snapshot.hasData)
                           {
@@ -1518,7 +1515,6 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                         })
                         : StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance.collection("FeesCollection").snapshots(),
-
                         builder: (context,snapshot){
                           if(!snapshot.hasData)
                           {

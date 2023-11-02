@@ -7,6 +7,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:vidhaan/profile.dart';
 import 'package:vidhaan/profiledw.dart';
+import 'package:vidhaan/staffpiechart.dart';
 
 import 'demo2.dart';
 
@@ -439,26 +440,26 @@ class _Dashboard2State extends State<Dashboard2> {
               Padding(
                 //padding:  EdgeInsets.only(right: width/34.15, top: height/32.85),
                 padding:  EdgeInsets.only(right: 0, top: height/32.85),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      FutureBuilder(
-                        future: getTodayStaffPresent(),
-                        builder: (ctx,snap){
-                          if(snap.hasData){
-                            return Material(
-                              elevation: 7,
-                              borderRadius: BorderRadius.circular(12),
-                              shadowColor:  Color(0xff53B175).withOpacity(0.20),
-                              child: Container(
+                child: Material(
+                  elevation: 7,
+                  borderRadius: BorderRadius.circular(12),
+                  shadowColor:  Color(0xff53B175).withOpacity(0.20),
+                  child: Container(
+                    width: width/1.28,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border:Border.all(color: Color(0xff53B175).withOpacity(0.20))
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        FutureBuilder(
+                          future: getTodayStaffPresent(),
+                          builder: (ctx,snap){
+                            if(snap.hasData){
+                              return Container(
                                 width: 535,
                                 height: height / 2.87,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    border:Border.all(color: Color(0xff53B175).withOpacity(0.20))
-                                ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -618,22 +619,15 @@ class _Dashboard2State extends State<Dashboard2> {
 
                                   ],
                                 ),
-                              ),
-                            );
-                          }return Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Material(
-                                elevation: 7,
-                                borderRadius: BorderRadius.circular(12),
-                                shadowColor:  Color(0xff53B175).withOpacity(0.20),
-                                child: Container(
-                                  width: 535,
+                              );
+                            }
+                            return Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  width:535,
                                   height: height / 2.87,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      border:Border.all(color: Color(0xff53B175).withOpacity(0.20))
-                                  ),
+
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -794,28 +788,48 @@ class _Dashboard2State extends State<Dashboard2> {
                                     ],
                                   ),
                                 ),
-                              ),
-                              CircularProgressIndicator()
-                            ],
-                          );
-                        },
-                      ),
-                      SizedBox(width: 12),
-                      FutureBuilder<TodayPresentReport>(
-                        future: getTodayStudentPresent(),
-                        builder: (ctx, snap){
-                          if(snap.hasData){
-                            return Material(
-                              elevation: 7,
-                              borderRadius: BorderRadius.circular(12),
-                              shadowColor:  Color(0xff53B175).withOpacity(0.20),
-                              child: Container(
-                                width: 535,
+                                CircularProgressIndicator()
+                              ],
+                            );
+                          },
+                        ),
+                        Container(
+                            height: height / 3.57,
+                            child: VerticalDivider(width: 2,color:Colors.grey)),
+                        Container(
+                            width: 535,
+                            height: height / 2.87,
+                            child: StaffPieChart())
+
+
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                //padding:  EdgeInsets.only(right: width/34.15, top: height/32.85),
+                padding:  EdgeInsets.only(right: 0, top: height/32.85),
+                child: Material(
+                  elevation: 7,
+                  borderRadius: BorderRadius.circular(12),
+                  shadowColor:  Color(0xff53B175).withOpacity(0.20),
+                  child: Container(
+                    width: width/1.28,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border:Border.all(color: Color(0xff53B175).withOpacity(0.20))
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        FutureBuilder<TodayPresentReport>(
+                          future: getTodayStudentPresent(),
+                          builder: (ctx, snap){
+                            if(snap.hasData){
+                              return Container(
+                                width:535,
                                 height: height / 2.87,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    border:Border.all(color: Color(0xff53B175).withOpacity(0.20))
-                                ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -975,189 +989,198 @@ class _Dashboard2State extends State<Dashboard2> {
 
                                   ],
                                 ),
-                              ),
-                            );
-                          }return Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Material(
-                                elevation: 7,
-                                borderRadius: BorderRadius.circular(12),
-                                shadowColor:  Color(0xff53B175).withOpacity(0.20),
-                                child: Container(
-                                  width: 535,
-                                  height: height / 2.87,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      border:Border.all(color: Color(0xff53B175).withOpacity(0.20))
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text("Today Student Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top:15.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 0.0,top:8,bottom: 8),
-                                              child:  Column(
-                                                children: [
-                                                  CircularPercentIndicator(
-                                                    circularStrokeCap: CircularStrokeCap.round,
-                                                    radius: 40.0,
-                                                    lineWidth: 12.0,
-                                                    percent: 0.0,
-                                                    center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
-                                                    progressColor: Colors.green,
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(left: 8.0,right: 8,top: 12),
-                                                    child:  ChoiceChip(
-
-                                                      label: Text("  Present  ",style: TextStyle(color: Colors.white),),
-
-
-                                                      onSelected: (bool selected) {
-
-                                                        setState(() {
-
-                                                        });
-                                                      },
-                                                      selectedColor: Color(0xff53B175),
-                                                      shape: StadiumBorder(
-                                                          side: BorderSide(
-                                                              color: Color(0xff53B175))),
-                                                      backgroundColor: Colors.white,
-                                                      labelStyle: TextStyle(color: Colors.black),
-
-                                                      elevation: 1.5, selected: true,),
-
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 0.0,top: 8,bottom: 8.0),
-                                              child:  Row(
-                                                children: [
-                                                  Column(
-                                                    children: [
-                                                      CircularPercentIndicator(
-                                                        circularStrokeCap: CircularStrokeCap.round,
-                                                        radius: 40.0,
-                                                        lineWidth: 12.0,
-                                                        percent: 0.0,
-                                                        center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
-                                                        progressColor: Colors.red,
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(left: 8.0,right: 8,top: 12),
-                                                        child: ChoiceChip(
-
-                                                          label: Text("  Absent  ",style: TextStyle(color: Colors.white),),
-
-
-                                                          onSelected: (bool selected) {
-
-                                                            setState(() {
-
-                                                            });
-                                                          },
-                                                          selectedColor: Colors.red,
-                                                          shape: StadiumBorder(
-                                                              side: BorderSide(
-                                                                  color: Colors.red)),
-                                                          backgroundColor: Colors.white,
-                                                          labelStyle: TextStyle(color: Colors.black),
-
-                                                          elevation: 1.5, selected: true,),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Text("Students on leave Today",
-                                                    style: GoogleFonts.poppins(
-                                                        fontWeight: FontWeight.w600,fontSize: 14),
-                                                  ),
-                                                ),
-                                                Container(
-                                                    height: height / 5.57,
-                                                    width: 260,
-                                                    child: ListView.builder(
-                                                        shrinkWrap: true,
-                                                        itemCount: 0,
-                                                        itemBuilder: (context,i){
-                                                          return Column(
-                                                            children: [
-                                                              Row(
-                                                                children: [
-                                                                  //radio button
-                                                                  Radio(
-                                                                      value: 1,
-                                                                      activeColor: Color(0xff263646),
-                                                                      groupValue:selectedvalue,
-                                                                      onChanged:(value){
-                                                                        setState(() {
-                                                                          value=selectedvalue;
-                                                                          selectedvalue=1;
-                                                                          selectedvalue2=0;
-                                                                          selectedvalue3=0;
-                                                                          selectedvalue4=0;
-                                                                        });
-                                                                      }),
-                                                                  //text1
-                                                                  Text(
-                                                                    "",
-                                                                    style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 12),
-                                                                  ),
-                                                                  Text(
-                                                                    "- ID ",
-                                                                    style: GoogleFonts.poppins(
-                                                                        fontWeight: FontWeight.w500,
-                                                                        fontSize: 10,color: Colors.grey),
-                                                                  ),
-
-
-
-
-
-                                                                ],
-                                                              ),
-
-
-
-
-                                                            ],);
-                                                        })
-                                                ),
-                                              ],
-                                            ),
-
-                                          ],
+                              );
+                            }
+                            return Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Material(
+                                  elevation: 7,
+                                  borderRadius: BorderRadius.circular(12),
+                                  shadowColor:  Color(0xff53B175).withOpacity(0.20),
+                                  child: Container(
+                                    width: 538,
+                                    height: height / 2.87,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        border:Border.all(color: Color(0xff53B175).withOpacity(0.20))
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text("Today Student Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
                                         ),
-                                      ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top:15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 0.0,top:8,bottom: 8),
+                                                child:  Column(
+                                                  children: [
+                                                    CircularPercentIndicator(
+                                                      circularStrokeCap: CircularStrokeCap.round,
+                                                      radius: 40.0,
+                                                      lineWidth: 12.0,
+                                                      percent: 0.0,
+                                                      center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                      progressColor: Colors.green,
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left: 8.0,right: 8,top: 12),
+                                                      child:  ChoiceChip(
 
-                                    ],
+                                                        label: Text("  Present  ",style: TextStyle(color: Colors.white),),
+
+
+                                                        onSelected: (bool selected) {
+
+                                                          setState(() {
+
+                                                          });
+                                                        },
+                                                        selectedColor: Color(0xff53B175),
+                                                        shape: StadiumBorder(
+                                                            side: BorderSide(
+                                                                color: Color(0xff53B175))),
+                                                        backgroundColor: Colors.white,
+                                                        labelStyle: TextStyle(color: Colors.black),
+
+                                                        elevation: 1.5, selected: true,),
+
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 0.0,top: 8,bottom: 8.0),
+                                                child:  Row(
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        CircularPercentIndicator(
+                                                          circularStrokeCap: CircularStrokeCap.round,
+                                                          radius: 40.0,
+                                                          lineWidth: 12.0,
+                                                          percent: 0.0,
+                                                          center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                          progressColor: Colors.red,
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(left: 8.0,right: 8,top: 12),
+                                                          child: ChoiceChip(
+
+                                                            label: Text("  Absent  ",style: TextStyle(color: Colors.white),),
+
+
+                                                            onSelected: (bool selected) {
+
+                                                              setState(() {
+
+                                                              });
+                                                            },
+                                                            selectedColor: Colors.red,
+                                                            shape: StadiumBorder(
+                                                                side: BorderSide(
+                                                                    color: Colors.red)),
+                                                            backgroundColor: Colors.white,
+                                                            labelStyle: TextStyle(color: Colors.black),
+
+                                                            elevation: 1.5, selected: true,),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Text("Students on leave Today",
+                                                      style: GoogleFonts.poppins(
+                                                          fontWeight: FontWeight.w600,fontSize: 14),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                      height: height / 5.57,
+                                                      width: 260,
+                                                      child: ListView.builder(
+                                                          shrinkWrap: true,
+                                                          itemCount: 0,
+                                                          itemBuilder: (context,i){
+                                                            return Column(
+                                                              children: [
+                                                                Row(
+                                                                  children: [
+                                                                    //radio button
+                                                                    Radio(
+                                                                        value: 1,
+                                                                        activeColor: Color(0xff263646),
+                                                                        groupValue:selectedvalue,
+                                                                        onChanged:(value){
+                                                                          setState(() {
+                                                                            value=selectedvalue;
+                                                                            selectedvalue=1;
+                                                                            selectedvalue2=0;
+                                                                            selectedvalue3=0;
+                                                                            selectedvalue4=0;
+                                                                          });
+                                                                        }),
+                                                                    //text1
+                                                                    Text(
+                                                                      "",
+                                                                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 12),
+                                                                    ),
+                                                                    Text(
+                                                                      "- ID ",
+                                                                      style: GoogleFonts.poppins(
+                                                                          fontWeight: FontWeight.w500,
+                                                                          fontSize: 10,color: Colors.grey),
+                                                                    ),
+
+
+
+
+
+                                                                  ],
+                                                                ),
+
+
+
+
+                                                              ],);
+                                                          })
+                                                  ),
+                                                ],
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                              CircularProgressIndicator()
-                            ],
-                          );
-                        },
-                      )
-                    ],
+                                CircularProgressIndicator()
+                              ],
+                            );
+                          },
+                        ),
+                        Container(
+                            height: height / 3.57,
+                            child: VerticalDivider(width: 2,color:Colors.grey)),
+                        Container(
+                            width: 535,
+                            height: height / 2.87,
+                            child: StaffPieChart())
+
+                      ],
+                    ),
                   ),
                 ),
               ),

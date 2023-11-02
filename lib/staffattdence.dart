@@ -69,6 +69,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
   late TooltipBehavior _tooltipBehavior;
   @override
   void initState() {
+    getvalues();
     setState(() {
       _typeAheadControllerclass.text="Select Option";
       _typeAheadControllersection.text="Select Option";
@@ -190,12 +191,9 @@ class _StaffAttendenceState extends State<StaffAttendence> {
       else{
         print("absent");
         setState(() {
-
           absent=absent+1;
         });
-
       }
-
     }
 
   }
@@ -763,180 +761,351 @@ class _StaffAttendenceState extends State<StaffAttendence> {
               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
             ),
           ),
-
-          Row(
-            children: [
-              SizedBox(width: 20,),
-              Container(
-                  width: 450,
-                  child: SfCartesianChart(
-                      primaryXAxis: CategoryAxis(),
-                      // Chart title
-                      title: ChartTitle(text: '       Monthly Staff Reports',textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Colors.black),alignment: ChartAlignment.near),
-                      // Enable legend
-                      legend: Legend(isVisible: true),
-                      // Enable tooltip
-                      tooltipBehavior: _tooltipBehavior,
-
-
-
-                      series: <LineSeries<SalesData, String>>[
-
-                        LineSeries<SalesData, String>(
-                          name: "Staffs \nAttendance",
-                          dataSource:  <SalesData>[
-                         /*   SalesData('Jan', 35),
-                            SalesData('Feb', 28),
-                            SalesData('Mar', 34),
-                            SalesData('Apr', 32),
-                            SalesData('May', 40),
-                            SalesData('June', 50),
-                            SalesData('July', 50),
-                            */
-                          ],
-                          xValueMapper: (SalesData sales, _) => sales.year,
-                          yValueMapper: (SalesData sales, _) => sales.sales,
-                          // Enable data label
-                          dataLabelSettings: DataLabelSettings(isVisible: true),
-                          color: Colors.green,
-                          width: 5,
-                          animationDuration: 2000,
-
-
+          FutureBuilder(
+            future: getMonthlyAttendanceReportForAllStaffs(),
+            builder: (ctx, snapshot){
+              if(snapshot.hasData){
+                return Row(
+                  children: [
+                    SizedBox(width: 20,),
+                    Container(
+                        width: 450,
+                        child: Container(
+                          height: 250,
+                          width: 850,
+                          child: sfc.SfCartesianChart(
+                              primaryXAxis: sfc.CategoryAxis(),
+                              title: sfc.ChartTitle(
+                                  text: '   Monthly Staff Reports',
+                                  textStyle: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                  alignment: sfc.ChartAlignment.near
+                              ),
+                              legend: sfc.Legend(isVisible: true),
+                              tooltipBehavior: _tooltipBehavior,
+                              series: <sfc.LineSeries<SalesData, String>>[
+                                sfc.LineSeries<SalesData, String>(
+                                  name: "",
+                                  dataSource: snapshot.data!.presentReport,
+                                  xValueMapper: (SalesData sales, _) => sales.year,
+                                  yValueMapper: (SalesData sales, _) => sales.sales,
+                                  // Enable data label
+                                  dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                  color: Colors.green,
+                                  width: 5,
+                                  animationDuration: 2000,
+                                )
+                              ]
+                          ),
                         )
-                      ]
-                  )
-              ),
-              Column(
-                children: [
-                  SizedBox(height: height/32.85,),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:  Column(
+                    ),
+                    Column(
+                      children: [
+                        SizedBox(height: height/32.85,),
+                        Row(
                           children: [
-                            CircularPercentIndicator(
-                              circularStrokeCap: CircularStrokeCap.round,
-                              radius: 50.0,
-                              lineWidth: 10.0,
-                              percent:  0.0,
-                              center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
-                              progressColor: Colors.green,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child:  Column(
+                                children: [
+                                  CircularPercentIndicator(
+                                    circularStrokeCap: CircularStrokeCap.round,
+                                    radius: 50.0,
+                                    lineWidth: 10.0,
+                                    percent:  (presnetvalues/totalattdencevalues) *100,
+                                    center:  Text("${(presnetvalues/totalattdencevalues *100).toInt()} %",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                    progressColor: Colors.green,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all( 8.0),
+                                    child:  ChoiceChip(
+
+                                      label: Text("  Regular  ",style: TextStyle(color: Colors.white),),
+
+
+                                      onSelected: (bool selected) {
+
+                                        setState(() {
+
+                                        });
+                                      },
+                                      selectedColor: Color(0xff53B175),
+                                      shape: StadiumBorder(
+                                          side: BorderSide(
+                                              color: Color(0xff53B175))),
+                                      backgroundColor: Colors.white,
+                                      labelStyle: TextStyle(color: Colors.black),
+
+                                      elevation: 1.5, selected: true,),
+
+                                  ),
+                                ],
+                              ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all( 8.0),
-                              child:  ChoiceChip(
+                              padding: const EdgeInsets.all(8.0),
+                              child:  Column(
+                                children: [
+                                  CircularPercentIndicator(
+                                    circularStrokeCap: CircularStrokeCap.round,
+                                    radius: 50.0,
+                                    lineWidth: 10.0,
+                                    percent: (absentvalues/totalattdencevalues) *100,
+                                    center:  Text("${(absentvalues/totalattdencevalues *100).toInt()} %",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                    progressColor: Colors.red,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all( 8.0),
+                                    child: ChoiceChip(
 
-                                label: Text("  Regular  ",style: TextStyle(color: Colors.white),),
+                                      label: const Text("  Ir-regular  ",style: TextStyle(color: Colors.white),),
 
 
-                                onSelected: (bool selected) {
+                                      onSelected: (bool selected) {
 
-                                  setState(() {
+                                        setState(() {
 
-                                  });
-                                },
-                                selectedColor: Color(0xff53B175),
-                                shape: StadiumBorder(
-                                    side: BorderSide(
-                                        color: Color(0xff53B175))),
-                                backgroundColor: Colors.white,
-                                labelStyle: TextStyle(color: Colors.black),
+                                        });
+                                      },
+                                      selectedColor: Colors.red,
+                                      shape: StadiumBorder(
+                                          side: BorderSide(
+                                              color: Colors.red)),
+                                      backgroundColor: Colors.white,
+                                      labelStyle: TextStyle(color: Colors.black),
 
-                                elevation: 1.5, selected: true,),
-
+                                      elevation: 1.5, selected: true,),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:  Column(
-                          children: [
-                            CircularPercentIndicator(
-                              circularStrokeCap: CircularStrokeCap.round,
-                              radius: 50.0,
-                              lineWidth: 10.0,
-                              percent: 0.00,
-                              center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
-                              progressColor: Colors.red,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all( 8.0),
-                              child: ChoiceChip(
+                        SizedBox(height: height/32.85),
 
-                                label: const Text("  Ir-regular  ",style: TextStyle(color: Colors.white),),
-
-
-                                onSelected: (bool selected) {
-
-                                  setState(() {
-
-                                  });
-                                },
-                                selectedColor: Colors.red,
-                                shape: StadiumBorder(
-                                    side: BorderSide(
-                                        color: Colors.red)),
-                                backgroundColor: Colors.white,
-                                labelStyle: TextStyle(color: Colors.black),
-
-                                elevation: 1.5, selected: true,),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: height/32.85),
-
-                ],
-              ),
-              SizedBox(width: 20,),
-              Material(
-                elevation: 7,
-                borderRadius: BorderRadius.circular(12),
-                shadowColor:  Color(0xff53B175),
-                child: Container(
-                  height: height/7.3,
-                  width: width/5.464,
-                  decoration: BoxDecoration(
+                      ],
+                    ),
+                    SizedBox(width: 20,),
+                    Material(
+                      elevation: 7,
                       borderRadius: BorderRadius.circular(12),
-                      border:Border.all(color: Color(0xff53B175))
+                      shadowColor:  Color(0xff53B175),
+                      child: Container(
+                        height: height/7.3,
+                        width: width/5.464,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border:Border.all(color: Color(0xff53B175))
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Total No.of Staffs",style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                            ),),
+                            ChoiceChip(
+
+                              label: Text("${schooltotal.toString()} Staffs",style: TextStyle(color: Colors.white),),
+
+
+                              onSelected: (bool selected) {
+
+                                setState(() {
+
+                                });
+                              },
+                              selectedColor: Color(0xff53B175),
+                              shape: StadiumBorder(
+                                  side: BorderSide(
+                                      color: Color(0xff53B175))),
+                              backgroundColor: Colors.white,
+                              labelStyle: TextStyle(color: Colors.black),
+
+                              elevation: 1.5, selected: true,),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }return Row(
+                children: [
+                  SizedBox(width: 20,),
+                  Container(
+                      width: 450,
+                      child: Container(
+                        height: 250,
+                        width: 850,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            sfc.SfCartesianChart(
+                                primaryXAxis: sfc.CategoryAxis(),
+                                title: sfc.ChartTitle(
+                                    text: '   Monthly Staff Reports',
+                                    textStyle: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                    ),
+                                    alignment: sfc.ChartAlignment.near
+                                ),
+                                legend: sfc.Legend(isVisible: true),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <sfc.LineSeries<SalesData, String>>[
+                                  sfc.LineSeries<SalesData, String>(
+                                    name: "",
+                                    dataSource: [],
+                                    xValueMapper: (SalesData sales, _) => sales.year,
+                                    yValueMapper: (SalesData sales, _) => sales.sales,
+                                    // Enable data label
+                                    dataLabelSettings: sfc.DataLabelSettings(isVisible: true),
+                                    color: Colors.green,
+                                    width: 5,
+                                    animationDuration: 2000,
+                                  )
+                                ]
+                            ),
+                            CircularProgressIndicator()
+                          ],
+                        ),
+                      )
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
-                      Text("Total No.of Staffs",style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                      ),),
-                      ChoiceChip(
+                      SizedBox(height: height/32.85,),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child:  Column(
+                              children: [
+                                CircularPercentIndicator(
+                                  circularStrokeCap: CircularStrokeCap.round,
+                                  radius: 50.0,
+                                  lineWidth: 10.0,
+                                  percent:  0.00,
+                                  center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                  progressColor: Colors.green,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all( 8.0),
+                                  child:  ChoiceChip(
 
-                        label: Text("${schooltotal.toString()} Staffs",style: TextStyle(color: Colors.white),),
+                                    label: Text("  Regular  ",style: TextStyle(color: Colors.white),),
 
 
-                        onSelected: (bool selected) {
+                                    onSelected: (bool selected) {
 
-                          setState(() {
+                                      setState(() {
 
-                          });
-                        },
-                        selectedColor: Color(0xff53B175),
-                        shape: StadiumBorder(
-                            side: BorderSide(
-                                color: Color(0xff53B175))),
-                        backgroundColor: Colors.white,
-                        labelStyle: TextStyle(color: Colors.black),
+                                      });
+                                    },
+                                    selectedColor: Color(0xff53B175),
+                                    shape: StadiumBorder(
+                                        side: BorderSide(
+                                            color: Color(0xff53B175))),
+                                    backgroundColor: Colors.white,
+                                    labelStyle: TextStyle(color: Colors.black),
 
-                        elevation: 1.5, selected: true,),
+                                    elevation: 1.5, selected: true,),
+
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child:  Column(
+                              children: [
+                                CircularPercentIndicator(
+                                  circularStrokeCap: CircularStrokeCap.round,
+                                  radius: 50.0,
+                                  lineWidth: 10.0,
+                                  percent: 0.00,
+                                  center:  Text("00%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                  progressColor: Colors.red,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all( 8.0),
+                                  child: ChoiceChip(
+
+                                    label: const Text("  Ir-regular  ",style: TextStyle(color: Colors.white),),
+
+
+                                    onSelected: (bool selected) {
+
+                                      setState(() {
+
+                                      });
+                                    },
+                                    selectedColor: Colors.red,
+                                    shape: StadiumBorder(
+                                        side: BorderSide(
+                                            color: Colors.red)),
+                                    backgroundColor: Colors.white,
+                                    labelStyle: TextStyle(color: Colors.black),
+
+                                    elevation: 1.5, selected: true,),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: height/32.85),
+
                     ],
                   ),
-                ),
-              ),
-            ],
+                  SizedBox(width: 20,),
+                  Material(
+                    elevation: 7,
+                    borderRadius: BorderRadius.circular(12),
+                    shadowColor:  Color(0xff53B175),
+                    child: Container(
+                      height: height/7.3,
+                      width: width/5.464,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border:Border.all(color: Color(0xff53B175))
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Total No.of Staffs",style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20,
+                          ),),
+                          ChoiceChip(
+
+                            label: Text("${schooltotal.toString()} Staffs",style: TextStyle(color: Colors.white),),
+
+
+                            onSelected: (bool selected) {
+
+                              setState(() {
+
+                              });
+                            },
+                            selectedColor: Color(0xff53B175),
+                            shape: StadiumBorder(
+                                side: BorderSide(
+                                    color: Color(0xff53B175))),
+                            backgroundColor: Colors.white,
+                            labelStyle: TextStyle(color: Colors.black),
+
+                            elevation: 1.5, selected: true,),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0,top: 20),
@@ -1367,6 +1536,103 @@ class _StaffAttendenceState extends State<StaffAttendence> {
     );
   }
 
+  Future<StaffAttendanceReportModel> getMonthlyAttendanceReportForAllStaffs() async {
+    var snapshot = await FirebaseFirestore.instance.collection("Staff_attendance").get();//.doc(id).collection('Attendance').get();
+    List<SalesData> attendanceData = [];
+    List<SalesData> attendanceData1 = [];
+    List<SalesData> absentData = [];
+    List<SalesData> absentData1 = [];
+    List<String> presentDays = [];
+    List<String> absentDays = [];
+
+
+    try{
+      snapshot.docs.forEach((date) async {
+        int presentCount = 0;
+        int absentCount = 0;
+        var staffs = await FirebaseFirestore.instance.collection('Staff_attendance').doc(date.id).collection('Staffs').get();
+        staffs.docs.forEach((staff) async {
+            if(staff.get("Staffattendance") == true){
+              presentCount++;
+              DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
+              String month = await getMonthForData(startDate.month);
+              SalesData sale = SalesData(month, presentCount.toDouble(),'',DateFormat("MMM yyyy").format(startDate));
+              attendanceData.add(sale);
+            }
+            if(staff.get("Staffattendance") == false){
+              absentCount++;
+              DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
+              String month = await getMonthForData(startDate.month);
+              SalesData sale = SalesData(month, absentCount.toDouble(),DateFormat("MMM yyyy").format(startDate),'');
+              absentData.add(sale);
+            }
+        });
+      });
+    }catch(e){
+
+    }
+    await Future.delayed(Duration(seconds: 20));
+
+    attendanceData.forEach((element) {
+      presentDays.add(element.presentDay);
+    });
+    absentData.forEach((element) {
+      absentDays.add(element.absentDay);
+    });
+    attendanceData1.add(SalesData('June',attendanceData.where((element) => element.year == 'June').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('July',attendanceData.where((element) => element.year == 'July').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Aug',attendanceData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Sep',attendanceData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Oct',attendanceData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Nov',attendanceData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Dec',attendanceData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Jan',attendanceData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Feb',attendanceData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Mar',attendanceData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Apr',attendanceData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+
+
+
+    absentData1.add(SalesData('June',absentData.where((element) => element.year == 'June').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('July',absentData.where((element) => element.year == 'July').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Aug',absentData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Sep',absentData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Oct',absentData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Nov',absentData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Dec',absentData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Jan',absentData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Feb',absentData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Mar',absentData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Apr',absentData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+    StaffAttendanceReportModel studentReport = StaffAttendanceReportModel(
+      absentReport: absentData1,
+      presentReport: attendanceData1,
+      absentDays: absentDays,
+      presentDays: presentDays,
+    );
+    return studentReport;
+  }
+
   Future<StaffAttendanceReportModel> getMonthlyAttendanceReportForStaff(String id) async {
     var snapshot = await FirebaseFirestore.instance.collection("Staff_attendance").get();//.doc(id).collection('Attendance').get();
     List<SalesData> attendanceData = [];
@@ -1464,6 +1730,30 @@ class _StaffAttendenceState extends State<StaffAttendence> {
     return studentReport;
   }
 
+  ClassAttendancePercentage getClassRegularPercentage(StaffAttendanceReportModel report){
+    double regulatPersantage = 0.0;
+    double irregularPersantage = 0.0;
+    double totalPersantage = 0.0;
+    report.presentReport.forEach((element) {
+      regulatPersantage = regulatPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    report.absentReport.forEach((element) {
+      irregularPersantage = irregularPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    ClassAttendancePercentage percentage = ClassAttendancePercentage(
+        regular: (regulatPersantage/totalPersantage) * 100,
+        irregular: (irregularPersantage/totalPersantage) * 100,
+        total: totalPersantage
+    );
+    print(regulatPersantage);
+    print(irregularPersantage);
+    print(totalPersantage);
+    return percentage;
+  }
+
+
   getMonthForData(int month){
     String result = '';
     switch(month){
@@ -1528,6 +1818,38 @@ class _StaffAttendenceState extends State<StaffAttendence> {
         total: totalPersantage
     );
     return percentage;
+  }
+
+
+
+  int totalvalues=0;
+  int presnetvalues = 0;
+  int absentvalues =0;
+  int holidayvalues =0;
+  int totalattdencevalues =0;
+  getvalues() async {
+    var document = await FirebaseFirestore.instance.collection("Staff_attendance").get();
+    var staffs = await FirebaseFirestore.instance.collection("Staffs").get();
+    setState(() {
+      totalvalues = document.docs.length;
+      totalattdencevalues = document.docs.length * staffs.docs.length;
+    });
+    for(int i=0;i<document.docs.length;i++){
+      var document2 = await FirebaseFirestore.instance.collection("Staff_attendance").doc(document.docs[i].id).collection("Staffs").get();
+      setState(() {
+        presnetvalues = presnetvalues + document2.docs.length;
+      });
+    }
+    setState(() {
+      absentvalues = totalattdencevalues - presnetvalues ;
+    });
+    print("Total++++++++++++++++++++++++++++++");
+    print((totalattdencevalues).toInt());
+    print("Present++++++++++++++++++++++++++++++");
+    print((presnetvalues/totalattdencevalues *100).toInt());
+    print("Absent+++++++++++++++++++++++++++");
+    print((absent/totalattdencevalues *100).toInt());
+
   }
 
 

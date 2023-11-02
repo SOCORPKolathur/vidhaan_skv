@@ -1174,7 +1174,8 @@ String studentdocid="";
                                           style: GoogleFonts.poppins(
                                               fontSize: 15
                                           ),
-                                          maxLines: 5,
+                                          maxLines: 3,
+                                          
                                           validator: (value) =>
                                           value!.isEmpty ? 'Field Cannot Be Empty' : null,
                                           decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
@@ -3035,29 +3036,40 @@ String studentdocid="";
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          left: 8.0, right: 19),
-                                      child: Text(snapshot.data!.docs[index]["dateOfApplication"],selectionColor: Color(0xff109CF1),),
+                                          left: 8.0,),
+                                      child: Container(
+                                          width: 110,
+                                          child: Text(snapshot.data!.docs[index]["dateOfApplication"],selectionColor: Color(0xff109CF1),)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 86.0,left: 20),
-                                      child: Text(snapshot.data!.docs[index]["studentName"]),
+                                      padding: const EdgeInsets.only(),
+                                      child: Container(
+                                          width:86+70,
+                                          child: Text(snapshot.data!.docs[index]["studentName"])),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 45.0),
-                                      child: Text(snapshot.data!.docs[index]["standardSought"]),
+                                      padding: const EdgeInsets.only(),
+                                      child: Container(
+                                          width:80,
+                                          child: Text(snapshot.data!.docs[index]["standardSought"])),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 50.0, right: 30),
-                                      child: Text(snapshot.data!.docs[index]["fatherMobileNo"]),
+                                      padding: const EdgeInsets.only(),
+                                      child: Container(
+                                          width: 100+18,
+                                          child: Text(snapshot.data!.docs[index]["fatherMobileNo"])),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 18.0,right: 80),
-                                      child: Text(snapshot.data!.docs[index]["fatherName"]),
+                                      padding: const EdgeInsets.only(),
+                                      child: Container(
+                                          width: 120+18,
+                                          child: Text(snapshot.data!.docs[index]["fatherName"])),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 18.0,right: 50),
-                                      child: Text(snapshot.data!.docs[index]["previousSchool"]),
+                                      padding: const EdgeInsets.only(),
+                                      child: Container(
+                                          width:90+50,
+                                          child: Text(snapshot.data!.docs[index]["previousSchool"])),
                                     ),
 
                                     Padding(
@@ -3184,11 +3196,14 @@ String studentdocid="";
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                    child: Text(
-                      "Residential Address:  ${snap.get("residentialAddress")}",
-                      style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold),
+                    child: Container(
+                      width:200,
+                      child: Text(
+                        "Residential Address:  ${snap.get("residentialAddress")}",
+                        style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                   Column(
@@ -3264,7 +3279,7 @@ String studentdocid="";
             ],
           ),
             width: width/2.1682,
-            height: height/2.628,
+            height: height/2.228,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
 
           ),
@@ -3381,6 +3396,7 @@ String studentdocid="";
       view = false;
       imgUrl = snap.get("imgUrl");
       _typeAheadControllerstudent.text = snap.get("studentName");
+      stnamelast.text= snap.get("studentMothername");
       _typeAheadControllerclass.text = snap.get("standardSought");
       _typeAheadControllersection.text = 'A';
       bloodgroup.text = snap.get("bloodGroup");
@@ -3403,6 +3419,7 @@ String studentdocid="";
       mmobile.text = snap.get("motherMobileNo");
       memail.text = snap.get("motherEmail");
     });
+    getrollno();
   //   List<DocumentSnapshot> feesList = [];
   //   var admissionFeesDocument = await FirebaseFirestore.instance.collection('AdmissionTimeFees').get();
   //   if(admissionFeesDocument.docs.isNotEmpty){
@@ -3642,7 +3659,7 @@ String studentdocid="";
                                                 lastDate: DateTime(2101)
                                             );
                                             if(pickedDate != null ){
-                                              String formattedDate = DateFormat('dd / M / yyyy').format(pickedDate);
+                                              String formattedDate = DateFormat('dd/M/yyyy').format(pickedDate);
                                               setState1(() {
                                                 dueDateForAdmissionFees.text = formattedDate;
                                               });
@@ -3680,7 +3697,7 @@ String studentdocid="";
                                 print(element.feesName);
                               });
                               uploadstudent(id,feesDetailsList);
-                              Navigator.pop(context);
+                              Successdialog();
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 20,right: 20,left: 20),
@@ -3910,7 +3927,7 @@ String studentdocid="";
             "section" : _typeAheadControllersection.text,
             "stRegNo" : regno.text,
             "stName" : _typeAheadControllerstudent.text,
-            "duedate" : ''
+            "duedate" : dueDateForAdmissionFees.text,
           });
 
           FirebaseFirestore.instance.collection('Accounts').doc().set({
@@ -3954,7 +3971,7 @@ String studentdocid="";
             "section" : _typeAheadControllersection.text,
             "stRegNo" : regno.text,
             "stName" : _typeAheadControllerstudent.text,
-            "duedate" : ''
+            "duedate" : dueDateForAdmissionFees.text,
           });
 
           FirebaseFirestore.instance.collection('Accounts').doc().set({
@@ -4048,7 +4065,7 @@ String studentdocid="";
 
       }
     });
-    Successdialog();
+
 
   }
   

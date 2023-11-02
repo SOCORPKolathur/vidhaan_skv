@@ -1403,7 +1403,7 @@ class _FeesReportsState extends State<FeesReports> {
   }
 
   differenceDatefunction(date1) {
-    int diffrencedays = DateFormat('dd/MM/yyyy').parse(date1).difference(DateTime.now()).inDays;
+    int diffrencedays = DateFormat('dd / MM / yyyy').parse(date1).difference(DateTime.now()).inDays;
     return diffrencedays;
   }
 
