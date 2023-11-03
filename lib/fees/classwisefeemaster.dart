@@ -633,6 +633,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         if(type.text=="Student") {
                                           gettotal2();
                                         }
+                                        if(type.text=="General") {
+                                          gettotal3();
+                                        }
                                       },
                                       buttonStyleData: ButtonStyleData(
                                         height: 50,
@@ -1123,11 +1126,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                     ),
 
                                   ],
-
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
@@ -1191,32 +1192,23 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                                 paytype.text = value!;
                                               });
                                               if(value=="Custom"){
-
                                                   DateTime? pickedDate = await showDatePicker(
                                                       context: context, initialDate: DateTime.now(),
                                                       firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
                                                       lastDate: DateTime(2101)
                                                   );
-
                                                   if(pickedDate != null ){
                                                     print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
-                                                    String formattedDate = DateFormat('dd/M/yyyy').format(pickedDate);
+                                                    String formattedDate = DateFormat("dd/MM/yyyy").format(pickedDate);
                                                     print(formattedDate); //formatted date output using intl package =>  2021-03-16
                                                     //you can implement different kind of Date Format here according to your requirement
                                                     setState(() {
-
                                                       date.text = formattedDate;
-
                                                       //set output date to TextField value.
                                                     });
-
-
-
-
                                                   }else{
                                                     print("Date is not selected");
                                                   }
-
                                               }
                                             },
                                             buttonStyleData: ButtonStyleData(
@@ -1339,9 +1331,6 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                         ],
                       ),
                     ),
-
-
-
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child:Container(
@@ -1374,14 +1363,16 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
                       ),
                     ),
-                    type.text=="Class"?   StreamBuilder<QuerySnapshot>(
+                    type.text=="Class"
+                        ? StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").orderBy("timestamp").snapshots(),
                         builder: (context,snapshot){
                           if(!snapshot.hasData)
                           {
                             return   const Center(
                               child:  CircularProgressIndicator(),
-                            );}
+                            );
+                          }
                           if(snapshot.hasData==null)
                           {
                             return   const Center(
@@ -1397,9 +1388,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   child: Container(
                                     height: height/ 21.9,
                                     width: width/ 1.241,
-
                                     decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
-
                                     ),
                                     child: Row(
                                       children: [
@@ -1442,8 +1431,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   ),
                                 );
                               });
-                        }):
-                    type.text=="Student"? StreamBuilder<QuerySnapshot>(
+                        },
+                    )
+                        : type.text=="Student"
+                        ? StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").snapshots(),
                         builder: (context,snapshot){
                           if(!snapshot.hasData)
@@ -1846,6 +1837,18 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
       total=0;
     });
     var document=await FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").get();
+    for(int i=0;i<document.docs.length;i++){
+      setState(() {
+        total=total+document.docs[i]["amount"];
+      });
+    }
+  }
+
+  gettotal3() async {
+    setState(() {
+      total=0;
+    });
+    var document=await FirebaseFirestore.instance.collection("FeesCollection").get();
     for(int i=0;i<document.docs.length;i++){
       setState(() {
         total=total+document.docs[i]["amount"];

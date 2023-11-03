@@ -18,7 +18,7 @@ class _AccountpageState extends State<Accountpage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('Accounts').snapshots(),
+      stream: FirebaseFirestore.instance.collection('Accounts').orderBy("timestamp",descending: true).snapshots(),
       builder: (ctx, snap) {
         if (snap.hasData) {
           List inwardsList = [];

@@ -1775,6 +1775,8 @@ setState(() {
 
   Future<StudentAttendanceReportModel> getMonthlyAttendanceReportForClass() async {
     var snapshot = await FirebaseFirestore.instance.collection("Attendance").get();
+    var admin = await FirebaseFirestore.instance.collection("Admin").get();
+    int totalWorkingDays = admin.docs.first.get("days");
     List<SalesData> attendanceData = [];
     List<SalesData> attendanceData1 = [];
     List<SalesData> absentData = [];

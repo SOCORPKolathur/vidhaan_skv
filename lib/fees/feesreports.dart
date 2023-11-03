@@ -149,7 +149,7 @@ class _FeesReportsState extends State<FeesReports> {
   }
   TextEditingController pos1=new TextEditingController();
   TextEditingController pos2=new TextEditingController();
-  final DateFormat formatter = DateFormat('dd / M / yyyy');
+  final DateFormat formatter = DateFormat('dd/MM/yyyy');
   int year1 =0;
   int day1= 0;
   int month1=0;
@@ -943,7 +943,7 @@ class _FeesReportsState extends State<FeesReports> {
                                       );
 
                                       if(pickedDate != null ){
-                                        String formattedDate = DateFormat('dd/M/yyyy').format(pickedDate);
+                                        String formattedDate = DateFormat('dd/MM/yyyy').format(pickedDate);
                                        //you can implement different kind of Date Format here according to your requirement
 
                                         setState(() {
@@ -1016,7 +1016,7 @@ class _FeesReportsState extends State<FeesReports> {
                                       );
 
                                       if(pickedDate != null ){
-                                        String formattedDate = DateFormat('dd/M/yyyy').format(pickedDate);
+                                        String formattedDate = DateFormat('dd/MM/yyyy').format(pickedDate);
                                         //you can implement different kind of Date Format here according to your requirement
 
                                         setState(() {
@@ -1109,12 +1109,21 @@ class _FeesReportsState extends State<FeesReports> {
                     checkColor: Colors.white,
                     value: mainconcent,
                     onChanged: (value){
-                      setState(() {
-                        mainconcent = value!;
-                        for(int i=0;i<students.length;i++) {
-                          studentsListForNotification.add(students[i].get("stRegNo"));
-                        }
-                      });
+                      if(value!){
+                        setState(() {
+                          mainconcent = value;
+                          for(int i=0;i<students.length;i++) {
+                            studentsListForNotification.add(students[i].get("stRegNo"));
+                          }
+                        });
+                      }else{
+                        setState(() {
+                          mainconcent = value;
+                          for(int i=0;i<students.length;i++) {
+                            studentsListForNotification.clear();
+                          }
+                        });
+                      }
                     }
                 ),
               ),
@@ -1180,7 +1189,7 @@ class _FeesReportsState extends State<FeesReports> {
                 }
                 else{
                   snap.data!.docs.forEach((element) {
-                    if(element.get("timestamp") < DateFormat("dd/M/yyyy").parse(pos1.text).add(const Duration(days: 1)).millisecondsSinceEpoch && element.get("timestamp") >= DateFormat("dd/M/yyyy").parse(pos2.text).millisecondsSinceEpoch){
+                    if(element.get("timestamp") < DateFormat("dd/MM/yyyy").parse(pos1.text).add(const Duration(days: 1)).millisecondsSinceEpoch && element.get("timestamp") >= DateFormat("dd/MM/yyyy").parse(pos2.text).millisecondsSinceEpoch){
                       filterList1.add(element);
                     }
                   });
@@ -1403,7 +1412,7 @@ class _FeesReportsState extends State<FeesReports> {
   }
 
   differenceDatefunction(date1) {
-    int diffrencedays = DateFormat('dd / MM / yyyy').parse(date1).difference(DateTime.now()).inDays;
+    int diffrencedays = DateFormat('dd/MM/yyyy').parse(date1).difference(DateTime.now()).inDays;
     return diffrencedays;
   }
 
@@ -1430,7 +1439,7 @@ class _FeesReportsState extends State<FeesReports> {
             );
         }
         else if(fees.get("status") == false &&
-            (DateFormat('dd / M / yyyy').parse(fees.get('duedate')).difference(DateTime.now()).inDays + 1 <= 0)){
+            (DateFormat('dd/MM/yyyy').parse(fees.get('duedate')).difference(DateTime.now()).inDays + 1 <= 0)){
           overDuestudentsList.add(
               StudentFeesModel(
                   studentName: student.get("stname"),

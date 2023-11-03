@@ -814,7 +814,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                     circularStrokeCap: CircularStrokeCap.round,
                                     radius: 50.0,
                                     lineWidth: 10.0,
-                                    percent:  (presnetvalues/totalattdencevalues) *100,
+                                    percent:  (presnetvalues/totalattdencevalues),
                                     center:  Text("${(presnetvalues/totalattdencevalues *100).toInt()} %",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                                     progressColor: Colors.green,
                                   ),
@@ -852,8 +852,8 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                     circularStrokeCap: CircularStrokeCap.round,
                                     radius: 50.0,
                                     lineWidth: 10.0,
-                                    percent: (absentvalues/totalattdencevalues) *100,
-                                    center:  Text("${(absentvalues/totalattdencevalues *100).toInt()} %",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                    percent:(absentvalues/totalattdencevalues),
+                                    center:  Text("${(absentvalues/totalattdencevalues *100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                                     progressColor: Colors.red,
                                   ),
                                   Padding(
@@ -987,8 +987,8 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                   circularStrokeCap: CircularStrokeCap.round,
                                   radius: 50.0,
                                   lineWidth: 10.0,
-                                  percent:  0.00,
-                                  center:  Text("0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                  percent:  (presnetvalues/totalattdencevalues),
+                                  center:  Text("${(presnetvalues/totalattdencevalues *100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                                   progressColor: Colors.green,
                                 ),
                                 Padding(
@@ -1025,8 +1025,8 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                   circularStrokeCap: CircularStrokeCap.round,
                                   radius: 50.0,
                                   lineWidth: 10.0,
-                                  percent: 0.00,
-                                  center:  Text("00%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                  percent:(absentvalues/totalattdencevalues),
+                                  center:  Text("${(absentvalues/totalattdencevalues *100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
                                   progressColor: Colors.red,
                                 ),
                                 Padding(
@@ -1538,6 +1538,11 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
   Future<StaffAttendanceReportModel> getMonthlyAttendanceReportForAllStaffs() async {
     var snapshot = await FirebaseFirestore.instance.collection("Staff_attendance").get();//.doc(id).collection('Attendance').get();
+    var admin = await FirebaseFirestore.instance.collection("Admin").get();
+    var staffs = await FirebaseFirestore.instance.collection("Staffs").get();
+    int totalWorkingDays = admin.docs.first.get("days");
+    int totalStaffs = staffs.docs.length;
+    int total = totalStaffs * totalWorkingDays;
     List<SalesData> attendanceData = [];
     List<SalesData> attendanceData1 = [];
     List<SalesData> absentData = [];
@@ -1579,25 +1584,29 @@ class _StaffAttendenceState extends State<StaffAttendence> {
     absentData.forEach((element) {
       absentDays.add(element.absentDay);
     });
-    attendanceData1.add(SalesData('June',attendanceData.where((element) => element.year == 'June').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('July',attendanceData.where((element) => element.year == 'July').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('Aug',attendanceData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('June',((attendanceData.where((element) => element.year == 'June').length / total) * 100).toDouble().roundToDouble(),'',''));
 
-    attendanceData1.add(SalesData('Sep',attendanceData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('July',((attendanceData.where((element) => element.year == 'July').length / total) * 100).toDouble().roundToDouble(),'',''));
 
-    attendanceData1.add(SalesData('Oct',attendanceData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Aug',((attendanceData.where((element) => element.year == 'Aug').length / total) * 100).toDouble().roundToDouble(),'',''));
 
-    attendanceData1.add(SalesData('Nov',attendanceData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Sep',((attendanceData.where((element) => element.year == 'Sep').length / total) * 100).toDouble().roundToDouble(),'',''));
 
-    attendanceData1.add(SalesData('Dec',attendanceData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
-    attendanceData1.add(SalesData('Jan',attendanceData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
-    attendanceData1.add(SalesData('Feb',attendanceData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Oct',((attendanceData.where((element) => element.year == 'Oct').length / total) * 100).toDouble().roundToDouble(),'',''));
 
-    attendanceData1.add(SalesData('Mar',attendanceData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Nov',((attendanceData.where((element) => element.year == 'Nov').length / total) * 100).toDouble().roundToDouble(),'',''));
 
-    attendanceData1.add(SalesData('Apr',attendanceData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Dec',((attendanceData.where((element) => element.year == 'Dec').length / total) * 100).toDouble().roundToDouble(),'',''));
+
+    attendanceData1.add(SalesData('Jan',((attendanceData.where((element) => element.year == 'Jan').length / total) * 100).toDouble().roundToDouble(),'',''));
+
+    attendanceData1.add(SalesData('Feb',((attendanceData.where((element) => element.year == 'Feb').length / total) * 100).toDouble().roundToDouble(),'',''));
+
+    attendanceData1.add(SalesData('Mar',((attendanceData.where((element) => element.year == 'Mar').length / total) * 100).toDouble().roundToDouble(),'',''));
+
+    attendanceData1.add(SalesData('Apr',((attendanceData.where((element) => element.year == 'Apr').length / total) * 100).toDouble().roundToDouble(),'',''));
 
 
 
@@ -1846,9 +1855,9 @@ class _StaffAttendenceState extends State<StaffAttendence> {
     print("Total++++++++++++++++++++++++++++++");
     print((totalattdencevalues).toInt());
     print("Present++++++++++++++++++++++++++++++");
-    print((presnetvalues/totalattdencevalues *100).toInt());
+    print((presnetvalues/totalattdencevalues *100));
     print("Absent+++++++++++++++++++++++++++");
-    print((absent/totalattdencevalues *100).toInt());
+    print((absentvalues/totalattdencevalues *100));
 
   }
 

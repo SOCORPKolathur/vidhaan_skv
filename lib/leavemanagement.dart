@@ -723,45 +723,39 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
               ),
               child: Row(
                 children: [
-                  SizedBox(width: 30),
-                  SizedBox(
-                    width: 200,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 35.0, right: 60),
                     child: Text(
                       "Reg NO",
                       style:
                       GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                     ),
                   ),
-                  SizedBox(
-                    width: 200,
-                    child: Text(
-                      "Staff Name",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                    ),
+                  Text(
+                    "Staff Name",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                   ),
-                  SizedBox(
-                    width: 200,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 60.0, right: 40,),
                     child: Text(
                       "Date Applied",
                       style:
                       GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                     ),
                   ),
-                  SizedBox(
-                    width: 200,
-                    child: Text(
-                      "Leave Date",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                    ),
+                  Text(
+                    "Leave Date",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                   ),
 
-                  SizedBox(
-                    width: 200,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40.0),
                     child: Text(
                       "Phone Number",
                       style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                     ),
                   ),
+
                 ],
               ),
               //color: Colors.pink,
@@ -778,44 +772,62 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                     width: width/1.366,
                     child: Row(
                       children: [
-                        SizedBox(width: 30),
-                        Container(
-                          width: 200,
-                          child: Text(
-                            value["regno"],
-                            style:
-                            GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                          ),
-                        ),
-                        Container(
-                          width: 200,
-                          child: Text(
-                            value["staffname"],
-                            style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                          ),
-                        ),
-                        Container(
-                          width: 100,
 
-                          child: Text(
-                            value["date"],
-                            style:
-                            GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0, right: 0),
+                          child: Container(
+                            width: width/13.66,
+                            alignment: Alignment.center,
+                            child: Text(
+                              value["regno"],
+                              style:
+                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 300,
-                          alignment: Alignment.center,
-                          child: Text(
-                            value["leaveon"],
-                            style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30.0),
+                          child: Container(
+                            width: width/11.757,
+                            child: Text(
+                              value["staffname"],
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 200,
-                          child: Text(
-                            value["phoneno"],
-                            style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40.0, right: 0),
+                          child: Container(
+                            width: width/15.766,
+
+                            child: Text(
+                              value["date"],
+                              style:
+                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30.0),
+                          child: Container(
+                            width:width/15.766,
+
+                            alignment: Alignment.center,
+                            child: Text(
+                              value["leaveon"],
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                            ),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(left:50.0),
+                          child: Container(
+                            width: width/9.7571,
+                            child: Text(
+                              value["phoneno"],
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),
+                            ),
                           ),
                         ),
                       ],
@@ -839,10 +851,10 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20,),
+          SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Text("Approved Requests,",style: GoogleFonts.poppins(
+            child: Text("Denied Requests,",style: GoogleFonts.poppins(
               fontSize:width/75.88,
               fontWeight: FontWeight.w700,
             ),),
@@ -856,45 +868,39 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
               ),
               child: Row(
                 children: [
-                  SizedBox(width: 30),
-                  SizedBox(
-                    width: 200,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 35.0, right: 60),
                     child: Text(
                       "Reg NO",
                       style:
                       GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                     ),
                   ),
-                  SizedBox(
-                    width: 200,
-                    child: Text(
-                      "Staff Name",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                    ),
+                  Text(
+                    "Staff Name",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                   ),
-                  SizedBox(
-                    width: 200,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 60.0, right: 40,),
                     child: Text(
                       "Date Applied",
                       style:
                       GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                     ),
                   ),
-                  SizedBox(
-                    width: 200,
-                    child: Text(
-                      "Leave Date",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
-                    ),
+                  Text(
+                    "Leave Date",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                   ),
 
-                  SizedBox(
-                    width: 200,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40.0),
                     child: Text(
                       "Phone Number",
                       style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: Colors.white),
                     ),
                   ),
+
                 ],
               ),
               //color: Colors.pink,
@@ -911,44 +917,62 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                     width: width/1.366,
                     child: Row(
                       children: [
-                        SizedBox(width: 30),
-                        Container(
-                          width: 200,
-                          child: Text(
-                            value["regno"],
-                            style:
-                            GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                          ),
-                        ),
-                        Container(
-                          width: 200,
-                          child: Text(
-                            value["staffname"],
-                            style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
-                          ),
-                        ),
-                        Container(
-                          width: 100,
 
-                          child: Text(
-                            value["date"],
-                            style:
-                            GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0, right: 0),
+                          child: Container(
+                            width: width/13.66,
+                            alignment: Alignment.center,
+                            child: Text(
+                              value["regno"],
+                              style:
+                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 300,
-                          alignment: Alignment.center,
-                          child: Text(
-                            value["leaveon"],
-                            style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30.0),
+                          child: Container(
+                            width: width/11.757,
+                            child: Text(
+                              value["staffname"],
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 200,
-                          child: Text(
-                            value["phoneno"],
-                            style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40.0, right: 0),
+                          child: Container(
+                            width: width/15.766,
+
+                            child: Text(
+                              value["date"],
+                              style:
+                              GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30.0),
+                          child: Container(
+                            width:width/15.766,
+
+                            alignment: Alignment.center,
+                            child: Text(
+                              value["leaveon"],
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),
+                            ),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(left:50.0),
+                          child: Container(
+                            width: width/9.7571,
+                            child: Text(
+                              value["phoneno"],
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Colors.indigoAccent),
+                            ),
                           ),
                         ),
                       ],

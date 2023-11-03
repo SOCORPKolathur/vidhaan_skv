@@ -178,16 +178,18 @@ class _FeesRegState extends State<FeesReg> {
   if(double.parse(balanceAmount.toString()) == 0.0){
     FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(feesid).update({
       "status":true,
-      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "payedamount": FieldValue.increment(double.parse(payAmount)),
+      "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
 
     FirebaseFirestore.instance.collection("Students").doc(studentid).collection("PaymentHistory").doc().set({
       "status":true,
+      "payedamount": FieldValue.increment(double.parse(payAmount)),
       "feesname": feesName,
       "amount": double.parse(payAmount),
-      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
@@ -195,16 +197,17 @@ class _FeesRegState extends State<FeesReg> {
   }else{
     FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(feesid).update({
       "payedamount": FieldValue.increment(double.parse(payAmount)),
-      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
 
     FirebaseFirestore.instance.collection("Students").doc(studentid).collection("PaymentHistory").doc().set({
       "status":true,
+      "payedamount": FieldValue.increment(double.parse(payAmount)),
       "feesname": feesName,
       "amount": double.parse(payAmount),
-      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
@@ -213,21 +216,22 @@ class _FeesRegState extends State<FeesReg> {
   if(double.parse(balanceAmount.toString()) == 0.0){
     FirebaseFirestore.instance.collection("FeesCollection").doc("$studentid:$feesid").update({
       "status":true,
-      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "payedamount": FieldValue.increment(double.parse(payAmount)),
+      "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
   }else{
     FirebaseFirestore.instance.collection("FeesCollection").doc("$studentid:$feesid").update({
       "payedamount": double.parse(feesAmount.toString()) - double.parse(payAmount),
-      "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+      "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
       "time": "${DateTime.now().hour}:${DateTime.now().minute}",
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
   }
   FirebaseFirestore.instance.collection('Accounts').doc().set({
     "amount" : payAmount,
-    "date" : "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
+    "date" : DateFormat('dd-MM-yyyy').format(DateTime.now()),
     "payee" : feesName,
     "receivedBy" : "Admin",
     "time" : DateFormat('hh:mm aa').format(DateTime.now()),

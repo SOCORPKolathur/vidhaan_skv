@@ -18,9 +18,19 @@ class _PayrollGenState extends State<PayrollGen> {
   TextEditingController orderno = new TextEditingController();
 
 
+  String staffId = '';
+  String staffDesignation= '';
   String classid="";
   String studentid="";
+
+  String totalWorkingDays = '0';
+  String totalStaffs = '0';
+  String totalDesignations = '0';
+  String totalPayrolls = '0';
   String? _selectedCity;
+  final TextEditingController staffNameController = TextEditingController();
+  final TextEditingController staffRegNoController = TextEditingController();
+
   final TextEditingController _typeAheadControllerclass = TextEditingController();
   final TextEditingController _typeAheadControllerfees = TextEditingController();
   final TextEditingController type = TextEditingController();
@@ -49,8 +59,11 @@ class _PayrollGenState extends State<PayrollGen> {
     return matches;
   }
   static final List<String> classes = ["Select Option"];
+  static final List<String> staffRegNo = ["Select Option"];
+  static final List<String> staffNames = ["Select Option"];
+  static final List<StaffWithId> totalStaffList = [];
   static final List<String> fees = ["Select Option"];
-  static final List<String> typeclass = ["Select Option","Designation","Staff","General(For All)"];
+  static final List<String> typeclass = ["Select Option","Designation","Staff"];
   static final List<String> paytypelist = ["Select Option","Monthly","Admission Time","Custom",];
 
 
@@ -88,21 +101,83 @@ class _PayrollGenState extends State<PayrollGen> {
     setState(() {
       _typeAheadControllerfees.text="Select Option";
       _typeAheadControllerclass.text="Select Option";
+      staffNameController.text="Select Option";
+      staffRegNoController.text="Select Option";
       type.text="Select Option";
       paytype.text="Select Option";
     });
     // TODO: implement initState
     super.initState();
   }
+
+  getStaffById(){
+    totalStaffList.forEach((element) {
+      if(staffRegNoController.text == element.regNo){
+        setState(() {
+          staffNameController.text = element.name;
+          staffId = element.docId;
+          staffDesignation = element.designation;
+        });
+      }
+    });
+  }
+  getStaffByName(){
+    totalStaffList.forEach((element) {
+      if(staffNameController.text == element.name){
+        setState(() {
+          staffRegNoController.text = element.regNo;
+          staffId = element.docId;
+          staffDesignation = element.designation;
+        });
+      }
+    });
+  }
   adddropdownvalue() async {
     setState(() {
       classes.clear();
+      staffRegNo.clear();
+      staffNames.clear();
       fees.clear();
       regno.clear();
       student.clear();
     });
     var document = await  FirebaseFirestore.instance.collection("DesignationMaster").get();
     var document2 = await  FirebaseFirestore.instance.collection("FeesMaster").get();
+    var staffsDoc = await  FirebaseFirestore.instance.collection("Staffs").get();
+    var admin = await  FirebaseFirestore.instance.collection("Admin").get();
+    var payrollDoc = await  FirebaseFirestore.instance.collection("PayrollMaster").get();
+
+    setState(() {
+      totalStaffs = staffsDoc.docs.length.toString();
+      totalDesignations = document.docs.length.toString();
+      totalPayrolls =  payrollDoc.docs.length.toString();
+      totalWorkingDays = admin.docs.first.get("days").toString();
+    });
+
+    setState(() {
+      staffRegNo.add("Select Option");
+      staffNames.add("Select Option");
+    });
+    print(staffRegNo);
+    print(staffNames);
+    for(int i=0;i<staffsDoc.docs.length;i++) {
+      setState(() {
+        totalStaffList.add(
+          StaffWithId(
+            name: staffsDoc.docs[i]["stname"],
+            regNo: staffsDoc.docs[i]["regno"],
+            docId: staffsDoc.docs[i].id,
+            designation: staffsDoc.docs[i]["designation"],
+          )
+        );
+        staffRegNo.add(staffsDoc.docs[i]["regno"]);
+        staffNames.add(staffsDoc.docs[i]["stname"]);
+      });
+    }
+    print(staffRegNo);
+    print(staffNames);
+    print("_______________________________________________________________________________________________________________________");
+
     setState(() {
       classes.add("Select Option");
       fees.add("Select Option");
@@ -184,7 +259,6 @@ class _PayrollGenState extends State<PayrollGen> {
                     child: Container(child: Text("Payroll Generation",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
 
                       height: height/25.269,
-
 //decoration: BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.circular(12)),
                     ),
                   ),
@@ -218,7 +292,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(left: 20.0, ),
                                 child: Row(
                                   children: [
-                                    Text("13",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff3786F1),fontSize: 38),),
+                                    Text(totalStaffs,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff3786F1),fontSize: 38),),
                                     SizedBox(width: 50,),
                                     Icon(Icons.person,size: 38,color: Color(0xff3786F1))
                                   ],
@@ -254,7 +328,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(left: 20.0, ),
                                 child: Row(
                                   children: [
-                                    Text("07",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffEE61CF),fontSize: 38),),
+                                    Text(totalDesignations,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffEE61CF),fontSize: 38),),
                                     SizedBox(width: 60,),
                                     Icon(Icons.leaderboard,size: 38,color: Color(0xffEE61CF))
                                   ],
@@ -290,7 +364,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(left: 20.0, ),
                                 child: Row(
                                   children: [
-                                    Text("26",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffFF5151),fontSize: 38),),
+                                    Text(totalWorkingDays,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffFF5151),fontSize: 38),),
                                     SizedBox(width: 60,),
                                     Icon(Icons.calendar_month,size: 38,color: Color(0xffFF5151))
                                   ],
@@ -326,7 +400,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(left: 20.0, ),
                                 child: Row(
                                   children: [
-                                    Text("06",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff53B175),fontSize: 38),),
+                                    Text(totalPayrolls,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff53B175),fontSize: 38),),
                                     SizedBox(width: 60,),
                                     Icon(Icons.payments_rounded,size: 38,color: Color(0xff53B175))
                                   ],
@@ -501,11 +575,12 @@ class _PayrollGenState extends State<PayrollGen> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                type.text!="Select Option"?  Column(
+                                type.text != "Select Option"?  Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
 
                                   children: [
-                                    type.text!="Select Option"?     Column(
+                                    type.text.toLowerCase() == "designation"
+                                        ? Column(
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(right:0.0),
@@ -604,8 +679,215 @@ class _PayrollGenState extends State<PayrollGen> {
                                           ),
                                         ),
                                       ],
-                                    ):
+                                    ) 
+                                        : type.text.toLowerCase() == "staff"
+                                        ? Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(right:0.0),
+                                              child: Text("Select Staff ID*",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                              child: Container(width: width/6.83,
+                                                height: height/16.42,
+                                                //color: Color(0xffDDDEEE),
+                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
+                                                DropdownButtonHideUnderline(
+                                                  child: DropdownButton2<String>(
+                                                    isExpanded: true,
+                                                    hint:  Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.list,
+                                                          size: 16,
+                                                          color: Colors.black,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Expanded(
+                                                          child: Text(
+                                                            'Select Option',
+                                                            style: GoogleFonts.poppins(
+                                                                fontSize: 15
+                                                            ),
+                                                            overflow: TextOverflow.ellipsis,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    items: staffRegNo
+                                                        .map((String item) => DropdownMenuItem<String>(
+                                                      value: item,
+                                                      child: Text(
+                                                        item,
+                                                        style:  GoogleFonts.poppins(
+                                                            fontSize: 15
+                                                        ),
+                                                        overflow: TextOverflow.ellipsis,
+                                                      ),
+                                                    ))
+                                                        .toList(),
+                                                    value:  staffRegNoController.text,
+                                                    onChanged: (String? value) {
+                                                      setState(() {
+                                                        staffRegNoController.text = value!;
+                                                      });
+                                                      getStaffById();
 
+                                                    },
+                                                    buttonStyleData: ButtonStyleData(
+                                                      height: 50,
+                                                      width: 160,
+                                                      padding: const EdgeInsets.only(left: 14, right: 14),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(5),
+
+                                                        color: Color(0xffDDDEEE),
+                                                      ),
+
+                                                    ),
+                                                    iconStyleData: const IconStyleData(
+                                                      icon: Icon(
+                                                        Icons.arrow_forward_ios_outlined,
+                                                      ),
+                                                      iconSize: 14,
+                                                      iconEnabledColor: Colors.black,
+                                                      iconDisabledColor: Colors.grey,
+                                                    ),
+                                                    dropdownStyleData: DropdownStyleData(
+                                                      maxHeight: 200,
+                                                      width: width/5.464,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(14),
+                                                        color: Color(0xffDDDEEE),
+                                                      ),
+
+                                                      scrollbarTheme: ScrollbarThemeData(
+                                                        radius: const Radius.circular(7),
+                                                        thickness: MaterialStateProperty.all<double>(6),
+                                                        thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                                      ),
+                                                    ),
+                                                    menuItemStyleData: const MenuItemStyleData(
+                                                      height: 40,
+                                                      padding: EdgeInsets.only(left: 14, right: 14),
+                                                    ),
+                                                  ),
+                                                ),
+
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(width: 20),
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(right:0.0),
+                                              child: Text("Select Staff Name*",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                              child: Container(width: width/6.83,
+                                                height: height/16.42,
+                                                //color: Color(0xffDDDEEE),
+                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
+                                                DropdownButtonHideUnderline(
+                                                  child: DropdownButton2<String>(
+                                                    isExpanded: true,
+                                                    hint:  Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.list,
+                                                          size: 16,
+                                                          color: Colors.black,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Expanded(
+                                                          child: Text(
+                                                            'Select Option',
+                                                            style: GoogleFonts.poppins(
+                                                                fontSize: 15
+                                                            ),
+                                                            overflow: TextOverflow.ellipsis,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    items: staffNames
+                                                        .map((String item) => DropdownMenuItem<String>(
+                                                      value: item,
+                                                      child: Text(
+                                                        item,
+                                                        style:  GoogleFonts.poppins(
+                                                            fontSize: 15
+                                                        ),
+                                                        overflow: TextOverflow.ellipsis,
+                                                      ),
+                                                    ))
+                                                        .toList(),
+                                                    value:  staffNameController.text,
+                                                    onChanged: (String? value) {
+                                                      setState(() {
+                                                        staffNameController.text = value!;
+                                                      });
+                                                      getStaffByName();
+
+                                                    },
+                                                    buttonStyleData: ButtonStyleData(
+                                                      height: 50,
+                                                      width: 160,
+                                                      padding: const EdgeInsets.only(left: 14, right: 14),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(5),
+
+                                                        color: Color(0xffDDDEEE),
+                                                      ),
+
+                                                    ),
+                                                    iconStyleData: const IconStyleData(
+                                                      icon: Icon(
+                                                        Icons.arrow_forward_ios_outlined,
+                                                      ),
+                                                      iconSize: 14,
+                                                      iconEnabledColor: Colors.black,
+                                                      iconDisabledColor: Colors.grey,
+                                                    ),
+                                                    dropdownStyleData: DropdownStyleData(
+                                                      maxHeight: 200,
+                                                      width: width/5.464,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(14),
+                                                        color: Color(0xffDDDEEE),
+                                                      ),
+
+                                                      scrollbarTheme: ScrollbarThemeData(
+                                                        radius: const Radius.circular(7),
+                                                        thickness: MaterialStateProperty.all<double>(6),
+                                                        thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                                      ),
+                                                    ),
+                                                    menuItemStyleData: const MenuItemStyleData(
+                                                      height: 40,
+                                                      padding: EdgeInsets.only(left: 14, right: 14),
+                                                    ),
+                                                  ),
+                                                ),
+
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                        :
                                     SizedBox(height: 10,),
                                     Row(
                                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -830,93 +1112,84 @@ class _PayrollGenState extends State<PayrollGen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:  EdgeInsets.only(top: 20,bottom: 10,left: 40),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding:  EdgeInsets.only(right:600),
-                          child: Container(child: Text("Payroll for ${type.text}",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
-                            width:20,
+                    padding: EdgeInsets.only(top: 20,bottom: 10,left: 40),
+                    child: Container(
+                      width: width/1.55333,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(child: Text("Payroll for ${type.text}",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
                             height: height/25.269,
-
-//decoration: BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.circular(12)),
                           ),
-                        ),
-                        InkWell(
-                            onTap: (){
-                              setState(() {
-                                view=false;
-                              });
-                            },
+                          InkWell(
+                              onTap: (){
+                                setState(() {
+                                  view=false;
+                                });
+                              },
 
-                            child: Icon(Icons.cancel,color: Colors.red,))
-                      ],
+                              child: Icon(Icons.cancel,color: Colors.red,))
+                        ],
+                      ),
                     ),
                   ),
-                  Padding(
+                  type.text.toLowerCase() == 'designation' ? Padding(
                     padding: const EdgeInsets.only(left:40.0),
                     child: Container(
                       width: width/1.050,
-
                       decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 10,),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: height/13.14,
-                              width: width/1.55333,
+                            Container(
+                                  height: height/13.14,
+                                  width: width/1.55333,
+                                  decoration: BoxDecoration(
+                                      color:Color(0xff00A0E3),
+                                      borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: 10),
+                                      Container(
+                                          width: 60,
+                                          child: Center(
+                                            child: Text(
+                                              "Si.no",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                      ),
+                                      Container(
+                                          width: 150,
+                                          child: Center(child: Text("Designation",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                      Container(
+                                          width: 130,
+                                          child: Center(child: Text("Basic Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                      Container(
+                                          width: 130,
+                                          child: Center(child: Text("HRA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                      Container(
+                                          width: 130,
+                                          child: Center(child: Text("DA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                      Container(
+                                          width: 130,
+                                          child: Center(child: Text("Others",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                      Container(
+                                          width: 130,
+                                          child: Center(child: Text("Gross Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                    ],
+                                  ),
 
-                              decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
-
-                              ),
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                    child: Text("Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                    child: Text("Designation",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                  ),
-                                  SizedBox(width: 50,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                    child: Text("Basic Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                  ),
-                                  SizedBox(width: 50,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                    child: Text("HRA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                  ),
-                                  SizedBox(width: 50,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                    child: Text("DA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                  ),
-                                  SizedBox(width: 50,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                    child: Text("Others",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                  ),
-                                  SizedBox(width: 50,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                    child: Text("Gross Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
-                                  ),
-                                ],
-                              ),
-
-                            ),
-                          ),
+                                ),
                           Container(
                             height:200,
                             child: StreamBuilder<QuerySnapshot>(
                                 stream: FirebaseFirestore.instance.collection("PayrollMaster").orderBy("timestamp").snapshots(),
-
                                 builder: (context,snapshot){
                                   if(!snapshot.hasData)
                                   {
@@ -936,60 +1209,300 @@ class _PayrollGenState extends State<PayrollGen> {
                                       itemCount: snapshot.data!.docs.length,
                                       itemBuilder: (context,index){
                                         var value = snapshot.data!.docs[index];
-                                        return
-                                          value["assignto"]==type.text?
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            height: height/ 21.9,
-                                            width: width/1.55333,
+                                        return value["assignto"].toString().toLowerCase() == type.text.toLowerCase()
+                                            ? Container(
+                                                height: height/13.14,
+                                                width: width/1.55333,
+                                                decoration: BoxDecoration(
+                                                  color:Colors.white,
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    SizedBox(width: 10),
+                                                    Container(
+                                                      width: 60,
+                                                      child: Center(
+                                                        child: Text(
+                                                          (index+1).toString().padLeft(3,"0"),
+                                                          style: GoogleFonts.poppins(
+                                                              fontSize: 14,
+                                                              fontWeight: FontWeight.normal,
+                                                              color: Colors.black,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                        width: 150,
+                                                        child: Center(
+                                                            child: Text(
+                                                              value["Designations"],
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize: 14,
+                                                                  fontWeight: FontWeight.normal,
+                                                                  color: Colors.black,
+                                                              ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    Container(
+                                                        width: 130,
+                                                        child: Center(
+                                                            child: Text(
+                                                              value["basic"],
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize: 14,fontWeight: FontWeight.normal,
+                                                                  color: Colors.black,
+                                                              ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    Container(
+                                                        width: 130,
+                                                        child: Center(
+                                                            child: Text(
+                                                              value["hra"],
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize: 14,
+                                                                fontWeight: FontWeight.normal,
+                                                                color: Colors.black,
+                                                              ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    Container(
+                                                        width: 130,
+                                                        child: Center(
+                                                            child: Text(
+                                                              value["da"],
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize: 14,
+                                                                  fontWeight: FontWeight.normal,
+                                                                  color: Colors.black,
+                                                              ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    Container(
+                                                        width: 130,
+                                                        child: Center(
+                                                            child: Text(
+                                                              value["other"],
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize: 14,
+                                                                  fontWeight: FontWeight.normal,
+                                                                  color: Colors.black,
+                                                              ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    Container(
+                                                        width: 130,
+                                                        child: Center(
+                                                            child: Text(
+                                                              value["gross"],
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize: 14,
+                                                                  fontWeight: FontWeight.normal,
+                                                                  color: Colors.black,
+                                                              ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                  ],
+                                                ),
+                                          ) : Container();
+                                      },
+                                  );
+                                },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ) :  Padding(
+                    padding: const EdgeInsets.only(left:40.0),
+                    child: Container(
+                      width: width/1.050,
+                      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 10,),
+                          Container(
+                            height: height/13.14,
+                            width: width/1.55333,
+                            decoration: BoxDecoration(
+                              color:Color(0xff00A0E3),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Container(
+                                  width: 60,
+                                  child: Center(
+                                    child: Text(
+                                      "Si.no",
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                    width: 150,
+                                    child: Center(child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                Container(
+                                    width: 130,
+                                    child: Center(child: Text("Basic Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                Container(
+                                    width: 130,
+                                    child: Center(child: Text("HRA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                Container(
+                                    width: 130,
+                                    child: Center(child: Text("DA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                Container(
+                                    width: 130,
+                                    child: Center(child: Text("Others",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                Container(
+                                    width: 130,
+                                    child: Center(child: Text("Gross Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                              ],
+                            ),
 
-                                            decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
-
+                          ),
+                          Container(
+                            height:200,
+                            child: StreamBuilder<QuerySnapshot>(
+                              stream: FirebaseFirestore.instance.collection("PayrollMaster").orderBy("timestamp").snapshots(),
+                              builder: (context,snapshot){
+                                if(!snapshot.hasData)
+                                {
+                                  return   Center(
+                                    child:  CircularProgressIndicator(),
+                                  );
+                                }
+                                if(snapshot.hasData==null)
+                                {
+                                  return   Center(
+                                    child:  CircularProgressIndicator(),
+                                  );
+                                }
+                                return ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: snapshot.data!.docs.length,
+                                  itemBuilder: (context,index){
+                                    var value = snapshot.data!.docs[index];
+                                    return value["assignto"].toString().toLowerCase() == type.text.toLowerCase()
+                                        ? Container(
+                                      height: height/13.14,
+                                      width: width/1.55333,
+                                      decoration: BoxDecoration(
+                                        color:Colors.white,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(width: 10),
+                                          Container(
+                                            width: 60,
+                                            child: Center(
+                                              child: Text(
+                                                (index+1).toString().padLeft(3,"0"),
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
                                             ),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 8.0,right: 30.0),
-                                                  child: Text((index+1).toString().padLeft(3,"0"),style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color:  Colors.black),),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 20,right: 8.0),
-                                                  child: Text(value["Designations"],style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color:   Colors.black),),
-                                                ),
-                                                SizedBox(width: 50,),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 45.0,right: 8.0),
-                                                  child: Text(value["basic"],style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color:  Colors.black),),
-                                                ),
-                                                SizedBox(width: 50,),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                  child: Text(value["hra"],style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color:  Colors.black),),
-                                                ),
-                                                SizedBox(width: 50,),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                  child: Text(value["da"],style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color:  Colors.black),),
-                                                ),
-                                                SizedBox(width: 50,),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                  child: Text(value["other"],style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color:  Colors.black),),
-                                                ),
-                                                SizedBox(width: 50,),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 15.0,right: 8.0),
-                                                  child: Text(value["gross"],style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Color(0xff53B175)),),
-                                                ),
-                                              ],
-                                            ),
-
                                           ),
-                                        ) : Container();
-                                      });
-
-                                }),
+                                          Container(
+                                            width: 150,
+                                            child: Center(
+                                              child: Text(
+                                                value["staffname"],
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 130,
+                                            child: Center(
+                                              child: Text(
+                                                value["basic"],
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 14,fontWeight: FontWeight.normal,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 130,
+                                            child: Center(
+                                              child: Text(
+                                                value["hra"],
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 130,
+                                            child: Center(
+                                              child: Text(
+                                                value["da"],
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 130,
+                                            child: Center(
+                                              child: Text(
+                                                value["other"],
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 130,
+                                            child: Center(
+                                              child: Text(
+                                                value["gross"],
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ) : Container();
+                                  },
+                                );
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -1007,16 +1520,45 @@ class _PayrollGenState extends State<PayrollGen> {
     );
   }
   Svaepayroll(){
-    FirebaseFirestore.instance.collection("PayrollMaster").doc().set({
-      "assignto":type.text,
-      "Designations":_typeAheadControllerclass.text,
-      "basic":basicpay.text,
-      "hra":hra.text,
-      "da":da.text,
-      "other":other.text,
-      "gross":gross.text,
-      "timestamp":DateTime.now().microsecondsSinceEpoch
-    });
+    if(type.text.toLowerCase() == 'designation'){
+      FirebaseFirestore.instance.collection("PayrollMaster").doc().set({
+        "assignto": type.text,
+        "staffname": '',
+        "staffid": '',
+        "Designations": _typeAheadControllerclass.text,
+        "basic":basicpay.text,
+        "hra":hra.text,
+        "da":da.text,
+        "other":other.text,
+        "gross":gross.text,
+        "timestamp":DateTime.now().microsecondsSinceEpoch
+      });
+    } if(type.text.toLowerCase() == 'staff'){
+      FirebaseFirestore.instance.collection("PayrollMaster").doc(staffId).set({
+        "assignto": type.text,
+        "staffname": staffNameController.text,
+        "staffid": staffRegNoController.text,
+        "Designations": staffDesignation,
+        "basic":basicpay.text,
+        "hra":hra.text,
+        "da":da.text,
+        "other":other.text,
+        "gross":gross.text,
+        "timestamp":DateTime.now().microsecondsSinceEpoch
+      });
+      FirebaseFirestore.instance.collection("Staffs").doc(staffId).collection('PayrollMaster').doc(staffId).set({
+        "assignto": type.text,
+        "staffname": staffNameController.text,
+        "staffid": staffRegNoController.text,
+        "Designations": staffDesignation,
+        "basic":basicpay.text,
+        "hra":hra.text,
+        "da":da.text,
+        "other":other.text,
+        "gross":gross.text,
+        "timestamp":DateTime.now().microsecondsSinceEpoch
+      });
+    }
   }
   Successdialog(){
     return AwesomeDialog(
@@ -1025,8 +1567,6 @@ class _PayrollGenState extends State<PayrollGen> {
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
       title: 'Payroll generated Successfully',
-
-
       btnOkOnPress: () {
          basicpay.clear();
          hra.clear();
@@ -1037,4 +1577,13 @@ class _PayrollGenState extends State<PayrollGen> {
       },
     )..show();
   }
+}
+
+
+class StaffWithId {
+  StaffWithId({required this.regNo, required this.name, required this.docId, required this.designation});
+  String name;
+  String regNo;
+  String docId;
+  String designation;
 }

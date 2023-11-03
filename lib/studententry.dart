@@ -3453,7 +3453,7 @@ String studentdocid="";
 
   List<FeesWithAmount> feesDetailsList = [];
   double totalFeesAmount = 0.0;
-  double totalFeesAmount1 = 0.0;
+  double totalPendingAmount = 0.0;
 
   TextEditingController dueDateForAdmissionFees = TextEditingController();
 
@@ -3468,7 +3468,7 @@ String studentdocid="";
         bool isAll = false;
         feesList.forEach((element) {
           totalFeesAmount += double.parse(element.get("amount").toString());
-          totalFeesAmount1 += double.parse(element.get("amount").toString());
+          totalPendingAmount += double.parse(element.get("amount").toString());
           feesDetailsList.add(
               FeesWithAmount(
                 feesName: element.get("feesname"),
@@ -3478,10 +3478,32 @@ String studentdocid="";
               )
           );
         });
+        balanceAmount.text = totalFeesAmount.toString();
         return StatefulBuilder(
             builder: (ctx,setState1) {
             return AlertDialog(
-              title:  Text('Fees Details',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold)),
+              title:  Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Fees Details',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold)),
+                  IconButton(
+                      onPressed: (){
+                        setState1(() {
+                          totalFeesAmount = 0.0;
+                          totalPendingAmount = 0.0;
+                          balanceAmount.clear();
+                          payAmount.clear();
+                          dueDateForAdmissionFees.text = "";
+                        });
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                          Icons.cancel,
+                        color: Colors.black,
+                      ),
+                  ),
+                ],
+              ),
               content: Container(
                 height: 400,
                 width: 500,
@@ -3503,14 +3525,13 @@ String studentdocid="";
                               height: height/16.42,
                               //color: Color(0xffDDDEEE),
                               decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
                               child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextFormField(
                                     onChanged: (val){
-                                      setState1(() {
-                                        balanceAmount.text = payAmount.text;
-                                      });
+                                      // setState1(() {
+                                      //   balanceAmount.text = payAmount.text;
+                                      // });
                                     },
                                     controller: payAmount,
                                     decoration: InputDecoration(
@@ -3528,70 +3549,169 @@ String studentdocid="";
                       child: ListView.builder(
                         itemCount: feesList.length,
                         itemBuilder: (ctx,i){
-                          return ListTile(
-                            leading: Checkbox(
-                              value: feesDetailsList[i].isSelected,
-                              onChanged: (val){
-                                if(val!){
-                                  setState1(() {
-                                    feesDetailsList[i].isSelected = val;
-                                    print(balanceAmount.text.toString()+"______________________payment");
-                                    if(double.parse(balanceAmount.text.toString()) >= feesDetailsList[i].amount){
-                                      feesDetailsList[i].payedAmount = double.parse(balanceAmount.text.toString()) - (double.parse(balanceAmount.text.toString())-feesDetailsList[i].amount);
-                                      print(feesDetailsList[i].payedAmount.toString()+"______________________payed");
-                                      balanceAmount.text = (double.parse(balanceAmount.text.toString()) - feesDetailsList[i].payedAmount).abs().toString();
-                                    }else{
-                                      feesDetailsList[i].payedAmount = double.parse(balanceAmount.text.toString());
-                                      print(feesDetailsList[i].payedAmount.toString()+"______________________payed");
-                                      balanceAmount.text = (double.parse(balanceAmount.text.toString()) - feesDetailsList[i].amount).abs().toString();
-                                    }
-                                  });
-                                }
-                              },
-                            ),
-                            title: Text(
-                                feesDetailsList[i].feesName,
-                                style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                              )
-                            ),
-                            trailing: Column(
-                              children: [
-                                Text(feesDetailsList[i].amount.toString()),
-                                Text(
-                                "-"+(feesDetailsList[i].payedAmount.toString()).toString(),
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 4),
+                            child: Material(
+                              elevation: 2,
+                              borderRadius: BorderRadius.circular(10),
+                              child: Container(
+                                height: 80,
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                              ],
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                          Container(
+                                            width: 40,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    value: feesDetailsList[i].isSelected,
+                                                    onChanged: (val){
+                                                      if(val!){
+                                                        feesDetailsList[i].isSelected = val;
+                                                        if(double.parse(payAmount.text.toString()) >= feesDetailsList[i].amount){
+                                                          setState1(() {
+                                                            feesDetailsList[i].payedAmount = feesDetailsList[i].amount;
+                                                            totalPendingAmount = (totalPendingAmount - feesDetailsList[i].amount);
+                                                            payAmount.text = (double.parse(payAmount.text.toString()) - feesDetailsList[i].amount).toString();
+                                                            balanceAmount.text = totalPendingAmount.toString();
+                                                          });
+                                                        }else{
+                                                          setState1(() {
+                                                            feesDetailsList[i].payedAmount = double.parse(payAmount.text.toString());
+                                                            totalPendingAmount = (totalPendingAmount - double.parse(payAmount.text.toString()));
+                                                            payAmount.text = (feesDetailsList[i].payedAmount-double.parse(payAmount.text.toString())).toString();
+                                                            balanceAmount.text = totalPendingAmount.toString();
+                                                          });
+                                                        }
+                                                      }
+                                                      else{
+                                                        feesDetailsList[i].isSelected = val;
+                                                        setState1(() {
+                                                          payAmount.text = (double.parse(payAmount.text.toString()) + feesDetailsList[i].payedAmount).toString();
+                                                          totalPendingAmount = (totalPendingAmount + feesDetailsList[i].payedAmount);
+                                                          feesDetailsList[i].payedAmount = 0.0;
+                                                          balanceAmount.text = totalPendingAmount.toString();
+                                                        });
+                                                      }
+                                                    },
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 6),
+                                            child: Container(
+                                              width: 280,
+                                              child: Text(
+                                                feesDetailsList[i].feesName,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(child: Container()),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 6),
+                                            child: Container(
+                                              width: 100,
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                      feesDetailsList[i].amount.toString(),
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 3),
+                                                  Text(
+                                                    "-"+(feesDetailsList[i].payedAmount.toString()).toString(),
+                                                  ),
+                                                  SizedBox(height: 2),
+                                                  Container(
+                                                    height: 1,
+                                                    width: 80,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  Text(
+                                                    (feesDetailsList[i].amount-double.parse(feesDetailsList[i].payedAmount.toString())).toString(),
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           );
+                          // return ListTile(
+                          //   leading: Checkbox(
+                          //     value: feesDetailsList[i].isSelected,
+                          //     onChanged: (val){
+                          //       if(val!){
+                          //         feesDetailsList[i].isSelected = val;
+                          //         if(double.parse(payAmount.text.toString()) >= feesDetailsList[i].amount){
+                          //           setState1(() {
+                          //             feesDetailsList[i].payedAmount = feesDetailsList[i].amount;
+                          //             totalPendingAmount = (totalPendingAmount - feesDetailsList[i].amount);
+                          //             payAmount.text = (double.parse(payAmount.text.toString()) - feesDetailsList[i].amount).toString();
+                          //             balanceAmount.text = totalPendingAmount.toString();
+                          //           });
+                          //         }else{
+                          //           setState1(() {
+                          //             feesDetailsList[i].payedAmount = double.parse(payAmount.text.toString());
+                          //             totalPendingAmount = (totalPendingAmount - double.parse(payAmount.text.toString()));
+                          //             payAmount.text = (feesDetailsList[i].payedAmount-double.parse(payAmount.text.toString())).toString();
+                          //             balanceAmount.text = totalPendingAmount.toString();
+                          //           });
+                          //         }
+                          //       }
+                          //       else{
+                          //         feesDetailsList[i].isSelected = val;
+                          //         setState1(() {
+                          //           payAmount.text = (double.parse(payAmount.text.toString()) + feesDetailsList[i].payedAmount).toString();
+                          //           totalPendingAmount = (totalPendingAmount + feesDetailsList[i].payedAmount);
+                          //           feesDetailsList[i].payedAmount = 0.0;
+                          //           balanceAmount.text = totalPendingAmount.toString();
+                          //         });
+                          //       }
+                          //     },
+                          //   ),
+                          //   title: Text(
+                          //       feesDetailsList[i].feesName,
+                          //       style: TextStyle(
+                          //       fontWeight: FontWeight.w700,
+                          //     )
+                          //   ),
+                          //   trailing: Column(
+                          //     children: [
+                          //       Text(feesDetailsList[i].amount.toString()),
+                          //       Text(
+                          //       "-"+(feesDetailsList[i].payedAmount.toString()).toString(),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // );
                         },
                       ),
                     ),
-                    // SizedBox(height: 5),
-                    // ListTile(
-                    //   leading: Checkbox(
-                    //     value: isAll,
-                    //     onChanged: (val){
-                    //       setState(() {
-                    //         isAll = val!;
-                    //       });
-                    //       for(int i = 0; i < feesDetailsList.length; i++){
-                    //           setStat(() {
-                    //             feesDetailsList[i].isSelected = val!;
-                    //           });
-                    //       }
-                    //     },
-                    //   ),
-                    //   title: Text(
-                    //       "Total",
-                    //       style: TextStyle(
-                    //         fontWeight: FontWeight.w700,
-                    //       )
-                    //   ),
-                    //   trailing: Text(
-                    //       (totalFeesAmount - double.parse(balanceAmount.text.toString())).toString(),
-                    //   ),
-                    // ),
                     SizedBox(height: 5),
                     Container(
                       height: 100,
@@ -3603,9 +3723,12 @@ String studentdocid="";
                             children: [
                               Container(
                                 width:130,
-                                child: Text('Balance Amount',style: GoogleFonts.montserrat(
-                                    fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
-                                ),),
+                                child: Text('Balance',
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight:FontWeight.bold,color: Colors.black,
+                                      fontSize:width/100.13
+                                  ),
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 50.0,right: 25),
@@ -3628,6 +3751,7 @@ String studentdocid="";
                               ),
                             ],
                           ),
+                          SizedBox(height: 20),
                           Visibility(
                             visible: double.parse(balanceAmount.text.toString()) != 0.0,
                             child: Row(
@@ -3687,36 +3811,23 @@ String studentdocid="";
                       height: 70,
                       width: double.infinity,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
                             onTap: () {
-                              feesDetailsList.forEach((element) {
-                                print(element.isSelected);
-                                print(element.payedAmount);
-                                print(element.feesName);
-                              });
                               uploadstudent(id,feesDetailsList);
                               Successdialog();
+                              Navigator.pop(context);
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 20,right: 20,left: 20),
-                              child: Container(
-                                // color: Colors.yellow,
-                                height: height/21.9,
-                                child: Center(
-                                    child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("Pay Fees & Print Receipt",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                      child: Icon(Icons.add_circle_outline,color: Colors.white,),
-                                    )
-                                  ],
-                                )),
-                                decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(7)),
-                              ),
+                            child: Container(
+                              // color: Colors.yellow,
+                              height: height/21.9,
+                              child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                                    child: Text("Pay Fees & Print Receipt",style: GoogleFonts.poppins(color: Color(0xffFFFFFF)),),
+                                  )),
+                              decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(7)),
                             ),
                           ),
                         ],
@@ -4073,8 +4184,11 @@ String studentdocid="";
   
   clearall(){
     setState(() {
-
-
+      totalFeesAmount = 0.0;
+      totalPendingAmount = 0.0;
+      balanceAmount.clear();
+      payAmount.clear();
+      dueDateForAdmissionFees.text = "";
      regno.clear();
      entrydate.clear();
      stnamefirst.clear();
