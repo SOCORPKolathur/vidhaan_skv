@@ -1406,6 +1406,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                       child: Row(
                                         children: [
                                           SizedBox(width: 10),
+
                                           Container(
                                             width: 60,
                                             child: Center(
