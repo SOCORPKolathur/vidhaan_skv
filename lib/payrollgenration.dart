@@ -44,7 +44,7 @@ class _PayrollGenState extends State<PayrollGen> {
   static final List<String> student = [];
 
 
-
+  final _formKey = GlobalKey<FormState>();
   static List<String> getSuggestionsregno(String query) {
     List<String> matches = <String>[];
     matches.addAll(regno);
@@ -218,15 +218,21 @@ class _PayrollGenState extends State<PayrollGen> {
 
   getpay(){
     setState(() {
-      hra.text= (int.parse(basicpay.text)* (20/100.00)).toString();
-      da.text= (int.parse(basicpay.text)* (40/100.00)).toString();
-      if(other.text=="") {
-        gross.text = (int.parse(basicpay.text) + int.parse(hra.text) +
-            int.parse(da.text)).toString();
-      }
-      else{
-        gross.text = (int.parse(basicpay.text) + int.parse(hra.text) +
-            int.parse(da.text)+int.parse(other.text)).toString();
+      if(gross.text != ""){
+        basicpay.text = (5*double.parse(gross.text) / 8).toString();
+        hra.text= (double.parse(basicpay.text)* (20/100.00)).toString();
+        da.text= (double.parse(basicpay.text)* (40/100.00)).toString();
+      }else{
+        hra.text= (double.parse(basicpay.text)* (20/100.00)).toString();
+        da.text= (double.parse(basicpay.text)* (40/100.00)).toString();
+        if(other.text=="") {
+          gross.text = (double.parse(basicpay.text) + double.parse(hra.text) +
+              double.parse(da.text)).toString();
+        }
+        else{
+          gross.text = (int.parse(basicpay.text) + int.parse(hra.text) +
+              int.parse(da.text)+int.parse(other.text)).toString();
+        }
       }
     });
   }
@@ -572,520 +578,575 @@ class _PayrollGenState extends State<PayrollGen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0,top:8),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                type.text != "Select Option"?  Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Form(
+                              key: _formKey,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  type.text != "Select Option"?  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
 
-                                  children: [
-                                    type.text.toLowerCase() == "designation"
-                                        ? Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(right:0.0),
-                                          child: Text("Select Designation *",style: GoogleFonts.poppins(fontSize: 15,)),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                          child: Container(width: width/6.83,
-                                            height: height/16.42,
-                                            //color: Color(0xffDDDEEE),
-                                            decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
-                                            DropdownButtonHideUnderline(
-                                              child: DropdownButton2<String>(
-                                                isExpanded: true,
-                                                hint:  Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.list,
-                                                      size: 16,
-                                                      color: Colors.black,
-                                                    ),
-                                                    SizedBox(
-                                                      width: 4,
-                                                    ),
-                                                    Expanded(
-                                                      child: Text(
-                                                        'Select Option',
-                                                        style: GoogleFonts.poppins(
-                                                            fontSize: 15
-                                                        ),
-                                                        overflow: TextOverflow.ellipsis,
+                                    children: [
+                                      type.text.toLowerCase() == "designation"
+                                          ? Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(right:0.0),
+                                            child: Text("Select Designation *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                            child: Container(width: width/6.83,
+                                              height: height/16.42,
+                                              //color: Color(0xffDDDEEE),
+                                              decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
+                                              DropdownButtonHideUnderline(
+                                                child: DropdownButton2<String>(
+                                                  isExpanded: true,
+                                                  hint:  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.list,
+                                                        size: 16,
+                                                        color: Colors.black,
                                                       ),
+                                                      SizedBox(
+                                                        width: 4,
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          'Select Option',
+                                                          style: GoogleFonts.poppins(
+                                                              fontSize: 15
+                                                          ),
+                                                          overflow: TextOverflow.ellipsis,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  items: classes
+                                                      .map((String item) => DropdownMenuItem<String>(
+                                                    value: item,
+                                                    child: Text(
+                                                      item,
+                                                      style:  GoogleFonts.poppins(
+                                                          fontSize: 15
+                                                      ),
+                                                      overflow: TextOverflow.ellipsis,
                                                     ),
-                                                  ],
-                                                ),
-                                                items: classes
-                                                    .map((String item) => DropdownMenuItem<String>(
-                                                  value: item,
-                                                  child: Text(
-                                                    item,
-                                                    style:  GoogleFonts.poppins(
-                                                        fontSize: 15
+                                                  ))
+                                                      .toList(),
+                                                  value:  _typeAheadControllerclass.text,
+                                                  onChanged: (String? value) {
+                                                    setState(() {
+                                                      _typeAheadControllerclass.text = value!;
+                                                    });
+                                                    //getstaffbyid();
+
+                                                  },
+                                                  buttonStyleData: ButtonStyleData(
+                                                    height: 50,
+                                                    width: 160,
+                                                    padding: const EdgeInsets.only(left: 14, right: 14),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(5),
+
+                                                      color: Color(0xffDDDEEE),
                                                     ),
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                ))
-                                                    .toList(),
-                                                value:  _typeAheadControllerclass.text,
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    _typeAheadControllerclass.text = value!;
-                                                  });
-                                                  //getstaffbyid();
 
-                                                },
-                                                buttonStyleData: ButtonStyleData(
-                                                  height: 50,
-                                                  width: 160,
-                                                  padding: const EdgeInsets.only(left: 14, right: 14),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(5),
+                                                  ),
+                                                  iconStyleData: const IconStyleData(
+                                                    icon: Icon(
+                                                      Icons.arrow_forward_ios_outlined,
+                                                    ),
+                                                    iconSize: 14,
+                                                    iconEnabledColor: Colors.black,
+                                                    iconDisabledColor: Colors.grey,
+                                                  ),
+                                                  dropdownStyleData: DropdownStyleData(
+                                                    maxHeight: 200,
+                                                    width: width/5.464,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(14),
+                                                      color: Color(0xffDDDEEE),
+                                                    ),
 
-                                                    color: Color(0xffDDDEEE),
+                                                    scrollbarTheme: ScrollbarThemeData(
+                                                      radius: const Radius.circular(7),
+                                                      thickness: MaterialStateProperty.all<double>(6),
+                                                      thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                                    ),
                                                   ),
-
-                                                ),
-                                                iconStyleData: const IconStyleData(
-                                                  icon: Icon(
-                                                    Icons.arrow_forward_ios_outlined,
+                                                  menuItemStyleData: const MenuItemStyleData(
+                                                    height: 40,
+                                                    padding: EdgeInsets.only(left: 14, right: 14),
                                                   ),
-                                                  iconSize: 14,
-                                                  iconEnabledColor: Colors.black,
-                                                  iconDisabledColor: Colors.grey,
-                                                ),
-                                                dropdownStyleData: DropdownStyleData(
-                                                  maxHeight: 200,
-                                                  width: width/5.464,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(14),
-                                                    color: Color(0xffDDDEEE),
-                                                  ),
-
-                                                  scrollbarTheme: ScrollbarThemeData(
-                                                    radius: const Radius.circular(7),
-                                                    thickness: MaterialStateProperty.all<double>(6),
-                                                    thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                                  ),
-                                                ),
-                                                menuItemStyleData: const MenuItemStyleData(
-                                                  height: 40,
-                                                  padding: EdgeInsets.only(left: 14, right: 14),
                                                 ),
                                               ),
+
                                             ),
+                                          ),
+                                        ],
+                                      )
+                                          : type.text.toLowerCase() == "staff"
+                                          ? Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(right:0.0),
+                                                child: Text("Select Staff ID*",style: GoogleFonts.poppins(fontSize: 15,)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                                child: Container(width: width/6.83,
+                                                  height: height/16.42,
+                                                  //color: Color(0xffDDDEEE),
+                                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
+                                                  DropdownButtonHideUnderline(
+                                                    child: DropdownButton2<String>(
+                                                      isExpanded: true,
+                                                      hint:  Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons.list,
+                                                            size: 16,
+                                                            color: Colors.black,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 4,
+                                                          ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              'Select Option',
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize: 15
+                                                              ),
+                                                              overflow: TextOverflow.ellipsis,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      items: staffRegNo
+                                                          .map((String item) => DropdownMenuItem<String>(
+                                                        value: item,
+                                                        child: Text(
+                                                          item,
+                                                          style:  GoogleFonts.poppins(
+                                                              fontSize: 15
+                                                          ),
+                                                          overflow: TextOverflow.ellipsis,
+                                                        ),
+                                                      ))
+                                                          .toList(),
+                                                      value:  staffRegNoController.text,
+                                                      onChanged: (String? value) {
+                                                        setState(() {
+                                                          staffRegNoController.text = value!;
+                                                        });
+                                                        getStaffById();
+
+                                                      },
+                                                      buttonStyleData: ButtonStyleData(
+                                                        height: 50,
+                                                        width: 160,
+                                                        padding: const EdgeInsets.only(left: 14, right: 14),
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(5),
+
+                                                          color: Color(0xffDDDEEE),
+                                                        ),
+
+                                                      ),
+                                                      iconStyleData: const IconStyleData(
+                                                        icon: Icon(
+                                                          Icons.arrow_forward_ios_outlined,
+                                                        ),
+                                                        iconSize: 14,
+                                                        iconEnabledColor: Colors.black,
+                                                        iconDisabledColor: Colors.grey,
+                                                      ),
+                                                      dropdownStyleData: DropdownStyleData(
+                                                        maxHeight: 200,
+                                                        width: width/5.464,
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(14),
+                                                          color: Color(0xffDDDEEE),
+                                                        ),
+
+                                                        scrollbarTheme: ScrollbarThemeData(
+                                                          radius: const Radius.circular(7),
+                                                          thickness: MaterialStateProperty.all<double>(6),
+                                                          thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                                        ),
+                                                      ),
+                                                      menuItemStyleData: const MenuItemStyleData(
+                                                        height: 40,
+                                                        padding: EdgeInsets.only(left: 14, right: 14),
+                                                      ),
+                                                    ),
+                                                  ),
+
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(width: 20),
+                                          Column(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(right:0.0),
+                                                child: Text("Select Staff Name*",style: GoogleFonts.poppins(fontSize: 15,)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                                child: Container(width: width/6.83,
+                                                  height: height/16.42,
+                                                  //color: Color(0xffDDDEEE),
+                                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
+                                                  DropdownButtonHideUnderline(
+                                                    child: DropdownButton2<String>(
+                                                      isExpanded: true,
+                                                      hint:  Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons.list,
+                                                            size: 16,
+                                                            color: Colors.black,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 4,
+                                                          ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              'Select Option',
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize: 15
+                                                              ),
+                                                              overflow: TextOverflow.ellipsis,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      items: staffNames
+                                                          .map((String item) => DropdownMenuItem<String>(
+                                                        value: item,
+                                                        child: Text(
+                                                          item,
+                                                          style:  GoogleFonts.poppins(
+                                                              fontSize: 15
+                                                          ),
+                                                          overflow: TextOverflow.ellipsis,
+                                                        ),
+                                                      ))
+                                                          .toList(),
+                                                      value:  staffNameController.text,
+                                                      onChanged: (String? value) {
+                                                        setState(() {
+                                                          staffNameController.text = value!;
+                                                        });
+                                                        getStaffByName();
+
+                                                      },
+                                                      buttonStyleData: ButtonStyleData(
+                                                        height: 50,
+                                                        width: 160,
+                                                        padding: const EdgeInsets.only(left: 14, right: 14),
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(5),
+
+                                                          color: Color(0xffDDDEEE),
+                                                        ),
+
+                                                      ),
+                                                      iconStyleData: const IconStyleData(
+                                                        icon: Icon(
+                                                          Icons.arrow_forward_ios_outlined,
+                                                        ),
+                                                        iconSize: 14,
+                                                        iconEnabledColor: Colors.black,
+                                                        iconDisabledColor: Colors.grey,
+                                                      ),
+                                                      dropdownStyleData: DropdownStyleData(
+                                                        maxHeight: 200,
+                                                        width: width/5.464,
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(14),
+                                                          color: Color(0xffDDDEEE),
+                                                        ),
+
+                                                        scrollbarTheme: ScrollbarThemeData(
+                                                          radius: const Radius.circular(7),
+                                                          thickness: MaterialStateProperty.all<double>(6),
+                                                          thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                                        ),
+                                                      ),
+                                                      menuItemStyleData: const MenuItemStyleData(
+                                                        height: 40,
+                                                        padding: EdgeInsets.only(left: 14, right: 14),
+                                                      ),
+                                                    ),
+                                                  ),
+
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      )
+                                          :
+                                      SizedBox(height: 10,),
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(right:0.0),
+                                                child: Text("Basic Pay *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                                child: Container(
+                                                  child:
+                                                TextFormField(
+                                                  controller: basicpay,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                                                    fontSize: 15
+                                                ),
+                                                  onChanged: (val){
+                                                    _formKey.currentState!.validate();
+                                                  },
+                                                  validator: (value) {
+                                                    if (value == null || value.isEmpty) {
+                                                      return 'Please enter some text';
+                                                    }
+                                                    return null;
+                                                  },
+                                                ),
+                                                  width: width/5.902,
+                                                  height: height/16.425,
+                                                  //color: Color(0xffDDDEEE),
+                                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                                ),
+                                              ),
+
+                                            ],
 
                                           ),
-                                        ),
-                                      ],
-                                    ) 
-                                        : type.text.toLowerCase() == "staff"
-                                        ? Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0.0),
-                                              child: Text("Select Staff ID*",style: GoogleFonts.poppins(fontSize: 15,)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                              child: Container(width: width/6.83,
-                                                height: height/16.42,
-                                                //color: Color(0xffDDDEEE),
-                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
-                                                DropdownButtonHideUnderline(
-                                                  child: DropdownButton2<String>(
-                                                    isExpanded: true,
-                                                    hint:  Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons.list,
-                                                          size: 16,
-                                                          color: Colors.black,
-                                                        ),
-                                                        SizedBox(
-                                                          width: 4,
-                                                        ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            'Select Option',
-                                                            style: GoogleFonts.poppins(
-                                                                fontSize: 15
-                                                            ),
-                                                            overflow: TextOverflow.ellipsis,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    items: staffRegNo
-                                                        .map((String item) => DropdownMenuItem<String>(
-                                                      value: item,
-                                                      child: Text(
-                                                        item,
-                                                        style:  GoogleFonts.poppins(
-                                                            fontSize: 15
-                                                        ),
-                                                        overflow: TextOverflow.ellipsis,
-                                                      ),
-                                                    ))
-                                                        .toList(),
-                                                    value:  staffRegNoController.text,
-                                                    onChanged: (String? value) {
-                                                      setState(() {
-                                                        staffRegNoController.text = value!;
-                                                      });
-                                                      getStaffById();
-
-                                                    },
-                                                    buttonStyleData: ButtonStyleData(
-                                                      height: 50,
-                                                      width: 160,
-                                                      padding: const EdgeInsets.only(left: 14, right: 14),
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(5),
-
-                                                        color: Color(0xffDDDEEE),
-                                                      ),
-
-                                                    ),
-                                                    iconStyleData: const IconStyleData(
-                                                      icon: Icon(
-                                                        Icons.arrow_forward_ios_outlined,
-                                                      ),
-                                                      iconSize: 14,
-                                                      iconEnabledColor: Colors.black,
-                                                      iconDisabledColor: Colors.grey,
-                                                    ),
-                                                    dropdownStyleData: DropdownStyleData(
-                                                      maxHeight: 200,
-                                                      width: width/5.464,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(14),
-                                                        color: Color(0xffDDDEEE),
-                                                      ),
-
-                                                      scrollbarTheme: ScrollbarThemeData(
-                                                        radius: const Radius.circular(7),
-                                                        thickness: MaterialStateProperty.all<double>(6),
-                                                        thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                                      ),
-                                                    ),
-                                                    menuItemStyleData: const MenuItemStyleData(
-                                                      height: 40,
-                                                      padding: EdgeInsets.only(left: 14, right: 14),
-                                                    ),
-                                                  ),
-                                                ),
-
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(width: 20),
-                                        Column(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0.0),
-                                              child: Text("Select Staff Name*",style: GoogleFonts.poppins(fontSize: 15,)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                              child: Container(width: width/6.83,
-                                                height: height/16.42,
-                                                //color: Color(0xffDDDEEE),
-                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
-                                                DropdownButtonHideUnderline(
-                                                  child: DropdownButton2<String>(
-                                                    isExpanded: true,
-                                                    hint:  Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons.list,
-                                                          size: 16,
-                                                          color: Colors.black,
-                                                        ),
-                                                        SizedBox(
-                                                          width: 4,
-                                                        ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            'Select Option',
-                                                            style: GoogleFonts.poppins(
-                                                                fontSize: 15
-                                                            ),
-                                                            overflow: TextOverflow.ellipsis,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    items: staffNames
-                                                        .map((String item) => DropdownMenuItem<String>(
-                                                      value: item,
-                                                      child: Text(
-                                                        item,
-                                                        style:  GoogleFonts.poppins(
-                                                            fontSize: 15
-                                                        ),
-                                                        overflow: TextOverflow.ellipsis,
-                                                      ),
-                                                    ))
-                                                        .toList(),
-                                                    value:  staffNameController.text,
-                                                    onChanged: (String? value) {
-                                                      setState(() {
-                                                        staffNameController.text = value!;
-                                                      });
-                                                      getStaffByName();
-
-                                                    },
-                                                    buttonStyleData: ButtonStyleData(
-                                                      height: 50,
-                                                      width: 160,
-                                                      padding: const EdgeInsets.only(left: 14, right: 14),
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(5),
-
-                                                        color: Color(0xffDDDEEE),
-                                                      ),
-
-                                                    ),
-                                                    iconStyleData: const IconStyleData(
-                                                      icon: Icon(
-                                                        Icons.arrow_forward_ios_outlined,
-                                                      ),
-                                                      iconSize: 14,
-                                                      iconEnabledColor: Colors.black,
-                                                      iconDisabledColor: Colors.grey,
-                                                    ),
-                                                    dropdownStyleData: DropdownStyleData(
-                                                      maxHeight: 200,
-                                                      width: width/5.464,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(14),
-                                                        color: Color(0xffDDDEEE),
-                                                      ),
-
-                                                      scrollbarTheme: ScrollbarThemeData(
-                                                        radius: const Radius.circular(7),
-                                                        thickness: MaterialStateProperty.all<double>(6),
-                                                        thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                                      ),
-                                                    ),
-                                                    menuItemStyleData: const MenuItemStyleData(
-                                                      height: 40,
-                                                      padding: EdgeInsets.only(left: 14, right: 14),
-                                                    ),
-                                                  ),
-                                                ),
-
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    )
-                                        :
-                                    SizedBox(height: 10,),
-                                    Row(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0.0),
-                                              child: Text("Basic Pay *",style: GoogleFonts.poppins(fontSize: 15,)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                            child: GestureDetector(
+                                              onTap:(){
+                                                getpay();
+                                              },
                                               child: Container(child:
-                                              TextField(controller: basicpay,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                  fontSize: 15
-                                              ),
+                                              Center(child: Text("Generate Payroll",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.white),),
                                               ),
                                                 width: width/5.902,
                                                 height: height/16.425,
                                                 //color: Color(0xffDDDEEE),
-                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                                                decoration: BoxDecoration(color: const Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
 
                                               ),
-                                            ),
-
-                                          ],
-
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                          child: GestureDetector(
-                                            onTap:(){
-                                              getpay();
-                                            },
-                                            child: Container(child:
-                                            Center(child: Text("Generate Payroll",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.white),),
-                                            ),
-                                              width: width/5.902,
-                                              height: height/16.425,
-                                              //color: Color(0xffDDDEEE),
-                                              decoration: BoxDecoration(color: const Color(0xff00A0E3),borderRadius: BorderRadius.circular(5)),
-
                                             ),
                                           ),
-                                        ),
 
-                                      ],
-                                    ),
-                                    SizedBox(height: 10,),
-                                    Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                        ],
+                                      ),
+                                      SizedBox(height: 10,),
+                                      Row(
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
 
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0.0),
-                                              child: Text("HRA *",style: GoogleFonts.poppins(fontSize: 15,)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 0.0,right: 10),
-                                              child: Container(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(right:0.0),
+                                                child: Text("HRA *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                                child: Container(
+                                                  width: width/5.902,
+                                                  height: height/16.425,
+                                                  //color: Color(0xffDDDEEE),
+                                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                                  child:  TextFormField(
+                                                    onChanged: (val){
+                                                      _formKey.currentState!.validate();
+                                                    },
+                                                    validator: (value) {
+                                                      if (value == null || value.isEmpty) {
+                                                        return 'Please enter some text';
+                                                      }
+                                                      return null;
+                                                    },
+                                                    controller: hra,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                                                      fontSize: 15
+                                                  ),
+                                                  ),
+
+
+                                                ),
+                                              ),
+
+                                            ],
+
+                                          ),
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(right:0.0),
+                                                child: Text("DA *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                                child: Container(
+                                                  width: width/5.902,
+                                                  height: height/16.425,
+                                                  //color: Color(0xffDDDEEE),
+                                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                                  child:  TextFormField(
+                                                    onChanged: (val){
+                                                      _formKey.currentState!.validate();
+                                                    },
+                                                    validator: (value) {
+                                                      if (value == null || value.isEmpty) {
+                                                        return 'Please enter some text';
+                                                      }
+                                                      return null;
+                                                    },
+                                                    controller: da,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                                                      fontSize: 15
+                                                  ),
+                                                  ),
+
+
+                                                ),
+                                              ),
+
+                                            ],
+
+                                          ),
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(right:0.0),
+                                                child: Text("Other Allowance  *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                                child: Container(
+                                                  width: width/5.902,
+                                                  height: height/16.425,
+                                                  //color: Color(0xffDDDEEE),
+                                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                                                  child:  TextFormField(
+                                                    onChanged: (val){
+                                                      _formKey.currentState!.validate();
+                                                    },
+                                                    validator: (value) {
+                                                      if (value == null || value.isEmpty) {
+                                                        return 'Please enter some text';
+                                                      }
+                                                      return null;
+                                                    },
+                                                    controller: other,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                                                      fontSize: 15
+                                                  ),
+                                                  ),
+
+
+                                                ),
+                                              ),
+
+                                            ],
+
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(right:0.0),
+                                                child: Text("Gross Salary *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                                child: Container(
+                                                  width: width/5.902,
+                                                  height: height/16.425,
+                                                  //color: Color(0xffDDDEEE),
+                                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                                                  child:  TextFormField(
+                                                    onChanged: (val){
+                                                      _formKey.currentState!.validate();
+                                                    },
+                                                    validator: (value) {
+                                                      if (value == null || value.isEmpty) {
+                                                        return 'Please enter some text';
+                                                      }
+                                                      return null;
+                                                    },
+                                                    controller: gross,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                                                      fontSize: 15
+                                                  ),
+                                                  ),
+
+
+                                                ),
+                                              ),
+
+                                            ],
+
+                                          ),
+                                          SizedBox(width: 450,),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                            child: GestureDetector(
+                                              onTap:(){
+                                                if(_formKey.currentState!.validate()){
+                                                  Svaepayroll();
+                                                  Successdialog();
+                                                }
+                                              },
+                                              child: Container(child:
+                                              Center(child: Text("Save Payroll",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.white),),
+                                              ),
                                                 width: width/5.902,
                                                 height: height/16.425,
                                                 //color: Color(0xffDDDEEE),
-                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                                child:  TextField(controller: hra,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                ),
-
+                                                decoration: BoxDecoration(color: const Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
 
                                               ),
-                                            ),
-
-                                          ],
-
-                                        ),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0.0),
-                                              child: Text("DA *",style: GoogleFonts.poppins(fontSize: 15,)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 0.0,right: 10),
-                                              child: Container(
-                                                width: width/5.902,
-                                                height: height/16.425,
-                                                //color: Color(0xffDDDEEE),
-                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                                child:  TextField(controller: da,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                ),
-
-
-                                              ),
-                                            ),
-
-                                          ],
-
-                                        ),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0.0),
-                                              child: Text("Other Allowance  *",style: GoogleFonts.poppins(fontSize: 15,)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 0.0,right: 10),
-                                              child: Container(
-                                                width: width/5.902,
-                                                height: height/16.425,
-                                                //color: Color(0xffDDDEEE),
-                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                                child:  TextField(controller: other,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                ),
-
-
-                                              ),
-                                            ),
-
-                                          ],
-
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0.0),
-                                              child: Text("Gross Salary *",style: GoogleFonts.poppins(fontSize: 15,)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 0.0,right: 10),
-                                              child: Container(
-                                                width: width/5.902,
-                                                height: height/16.425,
-                                                //color: Color(0xffDDDEEE),
-                                                decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
-
-                                                child:  TextField(controller: gross,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                    fontSize: 15
-                                                ),
-                                                ),
-
-
-                                              ),
-                                            ),
-
-                                          ],
-
-                                        ),
-                                        SizedBox(width: 450,),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                          child: GestureDetector(
-                                            onTap:(){
-                                              Svaepayroll();
-                                              Successdialog();
-                                            },
-                                            child: Container(child:
-                                            Center(child: Text("Save Payroll",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.white),),
-                                            ),
-                                              width: width/5.902,
-                                              height: height/16.425,
-                                              //color: Color(0xffDDDEEE),
-                                              decoration: BoxDecoration(color: const Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
-
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
+                                        ],
+                                      ),
 
-                                  ],
+                                    ],
 
-                                ) :Container()
-                              ,
+                                  ) :Container()
+                                ,
 
 
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
