@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:vidhaan/Chart%20FIles/indicator.dart';
 
 import 'Chart FIles/app_colors.dart';
@@ -23,13 +24,73 @@ class _StaffPieChartState extends State<StaffPieChart> {
   int holiday =0;
   int totalattdence =0;
 
+
+  int totaldays=0;
+  int holidayscount=0;
+  int holidaysenrty=0;
+  final DateFormat formatter = DateFormat('dd / M / yyyy');
+  int year1 =0;
+  int day1= 0;
+  int month1=0;
+  int year2=0;
+  int day2=0;
+  int month2=0;
+  List<String> mydate =[];
   getvalues() async {
+    DateTime startdate  =  DateFormat("dd / MM / yyyy").parse("01 / 06 / ${DateTime.now().year.toString()}");
+    DateTime endtdate  =  DateTime.now();
+    setState(() {
+      totaldays = endtdate.difference(startdate).inDays;
+    });
+
+
+    setState(() {
+      year1= startdate.year;
+      day1= startdate.day;
+      month1= startdate.month;
+
+      year2= endtdate.year;
+      day2= endtdate.day;
+      month2= endtdate.month;
+
+      //set output date to TextField value.
+    });
+    DateTime startDate = DateTime.utc(year1, month1, day1);
+    DateTime endDate = DateTime.utc(year2, month2, day2);
+    getDaysInBetween() {
+      final int difference = endDate.difference(startDate).inDays;
+      return difference;
+    }
+    final items = List<DateTime>.generate(getDaysInBetween(), (i) {
+      DateTime date = startDate;
+      return date.add(Duration(days: i));
+    });
+    setState(() {
+      mydate.clear();
+    });
+    for(int i =0;i<items.length;i++) {
+      setState(() {
+        mydate.add(formatter.format(items[i]).toString());
+      });
+
+    }
+    print(mydate);
+
+    var holidaysdata = await FirebaseFirestore.instance.collection("Events").get();
+    for(int i=0;i<holidaysdata.docs.length;i++){
+      if(mydate.contains(holidaysdata.docs[i]["ondate"])) {
+        setState(() {
+          holidayscount = holidayscount + 1;
+        });
+      }
+    }
+
 
     var document = await FirebaseFirestore.instance.collection("Staff_attendance").get();
     var staffs = await FirebaseFirestore.instance.collection("Staffs").get();
     setState(() {
-      total = document.docs.length;
-      totalattdence = document.docs.length * staffs.docs.length;
+      totalattdence = totaldays * staffs.docs.length;
+      holidaysenrty = holidayscount * staffs.docs.length;
     });
     for(int i=0;i<document.docs.length;i++){
       var document2 = await FirebaseFirestore.instance.collection("Staff_attendance").doc(document.docs[i].id).collection("Staffs").get();
@@ -38,13 +99,20 @@ class _StaffPieChartState extends State<StaffPieChart> {
       });
     }
     setState(() {
-      absent = totalattdence - presnet ;
+      absent = totalattdence - presnet - holidaysenrty;
     });
+    print("Total Days ->");
+    print(totaldays);
+    print("Holidays Days ->");
+    print(holidayscount);
+    print("Total Entry to be ->");
     print(totalattdence);
-    print("Present");
-    print((presnet/totalattdence *100).toInt());
-    print("Absent");
-    print((absent/totalattdence *100).toInt());
+    print("Present ->");
+    print((presnet/totalattdence *100).toStringAsFixed(2));
+    print("Absent ->");
+    print((absent/totalattdence *100).toStringAsFixed(2));
+    print("Holiday ->");
+    print((holidaysenrty/totalattdence *100).toStringAsFixed(2));
 
   }
 
@@ -135,16 +203,17 @@ class _StaffPieChartState extends State<StaffPieChart> {
   List<PieChartSectionData> showingSections() {
     return List.generate(3, (i) {
       final isTouched = i == touchedIndex;
-      final fontSize = isTouched ? 25.0 : 16.0;
+      final fontSize = isTouched ? 16.0 : 10.0;
       final radius = isTouched ? 60.0 : 50.0;
-      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+      const shadows = [
+        Shadow(color: Colors.black, blurRadius: 2)];
       switch (i) {
 
         case 0:
           return PieChartSectionData(
             color: Color(0xff53B175),
-            value: 40,
-            title: '30%',
+            value: (presnet/totalattdence *100),
+            title: '${(presnet/totalattdence *100).toStringAsFixed(2)}%',
             radius: radius,
             titleStyle:  GoogleFonts.poppins(
               fontSize: fontSize,
@@ -156,8 +225,8 @@ class _StaffPieChartState extends State<StaffPieChart> {
         case 1:
           return PieChartSectionData(
             color: Colors.red,
-            value: 25,
-            title: '15%',
+            value: (absent/totalattdence *100),
+            title: '${(absent/totalattdence *100).toStringAsFixed(2)}%',
             radius: radius,
             titleStyle:  GoogleFonts.poppins(
               fontSize: fontSize,
@@ -169,8 +238,8 @@ class _StaffPieChartState extends State<StaffPieChart> {
         case 2:
           return PieChartSectionData(
             color: Color(0xffe8ce0c),
-            value: 25,
-            title: '15%',
+            value: (holidaysenrty/totalattdence *100),
+            title: '${(holidaysenrty/totalattdence *100).toStringAsFixed(2)}%',
             radius: radius,
             titleStyle:  GoogleFonts.poppins(
               fontSize: fontSize,

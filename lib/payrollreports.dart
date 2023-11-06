@@ -109,6 +109,38 @@ class _PayrollReportsState extends State<PayrollReports> {
                   ],
 
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top:20.0,left: 20),
+                  child: InkWell(
+                    onTap: (){
+
+                    },
+                    child: Material(
+                      borderRadius: BorderRadius.circular(5),
+                      elevation: 7,
+                      child: Container(child: Center(
+                        child:
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right:8.0),
+                              child: Icon(Icons.print,color:Colors.white),
+                            ),
+                            Text("Print Report",style: GoogleFonts.poppins(color:Colors.white),),
+                          ],
+                        ),
+                      ),
+                        width: width/6.507,
+                        height: height/16.425,
+                        // color:Color(0xff00A0E3),
+                        decoration: BoxDecoration(color: const Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
+
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -267,8 +299,8 @@ class _PayrollReportsState extends State<PayrollReports> {
                                         width: 100,
                                         child: Center(
                                           child: Text(
-                                            data.get("workedDays") > 0 ? ((double.parse(data.get("basic").toString()) / totalWorkingDyas) * data.get("workedDays")).toString() : "0.0",
-                                            style: GoogleFonts.poppins(
+                                            data.get("workedDays") > 0 ? ((double.parse(data.get("gross").toString()) / totalWorkingDyas) * data.get("workedDays")).toStringAsFixed(2) : "0.0",
+                                            style: GoogleFonts.montserrat(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
                                             ),
@@ -585,8 +617,8 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                         width: 100,
                                                         child: Center(
                                                           child: Text(
-                                                            data.get("workedDays") > 0 ? ((double.parse(data.get("basic").toString()) / totalWorkingDyas) * data.get("workedDays")).toString() : "0.0",
-                                                            style: GoogleFonts.poppins(
+                                                            data.get("workedDays") > 0 ? ((double.parse(data.get("gross").toString()) / totalWorkingDyas) * data.get("workedDays")).toStringAsFixed(2) : "0.0",
+                                                            style: GoogleFonts.montserrat(
                                                                 fontWeight: FontWeight.bold,
                                                                 color: Colors.black,
                                                             ),
@@ -764,7 +796,7 @@ class _PayrollReportsState extends State<PayrollReports> {
           "assignto": 'Staff',
           "staffname": staffs.docs[i].get('stname'),
           "staffid": staffs.docs[i].get('regno'),
-          "Designations": '',
+          "Designations": staffs.docs[i].get('designation'),
           "basic" : payroll.docs.first.get('basic'),
           "hra" : payroll.docs.first.get('hra'),
           "da" : payroll.docs.first.get('da'),
@@ -782,7 +814,7 @@ class _PayrollReportsState extends State<PayrollReports> {
           "assignto": 'Staff',
           "staffname": staffs.docs[i].get('stname'),
           "staffid": staffs.docs[i].get('regno'),
-          "Designations": '',
+           "Designations": staffs.docs[i].get('designation'),
           "basic" : '0.0',
           "hra" : '0.0',
           "da" : '0.0',
@@ -803,7 +835,7 @@ class _PayrollReportsState extends State<PayrollReports> {
    var payroll = await FirebaseFirestore.instance.collection("Payroll_Reports").get();
    for(int  i= 0; i < payroll.docs.length; i++){
      if(payroll.docs[i].get("date") == DateFormat('MMM yyyy').format(DateTime.now().subtract(Duration(days: 31)))){
-       var document = await FirebaseFirestore.instance.collection("Payroll_Reports").doc(payroll.docs[i].id).collection('Staffs').get();
+       var document = await FirebaseFirestore.instance.collection("Payroll_Reports").doc(payroll.docs[i].id).collection('Staffs').orderBy("staffid").get();
        for(int j = 0; j < document.docs.length; j++){
          payrolls.add(document.docs[j]);
        }
@@ -817,7 +849,7 @@ class _PayrollReportsState extends State<PayrollReports> {
     var payroll = await FirebaseFirestore.instance.collection("Payroll_Reports").get();
     for(int  i= 0; i < payroll.docs.length; i++){
       if(payroll.docs[i].get("date") == month){
-        var document = await FirebaseFirestore.instance.collection("Payroll_Reports").doc(payroll.docs[i].id).collection('Staffs').get();
+        var document = await FirebaseFirestore.instance.collection("Payroll_Reports").doc(payroll.docs[i].id).collection('Staffs').orderBy("staffid").get();
         for(int j = 0; j < document.docs.length; j++){
           payrolls.add(document.docs[j]);
         }

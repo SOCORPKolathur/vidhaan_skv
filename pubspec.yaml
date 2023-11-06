@@ -56,7 +56,7 @@ dependencies:
   syncfusion_flutter_xlsio: ^22.1.36
   universal_html: ^2.2.3
   lottie: ^2.4.0
-  syncfusion_flutter_charts: ^22.1.36
+  syncfusion_flutter_charts: ^22.1.37
   flutter_colorpicker: ^1.0.3
   month_year_picker: any
   dropdown_button2: any
@@ -74,6 +74,9 @@ dependencies:
   firebase_messaging: any
   flutter_local_notifications: ^11.0.1
   photo_view: ^0.14.0
+  bouncing_draggable_dialog: ^1.0.2
+  syncfusion_flutter_calendar: any
+  
 
 
 

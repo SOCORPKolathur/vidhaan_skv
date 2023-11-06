@@ -271,7 +271,9 @@ class _StudentListState extends State<StudentList> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 0.0),
-              child: Container(width: width/1.050,
+              child: Container(
+
+                width: width/1.050,
 
                 decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
                 padding: const EdgeInsets.only(left: 10.0,top: 30),
@@ -281,12 +283,8 @@ class _StudentListState extends State<StudentList> {
                     Row(
                       children: [
                         Text("Students List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
-                        SizedBox(width: 400,),
-                        Padding(
-                          padding: const EdgeInsets.only(right:8.0),
-                          child: Icon(Icons.filter_list_sharp),
-                        ),
-                        Text("Filters",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                        SizedBox(width: 700,),
+
                         SizedBox(width: 10,),
                         InkWell(
                           onTap: (){
@@ -320,7 +318,8 @@ class _StudentListState extends State<StudentList> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 140,),
+                        SizedBox(width: 10,),
+
                         Excelsheet(check,mainconcent,studentsListForCsv),
                       ],
                     ),

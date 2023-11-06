@@ -41,8 +41,8 @@ class _ExcelsheetState extends State<Excelsheet> {
 
             Text("Export Data",style: GoogleFonts.poppins(color:Colors.white),),
         ),
-          width: width/6.507,
-          height: height/16.425,
+          width: width/10.507,
+          height: height/20.425,
           // color:Color(0xff00A0E3),
           decoration: BoxDecoration(color: const Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
 

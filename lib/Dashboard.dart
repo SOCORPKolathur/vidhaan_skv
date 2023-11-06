@@ -18,6 +18,7 @@ import 'package:vidhaan/fees/fees.dart';
 import 'package:vidhaan/notification.dart';
 import 'package:vidhaan/payrollgenration.dart';
 import 'package:vidhaan/payrollreports.dart';
+import 'package:vidhaan/progressreports.dart';
 import 'package:vidhaan/staffattdence.dart';
 
 import 'package:vidhaan/stafflist.dart';
@@ -4147,7 +4148,7 @@ setState(() {
                                       ListTile(
                                         onTap:(){
                                           setState((){
-                                           // pages=ClassMaster();
+                                            pages=ProgressReport();
                                           });
 
                               },
