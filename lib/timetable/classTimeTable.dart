@@ -9,6 +9,7 @@ import 'package:pdf/widgets.dart' as p;
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:vidhaan/timetable/timetable.dart';
+import '../print/classwise_timetable_print.dart';
 import '../print/time_table_print.dart';
 
 class ClassWiseTimeTable extends StatefulWidget {
@@ -388,7 +389,7 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Time Table",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                  Text("Classwise Time Table",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
                   SizedBox(width:10),
                 ],
               ),
@@ -3978,58 +3979,9 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
     );
   }
 
-  printTimeTable() {
-    TimeTablePrintModel timeTable = TimeTablePrintModel(
-        mondayFirst: texteditingmonday[0].text,
-        mondaySecond: texteditingmonday[1].text,
-        mondayThird: texteditingmonday[2].text,
-        mondayFourth: texteditingmonday[3].text,
-        mondayFifth: texteditingmonday[4].text,
-        mondaySixth: texteditingmonday[5].text,
-        mondaySeventh: texteditingmonday[6].text,
-        mondayEighth: texteditingmonday[7].text,
-        tuesdayFirst: texteditingmonday[8].text,
-        tuesdaySecond: texteditingmonday[9].text,
-        tuesdayThird: texteditingmonday[10].text,
-        tuesdayFourth: texteditingmonday[11].text,
-        tuesdayFifth: texteditingmonday[12].text,
-        tuesdaySixth: texteditingmonday[13].text,
-        tuesdaySeventh: texteditingmonday[14].text,
-        tuesdayEighth: texteditingmonday[15].text,
-        wednesdayFirst: texteditingmonday[16].text,
-        wednesdaySecond: texteditingmonday[17].text,
-        wednesdayThird: texteditingmonday[18].text,
-        wednesdayFourth: texteditingmonday[19].text,
-        wednesdayFifth: texteditingmonday[20].text,
-        wednesdaySixth: texteditingmonday[21].text,
-        wednesdaySeventh: texteditingmonday[22].text,
-        wednesdayEighth: texteditingmonday[23].text,
-        thursdayFirst: texteditingmonday[24].text,
-        thursdaySecond: texteditingmonday[25].text,
-        thursdayThird: texteditingmonday[26].text,
-        thursdayFourth: texteditingmonday[27].text,
-        thursdayFifth: texteditingmonday[28].text,
-        thursdaySixth: texteditingmonday[29].text,
-        thursdaySeventh: texteditingmonday[30].text,
-        thursdayEighth: texteditingmonday[31].text,
-        fridayFirst: texteditingmonday[32].text,
-        fridaySecond: texteditingmonday[33].text,
-        fridayThird: texteditingmonday[34].text,
-        fridayFourth: texteditingmonday[35].text,
-        fridayFifth: texteditingmonday[36].text,
-        fridaySixth: texteditingmonday[37].text,
-        fridaySeventh: texteditingmonday[38].text,
-        fridayEighth: texteditingmonday[39].text,
-        saturdayFirst: texteditingmonday[40].text,
-        saturdaySecond: texteditingmonday[41].text,
-        saturdayThird: texteditingmonday[42].text,
-        saturdayFourth: texteditingmonday[43].text,
-        saturdayFifth: texteditingmonday[44].text,
-        saturdaySixth: texteditingmonday[45].text,
-        saturdaySeventh: texteditingmonday[46].text,
-        saturdayEighth: texteditingmonday[47].text
-    );
-    generateTimeTablePdf(PdfPageFormat.a4,timeTable);
+  printTimeTable() async {
+    List<ClassWiseTimeTableModel> timetables = await getClassWiseTimeTable(_typeAheadControllerday.text);
+    generateClassWiseTimeTablePdf(PdfPageFormat.a4,timetables);
   }
 
 
@@ -4056,7 +4008,7 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
         multiplier = 5;
         break;
     }
-    var staffs = await FirebaseFirestore.instance.collection('Staffs').orderBy("stname").get();
+    var staffs = await FirebaseFirestore.instance.collection('Staffs').get();
     for(int s = 0; s < staffs.docs.length; s ++){
       ClassWiseTimeTableModel classTimeTable = ClassWiseTimeTableModel(
         staffName: staffs.docs[s].get("stname"),
@@ -4071,14 +4023,42 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
       );
       var staffTimetable = await FirebaseFirestore.instance.collection('Staffs').doc(staffs.docs[s].id).collection('Timetable').where("day", isEqualTo: today).get();
       try{
-        classTimeTable.firstPeriod = staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 0).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 0).first.get("section");
-        classTimeTable.secondPeriod = staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 1).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 1).first.get("section");
-        classTimeTable.thirdPeriod = staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 2).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 2).first.get("section");
-        classTimeTable.fourthPeriod = staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 3).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 3).first.get("section");
-        classTimeTable.fifthPeriod = staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 4).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 4).first.get("section");
-        classTimeTable.sixthPeriod = staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 5).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 5).first.get("section");
-        classTimeTable.seventhPeriod = staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 6).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 6).first.get("section");
-        classTimeTable.eighthPeriod = staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 7).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == multiplier * 8 + 7).first.get("section");
+        classTimeTable.firstPeriod = staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 0).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 0).first.get("section");
+      }catch(e){
+        print(e);
+      }
+      try{
+        classTimeTable.secondPeriod = staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 1).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 1).first.get("section");
+      }catch(e){
+        print(e);
+      }
+      try{
+        classTimeTable.thirdPeriod = staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 2).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 2).first.get("section");
+      }catch(e){
+        print(e);
+      }
+      try{
+        classTimeTable.fourthPeriod = staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 3).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 3).first.get("section");
+      }catch(e){
+        print(e);
+      }
+      try{
+        classTimeTable.fifthPeriod = staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 4).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 4).first.get("section");
+      }catch(e){
+        print(e);
+      }
+      try{
+       classTimeTable.sixthPeriod = staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 5).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 5).first.get("section");
+      }catch(e){
+        print(e);
+      }
+      try{
+        classTimeTable.seventhPeriod = staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 6).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 6).first.get("section");
+      }catch(e){
+        print(e);
+      }
+      try{
+        classTimeTable.eighthPeriod = staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 7).first.get("class") +" - "+staffTimetable.docs.where((element) => element.get("period") == (multiplier * 8) + 7).first.get("section");
       }catch(e){
         print(e);
       }
@@ -4270,5 +4250,30 @@ class ClassWiseTimeTableModel{
   String sixthPeriod;
   String seventhPeriod;
   String eighthPeriod;
+
+  String getIndex(int index,int row) {
+    switch (index) {
+      case 0:
+        return staffName;
+      case 1:
+        return firstPeriod;
+      case 2:
+        return secondPeriod;
+      case 3:
+        return thirdPeriod;
+      case 4:
+        return fourthPeriod;
+      case 5:
+        return fifthPeriod;
+      case 6:
+        return sixthPeriod;
+      case 7:
+        return seventhPeriod;
+      case 8:
+        return eighthPeriod;
+    }
+    return '';
+  }
+
 }
 

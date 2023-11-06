@@ -1653,31 +1653,36 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
 
     try{
-      snapshot.docs.forEach((date) async {
+      for(int l = 0; l < snapshot.docs.length; l ++){
         int presentCount = 0;
         int absentCount = 0;
-        var staff = await FirebaseFirestore.instance.collection('Staff_attendance').doc(date.id).collection('Staffs').doc(id).get();
-        if(staff.exists){
-          if(staff.get("Staffattendance") == true){
-            presentCount++;
-            DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
-            String month = await getMonthForData(startDate.month);
-            SalesData sale = SalesData(month, presentCount.toDouble(),'',DateFormat("MMM yyyy").format(startDate));
-            attendanceData.add(sale);
+        try{
+          var staff = await FirebaseFirestore.instance.collection('Staff_attendance').doc(snapshot.docs[l].id).collection('Staffs').doc(id).get();
+          if(staff.exists){
+            if(staff.get("Staffattendance") == true){
+              presentCount++;
+              DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
+              String month = await getMonthForData(startDate.month);
+              SalesData sale = SalesData(month, presentCount.toDouble(),'',DateFormat("MMM yyyy").format(startDate));
+              attendanceData.add(sale);
+            }
+            if(staff.get("Staffattendance") == false){
+              absentCount++;
+              DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
+              String month = await getMonthForData(startDate.month);
+              SalesData sale = SalesData(month, absentCount.toDouble(),DateFormat("MMM yyyy").format(startDate),'');
+              absentData.add(sale);
+            }
+          }else{
+            print('No data');
           }
-          if(staff.get("Staffattendance") == false){
-            absentCount++;
-            DateTime startDate = DateFormat('dd/M/yyyy').parse(staff.get("Date"));
-            String month = await getMonthForData(startDate.month);
-            SalesData sale = SalesData(month, absentCount.toDouble(),DateFormat("MMM yyyy").format(startDate),'');
-            absentData.add(sale);
-          }
+        }catch (e){
+          print(e);
         }
-      });
+      }
     }catch(e){
-
+      print(e);
     }
-    await Future.delayed(Duration(seconds: 10));
 
     attendanceData.forEach((element) {
       presentDays.add(element.presentDay);
@@ -1685,50 +1690,54 @@ class _StaffAttendenceState extends State<StaffAttendence> {
     absentData.forEach((element) {
       absentDays.add(element.absentDay);
     });
-    attendanceData1.add(SalesData('June',attendanceData.where((element) => element.year == 'June').length.toDouble(),'',''));
+    if(attendanceData.isNotEmpty){
+      attendanceData1.add(SalesData('June',attendanceData.where((element) => element.year == 'June').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('July',attendanceData.where((element) => element.year == 'July').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('July',attendanceData.where((element) => element.year == 'July').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('Aug',attendanceData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('Aug',attendanceData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('Sep',attendanceData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('Sep',attendanceData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('Oct',attendanceData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('Oct',attendanceData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('Nov',attendanceData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('Nov',attendanceData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('Dec',attendanceData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
-    attendanceData1.add(SalesData('Jan',attendanceData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
-    attendanceData1.add(SalesData('Feb',attendanceData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('Dec',attendanceData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('Jan',attendanceData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('Feb',attendanceData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('Mar',attendanceData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('Mar',attendanceData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
 
-    attendanceData1.add(SalesData('Apr',attendanceData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+      attendanceData1.add(SalesData('Apr',attendanceData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+    }
 
 
 
 
-    absentData1.add(SalesData('June',absentData.where((element) => element.year == 'June').length.toDouble(),'',''));
+    if(absentData.isNotEmpty){
+      absentData1.add(SalesData('June',absentData.where((element) => element.year == 'June').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('July',absentData.where((element) => element.year == 'July').length.toDouble(),'',''));
+      absentData1.add(SalesData('July',absentData.where((element) => element.year == 'July').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('Aug',absentData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+      absentData1.add(SalesData('Aug',absentData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('Sep',absentData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+      absentData1.add(SalesData('Sep',absentData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('Oct',absentData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+      absentData1.add(SalesData('Oct',absentData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('Nov',absentData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+      absentData1.add(SalesData('Nov',absentData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('Dec',absentData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+      absentData1.add(SalesData('Dec',absentData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('Jan',absentData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+      absentData1.add(SalesData('Jan',absentData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('Feb',absentData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+      absentData1.add(SalesData('Feb',absentData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('Mar',absentData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+      absentData1.add(SalesData('Mar',absentData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
 
-    absentData1.add(SalesData('Apr',absentData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+      absentData1.add(SalesData('Apr',absentData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+    }
 
     StaffAttendanceReportModel studentReport = StaffAttendanceReportModel(
       absentReport: absentData1,

@@ -154,7 +154,6 @@ class _Dashboard2State extends State<Dashboard2> {
 
 
   getvalue() async {
-    print("Hello++++++++++++++++++");
     var doucment = await FirebaseFirestore.instance.collection("Students").get();
     var doucment2 = await FirebaseFirestore.instance.collection("Staffs").get();
     var doucment3 = await FirebaseFirestore.instance.collection("ClassMaster").get();
@@ -193,9 +192,6 @@ class _Dashboard2State extends State<Dashboard2> {
       }
     }
 
-
-    print(studentname);
-    print(studentid);
   }
   Widget content() {
     return Center(
