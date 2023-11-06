@@ -4008,7 +4008,7 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
         multiplier = 5;
         break;
     }
-    var staffs = await FirebaseFirestore.instance.collection('Staffs').get();
+    var staffs = await FirebaseFirestore.instance.collection('Staffs').orderBy("regno").get();
     for(int s = 0; s < staffs.docs.length; s ++){
       ClassWiseTimeTableModel classTimeTable = ClassWiseTimeTableModel(
         staffName: staffs.docs[s].get("stname"),

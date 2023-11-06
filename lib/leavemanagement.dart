@@ -83,21 +83,20 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                           staffDocId = element.id;
                         }
                       }
+                      var userdoc= await FirebaseFirestore.instance.collection('Staffs').doc(staffDocId).get();
+                      Map<String,dynamic> ? val = userdoc.data();
                       FirebaseFirestore.instance.collection('Staffs').doc(staffDocId).collection('Leave').doc(docid).update({
                         "status" : 'Denied'
                       });
-                      FirebaseFirestore.instance.collection('Notification').doc(staffDocId).collection('Leave').doc(docid).update({
-                        "body" : 'Your leave request denied',
+                      FirebaseFirestore.instance.collection('Staffs').doc(staffDocId).collection('Notification').doc(docid).set({
+                        "body" : "Dear ${val!["stname"]},\nWe regret to inform you that your requested has been denied at this time.",
                         "date" : DateFormat('dd/MM/yyyy').format(DateTime.now()),
                         "readstatus" : false,
                         "time" : DateFormat('hh:mm aa').format(DateTime.now()),
                         "timestamp" : DateTime.now().millisecondsSinceEpoch,
-                        "title" : "Denied Request",
+                        "title" : "Leave Approval Denied",
                       });
-                      var userdoc= await FirebaseFirestore.instance.collection('Staffs').doc(staffDocId).get();
-                      Map<String,dynamic> ? val = userdoc.data();
                       homecontroller.sendPushMessage(val!["token"],"Dear ${val!["stname"]},\nWe regret to inform you that your requested has been denied at this time.", "Leave Approval Denied");
-
                       Navigator.pop(context);
                     },
                     child: Material(
@@ -184,22 +183,20 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                           staffDocId = element.id;
                         }
                       }
+                      var userdoc= await FirebaseFirestore.instance.collection('Staffs').doc(staffDocId).get();
+                      Map<String,dynamic> ? val = userdoc.data();
                       FirebaseFirestore.instance.collection('Staffs').doc(staffDocId).collection('Leave').doc(docid).update({
                         "status" : 'Approved',
                       });
-                      FirebaseFirestore.instance.collection('Notification').doc(staffDocId).collection('Leave').doc(docid).update({
-                        "body" : 'Your leave request approved',
+                      FirebaseFirestore.instance.collection('Staffs').doc(staffDocId).collection('Notification').doc(docid).set({
+                        "body" : 'Dear ${val!["stname"]},\nWe are writing to confirm that your requested leave has been approved.',
                         "date" : DateFormat('dd/MM/yyyy').format(DateTime.now()),
                         "readstatus" : false,
                         "time" : DateFormat('hh:mm aa').format(DateTime.now()),
                         "timestamp" : DateTime.now().millisecondsSinceEpoch,
-                        "title" : "Request Approved",
+                        "title" : "Leave Approval Confirmation",
                       });
-                      var userdoc= await FirebaseFirestore.instance.collection('Staffs').doc(staffDocId).get();
-                      Map<String,dynamic> ? val = userdoc.data();
                       homecontroller.sendPushMessage(val!["token"],"Dear ${val!["stname"]},\nWe are writing to confirm that your requested leave has been approved.", "Leave Approval Confirmation");
-
-
                       Navigator.pop(context);
                     },
                     child: Material(
