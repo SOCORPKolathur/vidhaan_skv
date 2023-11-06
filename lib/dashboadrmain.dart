@@ -436,10 +436,15 @@ class _Dashboard2State extends State<Dashboard2> {
                                 Padding(
                                   padding:  EdgeInsets.only(
                                       top: height/32.85, right: width/136.6),
-                                  child: Text(
-                                    "Students",
-                                    style: GoogleFonts.poppins(
-                                        color: Color(0xffA3A3A3), fontSize:width/105.076),
+                                  child: InkWell(
+                                    onTap: (){
+
+                                    },
+                                    child: Text(
+                                      "Students",
+                                      style: GoogleFonts.poppins(
+                                          color: Color(0xffA3A3A3), fontSize:width/105.076),
+                                    ),
                                   ),
                                 ),
                                 Padding(

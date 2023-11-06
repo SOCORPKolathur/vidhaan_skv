@@ -914,11 +914,8 @@ class _PayrollGenState extends State<PayrollGen> {
                                                   child:
                                                 TextFormField(
                                                   controller: basicpay,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: 15,
                                                 ),
-                                                  onChanged: (val){
-                                                    _formKey.currentState!.validate();
-                                                  },
                                                   validator: (value) {
                                                     if (value == null || value.isEmpty) {
                                                       return 'Please enter some text';
@@ -977,9 +974,6 @@ class _PayrollGenState extends State<PayrollGen> {
                                                   decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
                                                   child:  TextFormField(
-                                                    onChanged: (val){
-                                                      _formKey.currentState!.validate();
-                                                    },
                                                     validator: (value) {
                                                       if (value == null || value.isEmpty) {
                                                         return 'Please enter some text';
@@ -1015,9 +1009,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                   decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
                                                   child:  TextFormField(
-                                                    onChanged: (val){
-                                                      _formKey.currentState!.validate();
-                                                    },
+                                                    
                                                     validator: (value) {
                                                       if (value == null || value.isEmpty) {
                                                         return 'Please enter some text';
@@ -1052,9 +1044,6 @@ class _PayrollGenState extends State<PayrollGen> {
                                                   //color: Color(0xffDDDEEE),
                                                   decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
                                                   child:  TextFormField(
-                                                    onChanged: (val){
-                                                      _formKey.currentState!.validate();
-                                                    },
                                                     validator: (value) {
                                                       if (value == null || value.isEmpty) {
                                                         return 'Please enter some text';
@@ -1094,9 +1083,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                   decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
 
                                                   child:  TextFormField(
-                                                    onChanged: (val){
-                                                      _formKey.currentState!.validate();
-                                                    },
+                                                    
                                                     validator: (value) {
                                                       if (value == null || value.isEmpty) {
                                                         return 'Please enter some text';
