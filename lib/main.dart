@@ -152,7 +152,6 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       SizedBox(width: 20,),
                       Material(
-
                         borderRadius: BorderRadius.circular(12),
                         child: Container(
                           height: 150,

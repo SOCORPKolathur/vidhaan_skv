@@ -12,6 +12,7 @@ import 'package:vidhaan/eventcal.dart';
 import 'package:vidhaan/profile.dart';
 import 'package:vidhaan/profiledw.dart';
 import 'package:vidhaan/staffpiechart.dart';
+import 'package:vidhaan/studentlist.dart';
 
 import 'demo2.dart';
 import 'demobar graph.dart';
@@ -319,11 +320,17 @@ class _Dashboard2State extends State<Dashboard2> {
       ),
     );
   }
+
+
+
+
+  var pages;
+
   @override
   Widget build(BuildContext context) {
     double height =MediaQuery.of(context).size.height;
     double width =MediaQuery.of(context).size.width;
-    return Container(
+    return pages ==null?Container(
         width: width/1.707,
         child: SingleChildScrollView(
           child: Column(
@@ -337,54 +344,54 @@ class _Dashboard2State extends State<Dashboard2> {
                     child: Image.asset("assets/Hello Admin 👋🏼,.png"),
                   ),
 
-                 Container(
-                   width: 400,
-                   height: 100,
-                   decoration: BoxDecoration(
-                     color: Color(0xff00A0E3),
-                     borderRadius: BorderRadius.only(
-                       topLeft: Radius.circular(120),
-                       bottomLeft: Radius.circular(120),
-                     ),
+                  Container(
+                      width: 400,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Color(0xff00A0E3),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(120),
+                          bottomLeft: Radius.circular(120),
+                        ),
 
-                   ),
-                   child: Row(
-                     children: [
-                       SizedBox(width: 20,),
-                      Container(
-                         width: 70,
-                         height: 70,
-                         decoration: BoxDecoration(
-                           color: Colors.white,
-                           borderRadius: BorderRadius.circular(70)
-                           
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 20,),
+                          Container(
+                            width: 70,
+                            height: 70,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(70)
 
-                         ),
-                        child: Image.network(imgurl),
-                       ),
-                       SizedBox(width: 12,),
-                       Column(
-                         crossAxisAlignment: CrossAxisAlignment.start,
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           Container(
-                               width:220,
-                               child: Text(schoolname,style: GoogleFonts.poppins(fontSize: 17,fontWeight: FontWeight.w700,color: Colors.white),)),
-                           SizedBox(height: 5,),
-                           Text(schooladdress,style: GoogleFonts.poppins(fontSize: 12,fontWeight: FontWeight.w600,color: Colors.white),),
-                         ],
-                       ),
-                       SizedBox(width: 30,),
-                       InkWell(
-                         onTap: (){
-                           _showPopupMenu();
-                         },
 
-                           child: Icon(Icons.arrow_drop_down_circle_outlined,color: Colors.white,size: 25,))
+                            ),
+                            child: Image.network(imgurl),
+                          ),
+                          SizedBox(width: 12,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  width:220,
+                                  child: Text(schoolname,style: GoogleFonts.poppins(fontSize: 17,fontWeight: FontWeight.w700,color: Colors.white),)),
+                              SizedBox(height: 5,),
+                              Text(schooladdress,style: GoogleFonts.poppins(fontSize: 12,fontWeight: FontWeight.w600,color: Colors.white),),
+                            ],
+                          ),
+                          SizedBox(width: 30,),
+                          InkWell(
+                              onTap: (){
+                                _showPopupMenu();
+                              },
 
-                     ],
-                   )
-                 )
+                              child: Icon(Icons.arrow_drop_down_circle_outlined,color: Colors.white,size: 25,))
+
+                        ],
+                      )
+                  )
 
 
                 ],
@@ -394,9 +401,9 @@ class _Dashboard2State extends State<Dashboard2> {
                 child: Row(
                   children:[
                     Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.calendar_month),
-                  ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.calendar_month),
+                    ),
                     Text("${currentDate} ${cmonth} , ${cyear}",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),
                     ),
                   ],
@@ -438,7 +445,9 @@ class _Dashboard2State extends State<Dashboard2> {
                                       top: height/32.85, right: width/136.6),
                                   child: InkWell(
                                     onTap: (){
-
+                                      setState(() {
+                                        pages=StudentList();
+                                      });
                                     },
                                     child: Text(
                                       "Students",
@@ -776,54 +785,54 @@ class _Dashboard2State extends State<Dashboard2> {
                                                 ),
                                               ),
                                               Container(
-                                                height: height / 5.57,
-                                                width: 260,
-                                                child: ListView.builder(
-                                                    shrinkWrap: true,
-                                                    itemCount: snap.data!.todayAbsentPersons.length,
-                                                    itemBuilder: (context,i){
-                                                      return Column(
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              //radio button
-                                                              Radio(
-                                                                  value: 1,
-                                                                  activeColor: Color(0xff263646),
-                                                                  groupValue:selectedvalue,
-                                                                  onChanged:(value){
-                                                                    setState(() {
-                                                                      value=selectedvalue;
-                                                                      selectedvalue=1;
-                                                                      selectedvalue2=0;
-                                                                      selectedvalue3=0;
-                                                                      selectedvalue4=0;
-                                                                    });
-                                                                  }),
-                                                              //text1
-                                                              Text(
-                                                                "${snap.data!.todayAbsentPersons[i].name} ",
-                                                                style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 12),
-                                                              ),
-                                                              Text(
-                                                                "- ID ${snap.data!.todayAbsentPersons[i].id} ",
-                                                                style: GoogleFonts.poppins(
-                                                                    fontWeight: FontWeight.w500,
-                                                                    fontSize: 10,color: Colors.grey),
-                                                              ),
+                                                  height: height / 5.57,
+                                                  width: 260,
+                                                  child: ListView.builder(
+                                                      shrinkWrap: true,
+                                                      itemCount: snap.data!.todayAbsentPersons.length,
+                                                      itemBuilder: (context,i){
+                                                        return Column(
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                //radio button
+                                                                Radio(
+                                                                    value: 1,
+                                                                    activeColor: Color(0xff263646),
+                                                                    groupValue:selectedvalue,
+                                                                    onChanged:(value){
+                                                                      setState(() {
+                                                                        value=selectedvalue;
+                                                                        selectedvalue=1;
+                                                                        selectedvalue2=0;
+                                                                        selectedvalue3=0;
+                                                                        selectedvalue4=0;
+                                                                      });
+                                                                    }),
+                                                                //text1
+                                                                Text(
+                                                                  "${snap.data!.todayAbsentPersons[i].name} ",
+                                                                  style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 12),
+                                                                ),
+                                                                Text(
+                                                                  "- ID ${snap.data!.todayAbsentPersons[i].id} ",
+                                                                  style: GoogleFonts.poppins(
+                                                                      fontWeight: FontWeight.w500,
+                                                                      fontSize: 10,color: Colors.grey),
+                                                                ),
 
 
 
 
 
-                                                            ],
-                                                          ),
+                                                              ],
+                                                            ),
 
 
 
 
-                                                        ],);
-                                                    })
+                                                          ],);
+                                                      })
                                               ),
                                             ],
                                           ),
@@ -1383,11 +1392,9 @@ class _Dashboard2State extends State<Dashboard2> {
                                                   ),
                                                 ],
                                               ),
-
                                             ],
                                           ),
                                         ),
-
                                       ],
                                     ),
                                   ),
@@ -1401,9 +1408,9 @@ class _Dashboard2State extends State<Dashboard2> {
                             height: height / 3.57,
                             child: VerticalDivider(width: 2,color:Colors.grey)),
                         Container(
-                            width: 535,
-                            height: height / 2.87,
-                            //child: StaffPieChart()
+                          width: 535,
+                          height: height / 2.87,
+                          //child: StaffPieChart()
                         )
 
                       ],
@@ -1466,30 +1473,30 @@ class _Dashboard2State extends State<Dashboard2> {
                                 child: Text("Events Calendar",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
                               ),
                               Container(
-                          width: 500,
-                          height: 370,
-                          child: SfCalendar(
-                            onLongPress: (val){
+                                width: 500,
+                                height: 370,
+                                child: SfCalendar(
+                                  onLongPress: (val){
 
-                              setState(() {
-                                datecon.text = "${val.date!.day} / ${val.date!.month} / ${val.date!.year}";
-                              });
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return BouncingDraggableDialog(
-                                      width: 400,
-                                      height: 250,
-                                      content: eventspop(val.date),
-                                    );
-                                  });                            },
-                            view: CalendarView.month,
-                            allowDragAndDrop: true,
-                            dataSource: MeetingDataSource(_getDataSource()),
-                            monthViewSettings: MonthViewSettings(showAgenda: true),
+                                    setState(() {
+                                      datecon.text = "${val.date!.day} / ${val.date!.month} / ${val.date!.year}";
+                                    });
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return BouncingDraggableDialog(
+                                            width: 400,
+                                            height: 250,
+                                            content: eventspop(val.date),
+                                          );
+                                        });                            },
+                                  view: CalendarView.month,
+                                  allowDragAndDrop: true,
+                                  dataSource: MeetingDataSource(_getDataSource()),
+                                  monthViewSettings: MonthViewSettings(showAgenda: true),
 
-                          ),
-                        )
+                                ),
+                              )
 
                             ],
                           )
@@ -1501,7 +1508,7 @@ class _Dashboard2State extends State<Dashboard2> {
               const SizedBox(height: 40),
             ],
           ),
-        ));
+        )): pages;
   }
   List Eventsname =[];
   List Eventdate =[];

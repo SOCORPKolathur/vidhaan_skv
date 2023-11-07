@@ -20,9 +20,6 @@ class _EventCalState extends State<EventCal> {
             allowDragAndDrop: true,
             dataSource: MeetingDataSource(_getDataSource()),
             monthViewSettings: MonthViewSettings(showAgenda: true),
-
-
-
     ),
         ));
   }
