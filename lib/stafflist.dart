@@ -7,8 +7,12 @@ import 'package:vidhaan/photoview.dart';
 import 'package:vidhaan/staffentryedit.dart';
 import 'package:vidhaan/studententryedit.dart';
 
+import 'Dashboard.dart';
+
 class StaffList extends StatefulWidget {
-  const StaffList({Key? key}) : super(key: key);
+  const StaffList({Key? key, required this.isfromDashboard}) : super(key: key);
+
+  final bool isfromDashboard;
 
   @override
   State<StaffList> createState() => _StaffListState();
@@ -102,7 +106,20 @@ class _StaffListState extends State<StaffList> {
             padding: const EdgeInsets.only(left: 20.0),
             child: Container(child: Padding(
               padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Text("Staffs List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+              child: Row(
+                children: [
+                  Visibility(
+                    visible: widget.isfromDashboard,
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: (){
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx)=> Dashboard()));
+                      },
+                    ),
+                  ),
+                  Text("Staffs List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                ],
+              ),
             ),
               //color: Colors.white,
               width: width/1.050,

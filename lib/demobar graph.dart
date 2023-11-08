@@ -24,16 +24,23 @@ class BarChartSample2State extends State<BarChartSample2> {
 
   int touchedGroupIndex = -1;
 
-  Future<String> getFeesDetails() async {
+  Future<List<BarChartGroupData>> getFeesDetails() async {
     List<String> titles = [];
     List<FeesDetailsModel> datas = [];
 
-    var examsDoc = await FirebaseFirestore.instance.collection("FeesMaster").get();
+    //var examsDoc = await FirebaseFirestore.instance.collection("FeesMaster").get();
+    var examsDoc = await FirebaseFirestore.instance.collection("ClassMaster").get();
     var studentsDoc = await FirebaseFirestore.instance.collection("Students").get();
 
+
     for(int e = 0; e < examsDoc.docs.length; e++){
-      if(!titles.contains(examsDoc.docs[e].get("name"))){
-        titles.add(examsDoc.docs[e].get("name"));
+      var feesDoc = await FirebaseFirestore.instance.collection("ClassMaster").doc(examsDoc.docs[e].id).collection('Fees').get();
+      for(int f = 0; f < feesDoc.docs.length; f++){
+        if(feesDoc.docs[f].get("paytype").toString().toLowerCase() == 'custom'){
+          if(!titles.contains(feesDoc.docs[f].get("feesname"))){
+            titles.add(feesDoc.docs[f].get("feesname"));
+          }
+        }
       }
     }
     print(titles);
@@ -44,16 +51,22 @@ class BarChartSample2State extends State<BarChartSample2> {
       double y1 = 0.0;
       double y2 = 0.0;
         for(int s = 0; s < studentsDoc.docs.length; s++) {
-          var feesDoc = await FirebaseFirestore.instance.collection("Students").doc(studentsDoc.docs[s].id).collection('Fees').where("feesname", isEqualTo: titles[t]).get();
-          for(int f = 0; f < feesDoc.docs.length; f++){
-            if(feesDoc.docs[f].get("status") == true){
-              y1 = y1 + 1;
+          print(titles[t]);
+          try{
+            var feesDoc = await FirebaseFirestore.instance.collection("Students").doc(studentsDoc.docs[s].id).collection('Fees').where("feesname", isEqualTo: titles[t]).get();
+            for(int f = 0; f < feesDoc.docs.length; f++){
+              if(feesDoc.docs[f].get("status") == true){
+                y1 = y1 + 1;
+              }
+              if(feesDoc.docs[f].get("status") == false){
+                y2 = y2 + 1;
+              }
             }
-            if(feesDoc.docs[f].get("status") == false){
-              y2 = y2 + 1;
-            }
+          }catch (e){
+            print(e);
           }
         }
+        await Future.delayed(Duration(seconds: 10));
         print(x.toString()+"))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))");
         print(y1);
         print(y2);
@@ -66,6 +79,7 @@ class BarChartSample2State extends State<BarChartSample2> {
         );
     }
 
+    rawBarGroups.clear();
     for(int d = 0; d < datas.length; d++){
       rawBarGroups.add(makeGroupData(datas[d].x, datas[d].y1, datas[d].y2));
     }
@@ -96,12 +110,12 @@ class BarChartSample2State extends State<BarChartSample2> {
     // FeesDetailsModel feesDetails = FeesDetailsModel(
     //     bottomTitles: titles,
     // );
-    return "feesDetails";
+    return showingBarGroups;
   }
 
   @override
   void initState() {
-    getFeesDetails();
+    //getFeesDetails();
     super.initState();
 
   }
@@ -119,7 +133,7 @@ class BarChartSample2State extends State<BarChartSample2> {
               height: 38,
             ),
             Expanded(
-              child: FutureBuilder<String>(
+              child: FutureBuilder<List<BarChartGroupData>>(
                 future: getFeesDetails(),
                 builder: (ctx, snap){
                   if(snap.hasData){
@@ -131,51 +145,51 @@ class BarChartSample2State extends State<BarChartSample2> {
                             tooltipBgColor: Colors.grey,
                             getTooltipItem: (a, b, c, d) => null,
                           ),
-                          touchCallback: (FlTouchEvent event, response) {
-                            /*      if (response == null || response.spot == null) {
-                        setState(() {
-                          touchedGroupIndex = -1;
-                          showingBarGroups = List.of(rawBarGroups);
-                        });
-                        return;
-                      }
-
-                      touchedGroupIndex = response.spot!.touchedBarGroupIndex;
-
-                      setState(() {
-                        if (!event.isInterestedForInteractions) {
-                          touchedGroupIndex = -1;
-                          showingBarGroups = List.of(rawBarGroups);
-                          return;
-                        }
-                        showingBarGroups = List.of(rawBarGroups);
-                        if (touchedGroupIndex != -1) {
-                          var sum = 0.0;
-                          for (final rod
-                          in showingBarGroups[touchedGroupIndex].barRods) {
-                            sum += rod.toY;
-                          }
-                          final avg = sum /
-                              showingBarGroups[touchedGroupIndex]
-                                  .barRods
-                                  .length;
-
-                          showingBarGroups[touchedGroupIndex] =
-                              showingBarGroups[touchedGroupIndex].copyWith(
-                                barRods: showingBarGroups[touchedGroupIndex]
-                                    .barRods
-                                    .map((rod) {
-                                  return rod.copyWith(
-                                      toY: avg, color: widget.avgColor);
-                                }).toList(),
-                              );
-                        }
-                      });*/
-
-                            setState(() {
-
-                            });
-                          },
+                      //     touchCallback: (FlTouchEvent event, response) {
+                      //       /*      if (response == null || response.spot == null) {
+                      //   setState(() {
+                      //     touchedGroupIndex = -1;
+                      //     showingBarGroups = List.of(rawBarGroups);
+                      //   });
+                      //   return;
+                      // }
+                      //
+                      // touchedGroupIndex = response.spot!.touchedBarGroupIndex;
+                      //
+                      // setState(() {
+                      //   if (!event.isInterestedForInteractions) {
+                      //     touchedGroupIndex = -1;
+                      //     showingBarGroups = List.of(rawBarGroups);
+                      //     return;
+                      //   }
+                      //   showingBarGroups = List.of(rawBarGroups);
+                      //   if (touchedGroupIndex != -1) {
+                      //     var sum = 0.0;
+                      //     for (final rod
+                      //     in showingBarGroups[touchedGroupIndex].barRods) {
+                      //       sum += rod.toY;
+                      //     }
+                      //     final avg = sum /
+                      //         showingBarGroups[touchedGroupIndex]
+                      //             .barRods
+                      //             .length;
+                      //
+                      //     showingBarGroups[touchedGroupIndex] =
+                      //         showingBarGroups[touchedGroupIndex].copyWith(
+                      //           barRods: showingBarGroups[touchedGroupIndex]
+                      //               .barRods
+                      //               .map((rod) {
+                      //             return rod.copyWith(
+                      //                 toY: avg, color: widget.avgColor);
+                      //           }).toList(),
+                      //         );
+                      //   }
+                      // });*/
+                      //
+                      //       setState(() {
+                      //
+                      //       });
+                      //     },
                         ),
                         titlesData: FlTitlesData(
                           show: true,
@@ -204,11 +218,15 @@ class BarChartSample2State extends State<BarChartSample2> {
                         borderData: FlBorderData(
                           show: false,
                         ),
-                        barGroups: showingBarGroups,
+                        barGroups: snap.data,
                         gridData: const FlGridData(show: false,),
                       ),
                     );
-                  }return Container();
+                  }return Container(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
                 },
               )
             ),

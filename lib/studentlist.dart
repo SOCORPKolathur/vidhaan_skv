@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 import 'package:syncfusion_flutter_charts/charts.dart' as sfc;
+import 'package:vidhaan/Dashboard.dart';
 import 'package:vidhaan/Masters/excelgen.dart';
 import 'package:vidhaan/photoview.dart';
 import 'package:vidhaan/studententryedit.dart';
@@ -15,7 +16,9 @@ import 'models/student_csv_model.dart';
 
 
 class StudentList extends StatefulWidget {
-  const StudentList({Key? key}) : super(key: key);
+  const StudentList({Key? key, required this.isfromDashboard}) : super(key: key);
+  
+  final bool isfromDashboard;
 
   @override
   State<StudentList> createState() => _StudentListState();
@@ -282,6 +285,15 @@ class _StudentListState extends State<StudentList> {
                   children: [
                     Row(
                       children: [
+                        Visibility(
+                          visible: widget.isfromDashboard,
+                          child: IconButton(
+                            icon: Icon(Icons.arrow_back),
+                            onPressed: (){
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx)=> Dashboard()));
+                            },
+                          ),
+                        ),
                         Text("Students List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
                         SizedBox(width: 700,),
 

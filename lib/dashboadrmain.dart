@@ -11,7 +11,9 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:vidhaan/eventcal.dart';
 import 'package:vidhaan/profile.dart';
 import 'package:vidhaan/profiledw.dart';
+import 'package:vidhaan/stafflist.dart';
 import 'package:vidhaan/staffpiechart.dart';
+import 'package:vidhaan/student_pie_chart.dart';
 import 'package:vidhaan/studentlist.dart';
 
 import 'demo2.dart';
@@ -40,6 +42,43 @@ class _Dashboard2State extends State<Dashboard2> {
   String cmonth = "";
   String day = "";
   int currentDate = 0;
+
+  sendBirthWishes() async {
+    var staffsDoc = await FirebaseFirestore.instance.collection('Staffs').get();
+    var studentsDoc = await FirebaseFirestore.instance.collection('Students').get();
+
+    for(int i = 0; i < staffsDoc.docs.length; i++){
+      var staff = await FirebaseFirestore.instance.collection('Staffs').doc(staffsDoc.docs[i].id).get();
+      print("${staff.get("dob").toString().startsWith(DateFormat('dd / M / yyyy').format(DateTime.now()).toString())}__________________________________________________________________________");
+      if(staff.get("dob").toString().startsWith(DateFormat('dd / M / yyyy').format(DateTime.now()).toString())){
+
+        FirebaseFirestore.instance.collection('Staffs').doc(staffsDoc.docs[i].id).collection('Notification').doc('BirthdayWish').set({
+          "body" : "Dear ${staff.get("stname")},\nWish you many more return days.",
+          "date" : DateFormat('dd/MM/yyyy').format(DateTime.now()),
+          "readstatus" : false,
+          "time" : DateFormat('hh:mm aa').format(DateTime.now()),
+          "timestamp" : DateTime.now().millisecondsSinceEpoch,
+          "title" : "Happy Birthday",
+        });
+      }
+    }
+
+    for(int j = 0; j < studentsDoc.docs.length; j++){
+      var student = await FirebaseFirestore.instance.collection('Students').doc(studentsDoc.docs[j].id).get();
+      if(student.get("dob") == DateFormat('dd-M-yyyy').format(DateTime.now()).toString()){
+        FirebaseFirestore.instance.collection('Staffs').doc(student.id).collection('Notification').doc('BirthdayWish').set({
+          "body" : "Dear ${student.get("stname")},\nWish you many more return days.",
+          "date" : DateFormat('dd/MM/yyyy').format(DateTime.now()),
+          "readstatus" : false,
+          "time" : DateFormat('hh:mm aa').format(DateTime.now()),
+          "timestamp" : DateTime.now().millisecondsSinceEpoch,
+          "title" : "Happy Birthday",
+        });
+      }
+    }
+
+  }
+
   String getMonth(int currentMonthIndex) {
     return DateFormat('MMM').format(DateTime(0, currentMonthIndex)).toString();
   }
@@ -63,6 +102,7 @@ class _Dashboard2State extends State<Dashboard2> {
   }
   @override
   void initState() {
+    sendBirthWishes();
     getvalue();
     Date();
     getadmin();
@@ -330,7 +370,7 @@ class _Dashboard2State extends State<Dashboard2> {
   Widget build(BuildContext context) {
     double height =MediaQuery.of(context).size.height;
     double width =MediaQuery.of(context).size.width;
-    return pages ==null?Container(
+    return pages == null ? Container(
         width: width/1.707,
         child: SingleChildScrollView(
           child: Column(
@@ -446,7 +486,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                   child: InkWell(
                                     onTap: (){
                                       setState(() {
-                                        pages=StudentList();
+                                        pages=StudentList(isfromDashboard: true);
                                       });
                                     },
                                     child: Text(
@@ -495,10 +535,17 @@ class _Dashboard2State extends State<Dashboard2> {
                               children: [
                                 Padding(
                                   padding:  EdgeInsets.only(top:height/23.464),
-                                  child: Text(
-                                    "Staffs",
-                                    style: GoogleFonts.poppins(
-                                        color: Color(0xffA3A3A3), fontSize:width/105.076),
+                                  child: InkWell(
+                                    onTap: (){
+                                      setState(() {
+                                        pages= StaffList(isfromDashboard: true);
+                                      });
+                                    },
+                                    child: Text(
+                                      "Staffs",
+                                      style: GoogleFonts.poppins(
+                                          color: Color(0xffA3A3A3), fontSize:width/105.076),
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -546,10 +593,17 @@ class _Dashboard2State extends State<Dashboard2> {
                                     children: [
                                       Padding(
                                         padding:  EdgeInsets.only(top:height/23.464),
-                                        child: Text(
-                                          "Classes",
-                                          style: GoogleFonts.poppins(
-                                              color: Color(0xffA3A3A3), fontSize:width/105.076),
+                                        child: InkWell(
+                                          onTap: (){
+                                            setState(() {
+                                              pages= StudentList(isfromDashboard: true);
+                                            });
+                                          },
+                                          child: Text(
+                                            "Classes",
+                                            style: GoogleFonts.poppins(
+                                                color: Color(0xffA3A3A3), fontSize:width/105.076),
+                                          ),
                                         ),
                                       ),
                                       Padding(
@@ -1035,8 +1089,6 @@ class _Dashboard2State extends State<Dashboard2> {
                                     child: StaffPieChart()),
                               ],
                             ))
-
-
                       ],
                     ),
                   ),
@@ -1408,11 +1460,20 @@ class _Dashboard2State extends State<Dashboard2> {
                             height: height / 3.57,
                             child: VerticalDivider(width: 2,color:Colors.grey)),
                         Container(
-                          width: 535,
-                          height: height / 2.87,
-                          //child: StaffPieChart()
-                        )
-
+                            width: 535,
+                            height: height / 2.55,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top:8.0,left:8),
+                                  child: Text("Overall Student Report",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
+                                ),
+                                Container(
+                                    height: height / 2.97,
+                                    child: StudentPieChart()),
+                              ],
+                            ))
                       ],
                     ),
                   ),
@@ -1508,7 +1569,7 @@ class _Dashboard2State extends State<Dashboard2> {
               const SizedBox(height: 40),
             ],
           ),
-        )): pages;
+        )) : pages;
   }
   List Eventsname =[];
   List Eventdate =[];
@@ -1568,10 +1629,6 @@ class _Dashboard2State extends State<Dashboard2> {
       }
     });
     await Future.delayed(const Duration(seconds: 10));
-    print(absentPeoples.length);
-    print("Absent n<_");
-    print(presentPeoples.length);
-    print("Presnt n<_");
     TodayPresentReport report = TodayPresentReport(
       absentPercentage: absentPeoples.length/(presentPeoples.length+absentPeoples.length).toDouble(), //0.7
       presentPercentage: presentPeoples.length/(presentPeoples.length+absentPeoples.length).toDouble(),  //0.3

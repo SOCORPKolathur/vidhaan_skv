@@ -4140,7 +4140,7 @@ setState(() {
                                       ListTile(
                                         onTap:(){
                                           setState((){
-                                            pages=StudentList();
+                                            pages=StudentList(isfromDashboard: false);
                                           });
 
                               },
@@ -4241,7 +4241,7 @@ setState(() {
                                       ListTile(
                                           onTap:(){
                                             setState((){
-                                              pages=StaffList();
+                                              pages=StaffList(isfromDashboard: false);
                                             });
                                           },
                                           title: Text("Staff List",style: GoogleFonts.poppins(

@@ -74,7 +74,6 @@ class _StaffPieChartState extends State<StaffPieChart> {
       });
 
     }
-    print(mydate);
 
     var holidaysdata = await FirebaseFirestore.instance.collection("Events").get();
     for(int i=0;i<holidaysdata.docs.length;i++){
@@ -101,18 +100,6 @@ class _StaffPieChartState extends State<StaffPieChart> {
     setState(() {
       absent = totalattdence - presnet - holidaysenrty;
     });
-    print("Total Days ->");
-    print(totaldays);
-    print("Holidays Days ->");
-    print(holidayscount);
-    print("Total Entry to be ->");
-    print(totalattdence);
-    print("Present ->");
-    print((presnet/totalattdence *100).toStringAsFixed(2));
-    print("Absent ->");
-    print((absent/totalattdence *100).toStringAsFixed(2));
-    print("Holiday ->");
-    print((holidaysenrty/totalattdence *100).toStringAsFixed(2));
 
   }
 
