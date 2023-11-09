@@ -285,6 +285,16 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         //     : paytype.text.toLowerCase() == 'custom' ? date.text : ''
       });
     }else {
+      var document1 = await FirebaseFirestore.instance.collection("ClassMaster").get();
+
+      for(int d = 0; d < document1.docs.length; d++){
+        FirebaseFirestore.instance.collection("ClassMaster").doc(document1.docs[d].id).collection("Fees").doc(docId).set({
+          "feesname": _typeAheadControllerfees.text,
+          "amount": int.parse(amount.text),
+          "timestamp": DateTime.now().microsecondsSinceEpoch,
+          "paytype": paytype.text,
+        });
+      }
       var document = await FirebaseFirestore.instance.collection("Students").get();
       for(int i=0;i<document.docs.length;i++) {
         FirebaseFirestore.instance.collection("FeesCollection").doc("${document.docs[i].id}:$docId").set({
@@ -1504,8 +1514,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                               });
 
                         })
-                        : StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance.collection("FeesCollection").snapshots(),
+                        : FutureBuilder<List<DocumentSnapshot>>(
+                        //future: FirebaseFirestore.instance.collection("FeesCollection").snapshots(),
+                        future: getGeneralFeeses(),
                         builder: (context,snapshot){
                           if(!snapshot.hasData)
                           {
@@ -1519,17 +1530,15 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                             );}
                           return ListView.builder(
                               shrinkWrap: true,
-                              itemCount: snapshot.data!.docs.length,
+                              itemCount: snapshot.data!.length,
                               itemBuilder: (context,index){
-                                var value = snapshot.data!.docs[index];
+                                var value = snapshot.data![index];
                                 return  Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                     height: height/ 21.9,
                                     width: width/ 1.241,
-
                                     decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
-
                                     ),
                                     child: Row(
                                       children: [
@@ -1554,7 +1563,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         ),
                                         InkWell(
                                           onTap: (){
-                                            deleteAllFees(value.id.split(":").last);
+                                            //deleteAllFees(value.id.split(":").last);
                                             //deletestudent3(value.id);
                                           },
                                           child: Padding(
@@ -1590,6 +1599,24 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         ],
       ),
     );
+  }
+
+
+  Future<List<DocumentSnapshot<Object?>>> getGeneralFeeses() async {
+    List<DocumentSnapshot> result = [];
+    List<String> result1 = [];
+
+    var document = await  FirebaseFirestore.instance.collection("ClassMaster").get();
+
+    for(int i = 0; i < document.docs.length; i++){
+      var document1 = await  FirebaseFirestore.instance.collection("ClassMaster").doc(document.docs[i].id).collection('Fees').get();
+      for(int j = 0; j < document1.docs.length; j++){
+        if(!result1.contains(document1.docs[j].id)){
+          result1.add(document1.docs[j].id);
+        }
+      }
+    }
+    return result;
   }
 
   double total= 0;

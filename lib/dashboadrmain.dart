@@ -49,9 +49,7 @@ class _Dashboard2State extends State<Dashboard2> {
 
     for(int i = 0; i < staffsDoc.docs.length; i++){
       var staff = await FirebaseFirestore.instance.collection('Staffs').doc(staffsDoc.docs[i].id).get();
-      print("${staff.get("dob").toString().startsWith(DateFormat('dd / M / yyyy').format(DateTime.now()).toString())}__________________________________________________________________________");
       if(staff.get("dob").toString().startsWith(DateFormat('dd / M / yyyy').format(DateTime.now()).toString())){
-
         FirebaseFirestore.instance.collection('Staffs').doc(staffsDoc.docs[i].id).collection('Notification').doc('BirthdayWish').set({
           "body" : "Dear ${staff.get("stname")},\nWish you many more return days.",
           "date" : DateFormat('dd/MM/yyyy').format(DateTime.now()),
@@ -97,8 +95,6 @@ class _Dashboard2State extends State<Dashboard2> {
 
     });
 
-    print(day);
-    print(currentDate);
   }
   @override
   void initState() {
@@ -138,7 +134,6 @@ class _Dashboard2State extends State<Dashboard2> {
       items: [
         PopupMenuItem<String>(
           onTap: () async {
-            print("Okkkk");
             final navigator = Navigator.of(context);
             await Future.delayed(Duration.zero);
             navigator.push(
@@ -1471,7 +1466,8 @@ class _Dashboard2State extends State<Dashboard2> {
                                 ),
                                 Container(
                                     height: height / 2.97,
-                                    child: StudentPieChart()),
+                                    child: StudentPieChart(),
+                                ),
                               ],
                             ))
                       ],
@@ -1501,13 +1497,12 @@ class _Dashboard2State extends State<Dashboard2> {
                               padding: const EdgeInsets.only(top:20.0,left: 15),
                               child: Text("Fees Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
                             ),
+                            SizedBox(height: 10),
                             Container(
-
                                 width: 550,
-                                height: 330,
-                                child: BarChartSample2())
-
-
+                                height: 350,
+                                child: BarChartSample2(),
+                            )
                           ],
                         ),
                       ),
@@ -1586,7 +1581,6 @@ class _Dashboard2State extends State<Dashboard2> {
               document.docs[i]["name"], DateFormat("dd / MM / yyyy").parse(document.docs[i]["ondate"]),DateFormat("dd / MM / yyyy").parse(document.docs[i]["ondate"]), const Color(0xFF0F8644), true));
     });
     }
-    print(meetingsmain);
     }
 
   List<Meeting> _getDataSource()  {
@@ -1602,7 +1596,6 @@ class _Dashboard2State extends State<Dashboard2> {
     });
 
 
-    print(meetings);
     return meetings;
   }
   Future<TodayPresentReport> getTodayStudentPresent() async {
@@ -1625,7 +1618,6 @@ class _Dashboard2State extends State<Dashboard2> {
           );
         }
       }catch(e){
-         print(e);
       }
     });
     await Future.delayed(const Duration(seconds: 10));
@@ -1657,12 +1649,9 @@ class _Dashboard2State extends State<Dashboard2> {
           );
         }
       }catch(e){
-        print(e);
       }
     });
     await Future.delayed(const Duration(seconds: 10));
-    print(absentPeoples.length);
-    print(presentPeoples.length);
     TodayPresentReport report = TodayPresentReport(
         absentPercentage: absentPeoples.length/(presentPeoples.length+absentPeoples.length).toDouble(), //0.7
         presentPercentage: presentPeoples.length/(presentPeoples.length+absentPeoples.length).toDouble(),  //0.3
@@ -2009,7 +1998,6 @@ TextEditingController datecon = new TextEditingController();
     );
   }
   Widget eventspop2(date) {
-    print(datecon.text);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Center(
@@ -2122,7 +2110,8 @@ TextEditingController datecon = new TextEditingController();
             ),
             Spacer(),
             TextButton(
-                onPressed: () => debugPrint("Undid"), child:  Text("Undo"))
+                onPressed: () => debugPrint("Undid"),
+                child:  Text("Undo"))
           ],
         )),
   );

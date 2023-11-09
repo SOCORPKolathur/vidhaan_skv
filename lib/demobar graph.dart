@@ -24,6 +24,8 @@ class BarChartSample2State extends State<BarChartSample2> {
 
   int touchedGroupIndex = -1;
 
+  int totalStudents = 0;
+
   Future<List<BarChartGroupData>> getFeesDetails() async {
     List<String> titles = [];
     List<FeesDetailsModel> datas = [];
@@ -32,6 +34,7 @@ class BarChartSample2State extends State<BarChartSample2> {
     var examsDoc = await FirebaseFirestore.instance.collection("ClassMaster").get();
     var studentsDoc = await FirebaseFirestore.instance.collection("Students").get();
 
+    totalStudents = studentsDoc.docs.length;
 
     for(int e = 0; e < examsDoc.docs.length; e++){
       var feesDoc = await FirebaseFirestore.instance.collection("ClassMaster").doc(examsDoc.docs[e].id).collection('Fees').get();
@@ -43,15 +46,12 @@ class BarChartSample2State extends State<BarChartSample2> {
         }
       }
     }
-    print(titles);
 
     for(int t = 0; t < titles.length; t++){
-      print("))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))");
       int x= t;
       double y1 = 0.0;
       double y2 = 0.0;
         for(int s = 0; s < studentsDoc.docs.length; s++) {
-          print(titles[t]);
           try{
             var feesDoc = await FirebaseFirestore.instance.collection("Students").doc(studentsDoc.docs[s].id).collection('Fees').where("feesname", isEqualTo: titles[t]).get();
             for(int f = 0; f < feesDoc.docs.length; f++){
@@ -63,13 +63,8 @@ class BarChartSample2State extends State<BarChartSample2> {
               }
             }
           }catch (e){
-            print(e);
           }
         }
-        await Future.delayed(Duration(seconds: 10));
-        print(x.toString()+"))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))");
-        print(y1);
-        print(y2);
         datas.add(
             FeesDetailsModel(
                 x: x,
@@ -139,7 +134,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                   if(snap.hasData){
                     return BarChart(
                       BarChartData(
-                        maxY: 20,
+                        maxY: double.parse((totalStudents).toString()),
                         barTouchData: BarTouchData(
                           touchTooltipData: BarTouchTooltipData(
                             tooltipBgColor: Colors.grey,
@@ -209,7 +204,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                           leftTitles: AxisTitles(
                             sideTitles: SideTitles(
                               showTitles: true,
-                              reservedSize: 28,
+                              reservedSize: 25,
                               interval: 1,
                               getTitlesWidget: leftTitles,
                             ),
@@ -241,13 +236,13 @@ class BarChartSample2State extends State<BarChartSample2> {
 
   Widget leftTitles(double value, TitleMeta meta) {
 
-    String text;
+    String text = value.toString();
     if (value == 0) {
       text = '0';
-    } else if (value == 10) {
-      text = '100';
-    } else if (value == 19) {
-      text = '200';
+    } else if (value == (totalStudents/2).floorToDouble()) {
+      text = ((totalStudents/2).floorToDouble()).toString();
+    } else if (value == totalStudents) {
+      text = totalStudents.toString();
     } else {
       return Container();
     }

@@ -903,440 +903,517 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
                                   decoration: BoxDecoration(
                                       border: Border.all(color: Colors.black)
                                   ),
-                                  child: TypeAheadFormField(
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
-                                    ),
-                                    textFieldConfiguration: TextFieldConfiguration(
+                                  child: Center(
+                                    child: Text(
+                                      timeTable.firstPeriod,
                                       style: GoogleFonts.poppins(
-                                        fontSize: 15,
-                                        color: Colors.red
+                                      fontSize: 15,
+                                      color: timeTable.firstPeriod == 'Free' ? Colors.green : Colors.black,
                                       ),
-                                      decoration: InputDecoration(
-                                        hintText: timeTable.firstPeriod,
-                                        hintStyle: GoogleFonts.poppins(
-                                            fontSize: 15,
-                                            color: timeTable.firstPeriod == 'Free' ? Colors.green : Colors.black,
-                                        ),
-                                        contentPadding: EdgeInsets.only(
-                                            left: 10, bottom: 8),
-                                        border: InputBorder.none,
-                                      ),
-                                      controller: this.texteditingmonday[0],
                                     ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsubject(pattern);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-                                    transitionBuilder: (context, suggestionsBox,
-                                        controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-                                      this.texteditingmonday[0].text = suggestion;
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-                                  ),
+                                  )
                                 ),
                                 Container(
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: TypeAheadFormField(
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
+                                    height: 40,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black)
                                     ),
-                                    textFieldConfiguration: TextFieldConfiguration(
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: timeTable.secondPeriod,
-                                        hintStyle: GoogleFonts.poppins(
+                                    child: Center(
+                                      child: Text(
+                                        timeTable.secondPeriod,
+                                        style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: timeTable.secondPeriod == 'Free' ? Colors.green : Colors.black,
                                         ),
-                                        contentPadding: EdgeInsets.only(
-                                            left: 10, bottom: 8),
-                                        border: InputBorder.none,
                                       ),
-                                      controller: this.texteditingmonday[1],
-                                    ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsubject(pattern);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-
-                                    transitionBuilder: (context, suggestionsBox,
-                                        controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-                                      this.texteditingmonday[1].text = suggestion;
-
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-
-                                  ),
+                                    )
                                 ),
                                 Container(
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: TypeAheadFormField(
-
-
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
+                                    height: 40,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black)
                                     ),
-
-                                    textFieldConfiguration: TextFieldConfiguration(
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: timeTable.thirdPeriod,
-                                        hintStyle: GoogleFonts.poppins(
+                                    child: Center(
+                                      child: Text(
+                                        timeTable.thirdPeriod,
+                                        style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: timeTable.thirdPeriod == 'Free' ? Colors.green : Colors.black,
                                         ),
-                                        contentPadding: EdgeInsets.only(
-                                            left: 10, bottom: 8),
-                                        border: InputBorder.none,
                                       ),
-                                      controller: this.texteditingmonday[2],
-                                    ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsubject(pattern);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-
-                                    transitionBuilder: (context, suggestionsBox,
-                                        controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-                                      this.texteditingmonday[2].text = suggestion;
-
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-
-                                  ),
+                                    )
                                 ),
                                 Container(
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: TypeAheadFormField(
-
-
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
+                                    height: 40,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black)
                                     ),
-
-                                    textFieldConfiguration: TextFieldConfiguration(
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: timeTable.fourthPeriod,
-                                        hintStyle: GoogleFonts.poppins(
+                                    child: Center(
+                                      child: Text(
+                                        timeTable.fourthPeriod,
+                                        style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: timeTable.fourthPeriod == 'Free' ? Colors.green : Colors.black,
                                         ),
-                                        contentPadding: EdgeInsets.only(
-                                            left: 10, bottom: 8),
-                                        border: InputBorder.none,
                                       ),
-                                      controller: this.texteditingmonday[3],
-                                    ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsubject(pattern);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-
-                                    transitionBuilder: (context, suggestionsBox,
-                                        controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-                                      this.texteditingmonday[3].text = suggestion;
-
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-
-                                  ),
+                                    )
                                 ),
                                 Container(
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: TypeAheadFormField(
-
-
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
+                                    height: 40,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black)
                                     ),
-
-                                    textFieldConfiguration: TextFieldConfiguration(
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: timeTable.fifthPeriod,
-                                        hintStyle: GoogleFonts.poppins(
+                                    child: Center(
+                                      child: Text(
+                                        timeTable.fifthPeriod,
+                                        style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: timeTable.fifthPeriod == 'Free' ? Colors.green : Colors.black,
                                         ),
-                                        contentPadding: EdgeInsets.only(
-                                            left: 10, bottom: 8),
-                                        border: InputBorder.none,
                                       ),
-                                      controller: this.texteditingmonday[4],
-                                    ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsubject(pattern);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-
-                                    transitionBuilder: (context, suggestionsBox,
-                                        controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-                                      this.texteditingmonday[4].text = suggestion;
-
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-
-                                  ),
+                                    )
                                 ),
                                 Container(
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: TypeAheadFormField(
-
-
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
+                                    height: 40,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black)
                                     ),
-
-                                    textFieldConfiguration: TextFieldConfiguration(
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: timeTable.sixthPeriod,
-                                        hintStyle: GoogleFonts.poppins(
+                                    child: Center(
+                                      child: Text(
+                                        timeTable.sixthPeriod,
+                                        style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: timeTable.sixthPeriod == 'Free' ? Colors.green : Colors.black,
                                         ),
-                                        contentPadding: EdgeInsets.only(
-                                            left: 10, bottom: 8),
-                                        border: InputBorder.none,
                                       ),
-                                      controller: this.texteditingmonday[5],
-                                    ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsubject(pattern);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-
-                                    transitionBuilder: (context, suggestionsBox,
-                                        controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-                                      this.texteditingmonday[5].text = suggestion;
-
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-
-                                  ),
+                                    )
                                 ),
                                 Container(
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: TypeAheadFormField(
-
-
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
+                                    height: 40,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black)
                                     ),
-
-                                    textFieldConfiguration: TextFieldConfiguration(
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: timeTable.seventhPeriod,
-                                        hintStyle: GoogleFonts.poppins(
+                                    child: Center(
+                                      child: Text(
+                                        timeTable.seventhPeriod,
+                                        style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: timeTable.seventhPeriod == 'Free' ? Colors.green : Colors.black,
                                         ),
-                                        contentPadding: EdgeInsets.only(
-                                            left: 10, bottom: 8),
-                                        border: InputBorder.none,
                                       ),
-                                      controller: this.texteditingmonday[6],
-                                    ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsubject(pattern);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-
-                                    transitionBuilder: (context, suggestionsBox,
-                                        controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-                                      this.texteditingmonday[6].text = suggestion;
-
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-
-                                  ),
+                                    )
                                 ),
                                 Container(
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: TypeAheadFormField(
-
-
-                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                        color: Color(0xffDDDEEE),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )
+                                    height: 40,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black)
                                     ),
-
-                                    textFieldConfiguration: TextFieldConfiguration(
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: timeTable.eighthPeriod,
-                                        hintStyle: GoogleFonts.poppins(
+                                    child: Center(
+                                      child: Text(
+                                        timeTable.eighthPeriod,
+                                        style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: timeTable.eighthPeriod == 'Free' ? Colors.green : Colors.black,
                                         ),
-                                        contentPadding: EdgeInsets.only(
-                                            left: 10, bottom: 8),
-                                        border: InputBorder.none,
                                       ),
-                                      controller: this.texteditingmonday[7],
-                                    ),
-                                    suggestionsCallback: (pattern) {
-                                      return getSuggestionsubject(pattern);
-                                    },
-                                    itemBuilder: (context, String suggestion) {
-                                      return ListTile(
-                                        title: Text(suggestion),
-                                      );
-                                    },
-
-                                    transitionBuilder: (context, suggestionsBox,
-                                        controller) {
-                                      return suggestionsBox;
-                                    },
-                                    onSuggestionSelected: (String suggestion) {
-                                      this.texteditingmonday[7].text = suggestion;
-
-                                    },
-                                    suggestionsBoxController: suggestionBoxController,
-                                    validator: (value) =>
-                                    value!.isEmpty ? 'Please select a section' : null,
-
-                                  ),
+                                    )
                                 ),
+                                // Container(
+                                //   height: 40,
+                                //   width: 100,
+                                //   decoration: BoxDecoration(
+                                //       border: Border.all(color: Colors.black)
+                                //   ),
+                                //   child: TypeAheadFormField(
+                                //     suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                //         color: Color(0xffDDDEEE),
+                                //         borderRadius: BorderRadius.only(
+                                //           bottomLeft: Radius.circular(5),
+                                //           bottomRight: Radius.circular(5),
+                                //         )
+                                //     ),
+                                //     textFieldConfiguration: TextFieldConfiguration(
+                                //       style: GoogleFonts.poppins(
+                                //           fontSize: 15
+                                //       ),
+                                //       decoration: InputDecoration(
+                                //         hintText: timeTable.secondPeriod,
+                                //         hintStyle: GoogleFonts.poppins(
+                                //           fontSize: 15,
+                                //           color: timeTable.secondPeriod == 'Free' ? Colors.green : Colors.black,
+                                //         ),
+                                //         contentPadding: EdgeInsets.only(
+                                //             left: 10, bottom: 8),
+                                //         border: InputBorder.none,
+                                //       ),
+                                //       controller: this.texteditingmonday[1],
+                                //     ),
+                                //     suggestionsCallback: (pattern) {
+                                //       return getSuggestionsubject(pattern);
+                                //     },
+                                //     itemBuilder: (context, String suggestion) {
+                                //       return ListTile(
+                                //         title: Text(suggestion),
+                                //       );
+                                //     },
+                                //
+                                //     transitionBuilder: (context, suggestionsBox,
+                                //         controller) {
+                                //       return suggestionsBox;
+                                //     },
+                                //     onSuggestionSelected: (String suggestion) {
+                                //       this.texteditingmonday[1].text = suggestion;
+                                //
+                                //     },
+                                //     suggestionsBoxController: suggestionBoxController,
+                                //     validator: (value) =>
+                                //     value!.isEmpty ? 'Please select a section' : null,
+                                //
+                                //   ),
+                                // ),
+                                // Container(
+                                //   height: 40,
+                                //   width: 100,
+                                //   decoration: BoxDecoration(
+                                //       border: Border.all(color: Colors.black)
+                                //   ),
+                                //   child: TypeAheadFormField(
+                                //
+                                //
+                                //     suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                //         color: Color(0xffDDDEEE),
+                                //         borderRadius: BorderRadius.only(
+                                //           bottomLeft: Radius.circular(5),
+                                //           bottomRight: Radius.circular(5),
+                                //         )
+                                //     ),
+                                //
+                                //     textFieldConfiguration: TextFieldConfiguration(
+                                //       style: GoogleFonts.poppins(
+                                //           fontSize: 15
+                                //       ),
+                                //       decoration: InputDecoration(
+                                //         hintText: timeTable.thirdPeriod,
+                                //         hintStyle: GoogleFonts.poppins(
+                                //           fontSize: 15,
+                                //           color: timeTable.thirdPeriod == 'Free' ? Colors.green : Colors.black,
+                                //         ),
+                                //         contentPadding: EdgeInsets.only(
+                                //             left: 10, bottom: 8),
+                                //         border: InputBorder.none,
+                                //       ),
+                                //       controller: this.texteditingmonday[2],
+                                //     ),
+                                //     suggestionsCallback: (pattern) {
+                                //       return getSuggestionsubject(pattern);
+                                //     },
+                                //     itemBuilder: (context, String suggestion) {
+                                //       return ListTile(
+                                //         title: Text(suggestion),
+                                //       );
+                                //     },
+                                //
+                                //     transitionBuilder: (context, suggestionsBox,
+                                //         controller) {
+                                //       return suggestionsBox;
+                                //     },
+                                //     onSuggestionSelected: (String suggestion) {
+                                //       this.texteditingmonday[2].text = suggestion;
+                                //
+                                //     },
+                                //     suggestionsBoxController: suggestionBoxController,
+                                //     validator: (value) =>
+                                //     value!.isEmpty ? 'Please select a section' : null,
+                                //
+                                //   ),
+                                // ),
+                                // Container(
+                                //   height: 40,
+                                //   width: 100,
+                                //   decoration: BoxDecoration(
+                                //       border: Border.all(color: Colors.black)
+                                //   ),
+                                //   child: TypeAheadFormField(
+                                //
+                                //
+                                //     suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                //         color: Color(0xffDDDEEE),
+                                //         borderRadius: BorderRadius.only(
+                                //           bottomLeft: Radius.circular(5),
+                                //           bottomRight: Radius.circular(5),
+                                //         )
+                                //     ),
+                                //
+                                //     textFieldConfiguration: TextFieldConfiguration(
+                                //       style: GoogleFonts.poppins(
+                                //           fontSize: 15
+                                //       ),
+                                //       decoration: InputDecoration(
+                                //         hintText: timeTable.fourthPeriod,
+                                //         hintStyle: GoogleFonts.poppins(
+                                //           fontSize: 15,
+                                //           color: timeTable.fourthPeriod == 'Free' ? Colors.green : Colors.black,
+                                //         ),
+                                //         contentPadding: EdgeInsets.only(
+                                //             left: 10, bottom: 8),
+                                //         border: InputBorder.none,
+                                //       ),
+                                //       controller: this.texteditingmonday[3],
+                                //     ),
+                                //     suggestionsCallback: (pattern) {
+                                //       return getSuggestionsubject(pattern);
+                                //     },
+                                //     itemBuilder: (context, String suggestion) {
+                                //       return ListTile(
+                                //         title: Text(suggestion),
+                                //       );
+                                //     },
+                                //
+                                //     transitionBuilder: (context, suggestionsBox,
+                                //         controller) {
+                                //       return suggestionsBox;
+                                //     },
+                                //     onSuggestionSelected: (String suggestion) {
+                                //       this.texteditingmonday[3].text = suggestion;
+                                //
+                                //     },
+                                //     suggestionsBoxController: suggestionBoxController,
+                                //     validator: (value) =>
+                                //     value!.isEmpty ? 'Please select a section' : null,
+                                //
+                                //   ),
+                                // ),
+                                // Container(
+                                //   height: 40,
+                                //   width: 100,
+                                //   decoration: BoxDecoration(
+                                //       border: Border.all(color: Colors.black)
+                                //   ),
+                                //   child: TypeAheadFormField(
+                                //
+                                //
+                                //     suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                //         color: Color(0xffDDDEEE),
+                                //         borderRadius: BorderRadius.only(
+                                //           bottomLeft: Radius.circular(5),
+                                //           bottomRight: Radius.circular(5),
+                                //         )
+                                //     ),
+                                //
+                                //     textFieldConfiguration: TextFieldConfiguration(
+                                //       style: GoogleFonts.poppins(
+                                //           fontSize: 15
+                                //       ),
+                                //       decoration: InputDecoration(
+                                //         hintText: timeTable.fifthPeriod,
+                                //         hintStyle: GoogleFonts.poppins(
+                                //           fontSize: 15,
+                                //           color: timeTable.fifthPeriod == 'Free' ? Colors.green : Colors.black,
+                                //         ),
+                                //         contentPadding: EdgeInsets.only(
+                                //             left: 10, bottom: 8),
+                                //         border: InputBorder.none,
+                                //       ),
+                                //       controller: this.texteditingmonday[4],
+                                //     ),
+                                //     suggestionsCallback: (pattern) {
+                                //       return getSuggestionsubject(pattern);
+                                //     },
+                                //     itemBuilder: (context, String suggestion) {
+                                //       return ListTile(
+                                //         title: Text(suggestion),
+                                //       );
+                                //     },
+                                //
+                                //     transitionBuilder: (context, suggestionsBox,
+                                //         controller) {
+                                //       return suggestionsBox;
+                                //     },
+                                //     onSuggestionSelected: (String suggestion) {
+                                //       this.texteditingmonday[4].text = suggestion;
+                                //
+                                //     },
+                                //     suggestionsBoxController: suggestionBoxController,
+                                //     validator: (value) =>
+                                //     value!.isEmpty ? 'Please select a section' : null,
+                                //
+                                //   ),
+                                // ),
+                                // Container(
+                                //   height: 40,
+                                //   width: 100,
+                                //   decoration: BoxDecoration(
+                                //       border: Border.all(color: Colors.black)
+                                //   ),
+                                //   child: TypeAheadFormField(
+                                //
+                                //
+                                //     suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                //         color: Color(0xffDDDEEE),
+                                //         borderRadius: BorderRadius.only(
+                                //           bottomLeft: Radius.circular(5),
+                                //           bottomRight: Radius.circular(5),
+                                //         )
+                                //     ),
+                                //
+                                //     textFieldConfiguration: TextFieldConfiguration(
+                                //       style: GoogleFonts.poppins(
+                                //           fontSize: 15
+                                //       ),
+                                //       decoration: InputDecoration(
+                                //         hintText: timeTable.sixthPeriod,
+                                //         hintStyle: GoogleFonts.poppins(
+                                //           fontSize: 15,
+                                //           color: timeTable.sixthPeriod == 'Free' ? Colors.green : Colors.black,
+                                //         ),
+                                //         contentPadding: EdgeInsets.only(
+                                //             left: 10, bottom: 8),
+                                //         border: InputBorder.none,
+                                //       ),
+                                //       controller: this.texteditingmonday[5],
+                                //     ),
+                                //     suggestionsCallback: (pattern) {
+                                //       return getSuggestionsubject(pattern);
+                                //     },
+                                //     itemBuilder: (context, String suggestion) {
+                                //       return ListTile(
+                                //         title: Text(suggestion),
+                                //       );
+                                //     },
+                                //
+                                //     transitionBuilder: (context, suggestionsBox,
+                                //         controller) {
+                                //       return suggestionsBox;
+                                //     },
+                                //     onSuggestionSelected: (String suggestion) {
+                                //       this.texteditingmonday[5].text = suggestion;
+                                //
+                                //     },
+                                //     suggestionsBoxController: suggestionBoxController,
+                                //     validator: (value) =>
+                                //     value!.isEmpty ? 'Please select a section' : null,
+                                //
+                                //   ),
+                                // ),
+                                // Container(
+                                //   height: 40,
+                                //   width: 100,
+                                //   decoration: BoxDecoration(
+                                //       border: Border.all(color: Colors.black)
+                                //   ),
+                                //   child: TypeAheadFormField(
+                                //
+                                //
+                                //     suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                //         color: Color(0xffDDDEEE),
+                                //         borderRadius: BorderRadius.only(
+                                //           bottomLeft: Radius.circular(5),
+                                //           bottomRight: Radius.circular(5),
+                                //         )
+                                //     ),
+                                //
+                                //     textFieldConfiguration: TextFieldConfiguration(
+                                //       style: GoogleFonts.poppins(
+                                //           fontSize: 15
+                                //       ),
+                                //       decoration: InputDecoration(
+                                //         hintText: timeTable.seventhPeriod,
+                                //         hintStyle: GoogleFonts.poppins(
+                                //           fontSize: 15,
+                                //           color: timeTable.seventhPeriod == 'Free' ? Colors.green : Colors.black,
+                                //         ),
+                                //         contentPadding: EdgeInsets.only(
+                                //             left: 10, bottom: 8),
+                                //         border: InputBorder.none,
+                                //       ),
+                                //       controller: this.texteditingmonday[6],
+                                //     ),
+                                //     suggestionsCallback: (pattern) {
+                                //       return getSuggestionsubject(pattern);
+                                //     },
+                                //     itemBuilder: (context, String suggestion) {
+                                //       return ListTile(
+                                //         title: Text(suggestion),
+                                //       );
+                                //     },
+                                //
+                                //     transitionBuilder: (context, suggestionsBox,
+                                //         controller) {
+                                //       return suggestionsBox;
+                                //     },
+                                //     onSuggestionSelected: (String suggestion) {
+                                //       this.texteditingmonday[6].text = suggestion;
+                                //
+                                //     },
+                                //     suggestionsBoxController: suggestionBoxController,
+                                //     validator: (value) =>
+                                //     value!.isEmpty ? 'Please select a section' : null,
+                                //
+                                //   ),
+                                // ),
+                                // Container(
+                                //   height: 40,
+                                //   width: 100,
+                                //   decoration: BoxDecoration(
+                                //       border: Border.all(color: Colors.black)
+                                //   ),
+                                //   child: TypeAheadFormField(
+                                //
+                                //
+                                //     suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                //         color: Color(0xffDDDEEE),
+                                //         borderRadius: BorderRadius.only(
+                                //           bottomLeft: Radius.circular(5),
+                                //           bottomRight: Radius.circular(5),
+                                //         )
+                                //     ),
+                                //
+                                //     textFieldConfiguration: TextFieldConfiguration(
+                                //       style: GoogleFonts.poppins(
+                                //           fontSize: 15
+                                //       ),
+                                //       decoration: InputDecoration(
+                                //         hintText: timeTable.eighthPeriod,
+                                //         hintStyle: GoogleFonts.poppins(
+                                //           fontSize: 15,
+                                //           color: timeTable.eighthPeriod == 'Free' ? Colors.green : Colors.black,
+                                //         ),
+                                //         contentPadding: EdgeInsets.only(
+                                //             left: 10, bottom: 8),
+                                //         border: InputBorder.none,
+                                //       ),
+                                //       controller: this.texteditingmonday[7],
+                                //     ),
+                                //     suggestionsCallback: (pattern) {
+                                //       return getSuggestionsubject(pattern);
+                                //     },
+                                //     itemBuilder: (context, String suggestion) {
+                                //       return ListTile(
+                                //         title: Text(suggestion),
+                                //       );
+                                //     },
+                                //
+                                //     transitionBuilder: (context, suggestionsBox,
+                                //         controller) {
+                                //       return suggestionsBox;
+                                //     },
+                                //     onSuggestionSelected: (String suggestion) {
+                                //       this.texteditingmonday[7].text = suggestion;
+                                //
+                                //     },
+                                //     suggestionsBoxController: suggestionBoxController,
+                                //     validator: (value) =>
+                                //     value!.isEmpty ? 'Please select a section' : null,
+                                //
+                                //   ),
+                                // ),
                               ],
                             );
                           },

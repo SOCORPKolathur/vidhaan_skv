@@ -6,6 +6,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 import 'package:syncfusion_flutter_charts/charts.dart' as sfc;
 import 'package:vidhaan/Masters/excelgen.dart';
@@ -1685,10 +1686,11 @@ class _ProgressReportState extends State<ProgressReport> {
                                                   ),
                                                 ),
                                               ),
-                                              FutureBuilder<ResultModel>(
+                                              FutureBuilder<List<ExamWithSubjectModel>>(
                                                 future: getStudentReport(studentid,value['admitclass'],value['section']),
                                                 builder: (ctx, snap){
                                                   if(snap.hasData){
+                                                    List<ExamWithSubjectModel> exams = snap.data!;
                                                     return Container(
                                                       width: width/1.866,
                                                       height: 600,
@@ -1698,141 +1700,89 @@ class _ProgressReportState extends State<ProgressReport> {
                                                           child: Column(
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              Center(
-                                                                child: Column(
-                                                                  children: [
-                                                                    Container(
-                                                                      height: 80,
-                                                                      width: 80,
-                                                                      decoration: BoxDecoration(
-                                                                          image: DecorationImage(
-                                                                            image: NetworkImage(schoolLogo),
-                                                                          )
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      schoolName,
-                                                                      style: TextStyle(
-                                                                        color: Colors.red,
-                                                                        fontSize: 16,
-                                                                        fontWeight: FontWeight.w700,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      schoolAddress,
-                                                                      style: TextStyle(
-                                                                        color: Colors.red,
-                                                                        fontSize: 13,
-                                                                        fontWeight: FontWeight.w400,
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
                                                               SizedBox(height: 10),
-                                                              Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                children: [
-                                                                  Row(
-                                                                    children: [
-                                                                      Column(
-                                                                          children: [
-                                                                            Row(
-                                                                              children: [
-                                                                                SizedBox(width:15),
-                                                                                Stack(
-                                                                                    alignment:  Alignment.center,
-                                                                                    children: [
-                                                                                      SizedBox(
-                                                                                        height:100,
-                                                                                        width:100,
-                                                                                        child:  CircularProgressIndicator(
-                                                                                          backgroundColor: Colors.red,
-                                                                                          value:  0.0,
-                                                                                          color: Colors.green,
-                                                                                          strokeWidth: 15,
-                                                                                        ),
-                                                                                      ),
-                                                                                      Text("%"),
-                                                                                    ]
-                                                                                ),
-                                                                                SizedBox(width:15),
-                                                                                Row(
-                                                                                    children: [
-                                                                                      Container(
-                                                                                        child:  Column(
-                                                                                          crossAxisAlignment:  CrossAxisAlignment.start,
-                                                                                          children: [
-                                                                                            Row(
-                                                                                              children: [
-                                                                                                Container(
-                                                                                                  height: height/37.8,
-                                                                                                  width: width/15,
-                                                                                                  decoration:  BoxDecoration(
-                                                                                                      color: Colors.green,
-                                                                                                      borderRadius:  BorderRadius.circular(5)
-                                                                                                  ),
-                                                                                                  child:  Center(child:  Text("345",
-                                                                                                    style:  TextStyle(color: Colors.white),)),
-                                                                                                ),
-                                                                                                SizedBox(width: width/45,),
-                                                                                                Text("Present",
-                                                                                                    style:  TextStyle()),
-                                                                                              ],
-                                                                                            ),
-                                                                                            SizedBox(height: height/75.6,),
-                                                                                            Row(
-                                                                                              children: [
-                                                                                                Container(
-                                                                                                  height: height/37.8,
-                                                                                                  width: width/15,
-                                                                                                  decoration:  BoxDecoration(
-                                                                                                      color: Colors.red,
-                                                                                                      borderRadius:  BorderRadius.circular(5)
-                                                                                                  ),
-                                                                                                  child:  Center(child:  Text("fg",style:  TextStyle(
 
-                                                                                                      color: Colors.white),)),
-                                                                                                ),
-                                                                                                SizedBox(width: width/45,),
-                                                                                                Text("Absent",
-                                                                                                    style:  TextStyle()),
-                                                                                              ],
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                    ]
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ]
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                  Container(
-                                                                    height: 90,
-                                                                    width: 90,
-                                                                    child: Stack(
+                                                              FutureBuilder(
+                                                                future: getMonthlyAttendanceReportForStudent(studentid),
+                                                                builder: (ctx, snapshot){
+                                                                  if(snapshot.hasData){
+                                                                    return Row(
+                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                       children: [
-                                                                        Container(
-                                                                          height: 90,
-                                                                          width: 90,
-                                                                          decoration: BoxDecoration(
-                                                                              image: DecorationImage(
-                                                                                  image: AssetImage(
-                                                                                      "assets/back_img.png"
-                                                                                  )
-                                                                              )
-                                                                          ),
-                                                                        ),
+                                                                        Column(
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisAlignment : MainAxisAlignment.center,
+                                                                                children: [
+                                                                                  SizedBox(width: 50),
+                                                                                  CircularPercentIndicator(
+                                                                                    circularStrokeCap: CircularStrokeCap.round,
+                                                                                    radius: 45.0,
+                                                                                    lineWidth: 10.0,
+                                                                                    percent: getStudentAttendancePersantage(snapshot.data!).present,
+                                                                                    center:  Text("${((getStudentAttendancePersantage(snapshot.data!).present)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                                    progressColor: Colors.green,
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: const EdgeInsets.all( 8.0),
+                                                                                    child:  ChoiceChip(
+                                                                                      label: Text(
+                                                                                        "${(getStudentAttendancePersantage(snapshot.data!).present * getStudentAttendancePersantage(snapshot.data!).total)} Present  ",style: TextStyle(color: Colors.white),),
+                                                                                      onSelected: (bool selected) {
+                                                                                        setState(() {
 
+                                                                                        });
+                                                                                      },
+                                                                                      selectedColor: Colors.green,
+                                                                                      shape: StadiumBorder(
+                                                                                          side: BorderSide(
+                                                                                              color: Color(0xff53B175))),
+                                                                                      backgroundColor: Colors.white,
+                                                                                      labelStyle: TextStyle(color: Colors.black),
+
+                                                                                      elevation: 1.5, selected: true,),
+
+                                                                                  ),
+                                                                                  SizedBox(width: 50),
+                                                                                  CircularPercentIndicator(
+                                                                                    circularStrokeCap: CircularStrokeCap.round,
+                                                                                    radius: 45.0,
+                                                                                    lineWidth: 10.0,
+                                                                                    percent: getStudentAttendancePersantage(snapshot.data!).absent,
+                                                                                    center:  Text("${((getStudentAttendancePersantage(snapshot.data!).absent)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                                    progressColor: Colors.red,
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: const EdgeInsets.all( 8.0),
+                                                                                    child:  ChoiceChip(
+                                                                                      label: Text(
+                                                                                        "${(getStudentAttendancePersantage(snapshot.data!).absent * getStudentAttendancePersantage(snapshot.data!).total)} Present  ",style: TextStyle(color: Colors.white),),
+                                                                                      onSelected: (bool selected) {
+                                                                                        setState(() {
+
+                                                                                        });
+                                                                                      },
+                                                                                      selectedColor: Colors.red,
+                                                                                      shape: StadiumBorder(
+                                                                                          side: BorderSide(
+                                                                                              color: Colors.red)),
+                                                                                      backgroundColor: Colors.white,
+                                                                                      labelStyle: TextStyle(color: Colors.black),
+
+                                                                                      elevation: 1.5, selected: true,),
+
+                                                                                  ),
+                                                                                  SizedBox(width: 50),
+                                                                                ],
+                                                                              ),
+                                                                            ]
+                                                                        )
                                                                       ],
-                                                                    ),
-                                                                  )
-                                                                ],
+                                                                    );
+                                                                  }return Container();
+                                                                },
                                                               ),
-                                                              SizedBox(height: 20),
+                                                              SizedBox(height: 30),
                                                               Text(
                                                                 "Exam Reports",
                                                                 style: TextStyle(
@@ -1840,7 +1790,206 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                   fontWeight: FontWeight.w700,
                                                                 ),
                                                               ),
-
+                                                              SizedBox(height: 30),
+                                                              Row(
+                                                                children: [
+                                                                  for(int i = 0; i < exams.length+1; i++)
+                                                                    Column(
+                                                                      children: [
+                                                                        for(int j = 0; j < exams.first.subjects.length+1; j++)
+                                                                          Container(
+                                                                            height: j==0 ? 60 : 50,
+                                                                            width: 90,
+                                                                            decoration: BoxDecoration(
+                                                                              color: j == 0 ? Color(0xffF7983E) : i ==0 ? Color(0xffA75BF4) : Colors.transparent,
+                                                                              border: Border.all(),
+                                                                            ),
+                                                                            child: Center(
+                                                                              child: Text(
+                                                                                  (i == 0 && j == 0)
+                                                                                    ? "Subject/Exam"
+                                                                                    : j == 0
+                                                                                      ? exams[i-1].examName
+                                                                                      : i == 0
+                                                                                      ? exams[0].subjects[j-1].name
+                                                                                      : exams[i-1].subjects[j-1].mark,
+                                                                                textAlign: TextAlign.center,
+                                                                                style: TextStyle(
+                                                                                    color: (i == 0 || j == 0) ? Colors.white : Colors.black,
+                                                                                    fontWeight: FontWeight.w700
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          )
+                                                                      ],
+                                                                    )
+                                                                ],
+                                                              ),
+                                                              SizedBox(height: 30),
+                                                              Row(
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  Container(
+                                                                    height: 25,
+                                                                    decoration: BoxDecoration(
+                                                                      borderRadius: BorderRadius.circular(3),
+                                                                      border: Border.all(),
+                                                                    ),
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Container(
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius: BorderRadius.circular(3),
+                                                                              color: Color(0xffA75BF4)
+                                                                          ),
+                                                                          child: Center(
+                                                                            child: Padding(
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                                              child: Text(
+                                                                                "432",
+                                                                                style: TextStyle(
+                                                                                    color: Colors.white,
+                                                                                    fontWeight: FontWeight.w700
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                                                                          child: Text(
+                                                                            "Total",
+                                                                            style: TextStyle(
+                                                                                color: Colors.black,
+                                                                                fontWeight: FontWeight.w700
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(width: 30),
+                                                                  Container(
+                                                                    height: 25,
+                                                                    decoration: BoxDecoration(
+                                                                      borderRadius: BorderRadius.circular(3),
+                                                                      border: Border.all(),
+                                                                    ),
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Container(
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius: BorderRadius.circular(3),
+                                                                              color: Color(0xffF7983E)
+                                                                          ),
+                                                                          child: Center(
+                                                                            child: Padding(
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                                              child: Text(
+                                                                                "90",
+                                                                                style: TextStyle(
+                                                                                    color: Colors.white,
+                                                                                    fontWeight: FontWeight.w700
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                                                                          child: Text(
+                                                                            "Percentage",
+                                                                            style: TextStyle(
+                                                                                color: Colors.black,
+                                                                                fontWeight: FontWeight.w700
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(width: 30),
+                                                                  Container(
+                                                                    height: 25,
+                                                                    decoration: BoxDecoration(
+                                                                      borderRadius: BorderRadius.circular(3),
+                                                                      border: Border.all(),
+                                                                    ),
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Container(
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius: BorderRadius.circular(3),
+                                                                              color: Color(0xff5B98F4)
+                                                                          ),
+                                                                          child: Center(
+                                                                            child: Padding(
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                                              child: Text(
+                                                                                "A+",
+                                                                                style: TextStyle(
+                                                                                    color: Colors.white,
+                                                                                    fontWeight: FontWeight.w700
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                                                                          child: Text(
+                                                                            "Grade",
+                                                                            style: TextStyle(
+                                                                                color: Colors.black,
+                                                                                fontWeight: FontWeight.w700
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(width: 30),
+                                                                  Container(
+                                                                    height: 25,
+                                                                    decoration: BoxDecoration(
+                                                                      borderRadius: BorderRadius.circular(3),
+                                                                      border: Border.all(),
+                                                                    ),
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Container(
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius: BorderRadius.circular(3),
+                                                                              color: Color(0xffF73E3E)
+                                                                          ),
+                                                                          child: Center(
+                                                                            child: Padding(
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                                              child: Text(
+                                                                                "12",
+                                                                                style: TextStyle(
+                                                                                    color: Colors.white,
+                                                                                    fontWeight: FontWeight.w700
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                                                                          child: Text(
+                                                                            "Rank",
+                                                                            style: TextStyle(
+                                                                                color: Colors.black,
+                                                                                fontWeight: FontWeight.w700
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              )
                                                             ],
                                                           ),
                                                         ),
@@ -1849,158 +1998,326 @@ class _ProgressReportState extends State<ProgressReport> {
                                                   }return Container(
                                                     width: width/1.866,
                                                     height: 600,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                                      child: SingleChildScrollView(
-                                                        child: Column(
-                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                          children: [
-                                                            Center(
-                                                              child: Column(
-                                                                children: [
-                                                                  Container(
-                                                                    height: 80,
-                                                                    width: 80,
-                                                                    decoration: BoxDecoration(
-                                                                      image: DecorationImage(
-                                                                        image: NetworkImage(schoolLogo),
-                                                                      )
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    schoolName,
-                                                                    style: TextStyle(
-                                                                      color: Colors.red,
-                                                                      fontSize: 16,
-                                                                      fontWeight: FontWeight.w700,
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    schoolAddress,
-                                                                    style: TextStyle(
-                                                                      color: Colors.red,
-                                                                      fontSize: 13,
-                                                                      fontWeight: FontWeight.w400,
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            SizedBox(height: 10),
-                                                            Row(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    child: Stack(
+                                                      alignment: Alignment.center,
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                                          child: SingleChildScrollView(
+                                                            child: Column(
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
+                                                                SizedBox(height: 10),
                                                                 Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                   children: [
-                                                                     Column(
-                                                                        children: [
-                                                                           Row(
-                                                                            children: [
-                                                                               SizedBox(width:15),
-                                                                               Stack(
-                                                                                  alignment:  Alignment.center,
-                                                                                  children: [
-                                                                                     SizedBox(
-                                                                                      height:100,
-                                                                                      width:100,
-                                                                                      child:  CircularProgressIndicator(
-                                                                                        backgroundColor: Colors.red,
-                                                                                        value:  0.0,
-                                                                                        color: Colors.green,
-                                                                                        strokeWidth: 15,
-                                                                                      ),
-                                                                                    ),
-                                                                                     Text("%"),
-                                                                                  ]
-                                                                              ),
-                                                                               SizedBox(width:15),
-                                                                               Row(
-                                                                                  children: [
-                                                                                     Container(
-                                                                                      child:  Column(
-                                                                                        crossAxisAlignment:  CrossAxisAlignment.start,
-                                                                                        children: [
-                                                                                            Row(
-                                                                                            children: [
-                                                                                               Container(
-                                                                                                height: height/37.8,
-                                                                                                width: width/15,
-                                                                                                decoration:  BoxDecoration(
-                                                                                                    color: Colors.green,
-                                                                                                    borderRadius:  BorderRadius.circular(5)
-                                                                                                ),
-                                                                                                child:  Center(child:  Text("345",
-                                                                                                  style:  TextStyle(color: Colors.white),)),
-                                                                                              ),
-                                                                                               SizedBox(width: width/45,),
-                                                                                               Text("Present",
-                                                                                                  style:  TextStyle()),
-                                                                                            ],
-                                                                                          ),
-                                                                                           SizedBox(height: height/75.6,),
-                                                                                           Row(
-                                                                                            children: [
-                                                                                                Container(
-                                                                                                  height: height/37.8,
-                                                                                                  width: width/15,
-                                                                                                decoration:  BoxDecoration(
-                                                                                                    color: Colors.red,
-                                                                                                    borderRadius:  BorderRadius.circular(5)
-                                                                                                ),
-                                                                                                child:  Center(child:  Text("fg",style:  TextStyle(
+                                                                    Column(
+                                                                       children: [
+                                                                         Row(
+                                                                           mainAxisAlignment : MainAxisAlignment.center,
+                                                                           children: [
+                                                                             SizedBox(width: 50),
+                                                                             CircularPercentIndicator(
+                                                                               circularStrokeCap: CircularStrokeCap.round,
+                                                                               radius: 45.0,
+                                                                               lineWidth: 10.0,
+                                                                               percent: 0.0,
+                                                                               center:  Text("0.0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                               progressColor: Colors.green,
+                                                                             ),
+                                                                             Padding(
+                                                                               padding: const EdgeInsets.all( 8.0),
+                                                                               child:  ChoiceChip(
+                                                                                 label: Text(
+                                                                                   "0 Present  ",style: TextStyle(color: Colors.white),),
+                                                                                 onSelected: (bool selected) {
+                                                                                   setState(() {
 
-                                                                                                    color: Colors.white),)),
-                                                                                              ),
-                                                                                              SizedBox(width: width/45,),
-                                                                                               Text("Absent",
-                                                                                                  style:  TextStyle()),
-                                                                                            ],
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-                                                                                  ]
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ]
-                                                                    )
+                                                                                   });
+                                                                                 },
+                                                                                 selectedColor: Colors.green,
+                                                                                 shape: StadiumBorder(
+                                                                                     side: BorderSide(
+                                                                                         color: Color(0xff53B175))),
+                                                                                 backgroundColor: Colors.white,
+                                                                                 labelStyle: TextStyle(color: Colors.black),
+
+                                                                                 elevation: 1.5, selected: true,),
+
+                                                                             ),
+                                                                             SizedBox(width: 50),
+                                                                             CircularPercentIndicator(
+                                                                               circularStrokeCap: CircularStrokeCap.round,
+                                                                               radius: 45.0,
+                                                                               lineWidth: 10.0,
+                                                                               percent: 0.0,
+                                                                               center:  Text("0.0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                               progressColor: Colors.red,
+                                                                             ),
+                                                                             Padding(
+                                                                               padding: const EdgeInsets.all( 8.0),
+                                                                               child:  ChoiceChip(
+                                                                                 label: Text(
+                                                                                   "0 Absent ",style: TextStyle(color: Colors.white),),
+                                                                                 onSelected: (bool selected) {
+                                                                                   setState(() {
+
+                                                                                   });
+                                                                                 },
+                                                                                 selectedColor: Colors.red,
+                                                                                 shape: StadiumBorder(
+                                                                                     side: BorderSide(
+                                                                                         color: Color(0xff53B175))),
+                                                                                 backgroundColor: Colors.white,
+                                                                                 labelStyle: TextStyle(color: Colors.black),
+
+                                                                                 elevation: 1.5, selected: true,),
+
+                                                                             ),
+                                                                             SizedBox(width: 50),
+                                                                           ],
+                                                                         ),
+                                                                       ]
+                                                                        )
                                                                   ],
                                                                 ),
-                                                                Container(
-                                                                  height: 90,
-                                                                  width: 90,
-                                                                  child: Stack(
-                                                                    children: [
-                                                                      Container(
-                                                                        height: 90,
-                                                                        width: 90,
-                                                                        decoration: BoxDecoration(
-                                                                          image: DecorationImage(
-                                                                            image: AssetImage(
-                                                                                "assets/back_img.png"
-                                                                            )
-                                                                          )
-                                                                        ),
-                                                                      ),
-
-                                                                    ],
+                                                                SizedBox(height: 30),
+                                                                Text(
+                                                                  "Exam Reports",
+                                                                  style: TextStyle(
+                                                                    fontSize: 17,
+                                                                    fontWeight: FontWeight.w700,
                                                                   ),
+                                                                ),
+                                                                SizedBox(height: 30),
+                                                                Row(
+                                                                  children: [
+                                                                    for(int i = 0; i < 8; i++)
+                                                                      Column(
+                                                                        children: [
+                                                                          for(int j =0; j < 7; j ++)
+                                                                            Container(
+                                                                              height: j == 0 ? 60 : 40,
+                                                                              width: 80,
+                                                                              decoration: BoxDecoration(
+                                                                                  color: j == 0 ? Color(0xffF7983E) : i == 0 ? Color(0xffA75BF4) : Colors.transparent,
+                                                                                  border: Border.all(
+                                                                                    color: Colors.black,
+                                                                                  ),
+                                                                              ),
+                                                                              child: Center(
+                                                                                child: Text(
+                                                                                  (i==0&&j==0)
+                                                                                      ? "Sub/Exam"
+                                                                                      : (i == 0  && j == 1)
+                                                                                      ? "Tamil"
+                                                                                      : (i == 0  && j == 2)
+                                                                                      ? "English"
+                                                                                      : (i == 0  && j == 3)
+                                                                                      ? "Maths"
+                                                                                      : (i == 0  && j == 4)
+                                                                                      ? "Sci"
+                                                                                      : (i == 0  && j == 5)
+                                                                                      ? "Soc"
+                                                                                      : (i == 0  && j == 6)
+                                                                                      ? "EVS"
+                                                                                      : (i == 1  && j == 0)
+                                                                                      ? "I\nTerm"
+                                                                                      : (i == 2  && j == 0)
+                                                                                      ? "Per\nTest"
+                                                                                      : (i == 3  && j == 0)
+                                                                                      ? "II\nTerm"
+                                                                                      : (i == 4  && j == 0)
+                                                                                      ? "Half\nYearly"
+                                                                                      : (i == 5  && j == 0)
+                                                                                      ? "III\nTerm"
+                                                                                      : (i == 6  && j == 0)
+                                                                                      ? "Yearly\nExam"
+                                                                                      : ""
+                                                                                  ,
+                                                                                  textAlign: TextAlign.center,
+                                                                                  style: TextStyle(
+                                                                                      color: Colors.white,
+                                                                                      fontWeight: FontWeight.w700
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            )
+                                                                        ],
+                                                                      )
+                                                                  ],
+                                                                ),
+                                                                SizedBox(height: 30),
+                                                                Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                  children: [
+                                                                    Container(
+                                                                      height: 25,
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(3),
+                                                                        border: Border.all(),
+                                                                      ),
+                                                                      child: Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            decoration: BoxDecoration(
+                                                                              borderRadius: BorderRadius.circular(3),
+                                                                              color: Color(0xffA75BF4)
+                                                                            ),
+                                                                            child: Center(
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                                                child: Text(
+                                                                                  "432",
+                                                                                  style: TextStyle(
+                                                                                    color: Colors.white,
+                                                                                    fontWeight: FontWeight.w700
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                                                                            child: Text(
+                                                                              "Total",
+                                                                              style: TextStyle(
+                                                                                  color: Colors.black,
+                                                                                  fontWeight: FontWeight.w700
+                                                                              ),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(width: 30),
+                                                                    Container(
+                                                                      height: 25,
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(3),
+                                                                        border: Border.all(),
+                                                                      ),
+                                                                      child: Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.circular(3),
+                                                                                color: Color(0xffF7983E)
+                                                                            ),
+                                                                            child: Center(
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                                                child: Text(
+                                                                                  "90",
+                                                                                  style: TextStyle(
+                                                                                      color: Colors.white,
+                                                                                      fontWeight: FontWeight.w700
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                                                                            child: Text(
+                                                                              "Percentage",
+                                                                              style: TextStyle(
+                                                                                  color: Colors.black,
+                                                                                  fontWeight: FontWeight.w700
+                                                                              ),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(width: 30),
+                                                                    Container(
+                                                                      height: 25,
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(3),
+                                                                        border: Border.all(),
+                                                                      ),
+                                                                      child: Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.circular(3),
+                                                                                color: Color(0xff5B98F4)
+                                                                            ),
+                                                                            child: Center(
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                                                child: Text(
+                                                                                  "A+",
+                                                                                  style: TextStyle(
+                                                                                      color: Colors.white,
+                                                                                      fontWeight: FontWeight.w700
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                                                                            child: Text(
+                                                                              "Grade",
+                                                                              style: TextStyle(
+                                                                                  color: Colors.black,
+                                                                                  fontWeight: FontWeight.w700
+                                                                              ),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(width: 30),
+                                                                    Container(
+                                                                      height: 25,
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(3),
+                                                                        border: Border.all(),
+                                                                      ),
+                                                                      child: Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.circular(3),
+                                                                                color: Color(0xffF73E3E)
+                                                                            ),
+                                                                            child: Center(
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                                                child: Text(
+                                                                                  "12",
+                                                                                  style: TextStyle(
+                                                                                      color: Colors.white,
+                                                                                      fontWeight: FontWeight.w700
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                                                                            child: Text(
+                                                                              "Rank",
+                                                                              style: TextStyle(
+                                                                                  color: Colors.black,
+                                                                                  fontWeight: FontWeight.w700
+                                                                              ),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ],
                                                                 )
                                                               ],
                                                             ),
-                                                            SizedBox(height: 20),
-                                                            Text(
-                                                              "Exam Reports",
-                                                              style: TextStyle(
-                                                                fontSize: 17,
-                                                                fontWeight: FontWeight.w700,
-                                                              ),
-                                                            ),
-
-                                                          ],
+                                                          ),
                                                         ),
-                                                      ),
+                                                        CircularProgressIndicator(),
+                                                      ],
                                                     ),
                                                   );
                                                 },
@@ -2029,86 +2346,63 @@ class _ProgressReportState extends State<ProgressReport> {
     );
   }
 
-  Future<ResultModel> getStudentReport(String Studentid,String Studentclass, String Studentsec) async {
 
-    List SubjectsList=[];
-    List ExamnameList=[];
-    List staffFeedbackList=[];
-    List MainList=[];
+  Future<List<ExamWithSubjectModel>> getStudentReport(String Studentid,String Studentclass, String Studentsec) async {
+
+    List<ExamWithSubjectModel> examsList = [];
+    List subjectsList=[];
+    List examnameList=[];
     int subjectcount = 0;
 
-    ///Subject add function
     var studentdata=await FirebaseFirestore.instance.collection("ClassMaster").where("name",isEqualTo:Studentclass).get();
+    var examdata = await FirebaseFirestore.instance.collection("Students").doc(Studentid).collection("Exams").get();
 
     for(int i=0;i<studentdata.docs.length;i++){
       var Sectiondata= await FirebaseFirestore.instance.collection("ClassMaster").doc(studentdata.docs[i].id).
       collection("Sections").doc("${Studentclass}${Studentsec}").collection("Subjects").orderBy("timestamp").get();
-      setState(() {
+      //setState(() {
         subjectcount=Sectiondata.docs.length;
-      });
+      //});
       for(int j=0;j<Sectiondata.docs.length;j++){
-        setState(() {
-          SubjectsList.add(Sectiondata.docs[j]['name']);
-        });
+        //setState(() {
+          subjectsList.add(Sectiondata.docs[j]['name']);
+        //});
       }
-      print("_____________________________________________");
-      print(SubjectsList);
     }
 
-    ///exam master add function
-    var examdata = await FirebaseFirestore.instance.collection("Students").doc(Studentid).collection("Exams").get();
+
 
     for(int i=0;i<examdata.docs.length;i++){
-        ExamnameList.add(examdata.docs[i]['name']);
+        examnameList.add(examdata.docs[i]['name']);
     }
-    print(ExamnameList);
-    print("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-    print(ExamnameList.length);
 
-    ///matrix Functiuon
-
-    print("Matrix funtion entereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-    for(int i=0;i<SubjectsList.length;i++) {
-        //MainList[i].clear();
-      for (int j = 0; j < ExamnameList.length; j++) {
-          MainList[i].add("");
+    examsList.clear();
+    for(int j = 0; j < examnameList.length; j++){
+      List<Subjects> subjects1 = [];
+      ExamWithSubjectModel exam = ExamWithSubjectModel(
+          examName: examnameList[j], subjects: [],
+      );
+      for(int i=0;i<subjectsList.length;i++) {
+        subjects1.add(
+          Subjects(
+            name: subjectsList[i],
+            mark: "",
+          ),
+        );
       }
+      exam.subjects = subjects1;
+      examsList.add(exam);
     }
 
-    print("empty List ==---------------------------------------------------- ");
-    print(MainList);
-
-    for(int i=0;i<SubjectsList.length;i++) {
-      print("Sub Length");
-      print(SubjectsList.length);
-      for (int j = 0; j < ExamnameList.length; j++) {
-        print("Exam Length");
-        print(ExamnameList.length);
-        var document = await FirebaseFirestore.instance.collection("Students").doc(Studentid).collection("Exams").get();
-        print("Doc 1");
-        print(document.docs.length);
-
-        for (int m = 0; m < document.docs.length; m++) {
-          print(document.docs[m]["name"]);
-          print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-          var document2 = await FirebaseFirestore.instance.collection("Students").doc(Studentid).collection("Exams").
-          doc(document.docs[m].id).collection("Timetable").get();
-          print("Doc 2");
-          print(document2.docs.length);
+    var document = await FirebaseFirestore.instance.collection("Students").doc(Studentid).collection("Exams").get();
+    for(int i =0; i < examsList.length; i++){
+      for(int j =0; j < examsList[i].subjects.length; j++){
+        for(int m = 0; m < document.docs.length; m++){
+          var document2 = await FirebaseFirestore.instance.collection("Students").doc(Studentid).collection("Exams").doc(document.docs[m].id).collection("Timetable").get();
           for (int n = 0; n < document2.docs.length; n++) {
-            print("Val of i ${i}");
-            print("Val of j ${j}}");
-            print("${document2.docs[n]['name']} isequal to ${SubjectsList[i]}");
-            print("${document2.docs[n]['exam']} isequal to ${ExamnameList[j]}");
-            print("${document2.docs[n]['mark']} is answer");
-            print(document2.docs[n]['exam'].toString().length);
-            print(ExamnameList[j].toString().length);
-            if (document2.docs[n]['name'] == SubjectsList[i]) {
-              if (document2.docs[n]['exam'] == ExamnameList[j]) {
-                print("Done good===========================================");
-                print(MainList[i][j]);
-                MainList[i][j] = document2.docs[n]['mark'];
-                print(MainList[i][j]);
+            if (document2.docs[n]['exam'] == examsList[i].examName) {
+              if (document2.docs[n]['name'] == examsList[i].subjects[j].name) {
+                examsList[i].subjects[j].mark = document2.docs[n]['mark'];
               }
             }
           }
@@ -2116,34 +2410,159 @@ class _ProgressReportState extends State<ProgressReport> {
       }
     }
 
-    print(MainList);
-    print("Matrrix funtion___________________________________");
+    return examsList;
+  }
 
-    ///Feed back
+  Future<StudentAttendanceReportModel> getMonthlyAttendanceReportForStudent(String id) async {
+    var snapshot = await FirebaseFirestore.instance.collection("Students").doc(id).collection('Attendance').get();
+    List<SalesData> attendanceData = [];
+    List<SalesData> attendanceData1 = [];
+    List<SalesData> absentData = [];
+    List<SalesData> absentData1 = [];
+    List<String> presentDays = [];
+    List<String> absentDays = [];
+    snapshot.docs.forEach((element) async {
+      int presentCount = 0;
+      int absentCount = 0;
+      if(element.get("Attendance").toString().toLowerCase() == "present"){
+        presentCount++;
+        DateTime startDate = DateFormat('dd-M-yyyy').parse(element.id);
+        String month = await getMonthForData(startDate.month);
+        SalesData sale = SalesData(month, presentCount.toDouble(),'',element.id);
+        attendanceData.add(sale);
+      }
+      if(element.get("Attendance").toString().toLowerCase() == "absent"){
+        absentCount++;
+        DateTime startDate = DateFormat('dd-M-yyyy').parse(element.id);
+        String month = await getMonthForData(startDate.month);
+        SalesData sale = SalesData(month, absentCount.toDouble(),element.id,'');
+        absentData.add(sale);
+      }
+    });
+    await Future.delayed(Duration(seconds: 1));
 
-    var staffdocument= await FirebaseFirestore.instance.collection("Students").doc(Studentid).collection("Feedback").
-    orderBy("timestamp", descending: true).get();
-    for(int j=0;j<staffdocument.docs.length;j++){
-      setState((){
-        staffFeedbackList.add(
-            Stafffeebackclass(
-          staffname:staffdocument.docs[j]['staffname'],
-          value:staffdocument.docs[j]['value'] ,
-          date: staffdocument.docs[j]['date'],
-          remarks:staffdocument.docs[j]['remarks'] ,
-          time: staffdocument.docs[j]['time'],
-        ));
-      });
+    attendanceData.forEach((element) {
+      presentDays.add(element.presentDay);
+    });
+    absentData.forEach((element) {
+      absentDays.add(element.absentDay);
+    });
+    attendanceData1.add(SalesData('June',attendanceData.where((element) => element.year == 'June').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('July',attendanceData.where((element) => element.year == 'July').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Aug',attendanceData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Sep',attendanceData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Oct',attendanceData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Nov',attendanceData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Dec',attendanceData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Jan',attendanceData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+    attendanceData1.add(SalesData('Feb',attendanceData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Mar',attendanceData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+
+    attendanceData1.add(SalesData('Apr',attendanceData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+
+
+
+    absentData1.add(SalesData('June',absentData.where((element) => element.year == 'June').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('July',absentData.where((element) => element.year == 'July').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Aug',absentData.where((element) => element.year == 'Aug').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Sep',absentData.where((element) => element.year == 'Sep').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Oct',absentData.where((element) => element.year == 'Oct').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Nov',absentData.where((element) => element.year == 'Nov').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Dec',absentData.where((element) => element.year == 'Dec').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Jan',absentData.where((element) => element.year == 'Jan').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Feb',absentData.where((element) => element.year == 'Feb').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Mar',absentData.where((element) => element.year == 'Mar').length.toDouble(),'',''));
+
+    absentData1.add(SalesData('Apr',absentData.where((element) => element.year == 'Apr').length.toDouble(),'',''));
+
+    StudentAttendanceReportModel studentReport = StudentAttendanceReportModel(
+      absentReport: absentData1,
+      presentReport: attendanceData1,
+      absentDays: absentDays,
+      presentDays: presentDays,
+    );
+    return studentReport;
+  }
+
+  getMonthForData(int month){
+    String result = '';
+    switch(month){
+      case 1:
+        result = 'Jan';
+        break;
+      case 2:
+        result = 'Feb';
+        break;
+      case 3:
+        result = 'Mar';
+        break;
+      case 4:
+        result = 'Apr';
+        break;
+      case 5:
+        result = 'May';
+        break;
+      case 6:
+        result = 'June';
+        break;
+      case 7:
+        result = 'July';
+        break;
+      case 8:
+        result = 'Aug';
+        break;
+      case 9:
+        result = 'Sep';
+        break;
+      case 10:
+        result = 'Oct';
+        break;
+      case 11:
+        result = 'Nov';
+        break;
+      case 12:
+        result = 'Dec';
+        break;
 
     }
-
-
-    ResultModel result = ResultModel(
-      MainList: MainList,
-      staffFeedbackList: staffFeedbackList
-    );
-
     return result;
+  }
+
+  StudentAttendancePercentage getStudentAttendancePersantage(StudentAttendanceReportModel report){
+    double presentPersantage = 0.0;
+    double absentPersantage = 0.0;
+    double totalPersantage = 0.0;
+    report.presentReport.forEach((element) {
+      presentPersantage = presentPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    report.absentReport.forEach((element) {
+      absentPersantage = absentPersantage + element.sales;
+      totalPersantage = totalPersantage + element.sales;
+    });
+    StudentAttendancePercentage percentage = StudentAttendancePercentage(
+        present: (presentPersantage/totalPersantage),
+        absent: (absentPersantage/totalPersantage),
+        total: totalPersantage
+    );
+    return percentage;
   }
 
 
@@ -2169,4 +2588,17 @@ class ResultModel{
   ResultModel({required this.MainList, required this.staffFeedbackList});
   List staffFeedbackList;
   List MainList;
+}
+
+
+class ExamWithSubjectModel {
+  ExamWithSubjectModel({required this.examName, required this.subjects});
+  String examName;
+  List<Subjects> subjects;
+}
+
+class Subjects{
+  Subjects({required this.name, required this.mark});
+  String name;
+  String mark;
 }
