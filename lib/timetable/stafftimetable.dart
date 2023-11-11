@@ -382,7 +382,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Staff Time Table",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                  Text("Staff Time Table",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                   SizedBox(width:10),
                 ],
               ),

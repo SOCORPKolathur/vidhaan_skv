@@ -68,7 +68,7 @@ class _PostionwisestaffState extends State<Postionwisestaff> {
           padding: const EdgeInsets.only(left: 20.0),
           child: Container(child: Padding(
             padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Position Wise Staffs Reports",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+            child: Text("Position Wise Staffs Reports",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
             width: width/1.050,
@@ -779,32 +779,32 @@ class _PostionwisestaffState extends State<Postionwisestaff> {
                                               child: Row(
                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
-                                                  Text("Father Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["fathername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Father Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["fathername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
                                                 ],
                                               ),
                                             ),
                                             Row(
                                               crossAxisAlignment: CrossAxisAlignment.end,
                                               children: [
-                                                Text("Mother Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                Text(value["mothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                Text("Mother Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                Text(value["mothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
                                               ],
                                             ),
                                             Padding(
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 20),
                                               child: Row(
                                                 children: [
-                                                  Text("Religion: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["religion"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Religion: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["religion"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
                                             ),
                                             Row(
                                               children: [
-                                                Text("Community: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                Text(value["community"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                Text("Community: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                Text(value["community"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                               ],
                                             ),
@@ -813,8 +813,8 @@ class _PostionwisestaffState extends State<Postionwisestaff> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("Sub Caste: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["subcaste"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Sub Caste: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["subcaste"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -823,8 +823,8 @@ class _PostionwisestaffState extends State<Postionwisestaff> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("Student Adhaar Number: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Student Adhaar Number: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -845,13 +845,13 @@ class _PostionwisestaffState extends State<Postionwisestaff> {
                                                 Text(
                                                   "Family Annual Income: ",
                                                   style: GoogleFonts.poppins(
-                                                      fontSize: 12,
+                                                      fontSize: width/113.833333333,
                                                       fontWeight: FontWeight.bold),
                                                 ),
                                                 Text(
                                                   value["income"],
                                                   style: GoogleFonts.poppins(
-                                                      fontSize: 12,
+                                                      fontSize: width/113.833333333,
                                                       fontWeight: FontWeight.w500),
                                                 ),
                                               ],
@@ -863,13 +863,13 @@ class _PostionwisestaffState extends State<Postionwisestaff> {
                                                   Text(
                                                     "Marital Mark: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["maritalmark"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -882,13 +882,13 @@ class _PostionwisestaffState extends State<Postionwisestaff> {
                                                   Text(
                                                     "Home Address: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["address"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],

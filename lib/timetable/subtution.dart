@@ -295,7 +295,7 @@ class _SubtutionState extends State<Subtution>
                   Text(
                     "Substitution History",
                     style: GoogleFonts.poppins(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: width/75.888888889, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(width: 500),
                   InkWell(
@@ -586,7 +586,7 @@ class _SubtutionState extends State<Subtution>
                         Text(
                           "Substitution Teachers",
                           style: GoogleFonts.poppins(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: width/75.888888889, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(width: 500),
                         InkWell(
@@ -1205,7 +1205,7 @@ class _SubtutionState extends State<Subtution>
                           Text(
                             "Assign Teachers",
                             style: GoogleFonts.poppins(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: width/75.888888889, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(width: 10),
                         ],
@@ -1241,7 +1241,7 @@ class _SubtutionState extends State<Subtution>
                         child: Text(
                           staffname,
                           style: GoogleFonts.poppins(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: width/75.888888889, fontWeight: FontWeight.bold),
                         ),
                       ),
                       SizedBox(
@@ -1613,7 +1613,7 @@ class _SubtutionState extends State<Subtution>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Subtitution Staffs',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),
+                'Subtitution Staffs',style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight: FontWeight.bold),
               ),
               IconButton(
                   onPressed: (){

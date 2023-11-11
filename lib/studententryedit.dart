@@ -303,7 +303,7 @@ class _StudentEditState extends State<StudentEdit> {
                           },
                           child: Icon(Icons.arrow_back_rounded)),
                     ),
-                    Text("Edit Students Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                    Text("Edit Students Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                     SizedBox(width:10),
 
                   ],
@@ -488,7 +488,7 @@ class _StudentEditState extends State<StudentEdit> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                  child: Text("Student Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                  child: Text("Student Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                                 ),
                                 Row(
                                   children: [
@@ -1748,7 +1748,7 @@ class _StudentEditState extends State<StudentEdit> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                  child: Text("Parent Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                  child: Text("Parent Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                                 ),
                                 Row(
                                   children: [
@@ -2324,7 +2324,7 @@ class _StudentEditState extends State<StudentEdit> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                  child: Text("Other Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                  child: Text("Other Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                                 ),
 
                                 Row(
@@ -2769,7 +2769,7 @@ class _StudentEditState extends State<StudentEdit> {
                                       });
                                       uploadToStorage();
                                     },
-                                    child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: 16))),
+                                    child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: width/85.375))),
                                       width: width/10.507,
                                       height: height/16.425,
                                       // color: Color(0xffDDDEEE),
@@ -2778,7 +2778,7 @@ class _StudentEditState extends State<StudentEdit> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: 13),),
+                                    child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: width/105.076923077),),
                                   )
                                 ],
                               ),

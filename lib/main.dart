@@ -102,11 +102,11 @@ class _LoginPageState extends State<LoginPage> {
                                         child: Image.asset("assets/VIDHAANTEXT.png",color: Colors.white,)),
                                     Padding(
                                       padding: const EdgeInsets.only(left:8.0,top:35),
-                                      child: Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 13,color:Colors.white),),
+                                      child: Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: width/105.076923077,color:Colors.white),),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:8.0,top:100),
-                                      child: Text("Our organization's goal is to provide \nstreamlined data management, focusing on \ndigitizing admission to alumni management \nas a one-stop solution in our ERP system for schools.",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 14,color:Colors.white),),
+                                      child: Text("Our organization's goal is to provide \nstreamlined data management, focusing on \ndigitizing admission to alumni management \nas a one-stop solution in our ERP system for schools.",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/97.571428571,color:Colors.white),),
                                     ),
 
                                   ],
@@ -142,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left:60.0,top:15),
-                      child: Text("Get in Touch,",style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 25,),),
+                      child: Text("Get in Touch,",style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: width/54.64,),),
                     ),
                   ],
                 ),
@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                              ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("Support",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500,fontSize: 18,),),
+                                child: Text("Support",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500,fontSize: width/75.888888889,),),
                               )
                             ],
                           ),
@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("Dev Support",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500,fontSize: 18,),),
+                                  child: Text("Dev Support",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500,fontSize: width/75.888888889,),),
                                 )
                               ],
                             ),
@@ -230,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("Linkedin",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500,fontSize: 18,),),
+                                  child: Text("Linkedin",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500,fontSize: width/75.888888889,),),
                                 )
                               ],
                             ),
@@ -260,7 +260,7 @@ class _LoginPageState extends State<LoginPage> {
                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("Whatsapp",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500,fontSize: 18,),),
+                                  child: Text("Whatsapp",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500,fontSize: width/75.888888889,),),
                                 )
                               ],
                             ),
@@ -293,7 +293,7 @@ class _LoginPageState extends State<LoginPage> {
                                     padding: const EdgeInsets.only(right: .0),
                                     child: Text(
                                       "Welcome to ",
-                                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: width/75.888888889),
                                     ),
                                   ),
                                   Padding(
@@ -301,7 +301,7 @@ class _LoginPageState extends State<LoginPage> {
                                     child: Text("Vidhaan",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xff0089ED),fontSize: 18)),
+                                            color: Color(0xff0089ED),fontSize: width/75.888888889)),
                                   ),
                                 ],
                               ),
@@ -311,7 +311,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: Text("Sign in",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 40)),
+                                      fontSize: width/34.15)),
                             ),
                             SizedBox(
                               height: height/32.85,

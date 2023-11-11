@@ -252,7 +252,7 @@ class BarChartSample2State extends State<BarChartSample2> {
       child: Text(text, style:  GoogleFonts.montserrat(
         color: Color(0xff7589a2),
         fontWeight: FontWeight.w600,
-        fontSize: 12,
+        fontSize: width/113.833333333,
       ),),
     );
   }
@@ -265,7 +265,7 @@ class BarChartSample2State extends State<BarChartSample2> {
       style:  GoogleFonts.montserrat(
         color: Color(0xff7589a2),
         fontWeight: FontWeight.w600,
-        fontSize: 10,
+        fontSize: width/136.6,
       ),
     );
 

@@ -262,7 +262,7 @@ class _PayrollGenState extends State<PayrollGen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 718.0,top: 20,bottom: 10,left: 40),
-                    child: Container(child: Text("Payroll Generation",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
+                    child: Container(child: Text("Payroll Generation",style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight: FontWeight.bold),),
 
                       height: height/25.269,
 //decoration: BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.circular(12)),
@@ -287,7 +287,7 @@ class _PayrollGenState extends State<PayrollGen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 16.0,bottom:0 ),
-                                child: Text("Total Staffs",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff3786F1),fontSize: 22),),
+                                child: Text("Total Staffs",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff3786F1),fontSize: width/62.090909091),),
                               ),
                               Container(
                                 width: 80,
@@ -298,7 +298,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(left: 20.0, ),
                                 child: Row(
                                   children: [
-                                    Text(totalStaffs,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff3786F1),fontSize: 38),),
+                                    Text(totalStaffs,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff3786F1),fontSize: width/35.947368421),),
                                     SizedBox(width: 50,),
                                     Icon(Icons.person,size: 38,color: Color(0xff3786F1))
                                   ],
@@ -324,7 +324,7 @@ class _PayrollGenState extends State<PayrollGen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 16.0,bottom:0 ),
-                                child: Text("Designations",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffEE61CF),fontSize: 22),),                    ),
+                                child: Text("Designations",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffEE61CF),fontSize: width/62.090909091),),                    ),
                               Container(
                                 width: 80,
                                 height: 2,
@@ -334,7 +334,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(left: 20.0, ),
                                 child: Row(
                                   children: [
-                                    Text(totalDesignations,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffEE61CF),fontSize: 38),),
+                                    Text(totalDesignations,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffEE61CF),fontSize: width/35.947368421),),
                                     SizedBox(width: 60,),
                                     Icon(Icons.leaderboard,size: 38,color: Color(0xffEE61CF))
                                   ],
@@ -360,7 +360,7 @@ class _PayrollGenState extends State<PayrollGen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 16.0,bottom:0 ),
-                                child: Text("Working Days",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffFF5151),fontSize: 22),),                    ),
+                                child: Text("Working Days",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffFF5151),fontSize: width/62.090909091),),                    ),
                               Container(
                                 width: 80,
                                 height: 2,
@@ -370,7 +370,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(left: 20.0, ),
                                 child: Row(
                                   children: [
-                                    Text(totalWorkingDays,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffFF5151),fontSize: 38),),
+                                    Text(totalWorkingDays,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffFF5151),fontSize: width/35.947368421),),
                                     SizedBox(width: 60,),
                                     Icon(Icons.calendar_month,size: 38,color: Color(0xffFF5151))
                                   ],
@@ -396,7 +396,7 @@ class _PayrollGenState extends State<PayrollGen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 16.0,bottom:0 ),
-                                child: Text("Payrolls",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff53B175),fontSize: 22),),                    ),
+                                child: Text("Payrolls",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff53B175),fontSize: width/62.090909091),),                    ),
                               Container(
                                 width: 80,
                                 height: 2,
@@ -406,7 +406,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(left: 20.0, ),
                                 child: Row(
                                   children: [
-                                    Text(totalPayrolls,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff53B175),fontSize: 38),),
+                                    Text(totalPayrolls,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff53B175),fontSize: width/35.947368421),),
                                     SizedBox(width: 60,),
                                     Icon(Icons.payments_rounded,size: 38,color: Color(0xff53B175))
                                   ],
@@ -438,7 +438,7 @@ class _PayrollGenState extends State<PayrollGen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 718.0,top: 20,bottom: 10,left: 40),
-                    child: Container(child: Text("Create Payroll",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
+                    child: Container(child: Text("Create Payroll",style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight: FontWeight.bold),),
 
                       height: height/25.269,
 
@@ -460,7 +460,7 @@ class _PayrollGenState extends State<PayrollGen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("Assign Payroll By :",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700),),
+                                child: Text("Assign Payroll By :",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700),),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -564,7 +564,7 @@ class _PayrollGenState extends State<PayrollGen> {
 
                                   },
                                   child: Container(child:
-                                  Center(child: Text("View Payrolls",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.white),),
+                                  Center(child: Text("View Payrolls",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w500,color: Colors.white),),
                                   ),
                                     width: width/5.902,
                                     height: height/16.425,
@@ -941,7 +941,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 getpay();
                                               },
                                               child: Container(child:
-                                              Center(child: Text("Generate Payroll",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.white),),
+                                              Center(child: Text("Generate Payroll",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w500,color: Colors.white),),
                                               ),
                                                 width: width/5.902,
                                                 height: height/16.425,
@@ -1113,7 +1113,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 }
                                               },
                                               child: Container(child:
-                                              Center(child: Text("Save Payroll",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.white),),
+                                              Center(child: Text("Save Payroll",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w500,color: Colors.white),),
                                               ),
                                                 width: width/5.902,
                                                 height: height/16.425,
@@ -1166,7 +1166,7 @@ class _PayrollGenState extends State<PayrollGen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(child: Text("Payroll for ${type.text}",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
+                          Container(child: Text("Payroll for ${type.text}",style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight: FontWeight.bold),),
                             height: height/25.269,
                           ),
                           InkWell(
@@ -1206,7 +1206,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             child: Text(
                                               "Si.no",
                                               style: GoogleFonts.poppins(
-                                                  fontSize: 16,
+                                                  fontSize: width/85.375,
                                                   fontWeight: FontWeight.w700,
                                                   color: Colors.white),
                                             ),
@@ -1214,22 +1214,22 @@ class _PayrollGenState extends State<PayrollGen> {
                                       ),
                                       Container(
                                           width: 150,
-                                          child: Center(child: Text("Designation",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                          child: Center(child: Text("Designation",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
                                           width: 130,
-                                          child: Center(child: Text("Basic Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                          child: Center(child: Text("Basic Pay",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
                                           width: 130,
-                                          child: Center(child: Text("HRA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                          child: Center(child: Text("HRA",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
                                           width: 130,
-                                          child: Center(child: Text("DA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                          child: Center(child: Text("DA",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
                                           width: 130,
-                                          child: Center(child: Text("Others",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                          child: Center(child: Text("Others",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
                                           width: 130,
-                                          child: Center(child: Text("Gross Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                          child: Center(child: Text("Gross Pay",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                     ],
                                   ),
 
@@ -1273,7 +1273,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                         child: Text(
                                                           (index+1).toString().padLeft(3,"0"),
                                                           style: GoogleFonts.poppins(
-                                                              fontSize: 14,
+                                                              fontSize: width/97.571428571,
                                                               fontWeight: FontWeight.normal,
                                                               color: Colors.black,
                                                           ),
@@ -1286,7 +1286,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             child: Text(
                                                               value["Designations"],
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 14,
+                                                                  fontSize: width/97.571428571,
                                                                   fontWeight: FontWeight.normal,
                                                                   color: Colors.black,
                                                               ),
@@ -1299,7 +1299,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             child: Text(
                                                               value["basic"],
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 14,fontWeight: FontWeight.normal,
+                                                                  fontSize: width/97.571428571,fontWeight: FontWeight.normal,
                                                                   color: Colors.black,
                                                               ),
                                                             ),
@@ -1311,7 +1311,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             child: Text(
                                                               value["hra"],
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 14,
+                                                                  fontSize: width/97.571428571,
                                                                 fontWeight: FontWeight.normal,
                                                                 color: Colors.black,
                                                               ),
@@ -1324,7 +1324,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             child: Text(
                                                               value["da"],
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 14,
+                                                                  fontSize: width/97.571428571,
                                                                   fontWeight: FontWeight.normal,
                                                                   color: Colors.black,
                                                               ),
@@ -1337,7 +1337,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             child: Text(
                                                               value["other"],
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 14,
+                                                                  fontSize: width/97.571428571,
                                                                   fontWeight: FontWeight.normal,
                                                                   color: Colors.black,
                                                               ),
@@ -1350,7 +1350,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             child: Text(
                                                               value["gross"],
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 14,
+                                                                  fontSize: width/97.571428571,
                                                                   fontWeight: FontWeight.normal,
                                                                   color: Colors.black,
                                                               ),
@@ -1393,7 +1393,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                     child: Text(
                                       "Si.no",
                                       style: GoogleFonts.poppins(
-                                          fontSize: 16,
+                                          fontSize: width/85.375,
                                           fontWeight: FontWeight.w700,
                                           color: Colors.white),
                                     ),
@@ -1401,22 +1401,22 @@ class _PayrollGenState extends State<PayrollGen> {
                                 ),
                                 Container(
                                     width: 150,
-                                    child: Center(child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                    child: Center(child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
                                     width: 130,
-                                    child: Center(child: Text("Basic Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                    child: Center(child: Text("Basic Pay",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
                                     width: 130,
-                                    child: Center(child: Text("HRA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                    child: Center(child: Text("HRA",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
                                     width: 130,
-                                    child: Center(child: Text("DA",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                    child: Center(child: Text("DA",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
                                     width: 130,
-                                    child: Center(child: Text("Others",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                    child: Center(child: Text("Others",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
                                     width: 130,
-                                    child: Center(child: Text("Gross Pay",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),))),
+                                    child: Center(child: Text("Gross Pay",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                               ],
                             ),
 
@@ -1461,7 +1461,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                               child: Text(
                                                 (index+1).toString().padLeft(3,"0"),
                                                 style: GoogleFonts.poppins(
-                                                  fontSize: 14,
+                                                  fontSize: width/97.571428571,
                                                   fontWeight: FontWeight.normal,
                                                   color: Colors.black,
                                                 ),
@@ -1474,7 +1474,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                               child: Text(
                                                 value["staffname"],
                                                 style: GoogleFonts.poppins(
-                                                  fontSize: 14,
+                                                  fontSize: width/97.571428571,
                                                   fontWeight: FontWeight.normal,
                                                   color: Colors.black,
                                                 ),
@@ -1487,7 +1487,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                               child: Text(
                                                 value["basic"],
                                                 style: GoogleFonts.poppins(
-                                                  fontSize: 14,fontWeight: FontWeight.normal,
+                                                  fontSize: width/97.571428571,fontWeight: FontWeight.normal,
                                                   color: Colors.black,
                                                 ),
                                               ),
@@ -1499,7 +1499,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                               child: Text(
                                                 value["hra"],
                                                 style: GoogleFonts.poppins(
-                                                  fontSize: 14,
+                                                  fontSize: width/97.571428571,
                                                   fontWeight: FontWeight.normal,
                                                   color: Colors.black,
                                                 ),
@@ -1512,7 +1512,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                               child: Text(
                                                 value["da"],
                                                 style: GoogleFonts.poppins(
-                                                  fontSize: 14,
+                                                  fontSize: width/97.571428571,
                                                   fontWeight: FontWeight.normal,
                                                   color: Colors.black,
                                                 ),
@@ -1525,7 +1525,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                               child: Text(
                                                 value["other"],
                                                 style: GoogleFonts.poppins(
-                                                  fontSize: 14,
+                                                  fontSize: width/97.571428571,
                                                   fontWeight: FontWeight.normal,
                                                   color: Colors.black,
                                                 ),
@@ -1538,7 +1538,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                               child: Text(
                                                 value["gross"],
                                                 style: GoogleFonts.poppins(
-                                                  fontSize: 14,
+                                                  fontSize: width/97.571428571,
                                                   fontWeight: FontWeight.normal,
                                                   color: Colors.black,
                                                 ),

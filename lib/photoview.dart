@@ -19,6 +19,7 @@ class Photoviewpage extends StatefulWidget {
 class _PhotoviewpageState extends State<Photoviewpage> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: PhotoView(
           imageProvider: NetworkImage(widget.url
@@ -55,7 +56,7 @@ class _PhotoviewpageState extends State<Photoviewpage> {
               children: [
                 Icon(Icons.download,color: Colors.white,),
                 Text("Download",style:GoogleFonts.poppins(
-                    fontSize: 12,
+                    fontSize: width/113.833333333,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),)
               ],

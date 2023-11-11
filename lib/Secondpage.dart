@@ -24,7 +24,7 @@ class _SecondpageState extends State<Secondpage> {
                 child: Text(
                   "Accounts",
                   style:
-                      GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
+                      GoogleFonts.poppins(fontSize: width/68.3, fontWeight: FontWeight.bold),
                 ),
               ),
               Container(child: Column(

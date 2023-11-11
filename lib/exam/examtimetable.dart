@@ -289,7 +289,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
             child: Container(child: Padding(
               padding: const EdgeInsets.only(left: 38.0, top: 30),
               child: Text("Exam Timetable", style: GoogleFonts.poppins(
-                  fontSize: 18, fontWeight: FontWeight.bold),),
+                  fontSize: width/75.888888889, fontWeight: FontWeight.bold),),
             ),
               //color: Colors.white,
               width: width / 1.050,
@@ -589,7 +589,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                             padding: const EdgeInsets.only(
                                 left: 8.0, right: 8.0),
                             child: Text("Si.no", style: GoogleFonts.poppins(
-                                fontSize: 16,
+                                fontSize: width/85.375,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),),
                           ),
@@ -597,7 +597,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                             padding: const EdgeInsets.only(
                                 left: 58.0, right: 8.0),
                             child: Text("Subjects", style: GoogleFonts.poppins(
-                                fontSize: 16,
+                                fontSize: width/85.375,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),),
                           ),
@@ -605,7 +605,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                             padding: const EdgeInsets.only(
                                 left: 160.0, right: 8.0),
                             child: Text("Date", style: GoogleFonts.poppins(
-                                fontSize: 16,
+                                fontSize: width/85.375,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),),
                           ),

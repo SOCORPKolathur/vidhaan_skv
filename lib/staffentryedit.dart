@@ -194,7 +194,7 @@ class _StaffEditState extends State<StaffEdit> {
                           },
                           child: Icon(Icons.arrow_back_rounded)),
                     ),
-                    Text("Edit Staff Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                    Text("Edit Staff Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                   ],
                 ),
               ),
@@ -339,7 +339,7 @@ class _StaffEditState extends State<StaffEdit> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                  child: Text("Staff Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                  child: Text("Staff Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                                 ),
                                 Row(
                                   children: [
@@ -1033,7 +1033,7 @@ class _StaffEditState extends State<StaffEdit> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                  child: Text("Marital Status",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                  child: Text("Marital Status",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                                 ),
                                 Row(
                                   children: [
@@ -1312,7 +1312,7 @@ class _StaffEditState extends State<StaffEdit> {
 
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                  child: Text("Work Experience",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                  child: Text("Work Experience",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                                 ),
 
                                 Row(
@@ -1625,7 +1625,7 @@ class _StaffEditState extends State<StaffEdit> {
                                       });
                                       uploadToStorage();
                                     },
-                                    child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: 16))),
+                                    child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: width/85.375))),
                                       width: width/10.507,
                                       height: height/16.425,
                                       // color: Color(0xffDDDEEE),
@@ -1634,7 +1634,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: 13),),
+                                    child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: width/105.076923077),),
                                   )
                                 ],
                               ),

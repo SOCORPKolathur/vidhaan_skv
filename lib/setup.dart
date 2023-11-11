@@ -309,7 +309,7 @@ class _SetupState extends State<Setup> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 38.0,top: 30),
-                        child: Text("School Setup",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                        child: Text("School Setup",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                       ),
                       SizedBox(
                         width:    page!=1? 800:900
@@ -399,7 +399,7 @@ class _SetupState extends State<Setup> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(Icons.camera_alt_rounded,size: 50,),
-                                  Text("Select Logo",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),)
+                                  Text("Select Logo",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),)
                                     ],
                                   ) : Image.network(imgUrl): Center(
                                     child: CircularProgressIndicator(),
@@ -515,14 +515,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("School Name *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("School Name *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                        controller: schoolname,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -548,14 +548,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("School Phone Number *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("School Phone Number *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                       controller: schoolphone,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -581,14 +581,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("School Slogan ",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("School Slogan ",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                       controller: solgan,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -623,14 +623,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Building No: *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Building No: *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                       controller: schoolbuilding,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -656,14 +656,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Street Name : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Street Name : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                       controller: schoolstreet,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -689,14 +689,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Area : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Area : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                       controller: schoolarea,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -722,14 +722,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("City /District : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("City /District : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                       controller: schoolcity,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -766,14 +766,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("State: *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("State: *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                       controller: schoolstate,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -799,14 +799,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Pincode : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Pincode : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                       controller: schoolpincode,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -832,14 +832,14 @@ class _SetupState extends State<Setup> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Website : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Website : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                       controller: schoolweb,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -990,7 +990,7 @@ class _SetupState extends State<Setup> {
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
                                          Icon(Icons.camera_alt_rounded,size: 50,),
-                                         Text("Select Logo",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),)
+                                         Text("Select Logo",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),)
                                        ],
                                      ) : Image.network(imgUrl): Center(
                                        child: CircularProgressIndicator(),
@@ -1114,7 +1114,7 @@ class _SetupState extends State<Setup> {
                                        children: [
                                          Padding(
                                            padding: const EdgeInsets.only(right:0.0),
-                                           child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                           child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                          ),
                                          Padding(
                                            padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1122,7 +1122,7 @@ class _SetupState extends State<Setup> {
                                              child: TextField(
                                                controller: orderno,
                                                style: GoogleFonts.poppins(
-                                                   fontSize: 15
+                                                   fontSize: width/91.066666667
                                                ),
                                                decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                  border: InputBorder.none,
@@ -1145,14 +1145,14 @@ class _SetupState extends State<Setup> {
                                        children: [
                                          Padding(
                                            padding: const EdgeInsets.only(right:0.0),
-                                           child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                                           child: Text("Class",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                          ),
                                          Padding(
                                            padding: const EdgeInsets.only(left: 0.0,right: 10),
                                            child: Container(child: TextField(
                                              controller: name,
                                              style: GoogleFonts.poppins(
-                                                 fontSize: 15
+                                                 fontSize: width/91.066666667
                                              ),
                                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                border: InputBorder.none,
@@ -1199,11 +1199,11 @@ class _SetupState extends State<Setup> {
                                      children: [
                                        Padding(
                                          padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                         child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                         child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                        ),
                                        Padding(
                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                         child: Text("Class",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                         child: Text("Class",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                        ),
                                      ],
                                    ),
@@ -1253,13 +1253,13 @@ class _SetupState extends State<Setup> {
                                                    children: [
                                                      Padding(
                                                        padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                                       child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                                       child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                                      ),
                                                      Padding(
                                                        padding: const EdgeInsets.only(left: 8.0,right: 8.0),
                                                        child: Container(
                                                            width:150,
-                                                           child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                           child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                      ),
                                                      deletecheck[index]==true?     InkWell(
                                                        onTap: (){
@@ -1311,7 +1311,7 @@ class _SetupState extends State<Setup> {
                                        children: [
                                          Padding(
                                            padding: const EdgeInsets.only(right:0.0),
-                                           child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                           child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                          ),
                                          Padding(
                                            padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1319,7 +1319,7 @@ class _SetupState extends State<Setup> {
                                              child: TextField(
                                                controller: orderno2,
                                                style: GoogleFonts.poppins(
-                                                   fontSize: 15
+                                                   fontSize: width/91.066666667
                                                ),
                                                decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                  border: InputBorder.none,
@@ -1342,14 +1342,14 @@ class _SetupState extends State<Setup> {
                                        children: [
                                          Padding(
                                            padding: const EdgeInsets.only(right:0.0),
-                                           child: Text("Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                                           child: Text("Section",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                          ),
                                          Padding(
                                            padding: const EdgeInsets.only(left: 0.0,right: 10),
                                            child: Container(child: TextField(
                                              controller: name2,
                                              style: GoogleFonts.poppins(
-                                                 fontSize: 15
+                                                 fontSize: width/91.066666667
                                              ),
                                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                border: InputBorder.none,
@@ -1396,11 +1396,11 @@ class _SetupState extends State<Setup> {
                                      children: [
                                        Padding(
                                          padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                         child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                         child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                        ),
                                        Padding(
                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                         child: Text("Section",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                         child: Text("Section",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                        ),
 
                                      ],
@@ -1451,11 +1451,11 @@ class _SetupState extends State<Setup> {
                                                    children: [
                                                      Padding(
                                                        padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                                       child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                                       child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                                      ),
                                                      Padding(
                                                        padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                       child: Container(width:150,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                       child: Container(width:150,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                      ),
                                                      deletecheck2[index]==true?     InkWell(
                                                        onTap: (){
@@ -1507,7 +1507,7 @@ class _SetupState extends State<Setup> {
                                        children: [
                                          Padding(
                                            padding: const EdgeInsets.only(right:0.0),
-                                           child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                           child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                          ),
                                          Padding(
                                            padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1515,7 +1515,7 @@ class _SetupState extends State<Setup> {
                                              child: TextField(
                                                controller: orderno3,
                                                style: GoogleFonts.poppins(
-                                                   fontSize: 15
+                                                   fontSize: width/91.066666667
                                                ),
                                                decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                  border: InputBorder.none,
@@ -1538,7 +1538,7 @@ class _SetupState extends State<Setup> {
                                        children: [
                                          Padding(
                                            padding: const EdgeInsets.only(right:0.0),
-                                           child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: 15,)),
+                                           child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                          ),
                                          Padding(
                                            padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1592,11 +1592,11 @@ class _SetupState extends State<Setup> {
                                      children: [
                                        Padding(
                                          padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                         child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                         child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                        ),
                                        Padding(
                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                         child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                         child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                        ),
                                      ],
                                    ),
@@ -1728,7 +1728,7 @@ class _SetupState extends State<Setup> {
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
                                          Icon(Icons.camera_alt_rounded,size: 50,),
-                                         Text("Select Logo",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),)
+                                         Text("Select Logo",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),)
                                        ],
                                      ) : Image.network(imgUrl): Center(
                                        child: CircularProgressIndicator(),
@@ -1849,7 +1849,7 @@ class _SetupState extends State<Setup> {
                                      child: Icon(Icons.arrow_back),
                                    ),
                                  ),
-                                 Text("Select Templates",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 20),),
+                                 Text("Select Templates",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                ],
                              ),
                            ),
@@ -1897,14 +1897,14 @@ class _SetupState extends State<Setup> {
                                                      ),
                                                      SizedBox(height: 2,),
                                                      Text(schoolname.text,style: GoogleFonts.poppins(
-                                                         color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                         color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      Text("${schoolarea.text} ${schoolcity.text}  ${schoolpincode.text}",style: GoogleFonts.poppins(
-                                                         color: Colors.white, fontSize: 8,fontWeight: FontWeight.w400),textAlign: TextAlign.center),
+                                                         color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),textAlign: TextAlign.center),
                                                      Text("Phone: +91 ${schoolphone.text}",style: GoogleFonts.poppins(
-                                                         color: Colors.white, fontSize: 8,fontWeight: FontWeight.w400),),
+                                                         color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),),
                                                     
                                                      Text(schoolweb.text,style: GoogleFonts.poppins(
-                                                         color: Colors.white, fontSize: 8,fontWeight: FontWeight.w400),),
+                                                         color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),),
                                                      SizedBox(height: 20,),
                                                      Stack(
                                                        alignment: Alignment.center,
@@ -1936,15 +1936,15 @@ class _SetupState extends State<Setup> {
                                                      Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                                                          color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                      Text("ID: VBSB004",style: GoogleFonts.poppins(
-                                                         color:  pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                         color:  pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      SizedBox(height: 10,),
                                                      Row(
                                                        children: [
                                                          SizedBox(width: 20,),
                                                          Text("Class       : ",style: GoogleFonts.poppins(
-                                                             color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                          Text("LKG A",style: GoogleFonts.poppins(
-                                                             color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ],
                                                      ),
                                                      Row(
@@ -1952,27 +1952,27 @@ class _SetupState extends State<Setup> {
                                                          SizedBox(width: 20,),
                                                          Text("DOB          : ",style: GoogleFonts.poppins(
 
-                                                             color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                          Text("05/05/2002",style: GoogleFonts.poppins(
-                                                             color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ],
                                                      ),
                                                      Row(
                                                        children: [
                                                          SizedBox(width: 20,),
                                                          Text("Blood       : ",style: GoogleFonts.poppins(
-                                                             color:pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color:pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                          Text("B+ve",style: GoogleFonts.poppins(
-                                                             color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ],
                                                      ),
                                                      Row(
                                                        children: [
                                                          SizedBox(width: 20,),
                                                          Text("Phone      : ",style: GoogleFonts.poppins(
-                                                             color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                          Text("789456213",style: GoogleFonts.poppins(
-                                                             color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ],
                                                      ),
 
@@ -2025,7 +2025,7 @@ class _SetupState extends State<Setup> {
                                                          color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                    ),
                                                    Text("",style: GoogleFonts.poppins(
-                                                       color: Color(0xff0271C5), fontSize: 12,fontWeight: FontWeight.w600),),
+                                                       color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                    SizedBox(height: 10,),
                                                    Row(
                                                      children: [
@@ -2033,10 +2033,10 @@ class _SetupState extends State<Setup> {
                                                        Container(
                                                          width: 110,
                                                          child: Text("Parent Phone : ",style: GoogleFonts.poppins(
-                                                             color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
                                                        Text("9944861235",style: GoogleFonts.poppins(
-                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      ],
                                                    ),
                                                    Row(
@@ -2047,10 +2047,10 @@ class _SetupState extends State<Setup> {
                                                          width: 110,
                                                          child: Text("Address : ",style: GoogleFonts.poppins(
 
-                                                             color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
                                                        Text("No120/2 Kolathur \nChennai",style: GoogleFonts.poppins(
-                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      ],
                                                    ),
                                              
@@ -2067,7 +2067,7 @@ class _SetupState extends State<Setup> {
                                                                  height: 75,
                                                                  child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
 
-                                                             Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),),
+                                                             Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: width/195.142857143),),
                                                              SizedBox(height:7),
                                                            ],
                                                          ),
@@ -2086,7 +2086,7 @@ class _SetupState extends State<Setup> {
                                            crossAxisAlignment: CrossAxisAlignment.start,
                                            children: [
                                              SizedBox(height: 10,),
-                                             Text("Card Design 1",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 20),),
+                                             Text("Card Design 1",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                              Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                                              Container(
@@ -2179,11 +2179,11 @@ class _SetupState extends State<Setup> {
                                                            children: [
                                                              SizedBox(height:20),
                                                              Text(schoolname.text,style: GoogleFonts.poppins(
-                                                                 color: Colors.white, fontSize: 14,fontWeight: FontWeight.w600),),
+                                                                 color: Colors.white, fontSize: width/97.571428571,fontWeight: FontWeight.w600),),
                                                              Text("Phone: +91 9977888456",style: GoogleFonts.poppins(
-                                                                 color: Colors.white, fontSize: 8,fontWeight: FontWeight.w400),),
+                                                                 color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),),
                                                              Text("Anna Nagar, Chennai- 600062",style: GoogleFonts.poppins(
-                                                                 color: Colors.white, fontSize: 8,fontWeight: FontWeight.w400),),
+                                                                 color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),),
                                                            ],
                                                          ),
                                                        ],
@@ -2222,7 +2222,7 @@ class _SetupState extends State<Setup> {
                                                      Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                                                          color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                      Text("ID: VBSB004",style: GoogleFonts.poppins(
-                                                         color:  pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                         color:  pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      SizedBox(height: 10,),
                                                      Stack(
 
@@ -2238,9 +2238,9 @@ class _SetupState extends State<Setup> {
                                                                    children: [
                                                                      SizedBox(width: 20,),
                                                                      Text("Class       : ",style: GoogleFonts.poppins(
-                                                                         color: pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                         color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      Text("LKG A",style: GoogleFonts.poppins(
-                                                                         color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                         color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                    ],
                                                                  ),
                                                                  Row(
@@ -2248,26 +2248,26 @@ class _SetupState extends State<Setup> {
                                                                      SizedBox(width: 20,),
                                                                      Text("DOB          : ",style: GoogleFonts.poppins(
 
-                                                                         color: pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                         color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      Text("05/05/2002",style: GoogleFonts.poppins(
-                                                                         color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                         color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                    ],),
                                                                  Row(
                                                                    children: [
                                                                      SizedBox(width: 20,),
                                                                      Text("Blood       : ",style: GoogleFonts.poppins(
-                                                                         color:pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                         color:pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      Text("B+ve",style: GoogleFonts.poppins(
-                                                                         color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                         color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                    ],
                                                                  ),
                                                                  Row(
                                                                    children: [
                                                                      SizedBox(width: 20,),
                                                                      Text("Phone      : ",style: GoogleFonts.poppins(
-                                                                         color: pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                         color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      Text("789456213",style: GoogleFonts.poppins(
-                                                                         color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                         color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                    ],
                                                                  ),
                                                                ],
@@ -2287,7 +2287,7 @@ class _SetupState extends State<Setup> {
 
                                                                        child: Image.asset("assets/sign.png")),
                                                                    Text("Principle",style: GoogleFonts.poppins(
-                                                                       color: Colors.black, fontSize: 10,fontWeight: FontWeight.w700),),
+                                                                       color: Colors.black, fontSize: width/136.6,fontWeight: FontWeight.w700),),
                                                                  ],
                                                                ),
                                                              ],
@@ -2338,12 +2338,12 @@ class _SetupState extends State<Setup> {
                                                    Padding(
                                                      padding: const EdgeInsets.only(left: 10.0),
                                                      child: Text(schoolname.text,style: GoogleFonts.poppins(
-                                                         color: pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                         color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                    ),
                                                    Padding(
                                                      padding: const EdgeInsets.only(left: 10.0),
                                                      child: Text("Let the joy begins",style: GoogleFonts.poppins(
-                                                         color: pickerColor2, fontSize: 8,fontWeight: FontWeight.w400),),
+                                                         color: pickerColor2, fontSize: width/170.75,fontWeight: FontWeight.w400),),
                                                    ),
                                                    SizedBox(height: 40,),
 
@@ -2353,7 +2353,7 @@ class _SetupState extends State<Setup> {
                                                          color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                    ),
                                                    Text("",style: GoogleFonts.poppins(
-                                                       color: Color(0xff0271C5), fontSize: 12,fontWeight: FontWeight.w600),),
+                                                       color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                    SizedBox(height: 10,),
                                                    Row(
                                                      children: [
@@ -2361,10 +2361,10 @@ class _SetupState extends State<Setup> {
                                                        Container(
                                                          width: 110,
                                                          child: Text("Parent Phone : ",style: GoogleFonts.poppins(
-                                                             color: pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
                                                        Text("9944861235",style: GoogleFonts.poppins(
-                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      ],
                                                    ),
                                                    Row(
@@ -2375,10 +2375,10 @@ class _SetupState extends State<Setup> {
                                                          width: 110,
                                                          child: Text("Address : ",style: GoogleFonts.poppins(
 
-                                                             color: pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
                                                        Text("No120/2 Kolathur \nChennai",style: GoogleFonts.poppins(
-                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      ],
                                                    ),
                                                    Row(
@@ -2387,10 +2387,10 @@ class _SetupState extends State<Setup> {
                                                        Container(
                                                          width: 110,
                                                          child: Text("Contact US : ",style: GoogleFonts.poppins(
-                                                             color: pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
                                                        Text("45845614534",style: GoogleFonts.poppins(
-                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      ],
                                                    ),
                                                    Row(
@@ -2400,10 +2400,10 @@ class _SetupState extends State<Setup> {
                                                        Container(
                                                          width: 110,
                                                          child: Text("School Address : ",style: GoogleFonts.poppins(
-                                                             color: pickerColor2, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
                                                        Text("No120/2 Kolathur \nChennai",style: GoogleFonts.poppins(
-                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      ],
                                                    ),
                                                    Row(
@@ -2429,7 +2429,7 @@ class _SetupState extends State<Setup> {
                                            crossAxisAlignment: CrossAxisAlignment.start,
                                            children: [
                                              SizedBox(height: 10,),
-                                             Text("Card Design 2",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 20),),
+                                             Text("Card Design 2",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                              Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                                              Container(
@@ -2520,11 +2520,11 @@ class _SetupState extends State<Setup> {
                                                                  Text(schoolname.text,style: GoogleFonts.poppins(
                                                                      color: pickerColor3, fontSize: 15,fontWeight: FontWeight.w600),),
                                                                  Text("Phone: +91 9977888456",style: GoogleFonts.poppins(
-                                                                     color: pickerColor3, fontSize: 9,fontWeight: FontWeight.w400),),
+                                                                     color: pickerColor3, fontSize: width/151.777777778,fontWeight: FontWeight.w400),),
                                                                  Text("Anna Nagar, Chennai- 600062",style: GoogleFonts.poppins(
-                                                                     color: pickerColor3, fontSize: 9,fontWeight: FontWeight.w400),),
+                                                                     color: pickerColor3, fontSize: width/151.777777778,fontWeight: FontWeight.w400),),
                                                                  Text("www.school.in",style: GoogleFonts.poppins(
-                                                                     color: pickerColor3, fontSize: 9,fontWeight: FontWeight.w400),),
+                                                                     color: pickerColor3, fontSize: width/151.777777778,fontWeight: FontWeight.w400),),
 
 
                                                                ],
@@ -2575,16 +2575,16 @@ class _SetupState extends State<Setup> {
                                                                    Padding(
                                                                      padding: const EdgeInsets.only(left:15.0),
                                                                      child: Text("ID: VBSB004",style: GoogleFonts.poppins(
-                                                                         color:  pickerColor3, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                         color:  pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                    ),
                                                                    SizedBox(height: 10,),
                                                                    Row(
                                                                      children: [
                                                                        SizedBox(width: 20,),
                                                                        Text("Class       : ",style: GoogleFonts.poppins(
-                                                                           color: pickerColor3, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                           color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                        Text("LKG A",style: GoogleFonts.poppins(
-                                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      ],
                                                                    ),
                                                                    Row(
@@ -2592,27 +2592,27 @@ class _SetupState extends State<Setup> {
                                                                        SizedBox(width: 20,),
                                                                        Text("DOB          : ",style: GoogleFonts.poppins(
 
-                                                                           color: pickerColor3, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                           color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                        Text("05/05/2002",style: GoogleFonts.poppins(
-                                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      ],
                                                                    ),
                                                                    Row(
                                                                      children: [
                                                                        SizedBox(width: 20,),
                                                                        Text("Blood       : ",style: GoogleFonts.poppins(
-                                                                           color:pickerColor3, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                           color:pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                        Text("B+ve",style: GoogleFonts.poppins(
-                                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      ],
                                                                    ),
                                                                    Row(
                                                                      children: [
                                                                        SizedBox(width: 20,),
                                                                        Text("Phone      : ",style: GoogleFonts.poppins(
-                                                                           color: pickerColor3, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                           color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                        Text("789456213",style: GoogleFonts.poppins(
-                                                                           color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                           color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      ],
                                                                    ),
                                                                  ]
@@ -2656,7 +2656,7 @@ class _SetupState extends State<Setup> {
 
                                                                Opacity(
                                                                    opacity:0.39,
-                                                                   child: Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),)),
+                                                                   child: Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: width/195.142857143),)),
                                                                SizedBox(height:7),
                                                              ],
                                                            ),
@@ -2687,11 +2687,11 @@ class _SetupState extends State<Setup> {
                                                                    Text(schoolname.text,style: GoogleFonts.poppins(
                                                                        color: pickerColor3, fontSize: 15,fontWeight: FontWeight.w600),),
                                                                    Text("Phone: +91 9977888456",style: GoogleFonts.poppins(
-                                                                       color: pickerColor3, fontSize: 9,fontWeight: FontWeight.w400),),
+                                                                       color: pickerColor3, fontSize: width/151.777777778,fontWeight: FontWeight.w400),),
                                                                    Text("Anna Nagar, Chennai- 600062",style: GoogleFonts.poppins(
-                                                                       color: pickerColor3, fontSize: 9,fontWeight: FontWeight.w400),),
+                                                                       color: pickerColor3, fontSize: width/151.777777778,fontWeight: FontWeight.w400),),
                                                                    Text("www.school.in",style: GoogleFonts.poppins(
-                                                                       color: pickerColor3, fontSize: 9,fontWeight: FontWeight.w400),),
+                                                                       color: pickerColor3, fontSize: width/151.777777778,fontWeight: FontWeight.w400),),
 
 
                                                                  ],
@@ -2716,10 +2716,10 @@ class _SetupState extends State<Setup> {
                                                                Container(
                                                                  width: 110,
                                                                  child: Text("Parent Phone : ",style: GoogleFonts.poppins(
-                                                                     color: pickerColor3, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                     color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                ),
                                                                Text("9944861235",style: GoogleFonts.poppins(
-                                                                   color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                   color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                              ],
                                                            ),
                                                            Row(
@@ -2730,10 +2730,10 @@ class _SetupState extends State<Setup> {
                                                                  width: 110,
                                                                  child: Text("Address : ",style: GoogleFonts.poppins(
 
-                                                                     color: pickerColor3, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                     color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                ),
                                                                Text("No120/2 Kolathur \nChennai",style: GoogleFonts.poppins(
-                                                                   color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                   color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                              ],
                                                            ),
                                                            Row(
@@ -2742,10 +2742,10 @@ class _SetupState extends State<Setup> {
                                                                Container(
                                                                  width: 110,
                                                                  child: Text("Contact US : ",style: GoogleFonts.poppins(
-                                                                     color: pickerColor3, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                     color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                ),
                                                                Text("45845614534",style: GoogleFonts.poppins(
-                                                                   color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                   color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                              ],
                                                            ),
                                                            Row(
@@ -2755,10 +2755,10 @@ class _SetupState extends State<Setup> {
                                                                Container(
                                                                  width: 110,
                                                                  child: Text("School Address : ",style: GoogleFonts.poppins(
-                                                                     color: pickerColor3, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                     color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                ),
                                                                Text("No120/2 Kolathur Chennai",style: GoogleFonts.poppins(
-                                                                   color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                   color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                              ],
                                                            ),
 
@@ -2781,7 +2781,7 @@ class _SetupState extends State<Setup> {
                                            crossAxisAlignment: CrossAxisAlignment.start,
                                            children: [
                                              SizedBox(height: 10,),
-                                             Text("Card Design 3",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 20),),
+                                             Text("Card Design 3",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                              Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                                              Container(
@@ -2889,7 +2889,7 @@ class _SetupState extends State<Setup> {
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
                                          Icon(Icons.camera_alt_rounded,size: 50,),
-                                         Text("Select Logo",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),)
+                                         Text("Select Logo",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),)
                                        ],
                                      ) : Image.network(imgUrl): Center(
                                        child: CircularProgressIndicator(),
@@ -3096,11 +3096,11 @@ class _SetupState extends State<Setup> {
                                      children: [
                                        Padding(
                                          padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                         child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                         child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                        ),
                                        Padding(
                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                         child: Text("Fee Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                         child: Text("Fee Name",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                        ),
                                      ],
                                    ),

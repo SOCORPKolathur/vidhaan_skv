@@ -46,7 +46,7 @@ class _NotificationCusState extends State<NotificationCus> {
                     Text(
                       'Send Circulars',
                       style: TextStyle(
-                        fontSize: 45,
+                        fontSize: width/30.355555556,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -77,7 +77,7 @@ class _NotificationCusState extends State<NotificationCus> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Send To",style: GoogleFonts.poppins(
-                        fontSize: 20,
+                        fontSize: width/68.3,
                       fontWeight: FontWeight.w700
                     ),),
                     Container(
@@ -105,7 +105,7 @@ class _NotificationCusState extends State<NotificationCus> {
                                 child: Text(
                                   'Send to',
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15
+                                      fontSize: width/91.066666667
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -118,7 +118,7 @@ class _NotificationCusState extends State<NotificationCus> {
                             child: Text(
                               item,
                               style:  GoogleFonts.poppins(
-                                  fontSize: 15
+                                  fontSize: width/91.066666667
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -190,7 +190,7 @@ class _NotificationCusState extends State<NotificationCus> {
                           filled: true,
                           fillColor: Colors.blueGrey.shade50,
 
-                          labelStyle: TextStyle(fontSize: 12),
+                          labelStyle: TextStyle(fontSize: width/113.833333333),
                           contentPadding: EdgeInsets.only(left: 30),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.blueGrey.shade50),
@@ -225,7 +225,7 @@ class _NotificationCusState extends State<NotificationCus> {
                           decoration: InputDecoration(
                             hintText: ' Description',
                             border: InputBorder.none,
-                            labelStyle: TextStyle(fontSize: 12),
+                            labelStyle: TextStyle(fontSize: width/113.833333333),
                             contentPadding: EdgeInsets.only(left: 30),
 
                           ),

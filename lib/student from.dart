@@ -129,7 +129,7 @@ class _StudentFromState extends State<StudentFrom> {
             padding: const EdgeInsets.only(left: 20.0),
             child: Container(child: Padding(
               padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Text("Add New Students",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+              child: Text("Add New Students",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
             ),
               //color: Colors.white,
               width: width/1.050,
@@ -156,14 +156,14 @@ class _StudentFromState extends State<StudentFrom> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Reg Number",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Reg Number",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
                                 child: Container(child: TextField(
                                   controller: regno,
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15
+                                      fontSize: width/91.066666667
                                   ),
                                   decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                     border: InputBorder.none,
@@ -185,14 +185,14 @@ class _StudentFromState extends State<StudentFrom> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Entry Date",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Entry Date",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
                                 child: Container(child: TextField(
                                   controller:  entrydate,
                                   style: GoogleFonts.poppins(
-                                    fontSize: 15
+                                    fontSize: width/91.066666667
                                   ),
                                   decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,top: 8),
                                     border: InputBorder.none,
@@ -217,7 +217,7 @@ class _StudentFromState extends State<StudentFrom> {
 
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Admit Class *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Admit Class *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -235,7 +235,7 @@ class _StudentFromState extends State<StudentFrom> {
 
                                   textFieldConfiguration: TextFieldConfiguration(
                                     style:  GoogleFonts.poppins(
-                                      fontSize: 15
+                                      fontSize: width/91.066666667
                                   ),
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -280,7 +280,7 @@ class _StudentFromState extends State<StudentFrom> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Section",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 25.0),
@@ -297,7 +297,7 @@ class _StudentFromState extends State<StudentFrom> {
 
                                   textFieldConfiguration: TextFieldConfiguration(
                                     style:  GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -340,7 +340,7 @@ class _StudentFromState extends State<StudentFrom> {
 
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -357,7 +357,7 @@ class _StudentFromState extends State<StudentFrom> {
 
                                   textFieldConfiguration: TextFieldConfiguration(
                                     style:  GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -406,14 +406,14 @@ class _StudentFromState extends State<StudentFrom> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 0,right:0),
-                                child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Student Name",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right:25),
                                 child: Container(child: TextField(
                                   controller: stname,
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15
+                                      fontSize: width/91.066666667
                                   ),
                                   decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom:8),
                                     border: InputBorder.none,
@@ -434,14 +434,14 @@ class _StudentFromState extends State<StudentFrom> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 0.0,right:0),
-                                child: Text("Father Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Father Name",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 25.0),
                                 child: Container(child: TextField(
                                     controller: fathername,
                                     style: GoogleFonts.poppins(
-                                    fontSize: 15
+                                    fontSize: width/91.066666667
                                 ),
                                   decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                     border: InputBorder.none,
@@ -464,7 +464,7 @@ class _StudentFromState extends State<StudentFrom> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 0,left: 0),
-                                child: Text("Mother Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Mother Name",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
 
                               Padding(
@@ -472,7 +472,7 @@ class _StudentFromState extends State<StudentFrom> {
                                 child: Container(child: TextField(
                                     controller:mothername,
                                     style: GoogleFonts.poppins(
-                                    fontSize: 15
+                                    fontSize: width/91.066666667
                                 ),
                                   decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                     border: InputBorder.none,
@@ -506,7 +506,7 @@ class _StudentFromState extends State<StudentFrom> {
                         children: [
                           /*Padding(
                             padding: const EdgeInsets.only(left:10.0,bottom:10),
-                            child: Text("Add New Parent",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 18),),
+                            child: Text("Add New Parent",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/75.888888889),),
                           ),*/
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
@@ -517,7 +517,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left:0.0),
-                                      child: Text("Blood Group",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Blood Group",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right:25.0),
@@ -542,7 +542,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left:0.0),
-                                      child: Text("Date of Birth ",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Date of Birth ",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right: 25.0),
@@ -567,7 +567,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Gender",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Gender",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
 
                                     Padding(
@@ -585,7 +585,7 @@ class _StudentFromState extends State<StudentFrom> {
 
                                         textFieldConfiguration: TextFieldConfiguration(
                                           style:  GoogleFonts.poppins(
-                                              fontSize: 15
+                                              fontSize: width/91.066666667
                                           ),
                                           decoration: InputDecoration(
                                             contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -628,7 +628,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Community",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Community",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right:25.0),
@@ -652,7 +652,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Sub Caste",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Sub Caste",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right:25.0),
@@ -684,7 +684,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left:0.0),
-                                      child: Text("Religion",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Religion",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right:25.0),
@@ -709,7 +709,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left:0.0),
-                                      child: Text("Mobile No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Mobile No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right: 25.0),
@@ -734,7 +734,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Email",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Email",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
 
                                     Padding(
@@ -760,7 +760,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Address",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Address",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right:25.0),
@@ -793,7 +793,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left:0.0),
-                                      child: Text("Identification Mark",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Identification Mark",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right:25.0),
@@ -818,7 +818,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left:0.0),
-                                      child: Text("Parent Occupation",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Parent Occupation",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right: 25.0),
@@ -843,7 +843,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Annual Income",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Annual Income",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
 
                                     Padding(
@@ -869,7 +869,7 @@ class _StudentFromState extends State<StudentFrom> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Aadhaar No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Aadhaar No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right:25.0),
@@ -921,7 +921,7 @@ class _StudentFromState extends State<StudentFrom> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(left:48.0),
-                                    child: Text("Upload Student Photo(150pxX150px",style: GoogleFonts.poppins(fontSize: 15),),
+                                    child: Text("Upload Student Photo(150pxX150px",style: GoogleFonts.poppins(fontSize: width/91.066666667),),
                                   ),
                                   Row(
                                     children: [
@@ -932,7 +932,7 @@ class _StudentFromState extends State<StudentFrom> {
                                           });
                                           uploadToStorage();
                                         },
-                                        child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: 16))),
+                                        child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: width/85.375))),
                                           width: width/10.507,
                                           height: height/16.425,
                                           // color: Color(0xffDDDEEE),
@@ -941,7 +941,7 @@ class _StudentFromState extends State<StudentFrom> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: 13),),
+                                        child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: width/105.076923077),),
                                       )
                                     ],
                                   ),

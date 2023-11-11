@@ -50,7 +50,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Payroll Reports for ${DateFormat('MMM yyyy').format(DateTime.now().subtract(Duration(days: 31)))}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                  Text("Payroll Reports for ${DateFormat('MMM yyyy').format(DateTime.now().subtract(Duration(days: 31)))}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0,right: 25),
                     child: IconButton(
@@ -364,7 +364,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                            crossAxisAlignment: CrossAxisAlignment.center,
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
-                             Text("Payroll Reports for ${DateFormat('MMM yyyy').format(DateTime.now().subtract(Duration(days: 31)))}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                             Text("Payroll Reports for ${DateFormat('MMM yyyy').format(DateTime.now().subtract(Duration(days: 31)))}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                              Padding(
                                padding: const EdgeInsets.only(left: 20.0,right: 25),
                                child: GestureDetector(
@@ -384,7 +384,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                      child: Text(
                                        "View Previous Reports",
                                        style: GoogleFonts.poppins(
-                                           fontSize: 18,
+                                           fontSize: width/75.888888889,
                                            fontWeight: FontWeight.w500,
                                            color: Colors.white,
                                        ),
@@ -422,7 +422,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                               child: Text(
                                                 "Generate for ${DateFormat('MMM yyyy').format(DateTime.now().subtract(Duration(days: 31)))}",
                                                 style: GoogleFonts.poppins(
-                                                    fontSize: 18,
+                                                    fontSize: width/75.888888889,
                                                     fontWeight: FontWeight.w500,
                                                     color: Colors.white,
                                                 ),

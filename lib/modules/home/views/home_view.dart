@@ -11,6 +11,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     log(homecontroller.clientusers.length.toString());
     return Scaffold(
       body: Center(
@@ -19,7 +20,7 @@ class MainScreen extends StatelessWidget {
           children: [
             Text(
               "Admin ",
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: width/45.533333333),
             ),
             Padding(
               padding: const EdgeInsets.all(14.0),

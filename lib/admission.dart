@@ -60,7 +60,7 @@ class _admissionState extends State<admission> {
                         child: Text("Admissions Enquiries",
                             style: GoogleFonts.poppins(
                                 color: Color(0xff000000),
-                                fontSize: 20,
+                                fontSize: width/68.3,
                                 fontWeight: FontWeight.bold)),
                       ),
                       Padding(
@@ -380,7 +380,7 @@ class _admissionState extends State<admission> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:  Text('Admissions Details',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),
+          title:  Text('Admissions Details',style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight: FontWeight.bold),
           ),
           content: FutureBuilder(
             future:  FirebaseFirestore.instance.collection("Admission").doc(docid).get(),
@@ -404,16 +404,16 @@ class _admissionState extends State<admission> {
                               width: 180,
                                 child: Text(
                                   "Name:  ",
-                                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                                 ),
                             ),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
                                 width: 200,
-                                child: Text(val!["name"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val!["name"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
                           ],
                         ),
                         Padding(
@@ -423,14 +423,14 @@ class _admissionState extends State<admission> {
                             children: [
                               Container(
                                   width: 180,
-                                  child: Text("DOB",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),)),
+                                  child: Text("DOB",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                               Text(
                                 ":   ",
-                                style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                                style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                               ),
                               Container(
                                   width: 200,
-                                  child: Text(val["dob"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                  child: Text(val["dob"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
                             ],
                           ),
                         ),
@@ -439,14 +439,14 @@ class _admissionState extends State<admission> {
                           children: [
                             Container(
                                 width: 180,
-                                child: Text("Previous Class",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),)),
+                                child: Text("Previous Class",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
                                 width: 200,
-                                child: Text(val["previousclass"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["previousclass"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),
@@ -457,14 +457,14 @@ class _admissionState extends State<admission> {
                             children: [
                               Container(
                                   width: 180,
-                                  child: Text("Previous School",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),)),
+                                  child: Text("Previous School",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                               Text(
                                 ":   ",
-                                style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                                style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                               ),
                               Container(
                                   width: 200,
-                                  child: Text(val["previousschool"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                  child: Text(val["previousschool"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
                             ],
                           ),
                         ),
@@ -473,15 +473,15 @@ class _admissionState extends State<admission> {
                           children: [
                             Container(
                                 width: 180,
-                                child: Text("Curriculum",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),)),
+                                child: Text("Curriculum",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
 
                                 width: 200,
-                                child: Text(val["curriculum"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["curriculum"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
                           ],
                         ),
                         Padding(
@@ -491,15 +491,15 @@ class _admissionState extends State<admission> {
                             children: [
                               Container(
                                   width: 180,
-                                  child: Text("Reason for transfer",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),)),
+                                  child: Text("Reason for transfer",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                               Text(
                                 ":   ",
-                                style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                                style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                               ),
                               Container(
 
                                   width: 200,
-                                  child: Text(val["reason"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                  child: Text(val["reason"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                             ],
                           ),
@@ -509,15 +509,15 @@ class _admissionState extends State<admission> {
                           children: [
                             Container(
                                 width: 180,
-                                child: Text("Contact number",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),)),
+                                child: Text("Contact number",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
 
                                 width: 200,
-                                child: Text(val["contact"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["contact"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),
@@ -526,15 +526,15 @@ class _admissionState extends State<admission> {
                           children: [
                             Container(
                                 width: 180,
-                                child: Text("Email",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),)),
+                                child: Text("Email",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
 
                                 width: 200,
-                                child: Text(val["email"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["email"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),
@@ -543,14 +543,14 @@ class _admissionState extends State<admission> {
                           children: [
                             Container(
                                 width: 180,
-                                child: Text("Residential address",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),)),
+                                child: Text("Residential address",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
                                 width: 200,
-                                child: Text(val["address"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["address"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),
@@ -573,17 +573,17 @@ class _admissionState extends State<admission> {
                                 child: Text(
                                   "Father name",
                                   style: GoogleFonts.poppins(
-                                      fontSize: 12,
+                                      fontSize: width/113.833333333,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
                               Text(
                                 ":   ",
-                                style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                                style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                               ),
                               Container(
                                   width: 200,
-                                  child: Text(val["father"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                  child: Text(val["father"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                             ],
                           ),
@@ -596,18 +596,18 @@ class _admissionState extends State<admission> {
                               child: Text(
                                 "Occupation",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 12,
+                                    fontSize: width/113.833333333,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
 
                                 width: 200,
-                                child: Text(val["fatheroccupation"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["fatheroccupation"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),
@@ -621,19 +621,19 @@ class _admissionState extends State<admission> {
                                 child: Text(
                                   "Qualification",
                                   style: GoogleFonts.poppins(
-                                      fontSize: 12,
+                                      fontSize: width/113.833333333,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
 
                                 width: 200,
-                                child: Text(val["fatherqualification"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["fatherqualification"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),
@@ -645,18 +645,18 @@ class _admissionState extends State<admission> {
                               child: Text(
                                 "Mother name",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 12,
+                                    fontSize: width/113.833333333,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
                                 width: 200,
 
-                                child: Text(val["mother"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["mother"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),
@@ -670,19 +670,19 @@ class _admissionState extends State<admission> {
                                 child: Text(
                                   "Occupation",
                                   style: GoogleFonts.poppins(
-                                      fontSize: 12,
+                                      fontSize: width/113.833333333,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
 
                                 width: 200,
-                                child: Text(val["motheroccupation"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["motheroccupation"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),
@@ -696,19 +696,19 @@ class _admissionState extends State<admission> {
                                 child: Text(
                                   "Qualification",
                                   style: GoogleFonts.poppins(
-                                      fontSize: 12,
+                                      fontSize: width/113.833333333,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
 
                                 width: 200,
-                                child: Text(val["motherqualification"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["motherqualification"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),
@@ -722,18 +722,18 @@ class _admissionState extends State<admission> {
                                 child: Text(
                                   "Annual income",
                                   style: GoogleFonts.poppins(
-                                      fontSize: 12,
+                                      fontSize: width/113.833333333,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
                             Text(
                               ":   ",
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
                                 width: 200,
-                                child: Text(val["annualincome"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),)),
+                                child: Text(val["annualincome"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
                         ),

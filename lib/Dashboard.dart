@@ -2398,7 +2398,7 @@ checkdemo() async {
 
                                             p.Text("Emergency Contact No",style: p.TextStyle(
                                                 font: fontsemipoppoins,
-                                                color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),),
 
                                             p.Container(
                                                 width:90,
@@ -2409,11 +2409,11 @@ checkdemo() async {
 
                                             p.Text("+91 ${emgphonelist[index][5]}",style: p.TextStyle(
                                                 font: fontregpoppoins,
-                                                color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),),
                                             p.SizedBox(height:5),
                                             p.Text("Address",style: p.TextStyle(
                                                 font: fontsemipoppoins,
-                                                color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),),
 
                                             p.Container(
                                                 width:90,
@@ -2426,7 +2426,7 @@ checkdemo() async {
                                               width:150,
                                               child: p.Text(getCapitalizedName(addresslist[index][5]),style: p.TextStyle(
                                                   font: fontregpoppoins,
-                                                  color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                  color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
                                             ),
                                             p.SizedBox(height: 2,),
 
@@ -2447,7 +2447,7 @@ checkdemo() async {
 
                                                       p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
                                                           font: fontsemimon,
-                                                          color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+                                                          color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal)),
 
                                                     ],
                                                   ),
@@ -2521,7 +2521,7 @@ checkdemo() async {
 
                                             p.Text("Emergency Contact No",style: p.TextStyle(
                                                 font: fontsemipoppoins,
-                                                color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),),
 
                                             p.Container(
                                                 width:90,
@@ -2532,11 +2532,11 @@ checkdemo() async {
 
                                             p.Text("+91 ${emgphonelist[index][6]}",style: p.TextStyle(
                                                 font: fontregpoppoins,
-                                                color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),),
                                             p.SizedBox(height:5),
                                             p.Text("Address",style: p.TextStyle(
                                                 font: fontsemipoppoins,
-                                                color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),),
 
                                             p.Container(
                                                 width:90,
@@ -2549,7 +2549,7 @@ checkdemo() async {
                                               width:150,
                                               child: p.Text(getCapitalizedName(addresslist[index][6]),style: p.TextStyle(
                                                   font: fontregpoppoins,
-                                                  color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                  color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
                                             ),
                                             p.SizedBox(height: 2,),
 
@@ -2570,7 +2570,7 @@ checkdemo() async {
 
                                                       p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
                                                           font: fontsemimon,
-                                                          color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal)),
+                                                          color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal)),
 
                                                     ],
                                                   ),
@@ -2644,7 +2644,7 @@ checkdemo() async {
 
                                             p.Text("Emergency Contact No",style: p.TextStyle(
                                                 font: fontsemipoppoins,
-                                                color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),),
 
                                             p.Container(
                                                 width:90,
@@ -2655,11 +2655,11 @@ checkdemo() async {
 
                                             p.Text("+91 ${emgphonelist[index][7]}",style: p.TextStyle(
                                                 font: fontregpoppoins,
-                                                color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),),
                                             p.SizedBox(height:5),
                                             p.Text("Address",style: p.TextStyle(
                                                 font: fontsemipoppoins,
-                                                color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),),
+                                                color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),),
 
                                             p.Container(
                                                 width:90,
@@ -2672,7 +2672,7 @@ checkdemo() async {
                                               width:150,
                                               child: p.Text(getCapitalizedName(addresslist[index][7]),style: p.TextStyle(
                                                   font: fontregpoppoins,
-                                                  color: PdfColors.black, fontSize: 7,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
+                                                  color: PdfColors.black, fontSize: width/195.142857143,fontWeight: p.FontWeight.normal),textAlign: p.TextAlign.center),
                                             ),
                                             p.SizedBox(height: 2,),
 
@@ -3981,7 +3981,7 @@ setState(() {
                                   title: Text(
                                     "Dashboard",
                                     style: GoogleFonts.poppins(
-                                        fontSize: 12,
+                                        fontSize: width/113.833333333,
                                         fontWeight: FontWeight.bold,
                                         color: dawer == 0 ?  Colors.white : Color(0xff9197B3)),
                                   ),
@@ -4041,7 +4041,7 @@ setState(() {
                                     child: Image.asset("assets/icon2.png",color: dawer == 1 ?  Colors.white : Color(0xff9197B3),),
                                   ),
                                   title: Text("Admission",style: GoogleFonts.poppins(
-                                      fontSize: 13,
+                                      fontSize: width/105.076923077,
                                       fontWeight: FontWeight.bold,
                                       color: dawer == 1?  Colors.white : Color(0xff9197B3)),
                                   ),
@@ -4053,7 +4053,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Admission Enquiries",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 1?  Colors.white : Color(0xff9197B3)),
                                         )),
@@ -4065,7 +4065,7 @@ setState(() {
 
                                         },
                                         title: Text("Students Admission Entry",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 1?  Colors.white : Color(0xff9197B3)),
                                         )),
@@ -4077,7 +4077,7 @@ setState(() {
 
                                         },
                                         title: Text("Students ID CARD",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 1?  Colors.white : Color(0xff9197B3)),
                                         )),
@@ -4132,7 +4132,7 @@ setState(() {
                                 child: Image.asset("assets/icon3.png",color: dawer == 2 ?  Colors.white : Color(0xff9197B3),),
                               ),
                                     title: Text("Students",style: GoogleFonts.poppins(
-                                        fontSize: 13,
+                                        fontSize: width/105.076923077,
                                         fontWeight: FontWeight.bold,
                                         color: dawer == 2?  Colors.white : Color(0xff9197B3)),
                                     ),
@@ -4145,7 +4145,7 @@ setState(() {
 
                               },
                                         title: Text("Students List",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 2?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4157,7 +4157,7 @@ setState(() {
 
                               },
                                         title: Text("Progress Reports",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 2?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4168,7 +4168,7 @@ setState(() {
                                             _bulkuploadstudent();
                                           },
                                           title: Text("Bulk Upload Students",style: GoogleFonts.poppins(
-                                              fontSize: 12,
+                                              fontSize: width/113.833333333,
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 2?  Colors.white : Color(0xff9197B3)),
                                           )),
@@ -4222,7 +4222,7 @@ setState(() {
                                   color: dawer == 3 ?  Colors.white : Color(0xff9197B3),
                                 ),),
                                     title: Text("Staff",style: GoogleFonts.poppins(
-                                        fontSize: 13,
+                                        fontSize: width/105.076923077,
                                         fontWeight: FontWeight.bold,
                                         color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                     ),
@@ -4234,7 +4234,7 @@ setState(() {
                                             });
                                           },
                                         title: Text("Staff Entry",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4245,7 +4245,7 @@ setState(() {
                                             });
                                           },
                                           title: Text("Staff List",style: GoogleFonts.poppins(
-                                              fontSize: 12,
+                                              fontSize: width/113.833333333,
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                           )),
@@ -4256,7 +4256,7 @@ setState(() {
                                             });
                                           },
                                         title: Text("Staff ID Card",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                       )),*/
@@ -4267,7 +4267,7 @@ setState(() {
                                             });
                                           },
                                           title: Text("Class Teacher/In-charge",style: GoogleFonts.poppins(
-                                              fontSize: 12,
+                                              fontSize: width/113.833333333,
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                           )),
@@ -4278,7 +4278,7 @@ setState(() {
                                         collapsedIconColor: Colors.white,
 
                                         title: Text("Staff Masters",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                         ),
@@ -4292,7 +4292,7 @@ setState(() {
                                                 });
                                               },
                                               title: Text("Designation",style: GoogleFonts.poppins(
-                                                  fontSize: 12,
+                                                  fontSize: width/113.833333333,
                                                   fontWeight: FontWeight.w600,
                                                   color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                               )),
@@ -4308,7 +4308,7 @@ setState(() {
                                             _bulkuploadstudent();
                                           },
                                           title: Text("Bulk Upload Staff",style: GoogleFonts.poppins(
-                                              fontSize: 12,
+                                              fontSize: width/113.833333333,
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 3?  Colors.white : Color(0xff9197B3)),
                                           )),
@@ -4369,7 +4369,7 @@ setState(() {
                                   title: Text(
                                     "Time Table",
                                     style: GoogleFonts.poppins(
-                                        fontSize: 12,
+                                        fontSize: width/113.833333333,
                                         fontWeight: FontWeight.bold,
                                         color: dawer == 10 ?  Colors.white : Color(0xff9197B3)),
                                   ),
@@ -4382,7 +4382,7 @@ setState(() {
                                       title: Text(
                                         "Assign Time Table",
                                         style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.bold,
                                             color: dawer == 10 ?  Colors.white : Color(0xff9197B3)),
                                       ),
@@ -4406,7 +4406,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Subject Teachers",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 10?  Colors.white : Color(0xff9197B3)),
                                         )),
@@ -4421,7 +4421,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Staff TimeTable",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 10?  Colors.white : Color(0xff9197B3)),
                                         )),
@@ -4436,7 +4436,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Classwise TimeTable",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 10?  Colors.white : Color(0xff9197B3)),
                                         )),
@@ -4448,13 +4448,13 @@ setState(() {
                                           });
                                         },
                                         title: Text("Substitution Teachers",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 10?  Colors.white : Color(0xff9197B3)),
                                         )),
                                     /*  ListTile(
                                           title: Text("Individual SMS",style: GoogleFonts.poppins(
-                                              fontSize: 12,
+                                              fontSize: width/113.833333333,
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 9?  Colors.white : Color(0xff9197B3)),
                                           )),
@@ -4511,7 +4511,7 @@ setState(() {
                                   color: dawer == 4 ?  Colors.white : Color(0xff9197B3),
                                 ),),
                                     title: Text("Attendance",style: GoogleFonts.poppins(
-                                        fontSize: 13,
+                                        fontSize: width/105.076923077,
                                         fontWeight: FontWeight.bold,
                                         color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                     ),
@@ -4523,7 +4523,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Student Attendance ",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4535,7 +4535,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Staff Attendance",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4546,7 +4546,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Leave Management",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4555,7 +4555,7 @@ setState(() {
                                         collapsedIconColor: Colors.white,
 
                                         title: Text("Student reports",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                         ),
@@ -4570,7 +4570,7 @@ setState(() {
                                             child: Padding(
                                               padding: const EdgeInsets.all(8.0),
                                               child: Text("Irregular Student",style: GoogleFonts.poppins(
-                                                  fontSize: 12,
+                                                  fontSize: width/113.833333333,
                                                   fontWeight: FontWeight.w600,
                                                   color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                               ),
@@ -4579,7 +4579,7 @@ setState(() {
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("Regular Student",style: GoogleFonts.poppins(
-                                                fontSize: 12,
+                                                fontSize: width/113.833333333,
                                                 fontWeight: FontWeight.w600,
                                                 color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                             ),
@@ -4587,7 +4587,7 @@ setState(() {
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("Class Wise",style: GoogleFonts.poppins(
-                                                fontSize: 12,
+                                                fontSize: width/113.833333333,
                                                 fontWeight: FontWeight.w600,
                                                 color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                             ),
@@ -4601,7 +4601,7 @@ setState(() {
                                         collapsedIconColor: Colors.white,
 
                                         title: Text("Staff Reports",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                         ),
@@ -4610,7 +4610,7 @@ setState(() {
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("Position Wise",style: GoogleFonts.poppins(
-                                                fontSize: 12,
+                                                fontSize: width/113.833333333,
                                                 fontWeight: FontWeight.w600,
                                                 color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                             ),
@@ -4672,7 +4672,7 @@ setState(() {
                                     title: Text(
                                       "Fees",
                                       style: GoogleFonts.poppins(
-                                          fontSize: 12,
+                                          fontSize: width/113.833333333,
                                           fontWeight: FontWeight.bold,
                                           color: dawer == 5 ?  Colors.white : Color(0xff9197B3)),
                                     ),
@@ -4685,7 +4685,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Fee Payment Reg",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 5?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4696,7 +4696,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Assign Fees",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 5?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4707,7 +4707,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Fee Creation",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 5?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4720,7 +4720,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Fees Reports",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 5?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4779,7 +4779,7 @@ setState(() {
                                     title: Text(
                                       "Exams",
                                       style: GoogleFonts.poppins(
-                                          fontSize: 12,
+                                          fontSize: width/113.833333333,
                                           fontWeight: FontWeight.bold,
                                           color: dawer == 6 ?  Colors.white : Color(0xff9197B3)),
                                     ),
@@ -4791,7 +4791,7 @@ setState(() {
                                           });
                                           },
                                         title: Text("Exam Time Table",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 6?  Colors.white : Color(0xff9197B3)),
                                       )
@@ -4803,7 +4803,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Exam Subject Master",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 6?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4814,7 +4814,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Add Exam",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 6?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4825,7 +4825,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Exam Reports",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 6?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4884,7 +4884,7 @@ setState(() {
                                     title: Text(
                                       "HR ",
                                       style: GoogleFonts.poppins(
-                                          fontSize: 12,
+                                          fontSize: width/113.833333333,
                                           fontWeight: FontWeight.bold,
                                           color: dawer == 8 ?  Colors.white : Color(0xff9197B3)),
                                     ),
@@ -4897,7 +4897,7 @@ setState(() {
 
                               },
                                         title: Text("Payroll Generation",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 8?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4908,7 +4908,7 @@ setState(() {
                                           });
                                         },
                                         title: Text("Payroll Reports",style: GoogleFonts.poppins(
-                                            fontSize: 12,
+                                            fontSize: width/113.833333333,
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 8?  Colors.white : Color(0xff9197B3)),
                                       )),
@@ -4945,7 +4945,7 @@ setState(() {
                                   title: Text(
                                     "Accounts",
                                     style: GoogleFonts.poppins(
-                                        fontSize: 12,
+                                        fontSize: width/113.833333333,
                                         fontWeight: FontWeight.bold,
                                         color: dawer == 7 ?  Colors.white : Color(0xff9197B3)),
                                   ),
@@ -5014,7 +5014,7 @@ setState(() {
                                     title: Text(
                                       "Notices",
                                       style: GoogleFonts.poppins(
-                                          fontSize: 12,
+                                          fontSize: width/113.833333333,
                                           fontWeight: FontWeight.bold,
                                           color: dawer == 9 ?  Colors.white : Color(0xff9197B3)),
                                     ),
@@ -5027,7 +5027,7 @@ setState(() {
                                           });
                                           },
                                           title: Text("Send SMS",style: GoogleFonts.poppins(
-                                              fontSize: 12,
+                                              fontSize: width/113.833333333,
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 9?  Colors.white : Color(0xff9197B3)),
                                           )),
@@ -5039,13 +5039,13 @@ setState(() {
                                             });
                                           },
                                           title: Text("View Previous",style: GoogleFonts.poppins(
-                                              fontSize: 12,
+                                              fontSize: width/113.833333333,
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 9?  Colors.white : Color(0xff9197B3)),
                                           )),
                                     /*  ListTile(
                                           title: Text("Individual SMS",style: GoogleFonts.poppins(
-                                              fontSize: 12,
+                                              fontSize: width/113.833333333,
                                               fontWeight: FontWeight.w600,
                                               color: dawer == 9?  Colors.white : Color(0xff9197B3)),
                                           )),

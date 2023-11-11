@@ -277,7 +277,7 @@ class _FeesRegState extends State<FeesReg> {
                   decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 38.0,top: 30),
-                    child: Text("Fees Register",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                    child: Text("Fees Register",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                   ),
                 ),
               ),
@@ -1334,7 +1334,7 @@ class _FeesRegState extends State<FeesReg> {
                   p.Column(
                     crossAxisAlignment: p.CrossAxisAlignment.start,
                     children: [
-                      p.Text("Vidhaan Edu Care International School",style: p.TextStyle(fontSize: 20,fontWeight: p.FontWeight.bold,)),
+                      p.Text("Vidhaan Edu Care International School",style: p.TextStyle(fontSize: width/68.3,fontWeight: p.FontWeight.bold,)),
                       p.Text("Kolathur,Padi Chennai - 600062",style: p.TextStyle(fontSize: 15)),
                       p.Text("Call: +91 770880963",style: p.TextStyle(fontSize: 15)),
                     ]
@@ -1425,7 +1425,7 @@ class _FeesRegState extends State<FeesReg> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Fees Payment History',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),
+                'Fees Payment History',style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight: FontWeight.bold),
               ),
               IconButton(
                   onPressed: (){

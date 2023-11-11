@@ -294,7 +294,7 @@ class _StudentListState extends State<StudentList> {
                             },
                           ),
                         ),
-                        Text("Students List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                        Text("Students List",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                         SizedBox(width: 700,),
 
                         SizedBox(width: 10,),
@@ -346,7 +346,7 @@ class _StudentListState extends State<StudentList> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Register Number",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Register Number",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -364,7 +364,7 @@ class _StudentListState extends State<StudentList> {
 
                                   textFieldConfiguration: TextFieldConfiguration(
                                     style:  GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -418,7 +418,7 @@ class _StudentListState extends State<StudentList> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Student Name",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -442,7 +442,7 @@ class _StudentListState extends State<StudentList> {
 
                                     textFieldConfiguration: TextFieldConfiguration(
                                       style:  GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -509,7 +509,7 @@ class _StudentListState extends State<StudentList> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("By Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("By Class",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -532,7 +532,7 @@ class _StudentListState extends State<StudentList> {
                                           child: Text(
                                             'Select Option',
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15
+                                                fontSize: width/91.066666667
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -545,7 +545,7 @@ class _StudentListState extends State<StudentList> {
                                       child: Text(
                                         item,
                                         style:  GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -613,7 +613,7 @@ class _StudentListState extends State<StudentList> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("By Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("By Section",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -634,7 +634,7 @@ class _StudentListState extends State<StudentList> {
                                           child: Text(
                                             'Select Option',
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15
+                                                fontSize: width/91.066666667
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -647,7 +647,7 @@ class _StudentListState extends State<StudentList> {
                                       child: Text(
                                         item,
                                         style:  GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -2024,8 +2024,8 @@ class _StudentListState extends State<StudentList> {
                                               padding: const EdgeInsets.only(top: 0.0,bottom: 0.0),
                                               child: Row(
                                                 children: [
-                                                  Text("Sibling Studying Here: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["brother studying here"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Sibling Studying Here: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["brother studying here"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -2034,8 +2034,8 @@ class _StudentListState extends State<StudentList> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("Sibling Reg No: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["brothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Sibling Reg No: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["brothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -2044,16 +2044,16 @@ class _StudentListState extends State<StudentList> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 20),
                                               child: Row(
                                                 children: [
-                                                  Text("Religion: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["religion"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Religion: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["religion"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
                                             ),
                                             Row(
                                               children: [
-                                                Text("Community: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                Text(value["community"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                Text("Community: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                Text(value["community"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                               ],
                                             ),
@@ -2061,8 +2061,8 @@ class _StudentListState extends State<StudentList> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("Student Aadhaar Number: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Student Aadhaar Number: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -2071,8 +2071,8 @@ class _StudentListState extends State<StudentList> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("Height in cms: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["sheight"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Height in cms: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["sheight"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -2081,8 +2081,8 @@ class _StudentListState extends State<StudentList> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("Weight in Kg: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["stweight"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Weight in Kg: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["stweight"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -2091,8 +2091,8 @@ class _StudentListState extends State<StudentList> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("EMIS NO: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["EMIS"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("EMIS NO: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["EMIS"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -2106,13 +2106,13 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Identification Mark: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["identificatiolmark"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -2125,13 +2125,13 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "M.O.Transport: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["transport"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -2145,7 +2145,7 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Home Address: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Container(
@@ -2153,7 +2153,7 @@ class _StudentListState extends State<StudentList> {
                                                     child: Text(
                                                       value["address"],
                                                       style: GoogleFonts.poppins(
-                                                          fontSize: 12,
+                                                          fontSize: width/113.833333333,
                                                           fontWeight: FontWeight.w500),
                                                     ),
                                                   ),
@@ -2170,7 +2170,7 @@ class _StudentListState extends State<StudentList> {
                                         ),
                                         Column(crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text("Father Details ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 14),),
+                                            Text("Father Details ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/97.571428571),),
                                               Padding(
                                                 padding: const EdgeInsets.all(4.0),
                                                 child: Container(
@@ -2182,8 +2182,8 @@ class _StudentListState extends State<StudentList> {
                                               child: Row(
                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
-                                                  Text("Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["fathername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["fathername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
                                                 ],
                                               ),
                                             ),
@@ -2194,13 +2194,13 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Occupation: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["fatherOccupation"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -2214,7 +2214,7 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Office Address: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Container(
@@ -2222,7 +2222,7 @@ class _StudentListState extends State<StudentList> {
                                                     child: Text(
                                                       value["fatherOffice"],
                                                       style: GoogleFonts.poppins(
-                                                          fontSize: 12,
+                                                          fontSize: width/113.833333333,
                                                           fontWeight: FontWeight.w500),
                                                     ),
                                                   ),
@@ -2237,13 +2237,13 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Phone Number: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["fatherMobile"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -2256,19 +2256,19 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Aadhaar Number: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["fatherAadhaar"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                            Text("Mother Details ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 14),),
+                                            Text("Mother Details ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/97.571428571),),
                                             Padding(
                                               padding: const EdgeInsets.all(4.0),
                                               child: Container(
@@ -2280,8 +2280,8 @@ class _StudentListState extends State<StudentList> {
                                               child: Row(
                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
-                                                  Text("Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["mothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["mothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
                                                 ],
                                               ),
                                             ),
@@ -2292,13 +2292,13 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Occupation: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["motherOccupation"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -2312,7 +2312,7 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Office Address: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Container(
@@ -2320,7 +2320,7 @@ class _StudentListState extends State<StudentList> {
                                                     child: Text(
                                                       value["motherOffice"],
                                                       style: GoogleFonts.poppins(
-                                                          fontSize: 12,
+                                                          fontSize: width/113.833333333,
                                                           fontWeight: FontWeight.w500),
                                                     ),
                                                   ),
@@ -2335,13 +2335,13 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Phone Number: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["motherMobile"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -2354,13 +2354,13 @@ class _StudentListState extends State<StudentList> {
                                                   Text(
                                                     "Aadhaar Number: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["motherAadhaar"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],

@@ -230,13 +230,13 @@ class _FeesReportsState extends State<FeesReports> {
                 children: [
                   Row(
                     children: [
-                      Text("Fees Reports",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                      Text("Fees Reports",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                       SizedBox(width: 400,),
                       Padding(
                         padding: const EdgeInsets.only(right:8.0),
                         child: Icon(Icons.filter_list_sharp),
                       ),
-                      Text("Filters",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                      Text("Filters",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                       SizedBox(width: 10,),
                       InkWell(
                         onTap: (){
@@ -280,7 +280,7 @@ class _FeesReportsState extends State<FeesReports> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Fees:",style: GoogleFonts.poppins(fontSize: 15,),),
+                            child: Text("Fees:",style: GoogleFonts.poppins(fontSize: width/91.066666667,),),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -305,7 +305,7 @@ class _FeesReportsState extends State<FeesReports> {
                                         child: Text(
                                           'Select Option',
                                           style: GoogleFonts.poppins(
-                                              fontSize: 15
+                                              fontSize: width/91.066666667
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                         ),
@@ -318,7 +318,7 @@ class _FeesReportsState extends State<FeesReports> {
                                     child: Text(
                                       item,
                                       style:  GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -379,7 +379,7 @@ class _FeesReportsState extends State<FeesReports> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Fees Reports For :",style: GoogleFonts.poppins(fontSize: 15,),),
+                            child: Text("Fees Reports For :",style: GoogleFonts.poppins(fontSize: width/91.066666667,),),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -404,7 +404,7 @@ class _FeesReportsState extends State<FeesReports> {
                                         child: Text(
                                           'Select Option',
                                           style: GoogleFonts.poppins(
-                                              fontSize: 15
+                                              fontSize: width/91.066666667
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                         ),
@@ -417,7 +417,7 @@ class _FeesReportsState extends State<FeesReports> {
                                     child: Text(
                                       item,
                                       style:  GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -484,7 +484,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                    child: Text("Pending :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                    child: Text("Pending :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                   )),
                             ),
                             Padding(
@@ -510,7 +510,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                    child: Text("OverDue :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                    child: Text("OverDue :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                   )),
                             ),
                             Padding(
@@ -536,7 +536,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                    child: Text("Paid :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                    child: Text("Paid :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                   )),
                             ),
                             Padding(
@@ -574,7 +574,7 @@ class _FeesReportsState extends State<FeesReports> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Register Number",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Register Number",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -592,7 +592,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                                     textFieldConfiguration: TextFieldConfiguration(
                                       style:  GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -645,7 +645,7 @@ class _FeesReportsState extends State<FeesReports> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Student Name",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -669,7 +669,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                                       textFieldConfiguration: TextFieldConfiguration(
                                         style:  GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         decoration: const InputDecoration(
                                           contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -719,7 +719,7 @@ class _FeesReportsState extends State<FeesReports> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right:0.0),
-                            child: Text("By Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                            child: Text("By Class",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -736,7 +736,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                               textFieldConfiguration: TextFieldConfiguration(
                                 style:  GoogleFonts.poppins(
-                                    fontSize: 15
+                                    fontSize: width/91.066666667
                                 ),
                                 decoration: const InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -789,7 +789,7 @@ class _FeesReportsState extends State<FeesReports> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("By Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("By Class",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -806,7 +806,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                                   textFieldConfiguration: TextFieldConfiguration(
                                     style:  GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -853,7 +853,7 @@ class _FeesReportsState extends State<FeesReports> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("By Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("By Section",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -870,7 +870,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                                   textFieldConfiguration: TextFieldConfiguration(
                                     style:  GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -923,7 +923,7 @@ class _FeesReportsState extends State<FeesReports> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("From Date",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("From Date",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -995,7 +995,7 @@ class _FeesReportsState extends State<FeesReports> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("To Date",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("To Date",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1274,7 +1274,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   data.get("stName"),
                                   style: GoogleFonts.montserrat(
                                       fontWeight:FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: width/97.571428571,
                                   ),
                                 ),
                                 Text(
@@ -1282,7 +1282,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   style: GoogleFonts.montserrat(
                                     color: Colors.grey,
                                     fontWeight:FontWeight.normal,
-                                    fontSize: 12,
+                                    fontSize: width/113.833333333,
                                   ),
                                 ),
                               ],
@@ -1294,7 +1294,7 @@ class _FeesReportsState extends State<FeesReports> {
                               data.get("feesname"),
                               style: GoogleFonts.montserrat(
                                 fontWeight:FontWeight.normal,
-                                  fontSize: 14
+                                  fontSize: width/97.571428571
                             ),),
                           ),
                           Container(

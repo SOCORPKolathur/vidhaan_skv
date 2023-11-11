@@ -57,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -108,14 +109,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         SizedBox(height: 2,),
                         Text(schoolname,style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                            color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                         Text(schooladdress,style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 8,fontWeight: FontWeight.w400),textAlign: TextAlign.center),
+                            color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),textAlign: TextAlign.center),
                         Text("Phone: +91 ${schoolphone}",style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 8,fontWeight: FontWeight.w400),),
+                            color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),),
 
                         Text(schoolweb,style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 8,fontWeight: FontWeight.w400),),
+                            color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),),
                         SizedBox(height: 0,),
                         Stack(
                           alignment: Alignment.center,
@@ -145,17 +146,17 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         SizedBox(height: 15,),
                         Text("Sam Jebaseelan",style: GoogleFonts.poppins(
-                            color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
+                            color: Colors.black, fontSize: width/91.066666667,fontWeight: FontWeight.w700),),
                         Text("ID: VBSB004",style: GoogleFonts.poppins(
-                            color:  Color(0xff00A0E3), fontSize: 12,fontWeight: FontWeight.w600),),
+                            color:  Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                         SizedBox(height: 10,),
                         Row(
                           children: [
                             SizedBox(width: 20,),
                             Text("Class       : ",style: GoogleFonts.poppins(
-                                color: Color(0xff00A0E3), fontSize: 12,fontWeight: FontWeight.w600),),
+                                color: Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                             Text("LKG A",style: GoogleFonts.poppins(
-                                color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                           ],
                         ),
                         Row(
@@ -163,27 +164,27 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(width: 20,),
                             Text("DOB          : ",style: GoogleFonts.poppins(
 
-                                color: Color(0xff00A0E3), fontSize: 12,fontWeight: FontWeight.w600),),
+                                color: Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                             Text("05/05/2002",style: GoogleFonts.poppins(
-                                color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                           ],
                         ),
                         Row(
                           children: [
                             SizedBox(width: 20,),
                             Text("Blood Group       : ",style: GoogleFonts.poppins(
-                                color:Color(0xff00A0E3), fontSize: 12,fontWeight: FontWeight.w600),),
+                                color:Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                             Text("B+ve",style: GoogleFonts.poppins(
-                                color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                           ],
                         ),
                         Row(
                           children: [
                             SizedBox(width: 20,),
                             Text("Emergency Contact No    : ",style: GoogleFonts.poppins(
-                                color: Color(0xff00A0E3), fontSize: 12,fontWeight: FontWeight.w600),),
+                                color: Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                             Text("789456213",style: GoogleFonts.poppins(
-                                color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                           ],
                         ),
 
@@ -324,8 +325,10 @@ class Demopage extends StatefulWidget {
 }
 
 class _DemopageState extends State<Demopage> {
+
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
         child:  Container(
@@ -361,14 +364,14 @@ class _DemopageState extends State<Demopage> {
                     ),
                     SizedBox(height: 2,),
                     Text("Vidhaan Educare",style: GoogleFonts.poppins(
-                        color: Colors.white, fontSize: 8,fontWeight: FontWeight.w600),),
+                        color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w600),),
                     Text("120/2 Cathedral Nagar Eeast 11th street ",style: GoogleFonts.poppins(
-                        color: Colors.white, fontSize: 4,fontWeight: FontWeight.w400),textAlign: TextAlign.center),
+                        color: Colors.white, fontSize: width/341.5,fontWeight: FontWeight.w400),textAlign: TextAlign.center),
                     Text("Phone: +91 ${"7708804532"}",style: GoogleFonts.poppins(
-                        color: Colors.white, fontSize: 4,fontWeight: FontWeight.w400),),
+                        color: Colors.white, fontSize: width/341.5,fontWeight: FontWeight.w400),),
 
                     Text("www.vidhaan.in",style: GoogleFonts.poppins(
-                        color: Colors.white, fontSize: 4,fontWeight: FontWeight.w400),),
+                        color: Colors.white, fontSize: width/341.5,fontWeight: FontWeight.w400),),
                     SizedBox(height: 8,),
                     Stack(
                       alignment: Alignment.center,
@@ -398,9 +401,9 @@ class _DemopageState extends State<Demopage> {
                     ),
                     SizedBox(height: 15,),
                     Text("Sam Jebaseelan",style: GoogleFonts.poppins(
-                        color: Colors.black, fontSize: 10,fontWeight: FontWeight.w700),),
+                        color: Colors.black, fontSize: width/136.6,fontWeight: FontWeight.w700),),
                     Text("ID: VBSB004",style: GoogleFonts.poppins(
-                        color:  Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                        color:  Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                     SizedBox(height: 5,),
                     Row(
                       children: [
@@ -408,12 +411,12 @@ class _DemopageState extends State<Demopage> {
                         Container(
                           width:80,
                           child: Text("Class",style: GoogleFonts.poppins(
-                              color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                              color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         ),
                         Text(": ",style: GoogleFonts.poppins(
-                            color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                            color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         Text("LKG A",style: GoogleFonts.poppins(
-                            color: Colors.black, fontSize: 8,fontWeight: FontWeight.w600),),
+                            color: Colors.black, fontSize: width/170.75,fontWeight: FontWeight.w600),),
                       ],
                     ),
                     Row(
@@ -422,12 +425,12 @@ class _DemopageState extends State<Demopage> {
                         Container(
                           width:80,
                           child: Text("DOB",style: GoogleFonts.poppins(
-                              color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                              color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         ),
                         Text(": ",style: GoogleFonts.poppins(
-                            color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                            color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         Text("11/05/2002".substring(0,10),style: GoogleFonts.poppins(
-                            color: Colors.black, fontSize: 8,fontWeight: FontWeight.w600),),
+                            color: Colors.black, fontSize: width/170.75,fontWeight: FontWeight.w600),),
                       ],
                     ),
                     Row(
@@ -436,12 +439,12 @@ class _DemopageState extends State<Demopage> {
                         Container(
                           width:80,
                           child: Text("Blood Group",style: GoogleFonts.poppins(
-                              color:Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                              color:Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         ),
                         Text(": ",style: GoogleFonts.poppins(
-                            color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                            color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         Text("B+ve",style: GoogleFonts.poppins(
-                            color: Colors.black, fontSize: 8,fontWeight: FontWeight.w600),),
+                            color: Colors.black, fontSize: width/170.75,fontWeight: FontWeight.w600),),
                       ],
                     ),
                     Row(
@@ -450,12 +453,12 @@ class _DemopageState extends State<Demopage> {
                         Container(
                           width:80,
                           child: Text("Phone No",style: GoogleFonts.poppins(
-                              color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                              color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         ),
                         Text(": ",style: GoogleFonts.poppins(
-                            color: Color(0xff00A0E3), fontSize: 8,fontWeight: FontWeight.w600),),
+                            color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         Text("9176582347",style: GoogleFonts.poppins(
-                            color: Colors.black, fontSize: 8,fontWeight: FontWeight.w600),),
+                            color: Colors.black, fontSize: width/170.75,fontWeight: FontWeight.w600),),
                       ],
                     ),
 

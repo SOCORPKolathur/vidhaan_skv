@@ -13,6 +13,7 @@ class SidebarXExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return MaterialApp(
       title: 'SidebarX Example',
       debugShowCheckedModeBanner: false,
@@ -20,10 +21,10 @@ class SidebarXExampleApp extends StatelessWidget {
         primaryColor: primaryColor,
         canvasColor: canvasColor,
         scaffoldBackgroundColor: scaffoldBackgroundColor,
-        textTheme: const TextTheme(
+        textTheme:  TextTheme(
           headlineSmall: TextStyle(
             color: Colors.white,
-            fontSize: 46,
+            fontSize: width/29.695652174,
             fontWeight: FontWeight.w800,
           ),
         ),
@@ -93,14 +94,10 @@ class ExampleSidebarX extends StatelessWidget {
         selectedTextStyle: const TextStyle(color:Colors.white),
         itemTextPadding: const EdgeInsets.only(left: 30),
         selectedItemTextPadding: const EdgeInsets.only(left: 30),
-
         selectedItemDecoration: BoxDecoration(
-
-
           boxShadow: [
             BoxShadow(
               color: Color(0xff00A0E3),
-
             )
           ],
         ),
@@ -119,7 +116,6 @@ class ExampleSidebarX extends StatelessWidget {
           color: Color(0xffFFFFFF),
         ),
       ),
-     // footerDivider: divider,
       headerBuilder: (context, extended) {
         return SizedBox(
           height: height/6.57,
@@ -129,11 +125,8 @@ class ExampleSidebarX extends StatelessWidget {
               children: [
                 Row(
                   children: [
-
-                        Image.asset("assets/VIDHAAN.png",fit: BoxFit.cover,),
-
-
-                    Text("Vidhaan",style: GoogleFonts.poppins(fontSize: 19,fontWeight: FontWeight.bold,color: Color(0xff0271C5)),)
+                    Image.asset("assets/VIDHAAN.png",fit: BoxFit.cover,),
+                    Text("Vidhaan",style: GoogleFonts.poppins(fontSize: width/71.894736842,fontWeight: FontWeight.bold,color: Color(0xff0271C5)),)
                   ],
                 )
               ],
@@ -142,16 +135,11 @@ class ExampleSidebarX extends StatelessWidget {
         );
       },
       items: [
-
         SidebarXItem(
-
           label: 'Dashboard',
           icon:Icons.rectangle_outlined,
-
-
         ),
         SidebarXItem(
-
           iconWidget: ExpansionTile(
             title: Text("Students"),
             children: [
@@ -173,36 +161,32 @@ class ExampleSidebarX extends StatelessWidget {
              width: width/68.3,
              height: height/32.85,
            ),
-
           label: 'Performance',
         ),
-SidebarXItem(
-          iconWidget: Container(child: Image.asset("assets/icons.png",fit: BoxFit.cover,),
+        SidebarXItem(
+          iconWidget: Container(
+            child: Image.asset("assets/icons.png",fit: BoxFit.cover,),
             width: width/68.3,
             height: height/32.85,
           ),
           label: 'Important Notices',
-
         ),
         const SidebarXItem(
           icon: Icons.account_balance,
           label: 'Accounts',
         ),
         SidebarXItem(
-          iconWidget: Container(child: Image.asset("assets/message.png",fit: BoxFit.cover,),
+          iconWidget: Container(
+            child: Image.asset("assets/message.png",fit: BoxFit.cover,),
             width: width/68.3,
             height: height/32.85,
           ),
-
           label: 'Help',
         ),
-       
-        
         SidebarXItem(
           iconWidget:Row(
             children: [
               Container(
-                //color: Colors.yellow,
                 width: width/27.32,
                 height: height/13.14,
                 child: Image.asset("assets/Ellipse.png",fit: BoxFit.cover,),
@@ -212,11 +196,11 @@ SidebarXItem(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 2),
-                    child: Text("Evano",style: GoogleFonts.poppins(fontWeight:FontWeight.bold,fontSize: 14),),
+                    child: Text("Evano",style: GoogleFonts.poppins(fontWeight:FontWeight.bold,fontSize: width/97.571428571),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 17.0),
-                    child: Text("Project Manager",style: GoogleFonts.poppins(fontSize: 10,color: Color(0xff757575)),),
+                    child: Text("Project Manager",style: GoogleFonts.poppins(fontSize: width/136.6,color: Color(0xff757575)),),
                   ),
                 ],
               )

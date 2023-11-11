@@ -41,7 +41,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                 child: Text(" View Previous Circulars",
                   style: GoogleFonts.poppins(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: width/75.888888889,
                       fontWeight: FontWeight.bold
                   ),
                 ),
@@ -79,11 +79,11 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                     splashBorderRadius: BorderRadius.zero,
                     splashFactory: NoSplash.splashFactory,
                     labelStyle: GoogleFonts.openSans(
-                      fontSize: 18,
+                      fontSize: width/75.888888889,
                       fontWeight: FontWeight.w700,
                     ),
                     unselectedLabelStyle: GoogleFonts.openSans(
-                      fontSize: 16,
+                      fontSize: width/85.375,
                       fontWeight: FontWeight.w400,
                     ),
                     onTap: (index){
@@ -148,11 +148,11 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                     ),
                                     title: Text(
                                         "${value["Descr"]}",
-                                        style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
+                                        style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold)
                                     ),
                                     subtitle: Text(
                                         "${value["reason"]}",
-                                        style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
+                                        style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.normal)
                                     ),
                                     trailing: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -160,7 +160,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                         Text(
                                           "${value["Date"]}",
                                           style: GoogleFonts.poppins(
-                                            fontSize: 13,
+                                            fontSize: width/105.076923077,
                                             fontWeight: FontWeight.w400,
                                             color: Color(0xff00A0E3),
                                           ),
@@ -169,7 +169,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                         Text(
                                           "${value["Time"]}",
                                           style: GoogleFonts.poppins(
-                                            fontSize: 13,
+                                            fontSize: width/105.076923077,
                                             fontWeight: FontWeight.w400,
                                             color: Color(0xff00A0E3),
                                           ),
@@ -194,24 +194,24 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                 //     child: Column(
                                 //       crossAxisAlignment: CrossAxisAlignment.start,
                                 //       children: [
-                                //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
+                                //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
                                 //         Container(
                                 //           width: width/1.841,
                                 //           child: Divider(
                                 //             thickness: 2,
                                 //           ),
                                 //         ),
-                                //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
+                                //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
                                 //
                                 //         Row(
                                 //           crossAxisAlignment: CrossAxisAlignment.end,
                                 //           mainAxisAlignment: MainAxisAlignment.end,
                                 //           children: [
-                                //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //
                                 //             SizedBox(width: 40,),
                                 //
-                                //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //           ],
                                 //         ),
                                 //       ],
@@ -261,11 +261,11 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                     ),
                                     title: Text(
                                         "${value["Descr"]}",
-                                        style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
+                                        style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold)
                                     ),
                                     subtitle: Text(
                                         "${value["reason"]}",
-                                        style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
+                                        style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.normal)
                                     ),
                                     trailing: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -273,7 +273,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                         Text(
                                           "${value["Date"]}",
                                           style: GoogleFonts.poppins(
-                                            fontSize: 13,
+                                            fontSize: width/105.076923077,
                                             fontWeight: FontWeight.w400,
                                             color: Color(0xff00A0E3),
                                           ),
@@ -282,7 +282,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                         Text(
                                           "${value["Time"]}",
                                           style: GoogleFonts.poppins(
-                                            fontSize: 13,
+                                            fontSize: width/105.076923077,
                                             fontWeight: FontWeight.w400,
                                             color: Color(0xff00A0E3),
                                           ),
@@ -307,24 +307,24 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                 //     child: Column(
                                 //       crossAxisAlignment: CrossAxisAlignment.start,
                                 //       children: [
-                                //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
+                                //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
                                 //         Container(
                                 //           width: width/1.841,
                                 //           child: Divider(
                                 //             thickness: 2,
                                 //           ),
                                 //         ),
-                                //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
+                                //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
                                 //
                                 //         Row(
                                 //           crossAxisAlignment: CrossAxisAlignment.end,
                                 //           mainAxisAlignment: MainAxisAlignment.end,
                                 //           children: [
-                                //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //
                                 //             SizedBox(width: 40,),
                                 //
-                                //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //           ],
                                 //         ),
                                 //       ],
@@ -373,11 +373,11 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                     ),
                                     title: Text(
                                         "${value["Descr"]}",
-                                        style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold)
+                                        style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold)
                                     ),
                                     subtitle: Text(
                                         "${value["reason"]}",
-                                        style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.normal)
+                                        style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.normal)
                                     ),
                                     trailing: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -385,7 +385,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                         Text(
                                           "${value["Date"]}",
                                           style: GoogleFonts.poppins(
-                                            fontSize: 13,
+                                            fontSize: width/105.076923077,
                                             fontWeight: FontWeight.w400,
                                             color: Color(0xff00A0E3),
                                           ),
@@ -394,7 +394,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                         Text(
                                           "${value["Time"]}",
                                           style: GoogleFonts.poppins(
-                                            fontSize: 13,
+                                            fontSize: width/105.076923077,
                                             fontWeight: FontWeight.w400,
                                             color: Color(0xff00A0E3),
                                           ),
@@ -419,24 +419,24 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                 //     child: Column(
                                 //       crossAxisAlignment: CrossAxisAlignment.start,
                                 //       children: [
-                                //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
+                                //         Text("Title :${value["reason"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),textAlign: TextAlign.left),
                                 //         Container(
                                 //           width: width/1.841,
                                 //           child: Divider(
                                 //             thickness: 2,
                                 //           ),
                                 //         ),
-                                //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
+                                //         Text("Des: ${value["Descr"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,),textAlign: TextAlign.left,),
                                 //
                                 //         Row(
                                 //           crossAxisAlignment: CrossAxisAlignment.end,
                                 //           mainAxisAlignment: MainAxisAlignment.end,
                                 //           children: [
-                                //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //
                                 //             SizedBox(width: 40,),
                                 //
-                                //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
+                                //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //           ],
                                 //         ),
                                 //       ],

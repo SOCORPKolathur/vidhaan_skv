@@ -143,7 +143,7 @@ class _ClassMasterState extends State<ClassMaster> {
           padding: const EdgeInsets.only(left: 5.0),
           child: Container(child: Padding(
             padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Class - Section - Acidemic Year Masters",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+            child: Text("Class - Section - Acidemic Year Masters",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
             width: width/1.050,
@@ -261,11 +261,11 @@ class _ClassMasterState extends State<ClassMaster> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                child: Text("Class",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                child: Text("Class",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                             ],
                           ),
@@ -431,11 +431,11 @@ class _ClassMasterState extends State<ClassMaster> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                child: Text("Section",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                child: Text("Section",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                             ],
                           ),
@@ -601,11 +601,11 @@ class _ClassMasterState extends State<ClassMaster> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                             ],
                           ),

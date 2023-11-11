@@ -338,14 +338,14 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
-                                        Text("Approved Leave Requests",style: GoogleFonts.poppins(fontSize: 18,
+                                        Text("Approved Leave Requests",style: GoogleFonts.poppins(fontSize: width/75.888888889,
                                             fontWeight: FontWeight.w700,color: Colors.white),),
                                         Container(
                                           child: Text(
                                             approvedLeavesRequests.length.toString(),
                                             style: GoogleFonts.poppins(
                                               color: Colors.white,
-                                              fontWeight: FontWeight.w600,fontSize: 60),),
+                                              fontWeight: FontWeight.w600,fontSize: width/22.766666667),),
                                           margin: EdgeInsets.only(right: 20),
                                         ),
                                       ],
@@ -385,14 +385,14 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
-                                        Text("Denied Leave Requests",style: GoogleFonts.poppins(fontSize: 18,
+                                        Text("Denied Leave Requests",style: GoogleFonts.poppins(fontSize: width/75.888888889,
                                             fontWeight: FontWeight.w700,color: Colors.white),),
                                         Container(
                                           child: Text(
                                             deniedLeaveRequests.length.toString(),
                                             style: GoogleFonts.poppins(
                                               color: Colors.white,
-                                              fontWeight: FontWeight.w600,fontSize: 60),),
+                                              fontWeight: FontWeight.w600,fontSize: width/22.766666667),),
                                           margin: EdgeInsets.only(right: 20),
                                         ),
                                       ],

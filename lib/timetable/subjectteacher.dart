@@ -279,7 +279,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
             padding: const EdgeInsets.only(left: 20.0),
             child: Container(child: Padding(
               padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Text("Subject Teachers Master",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+              child: Text("Subject Teachers Master",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
             ),
               //color: Colors.white,
               width: width/1.050,
@@ -578,19 +578,19 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                            child: Text("Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                            child: Text("Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 58.0,right: 8.0),
-                            child: Text("Subjects",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                            child: Text("Subjects",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 160.0,right: 8.0),
-                            child: Text("Staff ID",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                            child: Text("Staff ID",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 160.0,right: 8.0),
-                            child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                            child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                           ),
                         ],
                       ),

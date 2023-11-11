@@ -268,7 +268,7 @@ String studentdocid="";
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Add New Students",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),
+                    "Add New Students",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),
                   ),
                SizedBox(width:10),
                InkWell(
@@ -292,7 +292,7 @@ String studentdocid="";
                                    borderRadius: BorderRadius.circular(10),
                                    color:Colors.red,
                                  ),
-                                 child:Center(child: Text(snap.data!.docs.length.toString(),style: GoogleFonts.poppins(color:Colors.white,fontSize: 8),))
+                                 child:Center(child: Text(snap.data!.docs.length.toString(),style: GoogleFonts.poppins(color:Colors.white,fontSize: width/170.75),))
                              );
                            }return Container(
                                width:15,
@@ -301,7 +301,7 @@ String studentdocid="";
                                  borderRadius: BorderRadius.circular(10),
                                  color:Colors.red,
                                ),
-                               child:Center(child: Text("0",style: GoogleFonts.poppins(color:Colors.white,fontSize: 8),))
+                               child:Center(child: Text("0",style: GoogleFonts.poppins(color:Colors.white,fontSize: width/170.75),))
                            );
                          },
                      )
@@ -490,7 +490,7 @@ String studentdocid="";
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                  child: Text("Student Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                  child: Text("Student Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                                 ),
                                 Row(
                                   children: [
@@ -1752,7 +1752,7 @@ String studentdocid="";
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                  child: Text("Parent Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                  child: Text("Parent Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                                 ),
                                 Row(
                                   children: [
@@ -2326,7 +2326,7 @@ String studentdocid="";
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                  child: Text("Other Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                  child: Text("Other Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                                 ),
 
                                 Row(
@@ -2795,7 +2795,7 @@ String studentdocid="";
                                       });
                                       uploadToStorage();
                                     },
-                                    child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: 16))),
+                                    child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: width/85.375))),
                                       width: width/10.507,
                                       height: height/16.425,
                                       // color: Color(0xffDDDEEE),
@@ -2804,7 +2804,7 @@ String studentdocid="";
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: 13),),
+                                    child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: width/105.076923077),),
                                   )
                                 ],
                               ),
@@ -2909,7 +2909,7 @@ String studentdocid="";
                         child: Text("Admissions Waiting for Verification",
                             style: GoogleFonts.poppins(
                                 color: Color(0xff000000),
-                                fontSize: 20,
+                                fontSize: width/68.3,
                                 fontWeight: FontWeight.bold)),
                       ),
                      ],
@@ -3121,34 +3121,34 @@ String studentdocid="";
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:  Text('Admissions Details',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),
+          title:  Text('Admissions Details',style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight: FontWeight.bold),
           ),
           content: Container(child:
           Row(
             children: [
               Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Name: ${snap.get("studentName")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Name: ${snap.get("studentName")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                    child: Text("Class: ${snap.get("standardSought")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                    child: Text("Class: ${snap.get("standardSought")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),),
                   ),
-                  Text("Phone: ${snap.get("fatherMobileNo")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Phone: ${snap.get("fatherMobileNo")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                    child: Text("Father Name: ${snap.get("fatherName")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                    child: Text("Father Name: ${snap.get("fatherName")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),),
                   ),
-                  Text("Mother Name: ${snap.get("motherName")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Mother Name: ${snap.get("motherName")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                    child: Text("Religion: ${snap.get("religion")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                    child: Text("Religion: ${snap.get("religion")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),),
                   ),
-                  Text("Community: ${snap.get("caste")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Community: ${snap.get("caste")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                    child: Text("D.O.B: ${snap.get("dob")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                    child: Text("D.O.B: ${snap.get("dob")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),),
                   ),
-                  Text("Student Adhaar Number: ${snap.get("aadhaarNo")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 12),),
+                  Text("Student Adhaar Number: ${snap.get("aadhaarNo")}",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),),
                 ],
               ),
               Padding(
@@ -3163,20 +3163,20 @@ String studentdocid="";
                     child: Text(
                       "School Last studied: ${snap.get("previousSchool")}",
                       style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: width/113.833333333,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(
                     "% of Marks obtained: ",
                     style: GoogleFonts.poppins(
-                        fontSize: 12,
+                        fontSize: width/113.833333333,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "Name Of Board: ",
                     style: GoogleFonts.poppins(
-                        fontSize: 12,
+                        fontSize: width/113.833333333,
                         fontWeight: FontWeight.bold),
                   ),
                   Padding(
@@ -3184,14 +3184,14 @@ String studentdocid="";
                     child: Text(
                       "Father Occupation:  ${snap.get("fatherOccupation")}",
                       style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: width/113.833333333,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(
                     "Annual Income:  ${snap.get("fatherAnnualIncome")}",
                     style: GoogleFonts.poppins(
-                        fontSize: 12,
+                        fontSize: width/113.833333333,
                         fontWeight: FontWeight.bold),
                   ),
                   Padding(
@@ -3201,7 +3201,7 @@ String studentdocid="";
                       child: Text(
                         "Residential Address:  ${snap.get("residentialAddress")}",
                         style: GoogleFonts.poppins(
-                            fontSize: 12,
+                            fontSize: width/113.833333333,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -3485,7 +3485,7 @@ String studentdocid="";
               title:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Fees Details',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold)),
+                  Text('Fees Details',style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight: FontWeight.bold)),
                   IconButton(
                       onPressed: (){
                         setState1(() {

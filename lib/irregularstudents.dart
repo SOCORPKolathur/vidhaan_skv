@@ -20,7 +20,7 @@ class _IrregularStudentsState extends State<IrregularStudents> {
           padding: const EdgeInsets.only(left: 20.0),
           child: Container(child: Padding(
             padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Staff Attendance Register",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+            child: Text("Staff Attendance Register",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
             width: width/1.050,
@@ -55,23 +55,23 @@ class _IrregularStudentsState extends State<IrregularStudents> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                  child: Text("Reg No",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  child: Text("Reg No",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 40.0,right: 8.0),
-                                  child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  child: Text("Student Name",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                  child: Text("Attendance",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  child: Text("Attendance",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                  child: Text("Mobile No",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  child: Text("Mobile No",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                  child: Text("No.of.Days",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  child: Text("No.of.Days",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                 ),
                               ],
                             ),
@@ -116,35 +116,35 @@ class _IrregularStudentsState extends State<IrregularStudents> {
                                                 child: Container(
                                                     width: width/11.383,
 
-                                                    child: Text("SBVD001",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                    child: Text("SBVD001",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500,color: Colors.black),)),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 0.0,right: 0.0),
                                                 child: Container(
 
                                                     width: width/6.209,
-                                                    child: Text("Sam Jeba",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                    child: Text("Sam Jeba",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500,color: Colors.black),)),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 0.0,right: 0.0),
                                                 child: Container(
 
                                                     width: width/8.035,
-                                                    child: Text("Present",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.green),)),
+                                                    child: Text("Present",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500,color: Colors.green),)),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 0.0,right: 0.0),
                                                 child: Container(
 
                                                     width: width/13.66,
-                                                    child: Text("7894561237",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                    child: Text("7894561237",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500,color: Colors.black),)),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 80.0,right: 0.0),
                                                 child: Container(
 
                                                     width: width/13.66,
-                                                    child: Text("20 Days",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),)),
+                                                    child: Text("20 Days",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500,color: Colors.black),)),
                                               ),
                                             ],
                                           ),

@@ -196,11 +196,11 @@ class _DesiginationState extends State<Desigination> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                              child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                              child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                              child: Text("Designation",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                              child: Text("Designation",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                           ],
                         ),

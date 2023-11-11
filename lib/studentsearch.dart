@@ -107,7 +107,7 @@ class _StudentsearchState extends State<Studentsearch> {
               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
               child: Padding(
               padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Text("Search Student",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+              child: Text("Search Student",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
             ),
             ),
           ),
@@ -130,7 +130,7 @@ class _StudentsearchState extends State<Studentsearch> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right:0.0),
-                        child: Text("Register Number",style: GoogleFonts.poppins(fontSize: 15,)),
+                        child: Text("Register Number",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -148,7 +148,7 @@ class _StudentsearchState extends State<Studentsearch> {
 
                           textFieldConfiguration: TextFieldConfiguration(
                             style:  GoogleFonts.poppins(
-                                fontSize: 15
+                                fontSize: width/91.066666667
                             ),
                             decoration: const InputDecoration(
                               contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -201,7 +201,7 @@ class _StudentsearchState extends State<Studentsearch> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right:0.0),
-                        child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                        child: Text("Student Name",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -225,7 +225,7 @@ class _StudentsearchState extends State<Studentsearch> {
 
                           textFieldConfiguration: TextFieldConfiguration(
                             style:  GoogleFonts.poppins(
-                                fontSize: 15
+                                fontSize: width/91.066666667
                             ),
                             decoration: const InputDecoration(
                               contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -651,32 +651,32 @@ class _StudentsearchState extends State<Studentsearch> {
                                                         child: Row(
                                                           crossAxisAlignment: CrossAxisAlignment.end,
                                                           children: [
-                                                            Text("Father Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                            Text(value["fathername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                            Text("Father Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                            Text(value["fathername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
                                                           ],
                                                         ),
                                                       ),
                                                       Row(
                                                         crossAxisAlignment: CrossAxisAlignment.end,
                                                         children: [
-                                                          Text("Mother Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                          Text(value["mothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                          Text("Mother Name: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                          Text(value["mothername"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
                                                         ],
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsets.only(top: 20.0,bottom: 20),
                                                         child: Row(
                                                           children: [
-                                                            Text("Religion: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                            Text(value["religion"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                            Text("Religion: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                            Text(value["religion"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                           ],
                                                         ),
                                                       ),
                                                       Row(
                                                         children: [
-                                                          Text("Community: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                          Text(value["community"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                          Text("Community: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                          Text(value["community"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                         ],
                                                       ),
@@ -685,8 +685,8 @@ class _StudentsearchState extends State<Studentsearch> {
                                                         padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                                         child: Row(
                                                           children: [
-                                                            Text("Sub Caste: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                            Text(value["subcaste"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                            Text("Sub Caste: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                            Text(value["subcaste"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                           ],
                                                         ),
@@ -695,8 +695,8 @@ class _StudentsearchState extends State<Studentsearch> {
                                                         padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                                         child: Row(
                                                           children: [
-                                                            Text("Student Adhaar Number: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                            Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                            Text("Student Adhaar Number: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                            Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                           ],
                                                         ),
@@ -721,13 +721,13 @@ class _StudentsearchState extends State<Studentsearch> {
                                                             Text(
                                                               "Parent Occupation: ",
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 13,
+                                                                  fontSize: width/105.076923077,
                                                                   fontWeight: FontWeight.bold),
                                                             ),
                                                             Text(
                                                               value["occupation"],
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 12,
+                                                                  fontSize: width/113.833333333,
                                                                   fontWeight: FontWeight.w500),
                                                             ),
                                                           ],
@@ -738,13 +738,13 @@ class _StudentsearchState extends State<Studentsearch> {
                                                           Text(
                                                             "Annual Income: ",
                                                             style: GoogleFonts.poppins(
-                                                                fontSize: 12,
+                                                                fontSize: width/113.833333333,
                                                                 fontWeight: FontWeight.bold),
                                                           ),
                                                           Text(
                                                             value["income"],
                                                             style: GoogleFonts.poppins(
-                                                                fontSize: 12,
+                                                                fontSize: width/113.833333333,
                                                                 fontWeight: FontWeight.w500),
                                                           ),
                                                         ],
@@ -756,13 +756,13 @@ class _StudentsearchState extends State<Studentsearch> {
                                                             Text(
                                                               "Identification Mark: ",
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 12,
+                                                                  fontSize: width/113.833333333,
                                                                   fontWeight: FontWeight.bold),
                                                             ),
                                                             Text(
                                                               value["identificatiolmark"],
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 12,
+                                                                  fontSize: width/113.833333333,
                                                                   fontWeight: FontWeight.w500),
                                                             ),
                                                           ],
@@ -775,13 +775,13 @@ class _StudentsearchState extends State<Studentsearch> {
                                                             Text(
                                                               "Home Address: ",
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 12,
+                                                                  fontSize: width/113.833333333,
                                                                   fontWeight: FontWeight.bold),
                                                             ),
                                                             Text(
                                                               value["address"],
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 12,
+                                                                  fontSize: width/113.833333333,
                                                                   fontWeight: FontWeight.w500),
                                                             ),
                                                           ],

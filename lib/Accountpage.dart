@@ -50,7 +50,7 @@ class _AccountpageState extends State<Accountpage> {
                         child: Text(
                           "Accounts",
                           style: GoogleFonts.poppins(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: width/68.3, fontWeight: FontWeight.bold),
                         ),
                         width: width / 10.507,
                         height: height / 25.269,
@@ -94,7 +94,7 @@ class _AccountpageState extends State<Accountpage> {
                                           "Fee received",
                                           style: GoogleFonts.poppins(
                                               color: Colors.black,
-                                              fontSize: 12),
+                                              fontSize: width/113.833333333),
                                         ),
                                       ),
                                       Padding(
@@ -103,7 +103,7 @@ class _AccountpageState extends State<Accountpage> {
                                         child: Text(
                                           "Rs $totalReceivedAmount",
                                           style: GoogleFonts.poppins(
-                                              fontSize: 15,
+                                              fontSize: width/91.066666667,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
@@ -130,7 +130,7 @@ class _AccountpageState extends State<Accountpage> {
                                       Text(
                                         "Total Expenses",
                                         style: GoogleFonts.poppins(
-                                            color: Colors.black, fontSize: 12),
+                                            color: Colors.black, fontSize: width/113.833333333),
                                       ),
                                       Padding(
                                         padding:
@@ -138,7 +138,7 @@ class _AccountpageState extends State<Accountpage> {
                                         child: Text(
                                           "Rs " + totalSpendAmount.toString(),
                                           style: GoogleFonts.poppins(
-                                              fontSize: 15,
+                                              fontSize: width/91.066666667,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
@@ -169,7 +169,7 @@ class _AccountpageState extends State<Accountpage> {
                                           "Total Balance",
                                           style: GoogleFonts.poppins(
                                               color: Colors.black,
-                                              fontSize: 12),
+                                              fontSize: width/113.833333333),
                                         ),
                                       ),
                                       Padding(
@@ -178,7 +178,7 @@ class _AccountpageState extends State<Accountpage> {
                                         child: Text(
                                           "Rs " + totalAmount.toString(),
                                           style: GoogleFonts.poppins(
-                                              fontSize: 15,
+                                              fontSize: width/91.066666667,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
@@ -259,7 +259,7 @@ class _AccountpageState extends State<Accountpage> {
                               child: Text(
                                 "Lastest Transaction",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: width/68.3, fontWeight: FontWeight.bold),
                               ),
                             ),
                             SizedBox(
@@ -364,7 +364,7 @@ class _AccountpageState extends State<Accountpage> {
                                                   style: GoogleFonts.mulish(
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 16),
+                                                      fontSize: width/85.375),
                                                 ),
                                               ),
                                               Padding(
@@ -375,7 +375,7 @@ class _AccountpageState extends State<Accountpage> {
                                                   style: GoogleFonts.mulish(
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 13,
+                                                      fontSize: width/105.076923077,
                                                       color: Color(0xffA29EBC)),
                                                 ),
                                               ),
@@ -388,7 +388,7 @@ class _AccountpageState extends State<Accountpage> {
                                             "RS ${snap.data!.docs[i]['amount']}",
                                             style: GoogleFonts.mulish(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 15,
+                                                fontSize: width/91.066666667,
                                                 color: snap.data!
                                                             .docs[i]['type']
                                                             .toString()
@@ -404,7 +404,7 @@ class _AccountpageState extends State<Accountpage> {
                                             snap.data!.docs[i]['receivedBy'],
                                             style: GoogleFonts.mulish(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 15,
+                                                fontSize: width/91.066666667,
                                             ),
                                           ),
                                         ),
@@ -415,7 +415,7 @@ class _AccountpageState extends State<Accountpage> {
                                             snap.data!.docs[i]['date'],
                                             style: GoogleFonts.mulish(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 15,
+                                                fontSize: width/91.066666667,
                                                 color: Colors.black),
                                           ),
                                         ),
@@ -426,7 +426,7 @@ class _AccountpageState extends State<Accountpage> {
                                             snap.data!.docs[i]['time'],
                                             style: GoogleFonts.mulish(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 15,
+                                                fontSize: width/91.066666667,
                                                 color: Colors.black),
                                           ),
                                         ),
@@ -452,11 +452,11 @@ class _AccountpageState extends State<Accountpage> {
                             //       children: [
                             //         Padding(
                             //           padding: const EdgeInsets.only(left: 8.0,top: 7),
-                            //           child: Text("Fee Received",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
+                            //           child: Text("Fee Received",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/85.375),),
                             //         ),
                             //         Padding(
                             //           padding: const EdgeInsets.only(right: 20.0,left: 8),
-                            //           child: Text("Monthly Fee",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
+                            //           child: Text("Monthly Fee",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontsize: width/105.076923077,color: Color(0xffA29EBC)),),
                             //         ),
                             //
                             //       ],
@@ -465,19 +465,19 @@ class _AccountpageState extends State<Accountpage> {
                             //
                             //     Padding(
                             //       padding: const EdgeInsets.only(left: 60.0),
-                            //       child: Text("RS 50,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                            //       child: Text("RS 50,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Color(0xff53B175)),),
                             //     ),
                             //     Padding(
                             //       padding: const EdgeInsets.only(left: 120.0),
-                            //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                            //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Color(0xff53B175)),),
                             //     ),
                             //     Padding(
                             //       padding: const EdgeInsets.only(left: 100.0),
-                            //       child: Text("01-08-3023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                            //       child: Text("01-08-3023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.black),),
                             //     ),
                             //     Padding(
                             //       padding: const EdgeInsets.only(left: 100.0),
-                            //       child: Text("11:50 PM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                            //       child: Text("11:50 PM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.black),),
                             //     ),
                             //
                             //   ],
@@ -500,11 +500,11 @@ class _AccountpageState extends State<Accountpage> {
                             //       children: [
                             //         Padding(
                             //           padding: const EdgeInsets.only(left: 8.0,top: 7),
-                            //           child: Text("Maintenance",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
+                            //           child: Text("Maintenance",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/85.375),),
                             //         ),
                             //         Padding(
                             //           padding: const EdgeInsets.only(right: 20.0,left: 8),
-                            //           child: Text("Bus Driver",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
+                            //           child: Text("Bus Driver",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontsize: width/105.076923077,color: Color(0xffA29EBC)),),
                             //         ),
                             //
                             //       ],
@@ -513,19 +513,19 @@ class _AccountpageState extends State<Accountpage> {
                             //
                             //     Padding(
                             //       padding: const EdgeInsets.only(left: 60.0),
-                            //       child: Text("RS 20,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.red),),
+                            //       child: Text("RS 20,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.red),),
                             //     ),
                             //     Padding(
                             //       padding: const EdgeInsets.only(left: 120.0),
-                            //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                            //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Color(0xff53B175)),),
                             //     ),
                             //     Padding(
                             //       padding: const EdgeInsets.only(left: 100.0),
-                            //       child: Text("02-08-2023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                            //       child: Text("02-08-2023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.black),),
                             //     ),
                             //     Padding(
                             //       padding: const EdgeInsets.only(left: 100.0),
-                            //       child: Text("12:57 AM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                            //       child: Text("12:57 AM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.black),),
                             //     ),
                             //
                             //   ],
@@ -578,7 +578,7 @@ class _AccountpageState extends State<Accountpage> {
                         child: Text(
                           "Lastest  ${title}  Transactions",
                           style: GoogleFonts.poppins(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: width/68.3, fontWeight: FontWeight.bold),
                         ),
                       ),
                       IconButton(
@@ -703,7 +703,7 @@ class _AccountpageState extends State<Accountpage> {
                                         style: GoogleFonts.mulish(
                                             fontWeight:
                                             FontWeight.bold,
-                                            fontSize: 16),
+                                            fontSize: width/85.375),
                                       ),
                                     ),
                                     Padding(
@@ -714,7 +714,7 @@ class _AccountpageState extends State<Accountpage> {
                                         style: GoogleFonts.mulish(
                                             fontWeight:
                                             FontWeight.bold,
-                                            fontSize: 13,
+                                            fontSize: width/105.076923077,
                                             color: Color(0xffA29EBC)),
                                       ),
                                     ),
@@ -727,7 +727,7 @@ class _AccountpageState extends State<Accountpage> {
                                   "RS ${docs[i]['amount']}",
                                   style: GoogleFonts.mulish(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                      fontSize: width/91.066666667,
                                       color: docs[i]['type']
                                           .toString()
                                           .toLowerCase() ==
@@ -742,7 +742,7 @@ class _AccountpageState extends State<Accountpage> {
                                   docs[i]['receivedBy'],
                                   style: GoogleFonts.mulish(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                      fontSize: width/91.066666667,
                                   ),
                                 ),
                               ),
@@ -753,7 +753,7 @@ class _AccountpageState extends State<Accountpage> {
                                   docs[i]['date'],
                                   style: GoogleFonts.mulish(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                      fontSize: width/91.066666667,
                                       color: Colors.black),
                                 ),
                               ),
@@ -764,7 +764,7 @@ class _AccountpageState extends State<Accountpage> {
                                   docs[i]['time'],
                                   style: GoogleFonts.mulish(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                      fontSize: width/91.066666667,
                                       color: Colors.black),
                                 ),
                               ),
@@ -791,11 +791,11 @@ class _AccountpageState extends State<Accountpage> {
                 //       children: [
                 //         Padding(
                 //           padding: const EdgeInsets.only(left: 8.0,top: 7),
-                //           child: Text("Fee Received",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
+                //           child: Text("Fee Received",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/85.375),),
                 //         ),
                 //         Padding(
                 //           padding: const EdgeInsets.only(right: 20.0,left: 8),
-                //           child: Text("Monthly Fee",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
+                //           child: Text("Monthly Fee",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontsize: width/105.076923077,color: Color(0xffA29EBC)),),
                 //         ),
                 //
                 //       ],
@@ -804,19 +804,19 @@ class _AccountpageState extends State<Accountpage> {
                 //
                 //     Padding(
                 //       padding: const EdgeInsets.only(left: 60.0),
-                //       child: Text("RS 50,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                //       child: Text("RS 50,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Color(0xff53B175)),),
                 //     ),
                 //     Padding(
                 //       padding: const EdgeInsets.only(left: 120.0),
-                //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Color(0xff53B175)),),
                 //     ),
                 //     Padding(
                 //       padding: const EdgeInsets.only(left: 100.0),
-                //       child: Text("01-08-3023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                //       child: Text("01-08-3023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.black),),
                 //     ),
                 //     Padding(
                 //       padding: const EdgeInsets.only(left: 100.0),
-                //       child: Text("11:50 PM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                //       child: Text("11:50 PM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.black),),
                 //     ),
                 //
                 //   ],
@@ -839,11 +839,11 @@ class _AccountpageState extends State<Accountpage> {
                 //       children: [
                 //         Padding(
                 //           padding: const EdgeInsets.only(left: 8.0,top: 7),
-                //           child: Text("Maintenance",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 16),),
+                //           child: Text("Maintenance",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/85.375),),
                 //         ),
                 //         Padding(
                 //           padding: const EdgeInsets.only(right: 20.0,left: 8),
-                //           child: Text("Bus Driver",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 13,color: Color(0xffA29EBC)),),
+                //           child: Text("Bus Driver",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontsize: width/105.076923077,color: Color(0xffA29EBC)),),
                 //         ),
                 //
                 //       ],
@@ -852,19 +852,19 @@ class _AccountpageState extends State<Accountpage> {
                 //
                 //     Padding(
                 //       padding: const EdgeInsets.only(left: 60.0),
-                //       child: Text("RS 20,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.red),),
+                //       child: Text("RS 20,000.00",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.red),),
                 //     ),
                 //     Padding(
                 //       padding: const EdgeInsets.only(left: 120.0),
-                //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff53B175)),),
+                //       child: Text("Completed",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Color(0xff53B175)),),
                 //     ),
                 //     Padding(
                 //       padding: const EdgeInsets.only(left: 100.0),
-                //       child: Text("02-08-2023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                //       child: Text("02-08-2023",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.black),),
                 //     ),
                 //     Padding(
                 //       padding: const EdgeInsets.only(left: 100.0),
-                //       child: Text("12:57 AM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black),),
+                //       child: Text("12:57 AM",style: GoogleFonts.mulish(fontWeight: FontWeight.bold,fontSize: width/91.066666667,color: Colors.black),),
                 //     ),
                 //
                 //   ],

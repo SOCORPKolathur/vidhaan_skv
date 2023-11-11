@@ -151,7 +151,7 @@ class _StaffAttendanceState extends State<StaffAttendance> {
           padding: const EdgeInsets.only(left: 20.0),
           child: Container(child: Padding(
             padding: const EdgeInsets.only(left: 38.0,top: 30),
-            child: Text("Staff Attendance Register",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+            child: Text("Staff Attendance Register",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
             width: width/1.050,
@@ -282,19 +282,19 @@ class _StaffAttendanceState extends State<StaffAttendance> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                  child: Text("Reg No",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  child: Text("Reg No",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 40.0,right: 8.0),
-                                  child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  child: Text("Student Name",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                  child: Text("Attendance",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  child: Text("Attendance",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                  child: Text("Mobile No",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                  child: Text("Mobile No",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                 ),
                               ],
                             ),
@@ -385,7 +385,7 @@ class _StaffAttendanceState extends State<StaffAttendance> {
                             decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
 
                             ),
-                            child: Center(child: Text("Reports",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),)),
+                            child: Center(child: Text("Reports",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),)),
 
                           ),
                         ),
@@ -487,7 +487,7 @@ class _StaffAttendanceState extends State<StaffAttendance> {
                                 Text("Total No.of Students",style: GoogleFonts.poppins(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 20,
+                                  fontSize: width/68.3,
                                 ),),
                                 ChoiceChip(
 

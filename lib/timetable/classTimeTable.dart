@@ -389,7 +389,7 @@ class _ClassWiseTimeTableState extends State<ClassWiseTimeTable> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Classwise Time Table",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                  Text("Classwise Time Table",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                   SizedBox(width:10),
                 ],
               ),

@@ -350,7 +350,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(left: 38.0,top: 30),
-                              child: Text("School Profile",style: GoogleFonts.poppins(fontSize: 20,fontWeight:FontWeight.w700),),
+                              child: Text("School Profile",style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight:FontWeight.w700),),
                             ),
                             SizedBox(
                                 width:900
@@ -495,7 +495,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Icon(Icons.camera_alt_rounded,size: 50,),
-                                        Text("Select Logo",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),)
+                                        Text("Select Logo",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),)
                                       ],
                                     ) : Image.network(imgUrl): Center(
                                       child: CircularProgressIndicator(),
@@ -523,14 +523,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("School Name *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("School Name *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: schoolname,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -556,14 +556,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("School Phone Number *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("School Phone Number *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: schoolphone,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -589,14 +589,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("School Slogan ",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("School Slogan ",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: solgan,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -631,14 +631,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Building No: *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Building No: *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: schoolbuilding,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -664,14 +664,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Street Name : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Street Name : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: schoolstreet,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -697,14 +697,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Area : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Area : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: schoolarea,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -730,14 +730,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("City /District : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("City /District : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: schoolcity,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -774,14 +774,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("State: *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("State: *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: schoolstate,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -807,14 +807,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Pincode : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Pincode : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: schoolpincode,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -840,14 +840,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Website : *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Website : *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0.0,right: 25),
                                       child: Container(child: TextFormField(
                                         controller: schoolweb,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -993,7 +993,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(right:0.0),
-                                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1001,7 +1001,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                               child: TextField(
                                                 controller: orderno,
                                                 style: GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
                                                 decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                   border: InputBorder.none,
@@ -1024,14 +1024,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(right:0.0),
-                                            child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Class",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(left: 0.0,right: 10),
                                             child: Container(child: TextField(
                                               controller: name,
                                               style: GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.066666667
                                               ),
                                               decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                 border: InputBorder.none,
@@ -1078,11 +1078,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                          child: Text("Class",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                          child: Text("Class",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                         ),
                                       ],
                                     ),
@@ -1132,13 +1132,13 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                     children: [
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 8.0,right: 8.0),
                                                         child: Container(
                                                             width:150,
-                                                            child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                            child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                       ),
                                                       deletecheck[index]==true?     InkWell(
                                                         onTap: (){
@@ -1190,7 +1190,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(right:0.0),
-                                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1198,7 +1198,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                               child: TextField(
                                                 controller: orderno2,
                                                 style: GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
                                                 decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                   border: InputBorder.none,
@@ -1221,14 +1221,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(right:0.0),
-                                            child: Text("Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Section",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(left: 0.0,right: 10),
                                             child: Container(child: TextField(
                                               controller: name2,
                                               style: GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.066666667
                                               ),
                                               decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                 border: InputBorder.none,
@@ -1275,11 +1275,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                          child: Text("Section",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                          child: Text("Section",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                         ),
 
                                       ],
@@ -1330,11 +1330,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                     children: [
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                        child: Container(width:150,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                        child: Container(width:150,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                       ),
                                                       deletecheck2[index]==true?     InkWell(
                                                         onTap: (){
@@ -1386,7 +1386,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(right:0.0),
-                                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1394,7 +1394,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                               child: TextField(
                                                 controller: orderno3,
                                                 style: GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
                                                 decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                   border: InputBorder.none,
@@ -1417,14 +1417,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(right:0.0),
-                                            child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(left: 0.0,right: 10),
                                             child: Container(child: TextField(
                                               controller: name3,
                                               style: GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.066666667
                                               ),
                                               decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                 border: InputBorder.none,
@@ -1471,11 +1471,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                          child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                          child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                         ),
                                       ],
                                     ),
@@ -1525,11 +1525,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                     children: [
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                        child: Container(width:110,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                        child: Container(width:110,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                       ),
                                                       deletecheck3[index]==true?     InkWell(
                                                         onTap: (){
@@ -1606,14 +1606,14 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(right:0.0),
-                                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(left: 0.0,right: 25),
                                             child: Container(child: TextField(
                                               controller: orderno,
                                               style: GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.066666667
                                               ),
                                               decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                 border: InputBorder.none,
@@ -1636,7 +1636,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(right:0.0),
-                                            child: Text("Fees",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Fees",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -1644,7 +1644,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                               child: TextField(
                                                 controller: name,
                                                 style: GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
                                                 decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                                   border: InputBorder.none,
@@ -1691,11 +1691,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                          child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                          child: Text("Fee Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                          child: Text("Fee Name",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                         ),
                                       ],
                                     ),
@@ -1746,11 +1746,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                     children: [
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                                        child: Text("${(index+1).toString().padLeft(3,"0")}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                                        child: Text("${(index+1).toString().padLeft(3,"0")}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                        child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                                        child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                                       ),
                                                       deletecheck4[index]==true?     InkWell(
                                                         onTap: (){

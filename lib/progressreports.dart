@@ -217,7 +217,7 @@ class _ProgressReportState extends State<ProgressReport> {
                   children: [
                     Row(
                       children: [
-                        Text("Progress Reports",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                        Text("Progress Reports",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                         SizedBox(width: 650,),
 
                         SizedBox(width: 10,),
@@ -296,7 +296,7 @@ class _ProgressReportState extends State<ProgressReport> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Register Number",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Register Number",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -314,7 +314,7 @@ class _ProgressReportState extends State<ProgressReport> {
 
                                   textFieldConfiguration: TextFieldConfiguration(
                                     style:  GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -368,7 +368,7 @@ class _ProgressReportState extends State<ProgressReport> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Student Name",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -392,7 +392,7 @@ class _ProgressReportState extends State<ProgressReport> {
 
                                     textFieldConfiguration: TextFieldConfiguration(
                                       style:  GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -459,7 +459,7 @@ class _ProgressReportState extends State<ProgressReport> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("By Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("By Class",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -482,7 +482,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                           child: Text(
                                             'Select Option',
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15
+                                                fontSize: width/91.066666667
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -495,7 +495,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                       child: Text(
                                         item,
                                         style:  GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -563,7 +563,7 @@ class _ProgressReportState extends State<ProgressReport> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("By Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("By Section",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -584,7 +584,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                           child: Text(
                                             'Select Option',
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15
+                                                fontSize: width/91.066666667
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -597,7 +597,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                       child: Text(
                                         item,
                                         style:  GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -1529,7 +1529,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                           .poppins(
                                                                           color: Colors
                                                                               .black,
-                                                                          fontSize: 16,
+                                                                          fontSize: width/85.375,
                                                                           fontWeight:
                                                                           FontWeight
                                                                               .w600),),
@@ -1537,7 +1537,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                           .poppins(
                                                                           color: Colors
                                                                               .grey,
-                                                                          fontSize: 10,
+                                                                          fontSize: width/136.6,
                                                                           fontWeight:
                                                                           FontWeight
                                                                               .w600),),
@@ -1573,7 +1573,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                   .poppins(
                                                                                   color: Colors
                                                                                       .white,
-                                                                                  fontSize: 11,
+                                                                                  fontSize: width/124.181818182,
                                                                                   fontWeight:
                                                                                   FontWeight
                                                                                       .w600),
@@ -1720,7 +1720,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                     radius: 45.0,
                                                                                     lineWidth: 10.0,
                                                                                     percent: getStudentAttendancePersantage(snapshot.data!).present,
-                                                                                    center:  Text("${((getStudentAttendancePersantage(snapshot.data!).present)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                                    center:  Text("${((getStudentAttendancePersantage(snapshot.data!).present)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                                                                     progressColor: Colors.green,
                                                                                   ),
                                                                                   Padding(
@@ -1749,7 +1749,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                     radius: 45.0,
                                                                                     lineWidth: 10.0,
                                                                                     percent: getStudentAttendancePersantage(snapshot.data!).absent,
-                                                                                    center:  Text("${((getStudentAttendancePersantage(snapshot.data!).absent)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                                    center:  Text("${((getStudentAttendancePersantage(snapshot.data!).absent)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                                                                     progressColor: Colors.red,
                                                                                   ),
                                                                                   Padding(
@@ -1786,7 +1786,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                               Text(
                                                                 "Exam Reports",
                                                                 style: TextStyle(
-                                                                  fontSize: 17,
+                                                                  fontSize: width/80.352941176,
                                                                   fontWeight: FontWeight.w700,
                                                                 ),
                                                               ),
@@ -2022,7 +2022,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                radius: 45.0,
                                                                                lineWidth: 10.0,
                                                                                percent: 0.0,
-                                                                               center:  Text("0.0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                               center:  Text("0.0%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                                                                progressColor: Colors.green,
                                                                              ),
                                                                              Padding(
@@ -2051,7 +2051,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                radius: 45.0,
                                                                                lineWidth: 10.0,
                                                                                percent: 0.0,
-                                                                               center:  Text("0.0%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                               center:  Text("0.0%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                                                                progressColor: Colors.red,
                                                                              ),
                                                                              Padding(
@@ -2085,7 +2085,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                 Text(
                                                                   "Exam Reports",
                                                                   style: TextStyle(
-                                                                    fontSize: 17,
+                                                                    fontSize: width/80.352941176,
                                                                     fontWeight: FontWeight.w700,
                                                                   ),
                                                                 ),

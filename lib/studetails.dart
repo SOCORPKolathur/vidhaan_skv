@@ -21,7 +21,7 @@ class _studetailsState extends State<studetails> {
       children: [
         Padding(
           padding: const EdgeInsets.only(top:20,right: 850),
-          child: Text("Students",style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.bold),),
+          child: Text("Students",style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight: FontWeight.bold),),
         ),
         Row(
           children: [
@@ -155,7 +155,7 @@ class _studetailsState extends State<studetails> {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 28.0,bottom: 20,left: 20),
-            child: Text("Class 1",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 20),),
+            child: Text("Class 1",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/68.3),),
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

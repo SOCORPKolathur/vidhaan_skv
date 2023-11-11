@@ -3825,7 +3825,7 @@ class _StaffIDState extends State<StaffID> {
               padding: const EdgeInsets.only(left: 20.0),
               child: Container(child: Padding(
                 padding: const EdgeInsets.only(left: 38.0,top: 30),
-                child: Text("Staffs List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                child: Text("Staffs List",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
               ),
                 //color: Colors.white,
                 width: width/1.050,
@@ -4296,7 +4296,7 @@ class _StaffIDState extends State<StaffID> {
                                                               ),
                                                               SizedBox(height: 2,),
                                                               Text(schoolname,style: GoogleFonts.poppins(
-                                                                  color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                  color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                               Text(schooladdress,style: GoogleFonts.poppins(
                                                                   color: pickerColor, fontSize: 8,fontWeight: FontWeight.w400),textAlign: TextAlign.center),
                                                               Text("Phone: +91 ${schoolphone}",style: GoogleFonts.poppins(
@@ -4336,7 +4336,7 @@ class _StaffIDState extends State<StaffID> {
                                                               Text(value["stname"],style: GoogleFonts.poppins(
                                                                   color: Colors.white, fontSize: 15,fontWeight: FontWeight.w700),),
                                                               Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
-                                                                  color:  Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                  color:  Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                               SizedBox(height: 10,),
                                                               Row(
 
@@ -4355,14 +4355,14 @@ class _StaffIDState extends State<StaffID> {
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
                                                                                 Text("Designation",style: GoogleFonts.poppins(
-                                                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                                 Text(" : ",style: GoogleFonts.poppins(
-                                                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                               ],
                                                                             ),
                                                                           ),
                                                                           Text(value["designation"],style: GoogleFonts.poppins(
-                                                                              color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                              color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         ],
                                                                       ),
                                                                       Row(
@@ -4375,14 +4375,14 @@ class _StaffIDState extends State<StaffID> {
                                                                               children: [
                                                                                 Text("DOB",style: GoogleFonts.poppins(
 
-                                                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                                 Text(" : ",style: GoogleFonts.poppins(
-                                                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                               ],
                                                                             ),
                                                                           ),
                                                                           Text(value["dob"],style: GoogleFonts.poppins(
-                                                                              color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                              color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         ],
                                                                       ),
                                                                       Row(
@@ -4394,14 +4394,14 @@ class _StaffIDState extends State<StaffID> {
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
                                                                                 Text("Blood Group",style: GoogleFonts.poppins(
-                                                                                    color:Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                                    color:Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                                 Text(" : ",style: GoogleFonts.poppins(
-                                                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                               ],
                                                                             ),
                                                                           ),
                                                                           Text(value["bloodgroup"],style: GoogleFonts.poppins(
-                                                                              color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                              color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         ],
                                                                       ),
                                                                       Row(
@@ -4413,14 +4413,14 @@ class _StaffIDState extends State<StaffID> {
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
                                                                                 Text("Phone",style: GoogleFonts.poppins(
-                                                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                                 Text(" : ",style: GoogleFonts.poppins(
-                                                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                               ],
                                                                             ),
                                                                           ),
                                                                           Text(value["mobile"],style: GoogleFonts.poppins(
-                                                                              color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                              color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         ],
                                                                       ),
                                                                     ],
@@ -4488,7 +4488,7 @@ class _StaffIDState extends State<StaffID> {
                                                                   color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                             ),
                                                             Text("",style: GoogleFonts.poppins(
-                                                                color: Color(0xff0271C5), fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                             SizedBox(height: 10,),
                                                             Row(
                                                               children: [
@@ -4496,10 +4496,10 @@ class _StaffIDState extends State<StaffID> {
                                                                 Container(
                                                                   width: 110,
                                                                   child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
-                                                                      color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                      color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 ),
                                                                 Text(value["Spousephone"],style: GoogleFonts.poppins(
-                                                                    color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                    color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                               ],
                                                             ),
                                                             Row(
@@ -4510,12 +4510,12 @@ class _StaffIDState extends State<StaffID> {
                                                                   width: 90,
                                                                   child: Text("Address : ",style: GoogleFonts.poppins(
 
-                                                                      color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                      color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 ),
                                                                 Container(
                                                                   width: 150,
                                                                   child: Text(value["address"],style: GoogleFonts.poppins(
-                                                                      color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                                      color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 ),
                                                               ],
                                                             ),
@@ -4617,7 +4617,7 @@ class _StaffIDState extends State<StaffID> {
                     child: Icon(Icons.arrow_back),
                   ),
                 ),
-                Text("Select Templates",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 20),),
+                Text("Select Templates",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
               ],
             ),
           ),
@@ -4665,7 +4665,7 @@ class _StaffIDState extends State<StaffID> {
                                     ),
                                     SizedBox(height: 2,),
                                     Text(schoolname,style: GoogleFonts.poppins(
-                                        color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                        color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                     Text(schooladdress,style: GoogleFonts.poppins(
                                         color: pickerColor, fontSize: 8,fontWeight: FontWeight.w400),textAlign: TextAlign.center),
                                     Text("Phone: +91 ${schoolphone}",style: GoogleFonts.poppins(
@@ -4704,7 +4704,7 @@ class _StaffIDState extends State<StaffID> {
                                     Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                                         color: Colors.white, fontSize: 15,fontWeight: FontWeight.w700),),
                                     Text("ID: VBSB004",style: GoogleFonts.poppins(
-                                        color:  Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                        color:  Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                     SizedBox(height: 10,),
                                     Row(
 
@@ -4717,9 +4717,9 @@ class _StaffIDState extends State<StaffID> {
                                               children: [
                                                 SizedBox(width: 20,),
                                                 Text("Designation       : ",style: GoogleFonts.poppins(
-                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                 Text("Senior",style: GoogleFonts.poppins(
-                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                               ],
                                             ),
                                             Row(
@@ -4727,27 +4727,27 @@ class _StaffIDState extends State<StaffID> {
                                                 SizedBox(width: 20,),
                                                 Text("DOB          : ",style: GoogleFonts.poppins(
 
-                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                 Text("05/05/2002",style: GoogleFonts.poppins(
-                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                               ],
                                             ),
                                             Row(
                                               children: [
                                                 SizedBox(width: 20,),
                                                 Text("Blood Group : ",style: GoogleFonts.poppins(
-                                                    color:Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                    color:Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                 Text("B+ve",style: GoogleFonts.poppins(
-                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                               ],
                                             ),
                                             Row(
                                               children: [
                                                 SizedBox(width: 20,),
                                                 Text("Phone      : ",style: GoogleFonts.poppins(
-                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                 Text("789456213",style: GoogleFonts.poppins(
-                                                    color: Colors.white, fontSize: 12,fontWeight: FontWeight.w600),),
+                                                    color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                               ],
                                             ),
                                           ],
@@ -4815,7 +4815,7 @@ class _StaffIDState extends State<StaffID> {
                                         color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                   ),
                                   Text("",style: GoogleFonts.poppins(
-                                      color: Color(0xff0271C5), fontSize: 12,fontWeight: FontWeight.w600),),
+                                      color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                   SizedBox(height: 10,),
                                   Row(
                                     children: [
@@ -4823,10 +4823,10 @@ class _StaffIDState extends State<StaffID> {
                                       Container(
                                         width: 110,
                                         child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
-                                            color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                            color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                       ),
                                       Text("9944861235",style: GoogleFonts.poppins(
-                                          color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                          color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                     ],
                                   ),
                                   Row(
@@ -4837,10 +4837,10 @@ class _StaffIDState extends State<StaffID> {
                                         width: 110,
                                         child: Text("Address : ",style: GoogleFonts.poppins(
 
-                                            color: pickerColor, fontSize: 12,fontWeight: FontWeight.w600),),
+                                            color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                       ),
                                       Text("No120/2 Kolathur \nChennai",style: GoogleFonts.poppins(
-                                          color: Colors.black, fontSize: 12,fontWeight: FontWeight.w600),),
+                                          color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                     ],
                                   ),
 
@@ -4876,7 +4876,7 @@ class _StaffIDState extends State<StaffID> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: 10,),
-                            Text("Card Design 1",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 20),),
+                            Text("Card Design 1",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                             Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                             Container(

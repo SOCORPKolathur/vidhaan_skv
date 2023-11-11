@@ -146,7 +146,7 @@ class _StaffEntryState extends State<StaffEntry> {
             padding: const EdgeInsets.only(left: 20.0),
             child: Container(child: Padding(
               padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Text("Staff Entry",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+              child: Text("Staff Entry",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
             ),
               //color: Colors.white,
               width: width/1.050,
@@ -175,7 +175,7 @@ class _StaffEntryState extends State<StaffEntry> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right:0.0),
-                              child: Text("Staff First Name *",style: GoogleFonts.poppins(fontSize: 15,)),
+                              child: Text("Staff First Name *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -186,7 +186,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                   controller: stnamefirst,
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15
+                                      fontSize: width/91.066666667
                                   ),
                                   validator: (value) =>
                                   value!.isEmpty ? 'Field Cannot be Empty' : null,
@@ -213,7 +213,7 @@ class _StaffEntryState extends State<StaffEntry> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right:0.0),
-                              child: Text("Middle Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                              child: Text("Middle Name",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -223,7 +223,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                 controller: stnamemiddle,
                                 style: GoogleFonts.poppins(
-                                    fontSize: 15
+                                    fontSize: width/91.066666667
                                 ),
                                 decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                   border: InputBorder.none,
@@ -246,7 +246,7 @@ class _StaffEntryState extends State<StaffEntry> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right:0.0),
-                              child: Text("Last Name *",style: GoogleFonts.poppins(fontSize: 15,)),
+                              child: Text("Last Name *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -256,7 +256,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                 controller: stnamelast,
                                 style: GoogleFonts.poppins(
-                                    fontSize: 15
+                                    fontSize: width/91.066666667
                                 ),
                                 validator: (value) =>
                                 value!.isEmpty ? 'Field Cannot be Empty' : null,
@@ -289,7 +289,7 @@ class _StaffEntryState extends State<StaffEntry> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                child: Text("Staff Details",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                child: Text("Staff Details",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                               ),
                               Row(
                                 children: [
@@ -301,7 +301,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Reg Number * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Reg Number * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -317,7 +317,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                       validator: (value) =>
                                       value!.isEmpty ? 'Field Cannot be Empty' : null,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
 
                                     ),
@@ -344,7 +344,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Joining Date * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Joining Date * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -352,7 +352,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                     child: Container(child: TextFormField(
                                       controller:  entrydate,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       onTap: () async {
                                         DateTime? pickedDate = await showDatePicker(
@@ -413,7 +413,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Designation * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Designation * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -435,7 +435,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                               child: Text(
                                                 'Select Option',
                                                 style: GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
@@ -448,7 +448,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                           child: Text(
                                             item,
                                             style:  GoogleFonts.poppins(
-                                                fontSize: 15
+                                                fontSize: width/91.066666667
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -524,7 +524,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Blood Group * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Blood Group * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -532,7 +532,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                     child: Container(child: TextFormField(
                                       controller: bloodgroup,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       validator: (value) =>
                                       value!.isEmpty ? 'Field Cannot be Empty' : null,
@@ -565,7 +565,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Date of Birth * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Date of Birth * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -573,7 +573,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                     child: Container(child: TextFormField(
                                       controller: dob,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       onTap: () async {
                                         DateTime? pickedDate = await showDatePicker(
@@ -635,7 +635,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Gender * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Gender * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -653,7 +653,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                       textFieldConfiguration: TextFieldConfiguration(
                                         style:  GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -703,7 +703,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                          child: Text("Residential Address * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Residential Address * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -723,7 +723,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                         ),
 
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
 
                                       ),
@@ -750,7 +750,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Community * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Community * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -761,7 +761,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                       controller: community,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       validator: (value) =>
                                       value!.isEmpty ? 'Field Cannot be Empty' : null,
@@ -794,7 +794,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Contact No * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Contact No * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -802,7 +802,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                     child: Container(child: TextFormField(
                                       controller: mobile,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       validator: (value) {
                                         if(value!.isEmpty){
@@ -845,7 +845,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Religion * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Religion * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -856,7 +856,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                       controller: religion,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       validator: (value) =>
                                       value!.isEmpty ? 'Field Cannot be Empty' : null,
@@ -890,7 +890,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Email * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Email * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -898,7 +898,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                     child: Container(child: TextFormField(
                                       controller: email,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       validator: (value) =>
                                       value!.isEmpty ? 'Field Cannot be Empty' : null,
@@ -931,7 +931,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Aadhaar No * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Aadhaar No * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -939,7 +939,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                     child: Container(child: TextFormField(
                                       controller: aadhaarno,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       validator: (value) {
                                         if(value!.isEmpty){
@@ -983,7 +983,7 @@ class _StaffEntryState extends State<StaffEntry> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                child: Text("Marital Status",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                child: Text("Marital Status",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                               ),
                               Row(
                                 children: [
@@ -995,7 +995,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Single :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Single :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1020,7 +1020,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Married :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Married :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1053,7 +1053,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text(single==true? "Parent Name  :":"Spouse Name  :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text(single==true? "Parent Name  :":"Spouse Name  :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1064,7 +1064,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                        controller: spousename,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                         border: InputBorder.none,
@@ -1093,7 +1093,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Phone No  :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Phone No  :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1101,7 +1101,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                     child: Container(child: TextFormField(
                                       controller:  sphone,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
 
                                       validator: (value) {
@@ -1143,7 +1143,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Office Address :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Office Address :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1159,7 +1159,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                         ),
 
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
 
                                       ),
@@ -1187,7 +1187,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Email  :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Email  :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1203,7 +1203,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                         ),
 
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
 
                                       ),
@@ -1231,7 +1231,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Aadhaar No :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Aadhaar No :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1239,7 +1239,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                     child: Container(child: TextFormField(
                                        controller: saadhaar,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
 
                                       decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom:8),
@@ -1262,7 +1262,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                               Padding(
                                 padding: const EdgeInsets.only(left: 10.0,bottom: 10),
-                                child: Text("Work Experience",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                                child: Text("Work Experience",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                               ),
 
                               Row(
@@ -1275,7 +1275,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                          child: Text("Total No of Experience :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Total No of Experience :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1286,7 +1286,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                       controller: workexp,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                         border: InputBorder.none,
@@ -1317,7 +1317,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Language Known :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Language Known :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1328,7 +1328,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                       controller: lang,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                         border: InputBorder.none,
@@ -1360,7 +1360,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text("Specialisation :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Specialisation :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1371,7 +1371,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                       controller: special,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                         border: InputBorder.none,
@@ -1402,7 +1402,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                          child: Text("Last School :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Last School :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1413,7 +1413,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                       controller: lastschool,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                         border: InputBorder.none,
@@ -1448,7 +1448,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                          child: Text("Subject/Class Taught * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Subject/Class Taught * :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1459,7 +1459,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                       controller: subject,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       validator: (value) {
                                         if(value!.isEmpty){
@@ -1500,7 +1500,7 @@ class _StaffEntryState extends State<StaffEntry> {
 
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                          child: Text("Seminar/Workshop attended :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Seminar/Workshop attended :",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         )),
                                   ),
                                   Padding(
@@ -1511,7 +1511,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                   ],
                                       controller: workshop,
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.066666667
                                       ),
                                       decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                         border: InputBorder.none,
@@ -1564,7 +1564,7 @@ class _StaffEntryState extends State<StaffEntry> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(left:48.0),
-                              child: Text("Upload Staff Photo(150pxX150px)",style: GoogleFonts.poppins(fontSize: 15),),
+                              child: Text("Upload Staff Photo(150pxX150px)",style: GoogleFonts.poppins(fontSize: width/91.066666667),),
                             ),
                             Row(
                               children: [
@@ -1575,7 +1575,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                     });
                                     uploadToStorage();
                                   },
-                                  child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: 16))),
+                                  child: Container(child: Center(child: Text("Choose file",style: GoogleFonts.poppins(fontSize: width/85.375))),
                                     width: width/10.507,
                                     height: height/16.425,
                                     // color: Color(0xffDDDEEE),
@@ -1584,7 +1584,7 @@ class _StaffEntryState extends State<StaffEntry> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: 13),),
+                                  child: Text("No file chosen",style: GoogleFonts.poppins(fontSize: width/105.076923077),),
                                 )
                               ],
                             ),

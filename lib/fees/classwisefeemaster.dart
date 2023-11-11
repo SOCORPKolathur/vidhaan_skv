@@ -560,7 +560,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
               height: height/8.212,
               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
               padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Text("Assign Fees Master",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+              child: Text("Assign Fees Master",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
             ),
             ),
           ),
@@ -588,7 +588,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("Assign Fee For :",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700),),
+                                child: Text("Assign Fee For :",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700),),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -992,7 +992,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Select Fees Details",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700),),
+                            child: Text("Select Fees Details",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700),),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0,top:8),
@@ -1354,19 +1354,19 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                              child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                              child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 56.0,right: 8.0),
-                              child: Text("Fees",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                              child: Text("Fees",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 88.0,right: 8.0),
-                              child: Text("Amount",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                              child: Text("Amount",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 88.0,right: 8.0),
-                              child: Text("Collect Payment On",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                              child: Text("Collect Payment On",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                           ],
                         ),
@@ -1586,7 +1586,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                     Divider(),
                     Padding(
                       padding: const EdgeInsets.only(left: 300.0),
-                      child: Text("Total: ${total}",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.w600,color: Colors.black),),
+                      child: Text("Total: ${total}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Colors.black),),
                     )
 
 

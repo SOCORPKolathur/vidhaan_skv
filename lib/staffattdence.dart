@@ -560,7 +560,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                                 radius: 45.0,
                                                                 lineWidth: 10.0,
                                                                 percent: getStudentAttendancePersantage(snapshot.data!).present,
-                                                                center:  Text("${((getStudentAttendancePersantage(snapshot.data!).present)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                center:  Text("${((getStudentAttendancePersantage(snapshot.data!).present)*100).toInt()}%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                                                 progressColor: Colors.green,
                                                               ),
                                                               Padding(
@@ -631,7 +631,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                                 radius: 45.0,
                                                                 lineWidth: 10.0,
                                                                 percent: getStudentAttendancePersantage(snapshot.data!).absent,
-                                                                center:  Text("${((getStudentAttendancePersantage(snapshot.data!).absent * 100).toInt())}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                                center:  Text("${((getStudentAttendancePersantage(snapshot.data!).absent * 100).toInt())}%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                                                 progressColor: Colors.red,
                                                               ),
                                                               Padding(
@@ -753,7 +753,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
             padding: const EdgeInsets.only(left: 20.0),
             child: Container(child: Padding(
               padding: const EdgeInsets.only(left: 38.0,top: 30),
-              child: Text("Staff Attendance Register",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+              child: Text("Staff Attendance Register",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
             ),
               //color: Colors.white,
               width: width/1.050,
@@ -815,7 +815,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                     radius: 50.0,
                                     lineWidth: 10.0,
                                     percent:  (presnetvalues/totalattdencevalues),
-                                    center:  Text("${(presnetvalues/totalattdencevalues *100).toInt()} %",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                    center:  Text("${(presnetvalues/totalattdencevalues *100).toInt()} %",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                     progressColor: Colors.green,
                                   ),
                                   Padding(
@@ -853,7 +853,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                     radius: 50.0,
                                     lineWidth: 10.0,
                                     percent:(absentvalues/totalattdencevalues),
-                                    center:  Text("${(absentvalues/totalattdencevalues *100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                    center:  Text("${(absentvalues/totalattdencevalues *100).toInt()}%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                     progressColor: Colors.red,
                                   ),
                                   Padding(
@@ -905,7 +905,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                             Text("Total No.of Staffs",style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontWeight: FontWeight.w600,
-                              fontSize: 20,
+                              fontSize: width/68.3,
                             ),),
                             ChoiceChip(
 
@@ -988,7 +988,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                   radius: 50.0,
                                   lineWidth: 10.0,
                                   percent:  (presnetvalues/totalattdencevalues),
-                                  center:  Text("${(presnetvalues/totalattdencevalues *100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                  center:  Text("${(presnetvalues/totalattdencevalues *100).toInt()}%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                   progressColor: Colors.green,
                                 ),
                                 Padding(
@@ -1026,7 +1026,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                   radius: 50.0,
                                   lineWidth: 10.0,
                                   percent:(absentvalues/totalattdencevalues),
-                                  center:  Text("${(absentvalues/totalattdencevalues *100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                  center:  Text("${(absentvalues/totalattdencevalues *100).toInt()}%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                   progressColor: Colors.red,
                                 ),
                                 Padding(
@@ -1078,7 +1078,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                           Text("Total No.of Staffs",style: GoogleFonts.poppins(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
-                            fontSize: 20,
+                            fontSize: width/68.3,
                           ),),
                           ChoiceChip(
 
@@ -1128,14 +1128,14 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right:0.0),
-                              child: Text("Date",style: GoogleFonts.poppins(fontSize: 15,)),
+                              child: Text("Date",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0,right: 25),
                               child: Container(child:
                               TextField(
                                 style:  GoogleFonts.poppins(
-                                    fontSize: 15
+                                    fontSize: width/91.066666667
                                 ),
                                 controller: date,
                                 decoration: InputDecoration(
@@ -1254,19 +1254,19 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8.0,right: 20.0),
-                                    child: Text("Staff ID",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                    child: Text("Staff ID",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 40.0,right: 8.0),
-                                    child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                    child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                    child: Text("Attendance",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                    child: Text("Attendance",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                   ),
                                   /*Padding(
                                     padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                    child: Text("Time",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),),
+                                    child: Text("Time",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                                   ),
 
                                    */
@@ -1392,7 +1392,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                               decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
 
                               ),
-                              child: Center(child: Text("Reports",style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w700,color: Colors.white),)),
+                              child: Center(child: Text("Reports",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),)),
 
                             ),
                           ),
@@ -1494,7 +1494,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                   Text("Total No.of Staffs",style: GoogleFonts.poppins(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 20,
+                                    fontSize: width/68.3,
                                   ),),
                                   ChoiceChip(
 

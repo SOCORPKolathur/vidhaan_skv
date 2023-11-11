@@ -117,7 +117,7 @@ class _StaffListState extends State<StaffList> {
                       },
                     ),
                   ),
-                  Text("Staffs List",style: GoogleFonts.poppins(fontSize: 18,fontWeight: FontWeight.bold),),
+                  Text("Staffs List",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                 ],
               ),
             ),
@@ -865,8 +865,8 @@ class _StaffListState extends State<StaffList> {
                                               child: Row(
                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
-                                                  Text("Joined Date: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["entrydate"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Joined Date: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["entrydate"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
                                                 ],
                                               ),
                                             ),
@@ -879,13 +879,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Community: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["community"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -898,13 +898,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Phone Number: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["mobile"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -917,13 +917,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Religion: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["religion"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -934,8 +934,8 @@ class _StaffListState extends State<StaffList> {
                                               child: Row(
                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
-                                                  Text("Aadhaar No: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Aadhaar No: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["aadhaarno"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
                                                 ],
                                               ),
                                             ),
@@ -947,7 +947,7 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Address: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Container(
@@ -955,7 +955,7 @@ class _StaffListState extends State<StaffList> {
                                                     child: Text(
                                                       value["address"],
                                                       style: GoogleFonts.poppins(
-                                                          fontSize: 12,
+                                                          fontSize: width/113.833333333,
                                                           fontWeight: FontWeight.w500),
                                                     ),
                                                   ),
@@ -970,13 +970,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Marital Status: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["Maritalstatus"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -990,13 +990,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Parent Name: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["Spousename"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -1009,13 +1009,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Spouse Name: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["Spousename"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -1028,13 +1028,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Phone No: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["Spousephone"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -1047,13 +1047,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Office Address: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["Spouseoffice"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -1066,13 +1066,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Email: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["Spouseemail"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -1085,13 +1085,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Aadhaar: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 13,
+                                                        fontSize: width/105.076923077,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["Spouseaadhaar"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -1115,8 +1115,8 @@ class _StaffListState extends State<StaffList> {
                                               padding: const EdgeInsets.only(top: 0.0,bottom: 20.0),
                                               child: Row(
                                                 children: [
-                                                  Text("Work Experience: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["Work Experience"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Work Experience: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["Work Experience"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -1126,16 +1126,16 @@ class _StaffListState extends State<StaffList> {
                                               padding: const EdgeInsets.only(top: 0.0,bottom: 20),
                                               child: Row(
                                                 children: [
-                                                  Text("Language Known: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["Language Known"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Language Known: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["Language Known"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
                                             ),
                                             Row(
                                               children: [
-                                                Text("Specialisation: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                Text(value["Specialisation"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                Text("Specialisation: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                Text(value["Specialisation"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                               ],
                                             ),
@@ -1143,8 +1143,8 @@ class _StaffListState extends State<StaffList> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("School Last: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["School Last"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("School Last: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["School Last"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -1153,8 +1153,8 @@ class _StaffListState extends State<StaffList> {
                                               padding: const EdgeInsets.only(top: 20.0,bottom: 0),
                                               child: Row(
                                                 children: [
-                                                  Text("Handling Subject: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 13),),
-                                                  Text(value["Subject"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 12),),
+                                                  Text("Handling Subject: ",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/105.076923077),),
+                                                  Text(value["Subject"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),),
 
                                                 ],
                                               ),
@@ -1169,13 +1169,13 @@ class _StaffListState extends State<StaffList> {
                                                   Text(
                                                     "Seminar/Workshop: ",
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     value["Seminar/Workshop"],
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 12,
+                                                        fontSize: width/113.833333333,
                                                         fontWeight: FontWeight.w500),
                                                   ),
                                                 ],

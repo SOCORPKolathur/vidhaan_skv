@@ -230,6 +230,7 @@ class _Dashboard2State extends State<Dashboard2> {
 
   }
   Widget content() {
+    double width = MediaQuery.of(context).size.width;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -239,7 +240,7 @@ class _Dashboard2State extends State<Dashboard2> {
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,
-              fontSize: 20,
+              fontSize: width/68.3,
             ),
           ),
           SizedBox(
@@ -282,7 +283,7 @@ class _Dashboard2State extends State<Dashboard2> {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: width/97.571428571,
                   ),
                 ),
               ),
@@ -293,6 +294,7 @@ class _Dashboard2State extends State<Dashboard2> {
     );
   }
   Widget content2() {
+    double width = MediaQuery.of(context).size.width;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -302,7 +304,7 @@ class _Dashboard2State extends State<Dashboard2> {
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,
-              fontSize: 20,
+              fontSize: width/68.3,
             ),
           ),
           SizedBox(
@@ -345,7 +347,7 @@ class _Dashboard2State extends State<Dashboard2> {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: width/97.571428571,
                   ),
                 ),
               ),
@@ -411,9 +413,9 @@ class _Dashboard2State extends State<Dashboard2> {
                             children: [
                               Container(
                                   width:220,
-                                  child: Text(schoolname,style: GoogleFonts.poppins(fontSize: 17,fontWeight: FontWeight.w700,color: Colors.white),)),
+                                  child: Text(schoolname,style: GoogleFonts.poppins(fontSize: width/80.352941176,fontWeight: FontWeight.w700,color: Colors.white),)),
                               SizedBox(height: 5,),
-                              Text(schooladdress,style: GoogleFonts.poppins(fontSize: 12,fontWeight: FontWeight.w600,color: Colors.white),),
+                              Text(schooladdress,style: GoogleFonts.poppins(fontSize: width/113.833333333,fontWeight: FontWeight.w600,color: Colors.white),),
                             ],
                           ),
                           SizedBox(width: 30,),
@@ -439,7 +441,7 @@ class _Dashboard2State extends State<Dashboard2> {
                       padding: const EdgeInsets.all(8.0),
                       child: Icon(Icons.calendar_month),
                     ),
-                    Text("${currentDate} ${cmonth} , ${cyear}",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),
+                    Text("${currentDate} ${cmonth} , ${cyear}",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/91.066666667),
                     ),
                   ],
                 ),
@@ -738,7 +740,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Text("Today Staff Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
+                                      child: Text("Today Staff Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top:15.0),
@@ -753,7 +755,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                                   radius: 40.0,
                                                   lineWidth: 12.0,
                                                   percent: (snap.data!.presentPercentage*100)/100,
-                                                  center:  Text("${(snap.data!.presentPercentage*100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                  center:  Text("${(snap.data!.presentPercentage*100).toInt()}%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                                   progressColor: Colors.green,
                                                 ),
                                                 Padding(
@@ -793,7 +795,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                                       radius: 40.0,
                                                       lineWidth: 12.0,
                                                       percent: (snap.data!.absentPercentage*100)/100,
-                                                      center:  Text("${(snap.data!.absentPercentage * 100).toInt()}%",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w500)),
+                                                      center:  Text("${(snap.data!.absentPercentage * 100).toInt()}%",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w500)),
                                                       progressColor: Colors.red,
                                                     ),
                                                     Padding(
@@ -830,7 +832,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                                 padding: const EdgeInsets.all(8.0),
                                                 child: Text("Staffs on leave Today",
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight: FontWeight.w600,fontSize: 14),
+                                                      fontWeight: FontWeight.w600,fontSize: width/97.571428571),
                                                 ),
                                               ),
                                               Container(
@@ -861,13 +863,13 @@ class _Dashboard2State extends State<Dashboard2> {
                                                                 //text1
                                                                 Text(
                                                                   "${snap.data!.todayAbsentPersons[i].name} ",
-                                                                  style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 12),
+                                                                  style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/113.833333333),
                                                                 ),
                                                                 Text(
                                                                   "- ID ${snap.data!.todayAbsentPersons[i].id} ",
                                                                   style: GoogleFonts.poppins(
                                                                       fontWeight: FontWeight.w500,
-                                                                      fontSize: 10,color: Colors.grey),
+                                                                      fontSize: width/136.6,color: Colors.grey),
                                                                 ),
 
 
@@ -906,7 +908,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text("Today Staff Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
+                                        child: Text("Today Staff Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(top:15.0),
@@ -998,7 +1000,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                                   padding: const EdgeInsets.all(8.0),
                                                   child: Text("Staffs on leave Today",
                                                     style: GoogleFonts.poppins(
-                                                        fontWeight: FontWeight.w600,fontSize: 14),
+                                                        fontWeight: FontWeight.w600,fontSize: width/97.571428571),
                                                   ),
                                                 ),
                                                 Container(
@@ -1029,13 +1031,13 @@ class _Dashboard2State extends State<Dashboard2> {
                                                                   //text1
                                                                   Text(
                                                                     "",
-                                                                    style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 12),
+                                                                    style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/113.833333333),
                                                                   ),
                                                                   Text(
                                                                     "- ID ",
                                                                     style: GoogleFonts.poppins(
                                                                         fontWeight: FontWeight.w500,
-                                                                        fontSize: 10,color: Colors.grey),
+                                                                        fontSize: width/136.6,color: Colors.grey),
                                                                   ),
 
 
@@ -1077,7 +1079,7 @@ class _Dashboard2State extends State<Dashboard2> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(top:8.0,left:8),
-                                  child: Text("Overall Staff Report",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
+                                  child: Text("Overall Staff Report",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                                 ),
                                 Container(
                                     height: height / 2.97,
@@ -1117,7 +1119,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Text("Today Student Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
+                                      child: Text("Today Student Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top:15.0),
@@ -1209,7 +1211,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                                 padding: const EdgeInsets.all(8.0),
                                                 child: Text("Students on leave Today",
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight: FontWeight.w600,fontSize: 14),
+                                                      fontWeight: FontWeight.w600,fontSize: width/97.571428571),
                                                 ),
                                               ),
                                               Container(
@@ -1240,13 +1242,13 @@ class _Dashboard2State extends State<Dashboard2> {
                                                                 //text1
                                                                 Text(
                                                                   "${snap.data!.todayAbsentPersons[i].name} ",
-                                                                  style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 12),
+                                                                  style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/113.833333333),
                                                                 ),
                                                                 Text(
                                                                   "- ID ${snap.data!.todayAbsentPersons[i].id} ",
                                                                   style: GoogleFonts.poppins(
                                                                       fontWeight: FontWeight.w500,
-                                                                      fontSize: 10,color: Colors.grey),
+                                                                      fontSize: width/136.6,color: Colors.grey),
                                                                 ),
 
 
@@ -1292,7 +1294,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text("Today Student Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
+                                          child: Text("Today Student Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(top:15.0),
@@ -1384,7 +1386,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                                     padding: const EdgeInsets.all(8.0),
                                                     child: Text("Students on leave Today",
                                                       style: GoogleFonts.poppins(
-                                                          fontWeight: FontWeight.w600,fontSize: 14),
+                                                          fontWeight: FontWeight.w600,fontSize: width/97.571428571),
                                                     ),
                                                   ),
                                                   Container(
@@ -1415,13 +1417,13 @@ class _Dashboard2State extends State<Dashboard2> {
                                                                     //text1
                                                                     Text(
                                                                       "",
-                                                                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 12),
+                                                                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/113.833333333),
                                                                     ),
                                                                     Text(
                                                                       "- ID ",
                                                                       style: GoogleFonts.poppins(
                                                                           fontWeight: FontWeight.w500,
-                                                                          fontSize: 10,color: Colors.grey),
+                                                                          fontSize: width/136.6,color: Colors.grey),
                                                                     ),
 
 
@@ -1462,7 +1464,7 @@ class _Dashboard2State extends State<Dashboard2> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(top:8.0,left:8),
-                                  child: Text("Overall Student Report",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
+                                  child: Text("Overall Student Report",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                                 ),
                                 Container(
                                     height: height / 2.97,
@@ -1495,7 +1497,7 @@ class _Dashboard2State extends State<Dashboard2> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top:20.0,left: 15),
-                              child: Text("Fees Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
+                              child: Text("Fees Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                             ),
                             SizedBox(height: 10),
                             Container(
@@ -1526,7 +1528,7 @@ class _Dashboard2State extends State<Dashboard2> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top:20.0,left: 15),
-                                child: Text("Events Calendar",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: 18),),
+                                child: Text("Events Calendar",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                               ),
                               Container(
                                 width: 500,
@@ -1678,7 +1680,7 @@ TextEditingController datecon = new TextEditingController();
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w700,
-                  fontSize: 20,
+                  fontSize: width/68.3,
                 ),
               ),
               SizedBox(
@@ -1936,7 +1938,7 @@ TextEditingController datecon = new TextEditingController();
                           style: TextStyle(
                             color: Colors.indigo,
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: width/97.571428571,
                           ),
                         ),
                       ),
@@ -1955,7 +1957,7 @@ TextEditingController datecon = new TextEditingController();
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: width/97.571428571,
                           ),
                         ),
                       ),
@@ -1983,7 +1985,7 @@ TextEditingController datecon = new TextEditingController();
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: width/97.571428571,
                           ),
                         ),
                       ),
@@ -2009,7 +2011,7 @@ TextEditingController datecon = new TextEditingController();
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,
-              fontSize: 20,
+              fontSize: width/68.3,
             ),
           ),
           SizedBox(
@@ -2069,7 +2071,7 @@ TextEditingController datecon = new TextEditingController();
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                        fontSize: width/97.571428571,
                       ),
                     ),
                   ),
