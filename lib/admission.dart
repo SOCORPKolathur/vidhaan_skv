@@ -40,6 +40,37 @@ class _admissionState extends State<admission> {
   final check = List<bool>.generate(1000, (int index) => false, growable: true);
 
   int currentIndex = 0;
+
+  String schoolname="";
+  String schoolphone="";
+
+  String schooladdress="";
+  String schoollogo="";
+  String idcarddesign="";
+  String solgan="";
+  String imgurl="";
+  getadmin() async {
+    var document = await FirebaseFirestore.instance.collection("Admin").get();
+    setState(() {
+      schoolname=document.docs[0]["schoolname"];
+      schoolphone=document.docs[0]["phone"];
+
+      schooladdress=
+      "${document.docs[0]["area"]} ${document.docs[0]["city"]} ${document.docs[0]["pincode"]}";
+      schoollogo=document.docs[0]["logo"];
+      idcarddesign=document.docs[0]["idcard"].toString();
+      solgan=document.docs[0]["solgan"];
+      imgurl=document.docs[0]["logo"];
+    });
+  }
+
+  @override
+  void initState() {
+    getadmin();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height= MediaQuery.of(context).size.height;
@@ -744,8 +775,48 @@ class _admissionState extends State<admission> {
                             currentIndex != 1 ?  GestureDetector(
                               onTap: () {
                               Navigator.of(context).pop();
-                              sendEmail(docid,val['email'],"Enrollment link - Vidhaan","https://vidhaanadmissionform.web.app \n Please click the above link to enroll");
-                            },
+                              print("hbasjdiub as");
+                              sendEmail(docid,val['email'],"Complete Your Enrollment",
+                                  '''Dear ${val['name']},
+                                  
+Congratulations on securing a place at ${schoolname}! We are excited to welcome you to our academic community.To proceed with your enrollment, please follow the steps outlined below:
+
+Step 1: Access the Enrollment Link**
+Click on the following link to access the enrollment portal: https://vidhaanadmissionform.firebaseapp.com/
+
+Step 2: Fill in Mandatory Details**
+Once logged in, you will find a section dedicated to enrollment details. Please ensure that you fill in all mandatory fields accurately. This information is crucial for our records and will help us provide you with the best possible educational experience.
+
+Step 3: Upload Passport Size Photo**
+As part of the enrollment process, we require a recent passport-size photo with a white background.
+
+Please follow these guidelines for the photo:
+- Size: Passport size
+- Background: White
+- Format: JPEG or PNG
+
+
+Important Notes:
+- Ensure all details provided are accurate and match the information in your official documents.
+- Ensure the uploaded photo complies with the specified requirements.
+
+
+Technical Assistance:
+If you encounter any issues or require technical assistance during the enrollment process, please contact our support team at ${schoolphone}.
+
+Your prompt attention to this matter is greatly appreciated, as it ensures a seamless start to your academic journey at ${schoolname}. We look forward to having you as part of our community.
+
+
+Best regards,
+${schoolname}
+
+''');
+                              Successdialog();
+                              FirebaseFirestore.instance.collection('Admission').doc(docid).update({
+                                "status" : "Approved"
+                              });
+
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 20,right: 20),
                                 child: Container(
@@ -769,10 +840,32 @@ class _admissionState extends State<admission> {
                             ) :SizedBox(),
                             currentIndex != 2 ?    Row(
                               children: [
+                                currentIndex != 0?
                                 GestureDetector(
                                   onTap: () {
+                                    FirebaseFirestore.instance.collection('Admission').doc(docid).update({
+                                      "status" : ""
+                                    });
                                     Navigator.of(context).pop();
-                                    sendEmail(docid,val['email'],"Your Application is on waiting list - Vidhaan","Please wait your application on waiting list");
+                                    sendEmail(docid,val['email'],"Application Status Update - Waiting List",
+
+                                    '''Dear ${val['name']},
+
+We hope this email finds you well. 
+
+We would like to inform you that your application for ${val['previousclass']} Grade at ${schoolname} has been carefully reviewed. While we were impressed with your application, we regret to inform you that, at this time, your application has been placed on our waiting list.
+
+Being on the waiting list means that we recognize your potential and would like to keep your application under consideration. As spaces become available, we will reevaluate our admissions and notify you promptly.
+
+We appreciate your patience and understanding during this process. If you have any questions or require further information, please feel free to contact our admissions office.
+
+Thank you for considering ${schoolname} for ${val['previousclass']} Grade. We appreciate your interest and look forward to the possibility of welcoming you to our school community.
+
+Best regards,
+
+Admin
+${schoolname}'''
+                                    );
                                     Successdialog2();
                                   },
                                   child: Padding(
@@ -786,18 +879,32 @@ class _admissionState extends State<admission> {
 
                                     ),
                                   ),
-                                ),
+                                ) : SizedBox(),
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).pop();
                                     FirebaseFirestore.instance.collection('Admission').doc(docid).update({
                                       "status" : "Rejected"
                                     });
-                                    sendEmail(docid,val['email'],"Your Application Rejected - Vidhaan","Sorry, Your application was rejected");
+                                    sendEmail(docid,val['email'],"Application Status Update - Rejected",
+
+                                        '''Dear ${val['name']},
+
+We regret to inform you that after careful consideration, your application for ${val['previousclass']} Grade at ${schoolname} has been reviewed, and we are unable to offer you a placement at this time.
+
+We appreciate the effort you put into your application and thank you for considering ${schoolname}. If you have any questions or would like feedback on your application, please feel free to reach out to Admin at ${schoolphone}.
+
+We wish you the best in your future endeavors.
+
+Sincerely,
+
+Admin
+${schoolname}
+                                        ''');
                                     Successdialog3();
                                   },
                                   child: Padding(
-                                    padding: const EdgeInsets.only(top: 10,left: 20),
+                                    padding:  EdgeInsets.only(top: 10,left:  currentIndex != 0? 20 : 0),
                                     child: Container(
                                       // color: Colors.yellow,
                                       width: width/12.209,
@@ -830,6 +937,7 @@ class _admissionState extends State<admission> {
   }
 
   sendEmail(String docid,String to, String subject, String description) async {
+    print("mail send");
     DocumentReference documentReferencer = FirebaseFirestore.instance.collection('mail').doc();
     var json = {
       "to": to,
@@ -839,10 +947,7 @@ class _admissionState extends State<admission> {
       },
     };
     var result = await documentReferencer.set(json).whenComplete(() {
-      Successdialog();
-      FirebaseFirestore.instance.collection('Admission').doc(docid).update({
-        "status" : "Approved"
-      });
+
     }).catchError((e) {
 
     });

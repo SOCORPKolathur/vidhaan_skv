@@ -3435,6 +3435,7 @@ String studentdocid="";
   }
 
   sendEmail(String to, String subject, String description) async {
+    print("mail send");
     DocumentReference documentReferencer = FirebaseFirestore.instance
         .collection('mail').doc();
     var json = {
@@ -3447,8 +3448,9 @@ String studentdocid="";
     var result = await documentReferencer.set(json).whenComplete(() {
       //Successdialog();
     }).catchError((e) {
-
+      print(e);
     });
+    print("mail send");
   }
 
   List<FeesWithAmount> feesDetailsList = [];
@@ -3842,6 +3844,27 @@ String studentdocid="";
       },
     );
   }
+
+  String schoolname="";
+  String schoolcode="";
+  String schooladdress="";
+  String schoollogo="";
+  String idcarddesign="";
+  String solgan="";
+  String imgurl="";
+  getadmin() async {
+    var document = await FirebaseFirestore.instance.collection("Admin").get();
+    setState(() {
+      schoolname=document.docs[0]["schoolname"];
+      schoolcode=document.docs[0]["code"];
+      schooladdress=
+      "${document.docs[0]["area"]} ${document.docs[0]["city"]} ${document.docs[0]["pincode"]}";
+      schoollogo=document.docs[0]["logo"];
+      idcarddesign=document.docs[0]["idcard"].toString();
+      solgan=document.docs[0]["solgan"];
+      imgurl=document.docs[0]["logo"];
+    });
+  }
   
   createStudent(DocumentSnapshot snap,List<DocumentSnapshot> feesList) async {
     String studId = randomAlphaNumeric(16);
@@ -3912,7 +3935,53 @@ String studentdocid="";
           "type" : "credit",
         });
       });
-      sendEmail(snap.get("fatherEmail"), "Welcome ${snap.get("studentName")}", 'Register Number : ${snap.get("registrationNo")} login with following phone number\n phone : ${snap.get("fatherMobileNo")} \n school id $code');
+      sendEmail(snap.get("fatherEmail"), "Welcome to Vidhaan!! Download our School App",
+        '''
+        Dear ${snap.get("studentName")},
+We are excited to share the wonderful news that you have been admitted to ${schoolname} for the
+upcoming academic year. Congratulations on your achievement! We look forward to having you as a
+valued member of our school community.
+
+To streamline the admission process and provide you with easy access to important information, we
+invite you to download our official Vidhaan mobile app. The app will serve as your go-to resource for
+updates, announcements, and essential forms.
+
+
+**Here's how to get started:**
+
+1. **Download the Vidhaan App:**
+
+Visit the App Store/Google Play Store on your mobile device and search for  "Vidhaan App" or use
+the following link: https://play.google.com/store/apps/details?id=info.socorp.vidhaan&pcampaignid=web_share .
+
+2.**Login with your Admission Credentials:** After installation, open the app and log in using the
+following credentials:
+
+School Code: ${schoolcode} 
+Username: ${snap.get("mobile")}
+Password: OTP send to your ${snap.get("mobile")}.
+
+3.** Stay Connected**
+
+Our school app is your go-to resource for all things related to your academic journey at ${schoolname}.
+Stay connected with:
+
+- **Announcements:** Receive timely updates, announcements, and important information directly on
+your mobile device.
+
+- **Events:** Stay informed about school events, activities, and important dates.
+
+- **Communication Channels:** Connect with fellow students, teachers, and school administrators
+through the app's communication channels.
+
+We are thrilled to have you join ${schoolname}, and we believe the Vidhaan app will enhance your
+experience and keep you engaged with all that our school has to offer.
+
+Congratulations once again, and welcome to the ${schoolname} family!
+
+Best regards,
+${schoolname}
+        ''');
       FirebaseFirestore.instance.collection('AdmissionForms').doc(snap.id).delete();
       Navigator.pop(context);
     }).onError((error, stackTrace) {

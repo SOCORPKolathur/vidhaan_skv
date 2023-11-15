@@ -890,6 +890,12 @@ class _ExamsubjectMasterState extends State<ExamsubjectMaster> {
                         FirebaseFirestore.instance.collection("ExamMaster").doc(feesid).collection(_typeAheadControllerclass.text)
                             .doc(id)
                             .delete();
+
+              var docu = await FirebaseFirestore.instance.collection("Students").orderBy("regno").get();
+              for(int i=0;i<docu.docs.length;i++){
+                FirebaseFirestore.instance.collection("Students").doc(docu.docs[i].id).collection("Exams").doc(feesid).collection("Timetable").doc(id)
+                    .delete();
+              }
                       Navigator.of(context).pop();
                     },
 

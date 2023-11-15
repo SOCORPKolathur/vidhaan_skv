@@ -123,6 +123,7 @@ class _FeesReportsState extends State<FeesReports> {
       if(_typeAheadControllerregno.text==document.docs[i]["regno"]){
         setState(() {
           studentid= document.docs[i].id;
+          _typeAheadControllerstudent.text=document.docs[i]["stname"];
         }
         );
       }
@@ -140,10 +141,15 @@ class _FeesReportsState extends State<FeesReports> {
       if(_typeAheadControllerstudent.text==document.docs[i]["stname"]){
         setState(() {
           _typeAheadControllerregno.text= document.docs[i]["regno"];
+          studentid= document.docs[i].id;
         }
         );
       }
     }
+    setState(() {
+      search=true;
+      byclass=false;
+    });
 
 
   }
@@ -199,6 +205,7 @@ class _FeesReportsState extends State<FeesReports> {
       type.text="Select Option";
       _typeAheadControllerfees.text="Select Option";
     });
+    getadmin();
     // TODO: implement initState
     super.initState();
   }
@@ -231,45 +238,7 @@ class _FeesReportsState extends State<FeesReports> {
                   Row(
                     children: [
                       Text("Fees Reports",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
-                      SizedBox(width: 400,),
-                      Padding(
-                        padding: const EdgeInsets.only(right:8.0),
-                        child: Icon(Icons.filter_list_sharp),
-                      ),
-                      Text("Filters",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
-                      SizedBox(width: 10,),
-                      InkWell(
-                        onTap: (){
-                          setState(() {
-                            search=false;
-                            byclass=false;
-                            single=false;
-                            married=false;
-                            married2=false;
-                          });
-                        },
-                        child: Material(
-                          borderRadius: BorderRadius.circular(5),
-                          elevation: 7,
-                          child: Container(child: Center(child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
-                                child: Icon(Icons.cancel,color: Colors.white,),
-                              ),
-                              Text("Clear Filter",style: GoogleFonts.poppins(color:Colors.white),),
-                            ],
-                          )),
-                            width: width/10.507,
-                            height: height/20.425,
-                            // color:Color(0xff00A0E3),
-                            decoration: BoxDecoration(color:  Colors.red,borderRadius: BorderRadius.circular(5)),
 
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 140,),
                       //Excelsheet(),
                     ],
                   ),
@@ -383,7 +352,8 @@ class _FeesReportsState extends State<FeesReports> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
-                            child: Container(width: width/6.83,
+                            child: Container(
+                              width: width/6.83,
                               height: height/16.42,
                               //color: Color(0xffDDDEEE),
                               decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
@@ -554,6 +524,40 @@ class _FeesReportsState extends State<FeesReports> {
                                   },
                                 )
                             ),
+                            SizedBox(width: 10,),
+                            InkWell(
+                              onTap: (){
+                                setState(() {
+                                  search=false;
+                                  byclass=false;
+                                  single=false;
+                                  married=false;
+                                  married2=false;
+                                  _typeAheadControllerfees.text = "Select Option";
+                                  type.text="Select Option";
+                                });
+                              },
+                              child: Material(
+                                borderRadius: BorderRadius.circular(5),
+                                elevation: 7,
+                                child: Container(child: Center(child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Icon(Icons.cancel,color: Colors.white,),
+                                    ),
+                                    Text("Clear Filter",style: GoogleFonts.poppins(color:Colors.white),),
+                                  ],
+                                )),
+                                  width: width/10.507,
+                                  height: height/20.425,
+                                  // color:Color(0xff00A0E3),
+                                  decoration: BoxDecoration(color:  Colors.red,borderRadius: BorderRadius.circular(5)),
+
+                                ),
+                              ),
+                            ),
 
                           ],
                         ),
@@ -577,8 +581,9 @@ class _FeesReportsState extends State<FeesReports> {
                                   child: Text("Register Number",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 25),
-                                  child: Container(child:
+                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  child: Container(
+                                    child:
                                   TypeAheadFormField(
 
 
@@ -617,8 +622,7 @@ class _FeesReportsState extends State<FeesReports> {
                                         this._typeAheadControllerregno.text = suggestion;
                                       });
 
-                                      // getstaffbyid();
-                                      // getorderno();
+                                      getstaffbyid();
 
 
 
@@ -650,7 +654,7 @@ class _FeesReportsState extends State<FeesReports> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 0.0,right: 10),
                                   child: Container(
-                                    width: width/6.902,
+                                    width: width/8.902,
                                     height: height/16.425,
                                     //color: Color(0xffDDDEEE),
                                     decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
@@ -713,7 +717,8 @@ class _FeesReportsState extends State<FeesReports> {
 
                             ),
                           ],
-                        ):type.text=="Class"? Column(
+                        ):
+                      type.text=="Class"? Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
 
                         children: [
@@ -780,7 +785,8 @@ class _FeesReportsState extends State<FeesReports> {
 
                         ],
 
-                      ): type.text=="Section"? Row(
+                      ): type.text=="Section"?
+                      Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Column(
@@ -792,7 +798,7 @@ class _FeesReportsState extends State<FeesReports> {
                                 child: Text("By Class",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                padding: const EdgeInsets.only(left: 0.0,right: 10),
                                 child: Container(child:  TypeAheadFormField(
 
 
@@ -836,7 +842,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   value!.isEmpty ? 'Please select a class' : null,
                                   onSaved: (value) => this._selectedCity = value,
                                 ),
-                                  width: width/6.902,
+                                  width: width/8.902,
                                   height: height/16.42,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
@@ -901,7 +907,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   value!.isEmpty ? 'Please select a section' : null,
                                   onSaved: (value) => this._selectedCity = value,
                                 ),
-                                  width: width/6.902,
+                                  width: width/8.902,
                                   height: height/16.42,
                                   //color: Color(0xffDDDEEE),
                                   decoration: BoxDecoration(color: Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
@@ -913,7 +919,8 @@ class _FeesReportsState extends State<FeesReports> {
 
                           ),
                         ],
-                      ):Container(),
+                      )
+                          :Container(),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -1170,7 +1177,7 @@ class _FeesReportsState extends State<FeesReports> {
           height: 310,
           width: width/1.366,
           child: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection('FeesCollection').orderBy("timestamp",descending: true).snapshots(),
+            stream: FirebaseFirestore.instance.collection('FeesCollection').orderBy("stRegNo",).snapshots(),
             builder: (ctx,snap){
               if(snap.hasData){
                 students.clear();
@@ -1197,38 +1204,42 @@ class _FeesReportsState extends State<FeesReports> {
                 filterList1.forEach((element) {
                   if(type.text.toLowerCase() == 'school'){
                     filterList2.add(element);
-                  }else if(type.text.toLowerCase() == 'class'){
+                  }
+                  else if(type.text.toLowerCase() == 'class'){
                     if(element.get("class") == _typeAheadControllerclass.text){
                       filterList2.add(element);
                     }
-                  }else if(type.text.toLowerCase() == 'section'){
+                  }
+                  else if(type.text.toLowerCase() == 'section'){
                     if(element.get("class") == _typeAheadControllerclass.text && element.get("section") == _typeAheadControllersection.text){
                       filterList2.add(element);
                     }
-                  }else if(type.text.toLowerCase() == 'student'){
+                  }
+                  else if(type.text.toLowerCase() == 'student'){
                     if(element.get("stRegNo") == _typeAheadControllerregno.text || element.get("stName").toString().toLowerCase() == _typeAheadControllerstudent.text.toLowerCase()){
                       filterList2.add(element);
                     }
-                  }else{
+                  }
+                  else{
                     filterList2.add(element);
                   }
                 });
                 filterList2.forEach((element) {
                   //over due
                   if(married){
-                    if(differenceDatefunction(element.get('duedate')) < 0){
+                    if(element.get("status") == false && differenceDatefunction(element.get('duedate')) < 0){
                       students.add(element);
                     }
                   }
                   // paid
                   if(married2){
-                    if(element.get('status')){
+                    if(element.get('status')==true){
                       students.add(element);
                     }
                   }
                   // pending
                   if(single){
-                    if(!element.get('status')){
+                    if(element.get("status") == false && differenceDatefunction(element.get('duedate')) >= 0){
                       students.add(element);
                     }
                   }
@@ -1308,17 +1319,17 @@ class _FeesReportsState extends State<FeesReports> {
                           Container(
                             width:150,
                             child: Text(
-                              (differenceDatefunction(data.get('duedate')) < 0) ? 'Over Due' : data.get("status") == true ? 'Paid' : 'Pending',
+                              data.get("status") == true ? 'Paid' : (differenceDatefunction(data.get('duedate')) < 0) ? 'Over Due'   : 'Pending',
                               style: GoogleFonts.montserrat(
                                 fontWeight:FontWeight.normal,
-                                  color: (differenceDatefunction(data.get('duedate')) < 0) ? Colors.red : data.get("status") == true ? Colors.green : Colors.black,
+                                  color: data.get("status") == true ? Colors.green : (differenceDatefunction(data.get('duedate')) < 0) ? Colors.red :  Colors.black,
                                   fontSize:width/81.13
                             ),),
                           ),
                           Container(
                             width:160,
                             child: Text(
-                              data.get("date"),
+                              data.get("date")==""?"-":data.get("date"),
                               style: GoogleFonts.montserrat(
                                 fontWeight:FontWeight.normal,fontSize:width/81.13
                             ),
@@ -1327,7 +1338,7 @@ class _FeesReportsState extends State<FeesReports> {
                           Container(
                             width:130,
                             child: Text(
-                              data.get("time"),
+                              data.get("time")==""?"-":data.get("time"),
                               style: GoogleFonts.montserrat(
                                 fontWeight:FontWeight.normal,fontSize:width/81.13
                             ),),
@@ -1349,7 +1360,24 @@ class _FeesReportsState extends State<FeesReports> {
       ],
     );
   }
-
+  String schoolname="";
+  String schooladdress="";
+  String schoollogo="";
+  String idcarddesign="";
+  String solgan="";
+  String imgurl="";
+  getadmin() async {
+    var document = await FirebaseFirestore.instance.collection("Admin").get();
+    setState(() {
+      schoolname=document.docs[0]["schoolname"];
+      schooladdress=
+      "${document.docs[0]["area"]} ${document.docs[0]["city"]} ${document.docs[0]["pincode"]}";
+      schoollogo=document.docs[0]["logo"];
+      idcarddesign=document.docs[0]["idcard"].toString();
+      solgan=document.docs[0]["solgan"];
+      imgurl=document.docs[0]["logo"];
+    });
+  }
   sendNotificationsToStudents(){
     String subjectForPending = 'Gentle remainder for fee';
     String subjectForOverDue = 'Outstanding School Fees Notice';
@@ -1367,9 +1395,30 @@ class _FeesReportsState extends State<FeesReports> {
         sendEmail(
           element.get("email"),
           (differenceDatefunction(element.get('duedate')) < 0) ? subjectForOverDue : subjectForPending,
-          (differenceDatefunction(element.get('duedate')) < 0)
-              ? 'Secure your child&#39;s bright academic journey! Just a friendly reminder that the school fee payment is due soon. Your timely action is greatly appreciated. Thank you for your ongoing support'
-              : 'Dear Parent, we kindly request your attention to complete the school fee payment for ${element.get("stName")} ${element.get("stRegNo")}. Your prompt payment is appreciated. Thank you.',
+          (differenceDatefunction(element.get('duedate')) > 0)
+              ? 'Secure your child"s bright academic journey! Just a friendly reminder that the school fee payment is due soon. Your timely action is greatly appreciated. Thank you for your ongoing support'
+              : ''' Dear Parent,
+
+I hope this email finds you well. We appreciate your ongoing support in providing a conducive learning environment for your child at ${schoolname}. We would like to bring to your attention that there is an outstanding balance of ${element.get("amount")} for your child's school fees.
+
+It is crucial to maintain up-to-date payments to ensure the seamless continuation of educational services. We kindly request you to settle the overdue amount at your earliest convenience.
+
+Here are the details for the pending payment:
+
+Student Name: ${element.get('stName')}
+Student Id: ${element.get('stRegNo')}
+Due Amount: ${element.get('amount')}
+Due Date: ${element.get('duedate')}
+
+You can make the payment through online or offline. If you have already made the payment, please accept our apologies for any inconvenience and provide the transaction details for verification.
+
+Your prompt attention to this matter is greatly appreciated. If you have any questions or concerns regarding the payment, feel free to contact our finance department at School Admin.
+
+Thank you for your cooperation.
+
+Best regards,
+${schoolname},
+              ''',
         );
       }
     });
@@ -1382,7 +1431,7 @@ class _FeesReportsState extends State<FeesReports> {
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
-      title: 'Email Sended Sucessfully',
+      title: 'Email Sent Sucessfully',
       desc: '',
 
       btnCancelOnPress: () {

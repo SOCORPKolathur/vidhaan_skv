@@ -505,7 +505,7 @@ setState(() {
                                                               primaryXAxis: sfc.CategoryAxis(),
 
                                                               title: sfc.ChartTitle(
-                                                                  text: '   Monthly Present Reports',
+                                                                  text: '   OverAll Present Reports',
                                                                   textStyle: GoogleFonts.poppins(
                                                                     fontWeight: FontWeight.w600,
                                                                     color: Colors.black,
@@ -577,7 +577,7 @@ setState(() {
                                                           child: sfc.SfCartesianChart(
                                                               primaryXAxis: sfc.CategoryAxis(),
                                                               title: sfc.ChartTitle(
-                                                                  text: '   Monthly Absent Reports',
+                                                                  text: '   OverAll Absent Reports',
                                                                   textStyle: GoogleFonts.poppins(
                                                                     fontWeight: FontWeight.w600,
                                                                     color: Colors.black,

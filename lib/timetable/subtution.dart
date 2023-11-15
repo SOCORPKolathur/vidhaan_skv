@@ -1627,7 +1627,7 @@ class _SubtutionState extends State<Subtution>
             ],
           ),
           content: FutureBuilder(
-              future: FirebaseFirestore.instance.collection('SubstitutionHistory').doc(docid).collection('SubstitutionStaffs').where("date", isEqualTo: date).get(),
+              future: FirebaseFirestore.instance.collection('SubstitutionHistory').doc(docid).collection('SubstitutionStaffs').orderBy("period").get(),
               builder: (context,snap) {
                 if(snap.hasData){
                   return Container(
@@ -1638,60 +1638,68 @@ class _SubtutionState extends State<Subtution>
                       itemCount: snap.data!.docs.length,
                       itemBuilder: (ctx,i){
                         var val = snap.data!.docs[i];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Material(
-                            elevation: 4,
-                            borderRadius: BorderRadius.circular(10),
-                            child: Container(
-                              height: 150,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Staff Name :   "+val.get("staffName"),
-                                      style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
+                        if(val["date"]==date) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Material(
+                              elevation: 4,
+                              borderRadius: BorderRadius.circular(10),
+                              child: Container(
+                                height: 150,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment
+                                        .spaceEvenly,
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
+                                    children: [
+                                      Text(
+                                        "Staff Name :   " +
+                                            val.get("staffName"),
+                                        style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "Subject :   "+val.get("subject"),
-                                      style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
+                                      Text(
+                                        "Subject :   " + val.get("subject"),
+                                        style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "Class :   "+val.get("class") +" - "+ val.get("section"),
-                                      style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
+                                      Text(
+                                        "Class :   " + val.get("class") +
+                                            " - " + val.get("section"),
+                                        style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "Date :   "+val.get("date"),
-                                      style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
+                                      Text(
+                                        "Date :   " + val.get("date"),
+                                        style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "Period :   ${int.parse(val.get("period").toString()).remainder(8) + 1}",
-                                      style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    )
-                                  ],
+                                      Text(
+                                        "Period :   ${int.parse(
+                                            val.get("period").toString())
+                                            .remainder(8) + 1}",
+                                        style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
+                          );
+                        }
                       },
                     )
                   );

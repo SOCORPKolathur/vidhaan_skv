@@ -11,9 +11,12 @@ import 'package:show_up_animation/show_up_animation.dart';
 import 'package:syncfusion_flutter_charts/charts.dart' as sfc;
 import 'package:vidhaan/Masters/excelgen.dart';
 import 'package:vidhaan/photoview.dart';
+import 'package:vidhaan/print/fees_print.dart';
+import 'package:vidhaan/print/progress_report_print.dart';
 import 'package:vidhaan/studententryedit.dart';
 import 'attendence.dart';
 import 'models/student_csv_model.dart';
+import 'package:pdf/pdf.dart';
 
 class ProgressReport extends StatefulWidget {
   const ProgressReport({super.key});
@@ -1427,7 +1430,7 @@ class _ProgressReportState extends State<ProgressReport> {
                             future: FirebaseFirestore.instance.collection('Students').doc(studentid).get(),
                             builder: (ctx ,snap){
                               if(snap.hasData){
-                                var value = snap.data!.data();
+                                Map<String,dynamic>? value = snap.data!.data();
                                 return Row(
                                   children: [
                                     Container(
@@ -1797,30 +1800,220 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                     Column(
                                                                       children: [
                                                                         for(int j = 0; j < exams.first.subjects.length+1; j++)
-                                                                          Container(
+                                                                         j == 0
+                                                                             ? Container(
                                                                             height: j==0 ? 60 : 50,
-                                                                            width: 90,
+                                                                            width: 180,
                                                                             decoration: BoxDecoration(
-                                                                              color: j == 0 ? Color(0xffF7983E) : i ==0 ? Color(0xffA75BF4) : Colors.transparent,
+                                                                              color: Colors.transparent,
+                                                                              //color: j == 0 ? Color(0xffF7983E) : i ==0 ? Color(0xffA75BF4) : Colors.transparent,
                                                                               border: Border.all(),
                                                                             ),
-                                                                            child: Center(
-                                                                              child: Text(
-                                                                                  (i == 0 && j == 0)
-                                                                                    ? "Subject/Exam"
-                                                                                    : j == 0
-                                                                                      ? exams[i-1].examName
-                                                                                      : i == 0
-                                                                                      ? exams[0].subjects[j-1].name
-                                                                                      : exams[i-1].subjects[j-1].mark,
-                                                                                textAlign: TextAlign.center,
-                                                                                style: TextStyle(
-                                                                                    color: (i == 0 || j == 0) ? Colors.white : Colors.black,
-                                                                                    fontWeight: FontWeight.w700
+                                                                            child: Column(
+                                                                              children: [
+                                                                                Container(
+                                                                                  height: (i == 0 && j == 0) ? 58 : 30,
+                                                                                  width: 180,
+                                                                                  child: Center(
+                                                                                    child: Text(
+                                                                                      (i == 0 && j == 0)
+                                                                                          ? "Subject/Exams"
+                                                                                          : j == 0
+                                                                                          ? exams[i-1].examName
+                                                                                          : "",
+                                                                                      textAlign: TextAlign.center,
+                                                                                      style: TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        //color: (i == 0 || j == 0) ? Colors.white : Colors.black,
+                                                                                        fontWeight: (i == 0 || j == 0) ? FontWeight.w900 : FontWeight.w400,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
                                                                                 ),
-                                                                              ),
+                                                                                Visibility(
+                                                                                  visible: i != 0,
+                                                                                  child: Row(
+                                                                                    children: [
+                                                                                      Container(
+                                                                                        height: 28,
+                                                                                        width: 60,
+                                                                                        decoration: const BoxDecoration(
+                                                                                          color: Colors.transparent,
+                                                                                            border: Border(
+                                                                                              right: BorderSide(),
+                                                                                              top: BorderSide(),
+                                                                                            )
+                                                                                        ),
+                                                                                        child: Center(
+                                                                                          child: Text(
+                                                                                            "Max",
+                                                                                            textAlign: TextAlign.center,
+                                                                                            style: TextStyle(
+                                                                                              color: Colors.black,
+                                                                                              //color: (i == 0 || j == 0) ? Colors.white : Colors.black,
+                                                                                              fontWeight: (i == 0 || j == 0) ? FontWeight.w900 : FontWeight.w400,
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                      Container(
+                                                                                        height: 28,
+                                                                                        width: 59,
+                                                                                        decoration: BoxDecoration(
+                                                                                          color: Colors.transparent,
+                                                                                            border: Border(
+                                                                                              right: BorderSide(),
+                                                                                              top: BorderSide(),
+                                                                                            )
+                                                                                        ),
+                                                                                        child: Center(
+                                                                                          child: Text(
+                                                                                            "Mark",
+                                                                                            textAlign: TextAlign.center,
+                                                                                            style: TextStyle(
+                                                                                              color: Colors.black,
+                                                                                              //color: (i == 0 || j == 0) ? Colors.white : Colors.black,
+                                                                                              fontWeight: (i == 0 || j == 0) ? FontWeight.w900 : FontWeight.w400,
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                      Container(
+                                                                                        height: 28,
+                                                                                        width: 59,
+                                                                                        decoration: BoxDecoration(
+                                                                                          color: Colors.transparent,
+                                                                                            border: Border(
+                                                                                              top: BorderSide(),
+                                                                                            )
+                                                                                        ),
+                                                                                        child: Center(
+                                                                                          child: Text(
+                                                                                            "Grade",
+                                                                                            textAlign: TextAlign.center,
+                                                                                            style: TextStyle(
+                                                                                              color: Colors.black,
+                                                                                              //color: (i == 0 || j == 0) ? Colors.white : Colors.black,
+                                                                                              fontWeight: (i == 0 || j == 0) ? FontWeight.w900 : FontWeight.w400,
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                )
+                                                                              ],
                                                                             ),
                                                                           )
+                                                                             : i == 0
+                                                                             ? Container(
+                                                                           height: j==0 ? 60 : 50,
+                                                                           width: 180,
+                                                                           decoration: BoxDecoration(
+                                                                             color: Colors.transparent,
+                                                                             //color: j == 0 ? Color(0xffF7983E) : i ==0 ? Color(0xffA75BF4) : Colors.transparent,
+                                                                             border: Border.all(),
+                                                                           ),
+                                                                           child: Center(
+                                                                             child: Text(
+                                                                               (i == 0 && j == 0)
+                                                                                   ? ""
+                                                                                   : j == 0
+                                                                                   ? exams[i-1].examName
+                                                                                   : i == 0
+                                                                                   ? exams[0].subjects[j-1].name
+                                                                                   : exams[i-1].subjects[j-1].mark,
+                                                                               textAlign: TextAlign.center,
+                                                                               style: TextStyle(
+                                                                                 color: Colors.black,
+                                                                                 //color: (i == 0 || j == 0) ? Colors.white : Colors.black,
+                                                                                 fontWeight: (i == 0 || j == 0) ? FontWeight.w900 : FontWeight.w400,
+                                                                               ),
+                                                                             ),
+                                                                           ),
+                                                                         )
+                                                                             : Row(
+                                                                               children: [
+                                                                                 Container(
+                                                                                   height: j==0 ? 60 : 50,
+                                                                                   width: 60,
+                                                                                   decoration: BoxDecoration(
+                                                                                     color: Colors.transparent,
+                                                                                     //color: j == 0 ? Color(0xffF7983E) : i ==0 ? Color(0xffA75BF4) : Colors.transparent,
+                                                                                     border: Border.all(),
+                                                                                   ),
+                                                                                   child: Center(
+                                                                                     child: Text(
+                                                                                       (i == 0 && j == 0)
+                                                                                           ? ""
+                                                                                           : j == 0
+                                                                                           ? exams[i-1].examName
+                                                                                           : i == 0
+                                                                                           ? exams[0].subjects[j-1].name
+                                                                                           : exams[i-1].subjects[j-1].totalMark,
+                                                                                       textAlign: TextAlign.center,
+                                                                                       style: TextStyle(
+                                                                                         color: Colors.black,
+                                                                                         //color: (i == 0 || j == 0) ? Colors.white : Colors.black,
+                                                                                         fontWeight: (i == 0 || j == 0) ? FontWeight.w900 : FontWeight.w400,
+                                                                                       ),
+                                                                                     ),
+                                                                                   ),
+                                                                                 ),
+                                                                                 Container(
+                                                                                     height: j==0 ? 60 : 50,
+                                                                                     width: 60,
+                                                                                     decoration: BoxDecoration(
+                                                                                       color: Colors.transparent,
+                                                                                       //color: j == 0 ? Color(0xffF7983E) : i ==0 ? Color(0xffA75BF4) : Colors.transparent,
+                                                                                       border: Border.all(),
+                                                                                     ),
+                                                                                     child: Center(
+                                                                                       child: Text(
+                                                                                         (i == 0 && j == 0)
+                                                                                             ? ""
+                                                                                             : j == 0
+                                                                                             ? exams[i-1].examName
+                                                                                             : i == 0
+                                                                                             ? exams[0].subjects[j-1].name
+                                                                                             : exams[i-1].subjects[j-1].mark,
+                                                                                         textAlign: TextAlign.center,
+                                                                                         style: TextStyle(
+                                                                                           color: Colors.black,
+                                                                                           //color: (i == 0 || j == 0) ? Colors.white : Colors.black,
+                                                                                           fontWeight: (i == 0 || j == 0) ? FontWeight.w900 : FontWeight.w400,
+                                                                                         ),
+                                                                                       ),
+                                                                                     ),
+                                                                         ),
+                                                                                 Container(
+                                                                                   height: j==0 ? 60 : 50,
+                                                                                   width: 60,
+                                                                                   decoration: BoxDecoration(
+                                                                                     color: Colors.transparent,
+                                                                                     //color: j == 0 ? Color(0xffF7983E) : i ==0 ? Color(0xffA75BF4) : Colors.transparent,
+                                                                                     border: Border.all(),
+                                                                                   ),
+                                                                                   child: Center(
+                                                                                     child: Text(
+                                                                                       (i == 0 && j == 0)
+                                                                                           ? ""
+                                                                                           : j == 0
+                                                                                           ? exams[i-1].examName
+                                                                                           : i == 0
+                                                                                           ? exams[0].subjects[j-1].name
+                                                                                           : getGrade(exams[i-1].subjects[j-1].mark,exams[i-1].subjects[j-1].totalMark) ,
+                                                                                       textAlign: TextAlign.center,
+                                                                                       style: TextStyle(
+                                                                                         color: Colors.black,
+                                                                                         //color: (i == 0 || j == 0) ? Colors.white : Colors.black,
+                                                                                         fontWeight: (i == 0 || j == 0) ? FontWeight.w900 : FontWeight.w400,
+                                                                                       ),
+                                                                                     ),
+                                                                                   ),
+                                                                                 ),
+                                                                               ],
+                                                                             )
                                                                       ],
                                                                     )
                                                                 ],
@@ -1988,6 +2181,31 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                       ],
                                                                     ),
                                                                   ),
+                                                                  SizedBox(width: 30),
+                                                                  InkWell(
+                                                                    onTap: (){
+                                                                      generateProgressReportPdf(PdfPageFormat.a4, exams, value,schoolName,schoolAddress,schoolLogo);
+                                                                    },
+                                                                    child: Container(
+                                                                      height: 25,
+                                                                      decoration: BoxDecoration(
+                                                                        color: Colors.lightBlue,
+                                                                        borderRadius: BorderRadius.circular(3),
+                                                                      ),
+                                                                      child: Center(
+                                                                        child: Padding(
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                                          child: Text(
+                                                                            "Print",
+                                                                            style: TextStyle(
+                                                                                color: Colors.white,
+                                                                                fontWeight: FontWeight.w700
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ],
                                                               )
                                                             ],
@@ -2100,7 +2318,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                               height: j == 0 ? 60 : 40,
                                                                               width: 80,
                                                                               decoration: BoxDecoration(
-                                                                                  color: j == 0 ? Color(0xffF7983E) : i == 0 ? Color(0xffA75BF4) : Colors.transparent,
+                                                                                  color: Colors.transparent,
                                                                                   border: Border.all(
                                                                                     color: Colors.black,
                                                                                   ),
@@ -2133,11 +2351,10 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                       ? "III\nTerm"
                                                                                       : (i == 6  && j == 0)
                                                                                       ? "Yearly\nExam"
-                                                                                      : ""
-                                                                                  ,
+                                                                                      : "",
                                                                                   textAlign: TextAlign.center,
                                                                                   style: TextStyle(
-                                                                                      color: Colors.white,
+                                                                                      color: Colors.black,
                                                                                       fontWeight: FontWeight.w700
                                                                                   ),
                                                                                 ),
@@ -2387,6 +2604,7 @@ class _ProgressReportState extends State<ProgressReport> {
           Subjects(
             name: subjectsList[i],
             mark: "",
+            totalMark: "",
           ),
         );
       }
@@ -2403,6 +2621,7 @@ class _ProgressReportState extends State<ProgressReport> {
             if (document2.docs[n]['exam'] == examsList[i].examName) {
               if (document2.docs[n]['name'] == examsList[i].subjects[j].name) {
                 examsList[i].subjects[j].mark = document2.docs[n]['mark'];
+                examsList[i].subjects[j].totalMark = document2.docs[n]['total'];
               }
             }
           }
@@ -2565,6 +2784,33 @@ class _ProgressReportState extends State<ProgressReport> {
     return percentage;
   }
 
+  String getGrade(String mark, String totalMark){
+    String grade = '';
+    double gradeVal = (mark != '' && totalMark != '') ? (int.parse(mark)/int.parse(totalMark)) * 100 : 0.0;
+    if(gradeVal == 0.0){
+      grade = '';
+    }else if(gradeVal >= 91){
+      grade = 'A1';
+    }else if(gradeVal >= 81){
+      grade = 'A2';
+    }else if(gradeVal >= 71){
+      grade = 'B1';
+    }else if(gradeVal >= 61){
+      grade = 'B2';
+    }else if(gradeVal >= 51){
+      grade = 'C1';
+    }else if(gradeVal >= 41){
+      grade = 'C2';
+    }else if(gradeVal >= 33){
+      grade = 'D';
+    }else if(gradeVal >= 21){
+      grade = 'E1';
+    }else if(gradeVal <= 20){
+      grade = 'E2';
+    }
+    return grade;
+  }
+
 
 
 }
@@ -2598,7 +2844,8 @@ class ExamWithSubjectModel {
 }
 
 class Subjects{
-  Subjects({required this.name, required this.mark});
+  Subjects({required this.name, required this.mark, required this.totalMark});
   String name;
   String mark;
+  String totalMark;
 }

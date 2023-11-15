@@ -59,9 +59,9 @@ class _AccountpageState extends State<Accountpage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 138.0, bottom: 14),
+                      padding: const EdgeInsets.only(right: 88.0, bottom: 14),
                       child: Container(
-                        width: width / 1.1,
+                        width: width / 1.02,
                         height: height / 5.475,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -101,7 +101,7 @@ class _AccountpageState extends State<Accountpage> {
                                         padding:
                                             const EdgeInsets.only(right: 68.0),
                                         child: Text(
-                                          "Rs $totalReceivedAmount",
+                                          "Rs ${totalReceivedAmount.toStringAsFixed(2)}",
                                           style: GoogleFonts.poppins(
                                               fontSize: width/91.066666667,
                                               fontWeight: FontWeight.bold),
@@ -136,7 +136,7 @@ class _AccountpageState extends State<Accountpage> {
                                         padding:
                                             const EdgeInsets.only(right: 40.0),
                                         child: Text(
-                                          "Rs " + totalSpendAmount.toString(),
+                                          "Rs " + totalSpendAmount.toStringAsFixed(2),
                                           style: GoogleFonts.poppins(
                                               fontSize: width/91.066666667,
                                               fontWeight: FontWeight.bold),
@@ -176,7 +176,7 @@ class _AccountpageState extends State<Accountpage> {
                                         padding:
                                             const EdgeInsets.only(right: 48.0),
                                         child: Text(
-                                          "Rs " + totalAmount.toString(),
+                                          "Rs " + totalAmount.toStringAsFixed(2),
                                           style: GoogleFonts.poppins(
                                               fontSize: width/91.066666667,
                                               fontWeight: FontWeight.bold),
@@ -249,7 +249,7 @@ class _AccountpageState extends State<Accountpage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 138.0),
+                      padding: const EdgeInsets.only(right: 88.0),
                       child: Container(
                         child: Column(
                           children: [
@@ -295,7 +295,7 @@ class _AccountpageState extends State<Accountpage> {
                                 Container(
                                   width: 130,
                                   child: Text(
-                                    'Received By',
+                                    'Actioned By',
                                     style: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -385,7 +385,7 @@ class _AccountpageState extends State<Accountpage> {
                                         Container(
                                           width: 200,
                                           child: Text(
-                                            "RS ${snap.data!.docs[i]['amount']}",
+                                            "RS ${double.parse(snap.data!.docs[i]['amount'].toString()).toStringAsFixed(2)}",
                                             style: GoogleFonts.mulish(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: width/91.066666667,

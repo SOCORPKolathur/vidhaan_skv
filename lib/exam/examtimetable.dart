@@ -547,13 +547,36 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
 
 
 
+                          Padding(
+                            padding:  const EdgeInsets.only(
+                                left: 0.0, right: 25),
+                            child: GestureDetector(
+                              onTap: () {
+                                addclass();
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 25.0),
+                                child: Container(child: Center(child: Text("Save",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white),)),
+                                  width: width / 10.507,
+                                  height: height / 16.425,
+                                  // color:Color(0xff00A0E3),
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff00A0E3),
+                                      borderRadius: BorderRadius.circular(5)),
+
+                                ),
+                              ),
+                            ),
+                          ),
                           GestureDetector(
                             onTap: () {
-                              addclass();
+                              //addclass();
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(right: 25.0),
-                              child: Container(child: Center(child: Text("Save",
+                              child: Container(child: Center(child: Text("Print",
                                 style: GoogleFonts.poppins(
                                     color: Colors.white),)),
                                 width: width / 10.507,

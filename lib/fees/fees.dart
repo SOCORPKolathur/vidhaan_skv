@@ -180,7 +180,7 @@ class _FeesRegState extends State<FeesReg> {
       "status":true,
       "payedamount": FieldValue.increment(double.parse(payAmount)),
       "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
-      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "time": DateFormat('hh:mm aa').format(DateTime.now()).toString(),
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
 
@@ -190,7 +190,7 @@ class _FeesRegState extends State<FeesReg> {
       "feesname": feesName,
       "amount": double.parse(payAmount),
       "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
-      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "time": DateFormat('hh:mm aa').format(DateTime.now()),
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
 
@@ -198,7 +198,7 @@ class _FeesRegState extends State<FeesReg> {
     FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(feesid).update({
       "payedamount": FieldValue.increment(double.parse(payAmount)),
       "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
-      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "time": DateFormat('hh:mm aa').format(DateTime.now()),
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
 
@@ -208,7 +208,7 @@ class _FeesRegState extends State<FeesReg> {
       "feesname": feesName,
       "amount": double.parse(payAmount),
       "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
-      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "time": DateFormat('hh:mm aa').format(DateTime.now()),
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
 
@@ -218,14 +218,14 @@ class _FeesRegState extends State<FeesReg> {
       "status":true,
       "payedamount": FieldValue.increment(double.parse(payAmount)),
       "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
-      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "time": DateFormat('hh:mm aa').format(DateTime.now()),
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
   }else{
     FirebaseFirestore.instance.collection("FeesCollection").doc("$studentid:$feesid").update({
       "payedamount": double.parse(feesAmount.toString()) - double.parse(payAmount),
       "date": DateFormat('dd/MM/yyyy').format(DateTime.now()),
-      "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+      "time":DateFormat('hh:mm aa').format(DateTime.now()),
       "timestamp": DateTime.now().millisecondsSinceEpoch,
     });
   }
@@ -250,6 +250,25 @@ class _FeesRegState extends State<FeesReg> {
       desc: '',
       btnCancelOnPress: () {
       },
+      btnOkOnPress: () {
+        setState(() {
+          payAmount
+              .clear();
+          balanceAmount
+              .clear();
+        });
+      },
+    )..show();
+  }
+  exessamount(){
+    return AwesomeDialog(
+      width: 450,
+      context: context,
+      dialogType: DialogType.warning,
+      animType: AnimType.rightSlide,
+      title: "Can't pay excess amount",
+      desc: 'The amount your are paying now is greater than the required payment',
+
       btnOkOnPress: () {
 
       },
@@ -908,20 +927,50 @@ class _FeesRegState extends State<FeesReg> {
                                                                     children: [
                                                                       GestureDetector(
                                                                         onTap: () async {
-                                                                          updatefees(
-                                                                              feesAmount: value2["amount"].toString(),
-                                                                              feesName: value2!["feesname"].toString(),
-                                                                            payAmount: payAmount.text,
-                                                                            balanceAmount: balanceAmount.text,
-                                                                          );
-                                                                          var userdoc= await FirebaseFirestore.instance.collection('Students').doc(studentid).get();
-                                                                          Map<String,dynamic> ? val = userdoc.data();
-                                                                          homecontroller.sendPushMessage(val!["token"],"Your payment of RS${value2["amount"].toString()} has been successfully processed. Thank you for your prompt settlement of the school fees. We appreciate your cooperation", "Successful Payment of School Fees");
-                                                                          Successdialog();
-                                                                          setState(() {
-                                                                            payAmount.clear();
-                                                                            balanceAmount.clear();
-                                                                          });
+
+                                                                          if(int.parse(balanceAmount.text)>=0) {
+                                                                            updatefees(
+                                                                              feesAmount: value2["amount"]
+                                                                                  .toString(),
+                                                                              feesName: value2!["feesname"]
+                                                                                  .toString(),
+                                                                              payAmount: payAmount
+                                                                                  .text,
+                                                                              balanceAmount: balanceAmount
+                                                                                  .text,
+                                                                            );
+                                                                            var userdoc = await FirebaseFirestore
+                                                                                .instance
+                                                                                .collection(
+                                                                                'Students')
+                                                                                .doc(
+                                                                                studentid)
+                                                                                .get();
+                                                                            Map<
+                                                                                String,
+                                                                                dynamic> ? val = userdoc
+                                                                                .data();
+                                                                            homecontroller
+                                                                                .sendPushMessage(
+                                                                                val!["token"],
+                                                                                "Your payment of RS ${payAmount.text
+                                                                                    .toString()} for the ${value2!["feesname"]} has been successfully processed. Thank you for your prompt settlement of the school fees. We appreciate your cooperation",
+                                                                                "Successful Payment of School Fees");
+                                                                            FirebaseFirestore.instance.collection('Students').doc(studentid).collection('Notification').doc().set({
+                                                                              "body" : 'Your payment of RS ${payAmount.text
+                                                                                  .toString()} for the ${value2!["feesname"]} has been successfully processed. Thank you for your prompt settlement of the school fees. We appreciate your cooperation',
+                                                                              "date" : DateFormat('dd-MM-yyyy').format(DateTime.now()),
+                                                                              "readstatus" : false,
+                                                                              "time" : DateFormat('hh:mm aa').format(DateTime.now()),
+                                                                              "timestamp" : DateTime.now().millisecondsSinceEpoch,
+                                                                              "title" : "Successful Payment of School Fees",
+                                                                            });
+                                                                            Successdialog();
+
+                                                                          }
+                                                                          else{
+                                                                            exessamount();
+                                                                          }
                                                                         },
                                                                         child: Padding(
                                                                           padding: const EdgeInsets.all(8.0),
@@ -1085,7 +1134,12 @@ class _FeesRegState extends State<FeesReg> {
                                                                 )  : Container();
                                                               });
 
-                                                        })
+                                                        }),
+
+
+                                                        SizedBox(
+                                                          height: 50,
+                                                        )
 
 
 

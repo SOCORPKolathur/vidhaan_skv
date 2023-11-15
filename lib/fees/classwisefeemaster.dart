@@ -57,7 +57,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
   }
   static final List<String> classes = ["Select Option"];
   static final List<String> fees = ["Select Option"];
-  static final List<String> typeclass = ["Select Option","Class","Student","General"];
+  static final List<String> typeclass = ["Select Option","Class","Student"];
   static final List<String> paytypelist = ["Select Option","Monthly","Admission Time","Custom",];
   static final List<String> paytypelist1 = ["Select Option","Monthly","Custom"];
 
@@ -165,8 +165,15 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         // "date": "",
         // "time": "",
         // "duedate": paytype.text.toLowerCase() == 'monthly'
-        //     ? '01/01/2023'
+        //     ? ''
         //     : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+      });
+      FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").doc(docId).set({
+        "feesname": _typeAheadControllerfees.text,
+        "amount": int.parse(amount.text),
+        "timestamp": DateTime.now().microsecondsSinceEpoch,
+        "paytype": paytype.text,
+        "duedate" : paytype.text.toLowerCase() == 'monthly' ? 'Monthly' : paytype.text.toLowerCase() == 'custom' ? date.text : '-'
       });
     }
     else{
@@ -175,6 +182,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "amount": int.parse(amount.text),
         "timestamp": DateTime.now().microsecondsSinceEpoch,
         "paytype": paytype.text,
+        "duedate" : paytype.text.toLowerCase() == 'monthly' ? 'Monthly' : paytype.text.toLowerCase() == 'custom' ? date.text : '-'
       });
       var document = await FirebaseFirestore.instance.collection("Students").where("admitclass",isEqualTo: _typeAheadControllerclass.text).get();
       for(int i=0;i<document.docs.length;i++) {
@@ -192,7 +200,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
           "email" : document.docs[i].get("email"),
-          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
         });
         FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({
           "feesname":  _typeAheadControllerfees.text,
@@ -207,7 +215,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "section" : document.docs[i].get("section"),
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
-          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
         });
       }
     }
@@ -246,7 +254,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "stName" : student.get("stname"),
         "email" : student.get("email"),
         "duedate": paytype.text.toLowerCase() == 'monthly'
-            ? '01/01/2023'
+            ? ''
             : paytype.text.toLowerCase() == 'custom' ? date.text : ''
       });
       FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
@@ -263,7 +271,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "stRegNo" : student.get("regno"),
         "stName" : student.get("stname"),
         "duedate": paytype.text.toLowerCase() == 'monthly'
-            ? '01/01/2023'
+            ? ''
             : paytype.text.toLowerCase() == 'custom' ? date.text : ''
       });
     }
@@ -281,7 +289,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         // "date": "",
         // "time": "",
         // "duedate": paytype.text.toLowerCase() == 'monthly'
-        //     ? '01/01/2023'
+        //     ? ''
         //     : paytype.text.toLowerCase() == 'custom' ? date.text : ''
       });
     }else {
@@ -293,6 +301,8 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "amount": int.parse(amount.text),
           "timestamp": DateTime.now().microsecondsSinceEpoch,
           "paytype": paytype.text,
+          "duedate" : paytype.text.toLowerCase() == 'monthly' ? 'Monthly' : paytype.text.toLowerCase() == 'custom' ? date.text : '-'
+
         });
       }
       var document = await FirebaseFirestore.instance.collection("Students").get();
@@ -311,7 +321,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
           "email" : document.docs[i].get("email"),
-          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
         });
         FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({
           "feesname":  _typeAheadControllerfees.text,
@@ -326,7 +336,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "section" : document.docs[i].get("section"),
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
-          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '01/01/2023' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
         });
       }
       // FirebaseFirestore.instance.collection("Fees").doc(docId).set({
@@ -643,9 +653,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         if(type.text=="Student") {
                                           gettotal2();
                                         }
-                                        if(type.text=="General") {
-                                          gettotal3();
-                                        }
+
                                       },
                                       buttonStyleData: ButtonStyleData(
                                         height: 50,
@@ -1307,7 +1315,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                     print("fkjsidhfakshdf");
                                     final isvalid= _formkey.currentState!.validate();
                                     print(isvalid);
-                                    if(_typeAheadControllerfees.text!="Select Option"||paytype.text!="Select Option") {
+                                    if(_typeAheadControllerfees.text!="Select Option"&&paytype.text!="Select Option") {
                                       if (_formkey.currentState!.validate()) {
                                         if (type.text == "Class") {
                                           addclass();
@@ -1357,7 +1365,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                               child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 56.0,right: 8.0),
+                              padding: const EdgeInsets.only(left: 66.0,right: 8.0),
                               child: Text("Fees",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
@@ -1366,7 +1374,11 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 88.0,right: 8.0),
-                              child: Text("Collect Payment On",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
+                              child: Text("Payment Type",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 88.0,right: 8.0),
+                              child: Text("Due Date",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                           ],
                         ),
@@ -1403,23 +1415,24 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                     child: Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 30.0,right: 70.0),
+                                          padding: const EdgeInsets.only(left: 30.0,right: 60.0),
                                           child: Container(child: Text("00${(index+1).toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         ),
+                                        Container(
+                                            width: 150,
+                                            alignment: Alignment.center,
+                                            child: Text(value["feesname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                        Container(
+                                            width:200,
+                                            alignment: Alignment.center,
+                                            child: Text(value["amount"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                        Container(
+                                            width:150,
+                                            alignment: Alignment.center,
+                                            child: Text(value["paytype"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                          child: Container(
-                                              width: 170,
-
-                                              child: Text(value["feesname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                          child: Text(value["amount"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 130.0,right: 8.0),
-                                          child: Text(value["paytype"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          padding: const EdgeInsets.only(left: 80.0,right: 8.0),
+                                          child: Text(value["duedate"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
                                         ),
 
                                         InkWell(
@@ -1491,6 +1504,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         Padding(
                                           padding: const EdgeInsets.only(left: 130.0,right: 8.0),
                                           child: Text(value["paytype"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 130.0,right: 8.0),
+                                          child: Text(value["duedate"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
                                         ),
                                         InkWell(
                                           onTap: (){
@@ -1849,25 +1866,33 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
     );
   }
   gettotal1() async {
-    setState(() {
-      total=0;
-    });
-    var document=await FirebaseFirestore.instance.collection("ClassMaster").doc(classid).collection("Fees").get();
-    for(int i=0;i<document.docs.length;i++){
+    if(type.text == "Class") {
       setState(() {
-        total=total+document.docs[i]["amount"];
+        total = 0;
       });
+      var document = await FirebaseFirestore.instance.collection("ClassMaster")
+          .doc(classid).collection("Fees")
+          .get();
+      for (int i = 0; i < document.docs.length; i++) {
+        setState(() {
+          total = total + document.docs[i]["amount"];
+        });
+      }
     }
   }
   gettotal2() async {
-    setState(() {
-      total=0;
-    });
-    var document=await FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").get();
-    for(int i=0;i<document.docs.length;i++){
+    if(type.text == "Student") {
       setState(() {
-        total=total+document.docs[i]["amount"];
+        total = 0;
       });
+      var document = await FirebaseFirestore.instance.collection("Students")
+          .doc(studentid).collection("Fees")
+          .get();
+      for (int i = 0; i < document.docs.length; i++) {
+        setState(() {
+          total = total + document.docs[i]["amount"];
+        });
+      }
     }
   }
 
