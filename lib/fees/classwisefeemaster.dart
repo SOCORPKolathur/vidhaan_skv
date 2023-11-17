@@ -173,7 +173,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "amount": int.parse(amount.text),
         "timestamp": DateTime.now().microsecondsSinceEpoch,
         "paytype": paytype.text,
-        "duedate" : paytype.text.toLowerCase() == 'monthly' ? 'Monthly' : paytype.text.toLowerCase() == 'custom' ? date.text : '-'
+        "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
       });
     }
     else{
@@ -182,7 +182,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "amount": int.parse(amount.text),
         "timestamp": DateTime.now().microsecondsSinceEpoch,
         "paytype": paytype.text,
-        "duedate" : paytype.text.toLowerCase() == 'monthly' ? 'Monthly' : paytype.text.toLowerCase() == 'custom' ? date.text : '-'
+        "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
       });
       var document = await FirebaseFirestore.instance.collection("Students").where("admitclass",isEqualTo: _typeAheadControllerclass.text).get();
       for(int i=0;i<document.docs.length;i++) {
@@ -199,8 +199,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "section" : document.docs[i].get("section"),
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
+          "stId" : document.docs[i].id,
           "email" : document.docs[i].get("email"),
-          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+          "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
         });
         FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({
           "feesname":  _typeAheadControllerfees.text,
@@ -215,7 +216,8 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "section" : document.docs[i].get("section"),
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
-          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+          "stId" : document.docs[i].id,
+          "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
         });
       }
     }
@@ -252,10 +254,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "section" : student.get("section"),
         "stRegNo" : student.get("regno"),
         "stName" : student.get("stname"),
+        "stId" : student.id,
         "email" : student.get("email"),
-        "duedate": paytype.text.toLowerCase() == 'monthly'
-            ? ''
-            : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+        "duedate": paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
       });
       FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
         "feesname": _typeAheadControllerfees.text,
@@ -270,9 +271,8 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "section" : student.get("section"),
         "stRegNo" : student.get("regno"),
         "stName" : student.get("stname"),
-        "duedate": paytype.text.toLowerCase() == 'monthly'
-            ? ''
-            : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+        "stId" : student.id,
+        "duedate": paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
       });
     }
   }
@@ -301,7 +301,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "amount": int.parse(amount.text),
           "timestamp": DateTime.now().microsecondsSinceEpoch,
           "paytype": paytype.text,
-          "duedate" : paytype.text.toLowerCase() == 'monthly' ? 'Monthly' : paytype.text.toLowerCase() == 'custom' ? date.text : '-'
+          "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
 
         });
       }
@@ -321,7 +321,8 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
           "email" : document.docs[i].get("email"),
-          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+          "stId" : document.docs[i].id,
+          "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
         });
         FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({
           "feesname":  _typeAheadControllerfees.text,
@@ -336,7 +337,8 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "section" : document.docs[i].get("section"),
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
-          "duedate" : paytype.text.toLowerCase() == 'monthly' ? '' : paytype.text.toLowerCase() == 'custom' ? date.text : ''
+          "stId" : document.docs[i].id,
+          "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
         });
       }
       // FirebaseFirestore.instance.collection("Fees").doc(docId).set({
@@ -557,6 +559,8 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
   }
   final  _formkey = GlobalKey<FormState>();
+
+  bool includingThisMonth = true;
   @override
   Widget build(BuildContext context) {
     double height= MediaQuery.of(context).size.height;
@@ -1275,8 +1279,8 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   ],
 
                                 ),
-                                paytype.text=="Custom"?
-                                Column(
+                                paytype.text=="Custom"
+                                    ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
 
                                   children: [
@@ -1309,7 +1313,24 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
                                   ],
 
-                                ): Container(),
+                                )
+                                    : paytype.text== "Monthly"
+                                    ? Row(
+                                  children: [
+                                    Checkbox(
+                                        value: includingThisMonth,
+                                        onChanged: (val){
+                                          setState(() {
+                                            includingThisMonth = val!;
+                                          });
+                                        },
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text("Including this month",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  ],
+                                )
+                                    : Container(),
+                                SizedBox(width: 10),
                                 GestureDetector(
                                   onTap: (){
                                     print("fkjsidhfakshdf");

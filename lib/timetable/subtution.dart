@@ -427,7 +427,7 @@ class _SubtutionState extends State<Subtution>
                   ),
                 ),
                 StreamBuilder(
-                    stream: FirebaseFirestore.instance.collection('SubstitutionHistory').snapshots(),
+                    stream: FirebaseFirestore.instance.collection('SubstitutionHistory').orderBy("timestamp",descending: true).snapshots(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         return Center(
@@ -1787,6 +1787,7 @@ class _SubtutionState extends State<Subtution>
       "staffName" : staffName,
       "staffRegNo" : staffRegNo,
       "date" : DateFormat('dd/MM/yyyy').format(DateTime.now()).toString(),
+      "timestamp" : DateTime.now().millisecondsSinceEpoch,
     });
 
     Future.forEach(susbstitutionStaffs, (element) async {
@@ -1801,7 +1802,7 @@ class _SubtutionState extends State<Subtution>
         "leaveStaffRegNo" : staffRegNo,
       });
 
-      FirebaseFirestore.instance.collection('SubstitutionHistory').doc(documentId).collection('SubstitutionStaffs').doc(element.docId).set({
+      FirebaseFirestore.instance.collection('SubstitutionHistory').doc(documentId).collection('SubstitutionStaffs').doc(/*element.docId*/).set({
         "class" : element.className,
         "date" : element.date,
         "day" : element.day,

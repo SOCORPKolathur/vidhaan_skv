@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:random_string/random_string.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:vidhaan/eventcal.dart';
@@ -96,6 +97,55 @@ class _Dashboard2State extends State<Dashboard2> {
     });
 
   }
+
+  setMonthlyFees() async {
+    var doc = await FirebaseFirestore.instance.collection("FeesCollection").where("paytype", isEqualTo: "Monthly").get();
+    var date = DateTime.now();
+    int lastday = DateTime(date.year, date.month + 1, 0).day;
+    for(int i = 0; i < doc.docs.length; i++){
+      var doc1 = await FirebaseFirestore.instance.collection("FeesCollection").doc(doc.docs[i].get("stId")+":"+DateFormat('MMM yyyy').format(DateTime(date.year, date.month + 1, date.day))).get();
+      if(date.day == lastday){
+        if(!doc1.exists){
+          FirebaseFirestore.instance.collection("FeesCollection").doc(doc.docs[i].get("stId")+":"+DateFormat('MMM yyyy').format(DateTime(date.year, date.month + 1, date.day))).set({
+            "feesname": doc.docs[i].get("feesname")+" " +DateFormat('MMM yyyy').format(DateTime(date.year, date.month + 1, 1)),
+            "amount": doc.docs[i].get("amount"),
+            "payedamount": 0.0,
+            "timestamp": DateTime.now().millisecondsSinceEpoch,
+            "paytype": doc.docs[i].get("paytype"),
+            "status": false,
+            "date": "",
+            "time": "",
+            "class" : doc.docs[i].get("class"),
+            "section" : doc.docs[i].get("section"),
+            "stRegNo" : doc.docs[i].get("stRegNo"),
+            "stName" : doc.docs[i].get("stName"),
+            "email" : doc.docs[i].get("email"),
+            "stId" : doc.docs[i].get("stId"),
+            "duedate":  DateFormat('dd/MM/yyyy').format(DateTime(date.year, date.month + 1, 5)),
+          });
+          FirebaseFirestore.instance.collection("Students").doc(doc.docs[i].id.toString().split(":").first).collection('Fees').doc(DateFormat('MMM yyyy').format(DateTime(date.year, date.month + 1, date.day))).set({
+            "feesname": doc.docs[i].get("feesname")+" " +DateFormat('MMM yyyy').format(DateTime(date.year, date.month + 1, 1)),
+            "amount": doc.docs[i].get("amount"),
+            "payedamount": 0.0,
+            "timestamp": DateTime.now().millisecondsSinceEpoch,
+            "paytype": doc.docs[i].get("paytype"),
+            "status": false,
+            "date": "",
+            "time": "",
+            "class" : doc.docs[i].get("class"),
+            "section" : doc.docs[i].get("section"),
+            "stRegNo" : doc.docs[i].get("stRegNo"),
+            "stName" : doc.docs[i].get("stName"),
+            "email" : doc.docs[i].get("email"),
+            "stId" : doc.docs[i].get("stId"),
+            "duedate": DateFormat('dd/MM/yyyy').format(DateTime(date.year, date.month + 1, 5)),
+          });
+        }
+      }
+    }
+    
+  }
+
   @override
   void initState() {
     sendBirthWishes();
@@ -103,7 +153,7 @@ class _Dashboard2State extends State<Dashboard2> {
     Date();
     getadmin();
     getevents();
-
+    setMonthlyFees();
     // TODO: implement initState
     super.initState();
   }

@@ -2183,8 +2183,9 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                   ),
                                                                   SizedBox(width: 30),
                                                                   InkWell(
-                                                                    onTap: (){
-                                                                      generateProgressReportPdf(PdfPageFormat.a4, exams, value,schoolName,schoolAddress,schoolLogo);
+                                                                    onTap: ()  {
+                                                                      print("S1");
+                                                                       generateProgressReportPdf(PdfPageFormat.a4, exams, value,schoolName,schoolAddress,schoolLogo);
                                                                     },
                                                                     child: Container(
                                                                       height: 25,
