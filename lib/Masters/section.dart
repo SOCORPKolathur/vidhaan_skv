@@ -38,8 +38,9 @@ class _SectionMasterState extends State<SectionMaster> {
     }
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -71,9 +72,9 @@ class _SectionMasterState extends State<SectionMaster> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 20.0),
+          padding:  EdgeInsets.only(left: width/68.3),
           child: Container(child: Padding(
-            padding: const EdgeInsets.only(left: 38.0,top: 30),
+            padding:  EdgeInsets.only(left: width/35.947368421,top: height/21.7),
             child: Text("Section Master",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
@@ -83,7 +84,7 @@ class _SectionMasterState extends State<SectionMaster> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20.0,top: 20),
+          padding:  EdgeInsets.only(left: width/68.3,top: height/32.55),
           child: Container(
             width: width/1.050,
             height:height/1.263,
@@ -92,7 +93,7 @@ class _SectionMasterState extends State<SectionMaster> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 10.0,top:20),
+                  padding:  EdgeInsets.only(left: width/136.6,top:height/32.55),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -102,16 +103,16 @@ class _SectionMasterState extends State<SectionMaster> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                            child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
+                            padding:  EdgeInsets.only(left: 0.0,right: width/54.64),
                             child: Container(child: TextField(
                               controller: orderno,
                               style: GoogleFonts.poppins(
-                                  fontSize: 15
+                                  fontSize: width/91.066666667
                               ),
-                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                 border: InputBorder.none,
                               ),
                             ),
@@ -132,16 +133,16 @@ class _SectionMasterState extends State<SectionMaster> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                            child: Text("Section",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
+                            padding:  EdgeInsets.only(left: 0.0,right: width/54.64),
                             child: Container(child: TextField(
                               controller: name,
                               style: GoogleFonts.poppins(
-                                  fontSize: 15
+                                  fontSize: width/91.066666667,
                               ),
-                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                 border: InputBorder.none,
                               ),
                             ),
@@ -184,11 +185,11 @@ class _SectionMasterState extends State<SectionMaster> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                          padding:  EdgeInsets.only(left: width/170.75,right: width/68.3),
                           child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                          padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
                           child: Text("Section",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                         ),
                       ],
@@ -227,12 +228,12 @@ class _SectionMasterState extends State<SectionMaster> {
                                 child: Row(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                      child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                      padding:  EdgeInsets.only(left: width/45.533333333,right: width/19.514285714),
+                                      child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                      child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                      padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
+                                      child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                     ),
                                   ],
                                 ),

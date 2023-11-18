@@ -33,8 +33,9 @@ class _DesiginationState extends State<Desigination> {
     });
   }
   Errordialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -47,8 +48,9 @@ class _DesiginationState extends State<Desigination> {
     )..show();
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -83,7 +85,7 @@ class _DesiginationState extends State<Desigination> {
         children: [
 
           Padding(
-            padding: const EdgeInsets.only(left: 20.0,top: 0,right: 25),
+            padding:  EdgeInsets.only(left: width/68.3,top: 0,right: width/54.64),
             child: Material(
               elevation: 5,
               borderRadius: BorderRadius.circular(12),
@@ -96,7 +98,7 @@ class _DesiginationState extends State<Desigination> {
                   children: [
 
                     Padding(
-                      padding: const EdgeInsets.only(left: 10.0,top:20),
+                      padding:  EdgeInsets.only(left: width/136.6,top:height/32.55),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
@@ -106,17 +108,17 @@ class _DesiginationState extends State<Desigination> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                padding:  EdgeInsets.only(left: 0.0,right: width/54.64),
                                 child: Container(child: TextField(
                                   readOnly: true,
                                   controller: orderno,
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15
+                                      fontSize: width/91.066666667
                                   ),
-                                  decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                  decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                     border: InputBorder.none,
                                   ),
                                 ),
@@ -137,16 +139,16 @@ class _DesiginationState extends State<Desigination> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Designation",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Designation",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                padding:  EdgeInsets.only(left: 0.0,right: width/54.64),
                                 child: Container(child: TextField(
                                   controller: name,
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15
+                                      fontSize: width/91.066666667
                                   ),
-                                  decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                  decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                     border: InputBorder.none,
                                   ),
                                 ),
@@ -195,11 +197,11 @@ class _DesiginationState extends State<Desigination> {
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                              padding:  EdgeInsets.only(left: width/170.75,right: width/68.3),
                               child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                              padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
                               child: Text("Designation",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                           ],
@@ -249,12 +251,12 @@ class _DesiginationState extends State<Desigination> {
                                       child: Row(
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                            child: Text("${(index+1).toString().padLeft(3,"0")}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                            padding:  EdgeInsets.only(left: width/45.533333333,right: width/19.514285714),
+                                            child: Text("${(index+1).toString().padLeft(3,"0")}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                            child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                            padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
+                                            child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                           ),
                                           deletecheck4[index]==true?     InkWell(
                                             onTap: (){
@@ -262,9 +264,9 @@ class _DesiginationState extends State<Desigination> {
                                             },
                                             child: Padding(
                                                 padding:
-                                                const EdgeInsets.only(left: 15.0),
+                                                 EdgeInsets.only(left: width/91.066666667),
                                                 child: Container(
-                                                    width: 30,
+                                                    width: width/45.533333333,
 
                                                     child: Image.asset("assets/delete.png"))
                                             ),
@@ -302,10 +304,10 @@ class _DesiginationState extends State<Desigination> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize:width/75.888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857143,
+                    height: height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -321,7 +323,7 @@ class _DesiginationState extends State<Desigination> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding:  EdgeInsets.only(right: width/170.75),
                             child: Icon(Icons.cancel,color: Colors.white,),
                           ),
                           Text("Cancel",style: GoogleFonts.poppins(color:Colors.white),),

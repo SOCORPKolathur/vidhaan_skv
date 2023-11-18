@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-
 import '../Masters/excelgen.dart';
 
 class FeesReports extends StatefulWidget {
@@ -231,7 +230,7 @@ class _FeesReportsState extends State<FeesReports> {
           child: Container(width: width/1.050,
 
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
-              padding: const EdgeInsets.only(left: 10.0,top: 30),
+              padding:  EdgeInsets.only(left: width/136.6,top: height/21.7),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -252,7 +251,7 @@ class _FeesReportsState extends State<FeesReports> {
                             child: Text("Fees:",style: GoogleFonts.poppins(fontSize: width/91.066666667,),),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
+                            padding: EdgeInsets.only(left: 0.0,right: width/54.64),
                             child: Container(width: width/6.83,
                               height: height/16.42,
                               //color: Color(0xffDDDEEE),
@@ -264,11 +263,11 @@ class _FeesReportsState extends State<FeesReports> {
                                     children: [
                                       Icon(
                                         Icons.list,
-                                        size: 16,
+                                        size: width/85.375,
                                         color: Colors.black,
                                       ),
                                       SizedBox(
-                                        width: 4,
+                                        width: width/341.5,
                                       ),
                                       Expanded(
                                         child: Text(
@@ -300,9 +299,9 @@ class _FeesReportsState extends State<FeesReports> {
                                     });
                                   },
                                   buttonStyleData: ButtonStyleData(
-                                    height: 50,
-                                    width: 160,
-                                    padding: const EdgeInsets.only(left: 14, right: 14),
+                                    height: height/13.02,
+                                    width: width/8.5375,
+                                    padding:  EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
 
@@ -310,11 +309,11 @@ class _FeesReportsState extends State<FeesReports> {
                                     ),
 
                                   ),
-                                  iconStyleData: const IconStyleData(
+                                  iconStyleData:  IconStyleData(
                                     icon: Icon(
                                       Icons.arrow_forward_ios_outlined,
                                     ),
-                                    iconSize: 14,
+                                    iconSize: width/97.571428571,
                                     iconEnabledColor: Colors.black,
                                     iconDisabledColor: Colors.grey,
                                   ),
@@ -332,9 +331,9 @@ class _FeesReportsState extends State<FeesReports> {
                                       thumbVisibility: MaterialStateProperty.all<bool>(true),
                                     ),
                                   ),
-                                  menuItemStyleData: const MenuItemStyleData(
-                                    height: 40,
-                                    padding: EdgeInsets.only(left: 14, right: 14),
+                                  menuItemStyleData:  MenuItemStyleData(
+                                    height: height/16.275,
+                                    padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                   ),
                                 ),
                               ),
@@ -351,7 +350,7 @@ class _FeesReportsState extends State<FeesReports> {
                             child: Text("Fees Reports For :",style: GoogleFonts.poppins(fontSize: width/91.066666667,),),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
+                            padding:  EdgeInsets.only(left: 0.0,right: width/54.64),
                             child: Container(
                               width: width/6.83,
                               height: height/16.42,
@@ -364,7 +363,7 @@ class _FeesReportsState extends State<FeesReports> {
                                     children: [
                                       Icon(
                                         Icons.list,
-                                        size: 16,
+                                        size: width/85.375,
                                         color: Colors.black,
                                       ),
                                       SizedBox(
@@ -400,9 +399,9 @@ class _FeesReportsState extends State<FeesReports> {
                                     });
                                   },
                                   buttonStyleData: ButtonStyleData(
-                                    height: 50,
-                                    width: 160,
-                                    padding: const EdgeInsets.only(left: 14, right: 14),
+                                    height: height/13.02,
+                                    width: width/8.5375,
+                                    padding:  EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
 
@@ -410,16 +409,16 @@ class _FeesReportsState extends State<FeesReports> {
                                     ),
 
                                   ),
-                                  iconStyleData: const IconStyleData(
+                                  iconStyleData:  IconStyleData(
                                     icon: Icon(
                                       Icons.arrow_forward_ios_outlined,
                                     ),
-                                    iconSize: 14,
+                                    iconSize: width/97.571428571,
                                     iconEnabledColor: Colors.black,
                                     iconDisabledColor: Colors.grey,
                                   ),
                                   dropdownStyleData: DropdownStyleData(
-                                    maxHeight: 200,
+                                    maxHeight: height/3.255,
                                     width: width/5.464,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14),
@@ -432,9 +431,9 @@ class _FeesReportsState extends State<FeesReports> {
                                       thumbVisibility: MaterialStateProperty.all<bool>(true),
                                     ),
                                   ),
-                                  menuItemStyleData: const MenuItemStyleData(
-                                    height: 40,
-                                    padding: EdgeInsets.only(left: 14, right: 14),
+                                  menuItemStyleData:  MenuItemStyleData(
+                                    height: height/16.275,
+                                    padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                   ),
                                 ),
                               ),
@@ -444,11 +443,11 @@ class _FeesReportsState extends State<FeesReports> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left:70.0,bottom:0),
+                        padding:  EdgeInsets.only(left:width/19.514285714,bottom:0),
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(right:10.0),
+                              padding:  EdgeInsets.only(right:width/136.6),
                               child: Container(
                                   height: height/16.42,
 
@@ -458,7 +457,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   )),
                             ),
                             Padding(
-                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                 child: Checkbox(
                                   value: single,
                                   onChanged: (value){
@@ -473,7 +472,7 @@ class _FeesReportsState extends State<FeesReports> {
                                 )
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left:45.0,right: 10),
+                              padding:  EdgeInsets.only(left: width/30.355555556,right: width/136.6),
                               child: Container(
 
                                   height: height/16.42,
@@ -484,7 +483,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   )),
                             ),
                             Padding(
-                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                 child: Checkbox(
                                   value: married,
                                   onChanged: (value){
@@ -499,7 +498,7 @@ class _FeesReportsState extends State<FeesReports> {
                                 )
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left:45.0,right: 10),
+                              padding:  EdgeInsets.only(left:width/30.355555556,right: width/136.6),
                               child: Container(
 
                                   height: height/16.42,
@@ -510,7 +509,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   )),
                             ),
                             Padding(
-                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                 child: Checkbox(
                                   value: married2,
                                   onChanged: (value){
@@ -524,7 +523,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   },
                                 )
                             ),
-                            SizedBox(width: 10,),
+                            SizedBox(width: width/136.6,),
                             InkWell(
                               onTap: (){
                                 setState(() {
@@ -544,7 +543,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 8.0),
+                                      padding: EdgeInsets.only(right: width/170.75),
                                       child: Icon(Icons.cancel,color: Colors.white,),
                                     ),
                                     Text("Clear Filter",style: GoogleFonts.poppins(color:Colors.white),),
@@ -565,7 +564,7 @@ class _FeesReportsState extends State<FeesReports> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 00,top:20,bottom: 20),
+                    padding:  EdgeInsets.only(left: 00,top:height/32.55,bottom: height/32.55),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -581,7 +580,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   child: Text("Register Number",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                   child: Container(
                                     child:
                                   TypeAheadFormField(
@@ -599,8 +598,8 @@ class _FeesReportsState extends State<FeesReports> {
                                       style:  GoogleFonts.poppins(
                                           fontSize: width/91.066666667
                                       ),
-                                      decoration: const InputDecoration(
-                                        contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                      decoration:  InputDecoration(
+                                        contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                         border: InputBorder.none,
                                       ),
                                       controller: this._typeAheadControllerregno,
@@ -652,7 +651,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   child: Text("Student Name",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                   child: Container(
                                     width: width/8.902,
                                     height: height/16.425,
@@ -675,8 +674,8 @@ class _FeesReportsState extends State<FeesReports> {
                                         style:  GoogleFonts.poppins(
                                             fontSize: width/91.066666667
                                         ),
-                                        decoration: const InputDecoration(
-                                          contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                        decoration:  InputDecoration(
+                                          contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                           border: InputBorder.none,
                                         ),
                                         controller: this._typeAheadControllerstudent,
@@ -727,7 +726,7 @@ class _FeesReportsState extends State<FeesReports> {
                             child: Text("By Class",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 0.0,right: 25),
+                            padding:  EdgeInsets.only(left: 0.0,right: width/54.64),
                             child: Container(child:  TypeAheadFormField(
 
 
@@ -743,8 +742,8 @@ class _FeesReportsState extends State<FeesReports> {
                                 style:  GoogleFonts.poppins(
                                     fontSize: width/91.066666667
                                 ),
-                                decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                decoration:  InputDecoration(
+                                  contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                   border: InputBorder.none,
                                 ),
                                 controller: this._typeAheadControllerclass,
@@ -798,7 +797,7 @@ class _FeesReportsState extends State<FeesReports> {
                                 child: Text("By Class",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                 child: Container(child:  TypeAheadFormField(
 
 
@@ -814,8 +813,8 @@ class _FeesReportsState extends State<FeesReports> {
                                     style:  GoogleFonts.poppins(
                                         fontSize: width/91.066666667
                                     ),
-                                    decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    decoration:  InputDecoration(
+                                      contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                       border: InputBorder.none,
                                     ),
                                     controller: this._typeAheadControllerclass,
@@ -862,7 +861,7 @@ class _FeesReportsState extends State<FeesReports> {
                                 child: Text("By Section",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                 child: Container(child:  TypeAheadFormField(
 
 
@@ -878,8 +877,8 @@ class _FeesReportsState extends State<FeesReports> {
                                     style:  GoogleFonts.poppins(
                                         fontSize: width/91.066666667
                                     ),
-                                    decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    decoration:  InputDecoration(
+                                      contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                       border: InputBorder.none,
                                     ),
                                     controller: this._typeAheadControllersection,
@@ -933,7 +932,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   child: Text("From Date",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                  padding:  EdgeInsets.only(left: 0.0,right: width/54.64),
                                   child: Container(child:  TextField(
                                     controller: pos2,
                                     decoration: InputDecoration(
@@ -1005,7 +1004,7 @@ class _FeesReportsState extends State<FeesReports> {
                                   child: Text("To Date",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                   child: Container(child:  TextField(
                                     controller: pos1,
                                     decoration: InputDecoration(
@@ -1062,7 +1061,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                           ),
                         ),
-                        SizedBox(width:25),
+                        SizedBox(width:width/54.64),
                         InkWell(
                           onTap: (){
                            // getstaffbyid();
@@ -1080,7 +1079,7 @@ class _FeesReportsState extends State<FeesReports> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(Icons.send,color:Colors.white),
-                              SizedBox(width:10),
+                              SizedBox(width:width/136.6),
                               Text("Send Remainder",style: GoogleFonts.poppins(color:Colors.white),),
                             ],
                           )),
@@ -1091,7 +1090,7 @@ class _FeesReportsState extends State<FeesReports> {
 
                           ),
                         ),
-                        SizedBox(width: 15,),
+                        SizedBox(width: width/91.066666667),
                       ],
                     ),
                   ),
@@ -1100,7 +1099,7 @@ class _FeesReportsState extends State<FeesReports> {
             ),
           ),
         ),
-        SizedBox(height:20),
+        SizedBox(height:height/32.55),
         Container(
           height:height/13.14,
           width: width/1.366,
@@ -1111,7 +1110,7 @@ class _FeesReportsState extends State<FeesReports> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 10.0),
+                padding: EdgeInsets.only(left: width/136.6),
                 child: Checkbox(
                     checkColor: Colors.white,
                     value: mainconcent,
@@ -1135,37 +1134,37 @@ class _FeesReportsState extends State<FeesReports> {
                 ),
               ),
               Container(
-                width:130,
+                width:width/10.507692308,
                 child: Text('Student Name',style: GoogleFonts.montserrat(
                     fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
                 ),),
               ),
               Container(
-                width:130,
+                width:width/10.507692308,
                 child: Text('Fees Name',style: GoogleFonts.montserrat(
                     fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
                 ),),
               ),
               Container(
-                width:130,
+                width:width/10.507692308,
                 child: Text('Amount',style: GoogleFonts.montserrat(
                     fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
                 ),),
               ),
               Container(
-                width:130,
+                width:width/10.507692308,
                 child: Text('Status',style: GoogleFonts.montserrat(
                     fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
                 ),),
               ),
               Container(
-                width:130,
+                width:width/10.507692308,
                 child: Text('Date',style: GoogleFonts.montserrat(
                     fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
                 ),),
               ),
               Container(
-                width:130,
+                width:width/10.507692308,
                   child: Text('Time',style: GoogleFonts.montserrat(
                     fontWeight:FontWeight.bold,color: Colors.white,fontSize:width/81.13
                 ),),
@@ -1174,7 +1173,7 @@ class _FeesReportsState extends State<FeesReports> {
           ),
         ),
         Container(
-          height: 310,
+          height: height/2.1,
           width: width/1.366,
           child: StreamBuilder(
             stream: FirebaseFirestore.instance.collection('FeesCollection').orderBy("stRegNo",).snapshots(),
@@ -1252,14 +1251,14 @@ class _FeesReportsState extends State<FeesReports> {
                   itemBuilder: (ctx,i){
                     var data = students[i];
                     return Container(
-                      height: 70,
+                      height: height/9.3,
                       width: width/1.366,
                       color: Colors.white,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SizedBox(
-                            width: 80,
+                            width: width/17.075,
                             child: Checkbox(
                               value: studentsListForNotification.contains(data.get("stRegNo")),
                               onChanged: (val){
@@ -1276,7 +1275,7 @@ class _FeesReportsState extends State<FeesReports> {
                             ),
                           ),
                           Container(
-                            width:150,
+                            width: width/9.106666667,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1300,7 +1299,7 @@ class _FeesReportsState extends State<FeesReports> {
                             ),
                           ),
                           Container(
-                            width:160,
+                            width: width/8.5375,
                             child: Text(
                               data.get("feesname"),
                               style: GoogleFonts.montserrat(
@@ -1309,7 +1308,7 @@ class _FeesReportsState extends State<FeesReports> {
                             ),),
                           ),
                           Container(
-                            width:150,
+                            width: width/9.106666667,
                             child: Text(
                               data.get("amount").toString(),
                               style: GoogleFonts.montserrat(
@@ -1317,7 +1316,7 @@ class _FeesReportsState extends State<FeesReports> {
                             ),),
                           ),
                           Container(
-                            width:150,
+                            width: width/9.106666667,
                             child: Text(
                               data.get("status") == true ? 'Paid' : (differenceDatefunction(data.get('duedate')) < 0) ? 'Over Due'   : 'Pending',
                               style: GoogleFonts.montserrat(
@@ -1327,7 +1326,7 @@ class _FeesReportsState extends State<FeesReports> {
                             ),),
                           ),
                           Container(
-                            width:160,
+                            width: width/8.5375,
                             child: Text(
                               data.get("date")==""?"-":data.get("date"),
                               style: GoogleFonts.montserrat(
@@ -1336,7 +1335,7 @@ class _FeesReportsState extends State<FeesReports> {
                             ),
                           ),
                           Container(
-                            width:130,
+                            width: width/10.507692308,
                             child: Text(
                               data.get("time")==""?"-":data.get("time"),
                               style: GoogleFonts.montserrat(
@@ -1426,8 +1425,9 @@ ${schoolname},
   }
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,

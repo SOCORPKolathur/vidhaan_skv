@@ -208,7 +208,7 @@ class _ExamMasterState extends State<ExamMaster> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 5.0,top: 20),
+            padding: EdgeInsets.only(left: width/273.2,top: height/32.55),
             child: GestureDetector(
               onTap: (){},
               child: Container(

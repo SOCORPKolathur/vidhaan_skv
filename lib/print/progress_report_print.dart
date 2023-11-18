@@ -400,7 +400,7 @@ class FeesModelforPdfPrint{
                             j == 0
                                 ? pw.Container(
                               height: j==0 ? 60 : 50,
-                              width: (i==0 && j==0) ? 100 : i==0 ? 100 : 180,
+                              //width: (i==0 && j==0) ? 100 : i==0 ? 100 : 180,
                               decoration: pw.BoxDecoration(
                                 border: pw.Border.all(),
                               ),
@@ -408,11 +408,12 @@ class FeesModelforPdfPrint{
                                 children: [
                                   pw.Container(
                                     height: (i == 0 && j == 0) ? 58 : 30,
-                                    width: 180,
+                                    width: 60,
+
                                     child: pw.Center(
                                       child: pw.Text(
                                         (i == 0 && j == 0)
-                                            ? "Subject/Exams"
+                                            ? "Exams\nSubject"
                                             : j == 0
                                             ? exams[i-1].examName
                                             : "",

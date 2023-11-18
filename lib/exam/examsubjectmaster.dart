@@ -851,10 +851,12 @@ class _ExamsubjectMasterState extends State<ExamsubjectMaster> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black,
+                    fontSize:width/75.888888889,
+                    fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857143,
+                    height: width/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -870,7 +872,7 @@ class _ExamsubjectMasterState extends State<ExamsubjectMaster> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding: EdgeInsets.only(right: width/170.75),
                             child: Icon(Icons.cancel,color: Colors.white,),
                           ),
                           Text("Cancel",style: GoogleFonts.poppins(color:Colors.white),),
@@ -936,10 +938,10 @@ class _ExamsubjectMasterState extends State<ExamsubjectMaster> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize:width/75.888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857143,
+                    height: height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -955,7 +957,7 @@ class _ExamsubjectMasterState extends State<ExamsubjectMaster> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding: EdgeInsets.only(right: width/170.75),
                             child: Icon(Icons.cancel,color: Colors.white,),
                           ),
                           Text("Cancel",style: GoogleFonts.poppins(color:Colors.white),),

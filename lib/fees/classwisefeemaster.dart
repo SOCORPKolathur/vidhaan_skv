@@ -384,8 +384,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
   }
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -406,8 +407,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
     )..show();
   }
   Errordialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -569,17 +571,17 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.only(left: width/68.3),
             child: Container(width: width/1.050,
               height: height/8.212,
               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
-              padding: const EdgeInsets.only(left: 38.0,top: 30),
+              padding: EdgeInsets.only(left: width/35.947368421,top: height/21.7),
               child: Text("Assign Fees Master",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
             ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20.0,top: 20),
+            padding: EdgeInsets.only(left: width/68.3,top: height/32.55),
             child: Form(
               key:_formkey,
               child: Container(
@@ -596,7 +598,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 10,),
+                          SizedBox(height: height/65.1),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -605,7 +607,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                 child: Text("Assign Fee For :",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700),),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                padding: EdgeInsets.only(left: 0.0,right: width/54.64),
                                 child: Container(width: width/6.83,
                                   height: height/16.42,
                                   //color: Color(0xffDDDEEE),
@@ -617,17 +619,17 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         children: [
                                           Icon(
                                             Icons.list,
-                                            size: 16,
+                                            size: width/85.375,
                                             color: Colors.black,
                                           ),
                                           SizedBox(
-                                            width: 4,
+                                            width: width/341.5,
                                           ),
                                           Expanded(
                                             child: Text(
                                               'Select Option',
                                               style: GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.066666667
                                               ),
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -640,7 +642,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         child: Text(
                                           item,
                                           style:  GoogleFonts.poppins(
-                                              fontSize: 15
+                                              fontSize: width/91.066666667
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                         ),
@@ -660,9 +662,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
                                       },
                                       buttonStyleData: ButtonStyleData(
-                                        height: 50,
-                                        width: 160,
-                                        padding: const EdgeInsets.only(left: 14, right: 14),
+                                        height: height/13.02,
+                                        width: width/8.5375,
+                                        padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
 
@@ -670,16 +672,16 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         ),
 
                                       ),
-                                      iconStyleData: const IconStyleData(
+                                      iconStyleData: IconStyleData(
                                         icon: Icon(
                                           Icons.arrow_forward_ios_outlined,
                                         ),
-                                        iconSize: 14,
+                                        iconSize: width/97.571428571,
                                         iconEnabledColor: Colors.black,
                                         iconDisabledColor: Colors.grey,
                                       ),
                                       dropdownStyleData: DropdownStyleData(
-                                        maxHeight: 200,
+                                        maxHeight: height/3.255,
                                         width: width/5.464,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(14),
@@ -692,9 +694,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                           thumbVisibility: MaterialStateProperty.all<bool>(true),
                                         ),
                                       ),
-                                      menuItemStyleData: const MenuItemStyleData(
-                                        height: 40,
-                                        padding: EdgeInsets.only(left: 14, right: 14),
+                                      menuItemStyleData: MenuItemStyleData(
+                                        height: height/16.275,
+                                        padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                       ),
                                     ),
                                   ),
@@ -704,7 +706,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 10.0,top:8),
+                            padding: EdgeInsets.only(left: width/136.6,top:height/81.375),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
@@ -714,10 +716,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Select Class *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Select Class *",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      padding: EdgeInsets.only(left: 0.0,right: width/54.64),
                                       child: Container(width: width/6.83,
                                         height: height/16.42,
                                         //color: Color(0xffDDDEEE),
@@ -729,17 +731,17 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               children: [
                                                 Icon(
                                                   Icons.list,
-                                                  size: 16,
+                                                  size: width/85.375,
                                                   color: Colors.black,
                                                 ),
                                                 SizedBox(
-                                                  width: 4,
+                                                  width: width/341.5,
                                                 ),
                                                 Expanded(
                                                   child: Text(
                                                     'Select Option',
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 15
+                                                        fontSize: width/91.066666667
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
                                                   ),
@@ -752,7 +754,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               child: Text(
                                                 item,
                                                 style:  GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
@@ -767,9 +769,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
                                             },
                                             buttonStyleData: ButtonStyleData(
-                                              height: 50,
-                                              width: 160,
-                                              padding: const EdgeInsets.only(left: 14, right: 14),
+                                              height: height/13.02,
+                                              width: width/8.5375,
+                                              padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(5),
 
@@ -777,16 +779,16 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               ),
 
                                             ),
-                                            iconStyleData: const IconStyleData(
+                                            iconStyleData:  IconStyleData(
                                               icon: Icon(
                                                 Icons.arrow_forward_ios_outlined,
                                               ),
-                                              iconSize: 14,
+                                              iconSize: width/97.571428571,
                                               iconEnabledColor: Colors.black,
                                               iconDisabledColor: Colors.grey,
                                             ),
                                             dropdownStyleData: DropdownStyleData(
-                                              maxHeight: 200,
+                                              maxHeight: height/3.255,
                                               width: width/5.464,
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(14),
@@ -799,9 +801,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                                 thumbVisibility: MaterialStateProperty.all<bool>(true),
                                               ),
                                             ),
-                                            menuItemStyleData: const MenuItemStyleData(
-                                              height: 40,
-                                              padding: EdgeInsets.only(left: 14, right: 14),
+                                            menuItemStyleData:  MenuItemStyleData(
+                                              height: height/16.275,
+                                              padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                             ),
                                           ),
                                         ),
@@ -820,10 +822,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(right:0.0),
-                                          child: Text("Register Number *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Register Number *",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                          padding: EdgeInsets.only(left: 0.0,right: width/54.64),
                                           child: Container(child:
                                           TypeAheadFormField(
 
@@ -838,10 +840,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
                                             textFieldConfiguration: TextFieldConfiguration(
                                               style:  GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.066666667
                                               ),
-                                              decoration: const InputDecoration(
-                                                contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                              decoration:  InputDecoration(
+                                                contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                                 border: InputBorder.none,
                                               ),
                                               controller: this._typeAheadControllerregno,
@@ -903,10 +905,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(right:0.0),
-                                          child: Text("Student Name *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                          child: Text("Student Name *",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                          padding: EdgeInsets.only(left: 0.0,right: width/136.6),
                                           child: Container(
                                             width: width/6.902,
                                             height: height/16.425,
@@ -927,10 +929,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
 
                                               textFieldConfiguration: TextFieldConfiguration(
                                                 style:  GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
-                                                decoration: const InputDecoration(
-                                                  contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                                decoration:  InputDecoration(
+                                                  contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                                   border: InputBorder.none,
                                                 ),
                                                 controller: this._typeAheadControllerstudent,
@@ -1007,7 +1009,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                             child: Text("Select Fees Details",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700),),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 10.0,top:8),
+                            padding: EdgeInsets.only(left: width/136.6,top:height/81.375),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
@@ -1017,10 +1019,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Fees *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Fees *",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      padding: EdgeInsets.only(left: 0.0,right: width/54.64),
                                       child: Container(width: width/6.83,
                                         height: height/16.42,
                                         //color: Color(0xffDDDEEE),
@@ -1035,17 +1037,17 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               children: [
                                                 Icon(
                                                   Icons.list,
-                                                  size: 16,
+                                                  size: width/85.375,
                                                   color: Colors.black,
                                                 ),
                                                 SizedBox(
-                                                  width: 4,
+                                                  width: width/341.5,
                                                 ),
                                                 Expanded(
                                                   child: Text(
                                                     'Select Option',
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 15
+                                                        fontSize: width/91.066666667
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
                                                   ),
@@ -1058,7 +1060,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               child: Text(
                                                 item,
                                                 style:  GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
@@ -1071,9 +1073,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               });
                                             },
                                             buttonStyleData: ButtonStyleData(
-                                              height: 50,
-                                              width: 160,
-                                              padding: const EdgeInsets.only(left: 14, right: 14),
+                                              height: height/13.02,
+                                              width: width/8.5375,
+                                              padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(5),
 
@@ -1081,16 +1083,16 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               ),
 
                                             ),
-                                            iconStyleData: const IconStyleData(
+                                            iconStyleData:  IconStyleData(
                                               icon: Icon(
                                                 Icons.arrow_forward_ios_outlined,
                                               ),
-                                              iconSize: 14,
+                                              iconSize: width/97.571428571,
                                               iconEnabledColor: Colors.black,
                                               iconDisabledColor: Colors.grey,
                                             ),
                                             dropdownStyleData: DropdownStyleData(
-                                              maxHeight: 200,
+                                              maxHeight: height/3.255,
                                               width: width/5.464,
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(14),
@@ -1103,9 +1105,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                                 thumbVisibility: MaterialStateProperty.all<bool>(true),
                                               ),
                                             ),
-                                            menuItemStyleData: const MenuItemStyleData(
-                                              height: 40,
-                                              padding: EdgeInsets.only(left: 14, right: 14),
+                                            menuItemStyleData:  MenuItemStyleData(
+                                              height: height/16.275,
+                                              padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                             ),
                                           ),
                                         ),
@@ -1122,18 +1124,18 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Amount *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Amount *",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      padding: EdgeInsets.only(left: 0.0,right: width/54.64),
                                       child: Container(child: TextFormField(
                                         controller: amount,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot be Empty' : null,
-                                        decoration: const InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                           border: InputBorder.none,
                                         ),
                                       ),
@@ -1154,10 +1156,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Collect payment on *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Collect payment on *",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      padding: EdgeInsets.only(left: 0.0,right: width/54.64),
                                       child: Container(width: width/6.83,
                                         height: height/16.42,
                                         //color: Color(0xffDDDEEE),
@@ -1169,17 +1171,17 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               children: [
                                                 Icon(
                                                   Icons.list,
-                                                  size: 16,
+                                                  size: width/85.375,
                                                   color: Colors.black,
                                                 ),
                                                 SizedBox(
-                                                  width: 4,
+                                                  width: width/341.5,
                                                 ),
                                                 Expanded(
                                                   child: Text(
                                                     'Select Option',
                                                     style: GoogleFonts.poppins(
-                                                        fontSize: 15
+                                                        fontSize: width/91.066666667
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
                                                   ),
@@ -1191,7 +1193,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               child: Text(
                                                 item,
                                                 style:  GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
@@ -1202,7 +1204,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               child: Text(
                                                 item,
                                                 style:  GoogleFonts.poppins(
-                                                    fontSize: 15
+                                                    fontSize: width/91.066666667
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
@@ -1234,9 +1236,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               }
                                             },
                                             buttonStyleData: ButtonStyleData(
-                                              height: 50,
-                                              width: 160,
-                                              padding: const EdgeInsets.only(left: 14, right: 14),
+                                              height: height/13.02,
+                                              width: width/8.5375,
+                                              padding:  EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(5),
 
@@ -1244,16 +1246,16 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                               ),
 
                                             ),
-                                            iconStyleData: const IconStyleData(
+                                            iconStyleData: IconStyleData(
                                               icon: Icon(
                                                 Icons.arrow_forward_ios_outlined,
                                               ),
-                                              iconSize: 14,
+                                              iconSize: width/97.571428571,
                                               iconEnabledColor: Colors.black,
                                               iconDisabledColor: Colors.grey,
                                             ),
                                             dropdownStyleData: DropdownStyleData(
-                                              maxHeight: 200,
+                                              maxHeight: height/3.255,
                                               width: width/5.464,
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(14),
@@ -1266,9 +1268,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                                 thumbVisibility: MaterialStateProperty.all<bool>(true),
                                               ),
                                             ),
-                                            menuItemStyleData: const MenuItemStyleData(
-                                              height: 40,
-                                              padding: EdgeInsets.only(left: 14, right: 14),
+                                            menuItemStyleData: MenuItemStyleData(
+                                              height: height/16.275,
+                                              padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
                                             ),
                                           ),
                                         ),
@@ -1286,18 +1288,18 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right:0.0),
-                                      child: Text("Custom Date *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                      child: Text("Custom Date *",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                      padding: EdgeInsets.only(left: 0.0,right: width/54.64),
                                       child: Container(child: TextFormField(
                                         controller: date,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot be Empty' : null,
-                                        decoration: const InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                        decoration:  InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                           border: InputBorder.none,
                                         ),
                                       ),
@@ -1325,12 +1327,12 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                           });
                                         },
                                     ),
-                                    SizedBox(width: 10),
-                                    Text("Including this month",style: GoogleFonts.poppins(fontSize: 15,)),
+                                    SizedBox(width: width/136.6),
+                                    Text("Including this month",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                   ],
                                 )
                                     : Container(),
-                                SizedBox(width: 10),
+                                SizedBox(width: width/136.6),
                                 GestureDetector(
                                   onTap: (){
                                     print("fkjsidhfakshdf");
@@ -1382,23 +1384,23 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                              padding: EdgeInsets.only(left: width/170.75,right: width/68.3),
                               child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 66.0,right: 8.0),
+                              padding: EdgeInsets.only(left: width/20.696969697,right: width/170.75),
                               child: Text("Fees",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 88.0,right: 8.0),
+                              padding: EdgeInsets.only(left: width/15.522727273,right: width/170.75),
                               child: Text("Amount",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 88.0,right: 8.0),
+                              padding: EdgeInsets.only(left: width/15.522727273,right: width/170.75),
                               child: Text("Payment Type",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 88.0,right: 8.0),
+                              padding:  EdgeInsets.only(left: width/15.522727273,right: width/170.75),
                               child: Text("Due Date",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                             ),
                           ],
@@ -1436,24 +1438,25 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                     child: Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 30.0,right: 60.0),
-                                          child: Container(child: Text("00${(index+1).toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                          padding: EdgeInsets.only(left: width/45.533333333,right: width/22.766666667),
+                                          child: Container(child: Text("00${(index+1).toString()}",style: GoogleFonts.poppins(
+                                              fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         ),
                                         Container(
-                                            width: 150,
+                                            width: width/9.106666667,
                                             alignment: Alignment.center,
-                                            child: Text(value["feesname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                            child: Text(value["feesname"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         Container(
-                                            width:200,
+                                            width:width/6.83,
                                             alignment: Alignment.center,
-                                            child: Text(value["amount"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                            child: Text(value["amount"].toString(),style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         Container(
-                                            width:150,
+                                            width:width/9.106666667,
                                             alignment: Alignment.center,
-                                            child: Text(value["paytype"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                            child: Text(value["paytype"].toString(),style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 80.0,right: 8.0),
-                                          child: Text(value["duedate"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          padding: EdgeInsets.only(left: width/17.075,right: width/170.75),
+                                          child: Text(value["duedate"].toString(),style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                         ),
 
                                         InkWell(
@@ -1463,9 +1466,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                           },
                                           child: Padding(
                                               padding:
-                                              const EdgeInsets.only(left: 15.0),
+                                               EdgeInsets.only(left: width/91.066666667),
                                               child: Container(
-                                                  width: 30,
+                                                  width: width/45.533333333,
                                                   child: Image.asset("assets/delete.png"))
                                           ),
                                         ),
@@ -1508,27 +1511,27 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                     child: Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                          child: Container(child: Text("00${(index+1).toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                          padding: EdgeInsets.only(left: width/45.533333333,right: width/19.514285714),
+                                          child: Container(child: Text("00${(index+1).toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                          padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
                                           child: Container(
-                                              width: 170,
+                                              width: width/8.035294118,
 
-                                              child: Text(value["feesname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                              child: Text(value["feesname"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                          child: Text(value["amount"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          padding: EdgeInsets.only(left: width/170.75,right: width/170.75),
+                                          child: Text(value["amount"].toString(),style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 130.0,right: 8.0),
-                                          child: Text(value["paytype"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          padding: EdgeInsets.only(left: width/10.507692308,right: width/170.75),
+                                          child: Text(value["paytype"].toString(),style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 130.0,right: 8.0),
-                                          child: Text(value["duedate"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          padding: EdgeInsets.only(left: width/10.507692308,right: width/170.75),
+                                          child: Text(value["duedate"].toString(),style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                         ),
                                         InkWell(
                                           onTap: (){
@@ -1536,9 +1539,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                           },
                                           child: Padding(
                                               padding:
-                                              const EdgeInsets.only(left: 15.0),
+                                              EdgeInsets.only(left: width/91.066666667),
                                               child: Container(
-                                                  width: 30,
+                                                  width: width/45.533333333,
 
                                                   child: Image.asset("assets/delete.png"))
                                           ),
@@ -1581,23 +1584,23 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                     child: Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                          child: Container(child: Text("00${(index+1).toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                          padding:  EdgeInsets.only(left: width/45.533333333,right: width/19.514285714),
+                                          child: Container(child: Text("00${(index+1).toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                          padding: EdgeInsets.only(left: width/170.75,right: width/170.75),
                                           child: Container(
-                                              width: 170,
+                                              width: width/8.035294118,
 
-                                              child: Text(value["feesname"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                              child: Text(value["feesname"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                          child: Text(value["amount"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          padding: EdgeInsets.only(left: width/170.75,right: width/170.75),
+                                          child: Text(value["amount"].toString(),style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 130.0,right: 8.0),
-                                          child: Text(value["paytype"].toString(),style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                          padding: EdgeInsets.only(left: width/10.507692308,right: width/170.75),
+                                          child: Text(value["paytype"].toString(),style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                         ),
                                         InkWell(
                                           onTap: (){
@@ -1605,10 +1608,9 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                             //deletestudent3(value.id);
                                           },
                                           child: Padding(
-                                              padding:
-                                              const EdgeInsets.only(left: 15.0),
+                                              padding: EdgeInsets.only(left: width/91.066666667),
                                               child: Container(
-                                                  width: 30,
+                                                  width: width/45.533333333,
 
                                                   child: Image.asset("assets/delete.png"))
                                           ),
@@ -1623,7 +1625,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                         }),
                     Divider(),
                     Padding(
-                      padding: const EdgeInsets.only(left: 300.0),
+                      padding:  EdgeInsets.only(left: width/4.553333333),
                       child: Text("Total: ${total}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Colors.black),),
                     )
 
@@ -1671,10 +1673,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting Fees',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize:width/75.888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857143,
+                    height: height/2.604,
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
                 actions: <Widget>[
@@ -1689,7 +1691,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding:  EdgeInsets.only(right: width/170.75),
                             child: Icon(Icons.cancel,color: Colors.white,),
                           ),
                           Text("Cancel",style: GoogleFonts.poppins(color:Colors.white),),
@@ -1746,10 +1748,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting Fees',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize:width/75.888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857143,
+                    height: height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -1765,7 +1767,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding:  EdgeInsets.only(right: width/170.75),
                             child: Icon(Icons.cancel,color: Colors.white,),
                           ),
                           Text("Cancel",style: GoogleFonts.poppins(color:Colors.white),),
@@ -1822,10 +1824,10 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting Fees',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize:width/75.888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857143,
+                    height: height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -1841,7 +1843,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding: EdgeInsets.only(right: width/170.75),
                             child: Icon(Icons.cancel,color: Colors.white,),
                           ),
                           Text("Cancel",style: GoogleFonts.poppins(color:Colors.white),),

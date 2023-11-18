@@ -241,8 +241,9 @@ class _FeesRegState extends State<FeesReg> {
   });
 }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -261,8 +262,9 @@ class _FeesRegState extends State<FeesReg> {
     )..show();
   }
   exessamount(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.warning,
       animType: AnimType.rightSlide,
@@ -289,19 +291,19 @@ class _FeesRegState extends State<FeesReg> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20.0),
+                padding:  EdgeInsets.only(left: width/68.3),
                 child: Container(
                   width: width/1.050,
                   height: height/8.212,
                   decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 38.0,top: 30),
+                    padding:  EdgeInsets.only(left: width/35.947368421,top: height/21.7),
                     child: Text("Fees Register",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20.0,top: 20),
+                padding:  EdgeInsets.only(left: width/68.3,top: height/32.55),
                 child: Container(
                   width:  width/1.050,
 
@@ -309,7 +311,7 @@ class _FeesRegState extends State<FeesReg> {
                   child:  Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 10.0,top:20,bottom: 20),
+                        padding:  EdgeInsets.only(left: width/136.6,top:height/32.55,bottom: height/32.55),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -319,10 +321,10 @@ class _FeesRegState extends State<FeesReg> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Register Number",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Register Number",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                  padding: EdgeInsets.only(left: 0.0,right: width/54.64),
                                   child: Container(child:
                                   TypeAheadFormField(
 
@@ -339,8 +341,8 @@ class _FeesRegState extends State<FeesReg> {
                                       style:  GoogleFonts.poppins(
                                           fontSize: 15
                                       ),
-                                      decoration: const InputDecoration(
-                                        contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                         border: InputBorder.none,
                                       ),
                                       controller: this._typeAheadControllerregno,
@@ -390,10 +392,10 @@ class _FeesRegState extends State<FeesReg> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Student Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Student Name",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 25),
+                                  padding:  EdgeInsets.only(left: 0.0,right: width/54.64),
                                   child: Container(
                                     width: width/3.902,
                                     height: height/16.425,
@@ -414,10 +416,10 @@ class _FeesRegState extends State<FeesReg> {
 
                                       textFieldConfiguration: TextFieldConfiguration(
                                         style:  GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.066666667
                                         ),
-                                        decoration: const InputDecoration(
-                                          contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                        decoration:  InputDecoration(
+                                          contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                           border: InputBorder.none,
                                         ),
                                         controller: this._typeAheadControllerstudent,
@@ -687,7 +689,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                       feesdrop();
                                                                     },
                                                                     child: Padding(
-                                                                      padding: const EdgeInsets.only(left: 4.0),
+                                                                      padding:  EdgeInsets.only(left: width/341.5),
                                                                       child: Icon(Icons.refresh),
                                                                     ),
                                                                   )
@@ -695,7 +697,7 @@ class _FeesRegState extends State<FeesReg> {
                                                               ),
                                                             ),
                                                             Padding(
-                                                              padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                              padding:  EdgeInsets.only(left: width/27.32,right: width/54.64),
                                                               child: Container(width: width/4.83,
                                                                 height: height/16.42,
                                                                 //color: Color(0xffDDDEEE),
@@ -715,10 +717,10 @@ class _FeesRegState extends State<FeesReg> {
 
                                                                   textFieldConfiguration: TextFieldConfiguration(
                                                                     style:  GoogleFonts.poppins(
-                                                                        fontSize: 15
+                                                                        fontSize: width/91.066666667
                                                                     ),
-                                                                    decoration: const InputDecoration(
-                                                                      contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                                                    decoration:  InputDecoration(
+                                                                      contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                                                       border: InputBorder.none,
                                                                     ),
                                                                     controller: this._typeAheadControllerfees,
@@ -768,14 +770,14 @@ class _FeesRegState extends State<FeesReg> {
                                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                                     children: [
                                                                       Container(
-                                                                        width:130,
+                                                                        width:width/10.507692308,
 
                                                                         child: Text('Fees Name',style: GoogleFonts.montserrat(
                                                                             fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                                         ),),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                        padding:  EdgeInsets.only(left: width/27.32,right: width/54.64),
                                                                         child: Container(width: width/4.83,
                                                                           height: height/16.42,
                                                                           //color: Color(0xffDDDEEE),
@@ -797,13 +799,13 @@ class _FeesRegState extends State<FeesReg> {
                                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                                     children: [
                                                                       Container(
-                                                                        width:130,
+                                                                        width:width/10.507692308,
                                                                         child: Text('Fees Amount',style: GoogleFonts.montserrat(
                                                                             fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                                         ),),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                        padding:  EdgeInsets.only(left: width/27.32,right: width/54.64),
                                                                         child: Container(width: width/4.83,
                                                                           height: height/16.42,
                                                                           //color: Color(0xffDDDEEE),
@@ -835,7 +837,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                           ),),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                          padding:  EdgeInsets.only(left: width/27.32,right: width/54.64),
                                                                           child: Container(width: width/4.83,
                                                                               height: height/16.42,
                                                                               //color: Color(0xffDDDEEE),
@@ -866,7 +868,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                         ),),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                        padding:  EdgeInsets.only(left: width/27.32,right: width/54.64),
                                                                         child: Container(width: width/4.83,
                                                                             height: height/16.42,
                                                                             //color: Color(0xffDDDEEE),
@@ -896,13 +898,13 @@ class _FeesRegState extends State<FeesReg> {
                                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                                     children: [
                                                                       Container(
-                                                                        width:130,
+                                                                        width:width/10.507692308,
                                                                         child: Text('Balance Amount',style: GoogleFonts.montserrat(
                                                                             fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                                         ),),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.only(left: 50.0,right: 25),
+                                                                        padding:  EdgeInsets.only(left: width/27.32,right: width/54.64),
                                                                         child: Container(width: width/4.83,
                                                                             height: height/16.42,
                                                                             //color: Color(0xffDDDEEE),
@@ -983,7 +985,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      SizedBox(width:20),
+                                                                      SizedBox(width:width/68.3),
                                                                       GestureDetector(
                                                                         onTap: () async {
                                                                           StudentFeesPdfModel feesDetails = StudentFeesPdfModel(
@@ -1051,31 +1053,31 @@ class _FeesRegState extends State<FeesReg> {
                                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                           children: [
                                                             Container(
-                                                              width:130,
+                                                              width:width/10.507692308,
                                                               child: Text('Fees Name',style: GoogleFonts.montserrat(
                                                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                               ),),
                                                             ),
                                                             Container(
-                                                              width:130,
+                                                              width:width/10.507692308,
                                                               child: Text('Amount',style: GoogleFonts.montserrat(
                                                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                               ),),
                                                             ),
                                                             Container(
-                                                              width:130,
+                                                              width:width/10.507692308,
                                                               child: Text('Status',style: GoogleFonts.montserrat(
                                                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                               ),),
                                                             ),
                                                             Container(
-                                                              width:130,
+                                                              width:width/10.507692308,
                                                               child: Text('Date',style: GoogleFonts.montserrat(
                                                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                               ),),
                                                             ),
                                                             Container(
-                                                              width:130,
+                                                              width:width/10.507692308,
                                                               child: Text('Time',style: GoogleFonts.montserrat(
                                                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                               ),),
@@ -1101,31 +1103,31 @@ class _FeesRegState extends State<FeesReg> {
                                                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                                   children: [
                                                                     Container(
-                                                                      width:130,
+                                                                      width:width/10.507692308,
                                                                       child: Text(snapshot.data!.docs[index]["feesname"],style: GoogleFonts.montserrat(
                                                                           fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                                                       ),),
                                                                     ),
                                                                     Container(
-                                                                      width:130,
+                                                                      width:width/10.507692308,
                                                                       child: Text(snapshot.data!.docs[index]["amount"].toString(),style: GoogleFonts.montserrat(
                                                                           fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                                                       ),),
                                                                     ),
                                                                     Container(
-                                                                      width:130,
+                                                                      width:width/10.507692308,
                                                                       child: Text(snapshot.data!.docs[index]["status"]==true?"Paid": "Unpaid",style: GoogleFonts.montserrat(
                                                                           fontWeight:FontWeight.bold,color:snapshot.data!.docs[index]["status"]==true? Color(0xff53B175):Colors.red,fontSize:width/91.13
                                                                       ),),
                                                                     ),
                                                                     Container(
-                                                                      width:130,
+                                                                      width:width/10.507692308,
                                                                       child: Text(snapshot.data!.docs[index]["date"],style: GoogleFonts.montserrat(
                                                                           fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                                                       ),),
                                                                     ),
                                                                     Container(
-                                                                      width:130,
+                                                                      width:width/10.507692308,
                                                                       child: Text(snapshot.data!.docs[index]["time"],style: GoogleFonts.montserrat(
                                                                           fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                                                       ),),
@@ -1138,7 +1140,7 @@ class _FeesRegState extends State<FeesReg> {
 
 
                                                         SizedBox(
-                                                          height: 50,
+                                                          height: height/13.02,
                                                         )
 
 
@@ -1171,8 +1173,8 @@ class _FeesRegState extends State<FeesReg> {
          visible: isloading,
          child: Center(
            child: Container(
-             width: 400,
-             height: 300,
+             width: width/3.415,
+             height: height/2.17,
              decoration: BoxDecoration(
                  color: Colors.white,
                  borderRadius: BorderRadius.circular(20)
@@ -1181,15 +1183,15 @@ class _FeesRegState extends State<FeesReg> {
                crossAxisAlignment: CrossAxisAlignment.center,
                children: [
                  SizedBox(
-                   height: 20,
+                   height: height/32.55,
                  ),
                  Text("Printing is getting ready...",style: GoogleFonts.poppins(
-                     color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                     color: Colors.black, fontSize:width/75.888888889,fontWeight: FontWeight.w600),),
                  SizedBox(
-                   height: 20,
+                   height: height/32.55,
                  ),
                  Container(
-                     width:200,child: Lottie.asset("assets/printing3.json")),
+                     width:width/6.83,child: Lottie.asset("assets/printing3.json")),
                ],
              ),
            ),
@@ -1197,8 +1199,8 @@ class _FeesRegState extends State<FeesReg> {
        ),
        isloading==true? Center(
          child: Container(
-            width: 400,
-            height: 300,
+            width: width/3.415,
+            height: height/2.17,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20)
@@ -1207,15 +1209,15 @@ class _FeesRegState extends State<FeesReg> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 20,
+                  height: height/32.55,
                 ),
                 Text("Printing is getting ready...",style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize:width/75.888888889,fontWeight: FontWeight.w600),),
                 SizedBox(
-                  height: 20,
+                  height: height/32.55,
                 ),
                 Container(
-                    width:200,child: Lottie.asset("assets/printing3.json")),
+                    width:width/6.83,child: Lottie.asset("assets/printing3.json")),
               ],
             ),
           ),
@@ -1497,7 +1499,7 @@ class _FeesRegState extends State<FeesReg> {
               builder: (context,snapshot) {
                 if(snapshot.hasData){
                   return Container(
-                    height: 500,
+                    height: height/1.302,
                     width: width * 0.6,
                     child: Column(
                       children: [
@@ -1505,31 +1507,31 @@ class _FeesRegState extends State<FeesReg> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Container(
-                              width:130,
+                              width:width/10.507692308,
                               child: Text('Fees Name',style: GoogleFonts.montserrat(
                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                               ),),
                             ),
                             Container(
-                              width:130,
+                              width:width/10.507692308,
                               child: Text('Amount',style: GoogleFonts.montserrat(
                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                               ),),
                             ),
                             Container(
-                              width:130,
+                              width:width/10.507692308,
                               child: Text('Status',style: GoogleFonts.montserrat(
                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                               ),),
                             ),
                             Container(
-                              width:130,
+                              width:width/10.507692308,
                               child: Text('Date',style: GoogleFonts.montserrat(
                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                               ),),
                             ),
                             Container(
-                              width:130,
+                              width:width/10.507692308,
                               child: Text('Time',style: GoogleFonts.montserrat(
                                   fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                               ),),
@@ -1551,19 +1553,19 @@ class _FeesRegState extends State<FeesReg> {
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
-                                      width:130,
+                                      width:width/10.507692308,
                                       child: Text(snapshot.data!.docs[index]["feesname"],style: GoogleFonts.montserrat(
                                           fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                       ),),
                                     ),
                                     Container(
-                                      width:130,
+                                      width:width/10.507692308,
                                       child: Text(snapshot.data!.docs[index]["amount"].toString(),style: GoogleFonts.montserrat(
                                           fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                       ),),
                                     ),
                                     Container(
-                                      width:130,
+                                      width:width/10.507692308,
                                       child: Text(
                                         snapshot.data!.docs[index]["status"]==true?"Paid": "Unpaid",style: GoogleFonts.montserrat(
                                           fontWeight:FontWeight.bold,
@@ -1574,13 +1576,13 @@ class _FeesRegState extends State<FeesReg> {
                                       ),),
                                     ),
                                     Container(
-                                      width:130,
+                                      width:width/10.507692308,
                                       child: Text(snapshot.data!.docs[index]["date"],style: GoogleFonts.montserrat(
                                           fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                       ),),
                                     ),
                                     Container(
-                                      width:130,
+                                      width:width/10.507692308,
                                       child: Text(snapshot.data!.docs[index]["time"],style: GoogleFonts.montserrat(
                                           fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                       ),),

@@ -65,8 +65,9 @@ class _ClassMasterState extends State<ClassMaster> {
   }
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
         context: context,
         dialogType: DialogType.success,
         animType: AnimType.rightSlide,
@@ -85,8 +86,9 @@ class _ClassMasterState extends State<ClassMaster> {
     )..show();
   }
   Successdialog2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -140,9 +142,9 @@ class _ClassMasterState extends State<ClassMaster> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 5.0),
+          padding:  EdgeInsets.only(left: width/273.2),
           child: Container(child: Padding(
-            padding: const EdgeInsets.only(left: 38.0,top: 30),
+            padding:  EdgeInsets.only(left: width/35.947368421,top: height/21.7),
             child: Text("Class - Section - Acidemic Year Masters",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
           ),
             //color: Colors.white,
@@ -156,7 +158,7 @@ class _ClassMasterState extends State<ClassMaster> {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 5.0,top: 20),
+                padding:  EdgeInsets.only(left: width/273.2,top: height/32.55),
                 child: Container(
                   width: width/3.650,
                   height:height/1.263,
@@ -166,7 +168,7 @@ class _ClassMasterState extends State<ClassMaster> {
                     children: [
 
                       Padding(
-                        padding: const EdgeInsets.only(left: 10.0,top:20),
+                        padding:  EdgeInsets.only(left: width/136.6,top:height/32.55),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -176,17 +178,17 @@ class _ClassMasterState extends State<ClassMaster> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                   child: Container(
                                     child: TextField(
                                     controller: orderno,
                                     style: GoogleFonts.poppins(
                                         fontSize: 15
                                     ),
-                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                       border: InputBorder.none,
                                     ),
                                   ),
@@ -207,16 +209,16 @@ class _ClassMasterState extends State<ClassMaster> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Class",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Class",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                   child: Container(child: TextField(
                                     controller: name,
                                     style: GoogleFonts.poppins(
                                         fontSize: 15
                                     ),
-                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                       border: InputBorder.none,
                                     ),
                                   ),
@@ -260,11 +262,11 @@ class _ClassMasterState extends State<ClassMaster> {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                                padding:  EdgeInsets.only(left: width/170.75,right: width/68.3),
                                 child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
                                 child: Text("Class",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                             ],
@@ -303,12 +305,12 @@ class _ClassMasterState extends State<ClassMaster> {
                                   child: Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                        padding:  EdgeInsets.only(left: width/45.533333333,right: width/19.514285714),
+                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                        child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                        padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
+                                        child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                       ),
                                     ],
                                   ),
@@ -326,7 +328,7 @@ class _ClassMasterState extends State<ClassMaster> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 5.0,top: 20),
+                padding:  EdgeInsets.only(left: width/273.2,top: height/32.55),
                 child: Container(
                   width: width/3.650,
                   height:height/1.263,
@@ -336,7 +338,7 @@ class _ClassMasterState extends State<ClassMaster> {
                     children: [
 
                       Padding(
-                        padding: const EdgeInsets.only(left: 10.0,top:20),
+                        padding:  EdgeInsets.only(left: width/136.6,top:height/32.55),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -346,17 +348,17 @@ class _ClassMasterState extends State<ClassMaster> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  padding: EdgeInsets.only(left: 0.0,right: width/136.6),
                                   child: Container(
                                     child: TextField(
                                     controller: orderno2,
                                     style: GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
-                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                       border: InputBorder.none,
                                     ),
                                   ),
@@ -377,16 +379,16 @@ class _ClassMasterState extends State<ClassMaster> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Section",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Section",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                   child: Container(child: TextField(
                                     controller: name2,
                                     style: GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
-                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                       border: InputBorder.none,
                                     ),
                                   ),
@@ -430,11 +432,11 @@ class _ClassMasterState extends State<ClassMaster> {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                                padding:  EdgeInsets.only(left: width/170.75,right: width/68.3),
                                 child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
                                 child: Text("Section",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                             ],
@@ -473,12 +475,12 @@ class _ClassMasterState extends State<ClassMaster> {
                                   child: Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                        padding:  EdgeInsets.only(left: width/45.533333333,right: width/19.514285714),
+                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                        child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                        padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
+                                        child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                       ),
                                     ],
                                   ),
@@ -496,7 +498,7 @@ class _ClassMasterState extends State<ClassMaster> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 5.0,top: 20),
+                padding:  EdgeInsets.only(left: width/273.2,top: height/32.55),
                 child: Container(
                   width: width/3.650,
                   height:height/1.263,
@@ -506,7 +508,7 @@ class _ClassMasterState extends State<ClassMaster> {
                     children: [
 
                       Padding(
-                        padding: const EdgeInsets.only(left: 10.0,top:20),
+                        padding:  EdgeInsets.only(left: width/136.6,top:height/32.55),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -516,17 +518,17 @@ class _ClassMasterState extends State<ClassMaster> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Order Si.No",style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
                                   child: Container(
                                     child: TextField(
                                     controller: orderno3,
                                     style: GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
-                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                       border: InputBorder.none,
                                     ),
                                   ),
@@ -547,16 +549,16 @@ class _ClassMasterState extends State<ClassMaster> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(right:0.0),
-                                  child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: 15,)),
+                                  child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 0.0,right: 10),
+                                  padding: EdgeInsets.only(left: 0.0,right: width/136.6),
                                   child: Container(child: TextField(
                                     controller: name3,
                                     style: GoogleFonts.poppins(
-                                        fontSize: 15
+                                        fontSize: width/91.066666667
                                     ),
-                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                    decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                       border: InputBorder.none,
                                     ),
                                   ),
@@ -600,11 +602,11 @@ class _ClassMasterState extends State<ClassMaster> {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0,right: 20.0),
+                                padding:  EdgeInsets.only(left: width/170.75,right: width/68.3),
                                 child: Text("Order Si.no",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
                                 child: Text("Academic Year",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),
                             ],
@@ -643,12 +645,12 @@ class _ClassMasterState extends State<ClassMaster> {
                                   child: Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 30.0,right: 70.0),
-                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                        padding:  EdgeInsets.only(left: width/45.533333333,right: width/19.514285714),
+                                        child: Text("00${value["order"].toString()}",style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                        child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                                        padding:  EdgeInsets.only(left: width/170.75,right: width/170.75),
+                                        child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),),
                                       ),
                                     ],
                                   ),

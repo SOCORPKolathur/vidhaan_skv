@@ -71,8 +71,9 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
 
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -266,8 +267,9 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
 
 
   Error2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -285,9 +287,14 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.only(
+                left: width/68.3
+            ),
             child: Container(child: Padding(
-              padding: const EdgeInsets.only(left: 38.0, top: 30),
+              padding: EdgeInsets.only(
+                  left: width/35.947368421,
+                  top: height/21.7
+              ),
               child: Text("Exam Timetable", style: GoogleFonts.poppins(
                   fontSize: width/75.888888889, fontWeight: FontWeight.bold),),
             ),
@@ -299,7 +306,9 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 20),
+            padding: EdgeInsets.only(
+                left: width/68.3, top: height/32.55
+            ),
             child: Container(
               width: width / 1.050,
 
@@ -309,9 +318,9 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 20),
+                    padding: EdgeInsets.only(left: width/136.6, top: height/65.1),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0, top: 20),
+                      padding: EdgeInsets.only(left: width/136.6, top: height/65.1),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
 
@@ -323,11 +332,11 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 0.0),
                                 child: Text("Class",
-                                    style: GoogleFonts.poppins(fontSize: 15,)),
+                                    style: GoogleFonts.poppins(fontSize: width/91.066666667,)),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 0.0, right: 25),
+                                padding: EdgeInsets.only(
+                                    left: 0.0, right: width/54.64),
                                 child: Container(child:
                                 DropdownButtonHideUnderline(
                                   child: DropdownButton2<String>(
@@ -336,17 +345,17 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                       children: [
                                         Icon(
                                           Icons.list,
-                                          size: 16,
+                                          size: width/85.375,
                                           color: Colors.black,
                                         ),
                                         SizedBox(
-                                          width: 4,
+                                          width: width/341.5,
                                         ),
                                         Expanded(
                                           child: Text(
                                             'Select Option',
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15
+                                                fontSize: width/91.066666667
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -360,7 +369,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                           child: Text(
                                             item,
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15
+                                                fontSize: width/91.066666667
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -374,10 +383,12 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                       getstaffbyid();
                                     },
                                     buttonStyleData: ButtonStyleData(
-                                      height: 50,
-                                      width: 160,
-                                      padding: const EdgeInsets.only(
-                                          left: 14, right: 14),
+                                      height: height/13.02,
+                                      width: width/8.5375,
+                                      padding: EdgeInsets.only(
+                                          left: width/97.571428571,
+                                          right: width/97.571428571,
+                                      ),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
 
@@ -385,16 +396,16 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                       ),
 
                                     ),
-                                    iconStyleData: const IconStyleData(
+                                    iconStyleData: IconStyleData(
                                       icon: Icon(
                                         Icons.arrow_forward_ios_outlined,
                                       ),
-                                      iconSize: 14,
+                                      iconSize: width/97.571428571,
                                       iconEnabledColor: Colors.black,
                                       iconDisabledColor: Colors.grey,
                                     ),
                                     dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
+                                      maxHeight: height/3.255,
                                       width: width / 5.464,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
@@ -409,10 +420,12 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                             .all<bool>(true),
                                       ),
                                     ),
-                                    menuItemStyleData: const MenuItemStyleData(
-                                      height: 40,
+                                    menuItemStyleData:  MenuItemStyleData(
+                                      height: height/16.275,
                                       padding: EdgeInsets.only(
-                                          left: 14, right: 14),
+                                          left: width/97.571428571,
+                                          right: width/97.571428571
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -436,11 +449,11 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 0.0),
                                 child: Text("Exam",
-                                    style: GoogleFonts.poppins(fontSize: 15,)),
+                                    style: GoogleFonts.poppins(fontSize: width/91.066666667)),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 0.0, right: 25),
+                                padding: EdgeInsets.only(
+                                    left: 0.0, right: width/54.64),
                                 child: Container(child:
 
                                 DropdownButtonHideUnderline(
@@ -450,17 +463,17 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                       children: [
                                         Icon(
                                           Icons.list,
-                                          size: 16,
+                                          size: width/85.375,
                                           color: Colors.black,
                                         ),
                                         SizedBox(
-                                          width: 4,
+                                          width: width/341.5,
                                         ),
                                         Expanded(
                                           child: Text(
                                             'Select Option',
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15
+                                                fontSize: width/91.066666667
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -474,7 +487,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                           child: Text(
                                             item,
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15
+                                                fontSize: width/91.066666667
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -489,10 +502,10 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                       getstaffbyid();
                                     },
                                     buttonStyleData: ButtonStyleData(
-                                      height: 50,
-                                      width: 160,
-                                      padding: const EdgeInsets.only(
-                                          left: 14, right: 14),
+                                      height: height/13.02,
+                                      width: width/8.5375,
+                                      padding: EdgeInsets.only(
+                                          left: width/97.571428571, right: width/97.571428571),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
 
@@ -500,16 +513,16 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                       ),
 
                                     ),
-                                    iconStyleData: const IconStyleData(
+                                    iconStyleData: IconStyleData(
                                       icon: Icon(
                                         Icons.arrow_forward_ios_outlined,
                                       ),
-                                      iconSize: 14,
+                                      iconSize: width/97.571428571,
                                       iconEnabledColor: Colors.black,
                                       iconDisabledColor: Colors.grey,
                                     ),
                                     dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
+                                      maxHeight: height/3.255,
                                       width: width / 5.464,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
@@ -524,10 +537,10 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                             .all<bool>(true),
                                       ),
                                     ),
-                                    menuItemStyleData: const MenuItemStyleData(
-                                      height: 40,
+                                    menuItemStyleData: MenuItemStyleData(
+                                      height: height/16.275,
                                       padding: EdgeInsets.only(
-                                          left: 14, right: 14),
+                                          left: width/97.571428571, right: width/97.571428571),
                                     ),
                                   ),
                                 ),
@@ -548,14 +561,14 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
 
 
                           Padding(
-                            padding:  const EdgeInsets.only(
-                                left: 0.0, right: 25),
+                            padding:  EdgeInsets.only(
+                                left: 0.0, right: width/54.64),
                             child: GestureDetector(
                               onTap: () {
                                 addclass();
                               },
                               child: Padding(
-                                padding: const EdgeInsets.only(right: 25.0),
+                                padding: EdgeInsets.only(right: width/54.64),
                                 child: Container(child: Center(child: Text("Save",
                                   style: GoogleFonts.poppins(
                                       color: Colors.white),)),
@@ -575,7 +588,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                               //addclass();
                             },
                             child: Padding(
-                              padding: const EdgeInsets.only(right: 25.0),
+                              padding:  EdgeInsets.only(right: width/54.64),
                               child: Container(child: Center(child: Text("Print",
                                 style: GoogleFonts.poppins(
                                     color: Colors.white),)),
@@ -609,24 +622,24 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                       child: Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 8.0, right: 8.0),
+                            padding:  EdgeInsets.only(
+                                left: width/170.75, right: width/170.75),
                             child: Text("Si.no", style: GoogleFonts.poppins(
                                 fontSize: width/85.375,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 58.0, right: 8.0),
+                            padding: EdgeInsets.only(
+                                left: width/23.551724138, right: width/170.75),
                             child: Text("Subjects", style: GoogleFonts.poppins(
                                 fontSize: width/85.375,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 160.0, right: 8.0),
+                            padding: EdgeInsets.only(
+                                left: width/8.5375, right: width/170.75),
                             child: Text("Date", style: GoogleFonts.poppins(
                                 fontSize: width/85.375,
                                 fontWeight: FontWeight.w700,
@@ -672,13 +685,13 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                   child: Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 30.0, right: 70.0),
+                                        padding: EdgeInsets.only(
+                                            left: width/45.533333333, right: width/19.514285714),
                                         child: Container(
                                           width: width / 120.83,
                                           child: Text("${(index + 1).toString()}",
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15,
+                                                fontSize: width/91.066666667,
                                                 fontWeight: FontWeight.w600,
                                                 color: Colors.black),),
                                         ),
@@ -686,11 +699,11 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                       Container(
                                         width: width / 6.83,
                                         child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 8.0, right: 8.0),
+                                          padding:  EdgeInsets.only(
+                                              left: width/170.75, right: width/170.75),
                                           child: Text(value["name"],
                                             style: GoogleFonts.poppins(
-                                                fontSize: 15,
+                                                fontSize: width/91.066666667,
                                                 fontWeight: FontWeight.w600,
                                                 color: Colors.black),),
                                         ),
@@ -707,7 +720,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                         child:TextFormField(
                                           controller:  textediting[index],
                                           style: GoogleFonts.poppins(
-                                              fontSize: 15
+                                              fontSize: width/91.066666667
                                           ),
                                           onTap: () async {
                                             DateTime? pickedDate = await showDatePicker(
@@ -740,7 +753,7 @@ class _ExamTimeTableState extends State<ExamTimeTable> {
                                           },
                                           validator: (value) =>
                                           value!.isEmpty ? 'Field Cannot be Empty' : null,
-                                          decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
+                                          decoration: InputDecoration(contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
                                             border: InputBorder.none,
                                             hintText: value["date"]
 
