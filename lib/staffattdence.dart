@@ -145,8 +145,9 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -492,7 +493,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                   child: Column(
                                     children: [
                                       SizedBox(
-                                          width: 800,
+                                          width: width/1.7075,
                                           child: FutureBuilder<StaffAttendanceReportModel>(
                                             future: getMonthlyAttendanceReportForStaff(selectedStaffId),
                                             builder: (ctx,snapshot){
@@ -515,14 +516,14 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      height: 250,
-                                                      width: 780,
+                                                      height:height/2.604,
+                                                      width: width/1.751282051282051,
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
                                                           Container(
-                                                            height: 250,
-                                                            width: 480,
+                                                            height:height/2.604,
+                                                            width: width/2.845833333333333,
                                                             child: sfc.SfCartesianChart(
 
                                                                 primaryXAxis: sfc.CategoryAxis(),
@@ -588,14 +589,14 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      height: 250,
-                                                      width: 780,
+                                                      height:height/2.604,
+                                                      width: width/1.751282051282051,
                                                       child: Row(
                                                         mainAxisAlignment : MainAxisAlignment.center,
                                                         children: [
                                                           Container(
-                                                            height: 250,
-                                                            width: 480,
+                                                            height:height/2.604,
+                                                            width: width/2.845833333333333,
                                                             child: sfc.SfCartesianChart(
                                                                 primaryXAxis: sfc.CategoryAxis(),
                                                                 title: sfc.ChartTitle(
@@ -658,7 +659,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                         ],
                                                       ),
                                                     ),
-                                                    SizedBox(height: 20),
+                                                    SizedBox(height:height/32.55),
                                                     Column(
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
@@ -668,9 +669,9 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                             fontWeight: FontWeight.w700,
                                                           ),
                                                         ),
-                                                        SizedBox(height: 20),
+                                                        SizedBox(height:height/32.55),
                                                         Container(
-                                                          height:300,
+                                                          height:height/2.17,
                                                           child: ListView.builder(
                                                             itemCount: snapshot.data!.absentDays.length,
                                                             itemBuilder: (ctx, i){
@@ -680,7 +681,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                                                                   child: Row(
                                                                     children: [
                                                                       SizedBox(
-                                                                        width: 50,
+                                                                        width: width/27.32,
                                                                         child: Text(
                                                                           'Date : ',
                                                                           style: TextStyle(
@@ -767,12 +768,12 @@ class _StaffAttendenceState extends State<StaffAttendence> {
               if(snapshot.hasData){
                 return Row(
                   children: [
-                    SizedBox(width: 20,),
+                    SizedBox(width: width/68.3,),
                     Container(
-                        width: 450,
+                        width: width/3.035555555555556,
                         child: Container(
-                          height: 250,
-                          width: 850,
+                          height:height/2.604,
+                          width: width/1.607058823529412,
                           child: sfc.SfCartesianChart(
                               primaryXAxis: sfc.CategoryAxis(),
                               title: sfc.ChartTitle(
@@ -887,7 +888,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
                       ],
                     ),
-                    SizedBox(width: 20,),
+                    SizedBox(width: width/68.3,),
                     Material(
                       elevation: 7,
                       borderRadius: BorderRadius.circular(12),
@@ -934,12 +935,12 @@ class _StaffAttendenceState extends State<StaffAttendence> {
                 );
               }return Row(
                 children: [
-                  SizedBox(width: 20,),
+                  SizedBox(width: width/68.3,),
                   Container(
-                      width: 450,
+                      width: width/3.035555555555556,
                       child: Container(
-                        height: 250,
-                        width: 850,
+                        height:height/2.604,
+                        width: width/1.607058823529412,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
@@ -1060,7 +1061,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
                     ],
                   ),
-                  SizedBox(width: 20,),
+                  SizedBox(width: width/68.3,),
                   Material(
                     elevation: 7,
                     borderRadius: BorderRadius.circular(12),
@@ -1377,7 +1378,7 @@ class _StaffAttendenceState extends State<StaffAttendence> {
 
                                 }),
                           ) : Container(): Container(),
-                          SizedBox(height: 20,)
+                          SizedBox(height:height/32.55,)
                         ],
                       ),
                       Column(

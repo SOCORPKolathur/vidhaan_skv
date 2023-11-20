@@ -4264,8 +4264,8 @@ class _StaffIDState extends State<StaffID> {
                                                   Material(
 
                                                     child: Container(
-                                                      width: 260,
-                                                      height: 450,
+                                                      width: width/5.253846153846154,
+                                                      height:height/1.446666666666667,
 
                                                       child: Stack(
                                                         children: [
@@ -4281,13 +4281,13 @@ class _StaffIDState extends State<StaffID> {
                                                             crossAxisAlignment: CrossAxisAlignment.center,
 
                                                             children: [
-                                                              SizedBox(height: 20,),
+                                                              SizedBox(height:height/32.55,),
                                                               Row(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
                                                                   Container(
-                                                                      width:50,
-                                                                      height:50, decoration: BoxDecoration(
+                                                                      width: width/27.32,
+                                                                      height:height/13.02, decoration: BoxDecoration(
                                                                     borderRadius: BorderRadius.circular(25),
 
                                                                   ),
@@ -4309,8 +4309,8 @@ class _StaffIDState extends State<StaffID> {
                                                                 alignment: Alignment.center,
                                                                 children: [
                                                                   Container(
-                                                                    width: 120,
-                                                                    height: 120,
+                                                                    width: width/11.38333333333333,
+                                                                    height:height/5.425,
                                                                     decoration: BoxDecoration(
                                                                         color: pickerColor,
                                                                         borderRadius: BorderRadius.circular(60)
@@ -4332,24 +4332,24 @@ class _StaffIDState extends State<StaffID> {
 
                                                                 ],
                                                               ),
-                                                              SizedBox(height: 15,),
+                                                              SizedBox(height:height/43.4,),
                                                               Text(value["stname"],style: GoogleFonts.poppins(
                                                                   color: Colors.white, fontSize: 15,fontWeight: FontWeight.w700),),
                                                               Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                                   color:  Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                              SizedBox(height: 10,),
+                                                              SizedBox(height:height/65.1,),
                                                               Row(
 
                                                                 children: [
-                                                                  SizedBox(width:20),
+                                                                  SizedBox(width: width/68.3),
                                                                   Column(
                                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                                     children: [
                                                                       Row(
                                                                         children: [
-                                                                          SizedBox(width: 20,),
+                                                                          SizedBox(width: width/68.3,),
                                                                           Container(
-                                                                            width: 90,
+                                                                            width: width/15.17777777777778,
 
                                                                             child: Row(
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -4367,9 +4367,9 @@ class _StaffIDState extends State<StaffID> {
                                                                       ),
                                                                       Row(
                                                                         children: [
-                                                                          SizedBox(width: 20,),
+                                                                          SizedBox(width: width/68.3,),
                                                                           Container(
-                                                                            width:90,
+                                                                            width: width/15.17777777777778,
                                                                             child: Row(
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
@@ -4387,9 +4387,9 @@ class _StaffIDState extends State<StaffID> {
                                                                       ),
                                                                       Row(
                                                                         children: [
-                                                                          SizedBox(width: 20,),
+                                                                          SizedBox(width: width/68.3,),
                                                                           Container(
-                                                                            width:90,
+                                                                            width: width/15.17777777777778,
                                                                             child: Row(
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
@@ -4406,9 +4406,9 @@ class _StaffIDState extends State<StaffID> {
                                                                       ),
                                                                       Row(
                                                                         children: [
-                                                                          SizedBox(width: 20,),
+                                                                          SizedBox(width: width/68.3,),
                                                                           Container(
-                                                                            width:90,
+                                                                            width: width/15.17777777777778,
                                                                             child: Row(
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
@@ -4436,10 +4436,10 @@ class _StaffIDState extends State<StaffID> {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(width: 50,),
+                                                  SizedBox(width: width/27.32,),
                                                   Container(
-                                                    width: 260,
-                                                    height: 450,
+                                                    width: width/5.253846153846154,
+                                                    height:height/1.446666666666667,
                                                     child: Stack(
                                                       children: [
                                                         Column(
@@ -4454,7 +4454,7 @@ class _StaffIDState extends State<StaffID> {
                                                           crossAxisAlignment: CrossAxisAlignment.start,
 
                                                           children: [
-                                                            SizedBox(height: 20,),
+                                                            SizedBox(height:height/32.55,),
                                                             Padding(
                                                               padding: const EdgeInsets.only(left: 25.0),
                                                               child: Row(
@@ -4464,8 +4464,8 @@ class _StaffIDState extends State<StaffID> {
                                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                                     children: [
                                                                       Container(
-                                                                          width:60,
-                                                                          height:60, decoration: BoxDecoration(
+                                                                          width: width/22.76666666666667,
+                                                                          height:height/10.85, decoration: BoxDecoration(
                                                                         borderRadius: BorderRadius.circular(30),
 
                                                                       ),
@@ -4480,7 +4480,7 @@ class _StaffIDState extends State<StaffID> {
                                                                 ],
                                                               ),
                                                             ),
-                                                            SizedBox(height: 15,),
+                                                            SizedBox(height:height/43.4,),
 
                                                             Padding(
                                                               padding: const EdgeInsets.only(left: 20.0),
@@ -4489,12 +4489,12 @@ class _StaffIDState extends State<StaffID> {
                                                             ),
                                                             Text("",style: GoogleFonts.poppins(
                                                                 color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                            SizedBox(height: 10,),
+                                                            SizedBox(height:height/65.1,),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Container(
-                                                                  width: 110,
+                                                                  width: width/12.41818181818182,
                                                                   child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                                       color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 ),
@@ -4505,15 +4505,15 @@ class _StaffIDState extends State<StaffID> {
                                                             Row(
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Container(
-                                                                  width: 90,
+                                                                  width: width/15.17777777777778,
                                                                   child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                                       color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 ),
                                                                 Container(
-                                                                  width: 150,
+                                                                  width: width/9.106666666666667,
                                                                   child: Text(value["address"],style: GoogleFonts.poppins(
                                                                       color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 ),
@@ -4529,12 +4529,12 @@ class _StaffIDState extends State<StaffID> {
                                                                     children: [
                                                                       SizedBox(height:5),
                                                                       Container(
-                                                                          width: 75,
-                                                                          height: 75,
+                                                                          width: width/18.21333333333333,
+                                                                          height:height/8.68,
                                                                           child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
 
                                                                       Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),),
-                                                                      SizedBox(height:7),
+                                                                      SizedBox(height:height/93),
                                                                     ],
                                                                   ),
                                                                 ],
@@ -4546,7 +4546,7 @@ class _StaffIDState extends State<StaffID> {
                                                       ],
                                                     ),
                                                   ),
-                                                  SizedBox(width: 50,),
+                                                  SizedBox(width: width/27.32,),
                                                 ],
                                               ),
                                             ) : Container() : Container()
@@ -4633,8 +4633,8 @@ class _StaffIDState extends State<StaffID> {
                         Material(
 
                           child: Container(
-                            width: 260,
-                            height: 450,
+                            width: width/5.253846153846154,
+                            height:height/1.446666666666667,
 
                             child: Stack(
                               children: [
@@ -4650,13 +4650,13 @@ class _StaffIDState extends State<StaffID> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
 
                                   children: [
-                                    SizedBox(height: 20,),
+                                    SizedBox(height:height/32.55,),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Container(
-                                            width:50,
-                                            height:50, decoration: BoxDecoration(
+                                            width: width/27.32,
+                                            height:height/13.02, decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(25),
 
                                         ),
@@ -4678,8 +4678,8 @@ class _StaffIDState extends State<StaffID> {
                                       alignment: Alignment.center,
                                       children: [
                                         Container(
-                                          width: 120,
-                                          height: 120,
+                                          width: width/11.38333333333333,
+                                          height:height/5.425,
                                           decoration: BoxDecoration(
                                               color: pickerColor,
                                               borderRadius: BorderRadius.circular(60)
@@ -4700,22 +4700,22 @@ class _StaffIDState extends State<StaffID> {
 
                                       ],
                                     ),
-                                    SizedBox(height: 15,),
+                                    SizedBox(height:height/43.4,),
                                     Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                                         color: Colors.white, fontSize: 15,fontWeight: FontWeight.w700),),
                                     Text("ID: VBSB004",style: GoogleFonts.poppins(
                                         color:  Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                    SizedBox(height: 10,),
+                                    SizedBox(height:height/65.1,),
                                     Row(
 
                                       children: [
-                                        SizedBox(width:50),
+                                        SizedBox(width: width/27.32),
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
-                                                SizedBox(width: 20,),
+                                                SizedBox(width: width/68.3,),
                                                 Text("Designation       : ",style: GoogleFonts.poppins(
                                                     color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                 Text("Senior",style: GoogleFonts.poppins(
@@ -4724,7 +4724,7 @@ class _StaffIDState extends State<StaffID> {
                                             ),
                                             Row(
                                               children: [
-                                                SizedBox(width: 20,),
+                                                SizedBox(width: width/68.3,),
                                                 Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                     color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -4734,7 +4734,7 @@ class _StaffIDState extends State<StaffID> {
                                             ),
                                             Row(
                                               children: [
-                                                SizedBox(width: 20,),
+                                                SizedBox(width: width/68.3,),
                                                 Text("Blood Group : ",style: GoogleFonts.poppins(
                                                     color:Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                 Text("B+ve",style: GoogleFonts.poppins(
@@ -4743,7 +4743,7 @@ class _StaffIDState extends State<StaffID> {
                                             ),
                                             Row(
                                               children: [
-                                                SizedBox(width: 20,),
+                                                SizedBox(width: width/68.3,),
                                                 Text("Phone      : ",style: GoogleFonts.poppins(
                                                     color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                 Text("789456213",style: GoogleFonts.poppins(
@@ -4763,10 +4763,10 @@ class _StaffIDState extends State<StaffID> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 50,),
+                        SizedBox(width: width/27.32,),
                         Container(
-                          width: 260,
-                          height: 450,
+                          width: width/5.253846153846154,
+                          height:height/1.446666666666667,
                           child: Stack(
                             children: [
                               Column(
@@ -4781,7 +4781,7 @@ class _StaffIDState extends State<StaffID> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
 
                                 children: [
-                                  SizedBox(height: 20,),
+                                  SizedBox(height:height/32.55,),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 25.0),
                                     child: Row(
@@ -4791,8 +4791,8 @@ class _StaffIDState extends State<StaffID> {
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             Container(
-                                                width:60,
-                                                height:60, decoration: BoxDecoration(
+                                                width: width/22.76666666666667,
+                                                height:height/10.85, decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(30),
 
                                             ),
@@ -4807,7 +4807,7 @@ class _StaffIDState extends State<StaffID> {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 15,),
+                                  SizedBox(height:height/43.4,),
 
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20.0),
@@ -4816,12 +4816,12 @@ class _StaffIDState extends State<StaffID> {
                                   ),
                                   Text("",style: GoogleFonts.poppins(
                                       color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                  SizedBox(height: 10,),
+                                  SizedBox(height:height/65.1,),
                                   Row(
                                     children: [
-                                      SizedBox(width: 20,),
+                                      SizedBox(width: width/68.3,),
                                       Container(
-                                        width: 110,
+                                        width: width/12.41818181818182,
                                         child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                             color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                       ),
@@ -4832,9 +4832,9 @@ class _StaffIDState extends State<StaffID> {
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      SizedBox(width: 20,),
+                                      SizedBox(width: width/68.3,),
                                       Container(
-                                        width: 110,
+                                        width: width/12.41818181818182,
                                         child: Text("Address : ",style: GoogleFonts.poppins(
 
                                             color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -4853,12 +4853,12 @@ class _StaffIDState extends State<StaffID> {
                                           children: [
                                             SizedBox(height:5),
                                             Container(
-                                                width: 75,
-                                                height: 75,
+                                                width: width/18.21333333333333,
+                                                height:height/8.68,
                                                 child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
 
                                             Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),),
-                                            SizedBox(height:7),
+                                            SizedBox(height:height/93),
                                           ],
                                         ),
                                       ],
@@ -4871,16 +4871,16 @@ class _StaffIDState extends State<StaffID> {
                             ],
                           ),
                         ),
-                        SizedBox(width: 50,),
+                        SizedBox(width: width/27.32,),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 10,),
+                            SizedBox(height:height/65.1,),
                             Text("Card Design 1",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                             Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                             Container(
-                              width: 465,
+                              width: width/2.937634408602151,
                               child: ColorPicker(
                                 colorPickerWidth: 120,
                                 pickerColor: pickerColor,
@@ -4899,7 +4899,7 @@ class _StaffIDState extends State<StaffID> {
 
                               ),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(height:height/65.1,),
                             InkWell(
                               onTap: (){
                                 selectdesign("1");
@@ -4928,20 +4928,21 @@ class _StaffIDState extends State<StaffID> {
                       ],
                     ),
 
-                    SizedBox(height: 20,)
+                    SizedBox(height:height/32.55,)
                   ],
                 ),
               ),
             ),
           ),
-          SizedBox(height: 20,)
+          SizedBox(height:height/32.55,)
         ],
       ),
     );
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,

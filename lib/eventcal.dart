@@ -11,10 +11,12 @@ class EventCal extends StatefulWidget {
 class _EventCalState extends State<EventCal> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Container(
-          width: 500,
-          height: 500,
+          width: width/2.732,
+          height: height/1.302,
           child: SfCalendar(
             view: CalendarView.month,
             allowDragAndDrop: true,

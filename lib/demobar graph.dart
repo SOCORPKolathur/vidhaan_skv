@@ -84,6 +84,8 @@ class BarChartSample2State extends State<BarChartSample2> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return AspectRatio(
       aspectRatio: 1,
       child: Padding(
@@ -91,8 +93,8 @@ class BarChartSample2State extends State<BarChartSample2> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const SizedBox(
-              height: 38,
+            SizedBox(
+              height:height/17.13157894736842,
             ),
             Expanded(
               child: BarChart(
@@ -190,7 +192,7 @@ class BarChartSample2State extends State<BarChartSample2> {
     }
 
     final Widget text = Container(
-      width: 100,
+      width: width/13.66,
       child: Text(
         textValue,
         textAlign: TextAlign.center,
@@ -198,7 +200,7 @@ class BarChartSample2State extends State<BarChartSample2> {
         style:  GoogleFonts.montserrat(
           color: Color(0xff7589a2),
           fontWeight: FontWeight.w600,
-          fontSize: 10,
+          fontSize: width/136.6,
         ),
       ),
     );
@@ -237,7 +239,7 @@ class BarChartSample2State extends State<BarChartSample2> {
       children: <Widget>[
         Container(
           width: width,
-          height: 10,
+          height:10,
           color: Colors.white.withOpacity(0.4),
         ),
         const SizedBox(
@@ -261,7 +263,7 @@ class BarChartSample2State extends State<BarChartSample2> {
         ),
         Container(
           width: width,
-          height: 28,
+          height:28,
           color: Colors.white.withOpacity(0.8),
         ),
         const SizedBox(
@@ -269,7 +271,7 @@ class BarChartSample2State extends State<BarChartSample2> {
         ),
         Container(
           width: width,
-          height: 10,
+          height:10,
           color: Colors.white.withOpacity(0.4),
         ),
       ],

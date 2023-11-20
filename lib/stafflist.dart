@@ -382,8 +382,8 @@ class _StaffListState extends State<StaffList> {
                                           elevation: 1,
                                           borderRadius: BorderRadius.circular(50),
                                           child: Container(
-                                              width:50,
-                                              height: 50,
+                                              width: width/27.32,
+                                              height:height/13.02,
                                               decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(50)
                                               ),
@@ -815,7 +815,7 @@ class _StaffListState extends State<StaffList> {
                               padding: EdgeInsets.only(left:width/62.2,right:width/62.2),
                               child: Column(
                                 children: [
-                                  SizedBox(height:15,),
+                                  SizedBox(height:height/43.4,),
                                   Row(
 
                                     children: [
@@ -951,7 +951,7 @@ class _StaffListState extends State<StaffList> {
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Container(
-                                                    width:200,
+                                                    width: width/6.83,
                                                     child: Text(
                                                       value["address"],
                                                       style: GoogleFonts.poppins(
@@ -1200,7 +1200,7 @@ class _StaffListState extends State<StaffList> {
                                                             fontWeight:FontWeight.bold,color: Colors.red,fontSize:width/53.31
                                                         ),)),
                                                       ),
-                                                      SizedBox(height:20,),
+                                                      SizedBox(height:height/32.55,),
                                                       Text('Performance ',style: GoogleFonts.montserrat(
                                                           fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                       ),),
@@ -1219,7 +1219,7 @@ class _StaffListState extends State<StaffList> {
                                                             fontWeight:FontWeight.bold,color: Colors.green,fontSize:width/53.31
                                                         ),)),
                                                       ),
-                                                      SizedBox(height:20,),
+                                                      SizedBox(height:height/32.55,),
                                                       Text('Attendance',style: GoogleFonts.montserrat(
                                                           fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                       ),),

@@ -1016,8 +1016,9 @@ class _StudentFromState extends State<StudentFrom> {
 
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,

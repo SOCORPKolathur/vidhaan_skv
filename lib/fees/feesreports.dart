@@ -318,7 +318,7 @@ class _FeesReportsState extends State<FeesReports> {
                                     iconDisabledColor: Colors.grey,
                                   ),
                                   dropdownStyleData: DropdownStyleData(
-                                    maxHeight: 200,
+                                    maxHeight:height/3.255,
                                     width: width/5.464,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14),
@@ -367,7 +367,7 @@ class _FeesReportsState extends State<FeesReports> {
                                         color: Colors.black,
                                       ),
                                       SizedBox(
-                                        width: 4,
+                                        width: width/341.5,
                                       ),
                                       Expanded(
                                         child: Text(

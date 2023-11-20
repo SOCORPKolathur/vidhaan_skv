@@ -59,8 +59,9 @@ class _ClassSubjectsState extends State<ClassSubjects> {
 
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -144,8 +145,9 @@ class _ClassSubjectsState extends State<ClassSubjects> {
   }
 
   Errordialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -335,7 +337,7 @@ class _ClassSubjectsState extends State<ClassSubjects> {
 
                                             padding: const EdgeInsets.only(left: 8.0,right: 8.0),
                                             child: Container(
-                                                width: 100,
+                                                width: width/13.66,
                                                 child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
                                           ),
                                           InkWell(
@@ -347,8 +349,8 @@ class _ClassSubjectsState extends State<ClassSubjects> {
                                               padding: const EdgeInsets.only(left: 8.0,right: 8.0),
                                               child: Container(
 
-                                                width: 40,
-                                                height: 20,
+                                                width: width/34.15,
+                                                height:height/32.55,
                                                 decoration: BoxDecoration(
                                                   color:Color(0xff00A0E3),
                                                   borderRadius: BorderRadius.circular(5)
@@ -368,7 +370,7 @@ class _ClassSubjectsState extends State<ClassSubjects> {
                                                 padding:
                                                 const EdgeInsets.only(left: 100.0),
                                                 child: Container(
-                                                    width: 30,
+                                                    width: width/45.53333333333333,
 
                                                     child: Image.asset("assets/delete.png"))
                                             ),
@@ -430,7 +432,7 @@ class _ClassSubjectsState extends State<ClassSubjects> {
                                             color: Colors.black,
                                           ),
                                           SizedBox(
-                                            width: 4,
+                                            width: width/341.5,
                                           ),
                                           Expanded(
                                             child: Text(
@@ -462,8 +464,8 @@ class _ClassSubjectsState extends State<ClassSubjects> {
                                         });
                                       },
                                       buttonStyleData: ButtonStyleData(
-                                        height: 50,
-                                        width: 160,
+                                        height:height/13.02,
+                                        width: width/8.5375,
                                         padding: const EdgeInsets.only(left: 14, right: 14),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
@@ -481,7 +483,7 @@ class _ClassSubjectsState extends State<ClassSubjects> {
                                         iconDisabledColor: Colors.grey,
                                       ),
                                       dropdownStyleData: DropdownStyleData(
-                                        maxHeight: 200,
+                                        maxHeight:height/3.255,
                                         width: width/5.464,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(14),
@@ -494,8 +496,8 @@ class _ClassSubjectsState extends State<ClassSubjects> {
                                           thumbVisibility: MaterialStateProperty.all<bool>(true),
                                         ),
                                       ),
-                                      menuItemStyleData: const MenuItemStyleData(
-                                        height: 40,
+                                      menuItemStyleData: MenuItemStyleData(
+                                        height:height/16.275,
                                         padding: EdgeInsets.only(left: 14, right: 14),
                                       ),
                                     ),
@@ -577,7 +579,7 @@ class _ClassSubjectsState extends State<ClassSubjects> {
                                           Padding(
                                             padding: const EdgeInsets.only(left: 8.0,right: 8.0),
                                             child: Container(
-                                                width: 150,
+                                                width: width/9.106666666666667,
 
                                                 child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
                                           ),
@@ -589,7 +591,7 @@ class _ClassSubjectsState extends State<ClassSubjects> {
                                                 padding:
                                                 const EdgeInsets.only(left: 100.0),
                                                 child: Container(
-                                                    width: 30,
+                                                    width: width/45.53333333333333,
 
                                                     child: Image.asset("assets/delete.png"))
                                             ),
@@ -628,10 +630,10 @@ class _ClassSubjectsState extends State<ClassSubjects> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -709,10 +711,10 @@ class _ClassSubjectsState extends State<ClassSubjects> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),

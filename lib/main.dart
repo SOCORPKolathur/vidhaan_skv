@@ -23,8 +23,19 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ///Call while Database Change
+  Func(){
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -94,8 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                                 child: Stack(
                                   children: [
                                     Container(
-
-                                        width: 160,
+                                        width: width/8.5375,
                                         child: Image.asset("assets/VIDHAANTEXT.png",color: Colors.white,)),
                                     Padding(
                                       padding: const EdgeInsets.only(left:8.0,top:35),
@@ -111,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
 
                               ),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(height:height/65.1,),
 
                           ],
                         ),
@@ -134,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                   width: width/0.9106,
                   height: height/1.877,
                 ),
-                SizedBox(height: 40,),
+                SizedBox(height:height/16.275,),
                 Row(
                   children: [
                     Padding(
@@ -147,12 +157,12 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.only(top:15.0),
                   child: Row(
                     children: [
-                      SizedBox(width: 20,),
+                      SizedBox(width: width/68.3,),
                       Material(
                         borderRadius: BorderRadius.circular(12),
                         child: Container(
-                          height: 150,
-                          width: 150,
+                          height:height/4.34,
+                          width: width/9.106666666666667,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12)
                           ),
@@ -163,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                              Padding(
                                padding: const EdgeInsets.only(top:20.0),
                                child: Container(
-                                   width: 35,
+                                   width: width/39.02857142857143,
                                    child: Image.asset("assets/support.png")),
                              ),
                               Padding(
@@ -180,8 +190,8 @@ class _LoginPageState extends State<LoginPage> {
 
                           borderRadius: BorderRadius.circular(12),
                           child: Container(
-                            height: 150,
-                            width: 150,
+                            height:height/4.34,
+                            width: width/9.106666666666667,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12)
                             ),
@@ -192,7 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                                Padding(
                                  padding: const EdgeInsets.only(top:20.0),
                                  child: Container(
-                                     width: 35,
+                                     width: width/39.02857142857143,
                                      child: Image.asset("assets/developer.png")),
                                ),
                                 Padding(
@@ -210,8 +220,8 @@ class _LoginPageState extends State<LoginPage> {
 
                           borderRadius: BorderRadius.circular(12),
                           child: Container(
-                            height: 150,
-                            width: 150,
+                            height:height/4.34,
+                            width: width/9.106666666666667,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12)
                             ),
@@ -222,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                                Padding(
                                  padding: const EdgeInsets.only(top:20.0),
                                  child: Container(
-                                     width: 35,
+                                     width: width/39.02857142857143,
                                      child: Image.asset("assets/linkedin.png")),
                                ),
                                 Padding(
@@ -240,8 +250,8 @@ class _LoginPageState extends State<LoginPage> {
 
                           borderRadius: BorderRadius.circular(12),
                           child: Container(
-                            height: 150,
-                            width: 150,
+                            height:height/4.34,
+                            width: width/9.106666666666667,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12)
                             ),
@@ -252,7 +262,7 @@ class _LoginPageState extends State<LoginPage> {
                                Padding(
                                  padding: const EdgeInsets.only(top:20.0),
                                  child: Container(
-                                     width: 35,
+                                     width: width/39.02857142857143,
                                      child: Image.asset("assets/whatsapp.png")),
                                ),
                                 Padding(

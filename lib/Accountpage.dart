@@ -81,7 +81,7 @@ class _AccountpageState extends State<Accountpage> {
                                     height: height / 10.107,
                                   ),
                                   SizedBox(
-                                    width: 10,
+                                    width: width/136.6,
                                   ),
                                   Column(
                                     crossAxisAlignment:
@@ -121,7 +121,7 @@ class _AccountpageState extends State<Accountpage> {
                                     height: height / 10.107,
                                   ),
                                   SizedBox(
-                                    width: 10,
+                                    width: width/136.6,
                                   ),
                                   Column(
                                     crossAxisAlignment:
@@ -156,7 +156,7 @@ class _AccountpageState extends State<Accountpage> {
                                     height: height / 10.107,
                                   ),
                                   SizedBox(
-                                    width: 10,
+                                    width: width/136.6,
                                   ),
                                   Column(
                                     crossAxisAlignment:
@@ -185,7 +185,7 @@ class _AccountpageState extends State<Accountpage> {
                                     ],
                                   ),
                                   SizedBox(
-                                    width: 30,
+                                    width: width/45.53333333333333,
                                   ),
                                   Column(
                                     children: [
@@ -212,7 +212,7 @@ class _AccountpageState extends State<Accountpage> {
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 10,
+                                        height:height/65.1,
                                       ),
                                       InkWell(
                                         onTap: () {
@@ -237,7 +237,7 @@ class _AccountpageState extends State<Accountpage> {
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 10,
+                                        height:height/65.1,
                                       ),
                                     ],
                                   ),
@@ -263,17 +263,17 @@ class _AccountpageState extends State<Accountpage> {
                               ),
                             ),
                             SizedBox(
-                              height: 10,
+                              height:height/65.1,
                             ),
-                            Container(width: 500, child: Divider()),
+                            Container(width: width/2.732, child: Divider()),
                             SizedBox(
-                              height: 10,
+                              height:height/65.1,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Container(
-                                  width: 130,
+                                  width: width/10.50769230769231,
                                   child: Text(
                                     'Payment Type',
                                     style: GoogleFonts.montserrat(
@@ -283,7 +283,7 @@ class _AccountpageState extends State<Accountpage> {
                                   ),
                                 ),
                                 Container(
-                                  width: 130,
+                                  width: width/10.50769230769231,
                                   child: Text(
                                     'Amount',
                                     style: GoogleFonts.montserrat(
@@ -293,7 +293,7 @@ class _AccountpageState extends State<Accountpage> {
                                   ),
                                 ),
                                 Container(
-                                  width: 130,
+                                  width: width/10.50769230769231,
                                   child: Text(
                                     'Actioned By',
                                     style: GoogleFonts.montserrat(
@@ -303,7 +303,7 @@ class _AccountpageState extends State<Accountpage> {
                                   ),
                                 ),
                                 Container(
-                                  width: 130,
+                                  width: width/10.50769230769231,
                                   child: Text(
                                     'Date',
                                     style: GoogleFonts.montserrat(
@@ -313,7 +313,7 @@ class _AccountpageState extends State<Accountpage> {
                                   ),
                                 ),
                                 Container(
-                                  width: 130,
+                                  width: width/10.50769230769231,
                                   child: Text(
                                     'Time',
                                     style: GoogleFonts.montserrat(
@@ -325,7 +325,7 @@ class _AccountpageState extends State<Accountpage> {
                               ],
                             ),
                             Container(
-                              height: 330,
+                              height:height/1.972727272727273,
                               child: ListView.builder(
                                 itemCount: snap.data!.docs.length,
                                 itemBuilder: (ctx, i) {
@@ -351,7 +351,7 @@ class _AccountpageState extends State<Accountpage> {
                                           ),
                                         ),
                                         Container(
-                                          width: 160,
+                                          width: width/8.5375,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -383,7 +383,7 @@ class _AccountpageState extends State<Accountpage> {
                                           ),
                                         ),
                                         Container(
-                                          width: 200,
+                                          width: width/6.83,
                                           child: Text(
                                             "RS ${double.parse(snap.data!.docs[i]['amount'].toString()).toStringAsFixed(2)}",
                                             style: GoogleFonts.mulish(
@@ -399,7 +399,7 @@ class _AccountpageState extends State<Accountpage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 100,
+                                          width: width/13.66,
                                           child: Text(
                                             snap.data!.docs[i]['receivedBy'],
                                             style: GoogleFonts.mulish(
@@ -560,7 +560,7 @@ class _AccountpageState extends State<Accountpage> {
           padding: const EdgeInsets.only(right: 138.0),
           child: Container(
             width: width / 1.221,
-            height: 600,
+            height:height/1.085,
             decoration: BoxDecoration(
               color: Color(0xffFFFFFF),
               borderRadius: BorderRadius.circular(10),
@@ -601,17 +601,17 @@ class _AccountpageState extends State<Accountpage> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height:height/65.1,
                 ),
-                Container(width: 500, child: Divider()),
+                Container(width: width/2.732, child: Divider()),
                 SizedBox(
-                  height: 10,
+                  height:height/65.1,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      width: 130,
+                      width: width/10.50769230769231,
                       child: Text(
                         'Payment Type',
                         style: GoogleFonts.montserrat(
@@ -621,7 +621,7 @@ class _AccountpageState extends State<Accountpage> {
                       ),
                     ),
                     Container(
-                      width: 130,
+                      width: width/10.50769230769231,
                       child: Text(
                         'Amount',
                         style: GoogleFonts.montserrat(
@@ -631,7 +631,7 @@ class _AccountpageState extends State<Accountpage> {
                       ),
                     ),
                     Container(
-                      width: 130,
+                      width: width/10.50769230769231,
                       child: Text(
                         'Received By',
                         style: GoogleFonts.montserrat(
@@ -641,7 +641,7 @@ class _AccountpageState extends State<Accountpage> {
                       ),
                     ),
                     Container(
-                      width: 130,
+                      width: width/10.50769230769231,
                       child: Text(
                         'Date',
                         style: GoogleFonts.montserrat(
@@ -651,7 +651,7 @@ class _AccountpageState extends State<Accountpage> {
                       ),
                     ),
                     Container(
-                      width: 130,
+                      width: width/10.50769230769231,
                       child: Text(
                         'Time',
                         style: GoogleFonts.montserrat(
@@ -664,7 +664,7 @@ class _AccountpageState extends State<Accountpage> {
                 ),
                 Expanded(
                   child: Container(
-                    //height: 330,
+                    //height:height/1.972727272727273,
                     child: ListView.builder(
                       itemCount: docs.length,
                       itemBuilder: (ctx, i) {
@@ -690,7 +690,7 @@ class _AccountpageState extends State<Accountpage> {
                                 ),
                               ),
                               Container(
-                                width: 160,
+                                width: width/8.5375,
                                 child: Column(
                                   crossAxisAlignment:
                                   CrossAxisAlignment.start,
@@ -722,7 +722,7 @@ class _AccountpageState extends State<Accountpage> {
                                 ),
                               ),
                               Container(
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(
                                   "RS ${docs[i]['amount']}",
                                   style: GoogleFonts.mulish(
@@ -737,7 +737,7 @@ class _AccountpageState extends State<Accountpage> {
                                 ),
                               ),
                               SizedBox(
-                                width: 100,
+                                width: width/13.66,
                                 child: Text(
                                   docs[i]['receivedBy'],
                                   style: GoogleFonts.mulish(

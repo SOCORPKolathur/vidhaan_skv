@@ -58,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -77,8 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Screenshot(
               controller: screenshotController,
               child:  Container(
-                width: 260,
-                height: 410,
+                width: width/5.253846153846154,
+                height:height/1.58780487804878,
                 color:Colors.white,
                 child: Stack(
                   children: [
@@ -94,20 +95,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
 
                       children: [
-                        SizedBox(height: 20,),
+                        SizedBox(height:height/32.55,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                                width:50,
-                                height:50, decoration: BoxDecoration(
+                                width: width/27.32,
+                                height:height/13.02, decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(25),
                                 color:Colors.white
                             ),
                                 child: Image.network(schoollogo)),
                           ],
                         ),
-                        SizedBox(height: 2,),
+                        SizedBox(height: height/325.5,),
                         Text(schoolname,style: GoogleFonts.poppins(
                             color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                         Text(schooladdress,style: GoogleFonts.poppins(
@@ -117,13 +118,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
                         Text(schoolweb,style: GoogleFonts.poppins(
                             color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),),
-                        SizedBox(height: 0,),
                         Stack(
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              width: 120,
-                              height: 120,
+                              width: width/11.38333333333333,
+                              height:height/5.425,
                               decoration: BoxDecoration(
                                   color: Color(0xff00A0E3),
                                   borderRadius: BorderRadius.circular(60)
@@ -132,8 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
                             ),
                             Container(
-                              width: 112,
-                              height: 112,
+                              width: width/12.19642857142857,
+                              height: height/5.8125,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50)
                               ),
@@ -144,15 +144,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
                           ],
                         ),
-                        SizedBox(height: 15,),
+                        SizedBox(height:height/43.4,),
                         Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                             color: Colors.black, fontSize: width/91.066666667,fontWeight: FontWeight.w700),),
                         Text("ID: VBSB004",style: GoogleFonts.poppins(
                             color:  Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                        SizedBox(height: 10,),
+                        SizedBox(height:height/65.1,),
                         Row(
                           children: [
-                            SizedBox(width: 20,),
+                            SizedBox(width: width/68.3,),
                             Text("Class       : ",style: GoogleFonts.poppins(
                                 color: Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                             Text("LKG A",style: GoogleFonts.poppins(
@@ -161,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         Row(
                           children: [
-                            SizedBox(width: 20,),
+                            SizedBox(width: width/68.3,),
                             Text("DOB          : ",style: GoogleFonts.poppins(
 
                                 color: Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -171,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         Row(
                           children: [
-                            SizedBox(width: 20,),
+                            SizedBox(width: width/68.3,),
                             Text("Blood Group       : ",style: GoogleFonts.poppins(
                                 color:Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                             Text("B+ve",style: GoogleFonts.poppins(
@@ -180,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         Row(
                           children: [
-                            SizedBox(width: 20,),
+                            SizedBox(width: width/68.3,),
                             Text("Emergency Contact No    : ",style: GoogleFonts.poppins(
                                 color: Color(0xff00A0E3), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                             Text("789456213",style: GoogleFonts.poppins(
@@ -196,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             SizedBox(
-              height: 25,
+              height: height/26.04,
             ),
             ElevatedButton(
               child: Text(
@@ -329,11 +329,12 @@ class _DemopageState extends State<Demopage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Center(
         child:  Container(
-            height: 252.35,
-            width: 161.5,
+            height: height/2.579750346740638,
+            width: width/8.458204334365325,
 
             child: Stack(
               children: [
@@ -349,20 +350,20 @@ class _DemopageState extends State<Demopage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
 
                   children: [
-                    SizedBox(height: 8,),
+                    SizedBox(height: height/81.375),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                            width:30,
-                            height:30, decoration: BoxDecoration(
+                            width: width/45.53333333333333,
+                            height:height/21.7, decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             color:Colors.white
                         ),
                             ),
                       ],
                     ),
-                    SizedBox(height: 2,),
+                    SizedBox(height: height/325.5),
                     Text("Vidhaan Educare",style: GoogleFonts.poppins(
                         color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w600),),
                     Text("120/2 Cathedral Nagar Eeast 11th street ",style: GoogleFonts.poppins(
@@ -372,13 +373,13 @@ class _DemopageState extends State<Demopage> {
 
                     Text("www.vidhaan.in",style: GoogleFonts.poppins(
                         color: Colors.white, fontSize: width/341.5,fontWeight: FontWeight.w400),),
-                    SizedBox(height: 8,),
+                    SizedBox(height: height/81.375),
                     Stack(
                       alignment: Alignment.center,
                       children: [
                         Container(
-                          width: 60,
-                          height: 60,
+                          width: width/22.76666666666667,
+                          height:height/10.85,
                           decoration: BoxDecoration(
                               color: Color(0xff00A0E3),
                               borderRadius: BorderRadius.circular(60)
@@ -387,8 +388,8 @@ class _DemopageState extends State<Demopage> {
 
                         ),
                         Container(
-                          width: 56,
-                          height: 56,
+                          width: width/24.39285714285714,
+                          height:height/11.625,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50)
                           ),
@@ -399,17 +400,17 @@ class _DemopageState extends State<Demopage> {
 
                       ],
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(height:height/43.4,),
                     Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                         color: Colors.black, fontSize: width/136.6,fontWeight: FontWeight.w700),),
                     Text("ID: VBSB004",style: GoogleFonts.poppins(
                         color:  Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
-                    SizedBox(height: 5,),
+                    SizedBox(height: height/130.2),
                     Row(
                       children: [
-                        SizedBox(width: 10,),
+                        SizedBox(width: width/136.6,),
                         Container(
-                          width:80,
+                          width:width/17.075,
                           child: Text("Class",style: GoogleFonts.poppins(
                               color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         ),
@@ -421,9 +422,9 @@ class _DemopageState extends State<Demopage> {
                     ),
                     Row(
                       children: [
-                        SizedBox(width: 10,),
+                        SizedBox(width: width/136.6),
                         Container(
-                          width:80,
+                          width:width/17.075,
                           child: Text("DOB",style: GoogleFonts.poppins(
                               color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         ),
@@ -435,9 +436,9 @@ class _DemopageState extends State<Demopage> {
                     ),
                     Row(
                       children: [
-                        SizedBox(width: 10,),
+                        SizedBox(width: width/136.6),
                         Container(
-                          width:80,
+                          width:width/17.075,
                           child: Text("Blood Group",style: GoogleFonts.poppins(
                               color:Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         ),
@@ -449,9 +450,9 @@ class _DemopageState extends State<Demopage> {
                     ),
                     Row(
                       children: [
-                        SizedBox(width: 10,),
+                        SizedBox(width: width/136.6),
                         Container(
-                          width:80,
+                          width:width/17.075,
                           child: Text("Phone No",style: GoogleFonts.poppins(
                               color: Color(0xff00A0E3), fontSize: width/170.75,fontWeight: FontWeight.w600),),
                         ),

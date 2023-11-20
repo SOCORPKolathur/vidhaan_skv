@@ -91,7 +91,7 @@ class FeesModelforPdfPrint{
     //     await imageFromAssetBundle('assets/Clock Image.png'),
     //     fit: p.BoxFit.contain,
     //     height: 30,
-    //     width:30
+    //     width: width/45.53333333333333
     //
     //
     // );
@@ -381,7 +381,7 @@ class FeesModelforPdfPrint{
             child: pw.Column(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
-                pw.SizedBox(height: 10),
+                pw.SizedBox(height:10),
                 pw.SizedBox(height: 30),
                 pw.Text(
                   "Exam Reports",

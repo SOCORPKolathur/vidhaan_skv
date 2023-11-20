@@ -2442,7 +2442,7 @@ checkdemo() async {
                                                       p.SizedBox(height:20),
                                                       p.Container(
                                                           width: 50,
-                                                          height: 50,
+                                                          height:height/13.02,
                                                           child: p.Image(vidhaanlogo)),
 
                                                       p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
@@ -2565,7 +2565,7 @@ checkdemo() async {
                                                       p.SizedBox(height:20),
                                                       p.Container(
                                                           width: 50,
-                                                          height: 50,
+                                                          height:height/13.02,
                                                           child: p.Image(vidhaanlogo)),
 
                                                       p.Text("e  d  u  c  a  r  e",style: p.TextStyle(
@@ -3721,10 +3721,10 @@ setState(() {
           builder: (context,setState) {
             return AlertDialog(
               title:  Text(selectfile==false?'Bulk Upload Students': "Your File is Uploaded to Database",style: GoogleFonts.poppins(
-                  color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                  color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
               content:  Container(
-                  width: 350,
-                  height: 250,
+                  width: width/3.902857142857143,
+                  height:height/2.604,
 
                  child: selectfile==false? Lottie.asset("assets/file choosing.json"):Lottie.asset("assets/uploaded.json",repeat: false)),
                   //child:  Lottie.asset("assets/file choosing.json")),
@@ -3932,7 +3932,7 @@ setState(() {
                                   Column(
 
                                     children: [
-                                      SizedBox(height:35),
+                                      SizedBox(height:height/18.6),
                                       GestureDetector(
                                         onTap: (){
                                           //checkdemo();
@@ -3941,7 +3941,7 @@ setState(() {
                                          // updatestudentregno();
                                         },
                                         child: Container(
-                                            width: 100,
+                                            width: width/13.66,
                                             child: Image.asset("assets/VIDHAANTEXT.png")),
                                       ),
                                       Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 8),)
@@ -4358,7 +4358,7 @@ setState(() {
                                   leading: Padding(
                                     padding: const EdgeInsets.only(left: 0.0),
                                     child:Container(
-                                      width: 25,
+                                      width: width/54.64,
                                       child: Image.asset(
                                           "assets/timetable.png",
                                           color: dawer == 10 ?  Colors.white : Color(0xff9197B3)

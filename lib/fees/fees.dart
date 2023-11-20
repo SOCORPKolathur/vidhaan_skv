@@ -677,7 +677,7 @@ class _FeesRegState extends State<FeesReg> {
                                                           mainAxisAlignment: MainAxisAlignment.start,
                                                           children: [
                                                             Container(
-                                                              width:130,
+                                                              width: width/10.50769230769231,
                                                               child: Row(
                                                                 children: [
                                                                   Text('Select Fees',style: GoogleFonts.montserrat(
@@ -831,7 +831,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                       mainAxisAlignment: MainAxisAlignment.start,
                                                                       children: [
                                                                         Container(
-                                                                          width:130,
+                                                                          width: width/10.50769230769231,
                                                                           child: Text('Altready Payed Amount',style: GoogleFonts.montserrat(
                                                                               fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                                           ),),
@@ -862,7 +862,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                                     children: [
                                                                       Container(
-                                                                        width:130,
+                                                                        width: width/10.50769230769231,
                                                                         child: Text('Payment',style: GoogleFonts.montserrat(
                                                                             fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                                         ),),
@@ -1048,7 +1048,7 @@ class _FeesRegState extends State<FeesReg> {
                                                             ),
                                                           ],
                                                         ),
-                                                        SizedBox(height: 15,),
+                                                        SizedBox(height:height/43.4,),
                                                         Row(
                                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                           children: [

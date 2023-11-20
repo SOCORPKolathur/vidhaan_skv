@@ -316,7 +316,7 @@ class _admissionState extends State<admission> {
                                     Padding(
                                       padding: const EdgeInsets.only(),
                                       child: Container(
-                                        width:120,
+                                        width: width/11.38333333333333,
                                         child: Text(data["date"],selectionColor: Color(0xff109CF1),),
                                       ),
                                     ),
@@ -324,14 +324,14 @@ class _admissionState extends State<admission> {
                                       padding: const EdgeInsets.only(
                                           ),
                                       child: Container(
-                                        width:150,
+                                        width: width/9.106666666666667,
                                         child: Text(data["name"]),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(),
                                       child: Container(
-                                        width:100,
+                                        width: width/13.66,
                                         child: Text(data["previousclass"]),
                                       ),
                                     ),
@@ -339,19 +339,19 @@ class _admissionState extends State<admission> {
                                       padding: const EdgeInsets.only(
                                           ),
                                       child: Container(
-                                        width:140,
+                                        width: width/9.757142857142857,
                                         child: Text(data["contact"]),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(),
                                       child: Container(
-                                        width:160,
+                                        width: width/8.5375,
                                         child: Text(data["father"]),
                                       ),
                                     ),
                                     Container(
-                                      width:120,
+                                      width: width/11.38333333333333,
                                       child: Text(data["previousschool"]),
                                     ),
 
@@ -432,7 +432,7 @@ class _admissionState extends State<admission> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: 180,
+                              width: width/7.588888888888889,
                                 child: Text(
                                   "Name:  ",
                                   style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
@@ -443,7 +443,7 @@ class _admissionState extends State<admission> {
                               style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val!["name"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
                           ],
                         ),
@@ -453,14 +453,14 @@ class _admissionState extends State<admission> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                  width: 180,
+                                  width: width/7.588888888888889,
                                   child: Text("DOB",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                               Text(
                                 ":   ",
                                 style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                               ),
                               Container(
-                                  width: 200,
+                                  width: width/6.83,
                                   child: Text(val["dob"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
                             ],
                           ),
@@ -469,14 +469,14 @@ class _admissionState extends State<admission> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text("Previous Class",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
                               style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["previousclass"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
@@ -487,14 +487,14 @@ class _admissionState extends State<admission> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                  width: 180,
+                                  width: width/7.588888888888889,
                                   child: Text("Previous School",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                               Text(
                                 ":   ",
                                 style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                               ),
                               Container(
-                                  width: 200,
+                                  width: width/6.83,
                                   child: Text(val["previousschool"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
                             ],
                           ),
@@ -503,7 +503,7 @@ class _admissionState extends State<admission> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text("Curriculum",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
@@ -511,7 +511,7 @@ class _admissionState extends State<admission> {
                             ),
                             Container(
 
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["curriculum"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
                           ],
                         ),
@@ -521,7 +521,7 @@ class _admissionState extends State<admission> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                  width: 180,
+                                  width: width/7.588888888888889,
                                   child: Text("Reason for transfer",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                               Text(
                                 ":   ",
@@ -529,7 +529,7 @@ class _admissionState extends State<admission> {
                               ),
                               Container(
 
-                                  width: 200,
+                                  width: width/6.83,
                                   child: Text(val["reason"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                             ],
@@ -539,7 +539,7 @@ class _admissionState extends State<admission> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text("Contact number",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
@@ -547,7 +547,7 @@ class _admissionState extends State<admission> {
                             ),
                             Container(
 
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["contact"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
@@ -556,7 +556,7 @@ class _admissionState extends State<admission> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text("Email",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
@@ -564,7 +564,7 @@ class _admissionState extends State<admission> {
                             ),
                             Container(
 
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["email"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
@@ -573,14 +573,14 @@ class _admissionState extends State<admission> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text("Residential address",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),)),
                             Text(
                               ":   ",
                               style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["address"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
@@ -600,7 +600,7 @@ class _admissionState extends State<admission> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text(
                                   "Father name",
                                   style: GoogleFonts.poppins(
@@ -613,7 +613,7 @@ class _admissionState extends State<admission> {
                                 style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                               ),
                               Container(
-                                  width: 200,
+                                  width: width/6.83,
                                   child: Text(val["father"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                             ],
@@ -623,7 +623,7 @@ class _admissionState extends State<admission> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: 180,
+                              width: width/7.588888888888889,
                               child: Text(
                                 "Occupation",
                                 style: GoogleFonts.poppins(
@@ -637,7 +637,7 @@ class _admissionState extends State<admission> {
                             ),
                             Container(
 
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["fatheroccupation"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
@@ -648,7 +648,7 @@ class _admissionState extends State<admission> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text(
                                   "Qualification",
                                   style: GoogleFonts.poppins(
@@ -663,7 +663,7 @@ class _admissionState extends State<admission> {
                             ),
                             Container(
 
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["fatherqualification"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
@@ -672,7 +672,7 @@ class _admissionState extends State<admission> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: 180,
+                              width: width/7.588888888888889,
                               child: Text(
                                 "Mother name",
                                 style: GoogleFonts.poppins(
@@ -685,7 +685,7 @@ class _admissionState extends State<admission> {
                               style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
-                                width: 200,
+                                width: width/6.83,
 
                                 child: Text(val["mother"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
@@ -697,7 +697,7 @@ class _admissionState extends State<admission> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text(
                                   "Occupation",
                                   style: GoogleFonts.poppins(
@@ -712,7 +712,7 @@ class _admissionState extends State<admission> {
                             ),
                             Container(
 
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["motheroccupation"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
@@ -723,7 +723,7 @@ class _admissionState extends State<admission> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text(
                                   "Qualification",
                                   style: GoogleFonts.poppins(
@@ -738,7 +738,7 @@ class _admissionState extends State<admission> {
                             ),
                             Container(
 
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["motherqualification"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
@@ -749,7 +749,7 @@ class _admissionState extends State<admission> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: Container(
-                                width: 180,
+                                width: width/7.588888888888889,
                                 child: Text(
                                   "Annual income",
                                   style: GoogleFonts.poppins(
@@ -763,7 +763,7 @@ class _admissionState extends State<admission> {
                               style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: width/113.833333333),
                             ),
                             Container(
-                                width: 200,
+                                width: width/6.83,
                                 child: Text(val["annualincome"],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: width/113.833333333),)),
 
                           ],
@@ -954,8 +954,9 @@ ${schoolname}
   }
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -970,8 +971,9 @@ ${schoolname}
     )..show();
   }
   Successdialog2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.warning,
       animType: AnimType.rightSlide,
@@ -986,8 +988,9 @@ ${schoolname}
     )..show();
   }
   Successdialog3(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,

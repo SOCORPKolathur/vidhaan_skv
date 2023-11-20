@@ -218,7 +218,7 @@ class _StaffEditState extends State<StaffEdit> {
                     children: [
                       Row(
                         children: [
-                          SizedBox(width: 10,),
+                          SizedBox(width: width/136.6,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -328,7 +328,7 @@ class _StaffEditState extends State<StaffEdit> {
                         ],
                       ),
                       SizedBox(
-                        height:20,
+                        height:height/32.55,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -382,7 +382,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -451,7 +451,7 @@ class _StaffEditState extends State<StaffEdit> {
                                 ),
 
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -479,7 +479,7 @@ class _StaffEditState extends State<StaffEdit> {
                                                 color: Colors.black,
                                               ),
                                               SizedBox(
-                                                width: 4,
+                                                width: width/341.5,
                                               ),
                                               Expanded(
                                                 child: Text(
@@ -511,8 +511,8 @@ class _StaffEditState extends State<StaffEdit> {
                                             });
                                           },
                                           buttonStyleData: ButtonStyleData(
-                                            height: 50,
-                                            width: 160,
+                                            height:height/13.02,
+                                            width: width/8.5375,
                                             padding: const EdgeInsets.only(left: 14, right: 14),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(5),
@@ -530,7 +530,7 @@ class _StaffEditState extends State<StaffEdit> {
                                             iconDisabledColor: Colors.grey,
                                           ),
                                           dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 200,
+                                            maxHeight:height/3.255,
                                             width: width/5.464,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(14),
@@ -543,8 +543,8 @@ class _StaffEditState extends State<StaffEdit> {
                                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                                             ),
                                           ),
-                                          menuItemStyleData: const MenuItemStyleData(
-                                            height: 40,
+                                          menuItemStyleData: MenuItemStyleData(
+                                            height:height/16.275,
                                             padding: EdgeInsets.only(left: 14, right: 14),
                                           ),
                                         ),
@@ -560,7 +560,7 @@ class _StaffEditState extends State<StaffEdit> {
                                 ),
 
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
 
@@ -603,7 +603,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -673,7 +673,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -741,7 +741,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -788,7 +788,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -832,7 +832,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -882,7 +882,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                                 Row(
@@ -927,7 +927,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                                 Row(
@@ -969,7 +969,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1019,14 +1019,14 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
 
                               ],
                             ),
                           ),
-                          SizedBox(width: 35,),
+                          SizedBox(width: width/39.02857142857143,),
                           SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1091,7 +1091,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1131,7 +1131,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1181,7 +1181,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1224,7 +1224,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                                 Row(
@@ -1269,7 +1269,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1306,7 +1306,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 30,
+                                  height:height/21.7,
                                 ),
 
 
@@ -1355,7 +1355,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1397,7 +1397,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                                 Row(
@@ -1440,7 +1440,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1482,11 +1482,11 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1538,7 +1538,7 @@ class _StaffEditState extends State<StaffEdit> {
 
 
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1580,7 +1580,7 @@ class _StaffEditState extends State<StaffEdit> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                               ],
@@ -1682,7 +1682,7 @@ class _StaffEditState extends State<StaffEdit> {
                           ),
                         ],
                       ),
-                      SizedBox(height:50)
+                      SizedBox(height:height/13.02)
                     ],
                   ),
                 ),
@@ -1724,8 +1724,9 @@ class _StaffEditState extends State<StaffEdit> {
 
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -1781,8 +1782,9 @@ class _StaffEditState extends State<StaffEdit> {
     });
   }
   Successdialog3(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,

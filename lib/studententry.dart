@@ -270,7 +270,7 @@ String studentdocid="";
                   Text(
                     "Add New Students",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),
                   ),
-               SizedBox(width:10),
+               SizedBox(width: width/136.6),
                InkWell(
                  onTap:(){
                    setState(() {
@@ -286,8 +286,8 @@ String studentdocid="";
                          builder: (ctx, snap) {
                            if(snap.hasData){
                              return Container(
-                                 width:15,
-                                 height: 15,
+                                 width: width/91.06666666666667,
+                                 height:height/43.4,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
                                    color:Colors.red,
@@ -295,8 +295,8 @@ String studentdocid="";
                                  child:Center(child: Text(snap.data!.docs.length.toString(),style: GoogleFonts.poppins(color:Colors.white,fontSize: width/170.75),))
                              );
                            }return Container(
-                               width:15,
-                               height: 15,
+                               width: width/91.06666666666667,
+                               height:height/43.4,
                                decoration: BoxDecoration(
                                  borderRadius: BorderRadius.circular(10),
                                  color:Colors.red,
@@ -330,14 +330,14 @@ String studentdocid="";
                     children: [
                       Row(
                         children: [
-                          SizedBox(width: 10,),
+                          SizedBox(width: width/136.6,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
 
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Student First Name *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Student First Name *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -355,7 +355,7 @@ String studentdocid="";
 
                                     textFieldConfiguration: TextFieldConfiguration(
                                       style:  GoogleFonts.poppins(
-                                          fontSize: 15
+                                          fontSize: width/91.06666666666667
                                       ),
                                       inputFormatters: <TextInputFormatter>[
                                         FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
@@ -414,14 +414,14 @@ String studentdocid="";
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Middle Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Middle Name",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
                                 child: Container(child: TextFormField(
                                   controller: stnamemiddle,
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15
+                                      fontSize: width/91.06666666666667
                                   ),
                                   inputFormatters: <TextInputFormatter>[
                                     FilteringTextInputFormatter.allow(RegExp("[a-zA-Z -]")),
@@ -447,7 +447,7 @@ String studentdocid="";
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right:0.0),
-                                child: Text("Last Name *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                child: Text("Last Name *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -456,7 +456,7 @@ String studentdocid="";
                                       ],
                                   controller: stnamelast,
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15
+                                      fontSize: width/91.06666666666667
                                   ),
                                   validator: (value) =>
                                   value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -479,7 +479,7 @@ String studentdocid="";
                         ],
                       ),
                       SizedBox(
-                        height:20,
+                        height:height/32.55,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -502,7 +502,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Application No. * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Application No. * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -517,7 +517,7 @@ String studentdocid="";
                                           ),
 
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
 
                                       ),
@@ -532,7 +532,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -544,7 +544,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Entry Date * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Entry Date * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -552,7 +552,7 @@ String studentdocid="";
                                       child: Container(child: TextFormField(
                                         controller:  entrydate,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         onTap: () async {
                                           DateTime? pickedDate = await showDatePicker(
@@ -599,7 +599,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -611,7 +611,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Academic Year * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Academic Year * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -628,13 +628,13 @@ String studentdocid="";
                                                 color: Colors.black,
                                               ),
                                               SizedBox(
-                                                width: 4,
+                                                width: width/341.5,
                                               ),
                                               Expanded(
                                                 child: Text(
                                                   'Select Option',
                                                   style: GoogleFonts.poppins(
-                                                      fontSize: 15
+                                                      fontSize: width/91.06666666666667
                                                   ),
                                                   overflow: TextOverflow.ellipsis,
                                                 ),
@@ -647,7 +647,7 @@ String studentdocid="";
                                             child: Text(
                                               item,
                                               style:  GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.06666666666667
                                               ),
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -660,8 +660,8 @@ String studentdocid="";
                                             });
                                           },
                                           buttonStyleData: ButtonStyleData(
-                                            height: 50,
-                                            width: 160,
+                                            height:height/13.02,
+                                            width: width/8.5375,
                                             padding: const EdgeInsets.only(left: 14, right: 14),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(5),
@@ -679,7 +679,7 @@ String studentdocid="";
                                             iconDisabledColor: Colors.grey,
                                           ),
                                           dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 200,
+                                            maxHeight:height/3.255,
                                             width: width/5.464,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(14),
@@ -692,8 +692,8 @@ String studentdocid="";
                                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                                             ),
                                           ),
-                                          menuItemStyleData: const MenuItemStyleData(
-                                            height: 40,
+                                          menuItemStyleData: MenuItemStyleData(
+                                            height:height/16.275,
                                             padding: EdgeInsets.only(left: 14, right: 14),
                                           ),
                                         ),
@@ -708,7 +708,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -720,7 +720,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Admit Class * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Admit Class * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -737,13 +737,13 @@ String studentdocid="";
                                                 color: Colors.black,
                                               ),
                                               SizedBox(
-                                                width: 4,
+                                                width: width/341.5,
                                               ),
                                               Expanded(
                                                 child: Text(
                                                   'Select Option',
                                                   style: GoogleFonts.poppins(
-                                                      fontSize: 15
+                                                      fontSize: width/91.06666666666667
                                                   ),
                                                   overflow: TextOverflow.ellipsis,
                                                 ),
@@ -756,7 +756,7 @@ String studentdocid="";
                                             child: Text(
                                               item,
                                               style:  GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.06666666666667
                                               ),
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -769,8 +769,8 @@ String studentdocid="";
                                             });
                                           },
                                           buttonStyleData: ButtonStyleData(
-                                            height: 50,
-                                            width: 160,
+                                            height:height/13.02,
+                                            width: width/8.5375,
                                             padding: const EdgeInsets.only(left: 14, right: 14),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(5),
@@ -788,7 +788,7 @@ String studentdocid="";
                                             iconDisabledColor: Colors.grey,
                                           ),
                                           dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 200,
+                                            maxHeight:height/3.255,
                                             width: width/5.464,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(14),
@@ -801,8 +801,8 @@ String studentdocid="";
                                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                                             ),
                                           ),
-                                          menuItemStyleData: const MenuItemStyleData(
-                                            height: 40,
+                                          menuItemStyleData:  MenuItemStyleData(
+                                            height:height/16.275,
                                             padding: EdgeInsets.only(left: 14, right: 14),
                                           ),
                                         ),
@@ -817,7 +817,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -829,7 +829,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Section * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Section * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -846,13 +846,13 @@ String studentdocid="";
                                                 color: Colors.black,
                                               ),
                                               SizedBox(
-                                                width: 4,
+                                                width: width/341.5,
                                               ),
                                               Expanded(
                                                 child: Text(
                                                   'Select Option',
                                                   style: GoogleFonts.poppins(
-                                                      fontSize: 15
+                                                      fontSize: width/91.06666666666667
                                                   ),
                                                   overflow: TextOverflow.ellipsis,
                                                 ),
@@ -865,7 +865,7 @@ String studentdocid="";
                                             child: Text(
                                               item,
                                               style:  GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.06666666666667
                                               ),
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -879,8 +879,8 @@ String studentdocid="";
                                             getrollno();
                                           },
                                           buttonStyleData: ButtonStyleData(
-                                            height: 50,
-                                            width: 160,
+                                            height:height/13.02,
+                                            width: width/8.5375,
                                             padding: const EdgeInsets.only(left: 14, right: 14),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(5),
@@ -898,7 +898,7 @@ String studentdocid="";
                                             iconDisabledColor: Colors.grey,
                                           ),
                                           dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 200,
+                                            maxHeight:height/3.255,
                                             width: width/5.464,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(14),
@@ -911,8 +911,8 @@ String studentdocid="";
                                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                                             ),
                                           ),
-                                          menuItemStyleData: const MenuItemStyleData(
-                                            height: 40,
+                                          menuItemStyleData:  MenuItemStyleData(
+                                            height:height/16.275,
                                             padding: EdgeInsets.only(left: 14, right: 14),
                                           ),
                                         ),
@@ -927,7 +927,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                                 Row(
@@ -940,7 +940,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Roll No * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Roll No * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -949,7 +949,7 @@ String studentdocid="";
 
                                         controller: rollno,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         readOnly: true,
                                         validator: (value) =>
@@ -971,7 +971,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -983,7 +983,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Blood Group * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Blood Group * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -991,7 +991,7 @@ String studentdocid="";
                                       child: Container(child: TextFormField(
                                         controller: bloodgroup,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -1012,7 +1012,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1024,7 +1024,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Date of Birth * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Date of Birth * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1032,7 +1032,7 @@ String studentdocid="";
                                       child: Container(child: TextFormField(
                                         controller: dob,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -1081,7 +1081,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1093,7 +1093,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Gender * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Gender * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1111,7 +1111,7 @@ String studentdocid="";
 
                                         textFieldConfiguration: TextFieldConfiguration(
                                           style:  GoogleFonts.poppins(
-                                              fontSize: 15
+                                              fontSize: width/91.06666666666667
                                           ),
                                           decoration: InputDecoration(
                                             contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -1149,7 +1149,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1161,7 +1161,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 0.0),
-                                            child: Text("Residential Address * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Residential Address * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1172,7 +1172,7 @@ String studentdocid="";
                                         child: TextFormField(
                                           controller:  address,
                                           style: GoogleFonts.poppins(
-                                              fontSize: 15
+                                              fontSize: width/91.06666666666667
                                           ),
                                           maxLines: 3,
                                           
@@ -1197,7 +1197,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1209,7 +1209,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Community * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Community * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1219,7 +1219,7 @@ String studentdocid="";
                                       ],
                                         controller: community,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -1240,7 +1240,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1252,7 +1252,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("House & Color :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("House & Color :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1262,7 +1262,7 @@ String studentdocid="";
                                       ],
                                         controller: house,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                           border: InputBorder.none,
@@ -1281,7 +1281,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                                 Row(
@@ -1294,7 +1294,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Religion * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Religion * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1304,7 +1304,7 @@ String studentdocid="";
                                       ],
                                         controller: religion,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -1325,7 +1325,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1337,7 +1337,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Mobile No * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Mobile No * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1345,7 +1345,7 @@ String studentdocid="";
                                       child: Container(child: TextFormField(
                                         controller: mobile,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         inputFormatters: <TextInputFormatter>[
                                           FilteringTextInputFormatter.allow(RegExp("[0-9]")),
@@ -1378,7 +1378,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1390,7 +1390,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Email * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Email * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1398,7 +1398,7 @@ String studentdocid="";
                                       child: Container(child: TextFormField(
                                         controller: email,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -1419,7 +1419,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1431,7 +1431,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Aadhaar No * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Aadhaar No * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1439,7 +1439,7 @@ String studentdocid="";
                                       child: Container(child: TextFormField(
                                         controller: aadhaarno,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         inputFormatters: <TextInputFormatter>[
                                           FilteringTextInputFormatter.allow(RegExp("[0-9]")),
@@ -1472,7 +1472,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1484,7 +1484,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Height in cms :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Height in cms :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1492,7 +1492,7 @@ String studentdocid="";
                                       child: Container(child: TextFormField(
                                         controller: stheight,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                           border: InputBorder.none,
@@ -1511,7 +1511,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1523,7 +1523,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Weight kg :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Weight kg :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1531,7 +1531,7 @@ String studentdocid="";
                                       child: Container(child: TextFormField(
                                         controller: stweight,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                           border: InputBorder.none,
@@ -1550,7 +1550,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1562,7 +1562,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("EMIS No :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("EMIS No :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1570,7 +1570,7 @@ String studentdocid="";
                                       child: Container(child: TextFormField(
                                         controller: EMIS,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                           border: InputBorder.none,
@@ -1589,7 +1589,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1601,7 +1601,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("M.O.Transport * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("M.O.Transport * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1618,13 +1618,13 @@ String studentdocid="";
                                                 color: Colors.black,
                                               ),
                                               SizedBox(
-                                                width: 4,
+                                                width: width/341.5,
                                               ),
                                               Expanded(
                                                 child: Text(
                                                   'Select Item',
                                                   style: GoogleFonts.poppins(
-                                                      fontSize: 15
+                                                      fontSize: width/91.06666666666667
                                                   ),
                                                   overflow: TextOverflow.ellipsis,
                                                 ),
@@ -1637,7 +1637,7 @@ String studentdocid="";
                                             child: Text(
                                               item,
                                               style:  GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.06666666666667
                                               ),
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -1650,8 +1650,8 @@ String studentdocid="";
                                             });
                                           },
                                           buttonStyleData: ButtonStyleData(
-                                            height: 50,
-                                            width: 160,
+                                            height:height/13.02,
+                                            width: width/8.5375,
                                             padding: const EdgeInsets.only(left: 14, right: 14),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(5),
@@ -1669,7 +1669,7 @@ String studentdocid="";
                                             iconDisabledColor: Colors.grey,
                                           ),
                                           dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 200,
+                                            maxHeight:height/3.255,
                                             width: width/5.464,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(14),
@@ -1682,8 +1682,8 @@ String studentdocid="";
                                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                                             ),
                                           ),
-                                          menuItemStyleData: const MenuItemStyleData(
-                                            height: 40,
+                                          menuItemStyleData:  MenuItemStyleData(
+                                            height:height/16.275,
                                             padding: EdgeInsets.only(left: 14, right: 14),
                                           ),
                                         ),
@@ -1698,7 +1698,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1710,7 +1710,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.only(top: 0.0),
-                                            child: Text("Identification Mark :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Identification Mark :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1720,7 +1720,7 @@ String studentdocid="";
                                       ],
                                         controller: identificationmark,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 10,bottom: 8),
                                           border: InputBorder.none,
@@ -1739,13 +1739,13 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 20,
+                                  height:height/32.55,
                                 ),
 
                               ],
                             ),
                           ),
-                          SizedBox(width: 35,),
+                          SizedBox(width: width/39.02857142857143,),
                           SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1764,7 +1764,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Father Name * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Father Name * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1774,7 +1774,7 @@ String studentdocid="";
                                       ],
                                        controller: fathername,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -1793,7 +1793,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1805,7 +1805,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Occupation * :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Occupation * :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1815,7 +1815,7 @@ String studentdocid="";
                                       ],
                                         controller:  foccupation,
                                         style: GoogleFonts.poppins(
-                                            fontSize: 15
+                                            fontSize: width/91.06666666666667
                                         ),
                                         validator: (value) =>
                                         value!.isEmpty ? 'Field Cannot Be Empty' : null,
@@ -1837,7 +1837,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1849,7 +1849,7 @@ String studentdocid="";
 
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                            child: Text("Office Address :",style: GoogleFonts.poppins(fontSize: 15,)),
+                                            child: Text("Office Address :",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                           )),
                                     ),
                                     Padding(
@@ -1881,7 +1881,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1941,7 +1941,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -1983,7 +1983,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2038,7 +2038,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 30,
+                                  height:height/21.7,
                                 ),
                                 Row(
                                   children: [
@@ -2081,7 +2081,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2125,7 +2125,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2169,7 +2169,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2227,7 +2227,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2266,7 +2266,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2322,7 +2322,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0,bottom: 10),
@@ -2369,7 +2369,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2410,7 +2410,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2467,7 +2467,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2506,7 +2506,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2563,11 +2563,11 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 Row(
                                   children: [
@@ -2596,7 +2596,7 @@ String studentdocid="";
                                                 color: Colors.black,
                                               ),
                                               SizedBox(
-                                                width: 4,
+                                                width: width/341.5,
                                               ),
                                               Expanded(
                                                 child: Text(
@@ -2628,8 +2628,8 @@ String studentdocid="";
                                             });
                                           },
                                           buttonStyleData: ButtonStyleData(
-                                            height: 50,
-                                            width: 160,
+                                            height:height/13.02,
+                                            width: width/8.5375,
                                             padding: const EdgeInsets.only(left: 14, right: 14),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(5),
@@ -2647,7 +2647,7 @@ String studentdocid="";
                                             iconDisabledColor: Colors.grey,
                                           ),
                                           dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 200,
+                                            maxHeight:height/3.255,
                                             width: width/5.464,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(14),
@@ -2660,8 +2660,8 @@ String studentdocid="";
                                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                                             ),
                                           ),
-                                          menuItemStyleData: const MenuItemStyleData(
-                                            height: 40,
+                                          menuItemStyleData:  MenuItemStyleData(
+                                            height:height/16.275,
                                             padding: EdgeInsets.only(left: 14, right: 14),
                                           ),
                                         ),
@@ -2676,7 +2676,7 @@ String studentdocid="";
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
                                 _typeAheadControllerbrother.text=="Yes" ?     Row(
                                   children: [
@@ -2750,7 +2750,7 @@ String studentdocid="";
                                   ],
                                 ): Container(),
                                 SizedBox(
-                                  height: 10,
+                                  height:height/65.1,
                                 ),
 
                               ],
@@ -2871,7 +2871,7 @@ String studentdocid="";
                           ),
                         ],
                       ),
-                      SizedBox(height:50)
+                      SizedBox(height:height/13.02)
                     ],
                   ),
                 ),
@@ -3038,37 +3038,37 @@ String studentdocid="";
                                       padding: const EdgeInsets.only(
                                           left: 8.0,),
                                       child: Container(
-                                          width: 110,
+                                          width: width/12.41818181818182,
                                           child: Text(snapshot.data!.docs[index]["dateOfApplication"],selectionColor: Color(0xff109CF1),)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(),
                                       child: Container(
-                                          width:86+70,
+                                          width:width/10.04411764705882,
                                           child: Text(snapshot.data!.docs[index]["studentName"])),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(),
                                       child: Container(
-                                          width:80,
+                                          width: width/17.075,
                                           child: Text(snapshot.data!.docs[index]["standardSought"])),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(),
                                       child: Container(
-                                          width: 100+18,
+                                          width: width/11.57627118644068,
                                           child: Text(snapshot.data!.docs[index]["fatherMobileNo"])),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(),
                                       child: Container(
-                                          width: 120+18,
+                                          width: width/9.898550724637681,
                                           child: Text(snapshot.data!.docs[index]["fatherName"])),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(),
                                       child: Container(
-                                          width:90+50,
+                                          width:width/9.757142857142857,
                                           child: Text(snapshot.data!.docs[index]["previousSchool"])),
                                     ),
 
@@ -3197,7 +3197,7 @@ String studentdocid="";
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8),
                     child: Container(
-                      width:200,
+                      width: width/6.83,
                       child: Text(
                         "Residential Address:  ${snap.get("residentialAddress")}",
                         style: GoogleFonts.poppins(
@@ -3312,8 +3312,9 @@ String studentdocid="";
     print(imgUrl);
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -3331,8 +3332,9 @@ String studentdocid="";
     )..show();
   }
   Successdialog2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -3350,8 +3352,9 @@ String studentdocid="";
     )..show();
   }
   Successdialog3(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -3507,8 +3510,8 @@ String studentdocid="";
                 ],
               ),
               content: Container(
-                height: 400,
-                width: 500,
+                height: height/1.6275,
+                width: width/2.732,
                 color: Colors.white,
                 child: Column(
                   children: [
@@ -3516,7 +3519,7 @@ String studentdocid="";
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          width:130,
+                          width: width/10.50769230769231,
                           child: Text('Payment',style: GoogleFonts.montserrat(
                               fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                           ),),
@@ -3557,7 +3560,7 @@ String studentdocid="";
                               elevation: 2,
                               borderRadius: BorderRadius.circular(10),
                               child: Container(
-                                height: 80,
+                                height:height/8.1375,
                                 width: double.infinity,
                                 padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                                 decoration: BoxDecoration(
@@ -3570,7 +3573,7 @@ String studentdocid="";
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                           Container(
-                                            width: 40,
+                                            width: width/34.15,
                                             child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               mainAxisAlignment: MainAxisAlignment.start,
@@ -3613,7 +3616,7 @@ String studentdocid="";
                                           Padding(
                                             padding: const EdgeInsets.only(top: 6),
                                             child: Container(
-                                              width: 280,
+                                              width: width/4.878571428571429,
                                               child: Text(
                                                 feesDetailsList[i].feesName,
                                                 style: TextStyle(
@@ -3626,7 +3629,7 @@ String studentdocid="";
                                           Padding(
                                             padding: const EdgeInsets.only(top: 6),
                                             child: Container(
-                                              width: 100,
+                                              width: width/13.66,
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
@@ -3636,14 +3639,14 @@ String studentdocid="";
                                                       fontWeight: FontWeight.w700,
                                                     ),
                                                   ),
-                                                  SizedBox(height: 3),
+                                                  SizedBox(height: height/217),
                                                   Text(
                                                     "-"+(feesDetailsList[i].payedAmount.toString()).toString(),
                                                   ),
-                                                  SizedBox(height: 2),
+                                                  SizedBox(height: height/325.5),
                                                   Container(
                                                     height: 1,
-                                                    width: 80,
+                                                    width: width/17.075,
                                                     color: Colors.grey,
                                                   ),
                                                   Text(
@@ -3714,9 +3717,9 @@ String studentdocid="";
                         },
                       ),
                     ),
-                    SizedBox(height: 5),
+                    SizedBox(height: height/130.2),
                     Container(
-                      height: 100,
+                      height:height/6.51,
                       width: double.infinity,
                       child: Column(
                         children: [
@@ -3724,7 +3727,7 @@ String studentdocid="";
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                width:130,
+                                width: width/10.50769230769231,
                                 child: Text('Balance',
                                   style: GoogleFonts.montserrat(
                                       fontWeight:FontWeight.bold,color: Colors.black,
@@ -3753,14 +3756,14 @@ String studentdocid="";
                               ),
                             ],
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height:height/32.55),
                           Visibility(
                             visible: double.parse(balanceAmount.text.toString()) != 0.0,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Container(
-                                  width:130,
+                                  width: width/10.50769230769231,
                                   child: Text(
                                     'Due date',
                                     style: GoogleFonts.montserrat(
@@ -3810,7 +3813,7 @@ String studentdocid="";
                       ),
                     ),
                     Container(
-                      height: 70,
+                      height:height/9.3,
                       width: double.infinity,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

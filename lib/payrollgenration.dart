@@ -259,8 +259,8 @@ class _PayrollGenState extends State<PayrollGen> {
             elevation: 5,
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              width: 1000,
-              height: 200,
+              width: width/1.366,
+              height:height/3.255,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20)
@@ -277,17 +277,17 @@ class _PayrollGenState extends State<PayrollGen> {
 //decoration: BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.circular(12)),
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(height:height/65.1,),
                   Row(
                     children: [
-                      SizedBox(width: 40,),
+                      SizedBox(width: width/34.15,),
                       Material(
                         elevation: 5,
                         borderRadius: BorderRadius.circular(15),
                         color: Color(0xff3786F1),
                         child: Container(
-                          width: 200,
-                          height: 120,
+                          width: width/6.83,
+                          height:height/5.425,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                                 color:Color(0xffE8F0FB)
@@ -299,8 +299,8 @@ class _PayrollGenState extends State<PayrollGen> {
                                 child: Text("Total Staffs",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff3786F1),fontSize: width/62.090909091),),
                               ),
                               Container(
-                                width: 80,
-                                height: 2,
+                                width: width/17.075,
+                                height: height/325.5,
                                 child: Divider(color: Color(0xff3786F1),),
                               ),
                               Padding(
@@ -308,7 +308,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 child: Row(
                                   children: [
                                     Text(totalStaffs,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff3786F1),fontSize: width/35.947368421),),
-                                    SizedBox(width: 50,),
+                                    SizedBox(width: width/27.32,),
                                     Icon(Icons.person,size: 38,color: Color(0xff3786F1))
                                   ],
                                 ),
@@ -317,14 +317,14 @@ class _PayrollGenState extends State<PayrollGen> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 40,),
+                      SizedBox(width: width/34.15,),
                       Material(
                         elevation: 5,
                         borderRadius: BorderRadius.circular(15),
                         color: Color(0xffEE61CF),
                         child: Container(
-                          width: 200,
-                          height: 120,
+                          width: width/6.83,
+                          height:height/5.425,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                                 color:Color(0xffFDEBF9)
@@ -335,8 +335,8 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(top: 16.0,bottom:0 ),
                                 child: Text("Designations",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffEE61CF),fontSize: width/62.090909091),),                    ),
                               Container(
-                                width: 80,
-                                height: 2,
+                                width: width/17.075,
+                                height: height/325.5,
                                 child: Divider(color: Color(0xffEE61CF),),
                               ),
                               Padding(
@@ -344,7 +344,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 child: Row(
                                   children: [
                                     Text(totalDesignations,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffEE61CF),fontSize: width/35.947368421),),
-                                    SizedBox(width: 60,),
+                                    SizedBox(width: width/22.76666666666667,),
                                     Icon(Icons.leaderboard,size: 38,color: Color(0xffEE61CF))
                                   ],
                                 ),
@@ -353,14 +353,14 @@ class _PayrollGenState extends State<PayrollGen> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 40,),
+                      SizedBox(width: width/34.15,),
                       Material(
                         elevation: 5,
                         borderRadius: BorderRadius.circular(15),
                         color: Color(0xffFF5151),
                         child: Container(
-                          width: 200,
-                          height: 120,
+                          width: width/6.83,
+                          height:height/5.425,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color:Color(0xffFFEFE7)
@@ -371,8 +371,8 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(top: 16.0,bottom:0 ),
                                 child: Text("Working Days",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffFF5151),fontSize: width/62.090909091),),                    ),
                               Container(
-                                width: 80,
-                                height: 2,
+                                width: width/17.075,
+                                height: height/325.5,
                                 child: Divider(color: Color(0xffFF5151),),
                               ),
                               Padding(
@@ -380,7 +380,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 child: Row(
                                   children: [
                                     Text(totalWorkingDays,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xffFF5151),fontSize: width/35.947368421),),
-                                    SizedBox(width: 60,),
+                                    SizedBox(width: width/22.76666666666667,),
                                     Icon(Icons.calendar_month,size: 38,color: Color(0xffFF5151))
                                   ],
                                 ),
@@ -389,14 +389,14 @@ class _PayrollGenState extends State<PayrollGen> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 40,),
+                      SizedBox(width: width/34.15,),
                       Material(
                         elevation: 5,
                         borderRadius: BorderRadius.circular(15),
                         color:  Color(0xff53B175),
                         child: Container(
-                          width: 200,
-                          height: 120,
+                          width: width/6.83,
+                          height:height/5.425,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color:Color(0xffEBFDEF)
@@ -407,8 +407,8 @@ class _PayrollGenState extends State<PayrollGen> {
                                 padding: const EdgeInsets.only(top: 16.0,bottom:0 ),
                                 child: Text("Payrolls",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff53B175),fontSize: width/62.090909091),),                    ),
                               Container(
-                                width: 80,
-                                height: 2,
+                                width: width/17.075,
+                                height: height/325.5,
                                 child: Divider(color: Color(0xff53B175),),
                               ),
                               Padding(
@@ -416,7 +416,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                 child: Row(
                                   children: [
                                     Text(totalPayrolls,style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: Color(0xff53B175),fontSize: width/35.947368421),),
-                                    SizedBox(width: 60,),
+                                    SizedBox(width: width/22.76666666666667,),
                                     Icon(Icons.payments_rounded,size: 38,color: Color(0xff53B175))
                                   ],
                                 ),
@@ -431,13 +431,13 @@ class _PayrollGenState extends State<PayrollGen> {
               ),
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height:height/32.55,),
           view==false?   Material(
             elevation: 5,
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              width: 1000,
-              height: 400,
+              width: width/1.366,
+              height: height/1.6275,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20)
@@ -466,7 +466,7 @@ class _PayrollGenState extends State<PayrollGen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 10,),
+                              SizedBox(height:height/65.1,),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
@@ -491,13 +491,13 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 color: Colors.black,
                                               ),
                                               SizedBox(
-                                                width: 4,
+                                                width: width/341.5,
                                               ),
                                               Expanded(
                                                 child: Text(
                                                   'Select Option',
                                                   style: GoogleFonts.poppins(
-                                                      fontSize: 15
+                                                      fontSize: width/91.06666666666667
                                                   ),
                                                   overflow: TextOverflow.ellipsis,
                                                 ),
@@ -510,7 +510,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             child: Text(
                                               item,
                                               style:  GoogleFonts.poppins(
-                                                  fontSize: 15
+                                                  fontSize: width/91.06666666666667
                                               ),
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -524,8 +524,8 @@ class _PayrollGenState extends State<PayrollGen> {
 
                                           },
                                           buttonStyleData: ButtonStyleData(
-                                            height: 50,
-                                            width: 160,
+                                            height:height/13.02,
+                                            width: width/8.5375,
                                             padding: const EdgeInsets.only(left: 14, right: 14),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(5),
@@ -543,7 +543,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             iconDisabledColor: Colors.grey,
                                           ),
                                           dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 200,
+                                            maxHeight:height/3.255,
                                             width: width/5.464,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(14),
@@ -556,8 +556,8 @@ class _PayrollGenState extends State<PayrollGen> {
                                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                                             ),
                                           ),
-                                          menuItemStyleData: const MenuItemStyleData(
-                                            height: 40,
+                                          menuItemStyleData:  MenuItemStyleData(
+                                            height:height/16.275,
                                             padding: EdgeInsets.only(left: 14, right: 14),
                                           ),
                                         ),
@@ -585,7 +585,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             children: [
                                               Padding(
                                                 padding: const EdgeInsets.only(right:0.0),
-                                                child: Text("Select Designation *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                                child: Text("Select Designation *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -605,13 +605,13 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             color: Colors.black,
                                                           ),
                                                           SizedBox(
-                                                            width: 4,
+                                                            width: width/341.5,
                                                           ),
                                                           Expanded(
                                                             child: Text(
                                                               'Select Option',
                                                               style: GoogleFonts.poppins(
-                                                                  fontSize: 15
+                                                                  fontSize: width/91.06666666666667
                                                               ),
                                                               overflow: TextOverflow.ellipsis,
                                                             ),
@@ -624,7 +624,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                         child: Text(
                                                           item,
                                                           style:  GoogleFonts.poppins(
-                                                              fontSize: 15
+                                                              fontSize: width/91.06666666666667
                                                           ),
                                                           overflow: TextOverflow.ellipsis,
                                                         ),
@@ -639,8 +639,8 @@ class _PayrollGenState extends State<PayrollGen> {
 
                                                       },
                                                       buttonStyleData: ButtonStyleData(
-                                                        height: 50,
-                                                        width: 160,
+                                                        height:height/13.02,
+                                                        width: width/8.5375,
                                                         padding: const EdgeInsets.only(left: 14, right: 14),
                                                         decoration: BoxDecoration(
                                                           borderRadius: BorderRadius.circular(5),
@@ -658,7 +658,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                         iconDisabledColor: Colors.grey,
                                                       ),
                                                       dropdownStyleData: DropdownStyleData(
-                                                        maxHeight: 200,
+                                                        maxHeight:height/3.255,
                                                         width: width/5.902,
                                                         decoration: BoxDecoration(
                                                           borderRadius: BorderRadius.circular(14),
@@ -671,8 +671,8 @@ class _PayrollGenState extends State<PayrollGen> {
                                                           thumbVisibility: MaterialStateProperty.all<bool>(true),
                                                         ),
                                                       ),
-                                                      menuItemStyleData: const MenuItemStyleData(
-                                                        height: 40,
+                                                      menuItemStyleData:  MenuItemStyleData(
+                                                        height:height/16.275,
                                                         padding: EdgeInsets.only(left: 14, right: 14),
                                                       ),
                                                     ),
@@ -691,7 +691,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets.only(right:0.0),
-                                                    child: Text("Select Staff ID*",style: GoogleFonts.poppins(fontSize: 15,)),
+                                                    child: Text("Select Staff ID*",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -711,13 +711,13 @@ class _PayrollGenState extends State<PayrollGen> {
                                                                 color: Colors.black,
                                                               ),
                                                               SizedBox(
-                                                                width: 4,
+                                                                width: width/341.5,
                                                               ),
                                                               Expanded(
                                                                 child: Text(
                                                                   'Select Option',
                                                                   style: GoogleFonts.poppins(
-                                                                      fontSize: 15
+                                                                      fontSize: width/91.06666666666667
                                                                   ),
                                                                   overflow: TextOverflow.ellipsis,
                                                                 ),
@@ -730,7 +730,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             child: Text(
                                                               item,
                                                               style:  GoogleFonts.poppins(
-                                                                  fontSize: 15
+                                                                  fontSize: width/91.06666666666667
                                                               ),
                                                               overflow: TextOverflow.ellipsis,
                                                             ),
@@ -745,8 +745,8 @@ class _PayrollGenState extends State<PayrollGen> {
 
                                                           },
                                                           buttonStyleData: ButtonStyleData(
-                                                            height: 50,
-                                                            width: 160,
+                                                            height:height/13.02,
+                                                            width: width/8.5375,
                                                             padding: const EdgeInsets.only(left: 14, right: 14),
                                                             decoration: BoxDecoration(
                                                               borderRadius: BorderRadius.circular(5),
@@ -764,7 +764,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             iconDisabledColor: Colors.grey,
                                                           ),
                                                           dropdownStyleData: DropdownStyleData(
-                                                            maxHeight: 200,
+                                                            maxHeight:height/3.255,
                                                             width: width/5.464,
                                                             decoration: BoxDecoration(
                                                               borderRadius: BorderRadius.circular(14),
@@ -777,8 +777,8 @@ class _PayrollGenState extends State<PayrollGen> {
                                                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                                                             ),
                                                           ),
-                                                          menuItemStyleData: const MenuItemStyleData(
-                                                            height: 40,
+                                                          menuItemStyleData:  MenuItemStyleData(
+                                                            height:height/16.275,
                                                             padding: EdgeInsets.only(left: 14, right: 14),
                                                           ),
                                                         ),
@@ -794,7 +794,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets.only(right:0.0),
-                                                    child: Text("Select Staff Name*",style: GoogleFonts.poppins(fontSize: 15,)),
+                                                    child: Text("Select Staff Name*",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -814,13 +814,13 @@ class _PayrollGenState extends State<PayrollGen> {
                                                                 color: Colors.black,
                                                               ),
                                                               SizedBox(
-                                                                width: 4,
+                                                                width: width/341.5,
                                                               ),
                                                               Expanded(
                                                                 child: Text(
                                                                   'Select Option',
                                                                   style: GoogleFonts.poppins(
-                                                                      fontSize: 15
+                                                                      fontSize: width/91.06666666666667
                                                                   ),
                                                                   overflow: TextOverflow.ellipsis,
                                                                 ),
@@ -833,7 +833,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             child: Text(
                                                               item,
                                                               style:  GoogleFonts.poppins(
-                                                                  fontSize: 15
+                                                                  fontSize: width/91.06666666666667
                                                               ),
                                                               overflow: TextOverflow.ellipsis,
                                                             ),
@@ -848,8 +848,8 @@ class _PayrollGenState extends State<PayrollGen> {
 
                                                           },
                                                           buttonStyleData: ButtonStyleData(
-                                                            height: 50,
-                                                            width: 160,
+                                                            height:height/13.02,
+                                                            width: width/8.5375,
                                                             padding: const EdgeInsets.only(left: 14, right: 14),
                                                             decoration: BoxDecoration(
                                                               borderRadius: BorderRadius.circular(5),
@@ -867,7 +867,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                             iconDisabledColor: Colors.grey,
                                                           ),
                                                           dropdownStyleData: DropdownStyleData(
-                                                            maxHeight: 200,
+                                                            maxHeight:height/3.255,
                                                             width: width/5.464,
                                                             decoration: BoxDecoration(
                                                               borderRadius: BorderRadius.circular(14),
@@ -880,8 +880,8 @@ class _PayrollGenState extends State<PayrollGen> {
                                                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                                                             ),
                                                           ),
-                                                          menuItemStyleData: const MenuItemStyleData(
-                                                            height: 40,
+                                                          menuItemStyleData:  MenuItemStyleData(
+                                                            height:height/16.275,
                                                             padding: EdgeInsets.only(left: 14, right: 14),
                                                           ),
                                                         ),
@@ -894,7 +894,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             ],
                                           )
                                               :
-                                          SizedBox(height: 10,),
+                                          SizedBox(height:height/65.1,),
                                           Row(
                                             crossAxisAlignment: CrossAxisAlignment.end,
                                             children: [
@@ -904,7 +904,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets.only(right:0.0),
-                                                    child: Text("Basic Pay *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                                    child: Text("Basic Pay *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -912,7 +912,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                       child:
                                                     TextFormField(
                                                       controller: basicpay,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                        fontSize: 15,
+                                                        fontSize: width/91.06666666666667,
                                                     ),
                                                       validator: (value) {
                                                         if (value == null || value.isEmpty) {
@@ -938,7 +938,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets.only(right:0.0),
-                                                    child: Text("DA *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                                    child: Text("DA *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -957,7 +957,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                           return null;
                                                         },
                                                         controller: da,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                          fontSize: 15
+                                                          fontSize: width/91.06666666666667
                                                       ),
                                                       ),
 
@@ -972,7 +972,7 @@ class _PayrollGenState extends State<PayrollGen> {
 
                                             ],
                                           ),
-                                          SizedBox(height: 10,),
+                                          SizedBox(height:height/65.1,),
                                           Row(
                                             children: [
                                               Column(
@@ -981,7 +981,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets.only(right:0.0),
-                                                    child: Text("HRA *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                                    child: Text("HRA *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -999,7 +999,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                           return null;
                                                         },
                                                         controller: hra,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                          fontSize: 15
+                                                          fontSize: width/91.06666666666667
                                                       ),
                                                       ),
 
@@ -1017,7 +1017,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets.only(right:0.0),
-                                                    child: Text("Other Allowance  *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                                    child: Text("Other Allowance  *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1034,7 +1034,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                           return null;
                                                         },
                                                         controller: other,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                          fontSize: 15
+                                                          fontSize: width/91.06666666666667
                                                       ),
                                                       ),
 
@@ -1055,7 +1055,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets.only(right:0.0),
-                                                    child: Text("Gross Salary *",style: GoogleFonts.poppins(fontSize: 15,)),
+                                                    child: Text("Gross Salary *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left: 0.0,right: 10),
@@ -1074,7 +1074,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                           return null;
                                                         },
                                                         controller: gross,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
-                                                          fontSize: 15
+                                                          fontSize: width/91.06666666666667
                                                       ),
                                                       ),
 
@@ -1124,7 +1124,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height:20),
+                              SizedBox(height:height/32.55),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
                                 child: GestureDetector(
@@ -1142,7 +1142,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height:20),
+                              SizedBox(height:height/32.55),
                               Padding(
                                 padding: const EdgeInsets.only(left: 0.0,right: 25),
                                 child: GestureDetector(
@@ -1179,8 +1179,8 @@ class _PayrollGenState extends State<PayrollGen> {
             elevation: 5,
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              width: 1000,
-              height: 400,
+              width: width/1.366,
+              height: height/1.6275,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20)
@@ -1218,7 +1218,7 @@ class _PayrollGenState extends State<PayrollGen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 10,),
+                          SizedBox(height:height/65.1,),
                             Container(
                                   height: height/13.14,
                                   width: width/1.55333,
@@ -1228,32 +1228,32 @@ class _PayrollGenState extends State<PayrollGen> {
                                   ),
                                   child: Row(
                                     children: [
-                                      SizedBox(width: 10),
+                                      SizedBox(width: width/136.6),
 
                                       Container(
-                                          width: 150,
+                                          width: width/9.106666666666667,
                                           child: Center(child: Text("Designation",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
-                                          width: 130,
+                                          width: width/10.50769230769231,
                                           child: Center(child: Text("Basic Pay",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
-                                          width: 130,
+                                          width: width/10.50769230769231,
                                           child: Center(child: Text("HRA",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
-                                          width: 130,
+                                          width: width/10.50769230769231,
                                           child: Center(child: Text("DA",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
-                                          width: 130,
+                                          width: width/10.50769230769231,
                                           child: Center(child: Text("Others",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                       Container(
-                                          width: 130,
+                                          width: width/10.50769230769231,
                                           child: Center(child: Text("Gross Pay",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                     ],
                                   ),
 
                                 ),
                           Container(
-                            height:200,
+                            height:height/3.255,
                             child: StreamBuilder<QuerySnapshot>(
                                 stream: FirebaseFirestore.instance.collection("PayrollMaster").orderBy("timestamp").snapshots(),
                                 builder: (context,snapshot){
@@ -1284,9 +1284,9 @@ class _PayrollGenState extends State<PayrollGen> {
                                                 ),
                                                 child: Row(
                                                   children: [
-                                                    SizedBox(width: 10),
+                                                    SizedBox(width: width/136.6),
                                                     Container(
-                                                        width: 150,
+                                                        width: width/9.106666666666667,
                                                         child: Center(
                                                             child: Text(
                                                               value["Designations"],
@@ -1299,7 +1299,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                         ),
                                                     ),
                                                     Container(
-                                                        width: 130,
+                                                        width: width/10.50769230769231,
                                                         child: Center(
                                                             child: Text(
                                                               value["basic"],
@@ -1311,7 +1311,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                         ),
                                                     ),
                                                     Container(
-                                                        width: 130,
+                                                        width: width/10.50769230769231,
                                                         child: Center(
                                                             child: Text(
                                                               value["hra"],
@@ -1324,7 +1324,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                         ),
                                                     ),
                                                     Container(
-                                                        width: 130,
+                                                        width: width/10.50769230769231,
                                                         child: Center(
                                                             child: Text(
                                                               value["da"],
@@ -1337,7 +1337,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                         ),
                                                     ),
                                                     Container(
-                                                        width: 130,
+                                                        width: width/10.50769230769231,
                                                         child: Center(
                                                             child: Text(
                                                               value["other"],
@@ -1350,7 +1350,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                                         ),
                                                     ),
                                                     Container(
-                                                        width: 130,
+                                                        width: width/10.50769230769231,
                                                         child: Center(
                                                             child: Text(
                                                               value["gross"],
@@ -1381,7 +1381,7 @@ class _PayrollGenState extends State<PayrollGen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 10,),
+                          SizedBox(height:height/65.1,),
                           Container(
                             height: height/13.14,
                             width: width/1.55333,
@@ -1391,32 +1391,32 @@ class _PayrollGenState extends State<PayrollGen> {
                             ),
                             child: Row(
                               children: [
-                                SizedBox(width: 10),
+                                SizedBox(width: width/136.6),
                               
                                 Container(
-                                    width: 150,
+                                    width: width/9.106666666666667,
                                     child: Center(child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
-                                    width: 130,
+                                    width: width/10.50769230769231,
                                     child: Center(child: Text("Basic Pay",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
-                                    width: 130,
+                                    width: width/10.50769230769231,
                                     child: Center(child: Text("HRA",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
-                                    width: 130,
+                                    width: width/10.50769230769231,
                                     child: Center(child: Text("DA",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
-                                    width: 130,
+                                    width: width/10.50769230769231,
                                     child: Center(child: Text("Others",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                                 Container(
-                                    width: 130,
+                                    width: width/10.50769230769231,
                                     child: Center(child: Text("Gross Pay",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700,color: Colors.white),))),
                               ],
                             ),
 
                           ),
                           Container(
-                            height:200,
+                            height:height/3.255,
                             child: StreamBuilder<QuerySnapshot>(
                               stream: FirebaseFirestore.instance.collection("PayrollMaster").orderBy("timestamp").snapshots(),
                               builder: (context,snapshot){
@@ -1447,11 +1447,11 @@ class _PayrollGenState extends State<PayrollGen> {
                                       ),
                                       child: Row(
                                         children: [
-                                          SizedBox(width: 10),
+                                          SizedBox(width: width/136.6),
 
                                          
                                           Container(
-                                            width: 150,
+                                            width: width/9.106666666666667,
                                             child: Center(
                                               child: Text(
                                                 value["staffname"],
@@ -1464,7 +1464,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             ),
                                           ),
                                           Container(
-                                            width: 130,
+                                            width: width/10.50769230769231,
                                             child: Center(
                                               child: Text(
                                                 value["basic"],
@@ -1476,7 +1476,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             ),
                                           ),
                                           Container(
-                                            width: 130,
+                                            width: width/10.50769230769231,
                                             child: Center(
                                               child: Text(
                                                 value["hra"],
@@ -1489,7 +1489,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             ),
                                           ),
                                           Container(
-                                            width: 130,
+                                            width: width/10.50769230769231,
                                             child: Center(
                                               child: Text(
                                                 value["da"],
@@ -1502,7 +1502,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             ),
                                           ),
                                           Container(
-                                            width: 130,
+                                            width: width/10.50769230769231,
                                             child: Center(
                                               child: Text(
                                                 value["other"],
@@ -1515,7 +1515,7 @@ class _PayrollGenState extends State<PayrollGen> {
                                             ),
                                           ),
                                           Container(
-                                            width: 130,
+                                            width: width/10.50769230769231,
                                             child: Center(
                                               child: Text(
                                                 value["gross"],
@@ -1592,8 +1592,9 @@ class _PayrollGenState extends State<PayrollGen> {
     }
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,

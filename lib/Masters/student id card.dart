@@ -3754,7 +3754,7 @@ bool printingjob= false;
                       Row(
                         children: [
                           Text("Generate Student ID Cards",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
-                          SizedBox(width: 280,),
+                          SizedBox(width: width/4.878571428571429,),
                           Padding(
                             padding: const EdgeInsets.only(right:8.0),
                             child: Icon(Icons.filter_list_sharp),
@@ -3795,7 +3795,7 @@ bool printingjob= false;
                           ),
 
 
-                          SizedBox(width: 60,),
+                          SizedBox(width: width/22.76666666666667,),
                           InkWell(
                             onTap: (){
                               // getstaffbyid();
@@ -3991,7 +3991,7 @@ bool printingjob= false;
 
                               ),
                             ),
-                            SizedBox(width: 15,),
+                            SizedBox(width: width/91.06666666666667,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -4015,7 +4015,7 @@ bool printingjob= false;
                                             color: Colors.black,
                                           ),
                                           SizedBox(
-                                            width: 4,
+                                            width: width/341.5,
                                           ),
                                           Expanded(
                                             child: Text(
@@ -4047,8 +4047,8 @@ bool printingjob= false;
                                         });
                                       },
                                       buttonStyleData: ButtonStyleData(
-                                        height: 50,
-                                        width: 160,
+                                        height:height/13.02,
+                                        width: width/8.5375,
                                         padding: const EdgeInsets.only(left: 14, right: 14),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
@@ -4066,7 +4066,7 @@ bool printingjob= false;
                                         iconDisabledColor: Colors.grey,
                                       ),
                                       dropdownStyleData: DropdownStyleData(
-                                        maxHeight: 200,
+                                        maxHeight:height/3.255,
                                         width: width/5.464,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(14),
@@ -4079,8 +4079,8 @@ bool printingjob= false;
                                           thumbVisibility: MaterialStateProperty.all<bool>(true),
                                         ),
                                       ),
-                                      menuItemStyleData: const MenuItemStyleData(
-                                        height: 40,
+                                      menuItemStyleData:  MenuItemStyleData(
+                                        height:height/16.275,
                                         padding: EdgeInsets.only(left: 14, right: 14),
                                       ),
                                     ),
@@ -4117,7 +4117,7 @@ bool printingjob= false;
                                             color: Colors.black,
                                           ),
                                           SizedBox(
-                                            width: 4,
+                                            width: width/341.5,
                                           ),
                                           Expanded(
                                             child: Text(
@@ -4149,8 +4149,8 @@ bool printingjob= false;
                                         });
                                       },
                                       buttonStyleData: ButtonStyleData(
-                                        height: 50,
-                                        width: 160,
+                                        height:height/13.02,
+                                        width: width/8.5375,
                                         padding: const EdgeInsets.only(left: 14, right: 14),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
@@ -4168,7 +4168,7 @@ bool printingjob= false;
                                         iconDisabledColor: Colors.grey,
                                       ),
                                       dropdownStyleData: DropdownStyleData(
-                                        maxHeight: 200,
+                                        maxHeight:height/3.255,
                                         width: width/5.464,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(14),
@@ -4181,8 +4181,8 @@ bool printingjob= false;
                                           thumbVisibility: MaterialStateProperty.all<bool>(true),
                                         ),
                                       ),
-                                      menuItemStyleData: const MenuItemStyleData(
-                                        height: 40,
+                                      menuItemStyleData:  MenuItemStyleData(
+                                        height:height/16.275,
                                         padding: EdgeInsets.only(left: 14, right: 14),
                                       ),
                                     ),
@@ -4517,8 +4517,8 @@ bool printingjob= false;
                                                 Material(
 
                                                   child: Container(
-                                                    width: 260,
-                                                    height: 410,
+                                                    width: width/5.253846153846154,
+                                                    height:height/1.58780487804878,
 
                                                     child: Stack(
                                                       children: [
@@ -4534,13 +4534,13 @@ bool printingjob= false;
                                                           crossAxisAlignment: CrossAxisAlignment.center,
 
                                                           children: [
-                                                            SizedBox(height: 20,),
+                                                            SizedBox(height:height/32.55,),
                                                             Row(
                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                               children: [
                                                                 Container(
-                                                                    width:50,
-                                                                    height:50, decoration: BoxDecoration(
+                                                                    width: width/27.32,
+                                                                    height:height/13.02, decoration: BoxDecoration(
                                                                     borderRadius: BorderRadius.circular(25),
                                                                     color:Colors.white
                                                                 ),
@@ -4557,13 +4557,13 @@ bool printingjob= false;
 
                                                             Text(schoolweb,style: GoogleFonts.poppins(
                                                                 color: Colors.white, fontSize: 8,fontWeight: FontWeight.w400),),
-                                                            SizedBox(height: 0,),
+
                                                             Stack(
                                                               alignment: Alignment.center,
                                                               children: [
                                                                 Container(
-                                                                  width: 120,
-                                                                  height: 120,
+                                                                  width: width/11.38333333333333,
+                                                                  height:height/5.425,
                                                                   decoration: BoxDecoration(
                                                                       color: pickerColor,
                                                                       borderRadius: BorderRadius.circular(60)
@@ -4584,15 +4584,15 @@ bool printingjob= false;
 
                                                               ],
                                                             ),
-                                                            SizedBox(height: 15,),
+                                                            SizedBox(height:height/43.4,),
                                                             Text(snapshot.data!.docs[index]["stname"],style: GoogleFonts.poppins(
                                                                 color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                             Text("ID: ${snapshot.data!.docs[index]["regno"]}",style: GoogleFonts.poppins(
                                                                 color:  pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                            SizedBox(height: 10,),
+                                                            SizedBox(height:height/65.1,),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Text("Class       : ",style: GoogleFonts.poppins(
                                                                     color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 Text("${snapshot.data!.docs[index]["admitclass"]} ${snapshot.data!.docs[index]["section"]}",style: GoogleFonts.poppins(
@@ -4601,7 +4601,7 @@ bool printingjob= false;
                                                             ),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                     color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -4611,7 +4611,7 @@ bool printingjob= false;
                                                             ),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                                     color:pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 Text(snapshot.data!.docs[index]["bloodgroup"],style: GoogleFonts.poppins(
@@ -4620,7 +4620,7 @@ bool printingjob= false;
                                                             ),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Text("Emergency Contact No    : ",style: GoogleFonts.poppins(
                                                                     color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 Text(snapshot.data!.docs[index]["mobile"],style: GoogleFonts.poppins(
@@ -4635,10 +4635,10 @@ bool printingjob= false;
                                                     ),
                                                   ),
                                                 ),
-                                                SizedBox(width: 50,),
+                                                SizedBox(width: width/27.32,),
                                                 Container(
-                                                  width: 260,
-                                                  height: 410,
+                                                  width: width/5.253846153846154,
+                                                  height:height/1.58780487804878,
                                                   child: Stack(
                                                     children: [
                                                       Column(
@@ -4661,8 +4661,8 @@ bool printingjob= false;
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
                                                                 Container(
-                                                                  width:30,
-                                                                  height:30, decoration: BoxDecoration(
+                                                                  width: width/45.53333333333333,
+                                                                  height:height/21.7, decoration: BoxDecoration(
                                                                     shape: BoxShape.circle,
                                                                     color:Colors.white
                                                                 ),
@@ -4671,7 +4671,7 @@ bool printingjob= false;
                                                               ],
                                                             ),
                                                           ),
-                                                          SizedBox(height: 36,),
+                                                          SizedBox(height:height/18.08333333333333,),
 
 
                                                           Text("Emergency Contact No",style: GoogleFonts.poppins(
@@ -4679,7 +4679,7 @@ bool printingjob= false;
                                                               color: Colors.black, fontSize: width/195.142857143,fontWeight: FontWeight.w700),),
 
                                                           Container(
-                                                              width:90,
+                                                              width: width/15.17777777777778,
                                                               height:2,
                                                               child: Divider()
                                                           ),
@@ -4694,14 +4694,14 @@ bool printingjob= false;
                                                               color: Colors.black, fontSize: width/195.142857143,fontWeight: FontWeight.w700),),
 
                                                           Container(
-                                                              width:90,
+                                                              width: width/15.17777777777778,
                                                               height:2,
                                                               child: Divider()
                                                           ),
                                                           SizedBox(height: 2,),
 
                                                           Container(
-                                                            width:150,
+                                                            width: width/9.106666666666667,
                                                             child: Text(getCapitalizedName(snapshot.data!.docs[index]["address"]),style: TextStyle(
 
                                                                 color: Colors.black, fontSize: width/195.142857143,fontWeight: FontWeight.normal),textAlign: TextAlign.center),
@@ -4717,10 +4717,10 @@ bool printingjob= false;
                                                               children: [
                                                                 Column(
                                                                   children: [
-                                                                    SizedBox(height:20),
+                                                                    SizedBox(height:height/32.55),
                                                                     Container(
-                                                                        width: 50,
-                                                                        height: 50,
+                                                                        width: width/27.32,
+                                                                        height:height/13.02,
                                                                         child: Image.asset('assets/VIDHAANLOGO.png')),
 
                                                                     Text("e  d  u  c  a  r  e",style: GoogleFonts.montserrat(
@@ -4752,8 +4752,8 @@ bool printingjob= false;
                                             Material(
 
                                               child: Container(
-                                                width: 260,
-                                                height: 410,
+                                                width: width/5.253846153846154,
+                                                height:height/1.58780487804878,
 
                                                 child: Stack(
                                                   children: [
@@ -4773,26 +4773,26 @@ bool printingjob= false;
                                                         Row(
                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: [
-                                                            SizedBox(width:10),
+                                                            SizedBox(width: width/136.6),
                                                             Column(
                                                               children: [
-                                                                SizedBox(height:15),
+                                                                SizedBox(height:height/43.4),
                                                                 Container(
-                                                                    width:50,
-                                                                    height:50, decoration: BoxDecoration(
+                                                                    width: width/27.32,
+                                                                    height:height/13.02, decoration: BoxDecoration(
                                                                     borderRadius: BorderRadius.circular(25),
                                                                     color:Colors.white
                                                                 ),
                                                                     child: Image.network(schoollogo)),
                                                               ],
                                                             ),
-                                                            SizedBox(width:10),
+                                                            SizedBox(width: width/136.6),
                                                             Column(
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(height:7),
+                                                                SizedBox(height:height/93),
                                                                 Container(
-                                                                  width:180,
+                                                                  width: width/7.588888888888889,
                                                                   child: Text(schoolname,style: GoogleFonts.poppins(
                                                                       color: Colors.white, fontSize: width/97.571428571,fontWeight: FontWeight.w600),),
                                                                 ),
@@ -4807,13 +4807,13 @@ bool printingjob= false;
 
 
 
-                                                        SizedBox(height: 40,),
+                                                        SizedBox(height:height/16.275,),
                                                         Stack(
                                                           alignment: Alignment.center,
                                                           children: [
                                                             Container(
-                                                              width: 120,
-                                                              height: 120,
+                                                              width: width/11.38333333333333,
+                                                              height:height/5.425,
                                                               decoration: BoxDecoration(
                                                                   color: pickerColor2,
                                                                   borderRadius: BorderRadius.circular(12)
@@ -4836,25 +4836,25 @@ bool printingjob= false;
 
                                                           ],
                                                         ),
-                                                        SizedBox(height: 15,),
+                                                        SizedBox(height:height/43.4,),
                                                         Text(value["stname"],style: GoogleFonts.poppins(
                                                             color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                         Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                             color:  pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                        SizedBox(height: 10,),
+                                                        SizedBox(height:height/65.1,),
                                                         Stack(
 
                                                           children: [
                                                             Row(
                                                               children: [
-                                                                SizedBox(width:50),
+                                                                SizedBox(width: width/27.32),
                                                                 Column(
                                                                   crossAxisAlignment: CrossAxisAlignment.start,
 
                                                                   children: [
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Class       : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text("${value["admitclass"]} ${value["section"]}",style: GoogleFonts.poppins(
@@ -4863,7 +4863,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -4872,7 +4872,7 @@ bool printingjob= false;
                                                                       ],),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                                             color:pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["bloodgroup"],style: GoogleFonts.poppins(
@@ -4881,7 +4881,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Phone No    : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["mobile"],style: GoogleFonts.poppins(
@@ -4900,7 +4900,7 @@ bool printingjob= false;
                                                                   Column(
                                                                     children: [
                                                                       Container(
-                                                                          width:37,
+                                                                          width: width/36.91891891891892,
 
 
                                                                           child: Image.asset("assets/sign.png")),
@@ -4924,10 +4924,10 @@ bool printingjob= false;
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 50,),
+                                            SizedBox(width: width/27.32,),
                                             Container(
-                                              width: 260,
-                                              height: 410,
+                                              width: width/5.253846153846154,
+                                              height:height/1.58780487804878,
                                               child: Stack(
                                                 children: [
                                                   Column(
@@ -4942,20 +4942,20 @@ bool printingjob= false;
                                                     crossAxisAlignment: CrossAxisAlignment.center,
 
                                                     children: [
-                                                      SizedBox(height: 20,),
+                                                      SizedBox(height:height/32.55,),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 10.0),
                                                         child: Row(
                                                           mainAxisAlignment: MainAxisAlignment.center,
                                                           children: [
                                                             Container(
-                                                                width:60,
-                                                                height:60,
+                                                                width: width/22.76666666666667,
+                                                                height:height/10.85,
                                                                 child: Image.network(schoollogo)),
                                                           ],
                                                         ),
                                                       ),
-                                                      SizedBox(height: 10,),
+                                                      SizedBox(height:height/65.1,),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 10.0),
                                                         child: Text(schoolname,style: GoogleFonts.poppins(
@@ -4966,7 +4966,7 @@ bool printingjob= false;
                                                         child: Text(solgan,style: GoogleFonts.poppins(
                                                             color: pickerColor2, fontSize: 8,fontWeight: FontWeight.w400),),
                                                       ),
-                                                      SizedBox(height: 40,),
+                                                      SizedBox(height:height/16.275,),
 
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 20.0),
@@ -4975,12 +4975,12 @@ bool printingjob= false;
                                                       ),
                                                       Text("",style: GoogleFonts.poppins(
                                                           color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                      SizedBox(height: 10,),
+                                                      SizedBox(height:height/65.1,),
                                                       Row(
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Container(
-                                                            width: 110,
+                                                            width: width/12.41818181818182,
                                                             child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                                 color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           ),
@@ -4991,15 +4991,15 @@ bool printingjob= false;
                                                       Row(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Container(
-                                                            width: 110,
+                                                            width: width/12.41818181818182,
                                                             child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                                 color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           ),
                                                           Container(
-                                                            width:120,
+                                                            width: width/11.38333333333333,
                                                             child: Text(value["address"],style: GoogleFonts.poppins(
                                                                 color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           ),
@@ -5013,8 +5013,8 @@ bool printingjob= false;
                                                             child: Column(
                                                               children: [
                                                                 Container(
-                                                                    width: 75,
-                                                                    height: 75,
+                                                                    width: width/18.21333333333333,
+                                                                    height:height/8.68,
                                                                     child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                                 Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: width/195.142857143),),
 
@@ -5037,8 +5037,8 @@ bool printingjob= false;
                                               Material(
 
                                                 child: Container(
-                                                  width: 410,
-                                                  height: 260,
+                                                  width: width/3.331707317073171,
+                                                  height:height/2.503846153846154,
 
                                                   child: Stack(
                                                     children: [
@@ -5059,17 +5059,17 @@ bool printingjob= false;
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
-                                                              SizedBox(width:30),
+                                                              SizedBox(width: width/45.53333333333333),
                                                               Container(
-                                                                  width:60,
-                                                                  height:60,
+                                                                  width: width/22.76666666666667,
+                                                                  height:height/10.85,
                                                                   child: Image.network(schoollogo)),
-                                                              SizedBox(width:5),
+                                                              SizedBox(width: width/273.2),
                                                               Column(
                                                                 crossAxisAlignment:CrossAxisAlignment.start,
                                                                 children: [
                                                                   Container(
-                                                                    width:250,
+                                                                    width: width/5.4640,
                                                                     child: Text(schoolname,style: GoogleFonts.poppins(
                                                                         color: pickerColor3, fontSize: 15,fontWeight: FontWeight.w600),),
                                                                   ),
@@ -5090,13 +5090,13 @@ bool printingjob= false;
 
                                                           Row(
                                                             children: [
-                                                              SizedBox(width:10),
+                                                              SizedBox(width: width/136.6),
                                                               Stack(
                                                                 alignment: Alignment.center,
                                                                 children: [
                                                                   Container(
-                                                                    width: 120,
-                                                                    height: 120,
+                                                                    width: width/11.38333333333333,
+                                                                    height:height/5.425,
                                                                     decoration: BoxDecoration(
                                                                         color: pickerColor3,
                                                                         borderRadius: BorderRadius.circular(60)
@@ -5132,10 +5132,10 @@ bool printingjob= false;
                                                                       child: Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                                           color:  pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                     ),
-                                                                    SizedBox(height: 10,),
+                                                                    SizedBox(height:height/65.1,),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Class       : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text("${value["admitclass"]} ${value["section"]}",style: GoogleFonts.poppins(
@@ -5144,7 +5144,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                             color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -5154,7 +5154,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                                             color:pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["bloodgroup"],style: GoogleFonts.poppins(
@@ -5163,7 +5163,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Phone No    : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["mobile"],style: GoogleFonts.poppins(
@@ -5184,12 +5184,12 @@ bool printingjob= false;
                                                   ),
                                                 ),
                                               ),
-                                              SizedBox(width: 30,),
+                                              SizedBox(width: width/45.53333333333333,),
                                               Material(
 
                                                 child: Container(
-                                                  width: 410,
-                                                  height: 260,
+                                                  width: width/3.331707317073171,
+                                                  height:height/2.503846153846154,
 
                                                   child: Stack(
                                                     children: [
@@ -5204,15 +5204,15 @@ bool printingjob= false;
                                                                 Opacity(
                                                                   opacity:0.39,
                                                                   child: Container(
-                                                                      width: 75,
-                                                                      height: 75,
+                                                                      width: width/18.21333333333333,
+                                                                      height:height/8.68,
                                                                       child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                                 ),
 
                                                                 Opacity(
                                                                     opacity:0.39,
                                                                     child: Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: width/195.142857143),)),
-                                                                SizedBox(height:7),
+                                                                SizedBox(height:height/93),
                                                               ],
                                                             ),
                                                           ],
@@ -5234,10 +5234,10 @@ bool printingjob= false;
                                                             Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(width:15),
+                                                                SizedBox(width: width/91.06666666666667),
                                                                 Container(
-                                                                    width:60,
-                                                                    height:60,
+                                                                    width: width/22.76666666666667,
+                                                                    height:height/10.85,
                                                                     child: Image.network(schoollogo)),
                                                                 SizedBox(width:0),
                                                                 Column(
@@ -5271,9 +5271,9 @@ bool printingjob= false;
                                                             SizedBox(height: 5,),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Container(
-                                                                  width: 110,
+                                                                  width: width/12.41818181818182,
                                                                   child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                                       color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 ),
@@ -5284,9 +5284,9 @@ bool printingjob= false;
                                                             Row(
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Container(
-                                                                  width: 110,
+                                                                  width: width/12.41818181818182,
                                                                   child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                                       color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -5503,8 +5503,8 @@ bool printingjob= false;
                                                 Material(
 
                                                   child: Container(
-                                                    width: 260,
-                                                    height: 410,
+                                                    width: width/5.253846153846154,
+                                                    height:height/1.58780487804878,
 
                                                     child: Stack(
                                                       children: [
@@ -5520,13 +5520,13 @@ bool printingjob= false;
                                                           crossAxisAlignment: CrossAxisAlignment.center,
 
                                                           children: [
-                                                            SizedBox(height: 20,),
+                                                            SizedBox(height:height/32.55,),
                                                             Row(
                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                               children: [
                                                                 Container(
-                                                                    width:50,
-                                                                    height:50, decoration: BoxDecoration(
+                                                                    width: width/27.32,
+                                                                    height:height/13.02, decoration: BoxDecoration(
                                                                     borderRadius: BorderRadius.circular(25),
                                                                     color:Colors.white
                                                                 ),
@@ -5548,8 +5548,8 @@ bool printingjob= false;
                                                               alignment: Alignment.center,
                                                               children: [
                                                                 Container(
-                                                                  width: 120,
-                                                                  height: 120,
+                                                                  width: width/11.38333333333333,
+                                                                  height:height/5.425,
                                                                   decoration: BoxDecoration(
                                                                       color: pickerColor,
                                                                       borderRadius: BorderRadius.circular(60)
@@ -5572,15 +5572,15 @@ bool printingjob= false;
 
                                                               ],
                                                             ),
-                                                            SizedBox(height: 15,),
+                                                            SizedBox(height:height/43.4,),
                                                             Text(value["stname"],style: GoogleFonts.poppins(
                                                                 color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                             Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                                 color:  pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                            SizedBox(height: 10,),
+                                                            SizedBox(height:height/65.1,),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Text("Class       : ",style: GoogleFonts.poppins(
                                                                     color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 Text("${value["admitclass"]} ${value["section"]}",style: GoogleFonts.poppins(
@@ -5589,7 +5589,7 @@ bool printingjob= false;
                                                             ),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                     color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -5599,7 +5599,7 @@ bool printingjob= false;
                                                             ),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                                     color:pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 Text(value["bloodgroup"],style: GoogleFonts.poppins(
@@ -5608,7 +5608,7 @@ bool printingjob= false;
                                                             ),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Text("Phone No    : ",style: GoogleFonts.poppins(
                                                                     color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 Text(value["mobile"],style: GoogleFonts.poppins(
@@ -5623,10 +5623,10 @@ bool printingjob= false;
                                                     ),
                                                   ),
                                                 ),
-                                                SizedBox(width: 50,),
+                                                SizedBox(width: width/27.32,),
                                                 Container(
-                                                  width: 260,
-                                                  height: 410,
+                                                  width: width/5.253846153846154,
+                                                  height:height/1.58780487804878,
                                                   child: Stack(
                                                     children: [
                                                       Column(
@@ -5649,8 +5649,8 @@ bool printingjob= false;
                                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                                     children: [
                                                                       Container(
-                                                                        width:30,
-                                                                        height:30, decoration: BoxDecoration(
+                                                                        width: width/45.53333333333333,
+                                                                        height:height/21.7, decoration: BoxDecoration(
                                                                           shape: BoxShape.circle,
                                                                           color:Colors.white
                                                                       ),
@@ -5659,7 +5659,7 @@ bool printingjob= false;
                                                                     ],
                                                                   ),
                                                                 ),
-                                                                SizedBox(height: 36,),
+                                                                SizedBox(height:height/18.08333333333333,),
 
 
                                                                 Text("Emergency Contact No",style: GoogleFonts.poppins(
@@ -5667,7 +5667,7 @@ bool printingjob= false;
                                                                     color: Colors.black, fontSize: 7,fontWeight: FontWeight.w700),),
 
                                                                 Container(
-                                                                    width:90,
+                                                                    width: width/15.17777777777778,
                                                                     height:2,
                                                                     child: Divider()
                                                                 ),
@@ -5682,14 +5682,14 @@ bool printingjob= false;
                                                                     color: Colors.black, fontSize: 7,fontWeight: FontWeight.w700),),
 
                                                                 Container(
-                                                                    width:90,
+                                                                    width: width/15.17777777777778,
                                                                     height:2,
                                                                     child: Divider()
                                                                 ),
                                                                 SizedBox(height: 2,),
 
                                                                 Container(
-                                                                  width:150,
+                                                                  width: width/9.106666666666667,
                                                                   child: Text(getCapitalizedName(value["address"]),style: TextStyle(
 
                                                                       color: Colors.black, fontSize: 7,fontWeight: FontWeight.normal),textAlign: TextAlign.center),
@@ -5705,10 +5705,10 @@ bool printingjob= false;
                                                                     children: [
                                                                       Column(
                                                                         children: [
-                                                                          SizedBox(height:20),
+                                                                          SizedBox(height:height/32.55),
                                                                           Container(
-                                                                              width: 50,
-                                                                              height: 50,
+                                                                              width: width/27.32,
+                                                                              height:height/13.02,
                                                                               child: Image.asset('assets/VIDHAANLOGO.png')),
 
                                                                           Text("e  d  u  c  a  r  e",style: GoogleFonts.montserrat(
@@ -5739,8 +5739,8 @@ bool printingjob= false;
                                             Material(
 
                                               child: Container(
-                                                width: 260,
-                                                height: 410,
+                                                width: width/5.253846153846154,
+                                                height:height/1.58780487804878,
 
                                                 child: Stack(
                                                   children: [
@@ -5760,26 +5760,26 @@ bool printingjob= false;
                                                         Row(
                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: [
-                                                            SizedBox(width:10),
+                                                            SizedBox(width: width/136.6),
                                                             Column(
                                                               children: [
-                                                                SizedBox(height:15),
+                                                                SizedBox(height:height/43.4),
                                                                 Container(
-                                                                    width:50,
-                                                                    height:50, decoration: BoxDecoration(
+                                                                    width: width/27.32,
+                                                                    height:height/13.02, decoration: BoxDecoration(
                                                                     borderRadius: BorderRadius.circular(25),
                                                                     color:Colors.white
                                                                 ),
                                                                     child: Image.network(schoollogo)),
                                                               ],
                                                             ),
-                                                            SizedBox(width:10),
+                                                            SizedBox(width: width/136.6),
                                                             Column(
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(height:7),
+                                                                SizedBox(height:height/93),
                                                                 Container(
-                                                                  width:180,
+                                                                  width: width/7.588888888888889,
                                                                   child: Text(schoolname,style: GoogleFonts.poppins(
                                                                       color: Colors.white, fontSize: width/97.571428571,fontWeight: FontWeight.w600),),
                                                                 ),
@@ -5794,13 +5794,13 @@ bool printingjob= false;
 
 
 
-                                                        SizedBox(height: 40,),
+                                                        SizedBox(height:height/16.275,),
                                                         Stack(
                                                           alignment: Alignment.center,
                                                           children: [
                                                             Container(
-                                                              width: 120,
-                                                              height: 120,
+                                                              width: width/11.38333333333333,
+                                                              height:height/5.425,
                                                               decoration: BoxDecoration(
                                                                   color: pickerColor2,
                                                                   borderRadius: BorderRadius.circular(12)
@@ -5822,25 +5822,25 @@ bool printingjob= false;
 
                                                           ],
                                                         ),
-                                                        SizedBox(height: 15,),
+                                                        SizedBox(height:height/43.4,),
                                                         Text(value["stname"],style: GoogleFonts.poppins(
                                                             color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                         Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                             color:  pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                        SizedBox(height: 10,),
+                                                        SizedBox(height:height/65.1,),
                                                         Stack(
 
                                                           children: [
                                                             Row(
                                                               children: [
-                                                                SizedBox(width:50),
+                                                                SizedBox(width: width/27.32),
                                                                 Column(
                                                                   crossAxisAlignment: CrossAxisAlignment.start,
 
                                                                   children: [
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Class       : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text("${value["admitclass"]} ${value["section"]}",style: GoogleFonts.poppins(
@@ -5849,7 +5849,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -5858,7 +5858,7 @@ bool printingjob= false;
                                                                       ],),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                                             color:pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["bloodgroup"],style: GoogleFonts.poppins(
@@ -5867,7 +5867,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Phone No    : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["mobile"],style: GoogleFonts.poppins(
@@ -5886,7 +5886,7 @@ bool printingjob= false;
                                                                   Column(
                                                                     children: [
                                                                       Container(
-                                                                          width:37,
+                                                                          width: width/36.91891891891892,
 
 
                                                                           child: Image.asset("assets/sign.png")),
@@ -5910,10 +5910,10 @@ bool printingjob= false;
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 50,),
+                                            SizedBox(width: width/27.32,),
                                             Container(
-                                              width: 260,
-                                              height: 410,
+                                              width: width/5.253846153846154,
+                                              height:height/1.58780487804878,
                                               child: Stack(
                                                 children: [
                                                   Column(
@@ -5928,20 +5928,20 @@ bool printingjob= false;
                                                     crossAxisAlignment: CrossAxisAlignment.center,
 
                                                     children: [
-                                                      SizedBox(height: 20,),
+                                                      SizedBox(height:height/32.55,),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 10.0),
                                                         child: Row(
                                                           mainAxisAlignment: MainAxisAlignment.center,
                                                           children: [
                                                             Container(
-                                                                width:60,
-                                                                height:60,
+                                                                width: width/22.76666666666667,
+                                                                height:height/10.85,
                                                                 child: Image.network(schoollogo)),
                                                           ],
                                                         ),
                                                       ),
-                                                      SizedBox(height: 10,),
+                                                      SizedBox(height:height/65.1,),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 10.0),
                                                         child: Text(schoolname,style: GoogleFonts.poppins(
@@ -5952,7 +5952,7 @@ bool printingjob= false;
                                                         child: Text(solgan,style: GoogleFonts.poppins(
                                                             color: pickerColor2, fontSize: 8,fontWeight: FontWeight.w400),),
                                                       ),
-                                                      SizedBox(height: 40,),
+                                                      SizedBox(height:height/16.275,),
 
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 20.0),
@@ -5961,12 +5961,12 @@ bool printingjob= false;
                                                       ),
                                                       Text("",style: GoogleFonts.poppins(
                                                           color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                      SizedBox(height: 10,),
+                                                      SizedBox(height:height/65.1,),
                                                       Row(
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Container(
-                                                            width: 110,
+                                                            width: width/12.41818181818182,
                                                             child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                                 color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           ),
@@ -5977,15 +5977,15 @@ bool printingjob= false;
                                                       Row(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Container(
-                                                            width: 110,
+                                                            width: width/12.41818181818182,
                                                             child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                                 color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           ),
                                                           Container(
-                                                            width:120,
+                                                            width: width/11.38333333333333,
                                                             child: Text(value["address"],style: GoogleFonts.poppins(
                                                                 color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           ),
@@ -5999,8 +5999,8 @@ bool printingjob= false;
                                                             child: Column(
                                                               children: [
                                                                 Container(
-                                                                    width: 75,
-                                                                    height: 75,
+                                                                    width: width/18.21333333333333,
+                                                                    height:height/8.68,
                                                                     child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                                 Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),),
 
@@ -6024,8 +6024,8 @@ bool printingjob= false;
                                               Material(
 
                                                 child: Container(
-                                                  width: 410,
-                                                  height: 260,
+                                                  width: width/3.331707317073171,
+                                                  height:height/2.503846153846154,
 
                                                   child: Stack(
                                                     children: [
@@ -6046,17 +6046,17 @@ bool printingjob= false;
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
-                                                              SizedBox(width:30),
+                                                              SizedBox(width: width/45.53333333333333),
                                                               Container(
-                                                                  width:60,
-                                                                  height:60,
+                                                                  width: width/22.76666666666667,
+                                                                  height:height/10.85,
                                                                   child: Image.network(schoollogo)),
-                                                              SizedBox(width:5),
+                                                              SizedBox(width: width/273.2),
                                                               Column(
                                                                 crossAxisAlignment:CrossAxisAlignment.start,
                                                                 children: [
                                                                   Container(
-                                                                    width:250,
+                                                                    width: width/5.4640,
                                                                     child: Text(schoolname,style: GoogleFonts.poppins(
                                                                         color: pickerColor3, fontSize: 15,fontWeight: FontWeight.w600),),
                                                                   ),
@@ -6077,13 +6077,13 @@ bool printingjob= false;
 
                                                           Row(
                                                             children: [
-                                                              SizedBox(width:10),
+                                                              SizedBox(width: width/136.6),
                                                               Stack(
                                                                 alignment: Alignment.center,
                                                                 children: [
                                                                   Container(
-                                                                    width: 120,
-                                                                    height: 120,
+                                                                    width: width/11.38333333333333,
+                                                                    height:height/5.425,
                                                                     decoration: BoxDecoration(
                                                                         color: pickerColor3,
                                                                         borderRadius: BorderRadius.circular(60)
@@ -6119,10 +6119,10 @@ bool printingjob= false;
                                                                       child: Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                                           color:  pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                     ),
-                                                                    SizedBox(height: 10,),
+                                                                    SizedBox(height:height/65.1,),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Class       : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text("${value["admitclass"]} ${value["section"]}",style: GoogleFonts.poppins(
@@ -6131,7 +6131,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                             color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -6141,7 +6141,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                                             color:pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["bloodgroup"],style: GoogleFonts.poppins(
@@ -6150,7 +6150,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Phone No    : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["mobile"],style: GoogleFonts.poppins(
@@ -6171,12 +6171,12 @@ bool printingjob= false;
                                                   ),
                                                 ),
                                               ),
-                                              SizedBox(width: 30,),
+                                              SizedBox(width: width/45.53333333333333,),
                                               Material(
 
                                                 child: Container(
-                                                  width: 410,
-                                                  height: 260,
+                                                  width: width/3.331707317073171,
+                                                  height:height/2.503846153846154,
 
                                                   child: Stack(
                                                     children: [
@@ -6191,15 +6191,15 @@ bool printingjob= false;
                                                                 Opacity(
                                                                   opacity:0.39,
                                                                   child: Container(
-                                                                      width: 75,
-                                                                      height: 75,
+                                                                      width: width/18.21333333333333,
+                                                                      height:height/8.68,
                                                                       child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                                 ),
 
                                                                 Opacity(
                                                                     opacity:0.39,
                                                                     child: Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),)),
-                                                                SizedBox(height:7),
+                                                                SizedBox(height:height/93),
                                                               ],
                                                             ),
                                                           ],
@@ -6221,10 +6221,10 @@ bool printingjob= false;
                                                             Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(width:15),
+                                                                SizedBox(width: width/91.06666666666667),
                                                                 Container(
-                                                                    width:60,
-                                                                    height:60,
+                                                                    width: width/22.76666666666667,
+                                                                    height:height/10.85,
                                                                     child: Image.network(schoollogo)),
                                                                 SizedBox(width:0),
                                                                 Column(
@@ -6258,9 +6258,9 @@ bool printingjob= false;
                                                             SizedBox(height: 5,),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Container(
-                                                                  width: 110,
+                                                                  width: width/12.41818181818182,
                                                                   child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                                       color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 ),
@@ -6271,9 +6271,9 @@ bool printingjob= false;
                                                             Row(
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Container(
-                                                                  width: 110,
+                                                                  width: width/12.41818181818182,
                                                                   child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                                       color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -6481,8 +6481,8 @@ bool printingjob= false;
                                               children: [
                                                 Material(
                                                     child: Container(
-                                                      width: 260,
-                                                      height: 410,
+                                                      width: width/5.253846153846154,
+                                                      height:height/1.58780487804878,
                                                       color:Colors.white,
                                                       child: Stack(
                                                         children: [
@@ -6496,13 +6496,13 @@ bool printingjob= false;
                                                           Column(
                                                             crossAxisAlignment: CrossAxisAlignment.center,
                                                             children: [
-                                                              SizedBox(height: 20,),
+                                                              SizedBox(height:height/32.55,),
                                                               Row(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
                                                                   Container(
-                                                                      width:50,
-                                                                      height:50, decoration: BoxDecoration(
+                                                                      width: width/27.32,
+                                                                      height:height/13.02, decoration: BoxDecoration(
                                                                       borderRadius: BorderRadius.circular(25),
                                                                       color:Colors.white
                                                                   ),
@@ -6524,8 +6524,8 @@ bool printingjob= false;
                                                                 alignment: Alignment.center,
                                                                 children: [
                                                                   Container(
-                                                                    width: 120,
-                                                                    height: 120,
+                                                                    width: width/11.38333333333333,
+                                                                    height:height/5.425,
                                                                     decoration: BoxDecoration(
                                                                         color: pickerColor,
                                                                         borderRadius: BorderRadius.circular(60)
@@ -6549,7 +6549,7 @@ bool printingjob= false;
 
                                                                 ],
                                                               ),
-                                                              SizedBox(height: 15,),
+                                                              SizedBox(height:height/43.4,),
                                                               Row(
 
                                   mainAxisAlignment:MainAxisAlignment.center,
@@ -6560,10 +6560,10 @@ bool printingjob= false;
                                                               ),
                                                               Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                                   color:  pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                              SizedBox(height: 10,),
+                                                              SizedBox(height:height/65.1,),
                                                               Row(
                                                                 children: [
-                                                                  SizedBox(width: 20,),
+                                                                  SizedBox(width: width/68.3,),
                                                                   Container(
                                                                     width:80,
                                                                     child: Text("Class",style: GoogleFonts.poppins(
@@ -6577,7 +6577,7 @@ bool printingjob= false;
                                                               ),
                                                               Row(
                                                                 children: [
-                                                                  SizedBox(width: 20,),
+                                                                  SizedBox(width: width/68.3,),
                                                                   Container(
                                                                       width:80,
                                                                     child: Text("DOB",style: GoogleFonts.poppins(
@@ -6591,7 +6591,7 @@ bool printingjob= false;
                                                               ),
                                                               Row(
                                                                 children: [
-                                                                  SizedBox(width: 20,),
+                                                                  SizedBox(width: width/68.3,),
                                                                   Container(
                                                                   width:80,
                                                                     child: Text("Blood Group",style: GoogleFonts.poppins(
@@ -6605,7 +6605,7 @@ bool printingjob= false;
                                                               ),
                                                               Row(
                                                                 children: [
-                                                                  SizedBox(width: 20,),
+                                                                  SizedBox(width: width/68.3,),
                                                                   Container(
                                                                     width:80,
                                                                     child: Text("Phone No",style: GoogleFonts.poppins(
@@ -6626,10 +6626,10 @@ bool printingjob= false;
                                                     ),
 
                                                 ),
-                                                SizedBox(width: 50,),
+                                                SizedBox(width: width/27.32,),
                                                 Container(
-                                                  width: 260,
-                                                  height: 410,
+                                                  width: width/5.253846153846154,
+                                                  height:height/1.58780487804878,
                                                   child: Stack(
                                                     children: [
                                                       Column(
@@ -6645,15 +6645,15 @@ bool printingjob= false;
                                                         crossAxisAlignment: CrossAxisAlignment.center,
 
                                                         children: [
-                                                          SizedBox(height: 30,),
+                                                          SizedBox(height:height/21.7,),
                                                           Padding(
                                                             padding: EdgeInsets.only(left: 10.0),
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
                                                                 Container(
-                                                                  width:50,
-                                                                  height:50, decoration: BoxDecoration(
+                                                                  width: width/27.32,
+                                                                  height:height/13.02, decoration: BoxDecoration(
                                                                     shape: BoxShape.circle,
                                                                     color:Colors.white
                                                                 ),
@@ -6662,7 +6662,7 @@ bool printingjob= false;
                                                               ],
                                                             ),
                                                           ),
-                                                          SizedBox(height: 36,),
+                                                          SizedBox(height:height/18.08333333333333,),
 
 
                                                           Text("Emergency Contact No",style: GoogleFonts.poppins(
@@ -6670,7 +6670,7 @@ bool printingjob= false;
                                                               color: Colors.black, fontSize: width/105.076923077,fontWeight: FontWeight.w700),),
 
                                                           Container(
-                                                              width:180,
+                                                              width: width/7.588888888888889,
                                                               height:5,
                                                               child: Divider(color:Colors.black)
                                                           ),
@@ -6679,20 +6679,20 @@ bool printingjob= false;
                                                           Text("+91 ${value["fatherMobile"]}",style: GoogleFonts.poppins(
 
                                                               color: Colors.black, fontSize: width/105.076923077,fontWeight: FontWeight.normal),),
-                                                          SizedBox(height:10),
+                                                          SizedBox(height:height/65.1),
                                                           Text("Address",style: GoogleFonts.poppins(
 
                                                               color: Colors.black, fontSize: width/105.076923077,fontWeight: FontWeight.w700),),
 
                                                           Container(
-                                                              width:180,
+                                                              width: width/7.588888888888889,
                                                               height:5,
                                                               child: Divider(color:Colors.black)
                                                           ),
                                                           SizedBox(height: 5,),
 
                                                           Container(
-                                                            width:200,
+                                                            width: width/6.83,
                                                             child: Text(getCapitalizedName(value["address"]),style: TextStyle(
 
                                                                 color: Colors.black, fontSize: width/105.076923077,fontWeight: FontWeight.normal),textAlign: TextAlign.center),
@@ -6708,10 +6708,10 @@ bool printingjob= false;
                                                               children: [
                                                                 Column(
                                                                   children: [
-                                                                    SizedBox(height:10),
+                                                                    SizedBox(height:height/65.1),
                                                                     Container(
-                                                                        width: 70,
-                                                                        height: 70,
+                                                                        width: width/19.51428571428571,
+                                                                        height:height/9.3,
                                                                         child: Image.asset('assets/VIDHAANLOGO.png')),
 
                                                                     Text("e  d  u  c  a  r  e",style: GoogleFonts.montserrat(
@@ -6740,8 +6740,8 @@ bool printingjob= false;
                                             Material(
 
                                               child: Container(
-                                                width: 260,
-                                                height: 410,
+                                                width: width/5.253846153846154,
+                                                height:height/1.58780487804878,
 
                                                 child: Stack(
                                                   children: [
@@ -6761,26 +6761,26 @@ bool printingjob= false;
                                                         Row(
                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: [
-                                                            SizedBox(width:10),
+                                                            SizedBox(width: width/136.6),
                                                             Column(
                                                               children: [
-                                                                SizedBox(height:15),
+                                                                SizedBox(height:height/43.4),
                                                                 Container(
-                                                                    width:50,
-                                                                    height:50, decoration: BoxDecoration(
+                                                                    width: width/27.32,
+                                                                    height:height/13.02, decoration: BoxDecoration(
                                                                     borderRadius: BorderRadius.circular(25),
                                                                     color:Colors.white
                                                                 ),
                                                                     child: Image.network(schoollogo)),
                                                               ],
                                                             ),
-                                                            SizedBox(width:10),
+                                                            SizedBox(width: width/136.6),
                                                             Column(
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(height:7),
+                                                                SizedBox(height:height/93),
                                                                 Container(
-                                                                  width:180,
+                                                                  width: width/7.588888888888889,
                                                                   child: Text(schoolname,style: GoogleFonts.poppins(
                                                                       color: Colors.white, fontSize: width/97.571428571,fontWeight: FontWeight.w600),),
                                                                 ),
@@ -6795,13 +6795,13 @@ bool printingjob= false;
 
 
 
-                                                        SizedBox(height: 40,),
+                                                        SizedBox(height:height/16.275,),
                                                         Stack(
                                                           alignment: Alignment.center,
                                                           children: [
                                                             Container(
-                                                              width: 120,
-                                                              height: 120,
+                                                              width: width/11.38333333333333,
+                                                              height:height/5.425,
                                                               decoration: BoxDecoration(
                                                                   color: pickerColor2,
                                                                   borderRadius: BorderRadius.circular(12)
@@ -6823,25 +6823,25 @@ bool printingjob= false;
 
                                                           ],
                                                         ),
-                                                        SizedBox(height: 15,),
+                                                        SizedBox(height:height/43.4,),
                                                         Text(value["stname"],style: GoogleFonts.poppins(
                                                             color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                         Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                             color:  pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                        SizedBox(height: 10,),
+                                                        SizedBox(height:height/65.1,),
                                                         Stack(
 
                                                           children: [
                                                             Row(
                                                               children: [
-                                                                SizedBox(width:50),
+                                                                SizedBox(width: width/27.32),
                                                                 Column(
                                                                   crossAxisAlignment: CrossAxisAlignment.start,
 
                                                                   children: [
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Class       : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text("${value["admitclass"]} ${value["section"]}",style: GoogleFonts.poppins(
@@ -6850,7 +6850,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -6859,7 +6859,7 @@ bool printingjob= false;
                                                                       ],),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                                             color:pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["bloodgroup"],style: GoogleFonts.poppins(
@@ -6868,7 +6868,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Phone No    : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["mobile"],style: GoogleFonts.poppins(
@@ -6887,7 +6887,7 @@ bool printingjob= false;
                                                                   Column(
                                                                     children: [
                                                                       Container(
-                                                                          width:37,
+                                                                          width: width/36.91891891891892,
 
 
                                                                           child: Image.asset("assets/sign.png")),
@@ -6911,10 +6911,10 @@ bool printingjob= false;
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 50,),
+                                            SizedBox(width: width/27.32,),
                                             Container(
-                                              width: 260,
-                                              height: 410,
+                                              width: width/5.253846153846154,
+                                              height:height/1.58780487804878,
                                               child: Stack(
                                                 children: [
                                                   Column(
@@ -6929,20 +6929,20 @@ bool printingjob= false;
                                                     crossAxisAlignment: CrossAxisAlignment.center,
 
                                                     children: [
-                                                      SizedBox(height: 20,),
+                                                      SizedBox(height:height/32.55,),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 10.0),
                                                         child: Row(
                                                           mainAxisAlignment: MainAxisAlignment.center,
                                                           children: [
                                                             Container(
-                                                                width:60,
-                                                                height:60,
+                                                                width: width/22.76666666666667,
+                                                                height:height/10.85,
                                                                 child: Image.network(schoollogo)),
                                                           ],
                                                         ),
                                                       ),
-                                                      SizedBox(height: 10,),
+                                                      SizedBox(height:height/65.1,),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 10.0),
                                                         child: Text(schoolname,style: GoogleFonts.poppins(
@@ -6953,7 +6953,7 @@ bool printingjob= false;
                                                         child: Text(solgan,style: GoogleFonts.poppins(
                                                             color: pickerColor2, fontSize: 8,fontWeight: FontWeight.w400),),
                                                       ),
-                                                      SizedBox(height: 40,),
+                                                      SizedBox(height:height/16.275,),
 
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 20.0),
@@ -6962,12 +6962,12 @@ bool printingjob= false;
                                                       ),
                                                       Text("",style: GoogleFonts.poppins(
                                                           color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                      SizedBox(height: 10,),
+                                                      SizedBox(height:height/65.1,),
                                                       Row(
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Container(
-                                                            width: 110,
+                                                            width: width/12.41818181818182,
                                                             child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                                 color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           ),
@@ -6978,15 +6978,15 @@ bool printingjob= false;
                                                       Row(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Container(
-                                                            width: 110,
+                                                            width: width/12.41818181818182,
                                                             child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                                 color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           ),
                                                           Container(
-                                                            width:120,
+                                                            width: width/11.38333333333333,
                                                             child: Text(value["address"],style: GoogleFonts.poppins(
                                                                 color: Colors.black, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           ),
@@ -7000,8 +7000,8 @@ bool printingjob= false;
                                                             child: Column(
                                                               children: [
                                                                 Container(
-                                                                    width: 75,
-                                                                    height: 75,
+                                                                    width: width/18.21333333333333,
+                                                                    height:height/8.68,
                                                                     child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                                 Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),),
 
@@ -7025,8 +7025,8 @@ bool printingjob= false;
                                               Material(
 
                                                 child: Container(
-                                                  width: 410,
-                                                  height: 260,
+                                                  width: width/3.331707317073171,
+                                                  height:height/2.503846153846154,
 
                                                   child: Stack(
                                                     children: [
@@ -7047,17 +7047,17 @@ bool printingjob= false;
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
-                                                              SizedBox(width:30),
+                                                              SizedBox(width: width/45.53333333333333),
                                                               Container(
-                                                                  width:60,
-                                                                  height:60,
+                                                                  width: width/22.76666666666667,
+                                                                  height:height/10.85,
                                                                   child: Image.network(schoollogo)),
-                                                              SizedBox(width:5),
+                                                              SizedBox(width: width/273.2),
                                                               Column(
                                                                 crossAxisAlignment:CrossAxisAlignment.start,
                                                                 children: [
                                                                   Container(
-                                                                    width:250,
+                                                                    width: width/5.464,
                                                                     child: Text(schoolname,style: GoogleFonts.poppins(
                                                                         color: pickerColor3, fontSize: 15,fontWeight: FontWeight.w600),),
                                                                   ),
@@ -7078,13 +7078,13 @@ bool printingjob= false;
 
                                                           Row(
                                                             children: [
-                                                              SizedBox(width:10),
+                                                              SizedBox(width: width/136.6),
                                                               Stack(
                                                                 alignment: Alignment.center,
                                                                 children: [
                                                                   Container(
-                                                                    width: 120,
-                                                                    height: 120,
+                                                                    width: width/11.38333333333333,
+                                                                    height:height/5.425,
                                                                     decoration: BoxDecoration(
                                                                         color: pickerColor3,
                                                                         borderRadius: BorderRadius.circular(60)
@@ -7120,10 +7120,10 @@ bool printingjob= false;
                                                                       child: Text("ID: ${value["regno"]}",style: GoogleFonts.poppins(
                                                                           color:  pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                     ),
-                                                                    SizedBox(height: 10,),
+                                                                    SizedBox(height:height/65.1,),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Class       : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text("${value["admitclass"]} ${value["section"]}",style: GoogleFonts.poppins(
@@ -7132,7 +7132,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                             color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -7142,7 +7142,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                                             color:pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["bloodgroup"],style: GoogleFonts.poppins(
@@ -7151,7 +7151,7 @@ bool printingjob= false;
                                                                     ),
                                                                     Row(
                                                                       children: [
-                                                                        SizedBox(width: 20,),
+                                                                        SizedBox(width: width/68.3,),
                                                                         Text("Phone No    : ",style: GoogleFonts.poppins(
                                                                             color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                         Text(value["mobile"],style: GoogleFonts.poppins(
@@ -7172,12 +7172,12 @@ bool printingjob= false;
                                                   ),
                                                 ),
                                               ),
-                                              SizedBox(width: 30,),
+                                              SizedBox(width: width/45.53333333333333,),
                                               Material(
 
                                                 child: Container(
-                                                  width: 410,
-                                                  height: 260,
+                                                  width: width/3.331707317073171,
+                                                  height:height/2.503846153846154,
 
                                                   child: Stack(
                                                     children: [
@@ -7192,15 +7192,15 @@ bool printingjob= false;
                                                                 Opacity(
                                                                   opacity:0.39,
                                                                   child: Container(
-                                                                      width: 75,
-                                                                      height: 75,
+                                                                      width: width/18.21333333333333,
+                                                                      height:height/8.68,
                                                                       child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                                 ),
 
                                                                 Opacity(
                                                                     opacity:0.39,
                                                                     child: Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),)),
-                                                                SizedBox(height:7),
+                                                                SizedBox(height:height/93),
                                                               ],
                                                             ),
                                                           ],
@@ -7222,10 +7222,10 @@ bool printingjob= false;
                                                             Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(width:15),
+                                                                SizedBox(width: width/91.06666666666667),
                                                                 Container(
-                                                                    width:60,
-                                                                    height:60,
+                                                                    width: width/22.76666666666667,
+                                                                    height:height/10.85,
                                                                     child: Image.network(schoollogo)),
                                                                 SizedBox(width:0),
                                                                 Column(
@@ -7259,9 +7259,9 @@ bool printingjob= false;
                                                             SizedBox(height: 5,),
                                                             Row(
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Container(
-                                                                  width: 110,
+                                                                  width: width/12.41818181818182,
                                                                   child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                                       color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                 ),
@@ -7272,9 +7272,9 @@ bool printingjob= false;
                                                             Row(
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(width: 20,),
+                                                                SizedBox(width: width/68.3,),
                                                                 Container(
-                                                                  width: 110,
+                                                                  width: width/12.41818181818182,
                                                                   child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                                       color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -7384,8 +7384,8 @@ bool printingjob= false;
 
                               child: RepaintBoundary(
                                 child: Container(
-                                  width: 260,
-                                  height: 410,
+                                  width: width/5.253846153846154,
+                                  height:height/1.58780487804878,
 
                                   child: Stack(
                                     children: [
@@ -7401,13 +7401,13 @@ bool printingjob= false;
                                         crossAxisAlignment: CrossAxisAlignment.center,
 
                                         children: [
-                                          SizedBox(height: 20,),
+                                          SizedBox(height:height/32.55,),
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Container(
-                                                  width:50,
-                                                  height:50, decoration: BoxDecoration(
+                                                  width: width/27.32,
+                                                  height:height/13.02, decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(25),
                                                   color:Colors.white
                                               ),
@@ -7429,8 +7429,8 @@ bool printingjob= false;
                                             alignment: Alignment.center,
                                             children: [
                                               Container(
-                                                width: 120,
-                                                height: 120,
+                                                width: width/11.38333333333333,
+                                                height:height/5.425,
                                                 decoration: BoxDecoration(
                                                     color: pickerColor,
                                                     borderRadius: BorderRadius.circular(60)
@@ -7451,15 +7451,15 @@ bool printingjob= false;
 
                                             ],
                                           ),
-                                          SizedBox(height: 15,),
+                                          SizedBox(height:height/43.4,),
                                           Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                                               color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                           Text("ID: VBSB004",style: GoogleFonts.poppins(
                                               color:  pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                          SizedBox(height: 10,),
+                                          SizedBox(height:height/65.1,),
                                           Row(
                                             children: [
-                                              SizedBox(width: 20,),
+                                              SizedBox(width: width/68.3,),
                                               Text("Class       : ",style: GoogleFonts.poppins(
                                                   color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                               Text("LKG A",style: GoogleFonts.poppins(
@@ -7468,7 +7468,7 @@ bool printingjob= false;
                                           ),
                                           Row(
                                             children: [
-                                              SizedBox(width: 20,),
+                                              SizedBox(width: width/68.3,),
                                               Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                   color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -7478,7 +7478,7 @@ bool printingjob= false;
                                           ),
                                           Row(
                                             children: [
-                                              SizedBox(width: 20,),
+                                              SizedBox(width: width/68.3,),
                                               Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                   color:pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                               Text("B+ve",style: GoogleFonts.poppins(
@@ -7487,7 +7487,7 @@ bool printingjob= false;
                                           ),
                                           Row(
                                             children: [
-                                              SizedBox(width: 20,),
+                                              SizedBox(width: width/68.3,),
                                               Text("Emergency Contact No    : ",style: GoogleFonts.poppins(
                                                   color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                               Text("789456213",style: GoogleFonts.poppins(
@@ -7503,10 +7503,10 @@ bool printingjob= false;
                                 ),
                               ),
                             ),
-                            SizedBox(width: 50,),
+                            SizedBox(width: width/27.32,),
                             Container(
-                              width: 260,
-                              height: 410,
+                              width: width/5.253846153846154,
+                              height:height/1.58780487804878,
                               child: Stack(
                                 children: [
                                   Column(
@@ -7521,15 +7521,15 @@ bool printingjob= false;
                                     crossAxisAlignment: CrossAxisAlignment.start,
 
                                     children: [
-                                      SizedBox(height: 20,),
+                                      SizedBox(height:height/32.55,),
                                       Padding(
                                 padding: const EdgeInsets.only(left: 25.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Container(
-                                        width:60,
-                                        height:60, decoration: BoxDecoration(
+                                        width: width/22.76666666666667,
+                                        height:height/10.85, decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(30),
                                         color:Colors.white
                                     ),
@@ -7537,7 +7537,7 @@ bool printingjob= false;
                                   ],
                                 ),
                               ),
-                                      SizedBox(height: 70,),
+                                      SizedBox(height:height/9.3,),
 
                                       Padding(
                                         padding: const EdgeInsets.only(left: 20.0),
@@ -7546,12 +7546,12 @@ bool printingjob= false;
                                       ),
                                       Text("",style: GoogleFonts.poppins(
                                           color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                      SizedBox(height: 10,),
+                                      SizedBox(height:height/65.1,),
                                       Row(
                                         children: [
-                                          SizedBox(width: 20,),
+                                          SizedBox(width: width/68.3,),
                                           Container(
-                                            width: 110,
+                                            width: width/12.41818181818182,
                                             child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                 color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                           ),
@@ -7562,9 +7562,9 @@ bool printingjob= false;
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          SizedBox(width: 20,),
+                                          SizedBox(width: width/68.3,),
                                           Container(
-                                            width: 110,
+                                            width: width/12.41818181818182,
                                             child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                 color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -7583,12 +7583,12 @@ bool printingjob= false;
                                               children: [
                                                 SizedBox(height:5),
                                                 Container(
-                                                    width: 75,
-                                                    height: 75,
+                                                    width: width/18.21333333333333,
+                                                    height:height/8.68,
                                                     child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
 
                                                 Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),),
-                                                SizedBox(height:7),
+                                                SizedBox(height:height/93),
                                               ],
                                             ),
                                           ],
@@ -7601,16 +7601,16 @@ bool printingjob= false;
                                 ],
                               ),
                             ),
-                            SizedBox(width: 50,),
+                            SizedBox(width: width/27.32,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 10,),
+                                SizedBox(height:height/65.1,),
                                 Text("Card Design 1",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                 Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                                 Container(
-                                  width: 465,
+                                  width: width/2.937634408602151,
                                   child: ColorPicker(
                                     colorPickerWidth: 120,
                                     pickerColor: pickerColor,
@@ -7627,7 +7627,7 @@ bool printingjob= false;
 
                                   ),
                                 ),
-                                SizedBox(height: 10,),
+                                SizedBox(height:height/65.1,),
                                 InkWell(
                                   onTap: (){
                                     selectdesign("1");
@@ -7655,14 +7655,14 @@ bool printingjob= false;
                             ),
                           ],
                         ),
-                        SizedBox(height: 55,),
+                        SizedBox(height:height/11.83636363636364,),
                         Row(
                           children: [
                             Material(
 
                               child: Container(
-                                width: 260,
-                                height: 410,
+                                width: width/5.253846153846154,
+                                height:height/1.58780487804878,
 
                                 child: Stack(
                                   children: [
@@ -7682,26 +7682,26 @@ bool printingjob= false;
                                         Row(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            SizedBox(width:10),
+                                            SizedBox(width: width/136.6),
                                             Column(
                                               children: [
-                                                SizedBox(height:15),
+                                                SizedBox(height:height/43.4),
                                                 Container(
-                                                    width:50,
-                                                    height:50, decoration: BoxDecoration(
+                                                    width: width/27.32,
+                                                    height:height/13.02, decoration: BoxDecoration(
                                                     borderRadius: BorderRadius.circular(25),
                                                     color:Colors.white
                                                 ),
                                                     child: Image.network(schoollogo)),
                                               ],
                                             ),
-                                            SizedBox(width:10),
+                                            SizedBox(width: width/136.6),
                                             Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                SizedBox(height:7),
+                                                SizedBox(height:height/93),
                                                 Container(
-                                                  width:180,
+                                                  width: width/7.588888888888889,
                                                   child: Text(schoolname,style: GoogleFonts.poppins(
                                                       color: Colors.white, fontSize: width/97.571428571,fontWeight: FontWeight.w600),),
                                                 ),
@@ -7716,13 +7716,13 @@ bool printingjob= false;
 
 
 
-                                        SizedBox(height: 40,),
+                                        SizedBox(height:height/16.275,),
                                         Stack(
                                           alignment: Alignment.center,
                                           children: [
                                             Container(
-                                              width: 120,
-                                              height: 120,
+                                              width: width/11.38333333333333,
+                                              height:height/5.425,
                                               decoration: BoxDecoration(
                                                   color: pickerColor2,
                                                   borderRadius: BorderRadius.circular(12)
@@ -7743,25 +7743,25 @@ bool printingjob= false;
 
                                           ],
                                         ),
-                                        SizedBox(height: 15,),
+                                        SizedBox(height:height/43.4,),
                                         Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                                             color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                         Text("ID: VBSB004",style: GoogleFonts.poppins(
                                             color:  pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                        SizedBox(height: 10,),
+                                        SizedBox(height:height/65.1,),
                                         Stack(
 
                                           children: [
                                             Row(
                                               children: [
-                                                SizedBox(width:50),
+                                                SizedBox(width: width/27.32),
                                                 Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
 
                                                   children: [
                                                     Row(
                                                       children: [
-                                                        SizedBox(width: 20,),
+                                                        SizedBox(width: width/68.3,),
                                                         Text("Class       : ",style: GoogleFonts.poppins(
                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                         Text("LKG A",style: GoogleFonts.poppins(
@@ -7770,7 +7770,7 @@ bool printingjob= false;
                                                     ),
                                                     Row(
                                                       children: [
-                                                        SizedBox(width: 20,),
+                                                        SizedBox(width: width/68.3,),
                                                         Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -7779,7 +7779,7 @@ bool printingjob= false;
                                                       ],),
                                                     Row(
                                                       children: [
-                                                        SizedBox(width: 20,),
+                                                        SizedBox(width: width/68.3,),
                                                         Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                             color:pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                         Text("B+ve",style: GoogleFonts.poppins(
@@ -7788,7 +7788,7 @@ bool printingjob= false;
                                                     ),
                                                     Row(
                                                       children: [
-                                                        SizedBox(width: 20,),
+                                                        SizedBox(width: width/68.3,),
                                                         Text("Emergency Contact No    : ",style: GoogleFonts.poppins(
                                                             color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                         Text("789456213",style: GoogleFonts.poppins(
@@ -7807,7 +7807,7 @@ bool printingjob= false;
                                                   Column(
                                                     children: [
                                                       Container(
-                                                          width:37,
+                                                          width: width/36.91891891891892,
 
 
                                                           child: Image.asset("assets/sign.png")),
@@ -7831,10 +7831,10 @@ bool printingjob= false;
                                 ),
                               ),
                             ),
-                            SizedBox(width: 50,),
+                            SizedBox(width: width/27.32,),
                             Container(
-                              width: 260,
-                              height: 410,
+                              width: width/5.253846153846154,
+                              height:height/1.58780487804878,
                               child: Stack(
                                 children: [
                                   Column(
@@ -7849,20 +7849,20 @@ bool printingjob= false;
                                     crossAxisAlignment: CrossAxisAlignment.center,
 
                                     children: [
-                                      SizedBox(height: 20,),
+                                      SizedBox(height:height/32.55,),
                                       Padding(
                                         padding: const EdgeInsets.only(left: 10.0),
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Container(
-                                                width:60,
-                                                height:60,
+                                                width: width/22.76666666666667,
+                                                height:height/10.85,
                                                 child: Image.network(schoollogo)),
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 10,),
+                                      SizedBox(height:height/65.1,),
                                       Padding(
                                         padding: const EdgeInsets.only(left: 10.0),
                                         child: Text(schoolname,style: GoogleFonts.poppins(
@@ -7873,7 +7873,7 @@ bool printingjob= false;
                                         child: Text(solgan,style: GoogleFonts.poppins(
                                             color: pickerColor2, fontSize: 8,fontWeight: FontWeight.w400),),
                                       ),
-                                      SizedBox(height: 40,),
+                                      SizedBox(height:height/16.275,),
 
                                       Padding(
                                         padding: const EdgeInsets.only(left: 20.0),
@@ -7882,12 +7882,12 @@ bool printingjob= false;
                                       ),
                                       Text("",style: GoogleFonts.poppins(
                                           color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                      SizedBox(height: 10,),
+                                      SizedBox(height:height/65.1,),
                                       Row(
                                         children: [
-                                          SizedBox(width: 20,),
+                                          SizedBox(width: width/68.3,),
                                           Container(
-                                            width: 110,
+                                            width: width/12.41818181818182,
                                             child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                 color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                           ),
@@ -7898,9 +7898,9 @@ bool printingjob= false;
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          SizedBox(width: 20,),
+                                          SizedBox(width: width/68.3,),
                                           Container(
-                                            width: 110,
+                                            width: width/12.41818181818182,
                                             child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                 color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -7917,8 +7917,8 @@ bool printingjob= false;
                                             child: Column(
                                               children: [
                                                 Container(
-                                                    width: 75,
-                                                    height: 75,
+                                                    width: width/18.21333333333333,
+                                                    height:height/8.68,
                                                     child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                 Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),),
 
@@ -7935,16 +7935,16 @@ bool printingjob= false;
                                 ],
                               ),
                             ),
-                            SizedBox(width: 50,),
+                            SizedBox(width: width/27.32,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 10,),
+                                SizedBox(height:height/65.1,),
                                 Text("Card Design 2",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                 Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                                 Container(
-                                  width: 465,
+                                  width: width/2.937634408602151,
                                   child: ColorPicker(
                                     colorPickerWidth: 120,
                                     pickerColor: pickerColor2,
@@ -7961,7 +7961,7 @@ bool printingjob= false;
 
                                   ),
                                 ),
-                                SizedBox(height: 10,),
+                                SizedBox(height:height/65.1,),
                                 InkWell(
                                   onTap: (){
                                     selectdesign("2");
@@ -7989,7 +7989,7 @@ bool printingjob= false;
                             ),
                           ],
                         ),
-                        SizedBox(height: 55,),
+                        SizedBox(height:height/11.83636363636364,),
                         Row(
                           children: [
                             Column(
@@ -7997,8 +7997,8 @@ bool printingjob= false;
                                 Material(
 
                                   child: Container(
-                                    width: 410,
-                                    height: 260,
+                                    width: width/3.331707317073171,
+                                    height:height/2.503846153846154,
 
                                     child: Stack(
                                       children: [
@@ -8019,17 +8019,17 @@ bool printingjob= false;
                                             Row(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
-                                                SizedBox(width:30),
+                                                SizedBox(width: width/45.53333333333333),
                                                 Container(
-                                                    width:60,
-                                                    height:60,
+                                                    width: width/22.76666666666667,
+                                                    height:height/10.85,
                                                     child: Image.network(schoollogo)),
-                                                SizedBox(width:5),
+                                                SizedBox(width: width/273.2),
                                                 Column(
                                                   crossAxisAlignment:CrossAxisAlignment.start,
                                                   children: [
                                                     Container(
-                                                width:250,
+                                                width: width/5.464,
                                                       child: Text(schoolname,style: GoogleFonts.poppins(
                                                           color: pickerColor3, fontSize: 15,fontWeight: FontWeight.w600),),
                                                     ),
@@ -8050,13 +8050,13 @@ bool printingjob= false;
 
                                             Row(
                                               children: [
-                                                SizedBox(width:10),
+                                                SizedBox(width: width/136.6),
                                                 Stack(
                                                   alignment: Alignment.center,
                                                   children: [
                                                     Container(
-                                                      width: 120,
-                                                      height: 120,
+                                                      width: width/11.38333333333333,
+                                                      height:height/5.425,
                                                       decoration: BoxDecoration(
                                                           color: pickerColor3,
                                                           borderRadius: BorderRadius.circular(60)
@@ -8091,10 +8091,10 @@ bool printingjob= false;
                                                         child: Text("ID: VBSB004",style: GoogleFonts.poppins(
                                                             color:  pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                       ),
-                                                      SizedBox(height: 10,),
+                                                      SizedBox(height:height/65.1,),
                                                       Row(
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Text("Class       : ",style: GoogleFonts.poppins(
                                                               color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           Text("LKG A",style: GoogleFonts.poppins(
@@ -8103,7 +8103,7 @@ bool printingjob= false;
                                                       ),
                                                       Row(
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                               color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -8113,7 +8113,7 @@ bool printingjob= false;
                                                       ),
                                                       Row(
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Text("Blood Group       : ",style: GoogleFonts.poppins(
                                                               color:pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           Text("B+ve",style: GoogleFonts.poppins(
@@ -8122,7 +8122,7 @@ bool printingjob= false;
                                                       ),
                                                       Row(
                                                         children: [
-                                                          SizedBox(width: 20,),
+                                                          SizedBox(width: width/68.3,),
                                                           Text("Emergency Contact No    : ",style: GoogleFonts.poppins(
                                                               color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                           Text("789456213",style: GoogleFonts.poppins(
@@ -8143,12 +8143,12 @@ bool printingjob= false;
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 30,),
+                                SizedBox(height:height/21.7,),
                                 Material(
 
                                   child: Container(
-                                    width: 410,
-                                    height: 260,
+                                    width: width/3.331707317073171,
+                                    height:height/2.503846153846154,
 
                                     child: Stack(
                                       children: [
@@ -8163,15 +8163,15 @@ bool printingjob= false;
                                                   Opacity(
                                                     opacity:0.39,
                                                     child: Container(
-                                                        width: 75,
-                                                        height: 75,
+                                                        width: width/18.21333333333333,
+                                                        height:height/8.68,
                                                         child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                   ),
 
                                                   Opacity(
                                                       opacity:0.39,
                                                       child: Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: 7),)),
-                                                  SizedBox(height:7),
+                                                  SizedBox(height:height/93),
                                                 ],
                                               ),
                                             ],
@@ -8193,10 +8193,10 @@ bool printingjob= false;
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
-                                                  SizedBox(width:15),
+                                                  SizedBox(width: width/91.06666666666667),
                                                   Container(
-                                                      width:60,
-                                                      height:60,
+                                                      width: width/22.76666666666667,
+                                                      height:height/10.85,
                                                       child: Image.network(schoollogo)),
                                                   SizedBox(width:0),
                                                   Column(
@@ -8230,9 +8230,9 @@ bool printingjob= false;
                                               SizedBox(height: 5,),
                                               Row(
                                                 children: [
-                                                  SizedBox(width: 20,),
+                                                  SizedBox(width: width/68.3,),
                                                   Container(
-                                                    width: 110,
+                                                    width: width/12.41818181818182,
                                                     child: Text("Emergency Contact No : ",style: GoogleFonts.poppins(
                                                         color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                   ),
@@ -8243,9 +8243,9 @@ bool printingjob= false;
                                               Row(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  SizedBox(width: 20,),
+                                                  SizedBox(width: width/68.3,),
                                                   Container(
-                                                    width: 110,
+                                                    width: width/12.41818181818182,
                                                     child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                         color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -8270,16 +8270,16 @@ bool printingjob= false;
                               ],
                             ),
 
-                            SizedBox(width: 150,),
+                            SizedBox(width: width/9.106666666666667,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 10,),
+                                SizedBox(height:height/65.1,),
                                 Text("Card Design 3",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                 Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                                 Container(
-                                  width: 465,
+                                  width: width/2.937634408602151,
                                   child: ColorPicker(
                                     colorPickerWidth: 120,
                                     pickerColor: pickerColor3,
@@ -8296,7 +8296,7 @@ bool printingjob= false;
 
                                   ),
                                 ),
-                                SizedBox(height: 10,),
+                                SizedBox(height:height/65.1,),
                                 InkWell(
                                   onTap: (){
                                     selectdesign("3");
@@ -8324,13 +8324,13 @@ bool printingjob= false;
                             ),
                           ],
                         ),
-                        SizedBox(height: 20,)
+                        SizedBox(height:height/32.55,)
                       ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 20,)
+              SizedBox(height:height/32.55,)
             ],
           ),
         ),
@@ -8338,8 +8338,9 @@ bool printingjob= false;
     );
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,

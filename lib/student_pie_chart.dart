@@ -114,12 +114,14 @@ class _StudentPieChartState extends State<StudentPieChart> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
 
         Container(
-          width:260,
+          width: width/5.253846153846154,
           child: PieChart(
             PieChartData(
               pieTouchData: PieTouchData(
@@ -146,7 +148,7 @@ class _StudentPieChartState extends State<StudentPieChart> {
           ),
         ),
         Container(
-          width: 230,
+          width: width/5.939130434782609,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +176,7 @@ class _StudentPieChartState extends State<StudentPieChart> {
                 isSquare: true,
               ),
               SizedBox(
-                height: 18,
+                height:height/36.16666666666667,
               ),
             ],
           ),
@@ -604,7 +606,7 @@ class _StudentPieChartState extends State<StudentPieChart> {
 //       children: <Widget>[
 //
 //         Container(
-//           width:260,
+//           width: width/5.253846153846154,
 //           child: PieChart(
 //             PieChartData(
 //               pieTouchData: PieTouchData(
@@ -631,7 +633,7 @@ class _StudentPieChartState extends State<StudentPieChart> {
 //           ),
 //         ),
 //         Container(
-//           width: 230,
+//           width: width/5.939130434782609,
 //           child: Column(
 //             mainAxisAlignment: MainAxisAlignment.center,
 //             crossAxisAlignment: CrossAxisAlignment.start,
@@ -659,7 +661,7 @@ class _StudentPieChartState extends State<StudentPieChart> {
 //                 isSquare: true,
 //               ),
 //               SizedBox(
-//                 height: 18,
+//                 height:height/36.16666666666667,
 //               ),
 //             ],
 //           ),

@@ -59,7 +59,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Center(
                 child: Container(
-                  height: 70,
+                  height:height/9.3,
                   width: size.width * 0.9,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -209,7 +209,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                 //           children: [
                                 //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //
-                                //             SizedBox(width: 40,),
+                                //             SizedBox(width: width/34.15,),
                                 //
                                 //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //           ],
@@ -322,7 +322,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                 //           children: [
                                 //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //
-                                //             SizedBox(width: 40,),
+                                //             SizedBox(width: width/34.15,),
                                 //
                                 //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //           ],
@@ -434,7 +434,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                                 //           children: [
                                 //             Text("Date: ${value["Date"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //
-                                //             SizedBox(width: 40,),
+                                //             SizedBox(width: width/34.15,),
                                 //
                                 //             Text("Time: ${value["Time"]}",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.w600,color: Color(0xff00A0E3)),textAlign: TextAlign.left,),
                                 //           ],
@@ -614,14 +614,14 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 6),
+                        SizedBox(height: height/108.5),
                         Material(
                           borderRadius: BorderRadius.circular(5),
                           color: Colors.white,
                           elevation: 10,
                           child: SizedBox(
-                            height: 50,
-                            width: 350,
+                            height:height/13.02,
+                            width: width/3.902857142857143,
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: height/81.375,
@@ -640,7 +640,7 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                             ),
                           ),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height:height/65.1),
                         Text(
                           "Description",
                           style: GoogleFonts.openSans(
@@ -648,14 +648,14 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 6),
+                        SizedBox(height: height/108.5),
                         Material(
                           borderRadius: BorderRadius.circular(5),
                           color: Colors.white,
                           elevation: 10,
                           child: SizedBox(
-                            height: 130,
-                            width: 350,
+                            height:height/5.007692307692308,
+                            width: width/3.902857142857143,
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: height/81.375,

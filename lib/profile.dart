@@ -100,8 +100,9 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
   }
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -120,8 +121,9 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
     )..show();
   }
   Successdialogd(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -138,8 +140,9 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
     )..show();
   }
   Successdialog2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -254,10 +257,10 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -353,7 +356,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                               child: Text("School Profile",style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight:FontWeight.w700),),
                             ),
                             SizedBox(
-                                width:900
+                                width: width/1.517777777777778
                             ),
 
                             Padding(
@@ -398,7 +401,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
 
                                   child: Text("School Details",
                                     style: GoogleFonts.poppins(
-                                        fontSize:20),),
+                                        fontSize: width/68.3),),
                                 )
                             ),
                             Tab(
@@ -406,7 +409,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
 
                                   child: Text("Classes",
                                     style: GoogleFonts.poppins(
-                                        fontSize:20),),
+                                        fontSize: width/68.3),),
                                 )
                             ),
                             Tab(
@@ -414,7 +417,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
 
                                   child: Text("Bulk Upload",
                                     style: GoogleFonts.poppins(
-                                        fontSize:20),),
+                                        fontSize: width/68.3),),
                                 )
                             ),
                             Tab(
@@ -422,7 +425,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
 
                                   child: Text("Subjects",
                                     style: GoogleFonts.poppins(
-                                        fontSize:20),),
+                                        fontSize: width/68.3),),
                                 )
                             ),
                             Tab(
@@ -430,7 +433,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
 
                                   child: Text("Fees",
                                     style: GoogleFonts.poppins(
-                                        fontSize:20),),
+                                        fontSize: width/68.3),),
                                 )
                             ),
                             Tab(
@@ -438,7 +441,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
 
                                   child: Text("Designation",
                                     style: GoogleFonts.poppins(
-                                        fontSize:20),),
+                                        fontSize: width/68.3),),
                                 )
                             ),
                           ],
@@ -483,8 +486,8 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   uploadToStorage();
                                 },
                                 child: Container(
-                                    width: 170,
-                                    height: 170,
+                                    width: width/8.035294117647059,
+                                    height:height/3.829411764705882,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(100)
                                     ),
@@ -505,7 +508,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                             ),
                           ),
 
-                          SizedBox(height: 20,),
+                          SizedBox(height:height/32.55,),
 
 
                         ],
@@ -910,7 +913,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                   ),
                                   ),
                                 ),
-                                SizedBox(width: 20,),
+                                SizedBox(width: width/68.3,),
                                 InkWell(
                                   onTap: (){
                                     setState(() {
@@ -1137,7 +1140,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 8.0,right: 8.0),
                                                         child: Container(
-                                                            width:150,
+                                                            width: width/9.106666666666667,
                                                             child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                       ),
                                                       deletecheck[index]==true?     InkWell(
@@ -1148,7 +1151,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                             padding:
                                                             const EdgeInsets.only(left: 15.0),
                                                             child: Container(
-                                                                width: 30,
+                                                                width: width/45.53333333333333,
 
                                                                 child: Image.asset("assets/delete.png"))
                                                         ),
@@ -1334,7 +1337,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                        child: Container(width:150,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                        child: Container(width: width/9.106666666666667,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                       ),
                                                       deletecheck2[index]==true?     InkWell(
                                                         onTap: (){
@@ -1344,7 +1347,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                             padding:
                                                             const EdgeInsets.only(left: 15.0),
                                                             child: Container(
-                                                                width: 30,
+                                                                width: width/45.53333333333333,
 
                                                                 child: Image.asset("assets/delete.png"))
                                                         ),
@@ -1529,7 +1532,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                        child: Container(width:110,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                        child: Container(width: width/12.41818181818182,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                       ),
                                                       deletecheck3[index]==true?     InkWell(
                                                         onTap: (){
@@ -1539,7 +1542,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                             padding:
                                                             const EdgeInsets.only(left: 15.0),
                                                             child: Container(
-                                                                width: 30,
+                                                                width: width/45.53333333333333,
 
                                                                 child: Image.asset("assets/delete.png"))
                                                         ),
@@ -1760,7 +1763,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
                                                             padding:
                                                             const EdgeInsets.only(left: 15.0),
                                                             child: Container(
-                                                                width: 30,
+                                                                width: width/45.53333333333333,
 
                                                                 child: Image.asset("assets/delete.png"))
                                                         ),
@@ -1917,10 +1920,10 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin{
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Profile Updated Sucessfully',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child:  Lottie.asset("assets/uploaded.json")
                 ),
@@ -1979,14 +1982,14 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
     return Container(
         child: Row(
           children: [
-            SizedBox(width:150),
+            SizedBox(width: width/9.106666666666667),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text("Download the sample template here",style: GoogleFonts.poppins(
-                      color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                      color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -1996,13 +1999,13 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
             ),
             Column(
       children: [
-            SizedBox(height:20),
+            SizedBox(height:height/32.55),
             Text(selectfile==false?'Bulk Upload Students': "Your File is Uploaded to Database",style: GoogleFonts.poppins(
-                color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
 
             Container(
-                width: 400,
-                height: 350,
+                width: width/3.415,
+                height:height/1.86,
 
                 child: selectfile==false? Lottie.asset("assets/file choosing.json"):Lottie.asset("assets/uploaded.json",repeat: false)),
             selectfile==false?  InkWell(

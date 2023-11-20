@@ -221,9 +221,9 @@ class _ProgressReportState extends State<ProgressReport> {
                     Row(
                       children: [
                         Text("Progress Reports",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
-                        SizedBox(width: 650,),
+                        SizedBox(width: width/2.101538461538462,),
 
-                        SizedBox(width: 10,),
+                        SizedBox(width: width/136.6,),
                         InkWell(
                           onTap: (){
                             setState(() {
@@ -256,7 +256,7 @@ class _ProgressReportState extends State<ProgressReport> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10,),
+                        SizedBox(width: width/136.6,),
                         InkWell(
                           onTap: (){
                             setState(() {
@@ -455,7 +455,7 @@ class _ProgressReportState extends State<ProgressReport> {
 
                             ),
                           ),
-                          SizedBox(width: 15,),
+                          SizedBox(width: width/91.06666666666667,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -479,7 +479,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                           color: Colors.black,
                                         ),
                                         SizedBox(
-                                          width: 4,
+                                          width: width/341.5,
                                         ),
                                         Expanded(
                                           child: Text(
@@ -511,8 +511,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                       });
                                     },
                                     buttonStyleData: ButtonStyleData(
-                                      height: 50,
-                                      width: 160,
+                                      height:height/13.02,
+                                      width: width/8.5375,
                                       padding: const EdgeInsets.only(left: 14, right: 14),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
@@ -530,7 +530,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                       iconDisabledColor: Colors.grey,
                                     ),
                                     dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
+                                      maxHeight:height/3.255,
                                       width: width/5.464,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
@@ -543,8 +543,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                         thumbVisibility: MaterialStateProperty.all<bool>(true),
                                       ),
                                     ),
-                                    menuItemStyleData: const MenuItemStyleData(
-                                      height: 40,
+                                    menuItemStyleData:  MenuItemStyleData(
+                                      height:height/16.275,
                                       padding: EdgeInsets.only(left: 14, right: 14),
                                     ),
                                   ),
@@ -581,7 +581,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                           color: Colors.black,
                                         ),
                                         SizedBox(
-                                          width: 4,
+                                          width: width/341.5,
                                         ),
                                         Expanded(
                                           child: Text(
@@ -613,8 +613,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                       });
                                     },
                                     buttonStyleData: ButtonStyleData(
-                                      height: 50,
-                                      width: 160,
+                                      height:height/13.02,
+                                      width: width/8.5375,
                                       padding: const EdgeInsets.only(left: 14, right: 14),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
@@ -632,7 +632,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                       iconDisabledColor: Colors.grey,
                                     ),
                                     dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
+                                      maxHeight:height/3.255,
                                       width: width/5.464,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
@@ -645,8 +645,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                         thumbVisibility: MaterialStateProperty.all<bool>(true),
                                       ),
                                     ),
-                                    menuItemStyleData: const MenuItemStyleData(
-                                      height: 40,
+                                    menuItemStyleData:  MenuItemStyleData(
+                                      height:height/16.275,
                                       padding: EdgeInsets.only(left: 14, right: 14),
                                     ),
                                   ),
@@ -804,7 +804,7 @@ class _ProgressReportState extends State<ProgressReport> {
                               ),
                               Container(
                                 width: width/1.866,
-                                height: 600,
+                                height:height/1.085,
                                 child: StreamBuilder<QuerySnapshot>(
                                     stream: FirebaseFirestore.instance.collection("Students").orderBy("timestamp").snapshots(),
 
@@ -950,8 +950,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                         elevation: 1,
                                                         borderRadius: BorderRadius.circular(50),
                                                         child: Container(
-                                                            width:50,
-                                                            height: 50,
+                                                            width: width/27.32,
+                                                            height:height/13.02,
                                                             decoration: BoxDecoration(
                                                                 borderRadius: BorderRadius.circular(50)
                                                             ),
@@ -1111,8 +1111,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                         elevation: 1,
                                                         borderRadius: BorderRadius.circular(50),
                                                         child: Container(
-                                                            width:50,
-                                                            height: 50,
+                                                            width: width/27.32,
+                                                            height:height/13.02,
                                                             decoration: BoxDecoration(
                                                                 borderRadius: BorderRadius.circular(50)
                                                             ),
@@ -1273,8 +1273,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                         elevation: 1,
                                                         borderRadius: BorderRadius.circular(50),
                                                         child: Container(
-                                                            width:50,
-                                                            height: 50,
+                                                            width: width/27.32,
+                                                            height:height/13.02,
                                                             decoration: BoxDecoration(
                                                                 borderRadius: BorderRadius.circular(50)
                                                             ),
@@ -1434,8 +1434,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                 return Row(
                                   children: [
                                     Container(
-                                      width: 350,
-                                      height: 640,
+                                      width: width/3.902857142857143,
+                                      height:height/1.0171875,
                                       decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1448,8 +1448,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                   color:Colors.white,
                                                   borderRadius: BorderRadius.circular(15)
                                               ),
-                                              width: 350,
-                                              height: 640,
+                                              width: width/3.902857142857143,
+                                              height:height/1.0171875,
                                               child: Column(
                                                 children: [
                                                   SizedBox(height:height/30,),
@@ -1545,8 +1545,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                           FontWeight
                                                                               .w600),),
                                                                       trailing: Container(
-                                                                        height: 27,
-                                                                        width: 85,
+                                                                        height:height/24.11111111111111,
+                                                                        width: width/16.07058823529412,
                                                                         //   "Outstanding", "Excellent", "Good","Satisfactory", "Focus Needed"
                                                                         decoration: BoxDecoration(
                                                                             color: snap.data!.docs[index]["value"]
@@ -1696,14 +1696,14 @@ class _ProgressReportState extends State<ProgressReport> {
                                                     List<ExamWithSubjectModel> exams = snap.data!;
                                                     return Container(
                                                       width: width/1.866,
-                                                      height: 600,
+                                                      height:height/1.085,
                                                       child: Padding(
                                                         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                                                         child: SingleChildScrollView(
                                                           child: Column(
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              SizedBox(height: 10),
+                                                              SizedBox(height:height/65.1),
 
                                                               FutureBuilder(
                                                                 future: getMonthlyAttendanceReportForStudent(studentid),
@@ -1717,7 +1717,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                               Row(
                                                                                 mainAxisAlignment : MainAxisAlignment.center,
                                                                                 children: [
-                                                                                  SizedBox(width: 50),
+                                                                                  SizedBox(width: width/27.32),
                                                                                   CircularPercentIndicator(
                                                                                     circularStrokeCap: CircularStrokeCap.round,
                                                                                     radius: 45.0,
@@ -1746,7 +1746,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                       elevation: 1.5, selected: true,),
 
                                                                                   ),
-                                                                                  SizedBox(width: 50),
+                                                                                  SizedBox(width: width/27.32),
                                                                                   CircularPercentIndicator(
                                                                                     circularStrokeCap: CircularStrokeCap.round,
                                                                                     radius: 45.0,
@@ -1775,7 +1775,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                       elevation: 1.5, selected: true,),
 
                                                                                   ),
-                                                                                  SizedBox(width: 50),
+                                                                                  SizedBox(width: width/27.32),
                                                                                 ],
                                                                               ),
                                                                             ]
@@ -1785,7 +1785,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                   }return Container();
                                                                 },
                                                               ),
-                                                              SizedBox(height: 30),
+                                                              SizedBox(height:height/21.7),
                                                               Text(
                                                                 "Exam Reports",
                                                                 style: TextStyle(
@@ -1793,7 +1793,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                   fontWeight: FontWeight.w700,
                                                                 ),
                                                               ),
-                                                              SizedBox(height: 30),
+                                                              SizedBox(height:height/21.7),
                                                               Row(
                                                                 children: [
                                                                   for(int i = 0; i < exams.length+1; i++)
@@ -1802,8 +1802,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                         for(int j = 0; j < exams.first.subjects.length+1; j++)
                                                                          j == 0
                                                                              ? Container(
-                                                                            height: j==0 ? 60 : 50,
-                                                                            width: 180,
+                                                                            height: j==0 ? height/10.85 : height/13.02,
+                                                                            width: width/7.588888888888889,
                                                                             decoration: BoxDecoration(
                                                                               color: Colors.transparent,
                                                                               //color: j == 0 ? Color(0xffF7983E) : i ==0 ? Color(0xffA75BF4) : Colors.transparent,
@@ -1813,7 +1813,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                               children: [
                                                                                 Container(
                                                                                   height: (i == 0 && j == 0) ? 58 : 30,
-                                                                                  width: 180,
+                                                                                  width: width/7.588888888888889,
                                                                                   child: Center(
                                                                                     child: Text(
                                                                                       (i == 0 && j == 0)
@@ -1835,7 +1835,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                   child: Row(
                                                                                     children: [
                                                                                       Container(
-                                                                                        height: 28,
+                                                                                        height:height/23.25,
                                                                                         width: 60,
                                                                                         decoration: const BoxDecoration(
                                                                                           color: Colors.transparent,
@@ -1857,8 +1857,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                         ),
                                                                                       ),
                                                                                       Container(
-                                                                                        height: 28,
-                                                                                        width: 59,
+                                                                                        height:height/23.25,
+                                                                                        width: width/23.15254237288136,
                                                                                         decoration: BoxDecoration(
                                                                                           color: Colors.transparent,
                                                                                             border: Border(
@@ -1879,8 +1879,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                         ),
                                                                                       ),
                                                                                       Container(
-                                                                                        height: 28,
-                                                                                        width: 59,
+                                                                                        height:height/23.25,
+                                                                                        width: width/23.15254237288136,
                                                                                         decoration: BoxDecoration(
                                                                                           color: Colors.transparent,
                                                                                             border: Border(
@@ -1907,8 +1907,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                           )
                                                                              : i == 0
                                                                              ? Container(
-                                                                           height: j==0 ? 60 : 50,
-                                                                           width: 180,
+                                                                           height: j==0 ? height/10.85 : height/13.02,
+                                                                           width: width/7.588888888888889,
                                                                            decoration: BoxDecoration(
                                                                              color: Colors.transparent,
                                                                              //color: j == 0 ? Color(0xffF7983E) : i ==0 ? Color(0xffA75BF4) : Colors.transparent,
@@ -1935,7 +1935,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                              : Row(
                                                                                children: [
                                                                                  Container(
-                                                                                   height: j==0 ? 60 : 50,
+                                                                                   height: j==0 ? height/10.85 : height/13.02,
                                                                                    width: 60,
                                                                                    decoration: BoxDecoration(
                                                                                      color: Colors.transparent,
@@ -1961,7 +1961,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                    ),
                                                                                  ),
                                                                                  Container(
-                                                                                     height: j==0 ? 60 : 50,
+                                                                                     height: j==0 ? height/10.85 : height/13.02,
                                                                                      width: 60,
                                                                                      decoration: BoxDecoration(
                                                                                        color: Colors.transparent,
@@ -1987,7 +1987,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                      ),
                                                                          ),
                                                                                  Container(
-                                                                                   height: j==0 ? 60 : 50,
+                                                                                   height: j==0 ? height/10.85 : height/13.02,
                                                                                    width: 60,
                                                                                    decoration: BoxDecoration(
                                                                                      color: Colors.transparent,
@@ -2018,12 +2018,12 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                     )
                                                                 ],
                                                               ),
-                                                              SizedBox(height: 30),
+                                                              SizedBox(height:height/21.7),
                                                               Row(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
                                                                   Container(
-                                                                    height: 25,
+                                                                    height:height/26.04,
                                                                     decoration: BoxDecoration(
                                                                       borderRadius: BorderRadius.circular(3),
                                                                       border: Border.all(),
@@ -2061,9 +2061,9 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  SizedBox(width: 30),
+                                                                  SizedBox(width: width/45.53333333333333),
                                                                   Container(
-                                                                    height: 25,
+                                                                    height:height/26.04,
                                                                     decoration: BoxDecoration(
                                                                       borderRadius: BorderRadius.circular(3),
                                                                       border: Border.all(),
@@ -2101,9 +2101,9 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  SizedBox(width: 30),
+                                                                  SizedBox(width: width/45.53333333333333),
                                                                   Container(
-                                                                    height: 25,
+                                                                    height:height/26.04,
                                                                     decoration: BoxDecoration(
                                                                       borderRadius: BorderRadius.circular(3),
                                                                       border: Border.all(),
@@ -2141,9 +2141,9 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  SizedBox(width: 30),
+                                                                  SizedBox(width: width/45.53333333333333),
                                                                   Container(
-                                                                    height: 25,
+                                                                    height:height/26.04,
                                                                     decoration: BoxDecoration(
                                                                       borderRadius: BorderRadius.circular(3),
                                                                       border: Border.all(),
@@ -2181,14 +2181,14 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  SizedBox(width: 30),
+                                                                  SizedBox(width: width/45.53333333333333),
                                                                   InkWell(
                                                                     onTap: ()  {
                                                                       print("S1");
                                                                        generateProgressReportPdf(PdfPageFormat.a4, exams, value,schoolName,schoolAddress,schoolLogo);
                                                                     },
                                                                     child: Container(
-                                                                      height: 25,
+                                                                      height:height/26.04,
                                                                       decoration: BoxDecoration(
                                                                         color: Colors.lightBlue,
                                                                         borderRadius: BorderRadius.circular(3),
@@ -2216,7 +2216,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                     );
                                                   }return Container(
                                                     width: width/1.866,
-                                                    height: 600,
+                                                    height:height/1.085,
                                                     child: Stack(
                                                       alignment: Alignment.center,
                                                       children: [
@@ -2226,7 +2226,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                             child: Column(
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                SizedBox(height: 10),
+                                                                SizedBox(height:height/65.1),
                                                                 Row(
                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                   children: [
@@ -2235,7 +2235,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                          Row(
                                                                            mainAxisAlignment : MainAxisAlignment.center,
                                                                            children: [
-                                                                             SizedBox(width: 50),
+                                                                             SizedBox(width: width/27.32),
                                                                              CircularPercentIndicator(
                                                                                circularStrokeCap: CircularStrokeCap.round,
                                                                                radius: 45.0,
@@ -2264,7 +2264,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                  elevation: 1.5, selected: true,),
 
                                                                              ),
-                                                                             SizedBox(width: 50),
+                                                                             SizedBox(width: width/27.32),
                                                                              CircularPercentIndicator(
                                                                                circularStrokeCap: CircularStrokeCap.round,
                                                                                radius: 45.0,
@@ -2293,14 +2293,14 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                                  elevation: 1.5, selected: true,),
 
                                                                              ),
-                                                                             SizedBox(width: 50),
+                                                                             SizedBox(width: width/27.32),
                                                                            ],
                                                                          ),
                                                                        ]
                                                                         )
                                                                   ],
                                                                 ),
-                                                                SizedBox(height: 30),
+                                                                SizedBox(height:height/21.7),
                                                                 Text(
                                                                   "Exam Reports",
                                                                   style: TextStyle(
@@ -2308,7 +2308,7 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                     fontWeight: FontWeight.w700,
                                                                   ),
                                                                 ),
-                                                                SizedBox(height: 30),
+                                                                SizedBox(height:height/21.7),
                                                                 Row(
                                                                   children: [
                                                                     for(int i = 0; i < 8; i++)
@@ -2316,8 +2316,8 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                         children: [
                                                                           for(int j =0; j < 7; j ++)
                                                                             Container(
-                                                                              height: j == 0 ? 60 : 40,
-                                                                              width: 80,
+                                                                              height: j == 0 ? height/10.85 : height/16.275,
+                                                                              width: width/17.075,
                                                                               decoration: BoxDecoration(
                                                                                   color: Colors.transparent,
                                                                                   border: Border.all(
@@ -2365,12 +2365,12 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                       )
                                                                   ],
                                                                 ),
-                                                                SizedBox(height: 30),
+                                                                SizedBox(height:height/21.7),
                                                                 Row(
                                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
                                                                     Container(
-                                                                      height: 25,
+                                                                      height:height/26.04,
                                                                       decoration: BoxDecoration(
                                                                         borderRadius: BorderRadius.circular(3),
                                                                         border: Border.all(),
@@ -2408,9 +2408,9 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                         ],
                                                                       ),
                                                                     ),
-                                                                    SizedBox(width: 30),
+                                                                    SizedBox(width: width/45.53333333333333),
                                                                     Container(
-                                                                      height: 25,
+                                                                      height:height/26.04,
                                                                       decoration: BoxDecoration(
                                                                         borderRadius: BorderRadius.circular(3),
                                                                         border: Border.all(),
@@ -2448,9 +2448,9 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                         ],
                                                                       ),
                                                                     ),
-                                                                    SizedBox(width: 30),
+                                                                    SizedBox(width: width/45.53333333333333),
                                                                     Container(
-                                                                      height: 25,
+                                                                      height:height/26.04,
                                                                       decoration: BoxDecoration(
                                                                         borderRadius: BorderRadius.circular(3),
                                                                         border: Border.all(),
@@ -2488,9 +2488,9 @@ class _ProgressReportState extends State<ProgressReport> {
                                                                         ],
                                                                       ),
                                                                     ),
-                                                                    SizedBox(width: 30),
+                                                                    SizedBox(width: width/45.53333333333333),
                                                                     Container(
-                                                                      height: 25,
+                                                                      height:height/26.04,
                                                                       decoration: BoxDecoration(
                                                                         borderRadius: BorderRadius.circular(3),
                                                                         border: Border.all(),
@@ -2557,7 +2557,7 @@ class _ProgressReportState extends State<ProgressReport> {
                 ),
               ),
             ),
-            SizedBox(height: 25,)
+            SizedBox(height:height/26.04,)
           ],
         ),
       ),

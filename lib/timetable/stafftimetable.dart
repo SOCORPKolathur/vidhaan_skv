@@ -244,8 +244,9 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
   }
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -259,8 +260,9 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
     )..show();
   }
   Successdialog2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -383,7 +385,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Staff Time Table",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
-                  SizedBox(width:10),
+                  SizedBox(width: width/136.6),
                 ],
               ),
             ),
@@ -411,7 +413,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Staff ID",style: GoogleFonts.poppins(fontSize: 15,)),
+                            child: Text("Staff ID",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -429,7 +431,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
 
                               textFieldConfiguration: TextFieldConfiguration(
                                 style:  GoogleFonts.poppins(
-                                    fontSize: 15,
+                                    fontSize: width/91.06666666666667,
 
                                 ),
                                 decoration: InputDecoration(
@@ -479,7 +481,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right:0.0),
-                            child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: 15,)),
+                            child: Text("Staff Name",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0,right: 25),
@@ -496,7 +498,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
 
                               textFieldConfiguration: TextFieldConfiguration(
                                 style:  GoogleFonts.poppins(
-                                    fontSize: 15
+                                    fontSize: width/91.06666666666667
                                 ),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 10,bottom: 8),
@@ -611,80 +613,80 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height:height/65.1,),
                 Row(
                   children: [
                     Container(
-                      height: 40,
-                      width: 150,
+                      height:height/16.275,
+                      width: width/9.106666666666667,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
-                      child: Center(child: Text("Day/Period",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
+                      child: Center(child: Text("Day/Period",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
-                      child: Center(child: Text("Period -01",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
+                      child: Center(child: Text("Period -01",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
-                      child: Center(child: Text("Period -02",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
+                      child: Center(child: Text("Period -02",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
-                      child: Center(child: Text("Period -03",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
+                      child: Center(child: Text("Period -03",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
-                      child: Center(child: Text("Period -04",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
+                      child: Center(child: Text("Period -04",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
-                      child: Center(child: Text("Period -05",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
+                      child: Center(child: Text("Period -05",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
-                      child: Center(child: Text("Period -06",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
+                      child: Center(child: Text("Period -06",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
-                      child: Center(child: Text("Period -07",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
+                      child: Center(child: Text("Period -07",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
-                      child: Center(child: Text("Period -08",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
+                      child: Center(child: Text("Period -08",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,fontWeight: FontWeight.w600),)),
                     ),
                   ],
                 ),
@@ -696,18 +698,18 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                         return Row(
                           children: [
                             Container(
-                              height: 40,
-                              width: 150,
+                              height:height/16.275,
+                              width: width/9.106666666666667,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
                               child: Center(child: Text("Monday",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 15, fontWeight: FontWeight.w600),)),
+                                    fontSize: width/91.06666666666667, fontWeight: FontWeight.w600),)),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -724,7 +726,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                                 textFieldConfiguration: TextFieldConfiguration(
 
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15,
+                                      fontSize: width/91.06666666666667,
                                     color: texteditingmonday[0].text=="Free"?Colors.green :Colors.black,
                                   ),
 
@@ -761,8 +763,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -779,7 +781,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
 
                                 textFieldConfiguration: TextFieldConfiguration(
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15,
+                                      fontSize: width/91.06666666666667,
                                     color: texteditingmonday[1].text=="Free"?Colors.green :Colors.black,
                                   ),
                                   decoration: InputDecoration(
@@ -814,8 +816,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -832,7 +834,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
 
                                 textFieldConfiguration: TextFieldConfiguration(
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15,
+                                      fontSize: width/91.06666666666667,
                                     color: texteditingmonday[2].text=="Free"?Colors.green :Colors.black,
                                   ),
                                   decoration: InputDecoration(
@@ -867,8 +869,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -885,7 +887,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
 
                                 textFieldConfiguration: TextFieldConfiguration(
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15,
+                                      fontSize: width/91.06666666666667,
                                     color: texteditingmonday[3].text=="Free"?Colors.green :Colors.black,
                                   ),
                                   decoration: InputDecoration(
@@ -920,8 +922,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -938,7 +940,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
 
                                 textFieldConfiguration: TextFieldConfiguration(
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15,
+                                      fontSize: width/91.06666666666667,
                                     color: texteditingmonday[4].text=="Free"?Colors.green :Colors.black,
                                   ),
                                   decoration: InputDecoration(
@@ -973,8 +975,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -991,7 +993,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
 
                                 textFieldConfiguration: TextFieldConfiguration(
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15,
+                                      fontSize: width/91.06666666666667,
                                     color: texteditingmonday[5].text=="Free"?Colors.green :Colors.black,
                                   ),
                                   decoration: InputDecoration(
@@ -1026,8 +1028,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1044,7 +1046,7 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
 
                                 textFieldConfiguration: TextFieldConfiguration(
                                   style: GoogleFonts.poppins(
-                                      fontSize: 15,
+                                      fontSize: width/91.06666666666667,
                                     color: texteditingmonday[6].text=="Free"?Colors.green :Colors.black,
                                   ),
                                   decoration: InputDecoration(
@@ -1079,8 +1081,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1145,8 +1147,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                         return Row(
                           children: [
                             Container(
-                              height: 40,
-                              width: 150,
+                              height:height/16.275,
+                              width: width/9.106666666666667,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1155,8 +1157,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                                     fontSize: 15, fontWeight: FontWeight.w600),)),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1208,8 +1210,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1261,8 +1263,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1314,8 +1316,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1367,8 +1369,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1420,8 +1422,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1473,8 +1475,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1526,8 +1528,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1592,8 +1594,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                         return Row(
                           children: [
                             Container(
-                              height: 40,
-                              width: 150,
+                              height:height/16.275,
+                              width: width/9.106666666666667,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1602,8 +1604,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                                     fontSize: 15, fontWeight: FontWeight.w600),)),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1655,8 +1657,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1708,8 +1710,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1761,8 +1763,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1814,8 +1816,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1867,8 +1869,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1920,8 +1922,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -1973,8 +1975,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2039,8 +2041,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                         return Row(
                           children: [
                             Container(
-                              height: 40,
-                              width: 150,
+                              height:height/16.275,
+                              width: width/9.106666666666667,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2049,8 +2051,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                                     fontSize: 15, fontWeight: FontWeight.w600),)),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2102,8 +2104,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2155,8 +2157,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2208,8 +2210,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2261,8 +2263,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2314,8 +2316,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2367,8 +2369,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2420,8 +2422,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2486,8 +2488,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                         return Row(
                           children: [
                             Container(
-                              height: 40,
-                              width: 150,
+                              height:height/16.275,
+                              width: width/9.106666666666667,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2496,8 +2498,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                                     fontSize: 15, fontWeight: FontWeight.w600),)),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2549,8 +2551,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2602,8 +2604,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2655,8 +2657,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2708,8 +2710,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2761,8 +2763,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2814,8 +2816,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2867,8 +2869,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2933,8 +2935,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                         return Row(
                           children: [
                             Container(
-                              height: 40,
-                              width: 150,
+                              height:height/16.275,
+                              width: width/9.106666666666667,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2943,8 +2945,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                                     fontSize: 15, fontWeight: FontWeight.w600),)),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -2996,8 +2998,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -3049,8 +3051,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -3102,8 +3104,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -3155,8 +3157,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -3208,8 +3210,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -3261,8 +3263,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),
@@ -3314,8 +3316,8 @@ class _StaffTimeTableState extends State<StaffTimeTable> {
                               ),
                             ),
                             Container(
-                              height: 40,
-                              width: 100,
+                              height:height/16.275,
+                              width: width/13.66,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)
                               ),

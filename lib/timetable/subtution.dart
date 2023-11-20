@@ -297,7 +297,7 @@ class _SubtutionState extends State<Subtution>
                     style: GoogleFonts.poppins(
                         fontSize: width/75.888888889, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(width: 500),
+                  SizedBox(width: width/2.732),
                   InkWell(
                     onTap: () {
                       setState(() {
@@ -346,7 +346,7 @@ class _SubtutionState extends State<Subtution>
                 borderRadius: BorderRadius.circular(12)),
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height:height/32.55),
         Expanded(
           child: SizedBox(
             width: width,
@@ -366,7 +366,7 @@ class _SubtutionState extends State<Subtution>
                     ),
                     child: Row(
                       children: [
-                        SizedBox(width: 30),
+                        SizedBox(width: width/45.53333333333333),
                         SizedBox(
                           width: 80,
                           child: Text(
@@ -377,7 +377,7 @@ class _SubtutionState extends State<Subtution>
                           ),
                         ),
                         SizedBox(
-                          width: 100,
+                          width: width/13.66,
                           child: Text(
                             "Date",
                             style: GoogleFonts.poppins(
@@ -386,7 +386,7 @@ class _SubtutionState extends State<Subtution>
                           ),
                         ),
                         SizedBox(
-                          width: 200,
+                          width: width/6.83,
                           child: Text(
                             "Register No",
                             style: GoogleFonts.poppins(
@@ -395,7 +395,7 @@ class _SubtutionState extends State<Subtution>
                           ),
                         ),
                         SizedBox(
-                          width: 200,
+                          width: width/6.83,
                           child: Text(
                             "Staff Name",
                             style: GoogleFonts.poppins(
@@ -404,7 +404,7 @@ class _SubtutionState extends State<Subtution>
                           ),
                         ),
                         SizedBox(
-                          width: 200,
+                          width: width/6.83,
                           child: Text(
                             "Today Handling hours",
                             style: GoogleFonts.poppins(
@@ -413,7 +413,7 @@ class _SubtutionState extends State<Subtution>
                           ),
                         ),
                         SizedBox(
-                          width: 200,
+                          width: width/6.83,
                           child: Text(
                             "Actions",
                             style: GoogleFonts.poppins(
@@ -459,9 +459,9 @@ class _SubtutionState extends State<Subtution>
                                   padding: const EdgeInsets.symmetric(vertical: 10),
                                   child: Row(
                                     children: [
-                                      SizedBox(width: 40),
+                                      SizedBox(width: width/34.15),
                                       Container(
-                                        width: 60,
+                                        width: width/22.76666666666667,
                                         child: Text(
                                           (index+1).toString(),
                                           style: GoogleFonts.poppins(
@@ -471,7 +471,7 @@ class _SubtutionState extends State<Subtution>
                                         ),
                                       ),
                                       Container(
-                                        width: 110,
+                                        width: width/12.41818181818182,
                                         alignment: Alignment.center,
                                         child: Text(
                                           value["date"],
@@ -482,7 +482,7 @@ class _SubtutionState extends State<Subtution>
                                         ),
                                       ),
                                       Container(
-                                        width: 160,
+                                        width: width/8.5375,
                                         child: Text(
                                           value["staffRegNo"],
                                           style: GoogleFonts.poppins(
@@ -492,7 +492,7 @@ class _SubtutionState extends State<Subtution>
                                         ),
                                       ),
                                       Container(
-                                        width: 200,
+                                        width: width/6.83,
                                         alignment: Alignment.center,
                                         child: Text(
                                           value["staffName"],
@@ -503,7 +503,7 @@ class _SubtutionState extends State<Subtution>
                                         ),
                                       ),
                                       Container(
-                                        width: 200,
+                                        width: width/6.83,
                                         alignment: Alignment.center,
                                         child: FutureBuilder(
                                           future: FirebaseFirestore.instance.collection('SubstitutionHistory').doc(value.id).collection('SubstitutionStaffs').where("date", isEqualTo: value["date"]).get(),
@@ -588,7 +588,7 @@ class _SubtutionState extends State<Subtution>
                           style: GoogleFonts.poppins(
                               fontSize: width/75.888888889, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(width: 500),
+                        SizedBox(width: width/2.732),
                         InkWell(
                           onTap: () {
                             setState(() {
@@ -637,9 +637,9 @@ class _SubtutionState extends State<Subtution>
                       borderRadius: BorderRadius.circular(12)),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height:height/32.55),
               SizedBox(
-                height: 50,
+                height:height/13.02,
                 child: TabBar(
                   isScrollable: false,
                   controller: tabController,
@@ -1245,7 +1245,7 @@ class _SubtutionState extends State<Subtution>
                         ),
                       ),
                       SizedBox(
-                        width: 550,
+                        width: width/2.483636363636364,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -1645,7 +1645,7 @@ class _SubtutionState extends State<Subtution>
                               elevation: 4,
                               borderRadius: BorderRadius.circular(10),
                               child: Container(
-                                height: 150,
+                                height:height/4.34,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),

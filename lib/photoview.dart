@@ -20,6 +20,7 @@ class _PhotoviewpageState extends State<Photoviewpage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: PhotoView(
           imageProvider: NetworkImage(widget.url
@@ -44,8 +45,8 @@ class _PhotoviewpageState extends State<Photoviewpage> {
           elevation: 2,
           borderRadius: BorderRadius.circular(18),
           child: Container(
-          width: 150,
-            height: 50,
+          width: width/9.106666666666667,
+            height:height/13.02,
 
             decoration: BoxDecoration(
                 color: Color(0xff00A0E3),

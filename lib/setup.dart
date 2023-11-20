@@ -88,8 +88,9 @@ class _SetupState extends State<Setup> {
   }
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -108,8 +109,9 @@ class _SetupState extends State<Setup> {
     )..show();
   }
   Successdialogd(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -126,8 +128,9 @@ class _SetupState extends State<Setup> {
     )..show();
   }
   Successdialog2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -220,10 +223,10 @@ class _SetupState extends State<Setup> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -359,7 +362,7 @@ class _SetupState extends State<Setup> {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height:height/32.55,),
            page==1? Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Material(
@@ -387,8 +390,8 @@ class _SetupState extends State<Setup> {
                                   uploadToStorage();
                                 },
                                 child: Container(
-                                  width: 170,
-                                  height: 170,
+                                  width: width/8.035294117647059,
+                                  height:height/3.829411764705882,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100)
                                   ),
@@ -409,13 +412,13 @@ class _SetupState extends State<Setup> {
                             ),
                           ),
 
-                          SizedBox(height: 20,),
+                          SizedBox(height:height/32.55,),
 
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 6),
                             child: Container(
-                              width: 200,
-                                height: 50,
+                              width: width/6.83,
+                                height:height/13.02,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color:
@@ -437,8 +440,8 @@ class _SetupState extends State<Setup> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 6),
                             child: Container(
-                              width: 200,
-                                height: 50,
+                              width: width/6.83,
+                                height:height/13.02,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
 
@@ -459,8 +462,8 @@ class _SetupState extends State<Setup> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 6),
                             child: Container(
-                              width: 200,
-                                height: 50,
+                              width: width/6.83,
+                                height:height/13.02,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
 
@@ -480,8 +483,8 @@ class _SetupState extends State<Setup> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 6),
                             child: Container(
-                              width: 200,
-                                height: 50,
+                              width: width/6.83,
+                                height:height/13.02,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
 
@@ -902,7 +905,7 @@ class _SetupState extends State<Setup> {
                                   ),
                                   ),
                                 ),
-                                SizedBox(width: 20,),
+                                SizedBox(width: width/68.3,),
                                 InkWell(
                                   onTap: (){
                                     setState(() {
@@ -978,8 +981,8 @@ class _SetupState extends State<Setup> {
                                    uploadToStorage();
                                  },
                                  child: Container(
-                                     width: 170,
-                                     height: 170,
+                                     width: width/8.035294117647059,
+                                     height:height/3.829411764705882,
                                      decoration: BoxDecoration(
                                          borderRadius: BorderRadius.circular(100)
                                      ),
@@ -1000,13 +1003,13 @@ class _SetupState extends State<Setup> {
                              ),
                            ),
 
-                           SizedBox(height: 20,),
+                           SizedBox(height:height/32.55,),
 
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                      borderRadius: BorderRadius.circular(10),
 
@@ -1027,8 +1030,8 @@ class _SetupState extends State<Setup> {
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
                                      color:
@@ -1050,8 +1053,8 @@ class _SetupState extends State<Setup> {
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
 
@@ -1071,8 +1074,8 @@ class _SetupState extends State<Setup> {
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
 
@@ -1258,7 +1261,7 @@ class _SetupState extends State<Setup> {
                                                      Padding(
                                                        padding: const EdgeInsets.only(left: 8.0,right: 8.0),
                                                        child: Container(
-                                                           width:150,
+                                                           width: width/9.106666666666667,
                                                            child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                      ),
                                                      deletecheck[index]==true?     InkWell(
@@ -1269,7 +1272,7 @@ class _SetupState extends State<Setup> {
                                                            padding:
                                                            const EdgeInsets.only(left: 15.0),
                                                            child: Container(
-                                                               width: 30,
+                                                               width: width/45.53333333333333,
 
                                                                child: Image.asset("assets/delete.png"))
                                                        ),
@@ -1455,7 +1458,7 @@ class _SetupState extends State<Setup> {
                                                      ),
                                                      Padding(
                                                        padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                       child: Container(width:150,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                       child: Container(width: width/9.106666666666667,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                      ),
                                                      deletecheck2[index]==true?     InkWell(
                                                        onTap: (){
@@ -1465,7 +1468,7 @@ class _SetupState extends State<Setup> {
                                                            padding:
                                                            const EdgeInsets.only(left: 15.0),
                                                            child: Container(
-                                                               width: 30,
+                                                               width: width/45.53333333333333,
 
                                                                child: Image.asset("assets/delete.png"))
                                                        ),
@@ -1650,7 +1653,7 @@ class _SetupState extends State<Setup> {
                                                      ),
                                                      Padding(
                                                        padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                       child: Container(width:110,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                       child: Container(width: width/12.41818181818182,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                      ),
                                                      deletecheck3[index]==true?     InkWell(
                                                        onTap: (){
@@ -1660,7 +1663,7 @@ class _SetupState extends State<Setup> {
                                                            padding:
                                                            const EdgeInsets.only(left: 15.0),
                                                            child: Container(
-                                                               width: 30,
+                                                               width: width/45.53333333333333,
 
                                                                child: Image.asset("assets/delete.png"))
                                                        ),
@@ -1716,8 +1719,8 @@ class _SetupState extends State<Setup> {
                                    uploadToStorage();
                                  },
                                  child: Container(
-                                     width: 170,
-                                     height: 170,
+                                     width: width/8.035294117647059,
+                                     height:height/3.829411764705882,
                                      decoration: BoxDecoration(
                                          borderRadius: BorderRadius.circular(100)
                                      ),
@@ -1738,13 +1741,13 @@ class _SetupState extends State<Setup> {
                              ),
                            ),
 
-                           SizedBox(height: 20,),
+                           SizedBox(height:height/32.55,),
 
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
 
@@ -1765,8 +1768,8 @@ class _SetupState extends State<Setup> {
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                      borderRadius: BorderRadius.circular(10),
 
@@ -1787,8 +1790,8 @@ class _SetupState extends State<Setup> {
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
                                      color:
@@ -1809,8 +1812,8 @@ class _SetupState extends State<Setup> {
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
 
@@ -1865,8 +1868,8 @@ class _SetupState extends State<Setup> {
                                          Material(
 
                                            child: Container(
-                                             width: 260,
-                                             height: 410,
+                                             width: width/5.253846153846154,
+                                             height:height/1.58780487804878,
 
                                              child: Stack(
                                                children: [
@@ -1882,20 +1885,20 @@ class _SetupState extends State<Setup> {
                                                    crossAxisAlignment: CrossAxisAlignment.center,
 
                                                    children: [
-                                                     SizedBox(height: 20,),
+                                                     SizedBox(height:height/32.55,),
                                                      Row(
                                                        mainAxisAlignment: MainAxisAlignment.center,
                                                        children: [
                                                          Container(
-                                                             width:50,
-                                                         height:50, decoration: BoxDecoration(
+                                                             width: width/27.32,
+                                                         height:height/13.02, decoration: BoxDecoration(
                                                          borderRadius: BorderRadius.circular(25),
                                                              color:Colors.white
                                                          ),
                                                              child: Image.network(imgUrl)),
                                                        ],
                                                      ),
-                                                     SizedBox(height: 2,),
+                                                     SizedBox(height: height/325.5),
                                                      Text(schoolname.text,style: GoogleFonts.poppins(
                                                          color: Colors.white, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                      Text("${schoolarea.text} ${schoolcity.text}  ${schoolpincode.text}",style: GoogleFonts.poppins(
@@ -1905,13 +1908,13 @@ class _SetupState extends State<Setup> {
                                                     
                                                      Text(schoolweb.text,style: GoogleFonts.poppins(
                                                          color: Colors.white, fontSize: width/170.75,fontWeight: FontWeight.w400),),
-                                                     SizedBox(height: 20,),
+                                                     SizedBox(height:height/32.55,),
                                                      Stack(
                                                        alignment: Alignment.center,
                                                        children: [
                                                          Container(
-                                                           width: 120,
-                                                           height: 120,
+                                                           width: width/11.38333333333333,
+                                                           height:height/5.425,
                                                            decoration: BoxDecoration(
                                                                color: pickerColor,
                                                                borderRadius: BorderRadius.circular(60)
@@ -1921,7 +1924,7 @@ class _SetupState extends State<Setup> {
                                                          ),
                                                          Container(
                                                            width: 112,
-                                                           height: 112,
+                                                           height: height/5.8125,
                                                            decoration: BoxDecoration(
                                                                borderRadius: BorderRadius.circular(50)
                                                            ),
@@ -1932,15 +1935,15 @@ class _SetupState extends State<Setup> {
 
                                                        ],
                                                      ),
-                                                     SizedBox(height: 15,),
+                                                     SizedBox(height:height/43.4,),
                                                      Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                                                          color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                      Text("ID: VBSB004",style: GoogleFonts.poppins(
                                                          color:  pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                     SizedBox(height: 10,),
+                                                     SizedBox(height:height/65.1,),
                                                      Row(
                                                        children: [
-                                                         SizedBox(width: 20,),
+                                                         SizedBox(width: width/68.3,),
                                                          Text("Class       : ",style: GoogleFonts.poppins(
                                                              color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                          Text("LKG A",style: GoogleFonts.poppins(
@@ -1949,7 +1952,7 @@ class _SetupState extends State<Setup> {
                                                      ),
                                                      Row(
                                                        children: [
-                                                         SizedBox(width: 20,),
+                                                         SizedBox(width: width/68.3,),
                                                          Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                              color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -1959,7 +1962,7 @@ class _SetupState extends State<Setup> {
                                                      ),
                                                      Row(
                                                        children: [
-                                                         SizedBox(width: 20,),
+                                                         SizedBox(width: width/68.3,),
                                                          Text("Blood       : ",style: GoogleFonts.poppins(
                                                              color:pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                          Text("B+ve",style: GoogleFonts.poppins(
@@ -1968,7 +1971,7 @@ class _SetupState extends State<Setup> {
                                                      ),
                                                      Row(
                                                        children: [
-                                                         SizedBox(width: 20,),
+                                                         SizedBox(width: width/68.3,),
                                                          Text("Phone      : ",style: GoogleFonts.poppins(
                                                              color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                          Text("789456213",style: GoogleFonts.poppins(
@@ -1983,10 +1986,10 @@ class _SetupState extends State<Setup> {
                                              ),
                                            ),
                                          ),
-                                         SizedBox(width: 50,),
+                                         SizedBox(width: width/27.32,),
                                          Container(
-                                           width: 260,
-                                           height: 410,
+                                           width: width/5.253846153846154,
+                                           height:height/1.58780487804878,
                                            child: Stack(
                                              children: [
                                                Column(
@@ -2001,15 +2004,15 @@ class _SetupState extends State<Setup> {
                                                  crossAxisAlignment: CrossAxisAlignment.start,
 
                                                  children: [
-                                                   SizedBox(height: 20,),
+                                                   SizedBox(height:height/32.55,),
                                                    Padding(
                                                      padding: const EdgeInsets.only(left: 25.0),
                                                      child: Row(
                                                        mainAxisAlignment: MainAxisAlignment.start,
                                                        children: [
                                                          Container(
-                                                             width:60,
-                                                             height:60, decoration: BoxDecoration(
+                                                             width: width/22.76666666666667,
+                                                             height:height/10.85, decoration: BoxDecoration(
                                                              borderRadius: BorderRadius.circular(25),
                                                              color:Colors.white
                                                          ),
@@ -2026,12 +2029,12 @@ class _SetupState extends State<Setup> {
                                                    ),
                                                    Text("",style: GoogleFonts.poppins(
                                                        color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                   SizedBox(height: 10,),
+                                                   SizedBox(height:height/65.1,),
                                                    Row(
                                                      children: [
-                                                       SizedBox(width: 20,),
+                                                       SizedBox(width: width/68.3,),
                                                        Container(
-                                                         width: 110,
+                                                         width: width/12.41818181818182,
                                                          child: Text("Parent Phone : ",style: GoogleFonts.poppins(
                                                              color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
@@ -2042,9 +2045,9 @@ class _SetupState extends State<Setup> {
                                                    Row(
                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                      children: [
-                                                       SizedBox(width: 20,),
+                                                       SizedBox(width: width/68.3,),
                                                        Container(
-                                                         width: 110,
+                                                         width: width/12.41818181818182,
                                                          child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                              color: pickerColor, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -2061,14 +2064,14 @@ class _SetupState extends State<Setup> {
                                                        children: [
                                                          Column(
                                                            children: [
-                                                             SizedBox(height:5),
+                                                             SizedBox(height:height/130.2),
                                                              Container(
-                                                                 width: 75,
-                                                                 height: 75,
+                                                                 width: width/18.21333333333333,
+                                                                 height:height/8.68,
                                                                  child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
 
                                                              Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: width/195.142857143),),
-                                                             SizedBox(height:7),
+                                                             SizedBox(height:height/93),
                                                            ],
                                                          ),
                                                        ],
@@ -2081,16 +2084,16 @@ class _SetupState extends State<Setup> {
                                              ],
                                            ),
                                          ),
-                                         SizedBox(width: 50,),
+                                         SizedBox(width: width/27.32,),
                                          Column(
                                            crossAxisAlignment: CrossAxisAlignment.start,
                                            children: [
-                                             SizedBox(height: 10,),
+                                             SizedBox(height:height/65.1,),
                                              Text("Card Design 1",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                              Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                                              Container(
-                                               width: 465,
+                                               width: width/2.937634408602151,
                                                child: ColorPicker(
                                                  colorPickerWidth: 120,
                                                  pickerColor: pickerColor,
@@ -2109,7 +2112,7 @@ class _SetupState extends State<Setup> {
 
                                                ),
                                              ),
-                                             SizedBox(height: 10,),
+                                             SizedBox(height:height/65.1,),
                                              InkWell(
                                                onTap: (){
                                                  setState(() {
@@ -2139,14 +2142,14 @@ class _SetupState extends State<Setup> {
                                          ),
                                        ],
                                      ),
-                                     SizedBox(height: 55,),
+                                     SizedBox(height:height/11.83636363636364,),
                                      Row(
                                        children: [
                                          Material(
 
                                            child: Container(
-                                             width: 260,
-                                             height: 410,
+                                             width: width/5.253846153846154,
+                                             height:height/1.58780487804878,
 
                                              child: Stack(
                                                children: [
@@ -2166,18 +2169,18 @@ class _SetupState extends State<Setup> {
                                                      Row(
                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                        children: [
-                                                         SizedBox(width:10),
+                                                         SizedBox(width: width/136.6),
                                                          Column(
                                                            children: [
-                                                             SizedBox(height:30),
+                                                             SizedBox(height:height/21.7),
                                                              Image.asset("assets/Logo.png"),
                                                            ],
                                                          ),
-                                                         SizedBox(width:10),
+                                                         SizedBox(width: width/136.6),
                                                          Column(
                                                            crossAxisAlignment: CrossAxisAlignment.start,
                                                            children: [
-                                                             SizedBox(height:20),
+                                                             SizedBox(height:height/32.55),
                                                              Text(schoolname.text,style: GoogleFonts.poppins(
                                                                  color: Colors.white, fontSize: width/97.571428571,fontWeight: FontWeight.w600),),
                                                              Text("Phone: +91 9977888456",style: GoogleFonts.poppins(
@@ -2191,13 +2194,13 @@ class _SetupState extends State<Setup> {
 
 
 
-                                                     SizedBox(height: 50,),
+                                                     SizedBox(height:height/13.02,),
                                                      Stack(
                                                        alignment: Alignment.center,
                                                        children: [
                                                          Container(
-                                                           width: 120,
-                                                           height: 120,
+                                                           width: width/11.38333333333333,
+                                                           height:height/5.425,
                                                            decoration: BoxDecoration(
                                                                color: pickerColor2,
                                                                borderRadius: BorderRadius.circular(12)
@@ -2207,7 +2210,7 @@ class _SetupState extends State<Setup> {
                                                          ),
                                                          Container(
                                                            width: 115,
-                                                           height: 115,
+                                                           height: height/59.18181818181818,
                                                            decoration: BoxDecoration(
                                                                borderRadius: BorderRadius.circular(12)
                                                            ),
@@ -2218,25 +2221,25 @@ class _SetupState extends State<Setup> {
 
                                                        ],
                                                      ),
-                                                     SizedBox(height: 15,),
+                                                     SizedBox(height:height/43.4,),
                                                      Text("Sam Jebaseelan",style: GoogleFonts.poppins(
                                                          color: Colors.black, fontSize: 15,fontWeight: FontWeight.w700),),
                                                      Text("ID: VBSB004",style: GoogleFonts.poppins(
                                                          color:  pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                     SizedBox(height: 10,),
+                                                     SizedBox(height:height/65.1,),
                                                      Stack(
 
                                                        children: [
                                                          Row(
                                                            children: [
-                                                             SizedBox(width:50),
+                                                             SizedBox(width: width/27.32),
                                                              Column(
                                                                crossAxisAlignment: CrossAxisAlignment.start,
 
                                                                children: [
                                                                  Row(
                                                                    children: [
-                                                                     SizedBox(width: 20,),
+                                                                     SizedBox(width: width/68.3,),
                                                                      Text("Class       : ",style: GoogleFonts.poppins(
                                                                          color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      Text("LKG A",style: GoogleFonts.poppins(
@@ -2245,7 +2248,7 @@ class _SetupState extends State<Setup> {
                                                                  ),
                                                                  Row(
                                                                    children: [
-                                                                     SizedBox(width: 20,),
+                                                                     SizedBox(width: width/68.3,),
                                                                      Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                          color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -2254,7 +2257,7 @@ class _SetupState extends State<Setup> {
                                                                    ],),
                                                                  Row(
                                                                    children: [
-                                                                     SizedBox(width: 20,),
+                                                                     SizedBox(width: width/68.3,),
                                                                      Text("Blood       : ",style: GoogleFonts.poppins(
                                                                          color:pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      Text("B+ve",style: GoogleFonts.poppins(
@@ -2263,7 +2266,7 @@ class _SetupState extends State<Setup> {
                                                                  ),
                                                                  Row(
                                                                    children: [
-                                                                     SizedBox(width: 20,),
+                                                                     SizedBox(width: width/68.3,),
                                                                      Text("Phone      : ",style: GoogleFonts.poppins(
                                                                          color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                      Text("789456213",style: GoogleFonts.poppins(
@@ -2282,7 +2285,7 @@ class _SetupState extends State<Setup> {
                                                                Column(
                                                                  children: [
                                                                    Container(
-                                                                       width:37,
+                                                                       width: width/36.91891891891892,
 
 
                                                                        child: Image.asset("assets/sign.png")),
@@ -2306,10 +2309,10 @@ class _SetupState extends State<Setup> {
                                              ),
                                            ),
                                          ),
-                                         SizedBox(width: 50,),
+                                         SizedBox(width: width/27.32,),
                                          Container(
-                                           width: 260,
-                                           height: 410,
+                                           width: width/5.253846153846154,
+                                           height:height/1.58780487804878,
                                            child: Stack(
                                              children: [
                                                Column(
@@ -2324,7 +2327,7 @@ class _SetupState extends State<Setup> {
                                                  crossAxisAlignment: CrossAxisAlignment.center,
 
                                                  children: [
-                                                   SizedBox(height: 20,),
+                                                   SizedBox(height:height/32.55,),
                                                    Padding(
                                                      padding: const EdgeInsets.only(left: 10.0),
                                                      child: Row(
@@ -2334,7 +2337,7 @@ class _SetupState extends State<Setup> {
                                                        ],
                                                      ),
                                                    ),
-                                                   SizedBox(height: 10,),
+                                                   SizedBox(height:height/65.1,),
                                                    Padding(
                                                      padding: const EdgeInsets.only(left: 10.0),
                                                      child: Text(schoolname.text,style: GoogleFonts.poppins(
@@ -2345,7 +2348,7 @@ class _SetupState extends State<Setup> {
                                                      child: Text("Let the joy begins",style: GoogleFonts.poppins(
                                                          color: pickerColor2, fontSize: width/170.75,fontWeight: FontWeight.w400),),
                                                    ),
-                                                   SizedBox(height: 40,),
+                                                   SizedBox(height:height/16.275,),
 
                                                    Padding(
                                                      padding: const EdgeInsets.only(left: 20.0),
@@ -2354,12 +2357,12 @@ class _SetupState extends State<Setup> {
                                                    ),
                                                    Text("",style: GoogleFonts.poppins(
                                                        color: Color(0xff0271C5), fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
-                                                   SizedBox(height: 10,),
+                                                   SizedBox(height:height/65.1,),
                                                    Row(
                                                      children: [
-                                                       SizedBox(width: 20,),
+                                                       SizedBox(width: width/68.3,),
                                                        Container(
-                                                         width: 110,
+                                                         width: width/12.41818181818182,
                                                          child: Text("Parent Phone : ",style: GoogleFonts.poppins(
                                                              color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
@@ -2370,9 +2373,9 @@ class _SetupState extends State<Setup> {
                                                    Row(
                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                      children: [
-                                                       SizedBox(width: 20,),
+                                                       SizedBox(width: width/68.3,),
                                                        Container(
-                                                         width: 110,
+                                                         width: width/12.41818181818182,
                                                          child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                              color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -2383,9 +2386,9 @@ class _SetupState extends State<Setup> {
                                                    ),
                                                    Row(
                                                      children: [
-                                                       SizedBox(width: 20,),
+                                                       SizedBox(width: width/68.3,),
                                                        Container(
-                                                         width: 110,
+                                                         width: width/12.41818181818182,
                                                          child: Text("Contact US : ",style: GoogleFonts.poppins(
                                                              color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
@@ -2396,9 +2399,9 @@ class _SetupState extends State<Setup> {
                                                    Row(
                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                      children: [
-                                                       SizedBox(width: 20,),
+                                                       SizedBox(width: width/68.3,),
                                                        Container(
-                                                         width: 110,
+                                                         width: width/12.41818181818182,
                                                          child: Text("School Address : ",style: GoogleFonts.poppins(
                                                              color: pickerColor2, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                        ),
@@ -2412,7 +2415,7 @@ class _SetupState extends State<Setup> {
                                                          padding: const EdgeInsets.only(left: 20.0),
                                                          child: Container(
                                                              width: 60,
-                                                             height: 60,
+                                                             height:height/10.85,
                                                              child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                        ),
                                                      ],
@@ -2424,16 +2427,16 @@ class _SetupState extends State<Setup> {
                                              ],
                                            ),
                                          ),
-                                         SizedBox(width: 50,),
+                                         SizedBox(width: width/27.32,),
                                          Column(
                                            crossAxisAlignment: CrossAxisAlignment.start,
                                            children: [
-                                             SizedBox(height: 10,),
+                                             SizedBox(height:height/65.1,),
                                              Text("Card Design 2",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                              Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                                              Container(
-                                               width: 465,
+                                               width: width/2.937634408602151,
                                                child: ColorPicker(
                                                  colorPickerWidth: 120,
                                                  pickerColor: pickerColor2,
@@ -2452,7 +2455,7 @@ class _SetupState extends State<Setup> {
 
                                                ),
                                              ),
-                                             SizedBox(height: 10,),
+                                             SizedBox(height:height/65.1,),
                                              InkWell(
                                                onTap: (){
                                                  setState(() {
@@ -2482,7 +2485,7 @@ class _SetupState extends State<Setup> {
                                          ),
                                        ],
                                      ),
-                                     SizedBox(height: 55,),
+                                     SizedBox(height:height/11.83636363636364,),
                                      Row(
                                        children: [
                                          Column(
@@ -2490,8 +2493,8 @@ class _SetupState extends State<Setup> {
                                              Material(
 
                                                child: Container(
-                                                 width: 410,
-                                                 height: 260,
+                                                 width: width/3.331707317073171,
+                                                 height:height/2.503846153846154,
 
                                                  child: Stack(
                                                    children: [
@@ -2508,12 +2511,12 @@ class _SetupState extends State<Setup> {
                                                        crossAxisAlignment: CrossAxisAlignment.center,
 
                                                        children: [
-                                                         SizedBox(height: 7,),
+                                                         SizedBox(height: height/93),
                                                          Row(
                                                            mainAxisAlignment: MainAxisAlignment.center,
                                                            children: [
                                                              Image.asset("assets/Logo.png",color:pickerColor3),
-                                                             SizedBox(width:20),
+                                                             SizedBox(width: width/68.3),
                                                              Column(
                                                                crossAxisAlignment:CrossAxisAlignment.start,
                                                                children: [
@@ -2532,17 +2535,17 @@ class _SetupState extends State<Setup> {
 
                                                            ],
                                                          ),
-                                                         SizedBox(height: 5,),
+                                                         SizedBox(height: height/130.2),
 
                                                          Row(
                                                            children: [
-                                                             SizedBox(width:10),
+                                                             SizedBox(width: width/136.6),
                                                              Stack(
                                                                alignment: Alignment.center,
                                                                children: [
                                                                  Container(
-                                                                   width: 120,
-                                                                   height: 120,
+                                                                   width: width/11.38333333333333,
+                                                                   height:height/5.425,
                                                                    decoration: BoxDecoration(
                                                                        color: pickerColor3,
                                                                        borderRadius: BorderRadius.circular(60)
@@ -2552,7 +2555,7 @@ class _SetupState extends State<Setup> {
                                                                  ),
                                                                  Container(
                                                                    width: 112,
-                                                                   height: 112,
+                                                                   height: height/5.8125,
                                                                    decoration: BoxDecoration(
                                                                        borderRadius: BorderRadius.circular(50)
                                                                    ),
@@ -2566,7 +2569,7 @@ class _SetupState extends State<Setup> {
                                                              Column(
                                                                  crossAxisAlignment:CrossAxisAlignment.start,
                                                                  children:[
-                                                                   SizedBox(height: 15,),
+                                                                   SizedBox(height:height/43.4,),
                                                                    Padding(
                                                                      padding: const EdgeInsets.only(left:15.0),
                                                                      child: Text("Sam Jebaseelan",style: GoogleFonts.poppins(
@@ -2577,10 +2580,10 @@ class _SetupState extends State<Setup> {
                                                                      child: Text("ID: VBSB004",style: GoogleFonts.poppins(
                                                                          color:  pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                    ),
-                                                                   SizedBox(height: 10,),
+                                                                   SizedBox(height:height/65.1,),
                                                                    Row(
                                                                      children: [
-                                                                       SizedBox(width: 20,),
+                                                                       SizedBox(width: width/68.3,),
                                                                        Text("Class       : ",style: GoogleFonts.poppins(
                                                                            color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                        Text("LKG A",style: GoogleFonts.poppins(
@@ -2589,7 +2592,7 @@ class _SetupState extends State<Setup> {
                                                                    ),
                                                                    Row(
                                                                      children: [
-                                                                       SizedBox(width: 20,),
+                                                                       SizedBox(width: width/68.3,),
                                                                        Text("DOB          : ",style: GoogleFonts.poppins(
 
                                                                            color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -2599,7 +2602,7 @@ class _SetupState extends State<Setup> {
                                                                    ),
                                                                    Row(
                                                                      children: [
-                                                                       SizedBox(width: 20,),
+                                                                       SizedBox(width: width/68.3,),
                                                                        Text("Blood       : ",style: GoogleFonts.poppins(
                                                                            color:pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                        Text("B+ve",style: GoogleFonts.poppins(
@@ -2608,7 +2611,7 @@ class _SetupState extends State<Setup> {
                                                                    ),
                                                                    Row(
                                                                      children: [
-                                                                       SizedBox(width: 20,),
+                                                                       SizedBox(width: width/68.3,),
                                                                        Text("Phone      : ",style: GoogleFonts.poppins(
                                                                            color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                        Text("789456213",style: GoogleFonts.poppins(
@@ -2629,12 +2632,12 @@ class _SetupState extends State<Setup> {
                                                  ),
                                                ),
                                              ),
-                                             SizedBox(height: 30,),
+                                             SizedBox(height:height/21.7,),
                                              Material(
 
                                                child: Container(
-                                                 width: 410,
-                                                 height: 260,
+                                                 width: width/3.331707317073171,
+                                                 height:height/2.503846153846154,
 
                                                  child: Stack(
                                                    children: [
@@ -2645,19 +2648,19 @@ class _SetupState extends State<Setup> {
                                                          children: [
                                                            Column(
                                                              children: [
-                                                               SizedBox(height:5),
+                                                               SizedBox(height: height/130.2),
                                                                Opacity(
                                                                  opacity:0.39,
                                                                  child: Container(
-                                                                     width: 75,
-                                                                     height: 75,
+                                                                     width: width/18.21333333333333,
+                                                                     height:height/8.68,
                                                                      child: Image.asset("assets/VIDHAANLOGO.png",fit: BoxFit.contain,)),
                                                                ),
 
                                                                Opacity(
                                                                    opacity:0.39,
                                                                    child: Text("e    d    u    c    a    r    e",style: GoogleFonts.montserrat(fontWeight: FontWeight.w700,fontSize: width/195.142857143),)),
-                                                               SizedBox(height:7),
+                                                               SizedBox(height:height/93),
                                                              ],
                                                            ),
                                                          ],
@@ -2680,7 +2683,7 @@ class _SetupState extends State<Setup> {
                                                              mainAxisAlignment: MainAxisAlignment.center,
                                                              children: [
                                                                Image.asset("assets/Logo.png",color:pickerColor3),
-                                                               SizedBox(width:30),
+                                                               SizedBox(width: width/45.53333333333333),
                                                                Column(
                                                                  crossAxisAlignment:CrossAxisAlignment.start,
                                                                  children: [
@@ -2709,12 +2712,12 @@ class _SetupState extends State<Setup> {
                                                              ],
                                                            ),
 
-                                                           SizedBox(height: 5,),
+                                                           SizedBox(height: height/130.2,),
                                                            Row(
                                                              children: [
-                                                               SizedBox(width: 20,),
+                                                               SizedBox(width: width/68.3,),
                                                                Container(
-                                                                 width: 110,
+                                                                 width: width/12.41818181818182,
                                                                  child: Text("Parent Phone : ",style: GoogleFonts.poppins(
                                                                      color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                ),
@@ -2725,9 +2728,9 @@ class _SetupState extends State<Setup> {
                                                            Row(
                                                              crossAxisAlignment: CrossAxisAlignment.start,
                                                              children: [
-                                                               SizedBox(width: 20,),
+                                                               SizedBox(width: width/68.3,),
                                                                Container(
-                                                                 width: 110,
+                                                                 width: width/12.41818181818182,
                                                                  child: Text("Address : ",style: GoogleFonts.poppins(
 
                                                                      color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
@@ -2738,9 +2741,9 @@ class _SetupState extends State<Setup> {
                                                            ),
                                                            Row(
                                                              children: [
-                                                               SizedBox(width: 20,),
+                                                               SizedBox(width: width/68.3,),
                                                                Container(
-                                                                 width: 110,
+                                                                 width: width/12.41818181818182,
                                                                  child: Text("Contact US : ",style: GoogleFonts.poppins(
                                                                      color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                ),
@@ -2751,9 +2754,9 @@ class _SetupState extends State<Setup> {
                                                            Row(
                                                              crossAxisAlignment: CrossAxisAlignment.start,
                                                              children: [
-                                                               SizedBox(width: 20,),
+                                                               SizedBox(width: width/68.3,),
                                                                Container(
-                                                                 width: 110,
+                                                                 width: width/12.41818181818182,
                                                                  child: Text("School Address : ",style: GoogleFonts.poppins(
                                                                      color: pickerColor3, fontSize: width/113.833333333,fontWeight: FontWeight.w600),),
                                                                ),
@@ -2776,16 +2779,16 @@ class _SetupState extends State<Setup> {
                                            ],
                                          ),
 
-                                         SizedBox(width: 150,),
+                                         SizedBox(width: width/9.106666666666667,),
                                          Column(
                                            crossAxisAlignment: CrossAxisAlignment.start,
                                            children: [
-                                             SizedBox(height: 10,),
+                                             SizedBox(height:height/65.1,),
                                              Text("Card Design 3",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: width/68.3),),
                                              Text("Change Color:",style:GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 15),),
 
                                              Container(
-                                               width: 465,
+                                               width: width/2.937634408602151,
                                                child: ColorPicker(
                                                  colorPickerWidth: 120,
                                                  pickerColor: pickerColor3,
@@ -2804,7 +2807,7 @@ class _SetupState extends State<Setup> {
 
                                                ),
                                              ),
-                                             SizedBox(height: 10,),
+                                             SizedBox(height:height/65.1,),
                                              InkWell(
                                                onTap: (){
                                                  setState(() {
@@ -2834,13 +2837,13 @@ class _SetupState extends State<Setup> {
                                          ),
                                        ],
                                      ),
-                                     SizedBox(height: 20,)
+                                     SizedBox(height:height/32.55,)
                                    ],
                                  ),
                                ),
                              ),
                            ),
-                           SizedBox(height: 20,)
+                           SizedBox(height:height/32.55,)
                          ],
                        ),
                      ],
@@ -2877,8 +2880,8 @@ class _SetupState extends State<Setup> {
                                    uploadToStorage();
                                  },
                                  child: Container(
-                                     width: 170,
-                                     height: 170,
+                                     width: width/8.035294117647059,
+                                     height:height/3.829411764705882,
                                      decoration: BoxDecoration(
                                          borderRadius: BorderRadius.circular(100)
                                      ),
@@ -2899,13 +2902,13 @@ class _SetupState extends State<Setup> {
                              ),
                            ),
 
-                           SizedBox(height: 20,),
+                           SizedBox(height:height/32.55,),
 
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
 
@@ -2926,8 +2929,8 @@ class _SetupState extends State<Setup> {
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
 
@@ -2948,8 +2951,8 @@ class _SetupState extends State<Setup> {
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                      borderRadius: BorderRadius.circular(10),
                              
@@ -2969,8 +2972,8 @@ class _SetupState extends State<Setup> {
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 6),
                              child: Container(
-                                 width: 200,
-                                 height: 50,
+                                 width: width/6.83,
+                                 height:height/13.02,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(10),
                                        color: Color(0xff00A0E3)
@@ -3165,7 +3168,7 @@ class _SetupState extends State<Setup> {
                                                            padding:
                                                            const EdgeInsets.only(left: 15.0),
                                                            child: Container(
-                                                               width: 30,
+                                                               width: width/45.53333333333333,
 
                                                                child: Image.asset("assets/delete.png"))
                                                        ),
@@ -3314,10 +3317,10 @@ class _SetupState extends State<Setup> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('All Set, Good to Go...',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child:  Lottie.asset("assets/welcome.json")
                 ),

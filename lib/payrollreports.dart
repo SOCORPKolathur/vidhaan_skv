@@ -76,7 +76,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Select Month",style: GoogleFonts.poppins(fontSize: 15,)),
+                    Text("Select Month",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
                     Container(child:  TextField(
                       controller: monthController,
                       decoration: InputDecoration(
@@ -150,13 +150,13 @@ class _PayrollReportsState extends State<PayrollReports> {
               if(snap.hasData){
                 return snap.data!.isEmpty
                     ? Container(
-                  height: 500,
+                  height:height/1.302,
                   child: Center(
                     child: Column(
                       children: [
                         Center(
                           child: Lottie.asset(
-                            height: 300,
+                            height:height/2.17,
                             "assets/no_data.json",
                           ),
                         ),
@@ -177,9 +177,9 @@ class _PayrollReportsState extends State<PayrollReports> {
                         ),
                         child: Row(
                           children: [
-                            SizedBox(width: 10),
+                            SizedBox(width: width/136.6),
                             SizedBox(
-                              width: 150,
+                              width: width/9.106666666666667,
                               child: Center(
                                 child: Text(
                                   "Reg NO",
@@ -189,7 +189,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                               ),
                             ),
                             SizedBox(
-                              width: 200,
+                              width: width/6.83,
                               child: Center(
                                 child: Text(
                                   "Staff Name",
@@ -198,7 +198,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                               ),
                             ),
                             SizedBox(
-                              width: 200,
+                              width: width/6.83,
                               child: Center(
                                 child: Text(
                                   "Designation",
@@ -208,7 +208,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                               ),
                             ),
                             SizedBox(
-                              width: 150,
+                              width: width/9.106666666666667,
                               child: Center(
                                 child: Text(
                                   "Worked Days",
@@ -217,7 +217,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                               ),
                             ),
                             SizedBox(
-                              width: 100,
+                              width: width/13.66,
                               child: Center(
                                 child: Text(
                                   "Gross Pay",
@@ -226,7 +226,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                               ),
                             ),
                             SizedBox(
-                              width: 200,
+                              width: width/6.83,
                               child: Center(
                                 child: Text(
                                   "This Month status",
@@ -241,7 +241,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                       ),
                     ),
                     Container(
-                        height: 400,
+                        height: height/1.6275,
                         child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: snap.data!.length,
@@ -257,9 +257,9 @@ class _PayrollReportsState extends State<PayrollReports> {
                                   ),
                                   child: Row(
                                     children: [
-                                      SizedBox(width: 10),
+                                      SizedBox(width: width/136.6),
                                       SizedBox(
-                                        width: 150,
+                                        width: width/9.106666666666667,
                                         child: Center(
                                           child: Text(
                                             data.get("staffid"),
@@ -268,7 +268,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 200,
+                                        width: width/6.83,
                                         child: Center(
                                           child: Text(
                                             data.get("staffname"),
@@ -277,7 +277,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 200,
+                                        width: width/6.83,
                                         child: Center(
                                           child: Text(
                                             data.get("Designations"),
@@ -287,7 +287,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 150,
+                                        width: width/9.106666666666667,
                                         child: Center(
                                           child: Text(
                                             data.get("workedDays").toString(),
@@ -296,7 +296,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 100,
+                                        width: width/13.66,
                                         child: Center(
                                           child: Text(
                                             data.get("workedDays") > 0 ? ((double.parse(data.get("gross").toString()) / totalWorkingDyas) * data.get("workedDays")).toStringAsFixed(2) : "0.0",
@@ -308,7 +308,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 200,
+                                        width: width/6.83,
                                         child: Center(
                                           child: Text(
                                             data.get("status") == true ? "Paid" : "UnPaid",
@@ -330,7 +330,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                   ],
                 );
               }return  Container(
-                height: 500,
+                height:height/1.302,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -403,13 +403,13 @@ class _PayrollReportsState extends State<PayrollReports> {
                           if(snap.hasData){
                             return snap.data!.isEmpty
                                 ? Container(
-                                  height: 500,
+                                  height:height/1.302,
                                   child: Center(
                                     child: Column(
                                       children: [
                                         Center(
                                           child: Lottie.asset(
-                                            height: 400,
+                                            height: height/1.6275,
                                             "assets/no_data.json",
                                           ),
                                         ),
@@ -451,9 +451,9 @@ class _PayrollReportsState extends State<PayrollReports> {
                                           ),
                                           child: Row(
                                             children: [
-                                              SizedBox(width: 10),
+                                              SizedBox(width: width/136.6),
                                               SizedBox(
-                                                width: 60,
+                                                width: width/22.76666666666667,
                                                 child: Center(
                                                   child: Checkbox(
                                                     value: payrollStaffList.isNotEmpty,
@@ -476,7 +476,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 150,
+                                                width: width/9.106666666666667,
                                                 child: Center(
                                                   child: Text(
                                                     "Reg NO",
@@ -486,7 +486,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 200,
+                                                width: width/6.83,
                                                 child: Center(
                                                   child: Text(
                                                     "Staff Name",
@@ -495,7 +495,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 200,
+                                                width: width/6.83,
                                                 child: Center(
                                                   child: Text(
                                                     "Designation",
@@ -505,7 +505,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 150,
+                                                width: width/9.106666666666667,
                                                 child: Center(
                                                   child: Text(
                                                     "Worked Days",
@@ -514,7 +514,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 100,
+                                                width: width/13.66,
                                                 child: Center(
                                                   child: Text(
                                                     "Gross Pay",
@@ -523,7 +523,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 200,
+                                                width: width/6.83,
                                                 child: Center(
                                                   child: Text(
                                                     "This Month status",
@@ -538,7 +538,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                         ),
                                       ),
                                       Container(
-                                        height: 480,
+                                        height:height/1.35625,
                                         child: ListView.builder(
                                             shrinkWrap: true,
                                             itemCount: snap.data!.length,
@@ -554,9 +554,9 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                   ),
                                                   child: Row(
                                                     children: [
-                                                      SizedBox(width: 10),
+                                                      SizedBox(width: width/136.6),
                                                       SizedBox(
-                                                        width: 60,
+                                                        width: width/22.76666666666667,
                                                         child: Center(
                                                           child: Checkbox(
                                                             value: payrollStaffList.contains(data.get("staffid")),
@@ -577,7 +577,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: 150,
+                                                        width: width/9.106666666666667,
                                                         child: Center(
                                                           child: Text(
                                                             data.get("staffid"),
@@ -586,7 +586,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: 200,
+                                                        width: width/6.83,
                                                         child: Center(
                                                           child: Text(
                                                             data.get("staffname"),
@@ -595,7 +595,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: 200,
+                                                        width: width/6.83,
                                                         child: Center(
                                                           child: Text(
                                                             data.get("Designations"),
@@ -605,7 +605,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: 150,
+                                                        width: width/9.106666666666667,
                                                         child: Center(
                                                           child: Text(
                                                             data.get("workedDays").toString(),
@@ -614,7 +614,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: 100,
+                                                        width: width/13.66,
                                                         child: Center(
                                                           child: Text(
                                                             data.get("workedDays") > 0 ? ((double.parse(data.get("gross").toString()) / totalWorkingDyas) * data.get("workedDays")).toStringAsFixed(2) : "0.0",
@@ -626,7 +626,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: 200,
+                                                        width: width/6.83,
                                                         child: Center(
                                                           child: Text(
                                                             data.get("status") == true ? "Paid" : "UnPaid",
@@ -649,7 +649,7 @@ class _PayrollReportsState extends State<PayrollReports> {
                               );
                             // );
                           }return  Container(
-                            height: 500,
+                            height:height/1.302,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -751,8 +751,9 @@ class _PayrollReportsState extends State<PayrollReports> {
 
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,

@@ -39,7 +39,7 @@ class _NotificationCusState extends State<NotificationCus> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                width: 360,
+                width: width/3.794444444444444,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -51,7 +51,7 @@ class _NotificationCusState extends State<NotificationCus> {
                       ),
                     ),
                     SizedBox(
-                      height: 30,
+                      height:height/21.7,
                     ),
                     Text(
                       "Send Circulars to Staffs and Students",
@@ -59,10 +59,10 @@ class _NotificationCusState extends State<NotificationCus> {
                           color: Colors.black54, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: 10,
+                      height:height/65.1,
                     ),
 
-                    SvgPicture.asset("assets/notification.svg",fit: BoxFit.fill,width: 300,),
+                    SvgPicture.asset("assets/notification.svg",fit: BoxFit.fill,width: width/45.533333333333330,),
 
                   ],
                 ),
@@ -72,7 +72,7 @@ class _NotificationCusState extends State<NotificationCus> {
               padding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).size.height / 16),
               child: Container(
-                width: 400,
+                width: width/3.415,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -81,7 +81,7 @@ class _NotificationCusState extends State<NotificationCus> {
                       fontWeight: FontWeight.w700
                     ),),
                     Container(
-                      width: 1200,
+                      width: width/1.138333333333333,
 
                       decoration: BoxDecoration(
                         color: Colors.blueGrey.shade50,
@@ -99,7 +99,7 @@ class _NotificationCusState extends State<NotificationCus> {
                                 color: Colors.black,
                               ),
                               SizedBox(
-                                width: 4,
+                                width: width/341.5,
                               ),
                               Expanded(
                                 child: Text(
@@ -131,8 +131,8 @@ class _NotificationCusState extends State<NotificationCus> {
                             });
                           },
                           buttonStyleData: ButtonStyleData(
-                            height: 50,
-                            width: 160,
+                            height:height/13.02,
+                            width: width/8.5375,
                             padding: const EdgeInsets.only(left: 14, right: 14),
 
                             decoration: BoxDecoration(
@@ -152,7 +152,7 @@ class _NotificationCusState extends State<NotificationCus> {
                             iconDisabledColor: Colors.grey,
                           ),
                           dropdownStyleData: DropdownStyleData(
-                            maxHeight: 200,
+                            maxHeight:height/3.255,
                             width: width/5.464,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(14),
@@ -165,16 +165,16 @@ class _NotificationCusState extends State<NotificationCus> {
                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                             ),
                           ),
-                          menuItemStyleData: const MenuItemStyleData(
-                            height: 40,
+                          menuItemStyleData: MenuItemStyleData(
+                            height:height/16.275,
                             padding: EdgeInsets.only(left: 14, right: 14),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height:height/21.7),
                     Container(
-                      width: 1200,
+                      width: width/1.138333333333333,
 
                       decoration: BoxDecoration(
                         color: Colors.blueGrey.shade50,
@@ -205,9 +205,9 @@ class _NotificationCusState extends State<NotificationCus> {
                     ),
 
 
-                    SizedBox(height: 30),
+                    SizedBox(height:height/21.7),
                     Container(
-                      width: 1200,
+                      width: width/1.138333333333333,
                       height: height/3.625,
 
                       decoration: BoxDecoration(
@@ -232,7 +232,7 @@ class _NotificationCusState extends State<NotificationCus> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height:height/16.275),
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -248,7 +248,7 @@ class _NotificationCusState extends State<NotificationCus> {
                       child: ElevatedButton(
                         child: Container(
                             width: double.infinity,
-                            height: 50,
+                            height:height/13.02,
                             child: Center(child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -285,12 +285,12 @@ class _NotificationCusState extends State<NotificationCus> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height:height/16.275),
                     Row(children: [
                       Expanded(
                         child: Divider(
                           color: Colors.grey[300],
-                          height: 50,
+                          height:height/13.02,
                         ),
                       ),
                       Padding(
@@ -300,11 +300,11 @@ class _NotificationCusState extends State<NotificationCus> {
                       Expanded(
                         child: Divider(
                           color: Colors.grey[400],
-                          height: 50,
+                          height:height/13.02,
                         ),
                       ),
                     ]),
-                    SizedBox(height: 40),
+                    SizedBox(height:height/16.275),
 
                   ],
                 ),
@@ -326,6 +326,8 @@ class _NotificationCusState extends State<NotificationCus> {
     });
   }
   Future<void> _showMyDialog1() async {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -336,7 +338,7 @@ class _NotificationCusState extends State<NotificationCus> {
             child: ListBody(
               children:  <Widget>[
                 Container(
-                  width: 40,height: 140,
+                  width: width/34.15,height:height/4.65,
                   child:  SvgPicture.asset("assets/sent2.svg",fit: BoxFit.contain),),
 
 

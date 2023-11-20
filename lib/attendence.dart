@@ -140,8 +140,9 @@ class _AttendenceState extends State<Attendence> {
   String selecteddate="";
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -469,7 +470,7 @@ setState(() {
                                 child: Column(
                                   children: [
                                     SizedBox(
-                                        width: 800,
+                                        width: width/1.7075,
                                         child: FutureBuilder<StudentAttendanceReportModel>(
                                           future: getMonthlyAttendanceReportForStudent(studentid),
                                           builder: (ctx,snapshot){
@@ -492,14 +493,14 @@ setState(() {
                                                     ),
                                                   ),
                                                   Container(
-                                                    height: 250,
-                                                    width: 780,
+                                                    height:height/2.604,
+                                                    width: width/1.751282051282051,
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children: [
                                                         Container(
-                                                          height: 250,
-                                                          width: 480,
+                                                          height:height/2.604,
+                                                          width: width/2.845833333333333,
                                                           child: sfc.SfCartesianChart(
 
                                                               primaryXAxis: sfc.CategoryAxis(),
@@ -566,14 +567,14 @@ setState(() {
                                                     ),
                                                   ),
                                                   Container(
-                                                    height: 250,
-                                                    width: 780,
+                                                    height:height/2.604,
+                                                    width: width/1.751282051282051,
                                                     child: Row(
                                                       mainAxisAlignment : MainAxisAlignment.center,
                                                       children: [
                                                         Container(
-                                                          height: 250,
-                                                          width: 480,
+                                                          height:height/2.604,
+                                                          width: width/2.845833333333333,
                                                           child: sfc.SfCartesianChart(
                                                               primaryXAxis: sfc.CategoryAxis(),
                                                               title: sfc.ChartTitle(
@@ -634,7 +635,7 @@ setState(() {
                                                       ],
                                                     ),
                                                   ),
-                                                  SizedBox(height: 20),
+                                                  SizedBox(height:height/32.55),
                                                   Column(
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
@@ -644,9 +645,9 @@ setState(() {
                                                           fontWeight: FontWeight.w700,
                                                         ),
                                                       ),
-                                                      SizedBox(height: 20),
+                                                      SizedBox(height:height/32.55),
                                                       Container(
-                                                        height:300,
+                                                        height:height/2.17,
                                                         child: ListView.builder(
                                                           itemCount: snapshot.data!.absentDays.length,
                                                           itemBuilder: (ctx, i){
@@ -656,7 +657,7 @@ setState(() {
                                                                 child: Row(
                                                                   children: [
                                                                     SizedBox(
-                                                                      width: 50,
+                                                                      width: width/27.32,
                                                                       child: Text(
                                                                         'Date : ',
                                                                         style: TextStyle(
@@ -744,12 +745,12 @@ setState(() {
               if(snapshot.hasData){
                 return Row(
                   children: [
-                    SizedBox(width: 20,),
+                    SizedBox(width: width/68.3,),
                     Container(
-                        width: 450,
+                        width: width/3.035555555555556,
                         child: Container(
-                          height: 250,
-                          width: 850,
+                          height:height/2.604,
+                          width: width/1.607058823529412,
                           child: sfc.SfCartesianChart(
                               primaryXAxis: sfc.CategoryAxis(),
                               title: sfc.ChartTitle(
@@ -864,7 +865,7 @@ setState(() {
 
                       ],
                     ),
-                    SizedBox(width: 20,),
+                    SizedBox(width: width/68.3,),
                     Material(
                       elevation: 7,
                       borderRadius: BorderRadius.circular(12),
@@ -911,12 +912,12 @@ setState(() {
                 );
               }return Row(
                 children: [
-                  SizedBox(width: 20,),
+                  SizedBox(width: width/68.3,),
                   Container(
-                      width: 450,
+                      width: width/3.035555555555556,
                       child: Container(
-                        height: 250,
-                        width: 850,
+                        height:height/2.604,
+                        width: width/1.607058823529412,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
@@ -1037,7 +1038,7 @@ setState(() {
 
                     ],
                   ),
-                  SizedBox(width: 20,),
+                  SizedBox(width: width/68.3,),
                   Material(
                     elevation: 7,
                     borderRadius: BorderRadius.circular(12),
@@ -1120,7 +1121,7 @@ setState(() {
                                         color: Colors.black,
                                       ),
                                       SizedBox(
-                                        width: 4,
+                                        width: width/341.5,
                                       ),
                                       Expanded(
                                         child: Text(
@@ -1152,8 +1153,8 @@ setState(() {
                                     });
                                   },
                                   buttonStyleData: ButtonStyleData(
-                                    height: 50,
-                                    width: 160,
+                                    height:height/13.02,
+                                    width: width/8.5375,
                                     padding: const EdgeInsets.only(left: 14, right: 14),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
@@ -1171,7 +1172,7 @@ setState(() {
                                     iconDisabledColor: Colors.grey,
                                   ),
                                   dropdownStyleData: DropdownStyleData(
-                                    maxHeight: 200,
+                                    maxHeight:height/3.255,
                                     width: width/5.464,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14),
@@ -1184,8 +1185,8 @@ setState(() {
                                       thumbVisibility: MaterialStateProperty.all<bool>(true),
                                     ),
                                   ),
-                                  menuItemStyleData: const MenuItemStyleData(
-                                    height: 40,
+                                  menuItemStyleData: MenuItemStyleData(
+                                    height:height/16.275,
                                     padding: EdgeInsets.only(left: 14, right: 14),
                                   ),
                                 ),
@@ -1224,7 +1225,7 @@ setState(() {
                                         color: Colors.black,
                                       ),
                                       SizedBox(
-                                        width: 4,
+                                        width: width/341.5,
                                       ),
                                       Expanded(
                                         child: Text(
@@ -1256,8 +1257,8 @@ setState(() {
                                     });
                                   },
                                   buttonStyleData: ButtonStyleData(
-                                    height: 50,
-                                    width: 160,
+                                    height:height/13.02,
+                                    width: width/8.5375,
                                     padding: const EdgeInsets.only(left: 14, right: 14),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
@@ -1275,7 +1276,7 @@ setState(() {
                                     iconDisabledColor: Colors.grey,
                                   ),
                                   dropdownStyleData: DropdownStyleData(
-                                    maxHeight: 200,
+                                    maxHeight:height/3.255,
                                     width: width/5.464,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14),
@@ -1288,8 +1289,8 @@ setState(() {
                                       thumbVisibility: MaterialStateProperty.all<bool>(true),
                                     ),
                                   ),
-                                  menuItemStyleData: const MenuItemStyleData(
-                                    height: 40,
+                                  menuItemStyleData: MenuItemStyleData(
+                                    height:height/16.275,
                                     padding: EdgeInsets.only(left: 14, right: 14),
                                   ),
                                 ),
@@ -1601,7 +1602,7 @@ setState(() {
 
                                 }),
                           ) : Container(): Container(),
-                          SizedBox(height: 20,)
+                          SizedBox(height:height/32.55,)
                         ],
                       ),
                       Column(

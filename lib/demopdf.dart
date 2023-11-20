@@ -198,7 +198,7 @@ class Invoice {
                     padding: const pw.EdgeInsets.only(
                         left: 40, top: 10, bottom: 10, right: 20),
                     alignment: pw.Alignment.centerLeft,
-                    height: 50,
+                    height:height/13.02,
                     child: pw.DefaultTextStyle(
                       style: pw.TextStyle(
                         color: _accentTextColor,

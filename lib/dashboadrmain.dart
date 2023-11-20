@@ -88,12 +88,9 @@ class _Dashboard2State extends State<Dashboard2> {
   Date() {
     setState(() {
       day = DateFormat('EEEE').format(DateTime.now());
-
       cyear = DateTime.now().year;
       cmonth = getMonth(DateTime.now().month);
-
       currentDate = DateTime.now().day;
-
     });
 
   }
@@ -281,6 +278,7 @@ class _Dashboard2State extends State<Dashboard2> {
   }
   Widget content() {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -294,14 +292,14 @@ class _Dashboard2State extends State<Dashboard2> {
             ),
           ),
           SizedBox(
-            height: 8.0,
+            height: height/81.375,
           ),
           Divider(
             color: Colors.black,
           ),
         Container(
-          height: 500.0, // Change as per your requirement
-          width: 400.0, // Change as per your requirement
+          height: height/1.302, // Change as per your requirement
+          width: width/3.415, // Change as per your requirement
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: studentname.length,
@@ -345,6 +343,7 @@ class _Dashboard2State extends State<Dashboard2> {
   }
   Widget content2() {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -358,14 +357,14 @@ class _Dashboard2State extends State<Dashboard2> {
             ),
           ),
           SizedBox(
-            height: 8.0,
+            height: height/81.375,
           ),
           Divider(
             color: Colors.black,
           ),
         Container(
-          height: 500.0, // Change as per your requirement
-          width: 400.0, // Change as per your requirement
+          height: height/1.302, // Change as per your requirement
+          width: width/3.415, // Change as per your requirement
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: stname.length,
@@ -432,8 +431,8 @@ class _Dashboard2State extends State<Dashboard2> {
                   ),
 
                   Container(
-                      width: 400,
-                      height: 100,
+                      width: width/3.415,
+                      height:height/6.51,
                       decoration: BoxDecoration(
                         color: Color(0xff00A0E3),
                         borderRadius: BorderRadius.only(
@@ -444,10 +443,10 @@ class _Dashboard2State extends State<Dashboard2> {
                       ),
                       child: Row(
                         children: [
-                          SizedBox(width: 20,),
+                          SizedBox(width: width/68.3,),
                           Container(
-                            width: 70,
-                            height: 70,
+                            width: width/19.51428571428571,
+                            height:height/9.3,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(70)
@@ -456,19 +455,19 @@ class _Dashboard2State extends State<Dashboard2> {
                             ),
                             child: Image.network(imgurl),
                           ),
-                          SizedBox(width: 12,),
+                          SizedBox(width: width/113.8333333333333,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                  width:220,
+                                  width: width/6.2090909090909090,
                                   child: Text(schoolname,style: GoogleFonts.poppins(fontSize: width/80.352941176,fontWeight: FontWeight.w700,color: Colors.white),)),
-                              SizedBox(height: 5,),
+                              SizedBox(height: height/130.2,),
                               Text(schooladdress,style: GoogleFonts.poppins(fontSize: width/113.833333333,fontWeight: FontWeight.w600,color: Colors.white),),
                             ],
                           ),
-                          SizedBox(width: 30,),
+                          SizedBox(width: width/45.53333333333333,),
                           InkWell(
                               onTap: (){
                                 _showPopupMenu();
@@ -709,8 +708,8 @@ class _Dashboard2State extends State<Dashboard2> {
                                                     context: context,
                                                     builder: (BuildContext context) {
                                                       return BouncingDraggableDialog(
-                                                        width: 400,
-                                                        height: 900,
+                                                        width: width/3.415,
+                                                        height:height/0.7233333333333333,
                                                         content: content2(),
                                                       );
                                                     });
@@ -728,8 +727,8 @@ class _Dashboard2State extends State<Dashboard2> {
                                                     context: context,
                                                     builder: (BuildContext context) {
                                                       return BouncingDraggableDialog(
-                                                        width: 400,
-                                                        height: 900,
+                                                        width: width/3.415,
+                                                        height:height/0.7233333333333333,
                                                         content: content(),
                                                       );
                                                     });
@@ -783,7 +782,7 @@ class _Dashboard2State extends State<Dashboard2> {
                           builder: (ctx,snap){
                             if(snap.hasData){
                               return Container(
-                                width: 536,
+                                width: width/2.548507462686567,
                                 height: height / 2.55,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -887,7 +886,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                               ),
                                               Container(
                                                   height: height / 5.57,
-                                                  width: 260,
+                                                  width: width/5.253846153846154,
                                                   child: ListView.builder(
                                                       shrinkWrap: true,
                                                       itemCount: snap.data!.todayAbsentPersons.length,
@@ -950,7 +949,7 @@ class _Dashboard2State extends State<Dashboard2> {
                               alignment: Alignment.center,
                               children: [
                                 Container(
-                                  width:535,
+                                  width: width/2.553271028037383,
                                   height: height / 2.55,
 
                                   child: Column(
@@ -1055,7 +1054,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                                 ),
                                                 Container(
                                                     height: height / 5.57,
-                                                    width: 260,
+                                                    width: width/5.253846153846154,
                                                     child: ListView.builder(
                                                         shrinkWrap: true,
                                                         itemCount: 0,
@@ -1122,7 +1121,7 @@ class _Dashboard2State extends State<Dashboard2> {
                             height: height / 3.57,
                             child: VerticalDivider(width: 2,color:Colors.grey)),
                         Container(
-                            width: 535,
+                            width: width/2.553271028037383,
                             height: height / 2.55,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1162,7 +1161,7 @@ class _Dashboard2State extends State<Dashboard2> {
                           builder: (ctx, snap){
                             if(snap.hasData){
                               return Container(
-                                width:535,
+                                width: width/2.553271028037383,
                                 height: height / 2.87,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -1266,7 +1265,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                               ),
                                               Container(
                                                   height: height / 5.57,
-                                                  width: 260,
+                                                  width: width/5.253846153846154,
                                                   child: ListView.builder(
                                                       shrinkWrap: true,
                                                       itemCount: snap.data!.todayAbsentPersons.length,
@@ -1333,7 +1332,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                   borderRadius: BorderRadius.circular(12),
                                   shadowColor:  Color(0xff53B175).withOpacity(0.20),
                                   child: Container(
-                                    width: 538,
+                                    width: width/2.539033457249071,
                                     height: height / 2.87,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(12),
@@ -1441,7 +1440,7 @@ class _Dashboard2State extends State<Dashboard2> {
                                                   ),
                                                   Container(
                                                       height: height / 5.57,
-                                                      width: 260,
+                                                      width: width/5.253846153846154,
                                                       child: ListView.builder(
                                                           shrinkWrap: true,
                                                           itemCount: 0,
@@ -1507,7 +1506,7 @@ class _Dashboard2State extends State<Dashboard2> {
                             height: height / 3.57,
                             child: VerticalDivider(width: 2,color:Colors.grey)),
                         Container(
-                            width: 535,
+                            width: width/2.553271028037383,
                             height: height / 2.55,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1536,8 +1535,8 @@ class _Dashboard2State extends State<Dashboard2> {
                       borderRadius: BorderRadius.circular(12),
                       shadowColor:  Color(0xff53B175).withOpacity(0.20),
                       child: Container(
-                        width: 535,
-                        height: 420,
+                        width: width/2.553271028037383,
+                        height:height/1.55,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             border:Border.all(color: Color(0xff53B175).withOpacity(0.20))
@@ -1549,10 +1548,10 @@ class _Dashboard2State extends State<Dashboard2> {
                               padding: const EdgeInsets.only(top:20.0,left: 15),
                               child: Text("Fees Reports",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height:height/65.1),
                             Container(
-                                width: 550,
-                                height: 350,
+                                width: width/2.483636363636364,
+                                height:height/1.86,
                                 child: BarChartSample2(),
                             )
                           ],
@@ -1567,8 +1566,8 @@ class _Dashboard2State extends State<Dashboard2> {
                       borderRadius: BorderRadius.circular(12),
                       shadowColor:  Color(0xff53B175).withOpacity(0.20),
                       child: Container(
-                          width: 535,
-                          height: 420,
+                          width: width/2.553271028037383,
+                          height:height/1.55,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
                               border:Border.all(color: Color(0xff53B175).withOpacity(0.20))
@@ -1581,8 +1580,8 @@ class _Dashboard2State extends State<Dashboard2> {
                                 child: Text("Events Calendar",style: GoogleFonts.poppins(fontWeight: FontWeight.w700,fontSize: width/75.888888889),),
                               ),
                               Container(
-                                width: 500,
-                                height: 370,
+                                width: width/2.732,
+                                height:height/1.759459459459459,
                                 child: SfCalendar(
                                   onLongPress: (val){
 
@@ -1593,8 +1592,8 @@ class _Dashboard2State extends State<Dashboard2> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return BouncingDraggableDialog(
-                                            width: 400,
-                                            height: 250,
+                                            width: width/3.415,
+                                            height:height/2.604,
                                             content: eventspop(val.date),
                                           );
                                         });                            },
@@ -1613,7 +1612,7 @@ class _Dashboard2State extends State<Dashboard2> {
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
+              SizedBox(height:height/16.275),
             ],
           ),
         )) : pages;
@@ -1734,7 +1733,7 @@ TextEditingController datecon = new TextEditingController();
                 ),
               ),
               SizedBox(
-                height: 8.0,
+                height: height/81.375,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -1770,7 +1769,7 @@ TextEditingController datecon = new TextEditingController();
                                 color: Colors.black,
                               ),
                               SizedBox(
-                                width: 4,
+                                width: width/341.5,
                               ),
                               Expanded(
                                 child: Text(
@@ -1802,8 +1801,8 @@ TextEditingController datecon = new TextEditingController();
                             });
                           },
                           buttonStyleData: ButtonStyleData(
-                            height: 50,
-                            width: 160,
+                            height:height/13.02,
+                            width: width/8.5375,
                             padding: const EdgeInsets.only(left: 14, right: 14),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
@@ -1821,7 +1820,7 @@ TextEditingController datecon = new TextEditingController();
                             iconDisabledColor: Colors.grey,
                           ),
                           dropdownStyleData: DropdownStyleData(
-                            maxHeight: 200,
+                            maxHeight:height/3.255,
                             width: width/5.464,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(14),
@@ -1834,8 +1833,8 @@ TextEditingController datecon = new TextEditingController();
                               thumbVisibility: MaterialStateProperty.all<bool>(true),
                             ),
                           ),
-                          menuItemStyleData: const MenuItemStyleData(
-                            height: 40,
+                          menuItemStyleData: MenuItemStyleData(
+                            height:height/16.275,
                             padding: EdgeInsets.only(left: 14, right: 14),
                           ),
                         ),
@@ -1850,7 +1849,7 @@ TextEditingController datecon = new TextEditingController();
                 ],
               ),
               SizedBox(
-                height: 10,
+                height:height/65.1,
               ),
               Row(
                 children: [
@@ -1905,7 +1904,7 @@ TextEditingController datecon = new TextEditingController();
                 ],
               ),
               SizedBox(
-                height: 10,
+                height:height/65.1,
               ),
               Row(
                 children: [
@@ -1961,7 +1960,7 @@ TextEditingController datecon = new TextEditingController();
                 ],
               ),
               SizedBox(
-                height: 10,
+                height:height/65.1,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -1977,8 +1976,8 @@ TextEditingController datecon = new TextEditingController();
                               context: context,
                               builder: (BuildContext context) {
                                 return BouncingDraggableDialog(
-                                  width: 400,
-                                  height: 600,
+                                  width: width/3.415,
+                                  height:height/1.085,
                                   content: eventspop2(datecon.text),
                                 );
                               });
@@ -2065,7 +2064,7 @@ TextEditingController datecon = new TextEditingController();
             ),
           ),
           SizedBox(
-            height: 8.0,
+            height: height/81.375,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -2075,8 +2074,8 @@ TextEditingController datecon = new TextEditingController();
           ),
 
           Container(
-            width: 400,
-            height: 400,
+            width: width/3.415,
+            height: height/1.6275,
             child: StreamBuilder<QuerySnapshot>(
               stream:  FirebaseFirestore.instance.collection("Events").where("ondate",isEqualTo: date).snapshots(),
                 builder: (context,snap){
@@ -2100,7 +2099,7 @@ TextEditingController datecon = new TextEditingController();
 
 
           SizedBox(
-            height: 10,
+            height:height/65.1,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

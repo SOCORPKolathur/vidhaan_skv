@@ -192,10 +192,10 @@ class _StudentListState extends State<StudentList> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting Student',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -295,9 +295,9 @@ class _StudentListState extends State<StudentList> {
                           ),
                         ),
                         Text("Students List",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
-                        SizedBox(width: 700,),
+                        SizedBox(width: width/1.951428571428571,),
 
-                        SizedBox(width: 10,),
+                        SizedBox(width: width/136.6,),
                         InkWell(
                           onTap: (){
                             setState(() {
@@ -330,7 +330,7 @@ class _StudentListState extends State<StudentList> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10,),
+                        SizedBox(width: width/136.6,),
 
                         Excelsheet(check,mainconcent,studentsListForCsv),
                       ],
@@ -502,7 +502,7 @@ class _StudentListState extends State<StudentList> {
 
                             ),
                           ),
-                          SizedBox(width: 15,),
+                          SizedBox(width: width/91.06666666666667,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -526,7 +526,7 @@ class _StudentListState extends State<StudentList> {
                                           color: Colors.black,
                                         ),
                                         SizedBox(
-                                          width: 4,
+                                          width: width/341.5,
                                         ),
                                         Expanded(
                                           child: Text(
@@ -558,8 +558,8 @@ class _StudentListState extends State<StudentList> {
                                       });
                                     },
                                     buttonStyleData: ButtonStyleData(
-                                      height: 50,
-                                      width: 160,
+                                      height:height/13.02,
+                                      width: width/8.5375,
                                       padding: const EdgeInsets.only(left: 14, right: 14),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
@@ -577,7 +577,7 @@ class _StudentListState extends State<StudentList> {
                                       iconDisabledColor: Colors.grey,
                                     ),
                                     dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
+                                      maxHeight:height/3.255,
                                       width: width/5.464,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
@@ -590,8 +590,8 @@ class _StudentListState extends State<StudentList> {
                                         thumbVisibility: MaterialStateProperty.all<bool>(true),
                                       ),
                                     ),
-                                    menuItemStyleData: const MenuItemStyleData(
-                                      height: 40,
+                                    menuItemStyleData: MenuItemStyleData(
+                                      height:height/16.275,
                                       padding: EdgeInsets.only(left: 14, right: 14),
                                     ),
                                   ),
@@ -628,7 +628,7 @@ class _StudentListState extends State<StudentList> {
                                           color: Colors.black,
                                         ),
                                         SizedBox(
-                                          width: 4,
+                                          width: width/341.5,
                                         ),
                                         Expanded(
                                           child: Text(
@@ -660,8 +660,8 @@ class _StudentListState extends State<StudentList> {
                                       });
                                     },
                                     buttonStyleData: ButtonStyleData(
-                                      height: 50,
-                                      width: 160,
+                                      height:height/13.02,
+                                      width: width/8.5375,
                                       padding: const EdgeInsets.only(left: 14, right: 14),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
@@ -679,7 +679,7 @@ class _StudentListState extends State<StudentList> {
                                       iconDisabledColor: Colors.grey,
                                     ),
                                     dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
+                                      maxHeight:height/3.255,
                                       width: width/5.464,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
@@ -692,8 +692,8 @@ class _StudentListState extends State<StudentList> {
                                         thumbVisibility: MaterialStateProperty.all<bool>(true),
                                       ),
                                     ),
-                                    menuItemStyleData: const MenuItemStyleData(
-                                      height: 40,
+                                    menuItemStyleData: MenuItemStyleData(
+                                      height:height/16.275,
                                       padding: EdgeInsets.only(left: 14, right: 14),
                                     ),
                                   ),
@@ -997,8 +997,8 @@ class _StudentListState extends State<StudentList> {
                                             elevation: 1,
                                             borderRadius: BorderRadius.circular(50),
                                             child: Container(
-                                                width:50,
-                                                height: 50,
+                                                width: width/27.32,
+                                                height:height/13.02,
                                                 decoration: BoxDecoration(
                                                     borderRadius: BorderRadius.circular(50)
                                                 ),
@@ -1180,8 +1180,8 @@ class _StudentListState extends State<StudentList> {
                                             elevation: 1,
                                             borderRadius: BorderRadius.circular(50),
                                             child: Container(
-                                                width:50,
-                                                height: 50,
+                                                width: width/27.32,
+                                                height:height/13.02,
                                                 decoration: BoxDecoration(
                                                     borderRadius: BorderRadius.circular(50)
                                                 ),
@@ -1363,8 +1363,8 @@ class _StudentListState extends State<StudentList> {
                                               elevation: 1,
                                               borderRadius: BorderRadius.circular(50),
                                             child: Container(
-                                              width:50,
-                                              height: 50,
+                                              width: width/27.32,
+                                              height:height/13.02,
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(50)
                                               ),
@@ -1527,7 +1527,7 @@ class _StudentListState extends State<StudentList> {
 
               ),
             ),
-            SizedBox(height: 25,)
+            SizedBox(height:height/26.04,)
           ],
         ),
       ),
@@ -1824,7 +1824,7 @@ class _StudentListState extends State<StudentList> {
                               child: SingleChildScrollView(
                                 child: Column(
                                     children:[
-                                      SizedBox(height: 15,),
+                                      SizedBox(height:height/43.4,),
                                       Row(
                                         children: [
                                           Container(
@@ -1835,31 +1835,31 @@ class _StudentListState extends State<StudentList> {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 15,),
+                                      SizedBox(height:height/43.4,),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Container(
-                                            width:130,
+                                            width: width/10.50769230769231,
                                             child: Text('Fees Name',style: GoogleFonts.montserrat(
                                                 fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                             ),),
                                           ),
                                           Container(
-                                            width:130,
+                                            width: width/10.50769230769231,
                                             child: Text('Amount',style: GoogleFonts.montserrat(
                                                 fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                             ),),
                                           ),
 
                                           Container(
-                                            width:130,
+                                            width: width/10.50769230769231,
                                             child: Text('Due Date',style: GoogleFonts.montserrat(
                                                 fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                             ),),
                                           ),
                                           Container(
-                                            width:130,
+                                            width: width/10.50769230769231,
                                             child: Text('Paid Date \nTime',
                                             textAlign: TextAlign.center,
 
@@ -1868,7 +1868,7 @@ class _StudentListState extends State<StudentList> {
                                             ),),
                                           ),
                                           Container(
-                                            width:130,
+                                            width: width/10.50769230769231,
                                             child: Text('Status',style: GoogleFonts.montserrat(
                                                 fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                             ),),
@@ -1896,31 +1896,31 @@ class _StudentListState extends State<StudentList> {
                                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                         children: [
                                                           Container(
-                                                            width:130,
+                                                            width: width/10.50769230769231,
                                                             child: Text(snapshot.data!.docs[index]["feesname"],style: GoogleFonts.montserrat(
                                                                 fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                                             ),),
                                                           ),
                                                           Container(
-                                                            width:130,
+                                                            width: width/10.50769230769231,
                                                             child: Text(snapshot.data!.docs[index]["amount"].toString(),style: GoogleFonts.montserrat(
                                                                 fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                                             ),),
                                                           ),
                                                           Container(
-                                                            width:130,
+                                                            width: width/10.50769230769231,
                                                             child: Text(snapshot.data!.docs[index]["status"]==true?"Paid": "Unpaid",style: GoogleFonts.montserrat(
                                                                 fontWeight:FontWeight.bold,color:snapshot.data!.docs[index]["status"]==true? Color(0xff53B175):Colors.red,fontSize:width/91.13
                                                             ),),
                                                           ),
                                                           Container(
-                                                            width:130,
+                                                            width: width/10.50769230769231,
                                                             child: Text(snapshot.data!.docs[index]["date"],style: GoogleFonts.montserrat(
                                                                 fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                                             ),),
                                                           ),
                                                           Container(
-                                                            width:130,
+                                                            width: width/10.50769230769231,
                                                             child: Text(snapshot.data!.docs[index]["time"],style: GoogleFonts.montserrat(
                                                                 fontWeight:FontWeight.w600,color: Colors.black,fontSize:width/91.13
                                                             ),),
@@ -2149,7 +2149,7 @@ class _StudentListState extends State<StudentList> {
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Container(
-                                                    width:200,
+                                                    width: width/6.83,
                                                     child: Text(
                                                       value["address"],
                                                       style: GoogleFonts.poppins(
@@ -2174,7 +2174,7 @@ class _StudentListState extends State<StudentList> {
                                               Padding(
                                                 padding: const EdgeInsets.all(4.0),
                                                 child: Container(
-                                                  width: 200,
+                                                  width: width/6.83,
                                                     child: Divider()),
                                               ),
                                               Padding(
@@ -2218,7 +2218,7 @@ class _StudentListState extends State<StudentList> {
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Container(
-                                                    width:210,
+                                                    width: width/6.5047619047619050,
                                                     child: Text(
                                                       value["fatherOffice"],
                                                       style: GoogleFonts.poppins(
@@ -2272,7 +2272,7 @@ class _StudentListState extends State<StudentList> {
                                             Padding(
                                               padding: const EdgeInsets.all(4.0),
                                               child: Container(
-                                                  width: 200,
+                                                  width: width/6.83,
                                                   child: Divider()),
                                             ),
                                             Padding(
@@ -2316,7 +2316,7 @@ class _StudentListState extends State<StudentList> {
                                                         fontWeight: FontWeight.bold),
                                                   ),
                                                   Container(
-                                                    width:220,
+                                                    width: width/6.2090909090909090,
                                                     child: Text(
                                                       value["motherOffice"],
                                                       style: GoogleFonts.poppins(

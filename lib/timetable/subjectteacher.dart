@@ -41,8 +41,9 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
     }
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -258,8 +259,9 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
     }
   }
   Error2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -326,7 +328,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                           color: Colors.black,
                                         ),
                                         SizedBox(
-                                          width: 4,
+                                          width: width/341.5,
                                         ),
                                         Expanded(
                                           child: Text(
@@ -359,8 +361,8 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                       setteacher();
                                     },
                                     buttonStyleData: ButtonStyleData(
-                                      height: 50,
-                                      width: 160,
+                                      height:height/13.02,
+                                      width: width/8.5375,
                                       padding: const EdgeInsets.only(left: 14, right: 14),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
@@ -378,7 +380,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                       iconDisabledColor: Colors.grey,
                                     ),
                                     dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
+                                      maxHeight:height/3.255,
                                       width: width/5.464,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
@@ -391,8 +393,8 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                         thumbVisibility: MaterialStateProperty.all<bool>(true),
                                       ),
                                     ),
-                                    menuItemStyleData: const MenuItemStyleData(
-                                      height: 40,
+                                    menuItemStyleData:  MenuItemStyleData(
+                                      height:height/16.275,
                                       padding: EdgeInsets.only(left: 14, right: 14),
                                     ),
                                   ),
@@ -431,7 +433,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                           color: Colors.black,
                                         ),
                                         SizedBox(
-                                          width: 4,
+                                          width: width/341.5,
                                         ),
                                         Expanded(
                                           child: Text(
@@ -464,8 +466,8 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                       setteacher();
                                     },
                                     buttonStyleData: ButtonStyleData(
-                                      height: 50,
-                                      width: 160,
+                                      height:height/13.02,
+                                      width: width/8.5375,
                                       padding: const EdgeInsets.only(left: 14, right: 14),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
@@ -483,7 +485,7 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                       iconDisabledColor: Colors.grey,
                                     ),
                                     dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
+                                      maxHeight:height/3.255,
                                       width: width/5.464,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
@@ -496,8 +498,8 @@ class _SubjectTeacherState extends State<SubjectTeacher> {
                                         thumbVisibility: MaterialStateProperty.all<bool>(true),
                                       ),
                                     ),
-                                    menuItemStyleData: const MenuItemStyleData(
-                                      height: 40,
+                                    menuItemStyleData:  MenuItemStyleData(
+                                      height:height/16.275,
                                       padding: EdgeInsets.only(left: 14, right: 14),
                                     ),
                                   ),

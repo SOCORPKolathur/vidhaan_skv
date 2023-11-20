@@ -97,8 +97,9 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
   }
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -117,8 +118,9 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
     )..show();
   }
   Successdialogd(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -135,8 +137,9 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
     )..show();
   }
   Successdialog2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -251,10 +254,10 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -332,7 +335,7 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
           Padding(
             padding: const EdgeInsets.only(top:137.0,left: 20),
             child: Container(
-              height: 500,
+              height:height/1.302,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -356,7 +359,7 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
               borderRadius: BorderRadius.circular(12),
               child: Container(
                 width: width/1.050,
-                height: 100,
+                height:height/6.51,
                 decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
                 child: Column(
                   children: [
@@ -368,7 +371,7 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
                           child: Text("School Profile",style: GoogleFonts.poppins(fontSize: width/68.3,fontWeight:FontWeight.w700),),
                         ),
                         SizedBox(
-                            width:900
+                            width: width/1.517777777777778
                         ),
 
 
@@ -497,10 +500,10 @@ class _ProfileDarwerState extends State<ProfileDarwer>with TickerProviderStateMi
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Profile Updated Sucessfully',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child:  Lottie.asset("assets/uploaded.json")
                 ),
@@ -551,6 +554,8 @@ class ExampleSidebarX extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(20),
@@ -596,14 +601,14 @@ class ExampleSidebarX extends StatelessWidget {
           ),
         ),
         extendedTheme:  SidebarXTheme(
-          width: 200,
+          width: width/6.83,
           decoration: BoxDecoration(
             color: canvasColor,
             borderRadius: BorderRadius.circular(20)
           ),
         ),
 headerBuilder: (context, extended)  {
-          return Container(height: 20,);
+          return Container(height:height/32.55,);
 },
 
 
@@ -751,8 +756,9 @@ class _ScreensExampleState extends State<_ScreensExample> {
   }
 
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -771,8 +777,9 @@ class _ScreensExampleState extends State<_ScreensExample> {
     )..show();
   }
   Successdialogfees(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -791,8 +798,9 @@ class _ScreensExampleState extends State<_ScreensExample> {
     )..show();
   }
   Successdialogd(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -809,8 +817,9 @@ class _ScreensExampleState extends State<_ScreensExample> {
     )..show();
   }
   Successdialog2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -852,8 +861,9 @@ class _ScreensExampleState extends State<_ScreensExample> {
 
 
   Errordialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -941,10 +951,10 @@ class _ScreensExampleState extends State<_ScreensExample> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you Sure of Deleting',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child: Lottie.asset("assets/delete file.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -1027,7 +1037,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                 borderRadius: BorderRadius.circular(12),
                 child: Container(
                   width: width/1.050,
-                  height: 500,
+                  height:height/1.302,
                   decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -1477,7 +1487,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                   ),
                                   ),
                                 ),
-                                SizedBox(width: 20,),
+                                SizedBox(width: width/68.3,),
                                 InkWell(
                                   onTap: (){
                                     setState(() {
@@ -1534,8 +1544,8 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                   uploadToStorage();
                                 },
                                 child: Container(
-                                    width: 170,
-                                    height: 170,
+                                    width: width/8.035294117647059,
+                                    height:height/3.829411764705882,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(100)
                                     ),
@@ -1556,7 +1566,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                             ),
                           ),
 
-                          SizedBox(height: 10,),
+                          SizedBox(height:height/65.1,),
                           Padding(
                             padding: const EdgeInsets.only(top:30.0,left:20),
                             child: InkWell(
@@ -1694,8 +1704,8 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                               }
                                             },
                                             child: Container(child: Center(child: Icon(Icons.add,color: Colors.white,size: 20,)),
-                                              width: 30,
-                                              height: 30,
+                                              width: width/45.53333333333333,
+                                              height:height/21.7,
                                               // color:Color(0xff00A0E3),
                                               decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(40)),
 
@@ -1789,7 +1799,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                                               padding:
                                                               const EdgeInsets.only(left: 15.0),
                                                               child: Container(
-                                                                  width: 30,
+                                                                  width: width/45.53333333333333,
 
                                                                   child: Image.asset("assets/delete.png"))
                                                           ),
@@ -1901,8 +1911,8 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                             }
                                           },
                                           child: Container(child: Center(child: Icon(Icons.add,color: Colors.white,size: 20,)),
-                                            width: 30,
-                                            height: 30,
+                                            width: width/45.53333333333333,
+                                            height:height/21.7,
                                             // color:Color(0xff00A0E3),
                                             decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(40)),
 
@@ -1972,7 +1982,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                                 padding: const EdgeInsets.all(8.0),
                                                 child: Container(
                                                   height: height/ 21.9,
-                                                  width: 300,
+                                                  width: width/4.553333333333333,
 
                                                   decoration: BoxDecoration(color:Colors.white60,borderRadius: BorderRadius.circular(12)
 
@@ -1995,7 +2005,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                                             padding:
                                                             const EdgeInsets.only(left: 15.0),
                                                             child: Container(
-                                                                width: 30,
+                                                                width: width/45.53333333333333,
 
                                                                 child: Image.asset("assets/delete.png"))
                                                         ),
@@ -2106,8 +2116,8 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                             }
                                           },
                                           child: Container(child: Center(child: Icon(Icons.add,color: Colors.white,size: 20,)),
-                                            width: 30,
-                                            height: 30,
+                                            width: width/45.53333333333333,
+                                            height:height/21.7,
                                             // color:Color(0xff00A0E3),
                                             decoration: BoxDecoration(color: Color(0xff00A0E3),borderRadius: BorderRadius.circular(40)),
 
@@ -2189,7 +2199,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                                                        child: Container(width:110,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
+                                                        child: Container(width: width/12.41818181818182,child: Text(value["name"],style: GoogleFonts.poppins(fontSize: width/91.066666667,fontWeight: FontWeight.w600,color: Colors.black),)),
                                                       ),
                                                       deletecheck3[index]==true?     InkWell(
                                                         onTap: (){
@@ -2199,7 +2209,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                                             padding:
                                                             const EdgeInsets.only(left: 15.0),
                                                             child: Container(
-                                                                width: 30,
+                                                                width: width/45.53333333333333,
 
                                                                 child: Image.asset("assets/delete.png"))
                                                         ),
@@ -2342,7 +2352,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                               padding: const EdgeInsets.only(left:10.0,top:10,bottom: 10),
                               child: Container(
                                 height: height/13.14,
-                                width: 1000,
+                                width: width/1.366,
 
                                 decoration: BoxDecoration(color:Color(0xff00A0E3),borderRadius: BorderRadius.circular(12)
 
@@ -2420,7 +2430,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                                         padding:
                                                         const EdgeInsets.only(left: 15.0),
                                                         child: Container(
-                                                            width: 30,
+                                                            width: width/45.53333333333333,
 
                                                             child: Image.asset("assets/delete.png"))
                                                     ),
@@ -2595,10 +2605,10 @@ class _ScreensExampleState extends State<_ScreensExample> {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Profile Updated Sucessfully',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child:  Lottie.asset("assets/uploaded.json")
                 ),

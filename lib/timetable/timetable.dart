@@ -273,8 +273,9 @@ class _TimeTableState extends State<TimeTable> {
 
   }
   Successdialog(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
@@ -288,8 +289,9 @@ class _TimeTableState extends State<TimeTable> {
     )..show();
   }
   Successdialog2(){
+    double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
-      width: 450,
+      width: width/3.035555555555556,
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
@@ -385,7 +387,7 @@ class _TimeTableState extends State<TimeTable> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Time Table",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
-                  SizedBox(width:10),
+                  SizedBox(width: width/136.6),
                 ],
               ),
             ),
@@ -429,7 +431,7 @@ class _TimeTableState extends State<TimeTable> {
                                       color: Colors.black,
                                     ),
                                     SizedBox(
-                                      width: 4,
+                                      width: width/341.5,
                                     ),
                                     Expanded(
                                       child: Text(
@@ -463,8 +465,8 @@ class _TimeTableState extends State<TimeTable> {
                                   settimestable();
                                 },
                                 buttonStyleData: ButtonStyleData(
-                                  height: 50,
-                                  width: 160,
+                                  height:height/13.02,
+                                  width: width/8.5375,
                                   padding: const EdgeInsets.only(left: 14, right: 14),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
@@ -482,7 +484,7 @@ class _TimeTableState extends State<TimeTable> {
                                   iconDisabledColor: Colors.grey,
                                 ),
                                 dropdownStyleData: DropdownStyleData(
-                                  maxHeight: 200,
+                                  maxHeight:height/3.255,
                                   width: width/5.464,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(14),
@@ -495,8 +497,8 @@ class _TimeTableState extends State<TimeTable> {
                                     thumbVisibility: MaterialStateProperty.all<bool>(true),
                                   ),
                                 ),
-                                menuItemStyleData: const MenuItemStyleData(
-                                  height: 40,
+                                menuItemStyleData: MenuItemStyleData(
+                                  height:height/16.275,
                                   padding: EdgeInsets.only(left: 14, right: 14),
                                 ),
                               ),
@@ -535,7 +537,7 @@ class _TimeTableState extends State<TimeTable> {
                                       color: Colors.black,
                                     ),
                                     SizedBox(
-                                      width: 4,
+                                      width: width/341.5,
                                     ),
                                     Expanded(
                                       child: Text(
@@ -569,8 +571,8 @@ class _TimeTableState extends State<TimeTable> {
                                   settimestable();
                                 },
                                 buttonStyleData: ButtonStyleData(
-                                  height: 50,
-                                  width: 160,
+                                  height:height/13.02,
+                                  width: width/8.5375,
                                   padding: const EdgeInsets.only(left: 14, right: 14),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
@@ -588,7 +590,7 @@ class _TimeTableState extends State<TimeTable> {
                                   iconDisabledColor: Colors.grey,
                                 ),
                                 dropdownStyleData: DropdownStyleData(
-                                  maxHeight: 200,
+                                  maxHeight:height/3.255,
                                   width: width/5.464,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(14),
@@ -601,8 +603,8 @@ class _TimeTableState extends State<TimeTable> {
                                     thumbVisibility: MaterialStateProperty.all<bool>(true),
                                   ),
                                 ),
-                                menuItemStyleData: const MenuItemStyleData(
-                                  height: 40,
+                                menuItemStyleData: MenuItemStyleData(
+                                  height:height/16.275,
                                   padding: EdgeInsets.only(left: 14, right: 14),
                                 ),
                               ),
@@ -688,76 +690,76 @@ class _TimeTableState extends State<TimeTable> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height:height/65.1,),
                 Row(
                   children: [
                     Container(
-                      height: 40,
-                      width: 150,
+                      height:height/16.275,
+                      width: width/9.106666666666667,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black)
                       ),
                       child: Center(child: Text("Day/Period",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black)
                       ),
                       child: Center(child: Text("Period -01",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
                       child: Center(child: Text("Period -02",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
                       child: Center(child: Text("Period -03",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
                       child: Center(child: Text("Period -04",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
                       child: Center(child: Text("Period -05",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
                       child: Center(child: Text("Period -06",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
                       child: Center(child: Text("Period -07",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600),)),
                     ),
                     Container(
-                      height: 40,
-                      width: 100,
+                      height:height/16.275,
+                      width: width/13.66,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)
                       ),
@@ -772,8 +774,8 @@ class _TimeTableState extends State<TimeTable> {
                     return Row(
                       children: [
                         Container(
-                          height: 40,
-                          width: 150,
+                          height:height/16.275,
+                          width: width/9.106666666666667,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black)
                           ),
@@ -782,8 +784,8 @@ class _TimeTableState extends State<TimeTable> {
                                 fontSize: 15, fontWeight: FontWeight.w600),)),
                         ),
                         Container(
-                          height: 40,
-                          width: 100,
+                          height:height/16.275,
+                          width: width/13.66,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black)
                           ),
@@ -836,8 +838,8 @@ class _TimeTableState extends State<TimeTable> {
                           ),
                         ),
                         Container(
-                          height: 40,
-                          width: 100,
+                          height:height/16.275,
+                          width: width/13.66,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black)
                           ),
@@ -888,8 +890,8 @@ class _TimeTableState extends State<TimeTable> {
                           ),
                         ),
                         Container(
-                          height: 40,
-                          width: 100,
+                          height:height/16.275,
+                          width: width/13.66,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black)
                           ),
@@ -940,8 +942,8 @@ class _TimeTableState extends State<TimeTable> {
                           ),
                         ),
                         Container(
-                          height: 40,
-                          width: 100,
+                          height:height/16.275,
+                          width: width/13.66,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black)
                           ),
@@ -992,8 +994,8 @@ class _TimeTableState extends State<TimeTable> {
                           ),
                         ),
                         Container(
-                          height: 40,
-                          width: 100,
+                          height:height/16.275,
+                          width: width/13.66,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black)
                           ),
@@ -1044,8 +1046,8 @@ class _TimeTableState extends State<TimeTable> {
                           ),
                         ),
                         Container(
-                          height: 40,
-                          width: 100,
+                          height:height/16.275,
+                          width: width/13.66,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black)
                           ),
@@ -1096,8 +1098,8 @@ class _TimeTableState extends State<TimeTable> {
                           ),
                         ),
                         Container(
-                          height: 40,
-                          width: 100,
+                          height:height/16.275,
+                          width: width/13.66,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black)
                           ),
@@ -1148,8 +1150,8 @@ class _TimeTableState extends State<TimeTable> {
                           ),
                         ),
                         Container(
-                          height: 40,
-                          width: 100,
+                          height:height/16.275,
+                          width: width/13.66,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black)
                           ),
@@ -1211,8 +1213,8 @@ class _TimeTableState extends State<TimeTable> {
                       return Row(
                         children: [
                           Container(
-                            height: 40,
-                            width: 150,
+                            height:height/16.275,
+                            width: width/9.106666666666667,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1221,8 +1223,8 @@ class _TimeTableState extends State<TimeTable> {
                                   fontSize: 15, fontWeight: FontWeight.w600),)),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1273,8 +1275,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1325,8 +1327,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1377,8 +1379,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1429,8 +1431,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1481,8 +1483,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1533,8 +1535,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1585,8 +1587,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1648,8 +1650,8 @@ class _TimeTableState extends State<TimeTable> {
                       return Row(
                         children: [
                           Container(
-                            height: 40,
-                            width: 150,
+                            height:height/16.275,
+                            width: width/9.106666666666667,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1658,8 +1660,8 @@ class _TimeTableState extends State<TimeTable> {
                                   fontSize: 15, fontWeight: FontWeight.w600),)),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1710,8 +1712,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1762,8 +1764,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1814,8 +1816,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1866,8 +1868,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1918,8 +1920,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -1970,8 +1972,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2022,8 +2024,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2085,8 +2087,8 @@ class _TimeTableState extends State<TimeTable> {
                       return Row(
                         children: [
                           Container(
-                            height: 40,
-                            width: 150,
+                            height:height/16.275,
+                            width: width/9.106666666666667,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2095,8 +2097,8 @@ class _TimeTableState extends State<TimeTable> {
                                   fontSize: 15, fontWeight: FontWeight.w600),)),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2147,8 +2149,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2199,8 +2201,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2251,8 +2253,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2303,8 +2305,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2355,8 +2357,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2407,8 +2409,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2459,8 +2461,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2522,8 +2524,8 @@ class _TimeTableState extends State<TimeTable> {
                       return Row(
                         children: [
                           Container(
-                            height: 40,
-                            width: 150,
+                            height:height/16.275,
+                            width: width/9.106666666666667,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2532,8 +2534,8 @@ class _TimeTableState extends State<TimeTable> {
                                   fontSize: 15, fontWeight: FontWeight.w600),)),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2584,8 +2586,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2636,8 +2638,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2688,8 +2690,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2740,8 +2742,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2792,8 +2794,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2844,8 +2846,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2896,8 +2898,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2959,8 +2961,8 @@ class _TimeTableState extends State<TimeTable> {
                       return Row(
                         children: [
                           Container(
-                            height: 40,
-                            width: 150,
+                            height:height/16.275,
+                            width: width/9.106666666666667,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -2969,8 +2971,8 @@ class _TimeTableState extends State<TimeTable> {
                                   fontSize: 15, fontWeight: FontWeight.w600),)),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -3021,8 +3023,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -3073,8 +3075,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -3125,8 +3127,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -3177,8 +3179,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -3229,8 +3231,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -3281,8 +3283,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),
@@ -3333,8 +3335,8 @@ class _TimeTableState extends State<TimeTable> {
                             ),
                           ),
                           Container(
-                            height: 40,
-                            width: 100,
+                            height:height/16.275,
+                            width: width/13.66,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)
                             ),

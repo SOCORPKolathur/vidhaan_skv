@@ -38,10 +38,10 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you sure of rejecting this application',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child:  Lottie.asset("assets/thinking.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -138,10 +138,10 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
             builder: (context,setState) {
               return AlertDialog(
                 title:  Text('Are you sure of approving this application',style: GoogleFonts.poppins(
-                    color: Colors.black, fontSize:18,fontWeight: FontWeight.w600),),
+                    color: Colors.black, fontSize: width/75.88888888888889,fontWeight: FontWeight.w600),),
                 content:  Container(
-                    width: 350,
-                    height: 250,
+                    width: width/3.902857142857143,
+                    height:height/2.604,
 
                     child:  Lottie.asset("assets/approve.json")),
                 //child:  Lottie.asset("assets/file choosing.json")),
@@ -408,8 +408,8 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height:height/65.1,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -519,7 +519,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20,),
+          SizedBox(height:height/32.55,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text("New Leave Requests,",style: GoogleFonts.poppins(
@@ -721,7 +721,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20,),
+          SizedBox(height:height/32.55,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text("Approved Requests,",style: GoogleFonts.poppins(
@@ -866,7 +866,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20),
+          SizedBox(height:height/32.55),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text("Denied Requests,",style: GoogleFonts.poppins(
