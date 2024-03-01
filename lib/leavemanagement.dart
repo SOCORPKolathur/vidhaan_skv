@@ -442,6 +442,7 @@ class _LeaveState extends State<Leave> with SingleTickerProviderStateMixin  {
                             const EdgeInsets.symmetric(horizontal: 8),
                             child: Text(
                               "New Leave Requests",
+
                               style: GoogleFonts.openSans(
                                 color: currentTabIndex == 0
                                     ? Colors.white
