@@ -1650,7 +1650,7 @@ class _Dashboard2State extends State<Dashboard2> {
     return meetings;
   }
   Future<TodayPresentReport> getTodayStudentPresent() async {
-    var studentDocument = await FirebaseFirestore.instance.collection('Students').get();
+    var studentDocument = await FirebaseFirestore.instance.collection('Students').limit(10).get();
     List<NameWithId> presentPeoples = [];
     List<NameWithId> absentPeoples = [];
     presentPeoples.clear();
@@ -1681,7 +1681,7 @@ class _Dashboard2State extends State<Dashboard2> {
   }
 
   Future<TodayPresentReport> getTodayStaffPresent() async {
-    var studentDocument = await FirebaseFirestore.instance.collection('Staffs').get();
+    var studentDocument = await FirebaseFirestore.instance.collection('Staffs').limit(10).get();
     List<NameWithId> presentPeoples = [];
     List<NameWithId> absentPeoples = [];
     presentPeoples.clear();

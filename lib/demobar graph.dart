@@ -27,6 +27,21 @@ class BarChartSample2State extends State<BarChartSample2> {
 
   int totalStudents = 0;
 
+
+
+  dummycall(){
+    titles = [];
+    for(int i=0;i<10;i++) {
+
+      setState(() {
+        titles.add("Fees");
+        showingBarGroups.add(
+            makeGroupData(i, double.parse((50 + i).toString()) , 30)
+        );
+      });
+    }
+  }
+
   Future<List<BarChartGroupData>> getFeesDetails() async {
 
     var examsDoc = await FirebaseFirestore.instance.collection("ClassMaster").get();
@@ -77,7 +92,8 @@ class BarChartSample2State extends State<BarChartSample2> {
 
   @override
   void initState() {
-    getFeesDetails();
+    dummycall();
+    //getFeesDetails();
     super.initState();
   }
 

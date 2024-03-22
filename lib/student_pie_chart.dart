@@ -204,8 +204,10 @@ class _StudentPieChartState extends State<StudentPieChart> {
             color: Color(0xff53B175),
             // value: 0.0,
             // title: '%',
-            value: (presnet/totalattdence *100),
-            title: '${(presnet/totalattdence *100).toStringAsFixed(2)}%',
+            //value: (presnet/totalattdence *100),
+            value: (40/100 *100),
+            //title: '${(presnet/totalattdence *100).toStringAsFixed(2)}%',
+            title: '${(40/100 *100).toStringAsFixed(2)}%',
             radius: radius,
             titleStyle:  GoogleFonts.poppins(
               fontSize: fontSize,
@@ -217,8 +219,10 @@ class _StudentPieChartState extends State<StudentPieChart> {
         case 1:
           return PieChartSectionData(
             color: Colors.red,
-            value: (absent/totalattdence *100),
-            title: '${(absent/totalattdence *100).toStringAsFixed(2)}%',
+            //value: (absent/totalattdence *100),
+            value: (35/100 *100),
+            //title: '${(absent/totalattdence *100).toStringAsFixed(2)}%',
+            title: '${(35/100 *100).toStringAsFixed(2)}%',
             // value: 0.0,
             // title: '%',
             radius: radius,
@@ -234,8 +238,10 @@ class _StudentPieChartState extends State<StudentPieChart> {
             color: Color(0xffe8ce0c),
             // value: 0.0,
             // title: '%',
-            value: (holidaysenrty/totalattdence *100),
-            title: '${(holidaysenrty/totalattdence *100).toStringAsFixed(2)}%',
+            value: (25/100 *100),
+            //value: (holidaysenrty/totalattdence *100),
+            title: '${(25/100 *100).toStringAsFixed(2)}%',
+           // title: '${(holidaysenrty/totalattdence *100).toStringAsFixed(2)}%',
             radius: radius,
             titleStyle:  GoogleFonts.poppins(
               fontSize: fontSize,

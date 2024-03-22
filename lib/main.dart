@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: Dashboard(),
+      home: LoginPage(),
       localizationsDelegates: [
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -385,7 +385,7 @@ class _LoginPageState extends State<LoginPage> {
                               padding: const EdgeInsets.only(left: 60.0,top: 18),
                               child: GestureDetector(onTap: () {
                                 if(name.text=="demo"&&password.text=="demo@123"){
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Setup(),));
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashboard(),));
                                 }
                                 else{
                                   ScaffoldMessenger.of(context).showSnackBar(snackBar);

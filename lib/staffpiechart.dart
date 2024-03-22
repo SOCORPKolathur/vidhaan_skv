@@ -201,8 +201,10 @@ class _StaffPieChartState extends State<StaffPieChart> {
         case 0:
           return PieChartSectionData(
             color: Color(0xff53B175),
-            value: (presnet/totalattdence *100),
-            title: '${(presnet/totalattdence *100).toStringAsFixed(2)}%',
+            //value: (presnet/totalattdence *100),
+            value: (65/100 *100),
+            //title: '${(presnet/totalattdence *100).toStringAsFixed(2)}%',
+            title: '${(65/100 *100).toStringAsFixed(2)}%',
             radius: radius,
             titleStyle:  GoogleFonts.poppins(
               fontSize: fontSize,
@@ -214,8 +216,10 @@ class _StaffPieChartState extends State<StaffPieChart> {
         case 1:
           return PieChartSectionData(
             color: Colors.red,
-            value: (absent/totalattdence *100),
-            title: '${(absent/totalattdence *100).toStringAsFixed(2)}%',
+            //value: (absent/totalattdence *100),
+            value: (25/100 *100),
+            //title: '${(absent/totalattdence *100).toStringAsFixed(2)}%',
+            title: '${(25/100 *100).toStringAsFixed(2)}%',
             radius: radius,
             titleStyle:  GoogleFonts.poppins(
               fontSize: fontSize,
@@ -227,8 +231,10 @@ class _StaffPieChartState extends State<StaffPieChart> {
         case 2:
           return PieChartSectionData(
             color: Color(0xffe8ce0c),
-            value: (holidaysenrty/totalattdence *100),
-            title: '${(holidaysenrty/totalattdence *100).toStringAsFixed(2)}%',
+            //value: (holidaysenrty/totalattdence *100),
+            value: (10/100 *100),
+            //title: '${(holidaysenrty/totalattdence *100).toStringAsFixed(2)}%',
+            title: '${(10/100 *100).toStringAsFixed(2)}%',
             radius: radius,
             titleStyle:  GoogleFonts.poppins(
               fontSize: fontSize,
