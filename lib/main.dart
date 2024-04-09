@@ -12,13 +12,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: FirebaseOptions(
-          apiKey: "AIzaSyAlSXyLVpxsmAQbvJqSHZTLWqEfDAG7o1M",
-          authDomain: "raven-english-school.firebaseapp.com",
-          projectId: "raven-english-school",
-          storageBucket: "raven-english-school.appspot.com",
-          messagingSenderId: "532398284543",
-          appId: "1:532398284543:web:f9e807c01c8b786e95f6ca",
-          measurementId: "G-4W9V8FJ1T1"
+          apiKey: "AIzaSyAFwHgPKG1WysG40MuWmQs0pqP8MQHahTg",
+          authDomain: "skv-school-5e60f.firebaseapp.com",
+          projectId: "skv-school-5e60f",
+          storageBucket: "skv-school-5e60f.appspot.com",
+          messagingSenderId: "434464302156",
+          appId: "1:434464302156:web:72aafa5247f0664011c0e9",
+          measurementId: "G-71QTWXY4C6"
       ));
   runApp(const MyApp());
 }
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: Dashboard(),
       localizationsDelegates: [
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

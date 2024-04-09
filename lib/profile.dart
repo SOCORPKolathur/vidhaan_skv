@@ -2010,79 +2010,89 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                 child: selectfile==false? Lottie.asset("assets/file choosing.json"):Lottie.asset("assets/uploaded.json",repeat: false)),
             selectfile==false?  InkWell(
               onTap: () async {
-
-                FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
+                print("p1");
+                FilePickerResult? pickedFile =
+                await FilePicker.platform.pickFiles(
                   type: FileType.custom,
                   allowedExtensions: ['xlsx'],
                   allowMultiple: false,
                 );
-
-
+                print("c2");
                 var bytes = pickedFile!.files.single.bytes;
+                print(bytes!.length);
                 var excel = Excel.decodeBytes(bytes!);
+                print(excel.toString());
+                final table = excel.tables[excel.tables.keys.first];
 
-
-                final row = excel.tables[excel.tables.keys.first]!.rows
-                    .map((e) => e.map((e) => e!.value).toList()).toList();
-
+                print("p4");
+                final row = table!.rows.map((row) {
+                  if (row == null) return <String>[]; // Handle null rows
+                  return row.map((cell) => cell?.value ?? '').toList(); // Handle null cells
+                }).toList();
+                print("p5");
                 for(int i = 1;i <row.length;i++) {
-                  print(row[i][1]);
+                  print(row[i][0].toString());
                   setState(() {
                     studentid=randomAlphaNumeric(16);
                   });
-                  var document = await  FirebaseFirestore.instance.collection("Students").where("admitclass",isEqualTo:row[i][0].toString()).where("section",isEqualTo:row[i][1].toString()).get();
-                  setState(() {
-                    rollno=(document.docs.length +1).toString().padLeft(2,"0");
-                  });
+                  var document2 = await  FirebaseFirestore.instance.collection("Students").get();
+                  if(document2.docs.length>0) {
+  var document = await FirebaseFirestore.instance.collection("Students").where(
+      "admitclass", isEqualTo: row[i][3].toString()).where(
+      "section", isEqualTo: row[i][4].toString()).get();
+  setState(() {
+    rollno = (document.docs.length + 1).toString().padLeft(2, "0");
+  });
+}
                   FirebaseFirestore.instance.collection("Students").doc(studentid).set({
-                    "stname": row[i][3].toString(),
+                    "stname": row[i][0].toString(),
                     "stmiddlename": "",
                     "stlastname": "",
-                    "regno": "VDSB${i.toString().padLeft(3, '0')}",
+                    "regno": "VDSKV${i.toString().padLeft(3, '0')}",
                     "studentid": studentid,
                     "rollno":rollno,
                     "entrydate": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
-                    "admitclass":row[i][0].toString(),
-                    "section": row[i][1].toString(),
-                    "academic": row[i][2].toString(),
-                    "bloodgroup": row[i][4].toString(),
-                    "dob": row[i][5].toString(),
-                    "gender": row[i][7].toString(),
-                    "address": row[i][14].toString(),
-                    "community": row[i][8].toString(),
+                    "admitclass":row[i][3].toString(),
+                    "section": row[i][4].toString(),
+                    "academic": row[i][5].toString(),
+                    "bloodgroup": row[i][6].toString(),
+                    "dob": row[i][7].toString(),
+                    "gender": row[i][8].toString(),
+                    "address": row[i][9].toString(),
+                    "community": row[i][10].toString(),
                     "house": row[i][11].toString(),
-                    "religion": row[i][10].toString(),
-                    "mobile": row[i][12].toString(),
-                    "email": row[i][13].toString(),
-                    "aadhaarno": row[i][18].toString(),
+                    "religion": row[i][12].toString(),
+                    "mobile": row[i][13].toString(),
+                    "email": row[i][14].toString(),
+                    "aadhaarno": row[i][15].toString(),
                     "sheight": row[i][16].toString(),
                     "stweight": row[i][17].toString(),
-                    "EMIS": row[i][19].toString(),
-                    "transport": row[i][20].toString(),
-                    "identificatiolmark": row[i][15].toString(),
+                    "EMIS": row[i][18].toString(),
+                    "transport": row[i][16].toString(),
+                    "identificatiolmark": row[i][20].toString(),
 
                     "fathername": row[i][21].toString(),
                     "fatherOccupation": row[i][22].toString(),
                     "fatherOffice":row[i][23].toString(),
-                    "fatherMobile": row[i][25].toString(),
+                    "fatherMobile": row[i][24].toString(),
                     "fatherEmail": "",
                     "fatherAadhaar": row[i][26].toString(),
 
                     "mothername": row[i][27].toString(),
                     "motherOccupation": row[i][28].toString(),
                     "motherOffice":row[i][29].toString(),
-                    "motherMobile": row[i][31].toString(),
+                    "motherMobile": row[i][30].toString(),
                     "motherEmail":"",
                     "motherAadhaar": row[i][32].toString(),
 
-                    "guardianname": row[i][36].toString(),
-                    "guardianOccupation": row[i][38].toString(),
-                    "guardianMobile": row[i][37].toString(),
+                    "guardianname": row[i][33].toString(),
+                    "guardianOccupation": row[i][34].toString(),
+                    "guardianMobile": row[i][35].toString(),
                     "guardianEmail": "",
                     "guardianAadhaar": "",
 
-                    "brother studying here": row[i][34].toString(),
-                    "brothername": "${row[i][33].toString()} - ${row[i][35].toString()}",
+                    "brother studying here": row[i][38].toString(),
+                    "brothername": "${row[i][39].toString()}",
 
                     "imgurl":"",
                     "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
@@ -2094,9 +2104,9 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                   FirebaseFirestore.instance.collection("Classstudents").doc("${row[i][0].toString()}${row[i][1].toString()}").collection("Students").doc(studentid).set({
                     "regno": "VDSB${i.toString().padLeft(3, '0')}",
                     "studentid": studentid,
-                    "admitclass": row[i][0].toString(),
-                    "section": row[i][1].toString(),
-                    "stname": row[i][3].toString(),
+                    "admitclass": row[i][3].toString(),
+                    "section": row[i][4].toString(),
+                    "stname": row[i][0].toString(),
                     "absentdays":0,
                     "behaviour":0,
                   });
@@ -2118,7 +2128,7 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Icon(Icons.file_upload,color: Colors.white,),
                     ),
-                    Text("Select Excel",style: GoogleFonts.poppins(color:Colors.white),),
+                    Text("Selefdgdfct Excel",style: GoogleFonts.poppins(color:Colors.white),),
                   ],
                 )),
                   width: width/10.507,

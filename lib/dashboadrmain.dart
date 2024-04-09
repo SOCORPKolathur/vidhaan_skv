@@ -453,7 +453,10 @@ class _Dashboard2State extends State<Dashboard2> {
 
 
                             ),
-                            child: Image.network(imgurl),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.network(imgurl),
+                            ),
                           ),
                           SizedBox(width: width/113.8333333333333,),
                           Column(
