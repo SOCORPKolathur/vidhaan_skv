@@ -798,7 +798,8 @@ class _FeesReportsState extends State<FeesReports> {
                               ),
                               Padding(
                                 padding:  EdgeInsets.only(left: 0.0,right: width/136.6),
-                                child: Container(child:  TypeAheadFormField(
+                                child: Container(child:
+                                TypeAheadFormField(
 
 
                                   suggestionsBoxDecoration: const SuggestionsBoxDecoration(

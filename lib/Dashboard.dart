@@ -4014,6 +4014,7 @@ setState(() {
                                       ? Color(0xff00A0E3) : Colors.transparent,
                                 ),
                                 child: ExpansionTile(
+                                  shape: CircleBorder(),
                                   controller: admissioncon,
 
                                   iconColor: Colors.white,
@@ -4107,6 +4108,7 @@ setState(() {
                                   ),
 
                                   child:ExpansionTile(
+                                  shape: CircleBorder(),
                                     controller: studdentcon,
                                     iconColor: Colors.white,
                                     backgroundColor:dawer == 2
@@ -4192,6 +4194,7 @@ setState(() {
                                         : Colors.transparent,
                                   ),
                                   child:ExpansionTile(
+                                  shape: CircleBorder(),
                                     controller: staffcon,
                                     iconColor: Colors.white,
                                     backgroundColor:dawer == 3
@@ -4275,6 +4278,7 @@ setState(() {
 
                                       */
                                     /*  ExpansionTile(
+                                  shape: CircleBorder(),
                                         iconColor: Colors.white,
                                         collapsedIconColor: Colors.white,
 
@@ -4333,6 +4337,7 @@ setState(() {
                                       : Colors.white,
                                 ),
                                 child:ExpansionTile(
+                                  shape: CircleBorder(),
                                   controller: timetable,
                                   iconColor: Colors.white,
                                   backgroundColor:dawer == 10
@@ -4483,6 +4488,7 @@ setState(() {
                                   ),
 
                                   child:ExpansionTile(
+                                  shape: CircleBorder(),
                                     controller: attdencecon,
                                     iconColor: Colors.white,
                                     backgroundColor:dawer == 4
@@ -4552,6 +4558,7 @@ setState(() {
                                             color: dawer == 4?  Colors.white : Color(0xff9197B3)),
                                       )),
                                     /*  ExpansionTile(
+                                  shape: CircleBorder(),
                                         iconColor: Colors.white,
                                         collapsedIconColor: Colors.white,
 
@@ -4598,6 +4605,7 @@ setState(() {
                                       ),
 
                                       ExpansionTile(
+                                  shape: CircleBorder(),
                                         iconColor: Colors.white,
                                         collapsedIconColor: Colors.white,
 
@@ -4640,6 +4648,7 @@ setState(() {
                                   ),
 
                                   child:ExpansionTile(
+                                  shape: CircleBorder(),
                                     controller: feescon,
                                     iconColor: Colors.white,
                                     backgroundColor:dawer == 5
@@ -4748,6 +4757,7 @@ setState(() {
                                   ),
 
                                   child:ExpansionTile(
+                                  shape: CircleBorder(),
                                     controller: examcon,
                                     iconColor: Colors.white,
                                     backgroundColor:dawer == 6
@@ -4851,6 +4861,7 @@ setState(() {
                                   ),
 
                                   child:ExpansionTile(
+                                  shape: CircleBorder(),
                                     controller: hrcon,
                                     iconColor: Colors.white,
                                     backgroundColor:dawer == 8
@@ -4982,6 +4993,7 @@ setState(() {
                                   ),
 
                                   child:ExpansionTile(
+                                  shape: CircleBorder(),
                                     controller: noticescon,
                                     iconColor: Colors.white,
                                     backgroundColor:dawer == 9

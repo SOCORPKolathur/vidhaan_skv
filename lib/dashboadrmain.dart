@@ -145,7 +145,7 @@ class _Dashboard2State extends State<Dashboard2> {
 
   @override
   void initState() {
-    sendBirthWishes();
+    //sendBirthWishes(); ///Enabale to send birth day wishes
     getvalue();
     Date();
     getadmin();

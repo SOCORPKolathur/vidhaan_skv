@@ -2032,6 +2032,7 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                 print("p5");
                 for(int i = 1;i <row.length;i++) {
                   print(row[i][0].toString());
+                  print(i);
                   setState(() {
                     studentid=randomAlphaNumeric(16);
                   });
@@ -2128,7 +2129,7 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Icon(Icons.file_upload,color: Colors.white,),
                     ),
-                    Text("Selefdgdfct Excel",style: GoogleFonts.poppins(color:Colors.white),),
+                    Text("Select Excel",style: GoogleFonts.poppins(color:Colors.white),),
                   ],
                 )),
                   width: width/10.507,

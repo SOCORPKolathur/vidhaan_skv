@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -18,6 +19,13 @@ class NotificationCus extends StatefulWidget {
 
 class _NotificationCusState extends State<NotificationCus> {
   final homecontroller = Get.put(HomeController());
+
+  @override
+  void initState() {
+    adddropvalue();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
@@ -62,15 +70,15 @@ class _NotificationCusState extends State<NotificationCus> {
                       height:height/65.1,
                     ),
 
-                    SvgPicture.asset("assets/notification.svg",fit: BoxFit.fill,width: width/45.533333333333330,),
+                    SvgPicture.asset("assets/notification.svg",fit: BoxFit.fill,width: width/4.533333333333330,),
 
                   ],
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).size.height / 16),
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height / 16),
               child: Container(
                 width: width/3.415,
                 child: Column(
@@ -173,6 +181,177 @@ class _NotificationCusState extends State<NotificationCus> {
                       ),
                     ),
                     SizedBox(height:height/21.7),
+                   droupvalue=="Class Wise"? Container(
+                      width: width/1.138333333333333,
+
+                      decoration: BoxDecoration(
+                        color: Colors.blueGrey.shade50,
+                        border: Border.all(color: Colors.blueGrey.shade50),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child:TypeAheadFormField(
+
+
+
+                        suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                            color: Color(0xffDDDEEE),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(5),
+                              bottomRight: Radius.circular(5),
+                            )
+                        ),
+
+                        textFieldConfiguration: TextFieldConfiguration(
+
+                          style:  GoogleFonts.poppins(
+                              fontSize: width/91.066666667
+                          ),
+                          decoration:  InputDecoration(
+                            hintText: "Select a class",
+                            contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
+                            border: InputBorder.none,
+                          ),
+                          controller: this._typeAheadControllerclass,
+                        ),
+                        suggestionsCallback: (pattern) {
+                          return getSuggestionsclass(pattern);
+                        },
+                        itemBuilder: (context, String suggestion) {
+                          return ListTile(
+                            title: Text(suggestion),
+                          );
+                        },
+
+                        transitionBuilder: (context, suggestionsBox, controller) {
+                          return suggestionsBox;
+                        },
+                        onSuggestionSelected: (String suggestion) {
+                          setState(() {
+                            this._typeAheadControllerclass.text = suggestion;
+                          });
+                        },
+                        suggestionsBoxController: suggestionBoxController,
+                        validator: (value) =>
+                        value!.isEmpty ? 'Please select a class' : null,
+
+                      ),
+                    ) :  droupvalue=="Section Wise"?
+                   Container(
+                     width: width/1.138333333333333,
+                     child: Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                       children: [
+                         Container(
+                           width: width/7.138333333333333,
+
+                           decoration: BoxDecoration(
+                             color: Colors.blueGrey.shade50,
+                             border: Border.all(color: Colors.blueGrey.shade50),
+                             borderRadius: BorderRadius.circular(15),
+                           ),
+                           child:TypeAheadFormField(
+
+
+                             suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                                 color: Color(0xffDDDEEE),
+                                 borderRadius: BorderRadius.only(
+                                   bottomLeft: Radius.circular(5),
+                                   bottomRight: Radius.circular(5),
+                                 )
+                             ),
+
+                             textFieldConfiguration: TextFieldConfiguration(
+                               style:  GoogleFonts.poppins(
+                                   fontSize: width/91.066666667
+                               ),
+                               decoration:  InputDecoration(
+                                 hintText: "Select a class",
+                                 contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
+                                 border: InputBorder.none,
+                               ),
+                               controller: this._typeAheadControllerclass,
+                             ),
+                             suggestionsCallback: (pattern) {
+                               return getSuggestionsclass(pattern);
+                             },
+                             itemBuilder: (context, String suggestion) {
+                               return ListTile(
+                                 title: Text(suggestion),
+                               );
+                             },
+
+                             transitionBuilder: (context, suggestionsBox, controller) {
+                               return suggestionsBox;
+                             },
+                             onSuggestionSelected: (String suggestion) {
+                               setState(() {
+                                 this._typeAheadControllerclass.text = suggestion;
+                               });
+                             },
+                             suggestionsBoxController: suggestionBoxController,
+                             validator: (value) =>
+                             value!.isEmpty ? 'Please select a class' : null,
+
+                           ),
+                         ),
+                         Container(
+                           width: width/7.138333333333333,
+
+                           decoration: BoxDecoration(
+                             color: Colors.blueGrey.shade50,
+                             border: Border.all(color: Colors.blueGrey.shade50),
+                             borderRadius: BorderRadius.circular(15),
+                           ),
+                           child:TypeAheadFormField(
+
+
+                             suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                                 color: Color(0xffDDDEEE),
+                                 borderRadius: BorderRadius.only(
+                                   bottomLeft: Radius.circular(5),
+                                   bottomRight: Radius.circular(5),
+                                 )
+                             ),
+
+                             textFieldConfiguration: TextFieldConfiguration(
+                               style:  GoogleFonts.poppins(
+                                   fontSize: width/91.066666667
+                               ),
+                               decoration:  InputDecoration(
+                                 hintText: "Select a section",
+                                 contentPadding: EdgeInsets.only(left: width/136.6,bottom: height/81.375),
+                                 border: InputBorder.none,
+                               ),
+                               controller: this._typeAheadControllersection,
+                             ),
+                             suggestionsCallback: (pattern) {
+                               return getSuggestionssection(pattern);
+                             },
+                             itemBuilder: (context, String suggestion) {
+                               return ListTile(
+                                 title: Text(suggestion),
+                               );
+                             },
+
+                             transitionBuilder: (context, suggestionsBox, controller) {
+                               return suggestionsBox;
+                             },
+                             onSuggestionSelected: (String suggestion) {
+                               setState(() {
+                                 this._typeAheadControllersection.text = suggestion;
+                               });
+                             },
+                             suggestionsBoxController: suggestionBoxController,
+                             validator: (value) =>
+                             value!.isEmpty ? 'Please select a class' : null,
+
+                           ),
+                         ),
+                       ],
+                     ),
+                   ) :SizedBox(),
+                    droupvalue=="Class Wise" ||  droupvalue=="Section Wise" ?   SizedBox(height:height/21.7) :SizedBox(),
                     Container(
                       width: width/1.138333333333333,
 
@@ -360,9 +539,51 @@ class _NotificationCusState extends State<NotificationCus> {
       },
     );
   }
+  static final List<String> classes = [];
+  static final List<String> section = [];
 
+  static List<String> getSuggestionsclass(String query) {
+    List<String> matches = <String>[];
+    matches.addAll(classes);
 
-  final List<String>  sendto = ["All","Student","Staff"];
+    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+    return matches;
+  }
+  static List<String> getSuggestionssection(String query) {
+    List<String> matches = <String>[];
+    matches.addAll(section);
+
+    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+    return matches;
+  }
+  final TextEditingController _typeAheadControllerclass = TextEditingController();
+  SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
+  final TextEditingController _typeAheadControllersection = TextEditingController();
+  adddropvalue() async {
+
+    setState(() {
+      classes.clear();
+      section.clear();
+    });
+    var document3 = await FirebaseFirestore.instance.collection("ClassMaster")
+        .orderBy("order")
+        .get();
+    for (int i = 0; i < document3.docs.length; i++) {
+      setState(() {
+        classes.add(document3.docs[i]["name"]);
+      });
+    }
+    var document4 = await FirebaseFirestore.instance.collection("SectionMaster")
+        .orderBy("order")
+        .get();
+    for (int i = 0; i < document4.docs.length; i++) {
+      setState(() {
+        section.add(document4.docs[i]["name"]);
+      });
+    }
+  }
+
+  final List<String>  sendto = ["All","All Student","All Staff","Class Wise","Section Wise"];
   String droupvalue ="All";
 
 
