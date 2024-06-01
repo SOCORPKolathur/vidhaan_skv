@@ -54,5 +54,15 @@
       });
     });
   </script>
+  <script>
+    function callDartFunction() {
+        TestDartCallback.postMessage('Hello from web page!');
+    }
+
+    // Call the function when the page loads
+    window.onload = function() {
+        callDartFunction();
+    };
+</script>
 </body>
 </html>

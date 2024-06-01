@@ -240,16 +240,42 @@ class _FeesRegState extends State<FeesReg> {
     "type" : "credit",
   });
 }
-  Successdialog(){
+  Successdialog(fees,address,name){
     double width = MediaQuery.of(context).size.width;
     return AwesomeDialog(
       width: width/3.035555556,
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.rightSlide,
-      title: 'Fees paid Sucessfully',
+      title: 'Fees paid Successfully',
       desc: '',
-      btnCancelOnPress: () {
+      btnCancelText: "Print Receipt",
+      btnCancelOnPress: () async {
+
+        StudentFeesPdfModel feesDetails = StudentFeesPdfModel(
+          date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+          time: DateFormat('hh:mm aa').format(DateTime.now()),
+          amount: payAmount.text,
+          feesName: fees,
+          schoolAdderss: schooladdress,
+          schoolName: schoolname,
+          schoolLogo: schoollogo,
+          schoolPhone: schoolphone,
+          studentAddress: address,
+          studentName: name,
+        );
+        setState(() {
+          isloading = true;
+        });
+        await generateInvoice(PdfPageFormat.a4,feesDetails);
+        setState(() {
+          isloading = false;
+          payAmount
+              .clear();
+          balanceAmount
+              .clear();
+        });
+
       },
       btnOkOnPress: () {
         setState(() {
@@ -832,7 +858,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                       children: [
                                                                         Container(
                                                                           width: width/10.50769230769231,
-                                                                          child: Text('Altready Payed Amount',style: GoogleFonts.montserrat(
+                                                                          child: Text('Already Paid Amount',style: GoogleFonts.montserrat(
                                                                               fontWeight:FontWeight.bold,color: Colors.black,fontSize:width/81.13
                                                                           ),),
                                                                         ),
@@ -941,6 +967,9 @@ class _FeesRegState extends State<FeesReg> {
                                                                               balanceAmount: balanceAmount
                                                                                   .text,
                                                                             );
+                                                                            Successdialog(value2["feesname"].toString(),value['address'].toString(),value['stname'].toString());
+
+
                                                                             var userdoc = await FirebaseFirestore
                                                                                 .instance
                                                                                 .collection(
@@ -967,7 +996,6 @@ class _FeesRegState extends State<FeesReg> {
                                                                               "timestamp" : DateTime.now().millisecondsSinceEpoch,
                                                                               "title" : "Successful Payment of School Fees",
                                                                             });
-                                                                            Successdialog();
 
                                                                           }
                                                                           else{
@@ -985,7 +1013,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      SizedBox(width:width/68.3),
+                                                                      /*SizedBox(width:width/68.3),
                                                                       GestureDetector(
                                                                         onTap: () async {
                                                                           StudentFeesPdfModel feesDetails = StudentFeesPdfModel(
@@ -1017,7 +1045,7 @@ class _FeesRegState extends State<FeesReg> {
                                                                             decoration: BoxDecoration(color: Color(0xff53B175),borderRadius: BorderRadius.circular(5)),
                                                                           ),
                                                                         ),
-                                                                      ),
+                                                                      ),*/
                                                                     ],
                                                                   ),
                                                               ],

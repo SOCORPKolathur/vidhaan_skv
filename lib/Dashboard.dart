@@ -111,7 +111,7 @@ String rollno="";
     for(int i=0;i<document.docs.length;i++){
 
       FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).update({
-        "token":"",
+        "regno" :"VDSSS${(i+1).toString().padLeft(2, '0')}"
       });
     }
     print("Reg No Changed");
@@ -3938,7 +3938,7 @@ setState(() {
                                         onTap: (){
                                           //checkdemo();
                                           //getvalue();
-                                          updatestudentregno();
+                                          updatestudentrollno();
                                          // updatestudentregno();
                                         },
                                         child: Container(

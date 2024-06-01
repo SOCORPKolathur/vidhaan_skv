@@ -31,6 +31,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
   final TextEditingController _typeAheadControllerclass = TextEditingController();
   final TextEditingController _typeAheadControllerfees = TextEditingController();
   final TextEditingController type = TextEditingController();
+  final TextEditingController feestype = TextEditingController();
   final TextEditingController paytype = TextEditingController();
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
   final TextEditingController _typeAheadControllerregno = TextEditingController();
@@ -58,6 +59,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
   static final List<String> classes = ["Select Option"];
   static final List<String> fees = ["Select Option"];
   static final List<String> typeclass = ["Select Option","Class","Student"];
+  static final List<String> feetype = ["Select Option","Public","Private"];
   static final List<String> paytypelist = ["Select Option","Monthly","Admission Time","Custom",];
   static final List<String> paytypelist1 = ["Select Option","Monthly","Custom"];
 
@@ -161,6 +163,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "timestamp": DateTime.now().microsecondsSinceEpoch,
         "paytype": paytype.text,
         "class": _typeAheadControllerclass.text,
+        "feestype":feestype.text
         //"status": false,
         // "date": "",
         // "time": "",
@@ -173,6 +176,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "amount": int.parse(amount.text),
         "timestamp": DateTime.now().microsecondsSinceEpoch,
         "paytype": paytype.text,
+        "feestype":feestype.text,
         "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
       });
     }
@@ -182,6 +186,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "amount": int.parse(amount.text),
         "timestamp": DateTime.now().microsecondsSinceEpoch,
         "paytype": paytype.text,
+        "feestype":feestype.text,
         "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
       });
       var document = await FirebaseFirestore.instance.collection("Students").where("admitclass",isEqualTo: _typeAheadControllerclass.text).get();
@@ -201,6 +206,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "stName" : document.docs[i].get("stname"),
           "stId" : document.docs[i].id,
           "email" : document.docs[i].get("email"),
+          "feestype":feestype.text,
           "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
         });
         FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({
@@ -217,6 +223,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
           "stId" : document.docs[i].id,
+          "feestype":feestype.text,
           "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
         });
       }
@@ -232,6 +239,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "timestamp": DateTime.now().millisecondsSinceEpoch,
         "paytype": paytype.text,
         "class": _typeAheadControllerclass.text,
+        "feestype":feestype.text
         //"status": false,
         // "date": "",
         // "time": "",
@@ -256,6 +264,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "stName" : student.get("stname"),
         "stId" : student.id,
         "email" : student.get("email"),
+        "feestype":feestype.text,
         "duedate": paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
       });
       FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
@@ -272,6 +281,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "stRegNo" : student.get("regno"),
         "stName" : student.get("stname"),
         "stId" : student.id,
+        "feestype":feestype.text,
         "duedate": paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
       });
     }
@@ -286,6 +296,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         "timestamp": DateTime.now().microsecondsSinceEpoch,
         "paytype": paytype.text,
         "class": 'All',
+        "feestype":feestype.text,
         // "date": "",
         // "time": "",
         // "duedate": paytype.text.toLowerCase() == 'monthly'
@@ -301,6 +312,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "amount": int.parse(amount.text),
           "timestamp": DateTime.now().microsecondsSinceEpoch,
           "paytype": paytype.text,
+          "feestype":feestype.text,
           "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
 
         });
@@ -322,6 +334,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "stName" : document.docs[i].get("stname"),
           "email" : document.docs[i].get("email"),
           "stId" : document.docs[i].id,
+          "feestype":feestype.text,
           "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
         });
         FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).collection("Fees").doc(docId).set({
@@ -338,6 +351,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
           "stRegNo" : document.docs[i].get("regno"),
           "stName" : document.docs[i].get("stname"),
           "stId" : document.docs[i].id,
+          "feestype":feestype.text,
           "duedate" : paytype.text.toLowerCase() == 'custom' ? date.text : paytype.text.toLowerCase() == 'monthly' ? includingThisMonth == true ? DateTime.now().day <= 5 ? DateFormat("dd/MM/yyyy").parse("05/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}") : DateFormat("dd/MM/yyyy").format(DateTime.now()) : DateFormat("dd/MM/yyyy").format(DateTime.now().add(Duration(days: 31-DateTime.now().day))) :  '-'
         });
       }
@@ -381,6 +395,17 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
         FirebaseFirestore.instance.collection("FeesCollection").doc("${student.id}:$docId").delete();
         FirebaseFirestore.instance.collection("Students").doc(student.id).collection("Fees").doc(docId).delete();
     });
+  }
+  deleteAllFeesbymanuval() async {
+    var studentDoc = await FirebaseFirestore.instance.collection("Students").get();
+    studentDoc.docs.forEach((student) async {
+      var feesDoc = await FirebaseFirestore.instance.collection("Students").doc(student.id).collection("Fees").get();
+      feesDoc.docs.forEach((fees) async {
+        FirebaseFirestore.instance.collection("Students").doc(student.id).collection("Fees").doc(fees.id).delete();
+    });
+      print(student.get("stname"));
+    });
+    print("Completed==================================");
   }
 
   Successdialog(){
@@ -502,6 +527,7 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
       _typeAheadControllerfees.text="Select Option";
       _typeAheadControllerclass.text="Select Option";
       type.text="Select Option";
+      feestype.text="Public";
       paytype.text="Select Option";
     });
     // TODO: implement initState
@@ -576,7 +602,11 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
               height: height/8.212,
               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),child: Padding(
               padding: EdgeInsets.only(left: width/35.947368421,top: height/21.7),
-              child: Text("Assign Fees Master",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),),
+              child: InkWell(
+                onTap: (){
+                  //deleteAllFeesbymanuval();
+                },
+                  child: Text("Assign Fees Master",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),)),
             ),
             ),
           ),
@@ -659,6 +689,101 @@ class _ClasswiseFeesState extends State<ClasswiseFees> {
                                         if(type.text=="Student") {
                                           gettotal2();
                                         }
+
+                                      },
+                                      buttonStyleData: ButtonStyleData(
+                                        height: height/13.02,
+                                        width: width/8.5375,
+                                        padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+
+                                          color: Color(0xffDDDEEE),
+                                        ),
+
+                                      ),
+                                      iconStyleData: IconStyleData(
+                                        icon: Icon(
+                                          Icons.arrow_forward_ios_outlined,
+                                        ),
+                                        iconSize: width/97.571428571,
+                                        iconEnabledColor: Colors.black,
+                                        iconDisabledColor: Colors.grey,
+                                      ),
+                                      dropdownStyleData: DropdownStyleData(
+                                        maxHeight: height/3.255,
+                                        width: width/5.464,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(14),
+                                          color: Color(0xffDDDEEE),
+                                        ),
+
+                                        scrollbarTheme: ScrollbarThemeData(
+                                          radius: const Radius.circular(7),
+                                          thickness: MaterialStateProperty.all<double>(6),
+                                          thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                        ),
+                                      ),
+                                      menuItemStyleData: MenuItemStyleData(
+                                        height: height/16.275,
+                                        padding: EdgeInsets.only(left: width/97.571428571, right: width/97.571428571),
+                                      ),
+                                    ),
+                                  ),
+
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("Fees Type :",style: GoogleFonts.poppins(fontSize: width/85.375,fontWeight: FontWeight.w700),),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 0.0,right: width/54.64),
+                                child: Container(width: width/6.83,
+                                  height: height/16.42,
+                                  //color: Color(0xffDDDEEE),
+                                  decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
+                                  DropdownButtonHideUnderline(
+                                    child: DropdownButton2<String>(
+                                      isExpanded: true,
+                                      hint:  Row(
+                                        children: [
+                                          Icon(
+                                            Icons.list,
+                                            size: width/85.375,
+                                            color: Colors.black,
+                                          ),
+                                          SizedBox(
+                                            width: width/341.5,
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              'Select Option',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: width/91.066666667
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      items:
+                                      feetype.map((String item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style:  GoogleFonts.poppins(
+                                              fontSize: width/91.066666667
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
+                                          .toList(),
+                                      value:  feestype.text,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          feestype.text = value!;
+                                        });
 
                                       },
                                       buttonStyleData: ButtonStyleData(

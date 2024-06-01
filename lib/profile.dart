@@ -2033,9 +2033,74 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                 for(int i = 1;i <row.length;i++) {
                   print(row[i][0].toString());
                   print(i);
+
+
                   setState(() {
                     studentid=randomAlphaNumeric(16);
                   });
+                  ///For Staff
+                /*
+
+                var document3 = await  FirebaseFirestore.instance.collection("Staffs").get();
+                  setState(() {
+                    rollno = (document3.docs.length + 1).toString().padLeft(2, "0");
+                  });
+
+                  FirebaseFirestore.instance.collection("Staffs").doc(studentid).set({
+                    "stname": row[i][1].toString(),
+                    "stmiddlename": "",
+                    "stlastname": "",
+
+                    "regno": "VDSRS${rollno}",
+
+                    "entrydate": "",
+
+
+                    "designation": row[i][2].toString(),
+
+
+                    "fathername": "",
+                    "bloodgroup": "",
+                    "dob": row[i][3].toString(),
+                    "gender": "",
+                    "address": row[i][4].toString(),
+                    "community": "",
+                    "mobile": row[i][5].toString(),
+                    "religion": "",
+                    "email": row[i][7].toString(),
+                    "aadhaarno": "",
+
+                    "Maritalstatus": "",
+
+                    "Spousename": "",
+                    "Spousephone": "",
+                    "Spouseoffice": "",
+                    "Spouseemail": "",
+                    "Spouseaadhaar": "",
+
+                    "Work Experience": row[i][6].toString(),
+                    "Language Known": "",
+                    "Specialisation": "",
+                    "School Last": "",
+                    "Subject": "",
+                    "Seminar/Workshop": "",
+
+                    "imgurl":"",
+
+                    "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+                    "time": "${DateTime.now().hour}:${DateTime.now().minute}",
+                    "timestamp": DateTime.now().microsecondsSinceEpoch,
+                    "absent":false,
+                    "classasigned":true,
+                    "absentdays":0,
+                    "incharge":row[i][8].toString(),
+                    "inchargesec":row[i][9].toString(),
+                    "userid":"",
+
+
+                  });*/
+
+                  ///For student
                   var document2 = await  FirebaseFirestore.instance.collection("Students").get();
                   if(document2.docs.length>0) {
   var document = await FirebaseFirestore.instance.collection("Students").where(
@@ -2049,7 +2114,7 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                     "stname": row[i][0].toString(),
                     "stmiddlename": "",
                     "stlastname": "",
-                    "regno": "VDSKV${i.toString().padLeft(3, '0')}",
+                    "regno": "VDSSV${i.toString().padLeft(3, '0')}",
                     "studentid": studentid,
                     "rollno":rollno,
                     "entrydate": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
@@ -2111,7 +2176,6 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                     "absentdays":0,
                     "behaviour":0,
                   });
-
                 }
                 setState(() {
                   selectfile=true;

@@ -3385,10 +3385,11 @@ String studentdocid="";
             feesList.add(element);
           }
         });
-        if(feesList.isNotEmpty){
-          showAdmissionTimeFeesPopUp(snapID,feesList);
-        }
+
+
+
       }
+      showAdmissionTimeFeesPopUp(snapID,feesList);
     }
   }
 
