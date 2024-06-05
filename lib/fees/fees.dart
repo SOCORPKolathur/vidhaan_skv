@@ -274,6 +274,7 @@ class _FeesRegState extends State<FeesReg> {
               .clear();
           balanceAmount
               .clear();
+          studentid="";
         });
 
       },
@@ -283,6 +284,7 @@ class _FeesRegState extends State<FeesReg> {
               .clear();
           balanceAmount
               .clear();
+          studentid="";
         });
       },
     )..show();

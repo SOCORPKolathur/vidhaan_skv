@@ -19,6 +19,7 @@ import 'package:vidhaan/notification.dart';
 import 'package:vidhaan/payrollgenration.dart';
 import 'package:vidhaan/payrollreports.dart';
 import 'package:vidhaan/progressreports.dart';
+import 'package:vidhaan/register.dart';
 import 'package:vidhaan/staffattdence.dart';
 
 import 'package:vidhaan/stafflist.dart';
@@ -91,6 +92,7 @@ class _DashboardState extends State<Dashboard> {
   ExpansionTileController feescon= new ExpansionTileController();
   ExpansionTileController examcon= new ExpansionTileController();
   ExpansionTileController hrcon= new ExpansionTileController();
+  ExpansionTileController accountscon= new ExpansionTileController();
   ExpansionTileController noticescon= new ExpansionTileController();
   ExpansionTileController timetable= new ExpansionTileController();
 
@@ -119,10 +121,11 @@ String rollno="";
 }
   updatestudentrollno() async {
     String classesA ="";
+    String secA ="";
     int rollnoA=0;
     var document = await FirebaseFirestore.instance.collection("Students").orderBy("timestamp").get();
     for(int i=0;i<document.docs.length;i++){
-      if(classesA==document.docs[i]["admitclass"]) {
+      if(classesA==document.docs[i]["admitclass"] && secA ==document.docs[i]["section"] ) {
         FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).update({
           "rollno": "${(rollnoA).toString().padLeft(2, '0')}",
         });
@@ -135,6 +138,7 @@ String rollno="";
       else{
         setState(() {
           classesA=document.docs[i]["admitclass"];print(classesA);
+          secA=document.docs[i]["section"];print(classesA);
           rollnoA=2;
         });
 
@@ -146,7 +150,7 @@ String rollno="";
         print("${document.docs[i]["stname"]} ${(1).toString().padLeft(2, '0')}");
       }
     }
-    print("Reg NO changed successfully");
+    print("Roll NO changed successfully");
   }
 
 checkdemo() async {
@@ -3990,6 +3994,7 @@ setState(() {
                                     admissioncon.collapse();
                                     studdentcon.collapse();
                                     staffcon.collapse();
+                                    accountscon.collapse();
                                     attdencecon.collapse();
                                     feescon.collapse();
                                     examcon.collapse();
@@ -4028,6 +4033,7 @@ setState(() {
                                       staffcon.collapse();
                                       attdencecon.collapse();
                                       feescon.collapse();
+                                      accountscon.collapse();
                                       examcon.collapse();
                                       hrcon.collapse();
                                       timetable.collapse();
@@ -4120,6 +4126,7 @@ setState(() {
                                         staffcon.collapse();
                                         attdencecon.collapse();
                                         feescon.collapse();
+                                        accountscon.collapse();
                                         examcon.collapse();
                                         hrcon.collapse();
                                         timetable.collapse();
@@ -4205,6 +4212,7 @@ setState(() {
                                       if(value==true){
                                         admissioncon.collapse();
                                         studdentcon.collapse();
+                                        accountscon.collapse();
 
                                         attdencecon.collapse();
                                         feescon.collapse();
@@ -4352,6 +4360,7 @@ setState(() {
                                       feescon.collapse();
                                       examcon.collapse();
                                       hrcon.collapse();
+                                      accountscon.collapse();
 
                                       noticescon.collapse();
 
@@ -4499,6 +4508,7 @@ setState(() {
                                         admissioncon.collapse();
                                         studdentcon.collapse();
                                         staffcon.collapse();
+                                        accountscon.collapse();
 
                                         feescon.collapse();
                                         examcon.collapse();
@@ -4660,6 +4670,7 @@ setState(() {
                                         studdentcon.collapse();
                                         staffcon.collapse();
                                         attdencecon.collapse();
+                                        accountscon.collapse();
 
                                         examcon.collapse();
                                         hrcon.collapse();
@@ -4773,6 +4784,7 @@ setState(() {
                                         hrcon.collapse();
                                         timetable.collapse();
                                         noticescon.collapse();
+                                        accountscon.collapse();
                                         setState(() {
                                           dawer=6;
                                         });
@@ -4870,13 +4882,13 @@ setState(() {
                                     onExpansionChanged: (value){
                                       if(value==true){
                                         admissioncon.collapse();
+                                        accountscon.collapse();
                                         studdentcon.collapse();
                                         staffcon.collapse();
                                         attdencecon.collapse();
                                         feescon.collapse();
                                         examcon.collapse();
                                         timetable.collapse();
-
                                         noticescon.collapse();
                                         setState(() {
                                           dawer=8;
@@ -4924,17 +4936,11 @@ setState(() {
                                             fontWeight: FontWeight.w600,
                                             color: dawer == 8?  Colors.white : Color(0xff9197B3)),
                                       )),
-
-
-
-
-
-
                                     ],
                                   )),
                             ),
 
-                            Padding(
+                           /* Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 6),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -4979,6 +4985,88 @@ setState(() {
                                   },
                                 ),
                               ),
+                            ),*/
+
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 6),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: dawer == 7
+                                        ?Color(0xff00A0E3)
+                                        : Colors.transparent,
+                                  ),
+
+                                  child:ExpansionTile(
+                                    shape: CircleBorder(),
+                                    controller: accountscon,
+                                    iconColor: Colors.white,
+                                    backgroundColor:dawer == 7
+                                        ?Color(0xff00A0E3)
+                                        : Colors.transparent,
+                                    onExpansionChanged: (value){
+                                      if(value==true){
+                                        admissioncon.collapse();
+                                        studdentcon.collapse();
+                                        staffcon.collapse();
+                                        attdencecon.collapse();
+                                        feescon.collapse();
+                                        examcon.collapse();
+                                        hrcon.collapse();
+                                        timetable.collapse();
+                                        noticescon.collapse();
+                                        setState(() {
+                                          dawer=7;
+                                          //  pages=Accountpage();
+                                        });
+                                      }
+
+                                    },
+                                    leading: Padding(
+                                      padding: const EdgeInsets.only(left: 0.0),
+                                      child: Image.asset(
+                                        "assets/icon8.png",
+                                        color: dawer == 7 ?  Colors.white : Color(0xff9197B3),
+                                      ),
+                                    ),
+
+                                    title: Text(
+                                      "Accounts",
+                                      style: GoogleFonts.poppins(
+                                          fontSize: width/113.833333333,
+                                          fontWeight: FontWeight.bold,
+                                          color: dawer == 7 ?  Colors.white : Color(0xff9197B3)),
+                                    ),
+                                    children: [
+                                      ListTile(
+                                          onTap:(){
+                                            setState(() {
+                                              pages=Accountpage();
+                                              // pages=PayrollGen();
+                                              // pages=PayrollGen();
+                                            });
+
+                                          },
+                                          title: Text("Reports",style: GoogleFonts.poppins(
+                                              fontSize: width/113.833333333,
+                                              fontWeight: FontWeight.w600,
+                                              color: dawer == 7?  Colors.white : Color(0xff9197B3)),
+                                          )),
+                                      ListTile(
+                                          onTap: (){
+                                            setState(() {
+                                              pages= RegisterPage();
+                                              // pages=PayrollReports();
+                                              // pages=PayrollReports();
+                                            });
+                                          },
+                                          title: Text("Register",style: GoogleFonts.poppins(
+                                              fontSize: width/113.833333333,
+                                              fontWeight: FontWeight.w600,
+                                              color: dawer == 7?  Colors.white : Color(0xff9197B3)),
+                                          )),
+                                    ],
+                                  )),
                             ),
 
 
@@ -5009,6 +5097,7 @@ setState(() {
                                         examcon.collapse();
                                         hrcon.collapse();
                                         timetable.collapse();
+                                        accountscon.collapse();
 
                                         setState(() {
                                           dawer=9;

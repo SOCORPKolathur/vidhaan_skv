@@ -251,6 +251,9 @@ class _AccountpageState extends State<Accountpage> {
                     Padding(
                       padding: const EdgeInsets.only(right: 88.0),
                       child: Container(
+                        width: width / 1.221,
+                        height: height / 1.46,
+                        color: Color(0xffFFFFFF),
                         child: Column(
                           children: [
                             Padding(
@@ -533,9 +536,6 @@ class _AccountpageState extends State<Accountpage> {
                             // ),
                           ],
                         ),
-                        width: width / 1.221,
-                        height: height / 1.46,
-                        color: Color(0xffFFFFFF),
                       ),
                     )
                   ],

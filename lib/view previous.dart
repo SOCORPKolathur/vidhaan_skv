@@ -112,7 +112,9 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                 controller: tabController,
                 children: [
                   StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance.collection("Circulars").orderBy("timestamp",descending: true).snapshots(),
+                      stream: FirebaseFirestore.instance.collection("Circulars")
+                          .orderBy("timestamp",descending: true)
+                          .snapshots(),
                       builder: (context,snapshot){
                         if(!snapshot.hasData)
                         {
@@ -124,8 +126,10 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                           return   Center(
                             child:  CircularProgressIndicator(),
                           );}
+                        return
 
-                        return ListView.builder(
+                          // Container(color: Colors.yellow, height: 400, width: 500,);
+                          ListView.builder(
                             shrinkWrap: true,
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context,index){
@@ -356,7 +360,8 @@ class _PreviousState extends State<Previous> with SingleTickerProviderStateMixin
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context,index){
                               var value = snapshot.data!.docs[index];
-                              return value['type'].toString().toLowerCase() == 'staff'.toString().toLowerCase()  ?
+                              // return value['type'].toString().toLowerCase() == 'staff'.toString().toLowerCase()  ?
+                              return value['type'].toString().toLowerCase() == 'All Staff'.toString().toLowerCase()  ?
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Card(

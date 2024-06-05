@@ -3327,6 +3327,7 @@ String studentdocid="";
 
       btnOkText: "Ok",
       btnOkOnPress: () {
+        Navigator.pop(context);
         clearall();
       },
     )..show();
@@ -3481,6 +3482,7 @@ String studentdocid="";
                 amount: double.parse(element.get("amount").toString()),
                 isSelected: false,
                 payedAmount: 0.0,
+                feestype: element.get("feestype"),
               )
           );
         });
@@ -3822,8 +3824,7 @@ String studentdocid="";
                           GestureDetector(
                             onTap: () {
                               uploadstudent(id,feesDetailsList);
-                              Successdialog();
-                              Navigator.pop(context);
+
                             },
                             child: Container(
                               // color: Colors.yellow,
@@ -4078,9 +4079,10 @@ ${schoolname}
       "absentdays":0,
       "behaviour":0,
     });
-
-    await Future.delayed(Duration(seconds: 5));
+    print("Statted 5 secs");
+    await Future.delayed(Duration(seconds: 3));
     feesList.forEach((element) async {
+      print(element.isSelected);
       if(element.isSelected){
         if((element.amount - element.payedAmount) == 0){
           docId = randomAlphaNumeric(16);
@@ -4100,7 +4102,7 @@ ${schoolname}
 
           FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
             "feesname":   element.feesName,
-            "amount": element.payedAmount,
+            "amount": element.amount,
             "payedamount": element.payedAmount,
             "timestamp": DateTime.now().millisecondsSinceEpoch,
             "paytype": '',
@@ -4111,6 +4113,8 @@ ${schoolname}
             "section" : _typeAheadControllersection.text,
             "stRegNo" : regno.text,
             "stName" : _typeAheadControllerstudent.text,
+            "stId" : "",
+            "feestype":element.feestype,
             "duedate" : dueDateForAdmissionFees.text,
           });
 
@@ -4125,7 +4129,9 @@ ${schoolname}
             "type" : "credit",
           });
 
-        }else if(element.payedAmount != 0){
+        }
+
+        else {
 
           docId = randomAlphaNumeric(16);
           print("---------------------------$docId DocID------------------------------------------");
@@ -4144,17 +4150,19 @@ ${schoolname}
 
           FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
             "feesname":   element.feesName,
-            "amount": element.payedAmount,
+            "amount": element.amount,
             "payedamount": element.payedAmount,
             "timestamp": DateTime.now().millisecondsSinceEpoch,
             "paytype": '',
-            "status": true,
+            "status": false,
             "date" : "",
             "time" : "",
             "class" : _typeAheadControllerclass.text,
             "section" : _typeAheadControllersection.text,
             "stRegNo" : regno.text,
             "stName" : _typeAheadControllerstudent.text,
+            "stId" : "",
+            "feestype":element.feestype,
             "duedate" : dueDateForAdmissionFees.text,
           });
 
@@ -4173,7 +4181,7 @@ ${schoolname}
           print(element.feesName);
           print(element.amount - element.payedAmount);
 
-          FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
+       /*   FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
             "feesname":   element.feesName,
             "amount": element.amount - element.payedAmount,
             "payedamount": element.payedAmount,
@@ -4187,7 +4195,7 @@ ${schoolname}
             "stRegNo" : regno.text,
             "stName" : _typeAheadControllerstudent.text,
             "duedate" : dueDateForAdmissionFees.text,
-          });
+          });*/
 
           FirebaseFirestore.instance.collection("FeesCollection").doc("${studentid}:$docId").set({
             "feesname":  element.feesName,
@@ -4207,7 +4215,9 @@ ${schoolname}
           });
 
         }
-      }else{
+
+      }
+      else{
         docId = randomAlphaNumeric(16);
         print("---------------------------$docId DocID------------------------------------------");
         print("---- fees pending ----");
@@ -4216,7 +4226,7 @@ ${schoolname}
 
         FirebaseFirestore.instance.collection("Students").doc(studentid).collection("Fees").doc(docId).set({
           "feesname": element.feesName,
-          "amount": element.amount - element.payedAmount,
+          "amount": element.amount,
           "payedamount": element.payedAmount,
           "timestamp": DateTime.now().millisecondsSinceEpoch,
           "paytype": '',
@@ -4227,6 +4237,8 @@ ${schoolname}
           "section" : _typeAheadControllersection.text,
           "stRegNo" : regno.text,
           "stName" : _typeAheadControllerstudent.text,
+          "stId" : "",
+          "feestype":element.feestype,
           "duedate" : dueDateForAdmissionFees.text,
         });
 
@@ -4249,6 +4261,9 @@ ${schoolname}
 
       }
     });
+
+    print("Open Dialog");
+    Successdialog();
 
 
   }
@@ -4314,10 +4329,11 @@ ${schoolname}
 }
 
 class FeesWithAmount{
-  FeesWithAmount({required this.amount,required  this.feesName,required  this.isSelected, required this.payedAmount});
+  FeesWithAmount({required this.amount,required  this.feesName,required  this.isSelected, required this.payedAmount,required this.feestype});
 
   bool isSelected;
   String feesName;
+  String feestype;
   double amount;
   double payedAmount;
 }

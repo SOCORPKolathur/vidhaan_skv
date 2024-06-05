@@ -2039,7 +2039,6 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                     studentid=randomAlphaNumeric(16);
                   });
                   ///For Staff
-                /*
 
                 var document3 = await  FirebaseFirestore.instance.collection("Staffs").get();
                   setState(() {
@@ -2047,27 +2046,27 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                   });
 
                   FirebaseFirestore.instance.collection("Staffs").doc(studentid).set({
-                    "stname": row[i][1].toString(),
+                    "stname": row[i][0].toString(),
                     "stmiddlename": "",
                     "stlastname": "",
 
-                    "regno": "VDSRS${rollno}",
+                    "regno": "VDSKVS${rollno}",
 
                     "entrydate": "",
 
 
-                    "designation": row[i][2].toString(),
+                    "designation": row[i][1].toString(),
 
 
                     "fathername": "",
                     "bloodgroup": "",
-                    "dob": row[i][3].toString(),
+                    "dob": "",
                     "gender": "",
-                    "address": row[i][4].toString(),
+                    "address": "",
                     "community": "",
-                    "mobile": row[i][5].toString(),
+                    "mobile": row[i][2].toString(),
                     "religion": "",
-                    "email": row[i][7].toString(),
+                    "email": "",
                     "aadhaarno": "",
 
                     "Maritalstatus": "",
@@ -2078,7 +2077,7 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                     "Spouseemail": "",
                     "Spouseaadhaar": "",
 
-                    "Work Experience": row[i][6].toString(),
+                    "Work Experience": "",
                     "Language Known": "",
                     "Specialisation": "",
                     "School Last": "",
@@ -2093,15 +2092,15 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                     "absent":false,
                     "classasigned":true,
                     "absentdays":0,
-                    "incharge":row[i][8].toString(),
-                    "inchargesec":row[i][9].toString(),
+                    "incharge":"",
+                    "inchargesec":"",
                     "userid":"",
 
 
-                  });*/
+                  });
 
                   ///For student
-                  var document2 = await  FirebaseFirestore.instance.collection("Students").get();
+                 /* var document2 = await  FirebaseFirestore.instance.collection("Students").get();
                   if(document2.docs.length>0) {
   var document = await FirebaseFirestore.instance.collection("Students").where(
       "admitclass", isEqualTo: row[i][3].toString()).where(
@@ -2176,7 +2175,7 @@ class _BulkUploadfunctionState extends State<BulkUploadfunction> {
                     "absentdays":0,
                     "behaviour":0,
                   });
-                }
+              */  }
                 setState(() {
                   selectfile=true;
                 });
