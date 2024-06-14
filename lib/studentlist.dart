@@ -269,21 +269,16 @@ class _StudentListState extends State<StudentList> {
   int temp = 1;
   int shift =0;
   List list = new List<int>.generate(10000, (i) => i + 1);
-
   doclength() async {
-
     final QuerySnapshot result = await FirebaseFirestore.instance.collection('Students').get();
     final List < DocumentSnapshot > documents = result.docs;
     setState(() {
       documentlength = documents.length;
       pagecount= documentlength.remainder(10) == 0 ? (documentlength~/10) : ((documentlength~/10) + 1) as int;
-
     });
     print("pagecount");
     print(pagecount);
   }
-
-
   @override
   Widget build(BuildContext context) {
     final double width=MediaQuery.of(context).size.width;
@@ -1548,7 +1543,14 @@ class _StudentListState extends State<StudentList> {
                           return ListView.builder(
 
                               shrinkWrap: true,
-                              itemCount: pagecount!=0? pagecount == temp ?  snapshot.data!.docs.length.remainder(10) == 0 ? 10 :  snapshot.data!.docs.length.remainder(10) : 10 :0,
+                              itemCount:
+                              byclass == true ||
+                              search == true ?
+                              snapshot.data!.docs.length :
+                              pagecount!=0? pagecount == temp ?
+                              snapshot.data!.docs.length.remainder(10) == 0 ? 10 :
+                              snapshot.data!.docs.length.remainder(10) : 10 :0 ,
+
 
                               itemBuilder: (context,index){
                                 var value = snapshot.data!.docs[(temp*10)-10+index];
@@ -2108,100 +2110,104 @@ class _StudentListState extends State<StudentList> {
 
               ),
             ),
-            Stack(
-              alignment: Alignment.centerRight,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right:300.0),
-                  child: SizedBox(
-                    width: width/1.5,
-                    height:height/13.02,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: pagecount,
-                        itemBuilder: (context,index){
-                          return InkWell(
-                            onTap: (){
-                              setState(() {
-                                temp=list[index];
-                              });
-                              print(temp);
-                            },
-                            child: Container(
-                                height:30,width:30,
-                                margin: EdgeInsets.only(left:8,right:8,top:10,bottom:10),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color:temp.toString() == list[index].toString() ?  Color(0xff00A0E3) : Colors.transparent
-                                ),
-                                child: Center(
-                                  child: Text(list[index].toString(),style: GoogleFonts.inter(
-                                      fontWeight: FontWeight.w700,
-                                      color: temp.toString() == list[index].toString() ?  Colors.white : Colors.black
 
-                                  ),),
-                                )
+        byclass == true ||
+        search == true ?
+             SizedBox() : Stack(
+          alignment: Alignment.centerRight,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right:300.0),
+              child: SizedBox(
+                width: width/1.5,
+                height:height/13.02,
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: pagecount,
+                    itemBuilder: (context,index){
+                      return InkWell(
+                        onTap: (){
+                          setState(() {
+                            temp=list[index];
+                          });
+                          print(temp);
+                        },
+                        child: Container(
+                            height:30,width:30,
+                            margin: EdgeInsets.only(left:8,right:8,top:10,bottom:10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color:temp.toString() == list[index].toString() ?  Color(0xff00A0E3) : Colors.transparent
                             ),
-                          );
+                            child: Center(
+                              child: Text(list[index].toString(),style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w700,
+                                  color: temp.toString() == list[index].toString() ?  Colors.white : Colors.black
 
-                        }),
-                  ),
-                ),
-                temp > 1 ?
-                Padding(
-                  padding: const EdgeInsets.only(right: 150.0),
-                  child:
-                  InkWell(
-                    onTap:(){
-                      setState(() {
-                        temp= temp-1;
-                      });
-                    },
-                    child: Container(
-                        height:height/16.275,
-                        width:width/11.3833,
-                        decoration:BoxDecoration(
-                            color:Color(0xff00A0E3),
-                            borderRadius: BorderRadius.circular(80)
+                              ),),
+                            )
                         ),
-                        child: Center(
-                          child: Text("Previous Page",style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),),
-                        )),
-                  ),
-                )  : Container(),
-                Container(
-                  child: temp < pagecount ?
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: InkWell(
-                      onTap:(){
-                        setState(() {
-                          temp= temp+1;
-                        });
-                      },
-                      child:
-                      Container(
-                          height:height/16.275,
-                          width:width/11.3833,
-                          decoration:BoxDecoration(
-                              color:Color(0xff00A0E3),
-                              borderRadius: BorderRadius.circular(80)
-                          ),
-                          child: Center(
-                            child: Text("Next Page",style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),),
-                          )),
-                    ),
-                  )  : Container(),
-                )
-              ],
+                      );
+
+                    }),
+              ),
             ),
+            temp > 1
+                ?
+            Padding(
+              padding: const EdgeInsets.only(right: 150.0),
+              child:
+              InkWell(
+                onTap:(){
+                  setState(() {
+                    temp= temp-1;
+                  });
+                },
+                child: Container(
+                    height:height/16.275,
+                    width:width/11.3833,
+                    decoration:BoxDecoration(
+                        color:Color(0xff00A0E3),
+                        borderRadius: BorderRadius.circular(80)
+                    ),
+                    child: Center(
+                      child: Text("Previous Page",style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),),
+                    )),
+              ),
+            )  : Container(),
+            Container(
+              child: temp < pagecount ?
+              Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: InkWell(
+                  onTap:(){
+                    setState(() {
+                      temp= temp+1;
+                    });
+                  },
+                  child:
+                  Container(
+                      height:height/16.275,
+                      width:width/11.3833,
+                      decoration:BoxDecoration(
+                          color:Color(0xff00A0E3),
+                          borderRadius: BorderRadius.circular(80)
+                      ),
+                      child: Center(
+                        child: Text("Next Page",style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),),
+                      )),
+                ),
+              )  : Container(),
+            )
+          ],
+        ),
             SizedBox(height:height/26.04,)
           ],
         ),
@@ -3068,12 +3074,7 @@ class _StudentListState extends State<StudentList> {
         ),
       ),
     );
-
-
   }
-
-
-
   getMonthForData(int month){
     String result = '';
     switch(month){
@@ -3113,7 +3114,6 @@ class _StudentListState extends State<StudentList> {
       case 12:
         result = 'Dec';
         break;
-
     }
     return result;
   }

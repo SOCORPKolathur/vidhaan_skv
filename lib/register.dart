@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +15,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController datePickerCont = TextEditingController();
+  final TextEditingController type = TextEditingController();
   final TextEditingController amountCont = TextEditingController();
   final TextEditingController remarksCon = TextEditingController();
   final TextEditingController verifierCon = TextEditingController();
@@ -153,11 +155,11 @@ class _RegisterPageState extends State<RegisterPage> {
 
             SizedBox(height: 20,),
             Container(
-              width: 800,
+              width: 860,
               child: Row(
                 children: [
                   SizedBox(width: 30,),
-                  Column(
+                 /* Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Date *',
@@ -201,9 +203,49 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       )
                     ],
+                  ),*/
+
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right:0.0),
+                        child: Text("Date *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0,right: 10),
+                        child: Container(
+                          child:
+                          TextFormField(
+                            readOnly: true,
+                            onTap: (){
+                              datePicker(context);
+                            },
+                            controller: datePickerCont,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                            fontSize: width/91.06666666666667,
+                          ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Select Date';
+                              }
+                              return null;
+                            },
+                          ),
+                          width: width/5.902,
+                          height: height/16.425,
+                          //color: Color(0xffDDDEEE),
+                          decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                        ),
+                      ),
+
+                    ],
+
                   ),
                   SizedBox(width: 30,),
-                  Column(
+                /*  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
 
                     children: [
@@ -239,7 +281,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   contentPadding: EdgeInsets.all(10.0),
                                   border: InputBorder.none),
                               keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
+                             inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                 FilteringTextInputFormatter.digitsOnly
 
@@ -256,11 +298,53 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       )
                     ],
-                  ),
-                  SizedBox(width: 30,),
+                  ),*/
+
+
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
 
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right:0.0),
+                        child: Text("Amount *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0,right: 10),
+                        child: Container(
+                          child:
+                          TextFormField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                              FilteringTextInputFormatter.digitsOnly
+
+                            ],
+
+                            controller: amountCont,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                            fontSize: width/91.06666666666667,
+                          ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Amount';
+                              }
+                              return null;
+                            },
+                          ),
+                          width: width/5.902,
+                          height: height/16.425,
+                          //color: Color(0xffDDDEEE),
+                          decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                        ),
+                      ),
+
+                    ],
+
+                  ),
+                  SizedBox(width: 30,),
+                /*  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Select Type*',
                         style: GoogleFonts.mulish(
@@ -326,15 +410,116 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ],
+                  ),*/
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right:0.0),
+                        child: Text("Select Type",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0,right: 25),
+                        child: Container(
+                          // width: width/8.1,
+                          width: width/5.902,
+                          height: height/16.42,
+                          //color: Color(0xffDDDEEE),
+                          decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),child:
+                          DropdownButtonHideUnderline(
+                            child: DropdownButton2<String>(
+                              isExpanded: true,
+                              hint:  Row(
+                                children: [
+                                  Icon(
+                                    Icons.list,
+                                    size: 16,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: width/341.5,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      'Select Option',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: width/91.06666666666667
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              items:
+                              registerTypeList.map((String item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style:  GoogleFonts.poppins(
+                                      fontSize: width/91.06666666666667
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ))
+                                  .toList(),
+                              value: selectedRegisType,
+                              onChanged: (String? value) {
+                                setState(() {
+                                 selectedRegisType = value!;
+                                });
+
+                              },
+                              buttonStyleData: ButtonStyleData(
+                                height:height/13.02,
+                                width: width/8.5375,
+                                padding: const EdgeInsets.only(left: 14, right: 14),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+
+                                  color: Color(0xffDDDEEE),
+                                ),
+
+                              ),
+                              iconStyleData: const IconStyleData(
+                                icon: Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                ),
+                                iconSize: 14,
+                                iconEnabledColor: Colors.black,
+                                iconDisabledColor: Colors.grey,
+                              ),
+                              dropdownStyleData: DropdownStyleData(
+                                maxHeight:height/3.255,
+                                width: width/5.464,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(14),
+                                  color: Color(0xffDDDEEE),
+                                ),
+
+                                scrollbarTheme: ScrollbarThemeData(
+                                  radius: const Radius.circular(7),
+                                  thickness: MaterialStateProperty.all<double>(6),
+                                  thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                ),
+                              ),
+                              menuItemStyleData:  MenuItemStyleData(
+                                height:height/16.275,
+                                padding: EdgeInsets.only(left: 14, right: 14),
+                              ),
+                            ),
+                          ),
+
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(width: 30,),
-
-
                 ],
               ),
             ),
             SizedBox(height: 20,),
-            Container(
+          /*  Container(
               width: 800,
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -468,6 +653,137 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 ],
               ),
+            ),*/
+
+            Container(
+              // color: Colors.pink,
+              // width: 800,
+              width: width/1.70,
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // SizedBox(width: 60,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      Padding(
+                        padding: const EdgeInsets.only(right:0.0),
+                        child: Text("Verifier *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0,right: 10),
+                        child: Container(
+                          child:
+                          TextFormField(
+                            controller: verifierCon,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                            fontSize: width/91.06666666666667,
+                          ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Verifier';
+                              }
+                              return null;
+                            },
+                          ),
+                          width: width/3.64,
+                          // width: 375,
+                          height: height/16.425,
+                          //color: Color(0xffDDDEEE),
+                          decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                        ),
+                      ),
+
+                    ],
+
+                  ),
+                  SizedBox(width: 20,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right:0.0),
+                        child: Text("Source *",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0),
+                        child: Container(
+                          child:
+                          TextFormField(
+                            controller: sourceCon,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                            fontSize: width/91.06666666666667,
+                          ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Source';
+                              }
+                              return null;
+                            },
+                          ),
+                          width: width/3.64,
+                          // width: 375,
+                          height: height/16.425,
+                          //color: Color(0xffDDDEEE),
+                          decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+
+                        ),
+                      ),
+
+                    ],
+
+                  ),
+
+                ],
+              ),
+            ),
+            SizedBox(width: 30,),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right:0.0),
+                    child: InkWell(
+                        onTap: (){
+                          print(width);
+                          print(height);
+                        },
+                        child: Text("Remarks",style: GoogleFonts.poppins(fontSize: width/91.06666666666667,))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0.0,right: 10),
+                    child: Container(
+
+                      child:
+                      TextFormField(
+                        controller: remarksCon,decoration: InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.only(left: 10,bottom: 8),),style: GoogleFonts.poppins(
+                        fontSize: width/91.06666666666667,
+                      ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Remarks';
+                          }
+                          return null;
+                        },
+                      ),
+                      // width: width/5.902,
+                      // width: width/2.732,
+                      width: width/1.732,
+                      // width: 500,
+                      // height: height/16.425,
+                      height: height/5.425,
+                      //color: Color(0xffDDDEEE),
+                      decoration: BoxDecoration(color: const Color(0xffDDDEEE),borderRadius: BorderRadius.circular(5)),
+                    ),
+                  ),
+
+                ],
+
+              ),
             ),
             SizedBox(height: 20,),
             Container(
@@ -541,7 +857,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-
           ],
         ),
       ),

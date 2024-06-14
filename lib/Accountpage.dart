@@ -37,7 +37,8 @@ class _AccountpageState extends State<Accountpage> {
                   double.parse(element.get("amount").toString());
               expensesList.add(element);
             }
-            totalAmount += double.parse(element.get("amount").toString());
+            // totalAmount += double.parse(element.get("amount").toString());
+            totalAmount = totalReceivedAmount - totalSpendAmount;
           });
           return currentTab == "all"
               ? Column(
@@ -338,8 +339,9 @@ class _AccountpageState extends State<Accountpage> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 28.0),
+                                              const EdgeInsets.only(left: 45.0),
                                           child: Container(
+
                                             child: snap.data!.docs[i]['type']
                                                         .toString()
                                                         .toLowerCase() ==
@@ -348,6 +350,7 @@ class _AccountpageState extends State<Accountpage> {
                                                     "assets/Group 4.png")
                                                 : Image.asset(
                                                     "assets/Group 3.png"),
+                                            // color: Color(0xffFFFFFF),
                                             color: Color(0xffFFFFFF),
                                             width: width / 34.15,
                                             height: height / 16.425,
@@ -385,24 +388,28 @@ class _AccountpageState extends State<Accountpage> {
                                             ],
                                           ),
                                         ),
-                                        Container(
-                                          width: width/6.83,
-                                          child: Text(
-                                            "RS ${double.parse(snap.data!.docs[i]['amount'].toString()).toStringAsFixed(2)}",
-                                            style: GoogleFonts.mulish(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: width/91.066666667,
-                                                color: snap.data!
-                                                            .docs[i]['type']
-                                                            .toString()
-                                                            .toLowerCase() ==
-                                                        "credit"
-                                                    ? Color(0xff53B175)
-                                                    : Colors.red),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10),
+                                          child: Container(
+                                            width: width/6.83,
+                                            child: Text(
+                                              "RS ${double.parse(snap.data!.docs[i]['amount'].toString()).toStringAsFixed(2)}",
+                                              style: GoogleFonts.mulish(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: width/91.066666667,
+                                                  color: snap.data!
+                                                              .docs[i]['type']
+                                                              .toString()
+                                                              .toLowerCase() ==
+                                                          "credit"
+                                                      ? Color(0xff53B175)
+                                                      : Colors.red),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: width/13.66,
+                                          width: width/7.30,
+                                          // width: 90,
                                           child: Text(
                                             snap.data!.docs[i]['receivedBy'],
                                             style: GoogleFonts.mulish(
@@ -411,9 +418,8 @@ class _AccountpageState extends State<Accountpage> {
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 100.0),
+                                        Container(
+                                          width: width/7.10,
                                           child: Text(
                                             snap.data!.docs[i]['date'],
                                             style: GoogleFonts.mulish(
@@ -422,16 +428,12 @@ class _AccountpageState extends State<Accountpage> {
                                                 color: Colors.black),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 100.0),
-                                          child: Text(
-                                            snap.data!.docs[i]['time'],
-                                            style: GoogleFonts.mulish(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: width/91.066666667,
-                                                color: Colors.black),
-                                          ),
+                                        Text(
+                                          snap.data!.docs[i]['time'],
+                                          style: GoogleFonts.mulish(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: width/91.066666667,
+                                              color: Colors.black),
                                         ),
                                       ],
                                     ),
@@ -576,7 +578,7 @@ class _AccountpageState extends State<Accountpage> {
                       SizedBox(),
                       Center(
                         child: Text(
-                          "Lastest  ${title}  Transactions",
+                          "Latest  ${title}  Transactions",
                           style: GoogleFonts.poppins(
                               fontSize: width/68.3, fontWeight: FontWeight.bold),
                         ),
@@ -674,7 +676,7 @@ class _AccountpageState extends State<Accountpage> {
                             children: [
                               Padding(
                                 padding:
-                                const EdgeInsets.only(left: 28.0),
+                                const EdgeInsets.only(left: 42.0),
                                 child: Container(
                                   child: docs[i]['type']
                                       .toString()
@@ -722,7 +724,7 @@ class _AccountpageState extends State<Accountpage> {
                                 ),
                               ),
                               Container(
-                                width: width/6.83,
+                                width: width/7.3,
                                 child: Text(
                                   "RS ${docs[i]['amount']}",
                                   style: GoogleFonts.mulish(
@@ -737,7 +739,7 @@ class _AccountpageState extends State<Accountpage> {
                                 ),
                               ),
                               SizedBox(
-                                width: width/13.66,
+                                width: width/7.46,
                                 child: Text(
                                   docs[i]['receivedBy'],
                                   style: GoogleFonts.mulish(
@@ -746,16 +748,12 @@ class _AccountpageState extends State<Accountpage> {
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 100.0),
-                                child: Text(
-                                  docs[i]['date'],
-                                  style: GoogleFonts.mulish(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: width/91.066666667,
-                                      color: Colors.black),
-                                ),
+                              Text(
+                                docs[i]['date'],
+                                style: GoogleFonts.mulish(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: width/91.066666667,
+                                    color: Colors.black),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -877,5 +875,4 @@ class _AccountpageState extends State<Accountpage> {
       ],
     );
   }
-
 }

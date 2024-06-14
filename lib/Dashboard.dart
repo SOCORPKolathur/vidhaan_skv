@@ -80,6 +80,8 @@ class _DashboardState extends State<Dashboard> {
     getadmin();
     setState(() {
       pages=Dashboard2();
+      // pages = Accountpage();
+      // pages = RegisterPage();
     });
     // TODO: implement initState
     super.initState();

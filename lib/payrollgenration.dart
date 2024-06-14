@@ -580,7 +580,11 @@ class _PayrollGenState extends State<PayrollGen> {
 
                                         children: [
                                           type.text.toLowerCase() == "designation"
-                                              ? Column(
+                                              ?
+
+
+
+                                          Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Padding(

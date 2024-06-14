@@ -14,8 +14,6 @@ class ClassIncharge extends StatefulWidget {
 }
 
 class _ClassInchargeState extends State<ClassIncharge> {
-
-
   String? _selectedCity;
   final TextEditingController _typeAheadControllerclass = TextEditingController();
   final TextEditingController _typeAheadControllersection = TextEditingController();
@@ -26,7 +24,6 @@ class _ClassInchargeState extends State<ClassIncharge> {
   static final List<String> section = [];
   static final List<String> staffid = [];
   static final List<String> staffnamelist = [];
-
   static List<String> getSuggestionsclass(String query) {
     List<String> matches = <String>[];
     matches.addAll(classes);
@@ -107,7 +104,7 @@ class _ClassInchargeState extends State<ClassIncharge> {
    print(_typeAheadControllerstaffid.text);
     var document = await FirebaseFirestore.instance.collection("Staffs").get();
     for(int i=0;i<document.docs.length;i++){
-      if(_typeAheadControllerstaffid.text==document.docs[i]["regno"]){
+      if(_typeAheadControllerstaffid.text==document.docs[i]["regno"] ||  _typeAheadControllerstaffname.text== document.docs[i]["stname"]){
         setState(() {
           staffdocid= document.docs[i].id;
         }
@@ -134,6 +131,7 @@ class _ClassInchargeState extends State<ClassIncharge> {
       if(value==document.docs[i]["regno"]){
         setState(() {
           _typeAheadControllerstaffname.text= document.docs[i]["stname"];
+          staffdocid= document.docs[i].id;
         }
         );
       }
@@ -210,6 +208,13 @@ class _ClassInchargeState extends State<ClassIncharge> {
         });
       }
     }
+    setState(() {
+      _typeAheadControllerclass.text="Select Option";
+      _typeAheadControllersection.text="Select Option";
+      _typeAheadControllerstaffid.text="";
+      _typeAheadControllerstaffname.text="";
+      staffdocid="";
+    });
   }
   Successdialog(){
     double width = MediaQuery.of(context).size.width;
