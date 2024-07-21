@@ -453,9 +453,13 @@ class _Dashboard2State extends State<Dashboard2> {
 
 
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.network(imgurl),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(70),
+                              child: Container(
+                                width: width/19.51428571428571,
+                                height:height/9.3,
+                                child: Image.network(imgurl, fit: BoxFit.cover),
+                              ),
                             ),
                           ),
                           SizedBox(width: width/113.8333333333333,),

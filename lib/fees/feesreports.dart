@@ -56,9 +56,9 @@ class _FeesReportsState extends State<FeesReports> {
     return matches;
   }
   adddropdownvalue() async {
-    pos1.text = DateFormat('dd/MM/yyyy').format(DateTime.now());
-    pos2.text = DateFormat('dd/MM/yyyy').format(DateTime.now().subtract(Duration(days: 30)));
     setState(() {
+      pos1.text = DateFormat('dd/MM/yyyy').format(DateTime.now());
+      pos2.text = DateFormat('dd/MM/yyyy').format(DateTime.now().subtract(Duration(days: 30)));
       regno.clear();
       student.clear();
       classes.clear();
@@ -1462,8 +1462,14 @@ ${schoolname},
   }
 
   differenceDatefunction(date1) {
-    int diffrencedays = DateFormat('dd/MM/yyyy').parse(date1).difference(DateTime.now()).inDays;
-    return diffrencedays;
+    if(date1!="") {
+      int diffrencedays = DateFormat('dd/MM/yyyy')
+          .parse(date1)
+          .difference(DateTime.now())
+          .inDays;
+      return diffrencedays;
+    }
+    return 0;
   }
 
   Future<FeesDetailsModel> getFeesDetails() async {
@@ -1489,7 +1495,7 @@ ${schoolname},
             );
         }
         else if(fees.get("status") == false &&
-            (DateFormat('dd/MM/yyyy').parse(fees.get('duedate')).difference(DateTime.now()).inDays + 1 <= 0)){
+            (DateFormat('dd/MM/yyyy').parse(fees.get('duedate')!=""?fees.get('duedate'):pos1.text).difference(DateTime.now()).inDays + 1 <= 0)){
           overDuestudentsList.add(
               StudentFeesModel(
                   studentName: student.get("stname"),

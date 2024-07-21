@@ -237,6 +237,16 @@ String studentdocid="";
     });
   }
 
+  tempdelete() async {
+    var docu = await FirebaseFirestore.instance.collection("AdmissionForms").get();
+    for(int i=0;i<docu.docs.length;i++){
+      if(docu.docs[i]["dateOfApplication"]=="01/06/2024"){
+        FirebaseFirestore.instance.collection("AdmissionForms").doc(docu.docs[i].id).delete();
+      }
+    }
+    print("Completed");
+  }
+
   final  _formkey = GlobalKey<FormState>();
 
   getrollno() async {
@@ -2919,7 +2929,7 @@ String studentdocid="";
                 Container(
                   child: Row(
                     children: [
-                      Padding(
+                    /*  Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Checkbox(
                             value: mainconcent,
@@ -2934,7 +2944,7 @@ String studentdocid="";
 
                             }
                         ),
-                      ),
+                      ),*/
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 60),
                         child: Text(
@@ -3019,7 +3029,7 @@ String studentdocid="";
                               itemBuilder: (context, index) {
                                 return  Row(
                                   children: [
-                                    Padding(
+                                  /*  Padding(
                                       padding: const EdgeInsets.only(left: 0.0),
                                       child: Checkbox(
 
@@ -3033,7 +3043,7 @@ String studentdocid="";
 
                                           }
                                       ),
-                                    ),
+                                    ),*/
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           left: 8.0,),
@@ -3988,7 +3998,7 @@ Best regards,
 ${schoolname}
         ''');
       FirebaseFirestore.instance.collection('AdmissionForms').doc(snap.id).delete();
-      Navigator.pop(context);
+
     }).onError((error, stackTrace) {
       
     });

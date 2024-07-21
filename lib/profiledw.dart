@@ -1558,7 +1558,12 @@ class _ScreensExampleState extends State<_ScreensExample> {
                                         Icon(Icons.camera_alt_rounded,size: 50,),
                                         Text("Select Logo",style: GoogleFonts.poppins(fontSize: width/75.888888889,fontWeight: FontWeight.bold),)
                                       ],
-                                    ) : Image.network(imgUrl): Center(
+                                    ) : ClipRRect(
+                                        borderRadius: BorderRadius.circular(100),
+                                        child: Container(
+                                            width: width/8.035294117647059,
+                                            height:height/3.829411764705882,
+                                            child: Image.network(imgUrl, fit: BoxFit.cover,))): Center(
                                       child: CircularProgressIndicator(),
                                     )
                                 ),
@@ -1572,8 +1577,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
                             child: InkWell(
                               onTap: (){
                                 admin();
-                                _bulkuploadstudent();
-
+                                // _bulkuploadstudent();
                               },
                               child: Container(child: Center(child: Text("Update Profile",style: GoogleFonts.poppins(color:Colors.white),)),
                                 width: width/10.507,
@@ -2576,7 +2580,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
 
   }
 
-  admin(){
+  admin() async {
     FirebaseFirestore.instance.collection("Admin").doc("AbeOpc23Rx9Z6n4fxIVw").set({
       "schoolname":schoolname.text,
       "solgan":solgan.text,
@@ -2593,10 +2597,12 @@ class _ScreensExampleState extends State<_ScreensExample> {
       "web":schoolweb.text,
       "days":int.parse(schooldays.text),
     });
+    await _bulkuploadstudent();
   }
   Future<void> _bulkuploadstudent() async {
     return showDialog<void>(
       context: context,
+      barrierDismissible: false,
 
       builder: (BuildContext context) {
         double width=MediaQuery.of(context).size.width;
@@ -2625,7 +2631,8 @@ class _ScreensExampleState extends State<_ScreensExample> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(Icons.cancel,color: Colors.white,),
+                            // child: Icon(Icons.cancel,color: Colors.white,),
+                            child: Icon(Icons.check,color: Colors.white,),
                           ),
                           Text("Ok",style: GoogleFonts.poppins(color:Colors.white),),
                         ],

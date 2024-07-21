@@ -110,17 +110,16 @@ String rollno="";
     print(v1);
   }
   updatestudentregno() async {
-
     var document = await FirebaseFirestore.instance.collection("Students").orderBy("timestamp").get();
     for(int i=0;i<document.docs.length;i++){
-
       FirebaseFirestore.instance.collection("Students").doc(document.docs[i].id).update({
         "regno" :"VDSSS${(i+1).toString().padLeft(2, '0')}"
       });
     }
     print("Reg No Changed");
-
 }
+
+
   updatestudentrollno() async {
     String classesA ="";
     String secA ="";
@@ -154,8 +153,7 @@ String rollno="";
     }
     print("Roll NO changed successfully");
   }
-
-checkdemo() async {
+  checkdemo() async {
   var document = await FirebaseFirestore.instance.collection("Students").orderBy("timestamp").get();
   for(int i=0;i<document.docs.length;i++) {
     if(document.docs[i]["dob"].toString().contains("/")&&document.docs[i]["dob"].toString().length==10) {
@@ -199,7 +197,6 @@ checkdemo() async {
   }
   print("Reg NO changed successfully");
 }
-
   String schoolname="";
   String schooladdress="";
   String schoolphone="";
@@ -3631,7 +3628,6 @@ checkdemo() async {
 
     });
   }
-
   List namelist = [];
   List lastnamelist = [];
   List imglist = [];
