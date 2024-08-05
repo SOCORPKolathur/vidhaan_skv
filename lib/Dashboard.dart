@@ -39,6 +39,7 @@ import 'Accountpage.dart';
 import 'Masters/desigination.dart';
 import 'Masters/staffidcard.dart';
 import 'Masters/student id card.dart';
+import 'Userpremissions/userpremessions.dart';
 import 'exam/exammaster.dart';
 import 'exam/examsubjectmaster.dart';
 import 'fees/classwisefeemaster.dart';
@@ -96,6 +97,7 @@ class _DashboardState extends State<Dashboard> {
   ExpansionTileController hrcon= new ExpansionTileController();
   ExpansionTileController accountscon= new ExpansionTileController();
   ExpansionTileController noticescon= new ExpansionTileController();
+  ExpansionTileController securitycon= new ExpansionTileController();
   ExpansionTileController timetable= new ExpansionTileController();
 
   List<String> rowdetail = [];
@@ -3992,7 +3994,7 @@ setState(() {
                                     admissioncon.collapse();
                                     studdentcon.collapse();
                                     staffcon.collapse();
-                                    accountscon.collapse();
+                                    accountscon.collapse(); securitycon.collapse();
                                     attdencecon.collapse();
                                     feescon.collapse();
                                     examcon.collapse();
@@ -4031,7 +4033,7 @@ setState(() {
                                       staffcon.collapse();
                                       attdencecon.collapse();
                                       feescon.collapse();
-                                      accountscon.collapse();
+                                      accountscon.collapse(); securitycon.collapse();
                                       examcon.collapse();
                                       hrcon.collapse();
                                       timetable.collapse();
@@ -4124,7 +4126,7 @@ setState(() {
                                         staffcon.collapse();
                                         attdencecon.collapse();
                                         feescon.collapse();
-                                        accountscon.collapse();
+                                        accountscon.collapse(); securitycon.collapse();
                                         examcon.collapse();
                                         hrcon.collapse();
                                         timetable.collapse();
@@ -4210,7 +4212,7 @@ setState(() {
                                       if(value==true){
                                         admissioncon.collapse();
                                         studdentcon.collapse();
-                                        accountscon.collapse();
+                                        accountscon.collapse(); securitycon.collapse();
 
                                         attdencecon.collapse();
                                         feescon.collapse();
@@ -4358,7 +4360,7 @@ setState(() {
                                       feescon.collapse();
                                       examcon.collapse();
                                       hrcon.collapse();
-                                      accountscon.collapse();
+                                      accountscon.collapse(); securitycon.collapse();
 
                                       noticescon.collapse();
 
@@ -4506,7 +4508,7 @@ setState(() {
                                         admissioncon.collapse();
                                         studdentcon.collapse();
                                         staffcon.collapse();
-                                        accountscon.collapse();
+                                        accountscon.collapse(); securitycon.collapse();
 
                                         feescon.collapse();
                                         examcon.collapse();
@@ -4668,7 +4670,7 @@ setState(() {
                                         studdentcon.collapse();
                                         staffcon.collapse();
                                         attdencecon.collapse();
-                                        accountscon.collapse();
+                                        accountscon.collapse(); securitycon.collapse();
 
                                         examcon.collapse();
                                         hrcon.collapse();
@@ -4782,7 +4784,7 @@ setState(() {
                                         hrcon.collapse();
                                         timetable.collapse();
                                         noticescon.collapse();
-                                        accountscon.collapse();
+                                        accountscon.collapse(); securitycon.collapse();
                                         setState(() {
                                           dawer=6;
                                         });
@@ -4880,7 +4882,7 @@ setState(() {
                                     onExpansionChanged: (value){
                                       if(value==true){
                                         admissioncon.collapse();
-                                        accountscon.collapse();
+                                        accountscon.collapse(); securitycon.collapse();
                                         studdentcon.collapse();
                                         staffcon.collapse();
                                         attdencecon.collapse();
@@ -5013,6 +5015,7 @@ setState(() {
                                         hrcon.collapse();
                                         timetable.collapse();
                                         noticescon.collapse();
+                                        securitycon.collapse();
                                         setState(() {
                                           dawer=7;
                                           //  pages=Accountpage();
@@ -5095,7 +5098,7 @@ setState(() {
                                         examcon.collapse();
                                         hrcon.collapse();
                                         timetable.collapse();
-                                        accountscon.collapse();
+                                        accountscon.collapse(); securitycon.collapse();
 
                                         setState(() {
                                           dawer=9;
@@ -5144,6 +5147,101 @@ setState(() {
                                               color: dawer == 9?  Colors.white : Color(0xff9197B3)),
                                           )),
                                     /*  ListTile(
+                                          title: Text("Individual SMS",style: GoogleFonts.poppins(
+                                              fontSize: width/113.833333333,
+                                              fontWeight: FontWeight.w600,
+                                              color: dawer == 9?  Colors.white : Color(0xff9197B3)),
+                                          )),
+
+                                     */
+
+
+
+
+
+
+
+                                    ],
+                                  )),
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 6),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: dawer == 11
+                                        ?Color(0xff00A0E3)
+                                        : Colors.transparent,
+                                  ),
+
+                                  child:ExpansionTile(
+                                    shape: CircleBorder(),
+                                    controller: securitycon,
+                                    iconColor: Colors.white,
+                                    backgroundColor:dawer == 11
+                                        ?Color(0xff00A0E3)
+                                        : Colors.transparent,
+                                    onExpansionChanged: (value){
+                                      if(value==true){
+                                        admissioncon.collapse();
+                                        studdentcon.collapse();
+                                        staffcon.collapse();
+                                        attdencecon.collapse();
+                                        feescon.collapse();
+                                        examcon.collapse();
+                                        hrcon.collapse();
+                                        noticescon.collapse();
+                                        timetable.collapse();
+                                        accountscon.collapse();
+
+                                        setState(() {
+                                          dawer=11;
+                                        });
+                                      }
+
+                                    },
+                                    leading: Padding(
+                                      padding: const EdgeInsets.only(left: 0.0),
+                                      child:Icon(
+                                        Icons.security,
+                                        color: dawer == 11 ?  Colors.white : Color(0xff9197B3),
+                                      ),
+                                    ),
+
+                                    title: Text(
+                                      "Security",
+                                      style: GoogleFonts.poppins(
+                                          fontSize: width/113.833333333,
+                                          fontWeight: FontWeight.bold,
+                                          color: dawer == 11 ?  Colors.white : Color(0xff9197B3)),
+                                    ),
+                                    children: [
+                                      ListTile(
+                                          onTap:(){
+                                            setState(() {
+                                             pages=ManagerRoleTab(currentRole: "admin",);
+
+                                            });
+                                          },
+                                          title: Text("User Permissions",style: GoogleFonts.poppins(
+                                              fontSize: width/113.833333333,
+                                              fontWeight: FontWeight.w600,
+                                              color: dawer == 11?  Colors.white : Color(0xff9197B3)),
+                                          )),
+                                      ListTile(
+                                          onTap:(){
+                                            setState(() {
+                                              //pages=Previous();
+
+                                            });
+                                          },
+                                          title: Text("Logout",style: GoogleFonts.poppins(
+                                              fontSize: width/113.833333333,
+                                              fontWeight: FontWeight.w600,
+                                              color: dawer == 11?  Colors.white : Color(0xff9197B3)),
+                                          )),
+                                      /*  ListTile(
                                           title: Text("Individual SMS",style: GoogleFonts.poppins(
                                               fontSize: width/113.833333333,
                                               fontWeight: FontWeight.w600,
